@@ -1,0 +1,1 @@
+buildapp HaruPDF HaruPDF.hbc

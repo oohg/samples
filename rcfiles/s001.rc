@@ -1,0 +1,28 @@
+/*
+ * This resource file is part of RC File Sample n° 1
+ * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * Visit us at https://github.com/fyurisich/OOHG_Samples or at
+ * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ */
+
+// The first ICON in alphabetical order is used for the app
+APPICON   ICON      OOHG.ICO
+
+// Images to display in IMAGE controls
+DEMO1     BITMAP    DEMO.BMP
+DEMO2     GIF       DEMO.GIF
+DEMO3     JPG       DEMO.JPG
+DEMO4     PNG       DEMO.PNG
+DEMO5     TIFF      DEMO.TIF
+DEMO6     ICON      DEMO.ICO
+
+// Keywords (ICON, BITMAP, etc.) must be in uppercase.
+
+// Last line must end with a CR+LF
+
+/*
+ * EOF
+ */

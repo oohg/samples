@@ -1,0 +1,18 @@
+/*
+ * This resource file is a part of Tree Sample n° 1
+ * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * Visit us at https://github.com/fyurisich/OOHG_Samples or at
+ * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ */
+
+WATCH    BITMAP  WATCH.BMP
+WINDOW   BITMAP  WINDOW.BMP
+LED_OFF  BITMAP  LED_OFF.BMP
+LED_ON   BITMAP  LED_ON.BMP
+
+/*
+ * EOF
+ */
