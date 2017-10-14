@@ -1,0 +1,20 @@
+Logo            ICON    Recursos\Loguito.ico
+lapicera        ICON    Recursos\lapicera.ico
+gente           ICON    Recursos\gente.ico
+
+SuperSDC        BITMAP  Recursos\Loguito2.Bmp
+clientes        BITMAP  Recursos\Clientes.bmp
+param           BITMAP  Recursos\Configurar.bmp
+Salir           BITMAP  Recursos\Salir.bmp
+new             BITMAP  Recursos\editl.bmp 
+edit            BITMAP  Recursos\edit.bmp
+save            BITMAP  Recursos\grabar.bmp
+cancel          BITMAP  Recursos\cancel.bmp
+delete          BITMAP  Recursos\borrar.bmp
+buscar          BITMAP  Recursos\buscar.bmp
+Close           BITMAP  Recursos\Salir.bmp
+
+
+
+
+

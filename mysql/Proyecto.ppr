@@ -1,0 +1,67 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+[Project tree]
+Proyecto
+	+Fuentes
+		+PRGs
+			AbmClie.prg
+			FuncionesSql.prg
+			Parametros.prg
+			Sistema.prg
+		+FMGs
+			AbmClie.Fmg
+			Parametros.Fmg
+			Sistema.Fmg
+		Sistema.rc
+		SDC_Colores.ch
+[Open project files]
+0=Sistema.Fmg
+1=AbmClie.Fmg
+2=Parametros.Fmg
+3=Sistema.prg
+4=AbmClie.prg
+5=Parametros.prg
+6=FuncionesSql.prg
+7=Sistema.rc
+8=SDC_Colores.ch
+[Selected Project Files]
+Main=
+Selected=SDC_Colores.ch
+[Sistema.Fmg]
+TopLine=1
+Caret=28,30
+[AbmClie.Fmg]
+TopLine=1
+Caret=1,1
+[Parametros.Fmg]
+TopLine=1
+Caret=1,1
+[Sistema.prg]
+TopLine=1
+Caret=1,1
+[AbmClie.prg]
+TopLine=1
+Caret=30,45
+[Parametros.prg]
+TopLine=1
+Caret=1,1
+[FuncionesSql.prg]
+TopLine=1
+Caret=1,1
+[Sistema.rc]
+TopLine=1
+Caret=1,1
+[SDC_Colores.ch]
+TopLine=1
+Caret=1,1

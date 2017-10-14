@@ -1,0 +1,44 @@
+
+Como pueden ver en los ejemplos todo es configurable.
+
+-----------------------------------------------------------------
+
+SET AUTOADJUST ON    ////  Prende el autoajuste global posicion, ancho y font
+SET AUTOADJUST OFF   ////  Apaga el autoajuste global
+
+SET ADJUSTWIDTH ON   ////  Prende el ajuste global de ancho
+SET ADJUSTWIDTH OFF  ////  Apaga del ajuste global de ancho
+                     ////  Depende del primero  
+
+SET ADJUSTFONT ON    ////  Prende el ajuste global de font
+SET ADJUSTFONT OFF   ////  Apaga el autoajuste global de font
+                     ////  Depende del primero.
+
+------------------------------------------------------------------
+
+
+ Para cada control se puede activar o desactivar el autoajuste
+ si esta prendido el global.
+
+con        oControl:ladjust := .T.
+ o         oControl:ladjust := .F.
+
+-----------------------------------------------------------------
+
+ Para cada Control se puede activar o desactivar el ajuste de ancho
+ se esta prendido el global
+
+con        oControl:lfixwidth := .T.
+ o         oControl:lfixwidth := .F.
+
+-----------------------------------------------------------------
+
+ Para cada control se puede activar o desactivar el ajuste de font
+ si esta prendido el ajuste global
+
+con        oControl:lfixfont  := .T.
+ o         oControl:lfixfont  := .F.
+
+
+
+ 

@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2017-10-13 23:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + Samples from oohg distros.
+   * Some samples moved to subfolders.
+
 2017-10-13 20:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + Samples from http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki site.
 

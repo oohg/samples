@@ -1,0 +1,71 @@
+* Harbour MiniGUI IDE Two-Way Form Designer Generated Code
+* (c)2004-2005 Roberto Lopez <roblez@ciudad.com.ar>
+
+DEFINE WINDOW TEMPLATE OBJ oWin AT 79 , 187 WIDTH 800 HEIGHT 575 TITLE "SDC Soluciones Informáticas (c)2010" ICON "Logo" MAIN CURSOR NIL ON INIT Arranco() ON RELEASE { || SalidaSistema() }  ON SIZE ImagenSDC() ON MAXIMIZE ImagenSDC() BACKCOLOR {197,197,197}
+  DEFINE MAIN MENU
+    DEFINE POPUP "&Mantenimiento" NAME Mantenimiento
+      MENUITEM "Padrón de &Clientes" ACTION AbmClie() NAME Servi001 
+      SEPARATOR
+      MENUITEM "&Salir" ACTION Sistema.Release NAME SalidaMenu
+    END POPUP
+    DEFINE POPUP "&Configuración" NAME Configuracion
+      MENUITEM "Configurar &Parámetros" ACTION Parametros() NAME Siste002
+    END POPUP
+    DEFINE POPUP "A&yuda" NAME Ayuda
+      MENUITEM "&Ayuda del Sistema"                 ACTION { || VeoAyuda('Ayuda.chm') }  NAME AyudaSis1 
+      MENUITEM "Ayuda en formato &Imprimible (PDF)" ACTION { || VeoAyuda('Ayuda.PDF') }  NAME AyudaSis2 
+      SEPARATOR
+      MENUITEM "www.sdcinformatica.com.ar" ACTION { || URLInternet('www.sdcinformatica.com.ar') } NAME AyudaSis3 
+    END POPUP
+  END MENU
+  DEFINE SPLITBOX
+    DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 32,32 FONT "Arial" SIZE 9 FLAT
+      BUTTON Boton001 PICTURE "clientes"        Tooltip 'Administrador de Socios/Clientes'      ACTION { || AbmClie() }               
+      BUTTON Boton002 PICTURE "Param"           Tooltip 'Configurar Parámetros Generales'       ACTION Parametros()  SEPARATOR    
+      BUTTON Boton010 PICTURE "Salir"           Tooltip 'Salida del Sistema'                    ACTION { || Sistema.Release }
+    END TOOLBAR
+  END SPLITBOX
+ 
+  DEFINE STATUSBAR FONT "Arial" SIZE 9 BOLD
+    STATUSITEM "" WIDTH 200
+    STATUSITEM "SDC Soluciones Informáticas" WIDTH 300
+    DATE
+  END STATUSBAR
+
+  DEFINE LABEL Label_1
+    ROW    170
+    COL    0
+    WIDTH  550
+    HEIGHT 120
+    VALUE ""
+    FONTNAME "Arial Black"
+    FONTSIZE 32
+    TOOLTIP ""
+    FONTBOLD .T.
+    FONTITALIC .F.
+    FONTUNDERLINE .F.
+    FONTSTRIKEOUT .F.
+    HELPID Nil
+    VISIBLE .T.
+    TRANSPARENT .T.
+    ACTION Nil
+    AUTOSIZE .F.
+    BACKCOLOR NIL
+    FONTCOLOR NIL
+  END LABEL
+
+  DEFINE IMAGE Image_1
+    ROW    180
+    COL    350
+    WIDTH  172
+    HEIGHT 110
+    PICTURE "SuperSDC"
+    HELPID Nil
+    VISIBLE .T.
+    STRETCH .T.
+    ACTION Nil
+  END IMAGE
+
+END WINDOW
+
+

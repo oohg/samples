@@ -1,0 +1,173 @@
+
+* ooHG IDE plus form generated code
+* (c) 2003-2017 Ciro Vargas Clemow <cvc@oohg.org>
+
+DEFINE WINDOW  TEMPLATE ; 
+AT 139,200 ;
+ WIDTH 646 ;
+ HEIGHT 484 ; 
+ TITLE 'Mail Sample' ; 
+ ICON '' ; 
+FONT 'MS Sans Serif' ;
+SIZE 10 ;
+
+
+@ 412,16 LABEL statusbar ; 
+WIDTH 312 ; 
+HEIGHT 17 ; 
+VALUE 'statusbar' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.statusbar.fontcolor:={0,0,0}
+
+@ 407,518 BUTTON enviarmail ;
+CAPTION 'Enviar' ; 
+ACTION enviomail() ;
+WIDTH 100 ;
+HEIGHT 28 ; 
+FONT 'MS Sans Serif' ;
+SIZE 10 ;
+ 
+
+
+mailing.enviarmail.fontcolor:={0,0,0}
+
+@ 377,7 LABEL confirmacion_lbl ; 
+WIDTH 231 ; 
+HEIGHT 20 ; 
+VALUE 'confirmacion_lbl' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.confirmacion_lbl.fontcolor:={0,0,0}
+
+@ 161,101 TEXTBOX asunto_txb ; 
+HEIGHT 24 ; 
+WIDTH 289 ; 
+Font 'MS Sans Serif' ; 
+size 10 ; 
+MAXLENGTH 30 ; 
+
+
+
+mailing.asunto_txb.fontcolor:={0,0,0}
+mailing.asunto_txb.backcolor:={255,255,255}
+
+@ 220,102 EDITBOX texto_edt ; 
+WIDTH 418 ; 
+HEIGHT 89 ; 
+FONT 'MS Sans Serif' ;
+SIZE 10 ;
+MAXLENGTH 30 ; 
+
+
+
+mailing.texto_edt.fontcolor:={0,0,0}
+mailing.texto_edt.backcolor:={255,255,255}
+
+@ 162,25 LABEL label_1 ; 
+WIDTH 62 ; 
+HEIGHT 17 ; 
+VALUE 'Subject' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.label_1.fontcolor:={0,0,0}
+
+@ 215,24 LABEL label_2 ; 
+WIDTH 62 ; 
+HEIGHT 20 ; 
+VALUE 'Message' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.label_2.fontcolor:={0,0,0}
+
+@ 26,15 LABEL label_3 ; 
+WIDTH 97 ; 
+HEIGHT 15 ; 
+VALUE 'SMTP server' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.label_3.fontcolor:={0,0,0}
+
+@ 26,133 TEXTBOX smtp ; 
+HEIGHT 24 ; 
+WIDTH 200 ; 
+Font 'MS Sans Serif' ; 
+size 10 ; 
+MAXLENGTH 30 ; 
+
+
+
+mailing.smtp.fontcolor:={0,0,0}
+mailing.smtp.backcolor:={255,255,255}
+
+@ 78,18 LABEL label_4 ; 
+WIDTH 111 ; 
+HEIGHT 23 ; 
+VALUE 'Send Address' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.label_4.fontcolor:={0,0,0}
+
+@ 76,133 TEXTBOX send ; 
+HEIGHT 24 ; 
+WIDTH 200 ; 
+Font 'MS Sans Serif' ; 
+size 10 ; 
+MAXLENGTH 30 ; 
+
+
+
+mailing.send.fontcolor:={0,0,0}
+mailing.send.backcolor:={255,255,255}
+
+@ 113,21 LABEL label_5 ; 
+WIDTH 91 ; 
+HEIGHT 15 ; 
+VALUE 'Name' ; 
+FONT 'MS Sans Serif' ; 
+SIZE 10 ;
+
+
+
+
+mailing.label_5.fontcolor:={0,0,0}
+
+@ 116,133 TEXTBOX rname ; 
+HEIGHT 24 ; 
+WIDTH 202 ; 
+Font 'MS Sans Serif' ; 
+size 10 ; 
+MAXLENGTH 30 ; 
+
+
+
+mailing.rname.fontcolor:={0,0,0}
+mailing.rname.backcolor:={255,255,255}
+
+END WINDOW 
+
+

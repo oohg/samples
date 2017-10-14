@@ -1,0 +1,16 @@
+#
+# $Id: hbmk.hbm 13533 2010-01-11 13:44:04Z druzus $
+#
+
+../hbnetio.hbc
+-mt
+
+-w2 -es2
+
+-ldflag=-Lc:\oohg\lib
+-loohg
+-lhbprinter
+-lminiprint
+-lc:\oohg\harbour\lib\libhbwin.a
+-lc:\oohg\harbour\lib\libhbct.a
+-lc:\oohg\resources\oohg.o

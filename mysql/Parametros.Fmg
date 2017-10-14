@@ -1,0 +1,263 @@
+* Harbour MiniGUI IDE Two-Way Form Designer Generated Code
+* (c)2004-2005 Roberto Lopez <roblez@ciudad.com.ar>
+
+DEFINE WINDOW TEMPLATE AT 197 , 332 WIDTH 352 HEIGHT 298 TITLE "Párametros Generales del Sistema" ICON "lapicera" CHILD NOMAXIMIZE NOSIZE CURSOR NIL ON INIT (hWnd:=GetFormHandle('Parametros'),SetTransparent(hWnd, 230)) ON RELEASE Nil BACKCOLOR Nil
+
+    DEFINE TAB Tab_1 AT 10 , 10 WIDTH 320 HEIGHT 200 VALUE 1 FONT "Arial" SIZE 9 TOOLTIP "" ON CHANGE Nil
+
+        PAGE "General"
+
+            DEFINE CHECKBOX Check_2
+                ROW    40
+                COL    20
+                WIDTH  280
+                HEIGHT 20
+                CAPTION "Maximizar pantalla principal"
+                VALUE .F.
+                FONTNAME "Arial"
+                FONTSIZE 9
+                TOOLTIP ""
+                ONCHANGE Nil
+                ONGOTFOCUS Nil
+                ONLOSTFOCUS Nil
+                FONTBOLD .F.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                HELPID Nil
+                TABSTOP .T.
+                VISIBLE .T.
+                TRANSPARENT .F.
+            END CHECKBOX
+
+            DEFINE FRAME Frame_1
+                ROW    70
+                COL    20
+                WIDTH  280
+                HEIGHT 110
+                FONTNAME "Arial"
+                FONTSIZE 9
+                FONTBOLD .T.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                CAPTION "Acceso a MySql..."
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                OPAQUE .F.
+            END FRAME
+
+            DEFINE LABEL Label_1
+                ROW    126
+                COL    30
+                WIDTH  60
+                HEIGHT 16
+                VALUE "Usuario:"
+                FONTNAME "Arial"
+                FONTSIZE 9
+                TOOLTIP ""
+                FONTBOLD .F.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                HELPID Nil
+                VISIBLE .T.
+                TRANSPARENT .T.
+                ACTION Nil
+                AUTOSIZE .F.
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                RIGHTALIGN .T. 
+            END LABEL
+
+            DEFINE LABEL Label_2
+                ROW    153
+                COL    30
+                WIDTH  60
+                HEIGHT 16
+                VALUE "Clave:"
+                FONTNAME "Arial"
+                FONTSIZE 9
+                TOOLTIP ""
+                FONTBOLD .F.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                HELPID Nil
+                VISIBLE .T.
+                TRANSPARENT .T.
+                ACTION Nil
+                AUTOSIZE .F.
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                RIGHTALIGN .T. 
+            END LABEL
+
+            DEFINE TEXTBOX Text_3
+                ROW    90
+                COL    100
+                WIDTH  120
+                HEIGHT 22
+                FONTNAME "Arial"
+                FONTSIZE 12
+                TOOLTIP "Indique el Server de acceso..."
+                ONCHANGE Nil
+                ONGOTFOCUS Nil
+                ONLOSTFOCUS Nil
+                FONTBOLD .T.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                ONENTER Nil
+                HELPID Nil
+                TABSTOP .T.
+                VISIBLE .T.
+                READONLY .F.
+                RIGHTALIGN .F.
+                MAXLENGTH 20
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                INPUTMASK Nil
+                FORMAT Nil
+                VALUE "127.0.0.1"
+            END TEXTBOX
+
+            DEFINE TEXTBOX Text_1
+                ROW    123
+                COL    100
+                WIDTH  180
+                HEIGHT 22
+                FONTNAME "Arial"
+                FONTSIZE 12
+                TOOLTIP "Indique nombre de Usuario en MySql..."
+                ONCHANGE Nil
+                ONGOTFOCUS Nil
+                ONLOSTFOCUS Nil
+                FONTBOLD .T.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                ONENTER Nil
+                HELPID Nil
+                TABSTOP .T.
+                VISIBLE .T.
+                READONLY .F.
+                RIGHTALIGN .F.
+                MAXLENGTH 30
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                INPUTMASK Nil
+                FORMAT Nil
+                VALUE ""
+            END TEXTBOX
+
+            DEFINE TEXTBOX Text_2
+                ROW    150
+                COL    100
+                WIDTH  120
+                HEIGHT 22
+                FONTNAME "Arial"
+                FONTSIZE 12
+                TOOLTIP "Clave de Usuario MySql..."
+                ONCHANGE Nil
+                ONGOTFOCUS Nil
+                ONLOSTFOCUS Nil
+                FONTBOLD .T.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                ONENTER Nil
+                HELPID Nil
+                TABSTOP .T.
+                VISIBLE .T.
+                READONLY .F.
+                RIGHTALIGN .F.
+                MAXLENGTH 30
+                PASSWORD .T.
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                INPUTMASK Nil
+                FORMAT Nil
+                VALUE ""
+            END TEXTBOX
+
+            DEFINE LABEL Label_3
+                ROW    95
+                COL    30
+                WIDTH  60
+                HEIGHT 16
+                VALUE "Server:"
+                FONTNAME "Arial"
+                FONTSIZE 9
+                TOOLTIP ""
+                FONTBOLD .T.
+                FONTITALIC .F.
+                FONTUNDERLINE .F.
+                FONTSTRIKEOUT .F.
+                HELPID Nil
+                VISIBLE .T.
+                TRANSPARENT .T.
+                ACTION Nil
+                AUTOSIZE .F.
+                BACKCOLOR NIL
+                FONTCOLOR NIL
+                RIGHTALIGN .T. 
+            END LABEL
+
+        END PAGE 
+
+    END TAB 
+
+    DEFINE BUTTON Button_1
+        ROW    220
+        COL    120
+        WIDTH  100
+        HEIGHT 28
+        CAPTION "&Aceptar"
+        ACTION GrabarIniPar()
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Graba los parámetros actuales"
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONGOTFOCUS Nil
+        ONLOSTFOCUS Nil
+        HELPID Nil
+        FLAT .F.
+        TABSTOP .T.
+        VISIBLE .T.
+        TRANSPARENT .T.
+        PICTURE Nil
+    END BUTTON
+
+    DEFINE BUTTON Button_2
+        ROW    220
+        COL    230
+        WIDTH  100
+        HEIGHT 28
+        CAPTION "&Cancelar"
+        ACTION {|| Parametros.Release}
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Sale sin grabar..."
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONGOTFOCUS Nil
+        ONLOSTFOCUS Nil
+        HELPID Nil
+        FLAT .F.
+        TABSTOP .T.
+        VISIBLE .T.
+        TRANSPARENT .T.
+        PICTURE Nil
+    END BUTTON
+
+END WINDOW
+
+

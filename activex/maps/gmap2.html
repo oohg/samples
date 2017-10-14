@@ -1,0 +1,39 @@
+<!--
+This file is part of ActiveX Sample n° 1
+Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+Licenced under The Code Project Open License (CPOL) 1.02
+See <http://www.codeproject.com/info/cpol10.aspx>
+
+To test the sample you must rename this file as gmap2.html
+and place it at the same folder as the sample.
+
+Visit us at https://github.com/fyurisich/OOHG_Samples or at
+http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+
+You can download gmap2.html from:
+https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ActiveX
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=3&amp;key=ABQIAAAAtOjLpIVcO8im8KJFR8pcMhQjskl1-YgiA_BGX2yRrf7htVrbmBTWZt39_v1rJ4xxwZZCEomegYBo1w" type="text/javascript"></script>
+    <script type="text/javascript">
+
+    function initialize(nLat, nLng) {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        var point = new GLatLng(nLat, nLng);
+        map.setCenter(point, 13);
+        map.addOverlay(new GMarker(point));
+      }
+    }
+
+    </script>
+  </head>
+  <body onload="initialize(<<LAT>>, <<LNG>>)" onunload="GUnload()">
+        <div id="map_canvas" style="width: 604px; height: 408px"></div>
+  </body>
+</html>

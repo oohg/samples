@@ -1,0 +1,7 @@
+// Using a resource file like this, you can include bitmaps, icons and sound inside EXE.
+//
+//	Resource name	Resource Type	Resource FileName
+//
+ RESWAVE         WAVE            SAMPLE.WAV
+WORLD           ICON            WORLD.ICO
+BUTTONX          BITMAP          BUTTON.BMP

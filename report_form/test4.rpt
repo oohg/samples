@@ -1,0 +1,17 @@
+DO REPORT TEMPLATE  ;
+  TITLE 'PRUEBA2|REPORTE DE PRUEBA CON LETRA CONDENSADA'  
+    HEADERS {' ',' ',' ','' ,'','',''} ,  {'CODE','FIRST','LAST','BIRTH','MARRIED','MEMO FIELD','INCOMING'}  
+      FIELDS {'code','first','last','birth','married','MEMOFIELD','incoming'}                    
+        WIDTHS {10 , 30 , 43,10,8,10,12}
+        TOTALS {.T. , .F. , .F. , .f. , .f. , .f. , .t. }                               ;
+        WORKAREA test                                      
+        LPP 55                                             
+        CPL 140                                             
+        LMARGIN 0                                          
+        PAPERSIZE DMPAPER_LETTER                           
+        PREVIEW                                            
+        SELECT                                             
+        GROUPED BY 'GROUP'                                  
+        HEADRGRP 'Group Field'
+
+END REPORT   

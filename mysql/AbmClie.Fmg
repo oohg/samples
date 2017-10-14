@@ -1,0 +1,576 @@
+* Harbour MiniGUI IDE Two-Way Form Designer Generated Code
+* (c)2004-2005 Roberto Lopez <roblez@ciudad.com.ar>
+
+DEFINE WINDOW TEMPLATE AT 144 , 237 WIDTH 790 HEIGHT 300 TITLE "Padrón de Clientes..." ICON 'Gente' CHILD NOMAXIMIZE NOSIZE CURSOR NIL ON INIT ArrancoAbmClie() ON RELEASE Nil BACKCOLOR VerdeAgua
+
+    DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 93,32 FONT "Arial" SIZE 9 RIGHTTEXT BORDER
+        BUTTON Nuevo    CAPTION "&Nuevo"     PICTURE "new"    Tooltip "Agregar Cliente..."            ACTION Edito(.T.)
+        BUTTON Editar   CAPTION "&Modificar" PICTURE "edit"   Tooltip "Modificar Cliente..."          ACTION Edito(.F.)
+        BUTTON Grabar   CAPTION "&Grabar"    PICTURE "save"   Tooltip "Grabar Cliente..."             ACTION Grabo()
+        BUTTON Cancelar CAPTION "&Cancelar"  PICTURE "cancel" Tooltip "Cancelar Edición..."           ACTION Cancelo()
+        BUTTON Borrar   CAPTION "&Habilitar" PICTURE "delete" Tooltip "Habilitar/Inhabilitar Cliente" ACTION Borro()
+        BUTTON Buscar   CAPTION "&Buscar"    PICTURE "Buscar" Tooltip "Buscar Cliente"                ACTION Buscar()
+        BUTTON Salir    CAPTION "&Salir"     PICTURE "close"  Tooltip "Salir"                         ACTION (AbmClie.Release)
+    END TOOLBAR
+
+    DEFINE TEXTBOX Text_1
+        ROW    85
+        COL    330
+        WIDTH  60
+        HEIGHT 24
+        FONTNAME "Arial"
+        FONTSIZE 12
+        TOOLTIP "Indique Código de Cliente..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK "99999"
+        FORMAT Nil
+        NUMERIC .T. 
+        VALUE 0
+    END TEXTBOX
+
+    @ 60,10 XBROWSE Browse_1 WIDTH 310 HEIGHT 170 WORKAREA (oBaseClie) HEADERS {'Clientes','Código','',''} WIDTHS {225,60,0,0} ; 
+       FIELDS {{|o| o:Fieldget(1)} , {|o| o:Fieldget(2)} , {|o| o:Fieldget(3)} , {|o| o:Fieldget(4)}} ON CHANGE Navego() ;
+       DYNAMICBACKCOLOR { bColor,bColor,bColor,bColor} BACKCOLOR VerdeSuave        
+
+    DEFINE TEXTBOX Text_2
+        ROW    85
+        COL    395
+        WIDTH  330
+        HEIGHT 24
+        FONTNAME "Arial"
+        FONTSIZE 12
+        TOOLTIP "Determine Apellido y Nombre del Cliente..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        MAXLENGTH 30
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_3
+        ROW    85
+        COL    740
+        WIDTH  25
+        HEIGHT 24
+        FONTNAME "Arial"
+        FONTSIZE 12
+        TOOLTIP "Determine la Condición [S=Socio, C=Cliente]..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        MAXLENGTH 1
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE "S"
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_5
+        ROW    130
+        COL    330
+        WIDTH  340
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Indique una dirección para el Asociado..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        MAXLENGTH 30
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_6
+        ROW    170
+        COL    330
+        WIDTH  240
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Determine la Ciudad..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        MAXLENGTH 20
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_4
+        ROW    170
+        COL    575
+        WIDTH  190
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Indique teléfono Fijo/Celular..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        MAXLENGTH 15
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_7
+        ROW    210
+        COL    330
+        WIDTH  120
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Indique N° de Documento de Identidad..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        MAXLENGTH 10
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_8
+        ROW    210
+        COL    455
+        WIDTH  100
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP "Indique CUIT o CUIL..."
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK "99-99999999-9"
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+    DEFINE TEXTBOX Text_9
+        ROW    210
+        COL    560
+        WIDTH  90
+        HEIGHT 20
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        ONCHANGE Nil
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER Nil
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        DATE .T. 
+        VALUE Nil
+    END TEXTBOX
+
+    DEFINE LABEL Label_5
+        ROW    115
+        COL    330
+        WIDTH  80
+        HEIGHT 15
+        VALUE "Dirección:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_6
+        ROW    155
+        COL    330
+        WIDTH  80
+        HEIGHT 15
+        VALUE "Localidad:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_01
+        ROW    70
+        COL    330
+        WIDTH  45
+        HEIGHT 15
+        VALUE "Código:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_02
+        ROW    70
+        COL    395
+        WIDTH  80
+        HEIGHT 15
+        VALUE "Nombre:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_3
+        ROW    70
+        COL    690
+        WIDTH  76
+        HEIGHT 15
+        VALUE "Soc/Clie:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        RIGHTALIGN .T. 
+    END LABEL
+
+    DEFINE LABEL Label_4
+        ROW    155
+        COL    575
+        WIDTH  55
+        HEIGHT 15
+        VALUE "Télefono:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_7
+        ROW    195
+        COL    330
+        WIDTH  70
+        HEIGHT 15
+        VALUE "Documento:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_8
+        ROW    195
+        COL    455
+        WIDTH  30
+        HEIGHT 15
+        VALUE "CUIT:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_9
+        ROW    195
+        COL    560
+        WIDTH  90
+        HEIGHT 15
+        VALUE "Fecha Ingreso:"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE FRAME Frame_1
+        ROW    60
+        COL    325
+        WIDTH  450
+        HEIGHT 190
+        FONTNAME "Arial"
+        FONTSIZE 9
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        CAPTION NIL
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        OPAQUE .T.
+    END FRAME
+
+    DEFINE LABEL Label_1
+        ROW    110
+        COL    680
+        WIDTH  90
+        HEIGHT 20
+        VALUE ""
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .T.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE LABEL Label_20
+        ROW    238
+        COL    10
+        WIDTH  40
+        HEIGHT 15
+        VALUE "Buscar"
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        FONTBOLD .F.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        HELPID Nil
+        VISIBLE .T.
+        TRANSPARENT .F.
+        ACTION Nil
+        AUTOSIZE .F.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+    END LABEL
+
+    DEFINE TEXTBOX Text_20
+        ROW    235
+        COL    60
+        WIDTH  260
+        HEIGHT 22
+        FONTNAME "Arial"
+        FONTSIZE 9
+        TOOLTIP ""
+        ONCHANGE { || Buscando() }
+        ONGOTFOCUS (This.BackColor:= NaranjaSuave)
+        ONLOSTFOCUS (This.BackColor:= Nil)
+        FONTBOLD .T.
+        FONTITALIC .F.
+        FONTUNDERLINE .F.
+        FONTSTRIKEOUT .F.
+        ONENTER { || Salir() }
+        HELPID Nil
+        TABSTOP .T.
+        VISIBLE .T.
+        READONLY .F.
+        RIGHTALIGN .F.
+        UPPERCASE .T.
+        BACKCOLOR NIL
+        FONTCOLOR NIL
+        INPUTMASK Nil
+        FORMAT Nil
+        VALUE ""
+    END TEXTBOX
+
+END WINDOW
+
+

@@ -1,0 +1,4 @@
+
+   Los ejemplos que involucren rmchart.prg requiere que tengas instalado el
+   ocx de RMChart. Puedes descargarlo de http://www.rmchart.com/
+   Oscar Lira Lira |oSkAr| - adaptado para ooHG por MigSoft
