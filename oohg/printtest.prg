@@ -5,6 +5,7 @@
 #include 'oohg.ch'
 
 PROCEDURE Test()
+
    PUBLIC _OOHG_PRINTLIBRARY
 
    SET CENTURY ON
@@ -85,10 +86,10 @@ PROCEDURE Test()
    CENTER WINDOW pr_form
    ACTIVATE WINDOW pr_form
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION PrintTest( ctlibrary )
+
    LOCAL oPrint
 
    SET DATE ANSI
@@ -142,8 +143,7 @@ FUNCTION PrintTest( ctlibrary )
    oPrint:EndDoc()
    oPrint:Release()
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION repof( cLibrary )
 
@@ -152,8 +152,7 @@ FUNCTION repof( cLibrary )
    USE test
    DO REPORT FORM report1 HEADING "PRINT DEMO"
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION editp( cLibrary )
 
@@ -162,8 +161,7 @@ FUNCTION editp( cLibrary )
    USE test
    EDIT WORKAREA test
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION editpx( cLibrary )
 
@@ -173,8 +171,7 @@ FUNCTION editpx( cLibrary )
    INDEX ON code TO lista
    EDIT EXTENDED WORKAREA test
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION Eje_Imprimir( cLibrary )
 
@@ -210,4 +207,4 @@ FUNCTION Eje_Imprimir( cLibrary )
    oPrint:EndDoc()
    oPrint:Release()
 
-RETURN .T.
+   RETURN .T.
