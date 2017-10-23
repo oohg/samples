@@ -14,9 +14,9 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    LOCAL oForm1
-   
+
    DEFINE WINDOW Form_1 ;
          OBJ oForm1 ;
          AT 0,0 ;
@@ -25,12 +25,12 @@ FUNCTION Main
          MAIN ;
          NOSYSMENU ;
          TITLE "ooHG - How to avoid validation on transaction's cancel"
-      
+
       @ 13, 10 LABEL lbl_1 ;
          VALUE "Value" ;
          WIDTH 60 ;
          HEIGHT 24
-      
+
       @ 10, 70 TEXTBOX txt_1 ;
          OBJ oTxt1 ;
          NUMERIC ;
@@ -38,19 +38,19 @@ FUNCTION Main
          VALID {|| oTxt1:value > 0} ;
          WIDTH 60 ;
          HEIGHT 24
-      
+
       @ 80, 100 BUTTON btn_1 ;
          CAPTION 'Quit' ;
          WIDTH  100 ;
          ACTION oForm1:Release() ;
          CANCEL
-      
+
       ON KEY ESCAPE ACTION oForm1:Release()
    END WINDOW
-   
+
    oForm1:Center()
    oForm1:Activate()
-   
+
    RETURN NIL
 
 /*

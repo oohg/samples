@@ -14,7 +14,7 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    DEFINE WINDOW Form_1 ;
          OBJ oForm1 ;
          AT 0,0 ;
@@ -22,27 +22,27 @@ FUNCTION Main
          HEIGHT 480 ;
          TITLE 'Change Tab Order' ;
          MAIN
-      
+
       DEFINE STATUSBAR OBJ oStat
       END STATUSBAR
-      
+
       /*
       Tab indexes are 1-based.
       New controls are place at the tail of the tab order.
       When a control is released, the tab index of the subsequent
       controls in the tab order is decremented by 1 to avoid gaps.
-      
+
       Every control has it's own tab index, including invisible ones
       and controls with "notabstop" property.
-      
+
       Note that the tab index of the first used defined control is not 1.
       This is because OOHG creates a few controls before the first one
       defined by the user.
-      
+
       Tab indexes are automatically renumbered every time a control's
       tab index is changed, so they remain 1-based and without gaps.
       */
-      
+
       @  10,  10 TEXTBOX txt_01 OBJ oTxt01 WIDTH 100 NUMERIC
       oTxt01:Value := oTxt01:TabIndex
       @  40,  10 TEXTBOX txt_02 OBJ oTxt02 WIDTH 100 NUMERIC
@@ -63,7 +63,7 @@ FUNCTION Main
       oTxt09:Value := oTxt09:TabIndex
       @ 280,  10 TEXTBOX txt_10 OBJ oTxt10 WIDTH 100 NUMERIC
       oTxt10:Value := oTxt10:TabIndex
-      
+
       @  10, 130 TEXTBOX txt_11 OBJ oTxt11 WIDTH 100 NUMERIC
       oTxt11:Value := oTxt11:TabIndex
       @  40, 130 TEXTBOX txt_12 OBJ oTxt12 WIDTH 100 NUMERIC
@@ -84,28 +84,28 @@ FUNCTION Main
       oTxt19:Value := oTxt19:TabIndex
       @ 280, 130 TEXTBOX txt_20 OBJ oTxt20 WIDTH 100 NUMERIC
       oTxt20:Value := oTxt20:TabIndex
-      
+
       @  10, 250 LABEL lbl_01 OBJ oLbl01 ;
          WIDTH 300 HEIGHT 300 ;
          VALUE "Tab order is: first column from top to bottom, " + ;
          "then second column from top to bottom." ;
          FONTCOLOR RED
-      
+
       @ 320, 130 BUTTON btn_01 ;
          OBJ oBut01 CAPTION "Change" ACTION Change()
-      
+
       ON KEY ESCAPE ACTION oForm1:Release()
    END WINDOW
-   
+
    oForm1:Center()
    oForm1:Activate()
-   
+
    RETURN NIL
 
 FUNCTION Change
    LOCAL i, j
    STATIC lFlip := .T.
-   
+
    /*
    * The order used to change the tab index is relevant.
    *
@@ -139,12 +139,12 @@ FUNCTION Change
    *    sentence 3 changes order to: o5, o3, o4, o2, o1
    *    sentence 4 changes order to: o5, o4, o3, o2, o1
    */
-   
+
    If lFlip
       oLbl01:Value := "Tab order is: first row from left to " + ;
          "right then second row from left to right " + ;
          "and so on until last row."
-      
+
       j := oTxt01:TabIndex
       For i := 1 to 10
          &( "oTxt" + strzero(i,      2, 0) ):TabIndex := j
@@ -154,23 +154,23 @@ FUNCTION Change
    Else
       oLbl01:Value := "Tab order is: first column from top to " + ;
          "bottom, then second column from top to bottom."
-      
+
       j := oTxt01:TabIndex
       For i := 1 to 20
          &( "oTxt" + strzero(i, 2, 0) ):TabIndex := j + i - 1
       Next i
    EndIf
-   
+
    For i := 1 to 20
       With Object &( "oTxt" + strzero(i, 2, 0) )
          :Value := :TabIndex
       End Width
    Next i
-   
+
    lFlip := ! lFlip
-   
+
    oTxt01:SetFocus()
-   
+
    RETURN NIL
 
 /*

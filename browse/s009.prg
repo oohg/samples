@@ -18,15 +18,15 @@
 #include "dbstruct.ch"
 
 FUNCTION Main
-   
+
    LOCAL Form_1, Browse_1
-   
+
    REQUEST DBFCDX, DBFFPT
-   
+
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
-   
+
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0,0 ;
          CLIENTAREA ;
@@ -37,7 +37,7 @@ FUNCTION Main
          NOMAXIMIZE ;
          ON INIT OpenTables() ;
          ON RELEASE CleanUp()
-      
+
       @ 10,10 BROWSE Browse_1 OBJ oBrowse ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight - 20 ;
@@ -53,59 +53,59 @@ FUNCTION Main
          APPEND ;
          FORCEREFRESH ;
          DYNAMICBACKCOLOR {|| IF( ORDKEYNO() % 2 == 0, WHITE, ORANGE ) }
-      
+
       oBrowse:ColumnWidth(2, oBrowse:ClientWidth() - oBrowse:ColumnWidth(1) )
-      
+
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-   
+
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-   
+
    RETURN NIL
 
 //--------------------------------------------------------------------------//
 FUNCTION OpenTables()
-   
+
    LOCAL aDbf[2][4]
-   
+
    aDbf[1][ DBS_NAME ] := "Code"
    aDbf[1][ DBS_TYPE ] := "Numeric"
    aDbf[1][ DBS_LEN ]  := 10
    aDbf[1][ DBS_DEC ]  := 0
-   
+
    aDbf[2][ DBS_NAME ] := "Recno"
    aDbf[2][ DBS_TYPE ] := "Numeric"
    aDbf[2][ DBS_LEN ]  := 10
    aDbf[2][ DBS_DEC ]  := 0
-   
+
    DBCREATE("Test", aDbf, "DBFCDX")
-   
+
    USE test VIA "DBFCDX"
    ZAP
-   
+
    FOR i:= 1 TO 100
       APPEND BLANK
       REPLACE Code  WITH HB_RandomInt( 1000 )
       REPLACE Recno WITH RECNO()
    NEXT i
-   
+
    INDEX ON code TO code
-   
+
    GO TOP
-   
+
    Form_1.Browse_1.Value := RECNO()
-   
+
    RETURN NIL
 
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp()
-   
+
    dbCloseAll()
-   
+
    ERASE Test.dbf
    ERASE Code.cdx
-   
+
    RETURN NIL
 
 /*

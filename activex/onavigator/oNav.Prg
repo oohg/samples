@@ -54,17 +54,17 @@ static s_bBreak := { |oErr| break( oErr ) }
 Function Main()
    *------------------------------------------------------*
    public x:=1,otab,oprog,ocombo,sw:=0,z:=0, atitle:={""}, aobj:={}
-   
+
    DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
          ICON "ONE" MAIN ON INIT {|| navegar(),  adjust() }  ON SIZE adjust()
-      
+
       DEFINE STATUSBAR FONT "Arial" SIZE 9
          STATUSITEM "Listo"
          STATUSITEM ""
       END STATUSBAR
-      
+
       DEFINE SPLITBOX
-         
+
          DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 20,20 FONT "Arial" SIZE 9 FLAT BOTTOM
             BUTTON AddP    TOOLTIP "Nueva Pagina"  PICTURE "siete"   ACTION NUevotab()   AUTOSIZE
             BUTTON Retro   TOOLTIP "Retrocede" PICTURE "uno"    ACTION retro1()   AUTOSIZE
@@ -74,37 +74,37 @@ Function Main()
             BUTTON home    TOOLTIP "Pagina principal"      PICTURE "cinco"  ACTION home1()    AUTOSIZE
             BUTTON Acerca  Tooltip "Acerca"  Picture "MINIGUI_EDIT_OK" ACTION acerca() AUTOSIZE
          END TOOLBAR
-         
+
          @ 30,0 COMBOBOX directo obj ocombo ;
             font "Arial" size 9 width 720 items {"http://www.oohg.org","http://www.google.com","http://www.yahoo.com"} ;
             value 1  on enter navegar() displayedit ///////// on change navegar()
-         
+
          DEFINE TOOLBAR ir BUTTONSIZE 20,20 FONT "Arial" SIZE 9 FLAT BOTTOM
             BUTTON ir_Btn1 PICTURE "seis" ACTION Navegar() TOOLTIP "Ir" AUTOSIZE
          END TOOLBAR
-         
+
       END SPLITBOX
-      
+
       DEFINE TAB Tab_1 AT 70 , 0 WIDTH St1.width HEIGHT St1.height - 42 VALUE 1 ;
             FONT "Arial" SIZE 9 TOOLTIP "" ON CHANGE refresca()
          PAGE "ooHG"
             @ 24, 0 ACTIVEX ActiveX WIDTH St1.width - 8 HEIGHT St1.height - 144 PROGID "Shell.Explorer.2" OBJ oActiveX_0001
          END PAGE
       END TAB
-      
+
       aadd(aobj,oActiveX_0001)
-      
+
       otab:=getcontrolobject("tab_1","st1")
       otab:lfixfont:=.T.
-      
+
       @   st1.height - 44,  st1.width - 206 PROGRESSBAR ProgressBar_1 width 100 height 18 range 0,10
-      
+
       oprog:=getcontrolobject("progressbar_1","st1")
-      
+
    END WINDOW
-   
+
    Activate window st1
-   
+
    Return
 
 function acerca()
@@ -114,24 +114,24 @@ function acerca()
 Procedure Navegar()
    *------------------------------------------------------*
    local i:=otab:value
-   
+
    xoActivex := "oActiveX_" + StrZero( i , 4 )
    &xoActiveX:EventMap( AX_SE2_PROGRESSCHANGE, "OnProgressChange" )
-   
+
    &xoActivex:Navigate(ocombo:caption)
-   
+
    if sw = 1
       ocombo:additem(ocombo:displayvalue)
    endif
-   
+
    &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| cambiatitulo(ctitle)  } )
    ///         &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle|  refresca() }    )
-   
+
    ///      &xoActiveX:EventMap( AX_SE2_STATUSTEXTCHANGE,{  |w| sicambiaono(w )  }  )
-   
+
    ////       ocombo:displayvalue := &xoActiveX:LocationUrL()
    &xoActiveX:EventMap( AX_SE2_DOCUMENTCOMPLETE,{|| refresca()  }  )
-   
+
    sw := 0
    Return
 
@@ -141,7 +141,7 @@ function refresca()
       return
    endif
    xoActivex := "oActiveX_" + StrZero( i, 4 )
-   
+
    ///oobj:=aobj[i]
    do while len(atitle)<i
       aadd(atitle,"")
@@ -163,7 +163,7 @@ Procedure OnProgressChange( nAct, nTot )
    oprog:RangeMax := nTot
    oprog:value    := nAct
    oprog:visible  := iif( nAct = 0,.f.,.t. )
-   
+
    Return( Nil )
 
 *------------------------------------------------------*
@@ -174,22 +174,22 @@ Procedure NuevoTab()
    otab:AddPage ( x, 'Nueva Pagina '+ltrim(str( x)) )
    otab:Value := x
    xoActivex := "oActiveX_" + StrZero( x, 4 )
-   
+
    Public &xoactivex
-   
+
    @ 24, 2 ACTIVEX &xoActivex ;
       OF st1 ;
       OBJ &xoActivex ;
       WIDTH st1.Tab_1.width - 7 ;
       HEIGHT st1.Tab_1.height - 28 ;
       PROGID "Shell.Explorer.2"
-   
+
    otab:AddControl( xoActivex, x, 24, 2 )
    ocombo:setfocus()
    aadd(atitle,"Nueva Pagina")
    aadd(aobj,&xoactivex)
    sw:=1
-   
+
    z:=0
    Return
 
@@ -198,7 +198,7 @@ Procedure retro1()
    *------------------------------------------------------*
    local i:= otab:value
    xoActivex := "oActiveX_" + StrZero( i, 4 )
-   
+
    If HB_IsObject(&xoActiveX)
       Try
       &xoActiveX:GoBack()
@@ -247,27 +247,27 @@ Procedure home1()
 Procedure Adjust()
    *------------------------------------------------------*
    local i:= otab:value
-   
+
    if hb_IsNumeric ( i )
-      
+
       if i> 0
-         
+
          xoActivex := "oActiveX_" + StrZero( i, 4 )
-         
+
          &xoActiveX:width        := st1:width - 8
          &xoActiveX:height       := st1:height - 154
-         
+
          otab:width       := st1:width
          otab:height      := st1:height - 32
-         
+
          oprog:row := st1:height - 64
          oprog:col := st1:width - 206
-         
+
          ///    ocombo:displayvalue := &xoActiveX:LocationUrL()
          ///    aobj[i]:=  &xoActiveX:LocationUrL()
       endif
    endif
-   
+
    Return
 
 *------------------------------
@@ -277,9 +277,9 @@ function cambiatitulo(ctitle)
    if hb_isnumeric( i ) .and. valtype(ctitle) == "C"
       if i>0
          atitle[i]:=ctitle
-         
+
       endif
-      
+
       adjust()
    endif
    return nil

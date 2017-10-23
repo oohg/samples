@@ -14,16 +14,16 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    PUBLIC oBrowse
-   
+
    SET CENTURY ON
    SET DATE BRITISH
    SET DELETED ON
    SET BROWSESYNC ON
-   
+
    OpenTables()
-   
+
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0, 0 ;
          CLIENTAREA ;
@@ -33,17 +33,17 @@ FUNCTION Main
          MAIN ;
          ON INIT oBrowse:SetFocus() ;
          ON RELEASE CleanUp()
-      
+
       DEFINE STATUSBAR
          STATUSITEM "OOHG Power - Use Alt-A to append a new record and see what happens"
       END STATUSBAR
-      
+
       @ oForm:ClientHeight + oForm:Statusbar:ClientHeightUsed - 40, 10 LABEL Label_1 ;
          VALUE "Total:"
-      
+
       @ oForm:ClientHeight + oForm:Statusbar:ClientHeightUsed - 40, 70 TEXTBOX Text_1 ;
          OBJ oSuma WIDTH 100 NUMERIC READONLY
-      
+
       @ 10, 10 BROWSE Browse_1 OBJ oBrowse ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight + oForm:Statusbar:ClientHeightUsed - 60 ;
@@ -88,24 +88,24 @@ FUNCTION Main
          ON APPEND ProcessAppend() ;
          ON EDITCELL Total() ;
          DEFAULTVALUES { 10, "Empty First", "Empty Last", date(), 1, Nil }
-      
+
       /*
       * These values are placed into the edit row just before
       * the start of the edition. Note that the new record is
       * added after the end of the edition of the first column.
       */
-      
+
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-   
+
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-   
+
    RETURN Nil
 
 //--------------------------------------------------------------------------//
 FUNCTION ProcessEdit
-   
+
    /*
    * ON EDITCELLEND is the first event fired after the end of the edition.
    * It's fired for each edited column.
@@ -120,7 +120,7 @@ FUNCTION ProcessEdit
    * Any change to this vars is ignored.
    */
    AutoMsgBox( "ProcessEdit" )
-   
+
    IF oBrowse:lAppendMode
       /*
       * For the first editable column: the new record is not yet appended
@@ -153,12 +153,12 @@ FUNCTION ProcessEdit
          Test->Last := "NEW DATA"
       ENDIF
    ENDIF
-   
+
    RETURN Nil
 
 //--------------------------------------------------------------------------//
 FUNCTION ProcessAppend
-   
+
    /*
    * After ON EDITCELLEND for the first editable column has ended, the new
    * record is appended and the just edited value and any other default
@@ -170,13 +170,13 @@ FUNCTION ProcessAppend
    */
    AutoMsgBox( "ProcessAppend" )
    Test->Birth := ctod("01/01/1901")
-   
+
    RETURN Nil
 
 //--------------------------------------------------------------------------//
 FUNCTION Total
    LOCAL nRec, nSum
-   
+
    AutoMsgBox( "Total" )
    /*
    * ON EDITCELL event is fired after the just edited value is
@@ -200,24 +200,24 @@ FUNCTION Total
 
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp
-   
+
    dbCloseAll()
    ERASE test.dbf
-   
+
    RETURN Nil
 
 //--------------------------------------------------------------------------//
 FUNCTION OpenTables()
-   
+
    DBCREATE( "Test", { { "Code",    "Numeric",   10, 0 }, ;
       { "First",   "Character", 25, 0 }, ;
       { "Last",    "Character", 25, 0 }, ;
       { "Married", "Logical",    1, 0 }, ;
       { "Birth",   "Date",       8, 0 }, ;
       { "Check",   "Numeric",    1, 0 } } )
-   
+
    USE test
-   
+
    FOR i := 1 TO 5
       APPEND BLANK
       REPLACE Code    WITH HB_RandomInt(99) * 10000
@@ -227,9 +227,9 @@ FUNCTION OpenTables()
       REPLACE Birth   WITH Date() + i - 10000
       REPLACE Check   WITH i % 2
    NEXT i
-   
+
    GO TOP
-   
+
    RETURN Nil
 
 /*

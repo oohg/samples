@@ -6,13 +6,13 @@
 #include "oohg.ch"
 
 procedure main
-   
+
    load window mailing
    mailing.smtp.value:="mail.servidor.com"
-   
+
    center window mailing
    activate window mailing
-   
+
    return
 
 function enviomail
@@ -26,18 +26,18 @@ function sendmail(email,nombre,cServer)
    //-----------------------------------------------------------------------------*
    local oSock, cRet
    ///local cServer := "mail.tuservidor.com"   / puedes poner la IP tambien
-   
+
    oSock := TSmtp():New()
-   
+
    Mailing.statusbar.value:= "Conectando a " +cServer
-   
+
    if oSock:Connect( cServer )
       Mailing.statusbar.value:= "Conectado...."
-      
+
       if !Empty(alltrim(email))
-         
+
          Mailing.confirmacion_lbl.Value:= ""
-         
+
          oSock:ClearData()
          oSock:SetFrom( "Mail Sample", "<oohg@oohg.org>" )
          oSock:SetSubject( Mailing.asunto_txb.Value )
@@ -49,7 +49,7 @@ function sendmail(email,nombre,cServer)
             Mailing.confirmacion_lbl.Value:= 'Envio correcto'
          endif
       endif
-      
+
       Mailing.statusbar.Value:= "Cerrando la conexion"
       if oSock:Close()
          Mailing.statusbar.Value:= "Cerrada la conexion"
@@ -60,7 +60,7 @@ function sendmail(email,nombre,cServer)
    else
       Mailing.statusbar.Value:= "Fallo conexion " + oSock:getLastError()
    endif
-   
+
    RETURN
 
 #define NO_SAMPLE

@@ -17,14 +17,14 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 400 ;
          HEIGHT 200 ;
          TITLE 'ooHG - ComboBox with Images from List' ;
          MAIN
-      
+
       @ 10,10 COMBOBOX Combo_1 obj Ocombo ;
          ITEMS { {'A', 0} , {'B', 1} , {'C', 2} } ;
          VALUE 1 ;
@@ -33,13 +33,13 @@ FUNCTION Main
          TEXTHEIGHT 48 ;
          HEIGHT 300 ;
          BACKCOLOR YELLOW
-      
+
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-   
+
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-   
+
    RETURN NIL
 
 /*

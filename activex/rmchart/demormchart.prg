@@ -10,35 +10,35 @@ Oscar Lira Lira |oSkAr| - adaptado para ooHG por MigSoft
 Static oChart, oWnd
 
 FUNCTION Main()
-   
+
    Define Window Start OBJ oWnd At 0,0 Width 480 Height 300     ;
          Title "Demo RMChart - Thanks |oSkAr|" Main            ;
          ON Size Ajust() ON Maximize Ajust()
-      
+
       @ 0,0 ACTIVEX ActiveX OBJ oChart Width oWnd:Width - 7 ;
          Height oWnd:Height - 35 PROGID "RMChart.RMChartX"
-      
+
    end window
-   
+
    oChart:Font             := "Tahoma"
    oChart:RMCStyle         := RMC_CTRLSTYLEFLAT
    oChart:RMCUserWatermark := "Test by MigSoft"
-   
+
    oChart:AddRegion()
-   
+
    WITH OBJECT oChart:Region( 1 )
-      
+
       :Footer = "http://www.oohg.org"
       :AddCaption()
-      
+
       WITH OBJECT :Caption()
          :Titel     := "ooHG Test"
          :FontSize  := 10
          :Bold      := .T.
       END
-      
+
       :AddGridlessSeries()
-      
+
       WITH OBJECT :GridLessSeries
          :SeriesStyle      := RMC_PIE_GRADIENT
          :Alignment        := RMC_FULL
@@ -49,15 +49,15 @@ FUNCTION Main()
          :StartAngle       := 0
          :DataString       := "30*15*40*35"
       END
-      
+
    END
-   
+
    /// oChart:Draw2Clipboard( RMC_EMF )
    oChart:Draw( .T. )
-   
+
    oWnd:Center()
    oWnd:Activate()
-   
+
    RETURN(Nil)
 
 Procedure Ajust()

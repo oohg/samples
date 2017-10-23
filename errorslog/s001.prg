@@ -14,10 +14,10 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    SET AUTOADJUST ON
    SET LANGUAGE TO SPANISH
-   
+
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 500 ;
@@ -29,7 +29,7 @@ FUNCTION Main
       * INEXISTENT_VARIABLE raises an error
       * so the errors log is created
       */
-      
+
       @ 10,10 LISTBOX List_1 ;
          OBJ oList ;
          ITEMS { 'Chat', 'Edit', 'Help', 'Move', 'Sound' } ;
@@ -37,7 +37,7 @@ FUNCTION Main
          HEIGHT 310 ;
          WIDTH 300
    END WINDOW
-   
+
    /*
    * The default values are ENGLISH, EXE FOLDER and ERRORLOG.HTM
    */
@@ -50,10 +50,10 @@ FUNCTION Main
       "Thank you." + ;
       hb_osnewline() + ;
       hb_osnewline()
-   
+
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-   
+
    RETURN Nil
 
 /*

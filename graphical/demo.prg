@@ -1,21 +1,21 @@
 #include "oohg.ch"
 
 function main
-   
+
    define window x at 0,0 obj oWin ;
          width 800 ;
          height 600 ;
          title "Shapes Demo" ;
          main on init drawshapes()
-      
+
       on key f9 action oWin:Print()
-      
+
    end window
-   
+
    x.center
-   
+
    x.activate
-   
+
    return nil
 
 function drawshapes

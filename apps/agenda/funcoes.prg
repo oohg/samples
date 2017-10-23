@@ -105,34 +105,34 @@ Function GnEncheTabela(oArea,nValorCombo,cCodigo,aCombo1,aCombo2,cVar)
       Local cArq
       Local nLinhas
       Local nContador  := 0
-      
+
       If ! File( cArquivo )
          hArq := FCreate( cArquivo )
       Else
          hArq := FOpen( cArquivo, FO_READ + FO_SHARED )
       EndIf
-      
+
       If FError() != 0
          Alert( "Erro na leitura de arquivo INI. DOS ERRO: " +;
             Str( FError(), 2, 0 ) )
          Return ""
       EndIf
-      
+
       FClose( hArq )
-      
+
       procura := Upper( AllTrim( lcSecao ) )
       cArq    := MemoRead( cArquivo )
       nLinhas := MlCount( cArq )
-      
+
       Do While nContador <= nLinhas
-         
+
          nContador += 1
-         
+
          linha := AllTrim( Upper( MemoLine( cArq , , nContador ) ) )
-         
+
          linha := StrTran( linha, Chr(10), "" )
          linha := StrTran( linha, Chr(13), "" )
-         
+
          If linha == procura .AND. ! achousecao
             procura := Upper( AllTrim( cVariavel ) )
             achousecao := .T.
@@ -145,7 +145,7 @@ Function GnEncheTabela(oArea,nValorCombo,cCodigo,aCombo1,aCombo2,cVar)
          EndIf
       EndDo
       Return Iif( ! achouvar, cDefault, Right( linha, Len( linha ) - At( "=", linha ) ) )
-   
+
    /*
    */
    Function WriteIni( cSecao, cVariavel, cValor, cArquivo )
@@ -168,27 +168,27 @@ Function GnEncheTabela(oArea,nValorCombo,cCodigo,aCombo1,aCombo2,cVar)
       Local armou   := .F.
       Local disparou := .F.
       Local letra
-      
+
       If ! File( cArquivo )
          hArq := FCreate( cArquivo )
       Else
          hArq := FOpen( cArquivo, FO_READ + FO_SHARED )
       EndIf
-      
+
       If FError() # 0
          Alert( "Erro na leitura de arquivo INI. DOS ERRO: " +;
             Str( FError(), 2, 0 ) )
          Return ""
       EndIf
-      
+
       FClose( hArq )
-      
+
       procura := Upper( AllTrim( lcSecao ) )
-      
+
       conteudo := MemoRead( cArquivo )
-      
+
       ponteiro := At( procura, Upper( conteudo ) )
-      
+
       If ponteiro == 0
          conteudo := conteudo + Chr( 13 ) + Chr( 10 ) + procura + Chr( 13 ) +;
             Chr( 10 ) + vargrav
@@ -214,11 +214,11 @@ Function GnEncheTabela(oArea,nValorCombo,cCodigo,aCombo1,aCombo2,cVar)
          conteudo := SubStr( conteudo, 1, pontvar - 1 ) + ;
             vargrav + SubStr( conteudo, pontfim + 1, Len( conteudo ) )
       EndIf
-      
+
       MemoWrit( cArquivo, StrTran( conteudo, Chr(26), "" ) )
-      
+
       Return Nil
-   
+
    /*
    */
    Function SvAmb()
@@ -240,4 +240,4 @@ Function GnEncheTabela(oArea,nValorCombo,cCodigo,aCombo1,aCombo2,cVar)
          Endif
       Endif
       Return Nil
-   
+

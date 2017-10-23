@@ -15,54 +15,54 @@
 #include 'oohg.ch'
 
 PROCEDURE MAIN
-   
+
    PUBLIC oStat
-   
+
    DEFINE WINDOW Main ;
          TITLE "Progressbar inside a Statusbar" ;
          WIDTH 640 ;
          HEIGHT 480 ;
          ON INIT ResizeStatusbar()
-      
+
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Animate" ;
          ACTION AnimateProgressBar()
-      
+
       @ 10, 120 BUTTON btn_2 ;
          CAPTION "Resize" ;
          ACTION ResizeStatusbar()
-      
+
       DEFINE STATUSBAR OBJ oStat
          STATUSITEM "ooHG power !!!"
          STATUSITEM "" WIDTH 200
          STATUSITEM "ooHG power !!!" WIDTH 100
-         
+
          @ 4, 102 PROGRESSBAR pgb_status ;
             RANGE 0, 100 ;
             WIDTH 192 ;
             HEIGHT oStat:ClientHeight - 6 ;
             SMOOTH
       END STATUSBAR
-      
+
       ON KEY ESCAPE ACTION Main.Release
    END WINDOW
-   
+
    Main.Activate
-   
+
    RETURN
 
 PROCEDURE AnimateProgressBar
-   
+
    Main.pgb_status.Value := 0
    DO WHILE Main.pgb_status.Value < 100
       Main.pgb_status.Value += 5
       HB_IdleSleep(.5)
    ENDDO
-   
+
    RETURN
 
 PROCEDURE ResizeStatusbar
-   
+
    If oStat:ItemWidth( 2 ) > 150
       oStat:ItemWidth( 2, 100 )
    Else
@@ -70,7 +70,7 @@ PROCEDURE ResizeStatusbar
    EndIf
    Main.pgb_status.Col := oStat:ItemWidth( 1 ) + 4
    Main.pgb_status.Width := oStat:ItemWidth( 2 ) - 8
-   
+
    RETURN
 
 /*

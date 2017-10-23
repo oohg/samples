@@ -24,10 +24,10 @@
 #include "oohg.ch"
 
 Function Main
-   
+
    SET CENTURY ON
    SET DELETED ON
-   
+
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 640 HEIGHT 480 ;
@@ -35,7 +35,7 @@ Function Main
          MAIN NOMAXIMIZE ;
          ON INIT OpenTables() ;
          ON RELEASE CloseTables()
-      
+
       DEFINE MAIN MENU
          POPUP 'File'
          ITEM 'Set Browse Value' ACTION Form_1.Browse_1.Value := 50

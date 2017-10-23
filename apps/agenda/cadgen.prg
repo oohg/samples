@@ -28,15 +28,15 @@
 *------------------------------------------------------------------------------*
 Procedure CadastroGenerico( oArea , oTitulo )
    Local CodigoAlt := 0
-   
+
    Private cArea   := oArea
    Private cTitulo := oTitulo
    Private lNovo   := .F.
-   
+
    GenericOpen( oArea )
-   
+
    (cArea)->(DBSetOrder(2))
-   
+
    DEFINE WINDOW Grid_Padrao;
          AT 05,05              ;
          WIDTH   425            ;
@@ -44,7 +44,7 @@ Procedure CadastroGenerico( oArea , oTitulo )
          TITLE cTitulo         ;
          MODAL                 ;
          NOSIZE
-      
+
       @ 010,010 GRID Grid_1P;
          WIDTH  400          ;
          HEIGHT 329          ;
@@ -53,47 +53,47 @@ Procedure CadastroGenerico( oArea , oTitulo )
          VALUE 1             ;
          FONT "Arial" SIZE 09;
          ON DBLCLICK { || Bt_Novo_Generic(2) }
-      
+
       @ 357,011 LABEL  Label_Pesq_Generic    ;
          VALUE "Pesquisa "                   ;
          WIDTH 70             ;
          HEIGHT 20             ;
          FONT "Arial" SIZE 09
-      
+
       @ 353,085 TEXTBOX PesqGeneric    ;
          WIDTH 326             ;
          TOOLTIP "Digite a Descrição para Pesquisa"   ;
          MAXLENGTH 40 UPPERCASE       ;
          ON CHANGE { || Pesquisa_Generic() }
-      
+
       @ 397,011 BUTTON Generic_Novo       ;
          CAPTION '&Novo'                ;
          ACTION { || Bt_Novo_Generic(1)};
          FONT "MS Sans Serif" SIZE 09 FLAT
-      
+
       @ 397,111 BUTTON Generic_Editar     ;
          CAPTION '&Editar'           ;
          ACTION { || Bt_Novo_Generic(2)};
          FONT "MS Sans Serif" SIZE 09 FLAT
-      
+
       @ 397,211 BUTTON Generic_Excluir    ;
          CAPTION 'E&xcluir'          ;
          ACTION { || Bt_Excluir_Generic()};
          FONT "MS Sans Serif" SIZE 09 FLAT
-      
+
       @ 397,311 BUTTON Generic_Sair       ;
          CAPTION '&Sair'                ;
          ACTION { || Bt_Generic_Sair() };
          FONT "MS Sans Serif" SIZE 09 FLAT
-      
+
    END WINDOW
-   
+
    Grid_Padrao.Grid_1P.SetFocus
    Renova_Pesquisa_Generic(" ")
-   
+
    CENTER   WINDOW Grid_Padrao
    ACTIVATE WINDOW Grid_Padrao
-   
+
    Return Nil
 
 /*
@@ -102,9 +102,9 @@ Function Bt_Novo_Generic(nTipo)
    Local nColuna       := 1
    Local nReg       := PegaValorDaColuna( "Grid_1P" , "Grid_Padrao" , nColuna )
    Local cStatus       := Iif(nTipo==1,"Incluindo Registro","Alterando Registro")
-   
+
    lNovo          := Iif(nTipo==1,.T.,.F.)
-   
+
    If nTipo == 2       && Editar/Alterar
       If Empty(nReg)
          MsgExclamation("Nenhum Registro Informado para Edição!!",SISTEMA)
@@ -118,7 +118,7 @@ Function Bt_Novo_Generic(nTipo)
          CodigoAlt := (cArea)->Codigo
       EndIf
    EndIf
-   
+
    DEFINE WINDOW Novo_Generic;
          AT 10,10             ;
          WIDTH  590             ;
@@ -126,75 +126,75 @@ Function Bt_Novo_Generic(nTipo)
          TITLE cTitulo         ;
          MODAL                ;
          NOSIZE
-      
+
       DEFINE STATUSBAR
          STATUSITEM "Manutenção no "+cTitulo
       END STATUSBAR
-      
+
       @003,005 FRAME Group_Generic_1 WIDTH 370 HEIGHT 75
-      
+
       *------------------------------------------ Campo Codigo
       @014,020 LABEL  Label_Gen_Codigo    ;
          VALUE "Código"             ;
          WIDTH  70         ;
          HEIGHT 15         ;
          FONT "MS Sans Serif" SIZE 8 BOLD
-      
+
       @010,100 TEXTBOX  Generic_Codigo  ;
          WIDTH 50       ;
          FONT "Arial" Size 9      ;
          TOOLTIP "Digite o C¢digo";
          MAXLENGTH 04 UPPERCASE    ;
          ON LOSTFOCUS { || ChangeGenericCodigo() }
-      
+
       *----------------------------------------------- Campo Descricao
       @044,020 LABEL  Label_Gen_Descricao;
          VALUE "Descrição"        ;
          WIDTH  80       ;
          HEIGHT 19       ;
          FONT "MS Sans Serif" SIZE 8 BOLD
-      
+
       @040,100 TEXTBOX  Generic_Descricao;
          WIDTH 250        ;
          FONT "Arial" Size 9       ;
          TOOLTIP "Digite a Descrição";
          MAXLENGTH 30 UPPERCASE;
          ON ENTER Novo_Generic.Generic_Salvar.SetFocus
-      
+
       @003,380 FRAME Group_Generic_6 WIDTH 200 HEIGHT 75
-      
+
       @10,390 BUTTON Generic_Salvar   ;
          CAPTION "&Salvar"            ;
          ACTION { || Bt_Salvar_Generic() } ;
          WIDTH  180           ;
          HEIGHT   25           ;
          FONT "MS Sans Serif" SIZE 8 FLAT
-      
+
       @40,390 BUTTON Generic_Sair     ;
          CAPTION "&Cancelar"              ;
          ACTION Novo_Generic.release ;
          WIDTH  180           ;
          HEIGHT   25           ;
          FONT "MS Sans Serif" SIZE 8 FLAT
-      
+
    END WINDOW
-   
+
    If ! lNovo
-      
+
       Novo_Generic.Generic_Codigo.Value    := AllTrim((cArea)->Codigo)
       Novo_Generic.Generic_Descricao.Value := AllTrim((cArea)->Descricao)
-      
+
    EndIf
-   
+
    Novo_Generic.Statusbar.Item(1) := "        "+cStatus
    DISABLE CONTROL Generic_Codigo OF Novo_Generic
-   
+
    (cArea)->(DBSetOrder(2))
    Novo_Generic.Generic_Descricao.SetFocus
-   
+
    CENTER   WINDOW Novo_Generic
    ACTIVATE WINDOW Novo_Generic
-   
+
    lNovo := .F.
    Return NIL
 
@@ -205,9 +205,9 @@ Function Bt_Excluir_Generic()
    Local nReg      := PegaValorDaColuna( "Grid_1P" , "Grid_Padrao" , nColuna )
    Local cNome      := ""
    Local cUltimaPesq := Upper(AllTrim(  Grid_Padrao.PesqGeneric.Value   ))
-   
+
    cUltimaPesq := Iif( ! Empty(cUltimaPesq) , cUltimaPesq , AlLTrim(cNome) )
-   
+
    If Empty(nReg)
       MsgExclamation("Nenhum Registro Informado para Edição!!",SISTEMA)
       Return Nil
@@ -234,7 +234,7 @@ Function Pesquisa_Generic()
    Local nTamanhoNomeParaPesquisa      := Len(cPesq)
    Local nQuantRegistrosProcessados    := 0
    Local nQuantMaximaDeRegistrosNoGrid := 30
-   
+
    (cArea)->(DBSetOrder(2))
    (cArea)->(DBSeek(cPesq))
    DELETE ITEM ALL FROM Grid_1P OF Grid_Padrao
@@ -294,10 +294,10 @@ Function ChangeGenericCodigo()
 Function Navegar_Generic(nOp)
    Local i    := 0
    Local nReg := (cArea)->(Recno())
-   
+
    (cArea)->(DBSetOrder(2))
    (cArea)->(DBGoTo(nReg))
-   
+
    If   nOp == 1      && Primeiro Registro
       (cArea)->(DBGoTop())
    ElseIf nOp == 2      && Registro Anterior
@@ -307,14 +307,14 @@ Function Navegar_Generic(nOp)
    ElseIf nOp == 4      && Ultimo Registro
       (cArea)->(DBGoBottom())
    EndIf
-   
+
    If (cArea)->(Eof())
       (cArea)->(DBSkip(-1))
    Endif
-   
+
    Novo_Generic.Generic_Codigo.Value     := AllTrim((cArea)->Codigo     )
    Novo_Generic.Generic_Descricao.Value  := AllTrim((cArea)->Descricao )
-   
+
    Return Nil
 
 /*
@@ -322,14 +322,14 @@ Function Navegar_Generic(nOp)
 Function Bt_Salvar_Generic()
    Local cCodigo
    Local cPesq   := AllTrim( Grid_Padrao.PesqGeneric.Value )
-   
+
    If Empty( Novo_Generic.Generic_Descricao.Value )
       PlayExclamation()
       MSGINFO("Descrição não Informada !!","Operação Inválida")
       Novo_Generic.Generic_Descricao.SetFocus
       Return Nil
    EndIf
-   
+
    If lNovo
       lNovo    := .F.
       cCodigo  := GeraCodigo( cArea  , 1 , 04 )
@@ -362,7 +362,7 @@ Function Bt_Salvar_Generic()
 Function Bt_Generic_Sair()
    (cArea)->(DBCloseArea())
    Grid_Padrao.Release
-   
+
    /*
    */
    Function GenericOpen( oArea , cAlias )
@@ -388,4 +388,4 @@ Function Bt_Generic_Sair()
          (oArea)->(DBSetIndex( xBase + oArea + '2'))
       Endif
       Return Nil
-   
+

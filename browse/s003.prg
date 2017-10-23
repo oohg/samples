@@ -18,15 +18,15 @@
 #include "dbstruct.ch"
 
 FUNCTION Main
-   
+
    LOCAL oForm1, oBrowse1
-   
+
    REQUEST DBFCDX, DBFFPT
-   
+
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
-   
+
    DEFINE WINDOW Form_1 OBJ oForm1 ;
          AT 0,0 ;
          WIDTH 508 HEIGHT 380 ;
@@ -34,7 +34,7 @@ FUNCTION Main
          MAIN ;
          ON INIT OpenTables() ;
          ON RELEASE CleanUp()
-      
+
       @ 10,10 BROWSE Browse_1 OBJ oBrowse1 ;
          WIDTH 480 ;
          HEIGHT 300 ;
@@ -59,54 +59,54 @@ FUNCTION Main
          FULLMOVE ;
          APPEND ;
          EDITKEYS { { "F1", {|| AutoMsgBox( "Control: " + oBrowse1:name + " - Column: " + ltrim(str(This.CellColIndex))) } }, { "F2", {|| SetCellValue() } } }
-      
+
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-   
+
    ACTIVATE WINDOW Form_1
-   
+
    RETURN Nil
 
 //----------------------------------------------------------------------------//
 FUNCTION OpenTables()
-   
+
    LOCAL aDbf[6][4]
-   
+
    aDbf[1][ DBS_NAME ] := "Code"
    aDbf[1][ DBS_TYPE ] := "Numeric"
    aDbf[1][ DBS_LEN ]  := 10
    aDbf[1][ DBS_DEC ]  := 0
-   
+
    aDbf[2][ DBS_NAME ] := "First"
    aDbf[2][ DBS_TYPE ] := "Character"
    aDbf[2][ DBS_LEN ]  := 25
    aDbf[2][ DBS_DEC ]  := 0
-   
+
    aDbf[3][ DBS_NAME ] := "Last"
    aDbf[3][ DBS_TYPE ] := "Character"
    aDbf[3][ DBS_LEN ]  := 25
    aDbf[3][ DBS_DEC ]  := 0
-   
+
    aDbf[4][ DBS_NAME ] := "Married"
    aDbf[4][ DBS_TYPE ] := "Logical"
    aDbf[4][ DBS_LEN ]  := 1
    aDbf[4][ DBS_DEC ]  := 0
-   
+
    aDbf[5][ DBS_NAME ] := "Birth"
    aDbf[5][ DBS_TYPE ] := "Date"
    aDbf[5][ DBS_LEN ]  := 8
    aDbf[5][ DBS_DEC ]  := 0
-   
+
    aDbf[6][ DBS_NAME ] := "Bio"
    aDbf[6][ DBS_TYPE ] := "Memo"
    aDbf[6][ DBS_LEN ]  := 10
    aDbf[6][ DBS_DEC ]  := 0
-   
+
    DBCREATE("Test", aDbf, "DBFCDX")
-   
+
    USE test VIA "DBFCDX"
    ZAP
-   
+
    FOR i:= 1 TO 100
       APPEND BLANK
       REPLACE code    WITH i * 10000
@@ -115,22 +115,22 @@ FUNCTION OpenTables()
       REPLACE Married WITH .t.
       REPLACE birth   WITH DATE() + i - 10000
    NEXT i
-   
+
    INDEX ON code TO code
-   
+
    GO BOTTOM
-   
+
    Form_1.Browse_1.Value := RECNO()
-   
+
    RETURN Nil
 
 //----------------------------------------------------------------------------//
 FUNCTION SetCellValue
-   
+
    LOCAL oCtrl
-   
+
    oCtrl := GetControlObjectByHandle( GetFocus() )
-   
+
    DO CASE
    CASE This.CellColIndex == 1
       oCtrl:Value := 12345
@@ -145,20 +145,20 @@ FUNCTION SetCellValue
    CASE This.CellColIndex == 6
       oCtrl:Value := ""
    ENDCASE
-   
+
    oCtrl:Setfocus()
-   
+
    RETURN Nil
 
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp()
-   
+
    dbCloseAll()
-   
+
    ERASE Test.dbf
    ERASE Test.fpt
    ERASE Code.cdx
-   
+
    RETURN NIL
 
 /*

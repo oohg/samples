@@ -15,18 +15,18 @@
 
 FUNCTION Main
    PUBLIC oMain, oChild
-   
+
    DEFINE WINDOW frm_Main OBJ oMain ;
          TITLE "Main" ;
          AT 0, 0 ;
          MAIN ;
          ON INIT DefineChild() ;
          ON SIZE MoveChild()
-      
+
       @ 20, 20 LABEL lbl_1 ;
          AUTOSIZE ;
          VALUE "Drag me around !!!"
-      
+
    END WINDOW
    CENTER WINDOW frm_Main
    ACTIVATE WINDOW frm_Main
@@ -38,11 +38,11 @@ FUNCTION DefineChild
          AT oMain:Row + 40, oMain:Col + 40 ;
          CHILD ;
          ON SIZE AdjustToMain()
-      
+
       @ 20, 20 LABEL lbl_1 ;
          AUTOSIZE ;
          VALUE "Drag me around !!!"
-      
+
    END WINDOW
    ACTIVATE WINDOW frm_Child NOWAIT
    RETURN NIL

@@ -14,9 +14,9 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    AutoMsgBox( _GetCompactPath( "C:\OOHG_Samples\English\Samples\ClientAdjust\GetCompactPath", 32 ) )
-   
+
    RETURN Nil
 
 /*

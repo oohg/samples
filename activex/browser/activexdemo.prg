@@ -72,44 +72,44 @@ FUNCTION Main()
          BACKCOLOR {236 , 233 , 216 } ;
          FONT 'Verdana' ;
          SIZE 10
-      
+
       @ Windemo:height - 60 , 10 LABEL LSemaforo ;
          VALUE " " ;
          WIDTH 27 ;
          HEIGHT 27 ;
          FONTCOLOR {255,0,0} ;
          BACKCOLOR {255,0,0}
-      
+
       @ windemo:height - 57 , 43 TEXTBOX URL_ToNavigate  ;
          HEIGHT 23 ;
          WIDTH windemo:width - 165 ;
          Font 'Verdana' ;
          ON ENTER Navegar() ;
-         
+
       @ windemo:height - 60 , windemo:width - 115 BUTTON BNavigate ;
          CAPTION 'Navigate' ;
          ACTION ( oActiveX:visible := .F., Navegar() ) ;
          WIDTH 100 ;
          HEIGHT 28 ;
          FONT 'Verdana' ;
-         
+
       @  0, 0 ACTIVEX ActiveX WIDTH WinDemo:width - 7 HEIGHT WinDemo:height - 72 PROGID "Shell.Explorer.2" OBJ oActiveX INVISIBLE
-      
+
       oActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| WinDemo:Title := cTitle } )
-      
+
       bVerde := .F.
       oActiveX:Navigate( "www.oohg.org" )
-      
+
       DEFINE TIMER TSemaforo ;
          INTERVAL    1000 ;
          ACTION SwitchSemaforo() ;
-         
+
    END WINDOW
-   
+
    Center window WinDemo
-   
+
    Activate window WinDemo
-   
+
    RETURN NIL
 
 Procedure SwitchSemaforo()

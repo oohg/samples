@@ -8,9 +8,9 @@ function main()
          HEIGHT 400 ;
          TITLE 'hola' ;
          main
-      
+
       @ 40,10 button b_2 caption 'Do External Report (.rpt)' action testrepo() WIDTH 150
-      
+
    end window
    activate window form_1
    return

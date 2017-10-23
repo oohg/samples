@@ -24,17 +24,17 @@
 MEMVAR hBitmap_Source, hBitmap
 
 PROCEDURE MAIN
-   
+
    /*
    * Because OOHG executes ON PAINT before executing ON INIT
    * the image must be loaded before the window's activation.
    *
    * All loaded bitmaps must be released to avoid memory leaks.
    */
-   
+
    PRIVATE hBitmap_Source := BT_BitmapLoadFile( "sami.jpg" )
    PRIVATE hBitmap := BT_BitmapClone( hBitmap_Source )
-   
+
    DEFINE WINDOW Win1 ;
          AT 0, 0 ;
          WIDTH 700 ;
@@ -46,7 +46,7 @@ PROCEDURE MAIN
          ON RELEASE BT_BitmapRelease( hBitmap ) ;
          ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
          ON PAINT Proc_ON_PAINT()
-      
+
       DEFINE MAIN MENU
          DEFINE POPUP "EFFECTS"
             MENUITEM "Invert"         ACTION Proc_EFFECT( 1 )
@@ -56,7 +56,7 @@ PROCEDURE MAIN
             MENUITEM "Modify Color"   ACTION Proc_EFFECT( 5 )
             MENUITEM "Gamma Correct"  ACTION Proc_EFFECT( 6 )
          END POPUP
-         
+
          DEFINE POPUP "BLUR"
             MENUITEM "VERTICAL"       ACTION Proc_EFFECT( 7, 1 )
             MENUITEM "HORIZONTAL"     ACTION Proc_EFFECT( 7, 2 )
@@ -64,7 +64,7 @@ PROCEDURE MAIN
             MENUITEM "ANGLE135"       ACTION Proc_EFFECT( 7, 4 )
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 7, 5 )
          END POPUP
-         
+
          DEFINE POPUP "SHARPEN"
             MENUITEM "VERTICAL"       ACTION Proc_EFFECT( 8, 1 )
             MENUITEM "HORIZONTAL"     ACTION Proc_EFFECT( 8, 2 )
@@ -72,14 +72,14 @@ PROCEDURE MAIN
             MENUITEM "ANGLE135"       ACTION Proc_EFFECT( 8, 4 )
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 8, 5 )
          END POPUP
-         
+
          DEFINE POPUP "EDGE"
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 9, 5 )
             MENUITEM "SOBEL Method"   ACTION Proc_EFFECT( 9, 6 )
             MENUITEM "PREWITT Method" ACTION Proc_EFFECT( 9, 7 )
             MENUITEM "KIRSH Method"   ACTION Proc_EFFECT( 9, 8 )
          END POPUP
-         
+
          DEFINE POPUP "EMBOSS1"
             MENUITEM "EAST"           ACTION Proc_EFFECT( 10, 1 )
             MENUITEM "NORTH"          ACTION Proc_EFFECT( 10, 2 )
@@ -90,7 +90,7 @@ PROCEDURE MAIN
             MENUITEM "SOUTH_WEST"     ACTION Proc_EFFECT( 10, 7 )
             MENUITEM "WEST"           ACTION Proc_EFFECT( 10, 8 )
          END POPUP
-         
+
          DEFINE POPUP "EMBOSS2"
             MENUITEM "EAST"           ACTION Proc_EFFECT( 11, 1 )
             MENUITEM "NORTH"          ACTION Proc_EFFECT( 11, 2 )
@@ -102,14 +102,14 @@ PROCEDURE MAIN
             MENUITEM "WEST"           ACTION Proc_EFFECT( 11, 8 )
          END POPUP
       END MENU
-      
+
       @ 450, 280 BUTTON Button_1 ;
          CAPTION "Restore Image" ;
          ACTION Proc_EFFECT( 0 )
-      
+
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
-   
+
    MAXIMIZE WINDOW Win1
    ACTIVATE WINDOW Win1
    RETURN
@@ -118,9 +118,9 @@ PROCEDURE Proc_ON_PAINT
    LOCAL Col := - Win1.HscrollBar.value
    LOCAL Row := - Win1.VscrollBar.value
    LOCAL hDC, BTstruct
-   
+
    BT_ClientAreaInvalidateAll( "Win1", .F. )
-   
+
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeighT( "Win1" ), { 100, 0, 33 }, BLACK )
    BT_DrawBitmap( hDC, Row + 10, Col + 10, BT_BitmapWidth( hBitmap ), BT_BitmapHeight( hBitmap ), BT_COPY, hBitmap )
@@ -130,7 +130,7 @@ PROCEDURE Proc_ON_PAINT
 PROCEDURE Proc_EFFECT( nEffect, nIndex )
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapClone( hBitmap_Source )
-   
+
    DO CASE
    CASE nEffect == 1
       BT_BitmapInvert( hBitmap )
@@ -169,7 +169,7 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
    CASE nEffect == 11
       BT_BitmapConvolutionFilter3x3( hBitmap, BT_aFILTER_EMBOSS( nIndex, 3, 1, 0, 0 ) )
    ENDCASE
-   
+
    BT_ClientAreaInvalidateAll( "Win1" )
    RETURN
 
@@ -204,17 +204,17 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
 
 FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
    LOCAL aFILTER, v
-   
+
    v := value
    DEFAULT v      := 1
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-   
+
    /* For a Blur filter, use a positive center value and surround
    * it with a symmetrical pattern of other positive values.
    */
-   
+
    aFILTER := ;
       { { 0, v, 0, 0, weight, 0, 0,  v, 0, weight + add + v * 2, bias}, ; // VERTICAL
    { 0, 0, 0, v, weight, v, 0,  0, 0, weight + add + v * 2, bias}, ; // HORIZONTAL
@@ -225,17 +225,17 @@ FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
 
 FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
    LOCAL aFILTER, v
-   
+
    v := value
    DEFAULT v      := 1
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-   
+
    /* For a Sharpen filter, use a positive center value and surround
    * it with a symmetrical pattern of negative values.
    */
-   
+
    aFILTER := ;
       { {  0, -v,  0,  0, weight,  0,  0, -v,  0, weight + add - v * 2, bias}, ; // VERTICAL
    {  0,  0,  0, -v, weight, -v,  0,  0,  0, weight + add - v * 2, bias}, ; // HORIZONTAL
@@ -246,17 +246,17 @@ FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
 
 FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
    LOCAL aFILTER, v
-   
+
    v := value
    DEFAULT v      := 1
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-   
+
    /* For an edge filter, use a negative center value and surround
    * it with a symmetrical pattern of positive values.
    */
-   
+
    aFILTER := ;
       { { 0, v, 0, 0, -weight, 0, 0, v, 0, -weight + add + v * 2, bias}, ; // VERTICAL
    { 0, 0, 0, v, -weight, v, 0, 0, 0, -weight + add + v * 2, bias}, ; // HORIZONTAL
@@ -267,19 +267,19 @@ FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
 
 FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
    LOCAL aFILTER, v
-   
+
    // Gray   Color
    v := value
    DEFAULT v      := 1     // 3
    DEFAULT weight := 0     // 1
    DEFAULT add    := 0     // 0
    DEFAULT bias   := 128   // 0
-   
+
    /* For an Embossing filter, use a positive center value and surround
    * it in a symmetrical pattern of negative values on one side and
    * positive values on the other.
    */
-   
+
    aFILTER := ;
       { { -v,  0,  v, -v, weight,  v, -v,  0,  v, weight + add, bias }, ; // Right          EAST
    {  v,  v,  v,  0, weight,  0, -v, -v, -v, weight + add, bias }, ; // Top            NORTH

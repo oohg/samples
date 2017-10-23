@@ -14,42 +14,42 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 500 ;
          HEIGHT 300 ;
          TITLE 'Available Paper Sizes in a Printer' ;
          MAIN
-      
+
       DEFINE STATUSBAR
          STATUSITEM "Click the button and select a printer."
       END STATUSBAR
-      
+
       @ 20, 20 BUTTON But_1 ;
          CAPTION "Show Data" ;
          ACTION ShowData()
-      
+
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-   
+
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-   
+
    RETURN NIL
 
 FUNCTION ShowData()
    LOCAL oPrint
-   
+
    oPrint := TPrint( "HBPRINTER" )
    oPrint:Init()
    oPrint:SelPrinter()
    IF ! oPrint:LPrError
       AutoMsgBox( oPrint:oHBPrn:PaperNames, "Available Paper Sizes" )
    ENDIF
-   
+
    oPrint:Release()
-   
+
    RETURN NIL
 
 /*

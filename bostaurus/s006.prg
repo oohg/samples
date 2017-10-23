@@ -25,30 +25,30 @@
 MEMVAR hBitmap, Image_Width, Image_Height
 
 PROCEDURE MAIN
-   
+
    /*
    * Because OOHG executes ON PAINT before executing ON INIT
    * the image must be loaded before the window's activation.
    *
    * All loaded bitmaps must be released to avoid memory leaks.
    */
-   
+
    PRIVATE hBitmap      := BT_BitmapLoadFile( "sami.jpg" )
    PRIVATE Image_Width  := BT_BitmapWidth( hBitmap )
    PRIVATE Image_Height := BT_BitmapWidth( hBitmap )
-   
+
    IF BT_BitmapClipboardPut( "Win1", hBitmap )
       MsgInfo( "Put Bitmap in the Clipboard: OK" )
    ELSE
       MsgInfo( "Put Bitmap in the Clipboard: FAILED" )
    ENDIF
-   
+
    /*
    * When you see this message, you can paste the content
    * of the clipboard (sami.jpg image) into any program
    * that handles image pasting.
    */
-   
+
    DEFINE WINDOW Win1 ;
          AT 0, 0 ;
          WIDTH 700 ;
@@ -58,7 +58,7 @@ PROCEDURE MAIN
          ON RELEASE BT_BitmapRelease( hBitmap ) ;
          ON PAINT Proc_ON_PAINT() ;
          ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
-      
+
       @ 200, 200 EDITBOX EditBox_1 ;
          WIDTH 250 ;
          HEIGHT 100 ;
@@ -66,18 +66,18 @@ PROCEDURE MAIN
          BOLD ;
          BACKCOLOR ORANGE ;
          NOHSCROLL
-      
+
       @ 400, 280 BUTTON Button_1 ;
          CAPTION "Credits" ;
          ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
-      
+
       DEFINE TIMER Timer1 ;
          INTERVAL 300 ;
          ACTION Proc_Get_Clipboard_Timer()
-      
+
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
-   
+
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
    RETURN
@@ -86,7 +86,7 @@ PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" ) - 40
    LOCAL Height := BT_ClientAreaHeight( "Win1" ) - 40
    LOCAL hDC, BTstruct
-   
+
    /*
    * Since OOHG executes the default window procedure at the start of
    * the function that process WM_PAINT message, thus validating the
@@ -94,9 +94,9 @@ PROCEDURE Proc_ON_PAINT
    * invalidate the whole client area to force the correct painting
    * of all the controls.
    */
-   
+
    BT_ClientAreaInvalidateAll( "Win1", .T. )
-   
+
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeight( "Win1" ), WHITE, BLACK )
    IF Image_Width > Width .OR. Image_Height > Height
@@ -109,7 +109,7 @@ PROCEDURE Proc_ON_PAINT
 
 PROCEDURE Proc_Get_Clipboard_Timer
    LOCAL hBitmap_aux
-   
+
    IF ! BT_BitmapClipboardIsEmpty()
       hBitmap_aux := BT_BitmapClipboardGet( "Win1" )
       IF hBitmap_aux <> 0

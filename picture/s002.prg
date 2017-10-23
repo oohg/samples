@@ -15,33 +15,33 @@
 #include "blob.ch"
 
 FUNCTION Main
-   
+
    LOCAL aStruct := { {"CODE", "N", 3, 0}, {"IMAGE", "M", 10, 0} }
    LOCAL cInput  := "Input.ico"
    LOCAL cOutput := "Output.ico"
    LOCAL oForm
-   
+
    REQUEST DBFCDX, DBFFPT
    RDDSETDEFAULT( "DBFCDX")
-   
+
    DBCREATE( "IMAGES", aStruct )
-   
+
    USE IMAGES NEW
    APPEND BLANK
    REPLACE code with 1
-   
+
    // Import
    IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
       ? "Error importing !!!"
       RETURN NIL
    ENDIF
-   
+
    // Export
    FERASE( cOutput )
    IF ! BLOBEXPORT( FIELDPOS( "IMAGE" ), cOutput, BLOB_EXPORT_OVERWRITE )
       ? "Error exporting !!!"
    ENDIF
-   
+
    // Show
    DEFINE WINDOW Form_1 ;
          OBJ oForm ;
@@ -53,17 +53,17 @@ FUNCTION Main
          ON RELEASE IIF( MsgYesNo( "Clean auxiliary files?" ), ;
          Clean( cOutput ), ;
          NIL )
-      
+
       @ 10, 10 PICTURE Img_1 ;
          IMAGESIZE ;
          BUFFER BLOBGET( FIELDPOS( "IMAGE" ) )
-      
+
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
-   
+
    oForm:Center()
    oForm:Activate()
-   
+
    RETURN NIL
 
 PROCEDURE Clean( cOutput )

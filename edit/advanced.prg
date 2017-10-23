@@ -1,15 +1,15 @@
 #include "oohg.ch"
 
 function Main()
-   
+
    // Database driver.
    REQUEST DBFCDX , DBFFPT
-   
+
    // [x]Harbour modifiers.
    SET CENTURY ON
    SET DELETED OFF
    SET DATE TO BRITISH
-   
+
    // Request all languages for test.
    REQUEST HB_LANG_ES
    REQUEST HB_LANG_EU
@@ -36,10 +36,10 @@ function Main()
    REQUEST HB_LANG_SRISO
    REQUEST HB_LANG_SR852
    REQUEST HB_LANG_ES
-   
+
    // Set default language to English.
    HB_LANGSELECT( "EN" )
-   
+
    // Define window.
    DEFINE WINDOW Win_1         ;
          AT        0,0          ;
@@ -50,7 +50,7 @@ function Main()
          ON INIT OpenTable()       ;
          ON RELEASE CloseTable()    ;
          BACKCOLOR GRAY
-      
+
       DEFINE MAIN MENU OF Win_1
          POPUP "&File"
             ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
@@ -63,61 +63,61 @@ function Main()
             ITEM "E&xit"               ACTION Win_1.Release
          END POPUP
       END MENU
-      
+
    END WINDOW
-   
+
    // Open window.
    MAXIMIZE WINDOW Win_1
    ACTIVATE WINDOW Win_1
-   
+
    Return Nil
 
 /*------------------------------------------------------------------------------*/
 Procedure OpenTable()
-   
+
    USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
-   
+
    Return Nil
 
 /*------------------------------------------------------------------------------*/
 Procedure CloseTable()
-   
+
    CLOSE CLIENTES
-   
+
    Return Nil
 
 /*------------------------------------------------------------------------------*/
 Procedure AdvTest()
-   
+
    LOCAL aFields   := { "Nombre", "Apellidos", "Dirección", "Población " ,;
       "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
       "Edad", "Salario", "Notas"    }
    LOCAL aReadOnly := { .f., .f., .f., .f., .f., .f., .f., .f., .t., .f., .f. }
    LOCAL bSave     := {|aContent, lEdit| AdvTestSave( aContent, lEdit ) }
-   
+
    // Advise.
    MsgInfo( "This sample show advanced features of EDIT." + Chr(13) + Chr(13) +;
       "It's designed for Spanish language, so changing to" + Chr(13) + ;
       "Spanish language for better performance", "" )
    HB_LANGSELECT( "ES" )
-   
+
    // Advanced EDIT.
    EDIT WORKAREA    CLIENTES ;
       TITLE    "Clientes" ;
       FIELDS   aFields ;
       READONLY aReadOnly ;
       SAVE     bSave
-   
+
    Return Nil
 
 /*------------------------------------------------------------------------------*/
 Procedure AdvTestSave( aContent, lEdit )
-   
+
    LOCAL i
    LOCAL aFields  := { "Nombre", "Apellidos", "Dirección", "Población " ,;
       "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
       "Edad", "Salario", "Notas"    }
-   
+
    // Chek content.
    FOR i := 1 TO Len( aContent )-4
       IF Empty( aContent[i] )
@@ -125,13 +125,13 @@ Procedure AdvTestSave( aContent, lEdit )
          Return .f.
       ENDIF
    NEXT
-   
+
    // Calculate age.
    aContent[9] := 0
    FOR i := ( Year( aContent[7] ) + 1 ) to Year( Date() )
       aContent[9] += 1
    NEXT
-   
+
    // Save record.
    IF .NOT. lEdit
       CLIENTES->( dbAppend() )
@@ -139,12 +139,12 @@ Procedure AdvTestSave( aContent, lEdit )
    FOR i := 1 TO Len( aContent )
       CLIENTES->( FieldPut( i, aContent[i] ) )
    NEXT
-   
+
    Return .t.
 
 /*------------------------------------------------------------------------------*/
 Procedure SelecLang()
-   
+
    LOCAL aLangName := { "Basque"             ,;
       "Czech 852"          ,;
       "Czech ISO-8859-2"   ,;
@@ -169,7 +169,7 @@ Procedure SelecLang()
       "Serbian ISO-8859-2" ,;
       "Serbian 852"        ,;
       "Spanish"             }
-   
+
    LOCAL aLangID   := { "EU"    ,;
       "CS852" ,;
       "CSISO" ,;
@@ -194,9 +194,9 @@ Procedure SelecLang()
       "SRISO" ,;
       "SR852" ,;
       "ES"     }
-   
+
    LOCAL nItem
-   
+
    // Language selection.
    MsgInfo( "You can change EDIT interface language, by changing" + Chr(13) + ;
       "[x]Harbour default language with HB_LANGSELECT() fuction." + Chr( 13 ) + Chr( 13 ) +;
@@ -207,14 +207,14 @@ Procedure SelecLang()
    IF .NOT. nItem == 0
       HB_LANGSELECT( aLangID[nItem] )
    ENDIF
-   
+
    return ( nil )
 
 /*------------------------------------------------------------------------------*/
 Procedure SelItem( aItems )
-   
+
    LOCAL nItem := 0
-   
+
    DEFINE WINDOW wndSelItem ;
          AT 0, 0 ;
          WIDTH 265 ;
@@ -223,7 +223,7 @@ Procedure SelItem( aItems )
          MODAL ;
          NOSIZE ;
          NOSYSMENU
-      
+
       @ 20, 20 LISTBOX lbxItems ;
          WIDTH 140 ;
          HEIGHT 100 ;
@@ -231,7 +231,7 @@ Procedure SelItem( aItems )
          VALUE 1 ;
          FONT "Arial" ;
          SIZE 9
-      
+
       @ 20, 170 BUTTON btnSel ;
          CAPTION "&Select" ;
          ACTION {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release } ;
@@ -239,19 +239,19 @@ Procedure SelItem( aItems )
          HEIGHT 30 ;
          FONT "ms sans serif" ;
          SIZE 8
-      
+
    END WINDOW
-   
+
    wndSelItem.lbxItems.SetFocus
-   
+
    CENTER WINDOW wndSelItem
    ACTIVATE WINDOW wndSelItem
-   
+
    return ( nItem )
 
 /*------------------------------------------------------------------------------*/
 Procedure About()
-   
+
    MsgInfo( Chr( 13 ) + ;
       "EDIT command for MiniGUI" + Chr( 13 ) + ;
       "(c) Roberto López" + Chr( 13 ) + Chr( 13 ) + ;

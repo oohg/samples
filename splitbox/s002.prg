@@ -14,7 +14,7 @@
 #include 'oohg.ch'
 
 Function Main()
-   
+
    DEFINE WINDOW MainForm ;
          OBJ MainForm ;
          AT 0, 0 ;
@@ -22,7 +22,7 @@ Function Main()
          HEIGHT 240 ;
          TITLE "ooHG Splitbox Demo" ;
          MAIN
-      
+
       DEFINE SPLITBOX OBJ Split
          DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 20,20 FLAT BOTTOM
             BUTTON btn_NewPage CAPTION "New Page" ACTION Action() AUTOSIZE
@@ -33,30 +33,30 @@ Function Main()
             BUTTON btn_Home    CAPTION "Home"     ACTION Action() AUTOSIZE
             BUTTON btn_About   CAPTION "About"    ACTION Action() AUTOSIZE
          END TOOLBAR NOBREAK
-         
+
          /*
          * If the NOBREAK clause is ommited, the toolbars
          * are shown in different rows
          */
-         
+
          DEFINE TOOLBAR ToolBar_2 BUTTONSIZE 20,20 FLAT BOTTOM
             BUTTON btn_Go CAPTION "Go" ACTION Action() AUTOSIZE
          END TOOLBAR
       END SPLITBOX
-      
+
       ON KEY ESCAPE ACTION MainForm:Release()
-      
+
    END WINDOW
-   
+
    CENTER WINDOW MainForm
    ACTIVATE WINDOW MainForm
-   
+
    RETURN Nil
 
 FUNCTION Action()
-   
+
    MSGINFO('Action','Info')
-   
+
    RETURN Nil
 
 /*

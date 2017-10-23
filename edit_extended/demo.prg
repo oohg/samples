@@ -14,16 +14,16 @@
 *      Return: NIL
 ****************************************************************************************/
 function Main()
-   
+
    // Database driver.
    REQUEST DBFNTX
    REQUEST DBFCDX, DBFFPT
-   
+
    // [x]Harbour modifiers.
    SET CENTURY ON
    SET DELETED OFF
    SET DATE TO BRITISH
-   
+
    // Request available languages for test.
    REQUEST HB_LANG_PT      // Portuguese.
    REQUEST HB_LANG_EU      // Basque.
@@ -34,10 +34,10 @@ function Main()
    //        REQUEST HB_LANG_NL      // Dutch.
    REQUEST HB_LANG_PLWIN   // Polish Windows CP-1250
    REQUEST HB_LANG_DE      // German.
-   
+
    // Set default language to English.
    HB_LANGSELECT( "EN" )
-   
+
    // Define the main window.
    DEFINE WINDOW Win_1                  ;
          AT         0,0                    ;
@@ -50,7 +50,7 @@ function Main()
          ON INIT    OpenTable()            ;
          ON RELEASE CloseTable()           ;
          BACKCOLOR  GRAY
-      
+
       DEFINE MAIN MENU OF Win_1
          POPUP "DBF&NTX Demo"
             ITEM "&Simple EDIT EXTENDED test on DBFNTX driver"        ;
@@ -76,16 +76,16 @@ function Main()
                ACTION Win_1.Release
          END POPUP
       END MENU
-      
+
       DEFINE STATUSBAR FONT "ms sans serif" SIZE 9
          STATUSITEM "HMG EDIT EXTENDED command demo"
       END STATUSBAR
-      
+
    END WINDOW
-   
+
    // Open window.
    ACTIVATE WINDOW Win_1
-   
+
    return NIL
 
 /****************************************************************************************
@@ -100,38 +100,38 @@ function Main()
 *      Return: NIL
 ****************************************************************************************/
 procedure OpenTable()
-   
+
    // Open the TEST1 database file with the DBFCDX Driver.----------------
    dbUseArea( .t., "DBFCDX", "TEST1.DBF", "TEST1" )
-   
+
    // Check the existance of the index files.-----------------------------
    if !File( "TEST1.CDX" )
-      
+
       // Create order by first field plus last field.
       // You can't search by this order. Only for test.
       TEST1->( ordCreate( "TEST1.CDX",                        ;
          "First Name",                       ;
          "TEST1->First + TEST1->Last",       ;
          {|| TEST1->First  + TEST1->Last } ) )
-      
+
       // Create order by last field.
       TEST1->( ordCreate( "TEST1.CDX",                        ;
          "Last Name",                        ;
          "TEST1->Last",                      ;
          {|| TEST1->Last } ) )
-      
+
       // Create order by hiredate field.
       TEST1->( ordCreate( "TEST1.CDX",                        ;
          "Hire Date",                        ;
          "TEST1->Hiredate",                  ;
          {|| TEST1->Hiredate } ) )
-      
+
       // Create order by age field.
       TEST1->( ordCreate( "TEST1.CDX",                        ;
          "Age",                              ;
          "TEST1->Age",                       ;
          {|| TEST1->Age } ) )
-      
+
       // Create order by.
       // You can't search by this order. Only for test.
       TEST1->( ordCreate( "TEST1.CDX",                        ;
@@ -139,7 +139,7 @@ procedure OpenTable()
          "TEST1->Married",                   ;
          {|| TEST1->Married } ) )
    endif
-   
+
    // Open the index files for TEST1 workarea. ---------------------------
    TEST1->( ordListAdd( "TEST1.CDX", "First Name" ) )
    TEST1->( ordListAdd( "TEST1.CDX", "Last Name" ) )
@@ -147,13 +147,13 @@ procedure OpenTable()
    TEST1->( ordListAdd( "TEST1.CDX", "Age" ) )
    TEST1->( ordListAdd( "TEST1.CDX", "Married" ) )
    TEST1->( ordSetFocus( 1 ) )
-   
+
    // Open the TEST2 database file with the DBFNTX Driver.----------------
    dbUseArea( .t., "DBFNTX", "TEST2.DBF", "TEST2" )
-   
+
    // Check the existance of the index files.-----------------------------
    if !File( "TEST2COM.NTX" )
-      
+
       // Create order by first field plus last field.
       // You can't search by this order. Only for test.
       TEST2->( ordCreate( "TEST2COM.NTX",                     ;
@@ -162,7 +162,7 @@ procedure OpenTable()
          {|| TEST2->First  + TEST2->Last } ) )
    endif
    if !File( "TEST2LAS.NTX" )
-      
+
       // Create order by last field.
       TEST2->( ordCreate( "TEST2LAS.NTX",                     ;
          "Last Name",                        ;
@@ -170,7 +170,7 @@ procedure OpenTable()
          {|| TEST2->Last } ) )
    endif
    if !File( "TEST2HIR.NTX" )
-      
+
       // Create order by hiredate field.
       TEST2->( ordCreate( "TEST2HIR.NTX",                     ;
          "Hire Date",                        ;
@@ -178,7 +178,7 @@ procedure OpenTable()
          {|| TEST2->Hiredate } ) )
    endif
    if !File( "TEST2AGE.NTX" )
-      
+
       // Create order by age field.
       TEST2->( ordCreate( "TEST2AGE.NTX",                     ;
          "Age",                              ;
@@ -186,7 +186,7 @@ procedure OpenTable()
          {|| TEST2->Age } ) )
    endif
    if !File( "TEST2MAR.NTX" )
-      
+
       // Create order by.
       // You can't search by this order. Only for test.
       TEST2->( ordCreate( "TEST2MAR.NTX",                     ;
@@ -194,7 +194,7 @@ procedure OpenTable()
          "TEST2->Married",                   ;
          {|| TEST2->Married } ) )
    endif
-   
+
    // Open the index files for TEST2 workarea. ---------------------------
    TEST2->( ordListAdd( "TEST2COM.NTX", "First Name" ) )
    TEST2->( ordListAdd( "TEST2LAS.NTX", "Last Name" ) )
@@ -202,7 +202,7 @@ procedure OpenTable()
    TEST2->( ordListAdd( "TEST2AGE.NTX", "Age" ) )
    TEST2->( ordListAdd( "TEST2MAR.NTX", "Married" ) )
    TEST2->( ordSetFocus( 1 ) )
-   
+
    return
 
 /****************************************************************************************
@@ -217,10 +217,10 @@ procedure OpenTable()
 *      Return: NIL
 ****************************************************************************************/
 procedure CloseTable()
-   
+
    CLOSE TEST1
    CLOSE TEST2
-   
+
    return
 
 /****************************************************************************************
@@ -235,10 +235,10 @@ procedure CloseTable()
 *      Return: NIL
 ****************************************************************************************/
 procedure BasicDemo( cArea )
-   
+
    // Basic demo of EDIT command.
    EDIT EXTENDED WORKAREA &cArea
-   
+
    return
 
 /****************************************************************************************
@@ -253,7 +253,7 @@ procedure BasicDemo( cArea )
 *      Return: NIL
 ****************************************************************************************/
 procedure AdvancedDemo( cArea )
-   
+
    // Local variable declarations.----------------------------------------
    LOCAL aFieldName   := { "First Name", "Last Name", "Adress", "City",    ;
       "State", "ZIP Code", "Hire date", "Married?",   ;
@@ -281,7 +281,7 @@ procedure AdvancedDemo( cArea )
    aOptions[2,2] := { || MsgInfo( "You can do something here 2" ) }
    aOptions[3,1] := "Execute option 3"
    aOptions[3,2] := { || MsgInfo( "You can do something here 3" ) }
-   
+
    // Edit extended demo.-------------------------------------------------
    EDIT EXTENDED                           ;
       WORKAREA &cArea                 ;
@@ -294,7 +294,7 @@ procedure AdvancedDemo( cArea )
       ON SAVE bSave                   ;
       ON FIND bSearch                 ;
       ON PRINT bPrint
-   
+
    return
 
 /****************************************************************************************
@@ -310,19 +310,19 @@ procedure AdvancedDemo( cArea )
 *      Return: lReturn         Logical. If .t. exit edit window, .f. stay in edit window.
 ****************************************************************************************/
 function AdvancedSave( aValues, lNew, cArea )
-   
+
    // Variable declaration.-----------------------------------------------
    LOCAL i := 1
-   
+
    // Check for empty values.
    IF Empty( aValues[1] )   // First name.
       msgInfo( "First name can't be an empty value" )
       return ( .f. )
    ENDIF
-   
+
    // Calculate the salary.
    aValues[10] := 100.5
-   
+
    // Save the record.
    IF lNew
       (cArea)->( dbAppend() )
@@ -330,7 +330,7 @@ function AdvancedSave( aValues, lNew, cArea )
    FOR i := 1 TO Len( aValues )
       (cArea)->( FieldPut( i, aValues[i] ) )
    NEXT
-   
+
    return ( .t. )
 
 /****************************************************************************************
@@ -345,7 +345,7 @@ function AdvancedSave( aValues, lNew, cArea )
 *      Return: NIL
 ****************************************************************************************/
 procedure SelectLang()
-   
+
    LOCAL cMessage  := ""
    LOCAL nItem     := 0
    LOCAL aLangName := { "Basque"             ,;
@@ -366,7 +366,7 @@ procedure SelectLang()
       "PLWIN" ,;
       "PT"    ,;
       "ES"     }
-   
+
    // Language selection.
    cMessage := CRLF
    cMessage += "You can change EDIT EXTENDED interface default language, by changing   " + CRLF
@@ -380,7 +380,7 @@ procedure SelectLang()
    IF .NOT. nItem == 0
       HB_LANGSELECT( aLangID[nItem] )
    ENDIF
-   
+
    return
 
 /****************************************************************************************
@@ -395,10 +395,10 @@ procedure SelectLang()
 *      Return: [nItem]         Number of selected item.
 ****************************************************************************************/
 function SelectItem( acItems )
-   
+
    // Local variable declarations.----------------------------------------
    LOCAL nItem := 0
-   
+
    // Create the selection window.----------------------------------------
    DEFINE WINDOW wndSelItem ;
          AT 0, 0 ;
@@ -408,7 +408,7 @@ function SelectItem( acItems )
          MODAL ;
          NOSIZE ;
          NOSYSMENU
-      
+
       @ 20, 20 LISTBOX lbxItems ;
          WIDTH 140 ;
          HEIGHT 100 ;
@@ -416,7 +416,7 @@ function SelectItem( acItems )
          VALUE 1 ;
          FONT "Arial" ;
          SIZE 9
-      
+
       @ 20, 170 BUTTON btnSel ;
          CAPTION "&Select" ;
          ACTION {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release } ;
@@ -424,14 +424,14 @@ function SelectItem( acItems )
          HEIGHT 30 ;
          FONT "ms sans serif" ;
          SIZE 8
-      
+
    END WINDOW
-   
+
    // Activate the window.------------------------------------------------
    wndSelItem.lbxItems.SetFocus
    CENTER WINDOW wndSelItem
    ACTIVATE WINDOW wndSelItem
-   
+
    return ( nItem )
 
 /****************************************************************************************
@@ -446,10 +446,10 @@ function SelectItem( acItems )
 *      Return: NIL
 ****************************************************************************************/
 procedure About()
-   
+
    // Local variable declaration.-----------------------------------------
    LOCAL cMessage := ""
-   
+
    // Shows the about window.---------------------------------------------
    cMessage := CRLF
    cMessage += "EDIT EXTENDED command for HMG   " + CRLF
@@ -472,6 +472,6 @@ procedure About()
    cMessage += CRLF
    cMessage += "Please report bugs to HMG discusion group at groups.yahoo.com       " + CRLF
    MsgInfo( cMessage, "About EDIT EXTENDED command demo" )
-   
+
    RETURN NIL
 

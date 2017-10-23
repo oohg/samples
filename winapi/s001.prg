@@ -13,11 +13,11 @@
 #include "oohg.ch"
 
 FUNCTION Main
-   
+
    SetOneArrayItemPerLine( .T. )
-   
+
    AutoMsgBox( WindowsVersion() )
-   
+
    RETURN Nil
 
 /*
