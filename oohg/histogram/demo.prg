@@ -105,27 +105,27 @@ Procedure Presenta(nTipo)
 
 Procedure elGrafico()
 
-	ERASE WINDOW Veamos
+   ERASE WINDOW Veamos
 
-	DRAW GRAPH							;
-		IN WINDOW Veamos                                        ;
-		AT 20,20						;
-		TO 400,610						;
-		TITLE cTit                                              ;
-		TYPE BARS						;
-		SERIES aSer                                             ;
-  		YVALUES aYval                                           ;
-		DEPTH 15						;
-		BARWIDTH 15						;
-		HVALUES 5						;
-		SERIENAMES aSern                                        ;
-		COLORS aClr                                             ;
-		3DVIEW    						;
-		SHOWGRID                        			;
-		SHOWXVALUES                     			;
-		SHOWYVALUES                     			;
-		SHOWLEGENDS 						;
-		NOBORDER
+   DRAW GRAPH                     ;
+      IN WINDOW Veamos                                        ;
+      AT 20,20                  ;
+      TO 400,610                  ;
+      TITLE cTit                                              ;
+      TYPE BARS                  ;
+      SERIES aSer                                             ;
+        YVALUES aYval                                           ;
+      DEPTH 15                  ;
+      BARWIDTH 15                  ;
+      HVALUES 5                  ;
+      SERIENAMES aSern                                        ;
+      COLORS aClr                                             ;
+      3DVIEW                      ;
+      SHOWGRID                                 ;
+      SHOWXVALUES                              ;
+      SHOWYVALUES                              ;
+      SHOWLEGENDS                   ;
+      NOBORDER
 
    Return
 
@@ -133,15 +133,15 @@ Procedure PieGraph()
 
    ERASE Window Veamos2
 
-   DRAW GRAPH IN WINDOW Veamos2 AT 20,20 TO 400,610	;
-        TITLE cTit TYPE PIE				;
-        SERIES aSer					;
-        DEPTH 15					;
-        SERIENAMES aYVal				;
-        COLORS aClr					;
-        3DVIEW						;
-        SHOWXVALUES					;
-        SHOWLEGENDS					;
-	NOBORDER
+   DRAW GRAPH IN WINDOW Veamos2 AT 20,20 TO 400,610   ;
+        TITLE cTit TYPE PIE            ;
+        SERIES aSer               ;
+        DEPTH 15               ;
+        SERIENAMES aYVal            ;
+        COLORS aClr               ;
+        3DVIEW                  ;
+        SHOWXVALUES               ;
+        SHOWLEGENDS               ;
+   NOBORDER
 
    Return

@@ -63,7 +63,7 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
         Endif
 
         Out := Out + '$(APP_NAME):'
-        
+
         nTotFmgs := 0
 
         For i := 2 TO Len ( PrgFiles )
@@ -71,21 +71,21 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
             If upper(Right( PRGFILES [i] , 3 )) = 'FMG'
                 nTotFmgs := nTotFmgs + 1
             Endif
-        Next              
+        Next
 
         For n := 1 TO Len(PrgFiles)
             DO EVENTS
             If upper(Right( PRGFILES [n] , 3 )) = 'PRG'
                 If n == Len(PrgFiles) - nTotFmgs
-                    Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 4 )  + '.o') + NewLi
+                    Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 4 )  + '.o') + NewLi
                 Else
-                    Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 4 )  + '.o')+' \' + NewLi
+                    Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 4 )  + '.o')+' \' + NewLi
                 Endif
             ElseIf upper(Right( PRGFILES [n] , 1 )) = 'C'
                 If n == Len(PrgFiles) - nTotFmgs
-                    Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 2 )  + '.o') + NewLi
+                    Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 2 )  + '.o') + NewLi
                 Else
-                    Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 2 )  + '.o')+' \' + NewLi
+                    Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [n] , Len( PRGFILES [n] ) - 2 )  + '.o')+' \' + NewLi
                 Endif
             Endif
         Next
@@ -97,8 +97,8 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
             Else
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )
             Endif
-*            Out := Out + '	$(TLIB) rc '+cFile1+'.a $(OBJ_DIR)\'+GetName(cfile+'.o')+NewLi
-            Out := Out + '	$(TLIB) rc '+EXEOUTPUTNAME+' $(OBJ_DIR)\'+GetName(cfile+'.o')+NewLi
+*            Out := Out + '   $(TLIB) rc '+cFile1+'.a $(OBJ_DIR)\'+GetName(cfile+'.o')+NewLi
+            Out := Out + '   $(TLIB) rc '+EXEOUTPUTNAME+' $(OBJ_DIR)\'+GetName(cfile+'.o')+NewLi
         Next i
 
         Out := Out + NewLi
@@ -108,11 +108,11 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )
                 Out := Out +'$(OBJ_DIR)\'+GetName(cfile)+'.o    : $(OBJ_DIR)\'+GetName(cfile)+'.c'+NewLi
-                Out := Out +'	gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -I$(MINGW)\include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -o$@ $^'+NewLi
+                Out := Out +'   gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -I$(MINGW)\include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -o$@ $^'+NewLi
             ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )
                 Out := Out +'$(OBJ_DIR)\'+GetName(cfile)+'.o    : '+cfile+'.c'+NewLi
-                Out := Out +'	gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -I$(MINGW)\include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -o$@ $^'+NewLi
+                Out := Out +'   gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -I$(MINGW)\include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -o$@ $^'+NewLi
             Endif
         next i
 
@@ -123,16 +123,16 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )
                 Out := Out +'$(OBJ_DIR)\'+GetName(cfile)+'.c   : '+cfile+'.prg'+NewLi
-                Out := Out +'	$(HRB_DIR)\bin\harbour.exe $^ -n '+RetHbLevel()+cUserFlags+cDEBUG+'-I$(HRB_DIR)\include -I$(MINIGUI_INSTALL)/include -i$(INC_DIR) -I$(PROJECTFOLDER) -d__WINDOWS__ -o$@ $^'+NewLi
+                Out := Out +'   $(HRB_DIR)\bin\harbour.exe $^ -n '+RetHbLevel()+cUserFlags+cDEBUG+'-I$(HRB_DIR)\include -I$(MINIGUI_INSTALL)/include -i$(INC_DIR) -I$(PROJECTFOLDER) -d__WINDOWS__ -o$@ $^'+NewLi
             Endif
         next i
 
         Out := Out + NewLi
         Out := Out + '.prg.c:'+NewLi
-        Out := Out + '	$(HRB_DIR)\bin\harbour.exe $^ -n -I$(HRB_DIR)\include -i$(INC_DIR) -d__WINDOWS__ -o$@ $^'+NewLi
+        Out := Out + '   $(HRB_DIR)\bin\harbour.exe $^ -n -I$(HRB_DIR)\include -i$(INC_DIR) -d__WINDOWS__ -o$@ $^'+NewLi
         Out := Out + NewLi
         Out := Out + '.c.o:'+NewLi
-        Out := Out + '	$(HRB_DIR)\bin\gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -o $@ $^'+NewLi
+        Out := Out + '   $(HRB_DIR)\bin\gcc $(CFLAGS) -c -I$(INC_DIR) -I$(HRB_DIR)\include -o $@ $^'+NewLi
         Out := Out + NewLi
 
         hb_Memowrit ( PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) +  'Makefile.Gcc' , Out )
@@ -149,7 +149,7 @@ Procedure Build2Lib( ProjectName )  // Library MinGW
         main.RichEdit_1.Value := ''
 
         CorreBuildBat()
-   
+
     END SEQUENCE
 
     QuitarEspera()

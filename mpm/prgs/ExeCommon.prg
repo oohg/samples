@@ -140,45 +140,45 @@ Function WathLibLink(MiniGuiFolder,HBCHOICE)
 
          If HBCHOICE = 2               // xHarbour
             if File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\oohg.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\oohg.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\oohg.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\minigui.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\minigui.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\minigui.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'XLIB\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehx.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehx.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehc.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehx.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehc.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\oohg.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\oohg.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\oohg.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\xhb\bcc\miniprint.LIB + >> b32.bc' + NewLi
             Endif
          Else
             if File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\oohg.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\oohg.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\oohg.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\oohg.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\bcc\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\oohg.LIB')
-                  Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\oohg.LIB + >> b32.bc' + NewLi
-                  Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\hbprinter.LIB + >> b32.bc' + NewLi
-                  Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\miniprint.LIB + >> b32.bc' + NewLi
+                  Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\oohg.LIB + >> b32.bc' + NewLi
+                  Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\hbprinter.LIB + >> b32.bc' + NewLi
+                  Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hb\bcc\miniprint.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fiveh.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fiveh.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehc.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fiveh.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\fivehc.LIB + >> b32.bc' + NewLi
             ElseIf File(MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\minigui.LIB')
-               Out := Out + '	echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\minigui.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
-               Out := Out + '	echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + MINIGUIFOLDER + If ( Right ( MINIGUIFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\minigui.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\hbprinter.LIB + >> b32.bc' + NewLi
+               Out := Out + '   echo ' + HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' )  + 'LIB\miniprint.LIB + >> b32.bc' + NewLi
             endif
          Endif
 

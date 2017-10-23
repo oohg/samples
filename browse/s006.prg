@@ -143,7 +143,7 @@ FUNCTION OpenTables( oBrw )
     * must be shown.
     */
 
-	oBrw:SetValue( RECNO(), oBrw:CountPerPage )
+   oBrw:SetValue( RECNO(), oBrw:CountPerPage )
 
 RETURN Nil
 

@@ -77,53 +77,53 @@ Procedure BuildLib5( ProjectName )  // Library Visual C
             DO EVENTS
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 IF i == Len ( PrgFiles )
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
                 ELSE
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
                 ENDIF
             ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
                 IF i == Len ( PrgFiles )
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
                 ELSE
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
                 ENDIF
             Endif
         Next i
 
         If File(PROJECTFOLDER +'\'+GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 ))+'.rc')
-            Out += '	$(BRC_EXE) /Fo ' + PROJECTFOLDER +'\'+GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 ))+'.res ' + PROJECTFOLDER +'\'+GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 ))+'.rc ' + NewLi
+            Out += '   $(BRC_EXE) /Fo ' + PROJECTFOLDER +'\'+GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 ))+'.res ' + PROJECTFOLDER +'\'+GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 ))+'.rc ' + NewLi
         Endif
 
-        Out := Out + '	echo /out:$@ > p32.pc' + NewLi
+        Out := Out + '   echo /out:$@ > p32.pc' + NewLi
 
         For i := 1 To Len( PRGFILES )
             DO EVENTS
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
-                Out := Out + '	echo $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj >> p32.pc' + NewLi
+                Out := Out + '   echo $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj >> p32.pc' + NewLi
             ElseIf upper(Right( PRGFILES [i] , 3 )) = 'C'
-                Out := Out + '	echo $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj >> p32.pc' + NewLi
+                Out := Out + '   echo $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj >> p32.pc' + NewLi
             Endif
         Next i
 
-        Out := Out + '	$(TLIB) @p32.pc' + NewLi
+        Out := Out + '   $(TLIB) @p32.pc' + NewLi
 
         For i := 1 To Len ( PrgFiles )
             DO EVENTS
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 Out := Out + NewLi
                 Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ) + '.Prg' + NewLi
-                Out := Out + '	$(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
+                Out := Out + '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
 
                 Out := Out + NewLi
                 Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.obj : $(C_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c'  + NewLi
-                Out := Out + '	$(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
+                Out := Out + '   $(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
             ElseIF upper(Right( PRGFILES [i] , 1 )) = 'C'
                 Out := Out + NewLi
                 Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c' + NewLi
 
                 Out := Out + NewLi
                 Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.obj : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c'  + NewLi
-                Out := Out + '	$(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
+                Out := Out + '   $(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
             Endif
         Next i
 
@@ -137,7 +137,7 @@ Procedure BuildLib5( ProjectName )  // Library Visual C
                    MakeName + ' ' + ParamString + NewLi + 'Echo End > ' + PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) + 'End.Txt' + NewLi )
 
 //                  '@ECHO OFF' + NewLi + 'call "%ProgramFiles%\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86' + NewLi + ;
-                   
+
         Procesando(1)
         Processing := .t.
 

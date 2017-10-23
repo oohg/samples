@@ -209,7 +209,7 @@ Function SaveQuery(cExpr, aQuery_,cBase)
     do while !QFile->( eof() )
       if QFile->FILENAME == aQuery_[Q_FILE]
         if QFile->DESC == aQuery_[Q_DESC]
-		  x := MsgYesNo( 'A query with the same description was found for this database' + "." + CRLF + ;
+        x := MsgYesNo( 'A query with the same description was found for this database' + "." + CRLF + ;
                          'Do you wish to overwrite the existing query or append a new one?', 'Duplicate Query', , .f. )
 
           if x == 6
@@ -266,73 +266,73 @@ Function LoadQuery(cExpr, aQuery_,cBase)
     elseif QFile->( eof() )
       MsgInfo(cQFile + " " + 'does not contain any queries' + "!")
     else
-	DEFINE WINDOW Form_Load ;
-		AT 0, 0 WIDTH 484 HEIGHT 214 ;
-		TITLE "Load Query" + cQFile ;
-		ICON 'MAIN1' ;
-		MODAL ;
-		FONT "MS Sans Serif" ;
-		SIZE 8
+   DEFINE WINDOW Form_Load ;
+      AT 0, 0 WIDTH 484 HEIGHT 214 ;
+      TITLE "Load Query" + cQFile ;
+      ICON 'MAIN1' ;
+      MODAL ;
+      FONT "MS Sans Serif" ;
+      SIZE 8
 
-		DEFINE BROWSE Browse_1
-			ROW 10
-			COL 10
-			WIDTH  Form_Load.Width  - 28   //GetProperty( 'Form_Load', 'Width' ) - 28
-			HEIGHT Form_Load.Height - 78   //GetProperty( 'Form_Load', 'Height' ) - 78
-			HEADERS { "X", 'Database', 'Description', 'Query Expression' }
-			WIDTHS { 16, 86, 174, if(QFile->( Lastrec() ) > 8, 160, 176) }
-			FIELDS { 'iif(QFile->( deleted() ), " X", "  ")', ;
+      DEFINE BROWSE Browse_1
+         ROW 10
+         COL 10
+         WIDTH  Form_Load.Width  - 28   //GetProperty( 'Form_Load', 'Width' ) - 28
+         HEIGHT Form_Load.Height - 78   //GetProperty( 'Form_Load', 'Height' ) - 78
+         HEADERS { "X", 'Database', 'Description', 'Query Expression' }
+         WIDTHS { 16, 86, 174, if(QFile->( Lastrec() ) > 8, 160, 176) }
+         FIELDS { 'iif(QFile->( deleted() ), " X", "  ")', ;
                                   'QFile->FILENAME', ;
                                   'QFile->DESC', ;
                                   'QFile->EXPR' }
-			WORKAREA QFile
-			VALUE QFile->( Recno() )
-			VSCROLLBAR QFile->( Lastrec() ) > 8
-			READONLYFIELDS { .t., .t., .t., .t. }
-			ONDBLCLICK Form_Load.Button_1.OnClick()
-	        END BROWSE
+         WORKAREA QFile
+         VALUE QFile->( Recno() )
+         VSCROLLBAR QFile->( Lastrec() ) > 8
+         READONLYFIELDS { .t., .t., .t., .t. }
+         ONDBLCLICK Form_Load.Button_1.OnClick()
+           END BROWSE
 
 
-		DEFINE BUTTON Button_1
-	        ROW    GetProperty( 'Form_Load', 'Height' ) - 58
-       	        COL    186
-	        WIDTH  80
-       	        HEIGHT 24
-	        CAPTION "&Load"
-       	        ACTION iif(LoadIt(aQuery_), Form_Load.Release, )
-	        TABSTOP .T.
-       	        VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_1
+           ROW    GetProperty( 'Form_Load', 'Height' ) - 58
+                  COL    186
+           WIDTH  80
+                  HEIGHT 24
+           CAPTION "&Load"
+                  ACTION iif(LoadIt(aQuery_), Form_Load.Release, )
+           TABSTOP .T.
+                  VISIBLE .T.
+      END BUTTON
 
-		DEFINE BUTTON Button_2
-	        ROW    GetProperty( 'Form_Load', 'Height' ) - 58
-	        COL    286
-       	        WIDTH  80
-	        HEIGHT 24
-       	        CAPTION "&Close"
-	        ACTION (lCancel := .T., Form_Load.Release )
-       	        TABSTOP .T.
-	        VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_2
+           ROW    GetProperty( 'Form_Load', 'Height' ) - 58
+           COL    286
+                  WIDTH  80
+           HEIGHT 24
+                  CAPTION "&Close"
+           ACTION (lCancel := .T., Form_Load.Release )
+                  TABSTOP .T.
+           VISIBLE .T.
+      END BUTTON
 
-		DEFINE BUTTON Button_3
-	        ROW    GetProperty( 'Form_Load', 'Height' ) - 58
-	        COL    386
-       	        WIDTH  80
-	        HEIGHT 24
-       	        CAPTION '&Delete'
-	        ACTION iif(QFile->( DelRec() ), ( Form_Load.Browse_1.Refresh, Form_Load.Browse_1.Setfocus ), )
-       	        TABSTOP .T.
-	        VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_3
+           ROW    GetProperty( 'Form_Load', 'Height' ) - 58
+           COL    386
+                  WIDTH  80
+           HEIGHT 24
+                  CAPTION '&Delete'
+           ACTION iif(QFile->( DelRec() ), ( Form_Load.Browse_1.Refresh, Form_Load.Browse_1.Setfocus ), )
+                  TABSTOP .T.
+           VISIBLE .T.
+      END BUTTON
 
-		ON KEY ESCAPE ACTION Form_Load.Button_2.OnClick
+      ON KEY ESCAPE ACTION Form_Load.Button_2.OnClick
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_Load
+   CENTER WINDOW Form_Load
 
-	ACTIVATE WINDOW Form_Load
+   ACTIVATE WINDOW Form_Load
 
       if !lCancel
         cExpr := aQuery_[Q_EXPR]
@@ -370,7 +370,7 @@ Function LoadIt(aQuery_)
 
   if QFile->FILENAME <> padr(cDBFile, 12)
     if MsgYesNo("The query's filename does not match that of the currently loaded file" + "." + CRLF + ;
-		'Load it anyway?', 'Different Filename')
+      'Load it anyway?', 'Different Filename')
       lLoaded := .T.
     endif
   else
@@ -425,8 +425,8 @@ Return break(e)
 
 Procedure Cr_QFile(cQFile)
   local aArray_ := { { "FILENAME", "C",  12, 0 }, ;
-			{ "DESC", "C",  80, 0 }, ;
-			{ "EXPR", "C", 255, 0 } }
+         { "DESC", "C",  80, 0 }, ;
+         { "EXPR", "C", 255, 0 } }
 
   DBCreate(cQFile, aArray_)
 
@@ -444,17 +444,17 @@ FUNCTION OpenDataBaseFile( cDataBaseFileName, cAlias, lExclusive, lReadOnly, cDr
    Local _bLastHandler := ErrorBlock( {|o| Break(o)} ), _lGood := .T. /*, oError*/
 
    If PCount() < 6 .or. ValType(lNew) <> "L"
-	lNew := .T.
+   lNew := .T.
    EndIf
 
    BEGIN SEQUENCE
 
-	dbUseArea( lNew, cDriverName, cDataBaseFileName, cAlias, !lExclusive, lReadOnly )
+   dbUseArea( lNew, cDriverName, cDataBaseFileName, cAlias, !lExclusive, lReadOnly )
 
    RECOVER //USING oError
 
-	_lGood := .F.
-	MsgInfo( "Unable to open file:" + CRLF + cDataBaseFileName )
+   _lGood := .F.
+   MsgInfo( "Unable to open file:" + CRLF + cDataBaseFileName )
 
    END
 

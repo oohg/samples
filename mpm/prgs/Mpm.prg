@@ -310,7 +310,7 @@ Procedure OpenMPM2( ProjectFile ) // Versión antigüa de .mpm
          ProjectName := ConfigFileName
          Main.Title := ' [ ' + AllTrim ( ProjectName ) + ' ]'
          StartCtrls()
-         ConfigFile := MemoRead	( ConfigFileName )
+         ConfigFile := MemoRead   ( ConfigFileName )
          For i := 1 To MLCount ( ConfigFile )
           Line := AllTrim ( MEMOLINE( ConfigFile , , i ) )
           If Upper (Line) = 'PROJECTFOLDER'
@@ -359,27 +359,27 @@ Procedure OpenMPM2( ProjectFile ) // Versión antigüa de .mpm
             main.text_54.Value := SubStr ( Line , 17 , 255 )
           ElseIf Upper (Line) = 'FLAGSTOHARBOUR4'
             main.text_64.Value := SubStr ( Line , 17 , 255 )
-          ElseIf	Upper (Line) = 'HBWARNINGLEVEL1'
+          ElseIf   Upper (Line) = 'HBWARNINGLEVEL1'
             main.RadioGroup_1.Value := val(SubStr ( Line , 17 , 1 ))
-          ElseIf	Upper (Line) = 'HBWARNINGLEVEL2'
+          ElseIf   Upper (Line) = 'HBWARNINGLEVEL2'
             main.RadioGroup_21.Value := val(SubStr ( Line , 17 , 1 ))
-          ElseIf	Upper (Line) = 'HBWARNINGLEVEL3'
+          ElseIf   Upper (Line) = 'HBWARNINGLEVEL3'
             main.RadioGroup_31.Value := val(SubStr ( Line , 17 , 1 ))
-          ElseIf	Upper (Line) = 'HBWARNINGLEVEL4'
+          ElseIf   Upper (Line) = 'HBWARNINGLEVEL4'
             main.RadioGroup_41.Value := val(SubStr ( Line , 17 , 1 ))
-          ElseIf	Upper (Line) = 'INCREMENTAL'
+          ElseIf   Upper (Line) = 'INCREMENTAL'
             main.RadioGroup_4.Value := val(SubStr ( Line , 13 , 1 ))
-          ElseIf	Upper (Line) = 'WITHGTMODE'
+          ElseIf   Upper (Line) = 'WITHGTMODE'
             main.RadioGroup_3.Value := val(SubStr ( Line , 12 , 1 ))
-          ElseIf	Upper (Line) = 'WITHDEBUG'
+          ElseIf   Upper (Line) = 'WITHDEBUG'
             main.RadioGroup_2.Value := val(SubStr ( Line , 11 , 1 ))
-          ElseIf	Upper (Line) = 'OUTPUTFILE'
+          ElseIf   Upper (Line) = 'OUTPUTFILE'
             main.RadioGroup_7.Value := val(SubStr ( Line , 12 , 1 ))
           ElseIf Upper (Line) = 'CCOMPILER'
             main.RadioGroup_6.Value := val(SubStr ( Line , 11 , 1 ))
           ElseIf Upper (Line) = 'HBCHOICE'
             main.RadioGroup_5.Value := val(SubStr ( Line , 10 , 1 ))
-          ElseIf	Right ( Upper ( Line) , 4 ) == '.PRG'
+          ElseIf   Right ( Upper ( Line) , 4 ) == '.PRG'
              If SubStr(Line,2,2) == ':\'
                 Line := ChangeDrvSource(Line)
                 Line := PathChange(Line,2)
@@ -389,7 +389,7 @@ Procedure OpenMPM2( ProjectFile ) // Versión antigüa de .mpm
                 Line := PathChange(Line,2)
              Endif
              main.List_1.AddItem( { AllTrim(Line) } )
-          ElseIf	Right ( Upper ( Line) , 2 ) == '.C'
+          ElseIf   Right ( Upper ( Line) , 2 ) == '.C'
              If SubStr(Line,2,2) == ':\'
                 Line := ChangeDrvSource(Line)
                 Line := PathChange(Line,2)
@@ -400,7 +400,7 @@ Procedure OpenMPM2( ProjectFile ) // Versión antigüa de .mpm
                 Line := PathChange(Line,2)
              Endif
              main.List_1.AddItem( { AllTrim(Line) } )
-          ElseIf	Right ( Upper ( Line) , 4 ) == '.FMG'
+          ElseIf   Right ( Upper ( Line) , 4 ) == '.FMG'
              If SubStr(Line,2,2) == ':\'
                 Line := PathChange(Line,2)
              ElseIf SubStr(Line,1,11) == "PathProject"
@@ -410,14 +410,14 @@ Procedure OpenMPM2( ProjectFile ) // Versión antigüa de .mpm
                 Line := PathChange(Line,2)
              Endif
              main.List_1.AddItem( { AllTrim(Line) } )
-          ElseIf	Right ( Upper ( Line) , 4 ) == '.LIB'
+          ElseIf   Right ( Upper ( Line) , 4 ) == '.LIB'
              If SubStr(Line,2,2) == ':\'
                 Line := ChangeDrvSource(Line)
              Else
                 MsgInfo("The path of the Library is needed, please re-enter file")
              Endif
              main.List_2.AddItem( AllTrim(Line) )
-          ElseIf	Right ( Upper ( Line) , 2 ) == '.A'
+          ElseIf   Right ( Upper ( Line) , 2 ) == '.A'
              If SubStr(Line,2,2) == ':\'
                 Line := ChangeDrvSource(Line)
              Endif
@@ -480,7 +480,7 @@ Procedure OpenMPM( ProjectFile ) // Versión nueva de .mpm
 
    If !Empty (ConfigFilename) .and. UPPER(GetExt(ConfigFileName)) = '.MPM'
        ProjectName := ConfigFileName
-       
+
        Main.Title := ' [ ' + AllTrim ( ProjectName ) + ' ]'
 
        Mpm_DiskPaths(ProjectName)
@@ -957,9 +957,9 @@ Return(lResp)
 *---------------------------------------------------------------------*
 Procedure Run
 *---------------------------------------------------------------------*
-   Local PROJECTFOLDER	:= AllTrim(main.text_1.Value)
+   Local PROJECTFOLDER   := AllTrim(main.text_1.Value)
    Local NAMEEXE := AllTrim(main.text_2.Value)
-   Local TopPrg	:= Alltrim(main.List_1.Item(1))
+   Local TopPrg   := Alltrim(main.List_1.Item(1))
    Local App := iif(empty(NAMEEXE) , PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) + Left ( TopPrg , Len(TopPrg) - 4 ) + '.Exe',NAMEEXE+'.Exe' )
 
    if Empty ( ProjectName )
@@ -1283,21 +1283,21 @@ Function Hblibs( cRuta,cHb,cCclr )
            For n = 1 to Len(aHb)
                DO EVENTS
                If File(cRuta+'\'+aHb[n])
-                  cHbLibs := cHbLibs + '	echo $(HRB_LIB_DIR)\' + aHb[n] + ' + >> b32.bc' + NewLi
+                  cHbLibs := cHbLibs + '   echo $(HRB_LIB_DIR)\' + aHb[n] + ' + >> b32.bc' + NewLi
                Endif
            Next
       case cHb == 1 .and. cCclr == 3 // Harbour - Pelles
            For n = 1 to Len(aHb)
                DO EVENTS
                If File(cRuta+'\'+aHb[n])
-                  cHbLibs = cHbLibs + '	echo $(HRB_LIB_DIR)\' + aHb[n] + ' >> b32.bc' + NewLi
+                  cHbLibs = cHbLibs + '   echo $(HRB_LIB_DIR)\' + aHb[n] + ' >> b32.bc' + NewLi
                Endif
            Next
       case cHb == 1 .and. cCclr == 4 // Harbour - MS Visual
            For n = 1 to Len(aHb)
                DO EVENTS
                If File(cRuta+'\'+aHb[n])
-                  cHbLibs = cHbLibs + '	echo $(HRB_LIB_DIR)\' + aHb[n] + ' >> b32.bc' + NewLi
+                  cHbLibs = cHbLibs + '   echo $(HRB_LIB_DIR)\' + aHb[n] + ' >> b32.bc' + NewLi
                Endif
            Next
 
@@ -1312,7 +1312,7 @@ Function Hblibs( cRuta,cHb,cCclr )
            For n = 1 to Len(axHb)
                DO EVENTS
                If File(cRuta+'\'+axHb[n])
-                  cHbLibs := cHbLibs + '	echo $(HRB_LIB_DIR)\' + axHb[n] + ' + >> b32.bc' + NewLi
+                  cHbLibs := cHbLibs + '   echo $(HRB_LIB_DIR)\' + axHb[n] + ' + >> b32.bc' + NewLi
                Endif
            Next
 
@@ -1320,14 +1320,14 @@ Function Hblibs( cRuta,cHb,cCclr )
            For n = 1 to Len(axHb)
                DO EVENTS
                If File(cRuta+'\'+axHb[n])
-                  cHbLibs = cHbLibs + '	echo $(HRB_LIB_DIR)\' + axHb[n] + ' >> b32.bc' + NewLi
+                  cHbLibs = cHbLibs + '   echo $(HRB_LIB_DIR)\' + axHb[n] + ' >> b32.bc' + NewLi
                Endif
            Next
       case cHb == 2 .and. cCclr == 4 // xHarbour - MS Visual
            For n = 1 to Len(axHb)
                DO EVENTS
                If File(cRuta+'\'+axHb[n])
-                  cHbLibs = cHbLibs + '	echo $(HRB_LIB_DIR)\' + axHb[n] + ' >> b32.bc' + NewLi
+                  cHbLibs = cHbLibs + '   echo $(HRB_LIB_DIR)\' + axHb[n] + ' >> b32.bc' + NewLi
                Endif
            Next
 
@@ -1422,7 +1422,7 @@ Function MyAt(cBusca,cTodo,nInicio)
    local i,nposluna
    nPosluna := 0
    for i := nInicio to len(cTodo)
-       DO EVENTS              
+       DO EVENTS
        if UPPER(SUBSTR(cTodo,i,len(cBusca))) = UPPER(cBusca)
           nPosluna := i
           exit

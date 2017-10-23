@@ -1,10 +1,10 @@
 /*
 * MiniGUI ODBC Demo
 * Based upon code from:
-*	ODBCDEMO - ODBC Access Class Demonstration
-*	Felipe G. Coury <fcoury@flexsys-ci.com>
+*   ODBCDEMO - ODBC Access Class Demonstration
+*   Felipe G. Coury <fcoury@flexsys-ci.com>
 * MiniGUI Version:
-*	Roberto Lopez
+*   Roberto Lopez
 *
 * For help about hbodbc class use, download harbour contributions package
 * from www.harbour-project.org and look at ODBC folder.
@@ -15,22 +15,22 @@
 
 Function Main
 
-	DEFINE WINDOW Win_1 ;
-		AT 0,0 ;
-		WIDTH 400 ;
-		HEIGHT 400 ;
-		TITLE 'ooHG Access ODBC Demo (MDB)' ;
-		MAIN
+   DEFINE WINDOW Win_1 ;
+      AT 0,0 ;
+      WIDTH 400 ;
+      HEIGHT 400 ;
+      TITLE 'ooHG Access ODBC Demo (MDB)' ;
+      MAIN
 
-		DEFINE MAIN MENU
-			DEFINE POPUP 'File'
-				MENUITEM 'Test' ACTION  Test()
-			END POPUP
-		END MENU
+      DEFINE MAIN MENU
+         DEFINE POPUP 'File'
+            MENUITEM 'Test' ACTION  Test()
+         END POPUP
+      END MENU
 
-	END WINDOW
+   END WINDOW
 
-	ACTIVATE WINDOW Win_1
+   ACTIVATE WINDOW Win_1
 
 Return
 
@@ -75,7 +75,7 @@ PROCEDURE TEST
       autoMsgInfo ( :FieldByName( "field1" ):Value )
 
       :Close()
-      
+
      /// :SetSQL( "MODIFY * FROM table1 BY 'Vargas' FOR :FieldByName( 'field1' ):Value='pablo'" )
     ///  :Open()
     /// :close()

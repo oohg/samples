@@ -82,7 +82,7 @@ proc testdb( cName )
 return
 
 
-function browse_gui ()     
+function browse_gui ()
 
 define window form_1 at 0,0 width 640 height 480 main title "Netio Client Demo"
 

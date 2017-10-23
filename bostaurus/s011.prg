@@ -86,7 +86,7 @@ RETURN
 PROCEDURE Proc_Save_Image( nAction )
    LOCAL Ret, Button
 
-   DO CASE       
+   DO CASE
    CASE nAction == 1
       Ret := BT_BitmapSaveFile( hBitmap, "LOGO_BMP.BMP", BT_FILEFORMAT_BMP )
    CASE nAction == 2
@@ -98,7 +98,7 @@ PROCEDURE Proc_Save_Image( nAction )
    CASE nAction == 5
       Ret := BT_BitmapSaveFile( hBitmap, "LOGO_PNG.PNG", BT_FILEFORMAT_PNG )
    ENDCASE
-   
+
    IF Ret
       Button := "Button" + ALLTRIM( STR( nAction ) )
       SetProperty( "Win1", Button, "Enabled", .F. )
@@ -118,7 +118,7 @@ FUNCTION Proc_Create_Logo
 
    // Create hDC to a bitmap
    hDC := BT_CreateDC( hBitmap, BT_HDC_BITMAP, @BTstruct )
-     
+
    // Paint Gradient
    BT_DrawGradientFillVertical( hDC, 0, 0, 150, 100, aRGBcolor, BLACK )
 
@@ -135,8 +135,8 @@ FUNCTION Proc_Create_Logo
    hBitmap_aux := BT_BitmapLoadFile( "img.png" )
    BT_DrawBitmapTransparent( hDC, 30, 30, 100, 100, BT_SCALE, hBitmap_aux, Nil )
    BT_BitmapRelease( hBitmap_aux )
-  
-  // Release hDC bitmap  
+
+  // Release hDC bitmap
   BT_DeleteDC( BTstruct )
 RETURN hBitmap
 

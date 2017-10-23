@@ -61,7 +61,7 @@ FUNCTION AbrirTablas()
              { {"Code1", "N", 10, 0}, ;
                {"Name1", "C", 25, 0} } )
 
-   USE Test1 NEW 
+   USE Test1 NEW
    ZAP
 
    FOR i := 1 TO 100
@@ -76,7 +76,7 @@ FUNCTION AbrirTablas()
              { {"Code2", "N", 10, 0}, ;
                {"Name2", "C", 25, 0} } )
 
-   USE Test2 NEW 
+   USE Test2 NEW
    ZAP
 
    FOR i := 1 TO 100
@@ -92,7 +92,7 @@ FUNCTION AbrirTablas()
                {"Name3", "C", 25, 0}, ;
                {"Data3", "D",  8, 0} } )
 
-   USE Test3 NEW 
+   USE Test3 NEW
    ZAP
 
    FOR i := 1 TO 100
@@ -142,7 +142,7 @@ FUNCTION ChangeDbf( oDbf, oBrw, oForm )
 
    Do While oBrw:ColumnCount() < LEN( aDbfData[ oDbf:Value ] [ 3 ] )
       // El segundo parámetro no debe ser NIL
-      oBrw:AddColumn( NIL, "" )             
+      oBrw:AddColumn( NIL, "" )
    EndDo
    Do While oBrw:ColumnCount() > LEN( aDbfData[ oDbf:Value ] [ 3 ] )
       oBrw:DeleteColumn()

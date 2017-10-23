@@ -43,7 +43,7 @@ CLASS ooSql
 ENDCLASS
 
 *------------------------------------------------------------------------------*
-* Metodo Skipper() Avanza o Retrocede un registro                              * 
+* Metodo Skipper() Avanza o Retrocede un registro                              *
 *----------------------------------------------------------------- 20-02-2010 -*
 METHOD Skipper( nSkip ) CLASS ooSql
 LOCAL nCount:=0
@@ -71,13 +71,13 @@ ENDIF
 RETURN nCount
 
 *------------------------------------------------------------------------------*
-* Metodo FieldBlock() Procesa un bloque de código.                             * 
+* Metodo FieldBlock() Procesa un bloque de código.                             *
 *----------------------------------------------------------------- 20-02-2010 -*
 METHOD FieldBlock( nPos ) CLASS ooSql
 RETURN { | _x_ | IF( PCOUNT() > 0 , ::oQuery:FieldPut( nPos, _x_ ) , ::oQuery:FieldGet( nPos ) ) }
 
 *------------------------------------------------------------------------------*
-* Metodo FieldAssign() ???                                                     * 
+* Metodo FieldAssign() ???                                                     *
 *----------------------------------------------------------------- 01-03-2010 -*
 METHOD FieldAssign( xValue ) CLASS ooSql
 LOCAL nPos, cMessage, uRet, lError
@@ -105,7 +105,7 @@ RETURN uRet
 *------------------------------------------------------------------------------*
 * CambioBarritaSQL() Permite cambiar las barras '\' por '/' para poder ser     *
 *                    grabadas en MySql y al reves para leerlas.                *
-*          Recibe: nTipo = 0  ---> Invierte \ por /  -por defecto-             * 
+*          Recibe: nTipo = 0  ---> Invierte \ por /  -por defecto-             *
 *                        = 1  ---> Invierte / por \                            *
 *                 cTexto = String a convertir                                  *
 *----------------------------------------------------------------- 11-03-2010 -*
@@ -120,7 +120,7 @@ EndIf
 *------------------------------------------------------------------------------*
 * CambioAcentoSQL()  Permite cambiar las barras ' por ´     para poder ser     *
 *                    grabadas en MySql y al reves para leerlas.                *
-*          Recibe: nTipo = 0  ---> Invierte ' por ´  -por defecto-             * 
+*          Recibe: nTipo = 0  ---> Invierte ' por ´  -por defecto-             *
 *                        = 1  ---> Invierte ´ por '                            *
 *                 cTexto = String a convertir                                  *
 *----------------------------------------------------------------- 19-03-2010 -*
@@ -148,7 +148,7 @@ Return cRet
 *       Recibe: cURL ---> Sitio web                                            *
 *------------------------------------------------------------------------------*
 Function URLInternet(cURL)
-ShellExecute( 0, "open", "rundll32.exe", "url.dll,FileProtocolHandler " + cUrl, , 1 ) 
+ShellExecute( 0, "open", "rundll32.exe", "url.dll,FileProtocolHandler " + cUrl, , 1 )
 Return
 
 *------------------------------------------------------------------------------*
@@ -190,29 +190,29 @@ Return
 #include "hbapi.h"
 
 HB_FUNC( SETTRANSPARENT )
-{ 
+{
 
-	typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
+   typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
 
-	PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
+   PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
 
-	HINSTANCE hLib = LoadLibrary("user32.dll");
+   HINSTANCE hLib = LoadLibrary("user32.dll");
 
-	if (hLib != NULL)
-	{
-		pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
-	}
+   if (hLib != NULL)
+   {
+      pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
+   }
 
-	if (pfnSetLayeredWindowAttributes)
-	{
-		SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
-		pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
-	}
+   if (pfnSetLayeredWindowAttributes)
+   {
+      SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
+      pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
+   }
 
-	if (!hLib)
-	{
-		FreeLibrary(hLib);
-	}
+   if (!hLib)
+   {
+      FreeLibrary(hLib);
+   }
 
 }
 

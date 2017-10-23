@@ -5,23 +5,23 @@
 
 Function Main
 
-	DEFINE WINDOW Win_1 ;
-		AT 0,0 ;
-		WIDTH 400 ;
-		HEIGHT 400 ;
-		TITLE 'Hello World!' ;
-		MAIN 
+   DEFINE WINDOW Win_1 ;
+      AT 0,0 ;
+      WIDTH 400 ;
+      HEIGHT 400 ;
+      TITLE 'Hello World!' ;
+      MAIN
 
-		DEFINE BUTTON B1
-			ROW 10
-			COL 10
-			CAPTION 'Execute'
-			ACTION ExecTest()
-		END BUTTON
+      DEFINE BUTTON B1
+         ROW 10
+         COL 10
+         CAPTION 'Execute'
+         ACTION ExecTest()
+      END BUTTON
 
-	END WINDOW
+   END WINDOW
 
-	ACTIVATE WINDOW Win_1
+   ACTIVATE WINDOW Win_1
 
 Return
 
@@ -29,6 +29,6 @@ Return
 Procedure ExecTest()
 *------------------------------------------------------------------------------*
 
-	EXECUTE FILE "NOTEPAD.EXE" 
+   EXECUTE FILE "NOTEPAD.EXE"
 
 Return Nil

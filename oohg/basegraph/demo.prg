@@ -8,10 +8,10 @@
 
 #include "oohg.ch"
 
-#define AZUL		{   0 , 128 , 192  }
-#define CELESTE		{   0 , 128 , 255  }
-#define VERDE		{   0 , 128 , 128  }
-#define CAFE		{ 128 , 64  ,   0  }
+#define AZUL      {   0 , 128 , 192  }
+#define CELESTE      {   0 , 128 , 255  }
+#define VERDE      {   0 , 128 , 128  }
+#define CAFE      { 128 , 64  ,   0  }
 
 Static aYvalAll   := { "Ene", "Feb", "Mar", "Abr", "May", "Jun", ;
                        "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"  }
@@ -60,44 +60,44 @@ Procedure Main
    Next
 
    Define Window GraphTest ;
-	  At 0,0 ;
-	  Width 720 ;
-	  Height 480 ;
-	  Title "Graph Demo By MigSoft" ;
-	  Main ;
-	  Icon "Graph.ico" ;
-	  nomaximize nosize ;
-	  On Init DrawBarGraph(aSer,aYvalAll,aColor)
+     At 0,0 ;
+     Width 720 ;
+     Height 480 ;
+     Title "Graph Demo By MigSoft" ;
+     Main ;
+     Icon "Graph.ico" ;
+     nomaximize nosize ;
+     On Init DrawBarGraph(aSer,aYvalAll,aColor)
 
-	  Define Button Button_1
-	  Row	405
-	  Col	40
-	  Caption	'1er Semestre'
-	  Action DrawBarGraph(aSer1,aYval1er,aColor1)
-	  End Button
+     Define Button Button_1
+     Row   405
+     Col   40
+     Caption   '1er Semestre'
+     Action DrawBarGraph(aSer1,aYval1er,aColor1)
+     End Button
 
-	  Define Button Button_2
-	  Row	405
-	  Col	180
-	  Caption	'2do Semestre'
-	  Action DrawBarGraph(aSer2,aYval2do,aColor1)
-	  End Button
+     Define Button Button_2
+     Row   405
+     Col   180
+     Caption   '2do Semestre'
+     Action DrawBarGraph(aSer2,aYval2do,aColor1)
+     End Button
 
-	  Define Button Button_3
-	  Row	405
-	  Col	320
-	  Caption	'Lineas'
-	  Action DrawLinesGraph(aSer,aYvalAll,aColor)
-	  End Button
+     Define Button Button_3
+     Row   405
+     Col   320
+     Caption   'Lineas'
+     Action DrawLinesGraph(aSer,aYvalAll,aColor)
+     End Button
 
-	  Define Button Button_4
-	  Row	405
-	  Col	460
-	  Caption	'Puntos'
-	  Action DrawPointsGraph(aSer,aYvalAll,aColor)
-	  End Button
+     Define Button Button_4
+     Row   405
+     Col   460
+     Caption   'Puntos'
+     Action DrawPointsGraph(aSer,aYvalAll,aColor)
+     End Button
 
-	  On Key ESCAPE Action ThisWindow.Release
+     On Key ESCAPE Action ThisWindow.Release
 
    End Window
 
@@ -113,20 +113,20 @@ Procedure DrawBarGraph(paSer,paYval,paCol)
    DRAW GRAPH IN WINDOW GraphTest           ;
           AT 20,20                          ;
           TO 400,700                        ;
-	  TITLE "Saldo por Banco"           ;
-	  TYPE BARS                         ;
-	  SERIES paSer                      ;
-	  YVALUES paYval                    ;
-	  DEPTH 15                          ;
-	  BARWIDTH 15                       ;
-	  HVALUES 5                         ;
-	  SERIENAMES aSerieNames            ;
-	  COLORS paCol                      ;
-	  3DVIEW                            ;
-	  SHOWGRID                          ;
-	  SHOWXVALUES                       ;
-	  SHOWYVALUES                       ;
-	  SHOWLEGENDS
+     TITLE "Saldo por Banco"           ;
+     TYPE BARS                         ;
+     SERIES paSer                      ;
+     YVALUES paYval                    ;
+     DEPTH 15                          ;
+     BARWIDTH 15                       ;
+     HVALUES 5                         ;
+     SERIENAMES aSerieNames            ;
+     COLORS paCol                      ;
+     3DVIEW                            ;
+     SHOWGRID                          ;
+     SHOWXVALUES                       ;
+     SHOWYVALUES                       ;
+     SHOWLEGENDS
 
    Return
 
@@ -135,22 +135,22 @@ Procedure DrawLinesGraph(paSer,paYval,paCol)
    ERASE WINDOW GraphTest
 
    DRAW GRAPH IN WINDOW GraphTest           ;
-	  AT 20,20                          ;
-	  TO 400,700                        ;
-	  TITLE "Saldo por Banco"           ;
-	  TYPE LINES                        ;
-	  SERIES paSer                      ;
-	  YVALUES paYval                    ;
-	  DEPTH 15                          ;
-	  BARWIDTH 15                       ;
-	  HVALUES 5                         ;
-	  SERIENAMES aSerieNames            ;
-	  COLORS paCol                      ;
-	  3DVIEW                            ;
-	  SHOWGRID                          ;
-	  SHOWXVALUES                       ;
-	  SHOWYVALUES                       ;
-	  SHOWLEGENDS
+     AT 20,20                          ;
+     TO 400,700                        ;
+     TITLE "Saldo por Banco"           ;
+     TYPE LINES                        ;
+     SERIES paSer                      ;
+     YVALUES paYval                    ;
+     DEPTH 15                          ;
+     BARWIDTH 15                       ;
+     HVALUES 5                         ;
+     SERIENAMES aSerieNames            ;
+     COLORS paCol                      ;
+     3DVIEW                            ;
+     SHOWGRID                          ;
+     SHOWXVALUES                       ;
+     SHOWYVALUES                       ;
+     SHOWLEGENDS
 
    Return
 
@@ -159,21 +159,21 @@ Procedure DrawPointsGraph(paSer,paYval,paCol)
    ERASE WINDOW GraphTest
 
    DRAW GRAPH IN WINDOW GraphTest           ;
-   	  AT 20,20                          ;
-	  TO 400,700                        ;
+        AT 20,20                          ;
+     TO 400,700                        ;
           TITLE "Saldo por Banco"           ;
-	  TYPE POINTS                       ;
-	  SERIES paSer                      ;
-	  YVALUES paYval                    ;
-	  DEPTH 15                          ;
-	  BARWIDTH 15                       ;
-	  HVALUES 5                         ;
-	  SERIENAMES aSerieNames            ;
-	  COLORS paCol                      ;
-	  3DVIEW                            ;
-	  SHOWGRID                          ;
-	  SHOWXVALUES                       ;
-	  SHOWYVALUES                       ;
-	  SHOWLEGENDS
+     TYPE POINTS                       ;
+     SERIES paSer                      ;
+     YVALUES paYval                    ;
+     DEPTH 15                          ;
+     BARWIDTH 15                       ;
+     HVALUES 5                         ;
+     SERIENAMES aSerieNames            ;
+     COLORS paCol                      ;
+     3DVIEW                            ;
+     SHOWGRID                          ;
+     SHOWXVALUES                       ;
+     SHOWYVALUES                       ;
+     SHOWLEGENDS
 
    Return

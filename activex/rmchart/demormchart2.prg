@@ -28,7 +28,7 @@ FUNCTION Main()
    oChart:RMCHeight      := 450
    oChart:RMCBgImage     := ""
    oChart:Font           := "Tahoma"
-   
+
    // Add Region 1
    oChart:AddRegion()
 

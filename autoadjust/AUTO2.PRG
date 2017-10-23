@@ -13,7 +13,7 @@ Function Main()
 
    SET AUTOADJUST ON
    SET ADJUSTWIDTH OFF
-   
+
    msginfo("Test de autoajuste, se ajusta las posiciones , pero no el ancho ni el font","Informacion")
 
 

@@ -104,7 +104,7 @@ PROCEDURE Proc_ON_PAINT
       BT_DrawBitmap( hDC, 20, 20, Width, Height, BT_SCALE, hBitmap )
    ELSE
       BT_DrawBitmap( hDC, 20, 20, Width, Height, BT_COPY, hBitmap )
-   ENDIF  
+   ENDIF
    BT_DeleteDC( BTstruct )
 RETURN
 

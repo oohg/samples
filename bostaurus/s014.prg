@@ -295,7 +295,7 @@ FUNCTION ChangeBarColor
       aBarColor := aColor
    ENDIF
 RETURN Nil
-   
+
 
 FUNCTION ChangeBackColor
    LOCAL aColor := GetColor( frm_barcode.lbl_backgroundcolor.BackColor )

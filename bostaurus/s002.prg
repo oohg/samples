@@ -86,7 +86,7 @@ PROCEDURE Proc_ON_PAINT( cont )
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC = BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
-  
+
    IF cont > 6
       cont = 1
    ENDIF
@@ -109,12 +109,12 @@ PROCEDURE Proc_ON_PAINT( cont )
    CASE cont == 6
       BT_DrawGradientFillHorizontal( hDC, 0, 0, Width, Height, { 100, 0,123 }, BLACK )
    END CASE
-    
+
    nTypeText  := BT_TEXT_TRANSPARENT + BT_TEXT_BOLD + BT_TEXT_ITALIC + BT_TEXT_UNDERLINE
    nAlignText := BT_TEXT_CENTER + BT_TEXT_BASELINE
    BT_DrawText( hDC, Height / 2 - 3, Width / 2 + 3, "The Power of OOHG", "Comic Sans MS", 42, GRAY, BLACK, nTypeText, nAlignText )  // Shadow effect
    BT_DrawText( hDC, Height / 2, Width / 2, "The Power of OOHG", "Comic Sans MS", 42, YELLOW, BLACK, nTypeText, nAlignText )
-   
+
    BT_DeleteDC( BTstruct )
 RETURN
 

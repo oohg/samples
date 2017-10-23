@@ -29,16 +29,16 @@ Procedure ShowProperties()
    Aeval( (Alias())->( DBstruct() ), ;
         {|e,i| aadd(aNames, { Str(i, 4), e[1], data_type[ AT(e[2], "CNDLMGI@TPWYB") ], Ltrim(Str(e[3])), Ltrim(Str(e[4])) })} )
 
-	DEFINE WINDOW Form_Prop ;
-		AT 0, 0 WIDTH 490 HEIGHT 530  ;
-		TITLE PROGRAM+VERSION+"- DBF Properties" ;
-		ICON 'MAIN1' ;
-		MODAL ;
-		ON INIT Form_Prop.Grid_1.Setfocus ;
-		NOMAXIMIZE;
-		NOSIZE;
-		FONT "MS Sans Serif" ;
-		SIZE 8
+   DEFINE WINDOW Form_Prop ;
+      AT 0, 0 WIDTH 490 HEIGHT 530  ;
+      TITLE PROGRAM+VERSION+"- DBF Properties" ;
+      ICON 'MAIN1' ;
+      MODAL ;
+      ON INIT Form_Prop.Grid_1.Setfocus ;
+      NOMAXIMIZE;
+      NOSIZE;
+      FONT "MS Sans Serif" ;
+      SIZE 8
 
     DEFINE FRAME Frame_1
         ROW    10
@@ -173,7 +173,7 @@ Procedure ShowProperties()
         VISIBLE .T.
         AUTOSIZE .F.
         NUMERIC  .T.
-        RIGHTALIGN .T.        
+        RIGHTALIGN .T.
     END TEXTBOX
 
     DEFINE LABEL Label_6
@@ -275,10 +275,10 @@ Procedure ShowProperties()
 
         ON KEY ESCAPE ACTION Form_Prop.Button_1.OnClick
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_Prop
-	ACTIVATE WINDOW Form_Prop
+   CENTER WINDOW Form_Prop
+   ACTIVATE WINDOW Form_Prop
 
    Endif
 Return

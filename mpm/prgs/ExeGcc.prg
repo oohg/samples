@@ -142,7 +142,7 @@ Procedure Build2( ProjectName )  // Executable MinGW
         Out := Out +' $(MINIGUI_INSTALL)/resources/_temp.o '
 
         Out := Out + NewLi
-        Out := Out + '	gcc $(CFLAGS) -o$(SOURCE).exe '
+        Out := Out + '   gcc $(CFLAGS) -o$(SOURCE).exe '
 
         For i := 1 To Len ( PrgFiles) - nTotFmgs
             DO EVENTS
@@ -229,18 +229,18 @@ Procedure Build2( ProjectName )  // Executable MinGW
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )
                 Out := Out +'$(OBJ_DIR)/'+GetName(cfile)+'.o    : $(OBJ_DIR)/'+GetName(cfile)+'.c'+NewLi
-                Out := Out +'	gcc $(CFLAGS)  -I$(INC_DIR) -I$(HRB_DIR)/include -I$(MINGW)/include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -I. -c $(OBJ_DIR)/'+GetName(cfile)+'.c -o $(OBJ_DIR)/'+GetName(cfile)+'.o'+NewLi
+                Out := Out +'   gcc $(CFLAGS)  -I$(INC_DIR) -I$(HRB_DIR)/include -I$(MINGW)/include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -I. -c $(OBJ_DIR)/'+GetName(cfile)+'.c -o $(OBJ_DIR)/'+GetName(cfile)+'.o'+NewLi
             ElseIF upper(Right( PRGFILES [i] , 1 )) = 'C'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )
                 Out := Out +'$(OBJ_DIR)/'+GetName(cfile)+'.o    : '+cfile+'.c'+NewLi
-                Out := Out +'	gcc $(CFLAGS)  -I$(INC_DIR) -I$(HRB_DIR)/include -I$(MINGW)/include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -I. -c '+cfile+'.c -o $(OBJ_DIR)/'+GetName(cfile)+'.o'+NewLi
+                Out := Out +'   gcc $(CFLAGS)  -I$(INC_DIR) -I$(HRB_DIR)/include -I$(MINGW)/include -I$(MINGW)/LIB/GCC/MINGW32/3.4.5/include -I. -c '+cfile+'.c -o $(OBJ_DIR)/'+GetName(cfile)+'.o'+NewLi
             Endif
         next i
 
         Out := Out + NewLi
 
         Out := Out +'$(MINIGUI_INSTALL)/resources/_temp.o    : $(MINIGUI_INSTALL)/resources/'+'_temp.rc'+NewLi
-        Out := Out +'	$(MINGW)/bin/windres.exe -i $^ -o$@' +NewLi
+        Out := Out +'   $(MINGW)/bin/windres.exe -i $^ -o$@' +NewLi
 
         Out := Out + NewLi
 
@@ -249,7 +249,7 @@ Procedure Build2( ProjectName )  // Executable MinGW
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 cfile := Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )
                 Out := Out +'$(OBJ_DIR)/'+GetName(cfile)+'.c   : '+cfile+'.prg'+NewLi
-                Out := Out +'	$(HRB_DIR)'+c_ruta_hb+'\harbour.exe $^ -n '+RetHbLevel()+cUserFlags+cDEBUG+' -I$(HRB_DIR)/include -I$(MINIGUI_INSTALL)/include -i$(INC_DIR) -I$(PROJECTFOLDER) -I. -d__WINDOWS__ -o$@ $^'+NewLi
+                Out := Out +'   $(HRB_DIR)'+c_ruta_hb+'\harbour.exe $^ -n '+RetHbLevel()+cUserFlags+cDEBUG+' -I$(HRB_DIR)/include -I$(MINIGUI_INSTALL)/include -i$(INC_DIR) -I$(PROJECTFOLDER) -I. -d__WINDOWS__ -o$@ $^'+NewLi
             Endif
         next i
 

@@ -25,7 +25,7 @@ DEFINE WINDOW Win_1 ;
    TITLE 'OOHG ODBC Demo ADS DBF/CDX ' ;
    MAIN  on init conectar() ;
    on release cerrar()
-   
+
    DEFINE MAIN MENU
       DEFINE POPUP 'File'
       MENUITEM 'Listado' ACTION list()
@@ -76,7 +76,7 @@ return
 *-------------------------
 procedure borrai()
 *-------------------------
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 //      :SetSQL( "DROP INDEX pornom ON ABI" )
 ///         :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
 
@@ -136,7 +136,7 @@ WITH OBJECT dsFunctions
 :SetSQL( "SELECT * FROM ABI order by NOMBRE " )
 
 :Open()
-      
+
 
 creg:=""
 contador:=0
@@ -204,7 +204,7 @@ PROCEDURE Bus1()
 *-------------------------
 local csearch:=inputbox("Busca TELEFONO","Pregunta")
 
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 a:=seconds()
 
@@ -247,7 +247,7 @@ if empty(csearch) .or. empty(csearch1)
    return nil
 endif
 
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 cinserta:="(" + csearch1 +",'" + csearch + "',' "+ "',' ',' ',' "+ "')"
 automsgbox(cinserta)
@@ -270,7 +270,7 @@ RETURN  NIL
 PROCEDURE borrarec()
 *-------------------------
 local csearch:=ALLTRIM(upper(inputbox("Numero :","Pregunta")))
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 :SetSQL( "SELECT * FROM ABI WHERE NUMERO = "+csearch )
 :Open()

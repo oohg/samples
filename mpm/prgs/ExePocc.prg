@@ -70,7 +70,7 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
     ELSE
        Out += 'HARBOUR_FLAGS = /i$(INCLUDE_DIR) /n '+RetHbLevel()+' $(USER_FLAGS)' + NewLi
     ENDIF
-    
+
 
     cFlags := iif(empty(USERCFLAGS),' /Ze /Zx /Go /Tx86-coff /D__WIN32__ ', USERCFLAGS)
 
@@ -99,28 +99,28 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
        DO EVENTS
        If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
           IF i == Len ( PrgFiles ) - nTotFmgs
-             Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
+             Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
           ELSE
-             Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
+             Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
           ENDIF
         ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
           IF i == Len ( PrgFiles ) - nTotFmgs
-             Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
+             Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
           ELSE
-             Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
+             Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
           ENDIF
         Endif
    Next i
 
     If Crea_temp_rc( GetName(Left ( PRGFILES [1] , Len( PRGFILES [1] ) - 4 )) )
 
-       Out += '	$(BRC_EXE) /Fo' + MINIGUIFOLDER +'\resources\_temp.res ' + MINIGUIFOLDER +'\resources\_temp.rc ' + NewLi
+       Out += '   $(BRC_EXE) /Fo' + MINIGUIFOLDER +'\resources\_temp.res ' + MINIGUIFOLDER +'\resources\_temp.rc ' + NewLi
 
     Endif
 
     FOR nFile := 1 To Len(PrgFiles) - nTotFmgs
         DO EVENTS
-        Out += '	echo $(OBJ_DIR)\' + GetName(DelExt(PrgFiles[nFile])) +  '.obj >' + IF(nFile > 1, '>', '') +' b32.bc ' + NewLi
+        Out += '   echo $(OBJ_DIR)\' + GetName(DelExt(PrgFiles[nFile])) +  '.obj >' + IF(nFile > 1, '>', '') +' b32.bc ' + NewLi
     NEXT i
 
     If File(cMiniGuiFolder+'\LIB\oohg.lib')
@@ -141,59 +141,59 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
        cLib_Miniprint :='\LIB\miniprint.lib'
     Endif
 
-    Out += '	echo /OUT:$(APP_NAME) >> b32.bc '+ NewLi
-    Out += '	echo /FORCE:MULTIPLE >> b32.bc '+ NewLi
-    Out += '	echo /LIBPATH:'+cBccFolder+'\LIB >> b32.bc '+ NewLi
-    Out += '	echo /LIBPATH:'+cBccFolder+'\LIB\WIN >> b32.bc '+ NewLi
-    Out += '	echo ' + cMiniGuiFolder  + cLib_ooHG + ' >> b32.bc ' + NewLi
+    Out += '   echo /OUT:$(APP_NAME) >> b32.bc '+ NewLi
+    Out += '   echo /FORCE:MULTIPLE >> b32.bc '+ NewLi
+    Out += '   echo /LIBPATH:'+cBccFolder+'\LIB >> b32.bc '+ NewLi
+    Out += '   echo /LIBPATH:'+cBccFolder+'\LIB\WIN >> b32.bc '+ NewLi
+    Out += '   echo ' + cMiniGuiFolder  + cLib_ooHG + ' >> b32.bc ' + NewLi
 
     IF WITHGTMODE = 1
-       Out += '	echo $(HRB_LIB_DIR)\gtgui.lib >> b32.bc' + NewLi
+       Out += '   echo $(HRB_LIB_DIR)\gtgui.lib >> b32.bc' + NewLi
     ElseIf (WITHGTMODE = 2) .OR. (WITHDEBUG = 2)
-       Out += '	echo $(HRB_LIB_DIR)\gtwin.lib >> b32.bc' + NewLi
+       Out += '   echo $(HRB_LIB_DIR)\gtwin.lib >> b32.bc' + NewLi
     ElseIf WITHGTMODE = 3
-       Out += '	echo $(HRB_LIB_DIR)\gtwin.lib >> b32.bc' + NewLi
-       Out += '	echo $(HRB_LIB_DIR)\gtgui.lib >> b32.bc' + NewLi
+       Out += '   echo $(HRB_LIB_DIR)\gtwin.lib >> b32.bc' + NewLi
+       Out += '   echo $(HRB_LIB_DIR)\gtgui.lib >> b32.bc' + NewLi
     ENDIF
 
-    Out += '	echo ' + cMiniGuiFolder  + cLib_Hbprinter + '  >> b32.bc' + NewLi
-    Out += '	echo ' + cMiniGuiFolder  + cLib_Miniprint + ' >> b32.bc' + NewLi
+    Out += '   echo ' + cMiniGuiFolder  + cLib_Hbprinter + '  >> b32.bc' + NewLi
+    Out += '   echo ' + cMiniGuiFolder  + cLib_Miniprint + ' >> b32.bc' + NewLi
 
     If HBCHOICE = 1
        Out += HbLibs(HARBOURFOLDER,1,3)
     Else
        Out += HbLibs(HARBOURFOLDER,2,3)
     Endif
-    
+
       For i := 1 To Len ( LIBFILES )
           DO EVENTS
-          Out += '	echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib >> b32.bc' + NewLi
+          Out += '   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib >> b32.bc' + NewLi
       Next i
 
 
-    Out += '	echo crt.lib >> b32.bc' + NewLi
-    Out += '	echo kernel32.lib >> b32.bc' + NewLi
-    Out += '	echo winspool.lib >> b32.bc' + NewLi
-    Out += '	echo user32.lib >> b32.bc' + NewLi
-    Out += '	echo advapi32.lib >> b32.bc' + NewLi
-    Out += '	echo ole32.lib >> b32.bc' + NewLi
-    Out += '	echo uuid.lib >> b32.bc' + NewLi
-    Out += '	echo oleaut32.lib >> b32.bc' + NewLi
-    Out += '	echo mpr.lib >> b32.bc' + NewLi
-    Out += '	echo comdlg32.lib >> b32.bc' + NewLi
-    Out += '	echo comctl32.lib >> b32.bc' + NewLi
-    Out += '	echo gdi32.lib >> b32.bc' + NewLi
-    Out += '	echo olepro32.lib >> b32.bc' + NewLi
-    Out += '	echo shell32.lib >> b32.bc' + NewLi
-    Out += '	echo winmm.lib >> b32.bc' + NewLi
-    Out += '	echo vfw32.lib >> b32.bc' + NewLi
-    Out += '	echo wsock32.lib >> b32.bc' + NewLi
-    Out += '	echo ' + cMiniGuiFolder +'\resources\_temp.res >> b32.bc' + NewLi
+    Out += '   echo crt.lib >> b32.bc' + NewLi
+    Out += '   echo kernel32.lib >> b32.bc' + NewLi
+    Out += '   echo winspool.lib >> b32.bc' + NewLi
+    Out += '   echo user32.lib >> b32.bc' + NewLi
+    Out += '   echo advapi32.lib >> b32.bc' + NewLi
+    Out += '   echo ole32.lib >> b32.bc' + NewLi
+    Out += '   echo uuid.lib >> b32.bc' + NewLi
+    Out += '   echo oleaut32.lib >> b32.bc' + NewLi
+    Out += '   echo mpr.lib >> b32.bc' + NewLi
+    Out += '   echo comdlg32.lib >> b32.bc' + NewLi
+    Out += '   echo comctl32.lib >> b32.bc' + NewLi
+    Out += '   echo gdi32.lib >> b32.bc' + NewLi
+    Out += '   echo olepro32.lib >> b32.bc' + NewLi
+    Out += '   echo shell32.lib >> b32.bc' + NewLi
+    Out += '   echo winmm.lib >> b32.bc' + NewLi
+    Out += '   echo vfw32.lib >> b32.bc' + NewLi
+    Out += '   echo wsock32.lib >> b32.bc' + NewLi
+    Out += '   echo ' + cMiniGuiFolder +'\resources\_temp.res >> b32.bc' + NewLi
 
     IF     (WITHDEBUG  = 2)  .OR. (WITHGTMODE = 2) .OR. (WITHGTMODE = 3)
-               Out += '	$(ILINK_EXE)  /SUBSYSTEM:CONSOLE  @b32.bc' + NewLi+ NewLi
+               Out += '   $(ILINK_EXE)  /SUBSYSTEM:CONSOLE  @b32.bc' + NewLi+ NewLi
     ElseIF (WITHGTMODE = 1)
-               Out += '	$(ILINK_EXE)  /SUBSYSTEM:WINDOWS  @b32.bc' + NewLi+ NewLi
+               Out += '   $(ILINK_EXE)  /SUBSYSTEM:WINDOWS  @b32.bc' + NewLi+ NewLi
     Endif
 
     FOR nFile := 1 TO Len(PrgFiles) - nTotFmgs
@@ -201,17 +201,17 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
         If upper(Right( PRGFILES [nFile] , 3 )) = 'PRG'
            Out += NewLi
            Out += '$(C_DIR)\' + GetName(DelExt(PrgFiles[nFile])) + '.c : ' + PrgFiles[nFile] + NewLi
-           Out += '	$(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
+           Out += '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
            Out += NewLi
            Out += '$(OBJ_DIR)\' + GetName(DelExt(PrgFiles[nFile])) + '.obj : $(C_DIR)\' + GetName(DelExt(PrgFiles[nFile])) + '.c'  + NewLi
-           Out += '	$(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
+           Out += '   $(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
          ElseIf upper(Right( PRGFILES [nFile] , 1 )) = 'C'
            Out += NewLi
            Out += '$(C_DIR)\' + GetName(DelExt(PrgFiles[nFile])) + '.c : ' + PrgFiles[nFile] + NewLi
 
            Out += NewLi
            Out += '$(OBJ_DIR)\' + GetName(DelExt(PrgFiles[nFile])) + '.obj : ' + GetName(DelExt(PrgFiles[nFile])) + '.c'  + NewLi
-           Out += '	$(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
+           Out += '   $(CC) $(COBJFLAGS) /Fo$@ $**' + NewLi
          Endif
     NEXT i
 
@@ -227,13 +227,13 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
       Processing := .T.
 
       main.RichEdit_1.Value := ''
-      
+
       CorreBuildBat()
 
       END SEQUENCE
 
       QuitarEspera()
-      
+
       EndBuild()
 
       Procesando(2)

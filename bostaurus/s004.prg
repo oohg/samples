@@ -196,7 +196,7 @@ PROCEDURE Proc_ON_PAINT( nMode, Flag_Erase, hBitmap )
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
-  
+
    IF nMode == BT_COPY
       Row := - Win1.VscrollBar.value
       Col := - Win1.HscrollBar.value

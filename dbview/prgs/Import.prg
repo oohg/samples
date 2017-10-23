@@ -58,7 +58,7 @@ Function OpenImpFile()
       nFldSepar := Import.Combo_ii2.Value
 
       aStrDelim := {'"','',"'"}
-      aFldSepar := {';',',',':','	',' '}
+      aFldSepar := {';',',',':','   ',' '}
 
 //      If ImpAppend( cFile, aStrDelim[nStrDelim], aFldSepar[nFldSepar] )
       If Append_Now( cFile, aStrDelim[nStrDelim], aFldSepar[nFldSepar] )

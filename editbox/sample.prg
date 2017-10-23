@@ -3,23 +3,23 @@
 
 FUNCTION Main
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 640 HEIGHT 480 ;
-		TITLE 'Editbox Demo' ;
-		MAIN ;
-		FONT 'Arial' SIZE 10
+   DEFINE WINDOW Form_1 ;
+      AT 0,0 ;
+      WIDTH 640 HEIGHT 480 ;
+      TITLE 'Editbox Demo' ;
+      MAIN ;
+      FONT 'Arial' SIZE 10
 
-		@ 30,10 EDITBOX Edit_1 OBJ oEdit ;
-			WIDTH 410 ;
-			HEIGHT 140 ;
-			ON CHANGE LimitRowLength()
+      @ 30,10 EDITBOX Edit_1 OBJ oEdit ;
+         WIDTH 410 ;
+         HEIGHT 140 ;
+         ON CHANGE LimitRowLength()
 
       ON KEY ESCAPE ACTION Form_1.Release()
-	END WINDOW
+   END WINDOW
 
-	Form_1.Center()
-	Form_1.Activate()
+   Form_1.Center()
+   Form_1.Activate()
 
 RETURN NIL
 

@@ -55,7 +55,7 @@ FUNCTION Main
       END IMAGE
 
       ON KEY ESCAPE ACTION oWin:Release()
-	END WINDOW
+   END WINDOW
 
    oWin:Center()
    oWin:Activate()

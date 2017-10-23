@@ -403,17 +403,17 @@ return nRetVal
 
 HB_FUNC ( ZAPDIRECTORY )
 {
-	SHFILEOPSTRUCT sh;
+   SHFILEOPSTRUCT sh;
 
-	sh.hwnd   = GetActiveWindow();
-	sh.wFunc  = FO_DELETE;
-	sh.pFrom  = hb_parc(1);
-	sh.pTo    = NULL;
-	sh.fFlags = FOF_NOCONFIRMATION | FOF_SILENT;
-	sh.hNameMappings = 0;
-	sh.lpszProgressTitle = NULL;
+   sh.hwnd   = GetActiveWindow();
+   sh.wFunc  = FO_DELETE;
+   sh.pFrom  = hb_parc(1);
+   sh.pTo    = NULL;
+   sh.fFlags = FOF_NOCONFIRMATION | FOF_SILENT;
+   sh.hNameMappings = 0;
+   sh.lpszProgressTitle = NULL;
 
-	SHFileOperation (&sh);
+   SHFileOperation (&sh);
 }
 
 HB_FUNC( CURSORARROW2 )
@@ -438,27 +438,27 @@ HB_FUNC( GETEXEFILENAME )
 HB_FUNC( SETTRANSPARENT )
 {
 
-	typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
+   typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
 
-	PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
+   PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
 
-	HINSTANCE hLib = LoadLibrary("user32.dll");
+   HINSTANCE hLib = LoadLibrary("user32.dll");
 
-	if (hLib != NULL)
-	{
-		pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
-	}
+   if (hLib != NULL)
+   {
+      pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
+   }
 
-	if (pfnSetLayeredWindowAttributes)
-	{
-		SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
-		pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
-	}
+   if (pfnSetLayeredWindowAttributes)
+   {
+      SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
+      pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
+   }
 
-	if (!hLib)
-	{
-		FreeLibrary(hLib);
-	}
+   if (!hLib)
+   {
+      FreeLibrary(hLib);
+   }
 
 }
 

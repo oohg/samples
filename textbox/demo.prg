@@ -11,14 +11,14 @@ Function Main
 
          set navigation extended
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 640 HEIGHT 480 ;
-		TITLE 'ooHG textbox Demo' ;
-		MAIN 
-		
-		
-		@ 10,10 TEXTBOX Txt WIDTH 200 OBJ oTxt ;
+   DEFINE WINDOW Form_1 ;
+      AT 0,0 ;
+      WIDTH 640 HEIGHT 480 ;
+      TITLE 'ooHG textbox Demo' ;
+      MAIN
+
+
+      @ 10,10 TEXTBOX Txt WIDTH 200 OBJ oTxt ;
                 action msginfo("uno!") ;
                 action2 msginfo("dos!") ;
 
@@ -34,21 +34,21 @@ Function Main
 
 
 
-		@ 120,10 TEXTBOX Text_1 ;
-			VALUE 123 ;
-			FONT 'Verdana' SIZE 12 ;
-			TOOLTIP 'Numeric TextBox' ;
-			NUMERIC ;
-			inputmask "999,999,999.99"  ;
-			RIGHTALIGN ;
-			ON LOSTFOCUS if ( This.Value < 100 , This.SetFocus , Nil)
+      @ 120,10 TEXTBOX Text_1 ;
+         VALUE 123 ;
+         FONT 'Verdana' SIZE 12 ;
+         TOOLTIP 'Numeric TextBox' ;
+         NUMERIC ;
+         inputmask "999,999,999.99"  ;
+         RIGHTALIGN ;
+         ON LOSTFOCUS if ( This.Value < 100 , This.SetFocus , Nil)
 
 
-	END WINDOW
+   END WINDOW
 
-	Form_1.Center
+   Form_1.Center
 
-	Form_1.Activate
+   Form_1.Activate
 
 Return Nil
 

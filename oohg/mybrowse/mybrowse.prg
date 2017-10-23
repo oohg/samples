@@ -181,33 +181,33 @@ Procedure printlist()
     Next
 
 
-	aeval(aLen, {|e,i| aLen[i] := e/9})
+   aeval(aLen, {|e,i| aLen[i] := e/9})
 
-	aHdr1 := array(len(aHdr))
-	aTot  := array(len(aHdr))
-	aFmt  := array(len(aHdr))
-	afill(aHdr1, '')
-	afill(aTot, .f.)
-	afill(aFmt, '')
+   aHdr1 := array(len(aHdr))
+   aTot  := array(len(aHdr))
+   aFmt  := array(len(aHdr))
+   afill(aHdr1, '')
+   afill(aTot, .f.)
+   afill(aFmt, '')
 
-	set deleted on
+   set deleted on
 
-	( Alias() )->( dbgotop() )
+   ( Alias() )->( dbgotop() )
 
-	DO REPORT ;
-		TITLE    cBase                    ;
-		HEADERS  aHdr1, aHdr              ;
-		FIELDS   aHdr                     ;
-		WIDTHS   aLen                     ;
-		TOTALS   aTot                     ;
-		NFORMATS aFmt                     ;
-		WORKAREA &cBase                   ;
+   DO REPORT ;
+      TITLE    cBase                    ;
+      HEADERS  aHdr1, aHdr              ;
+      FIELDS   aHdr                     ;
+      WIDTHS   aLen                     ;
+      TOTALS   aTot                     ;
+      NFORMATS aFmt                     ;
+      WORKAREA &cBase                   ;
                 LPP 60                            ;
                 CPL 120                           ;
                 LMARGIN  5                        ;
-		PAPERSIZE DMPAPER_LETTER          ;
-		PREVIEW
+      PAPERSIZE DMPAPER_LETTER          ;
+      PREVIEW
 
-	Set Deleted off
+   Set Deleted off
 
    Return

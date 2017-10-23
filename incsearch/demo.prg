@@ -34,4 +34,4 @@ PROCEDURE Search()
    ENDIF
    Incremental.Brw.Value := INCR->( RECNO() )
 RETURN
- 
+

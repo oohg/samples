@@ -82,14 +82,14 @@ FUNCTION Proc_Paint_on_the_Bitmap
    hBitmap := BT_BitmapCreateNew( 300, 200, aRGBcolor )
 
    hDC := BT_CreateDC( hBitmap, BT_HDC_BITMAP, @BTstruct )
-     
+
    BT_DrawGradientFillVertical( hDC, 50, 50, 200, 100, aRGBcolor, BLACK )
 
    nTypeText    := BT_TEXT_OPAQUE + BT_TEXT_BOLD
    nAlignText   := BT_TEXT_LEFT + BT_TEXT_TOP
    nOrientation := BT_TEXT_NORMAL_ORIENTATION
    BT_DrawText( hDC, 90, 80, " The Power of OOHG ", "Times New Roman", 12, BLACK, WHITE, nTypeText, nAlignText, nOrientation )
-     
+
    BT_DeleteDC( BTstruct )
 RETURN hBitmap
 

@@ -137,28 +137,28 @@ PROCEDURE MyToolbar()
 
    DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 16,16 FONT "Arial" SIZE 9 FLAT
 
-      BUTTON PRIMERO TOOLTIP '&First' PICTURE 'first1'	;
+      BUTTON PRIMERO TOOLTIP '&First' PICTURE 'first1'   ;
       ACTION ( dBGoTop() ,Actualizar2() )
 
-      BUTTON ANTERIOR TOOLTIP '&Previous' PICTURE 'previous1'	;
+      BUTTON ANTERIOR TOOLTIP '&Previous' PICTURE 'previous1'   ;
       ACTION ( dBSkip ( -1 ),Actualizar2() )
 
-      BUTTON SIGUIENTE TOOLTIP '&Next' PICTURE 'next1'	;
+      BUTTON SIGUIENTE TOOLTIP '&Next' PICTURE 'next1'   ;
       ACTION ( dBSkip (1) , if ( Eof() , DbGoBottom() , Nil ) ,Actualizar2() )
 
-      BUTTON ULTIMO TOOLTIP '&Last' PICTURE 'last1'	;
+      BUTTON ULTIMO TOOLTIP '&Last' PICTURE 'last1'   ;
       ACTION ( dBGoBottom (),Actualizar2()  )  SEPARATOR
 
-      BUTTON BUSCAR TOOLTIP '&Find' PICTURE 'find1'	;
+      BUTTON BUSCAR TOOLTIP '&Find' PICTURE 'find1'   ;
       ACTION Buscando()
 
-      BUTTON Nuevo TOOLTIP '&New' PICTURE 'new1'	;
+      BUTTON Nuevo TOOLTIP '&New' PICTURE 'new1'   ;
       ACTION ( Nuevo := .T. , Nuevo() )
 
-      BUTTON EDITAR TOOLTIP '&Edit' PICTURE 'format1'	;
+      BUTTON EDITAR TOOLTIP '&Edit' PICTURE 'format1'   ;
       ACTION iif( LastRec()>0,  If ( BloquearRegistro() , ActivarEdicion() , Nil ) , )
 
-      BUTTON ELIMINAR TOOLTIP 'E&rase' PICTURE 'erase1'	;
+      BUTTON ELIMINAR TOOLTIP 'E&rase' PICTURE 'erase1'   ;
       ACTION Eliminar()
 
       BUTTON IMPRIMIR TOOLTIP '&Print'PICTURE 'print1' ;
@@ -238,9 +238,9 @@ PROCEDURE DesactivarEdicion
        Endif
    Next
 
-   Win_2.Aceptar.Enabled		:= .F.
-   Win_2.Cancelar.Enabled		:= .F.
-   Win_2.ToolBar_1.Enabled		:= .T.
+   Win_2.Aceptar.Enabled      := .F.
+   Win_2.Cancelar.Enabled      := .F.
+   Win_2.ToolBar_1.Enabled      := .T.
 
 RETURN
 *------------------------------------------------------------*
@@ -255,9 +255,9 @@ PROCEDURE ActivarEdicion
        Endif
    Next
 
-   Win_2.Aceptar.Enabled		:= .T.
-   Win_2.Cancelar.Enabled		:= .T.
-   Win_2.ToolBar_1.Enabled		:= .F.
+   Win_2.Aceptar.Enabled      := .T.
+   Win_2.Cancelar.Enabled      := .T.
+   Win_2.ToolBar_1.Enabled      := .F.
 
    Win_1.&(aCtrol[1]).SetFocus
 
@@ -426,40 +426,40 @@ Procedure Imprimir()
 
     If !Empty( cbase )
 
-	aeval(aLen, {|e,i| aLen[i] := e/9})
-	adel(aLen, 1)
-	asize(aLen, len(aLen)-1)
-	adel(aHdr, 1)
-	asize(aHdr, len(aHdr)-1)
-	adel(aHdr, len(aHdr))
-	asize(aHdr, len(aHdr)-1)
-	asize(aLen, len(aLen)-1)
-	aHdr1 := array(len(aHdr))
-	aTot  := array(len(aHdr))
-  	aFmt  := array(len(aHdr))
-	afill(aHdr1, '')
-	afill(aTot, .f.)
-	afill(aFmt, '')
+   aeval(aLen, {|e,i| aLen[i] := e/9})
+   adel(aLen, 1)
+   asize(aLen, len(aLen)-1)
+   adel(aHdr, 1)
+   asize(aHdr, len(aHdr)-1)
+   adel(aHdr, len(aHdr))
+   asize(aHdr, len(aHdr)-1)
+   asize(aLen, len(aLen)-1)
+   aHdr1 := array(len(aHdr))
+   aTot  := array(len(aHdr))
+     aFmt  := array(len(aHdr))
+   afill(aHdr1, '')
+   afill(aTot, .f.)
+   afill(aFmt, '')
 
-	set deleted on
+   set deleted on
 
-	( cBase )->( dbgotop() )
+   ( cBase )->( dbgotop() )
 
-	DO REPORT ;
-		TITLE    cBase + ' Database List' ;
-		HEADERS  aHdr1, aHdr              ;
-		FIELDS   aHdr                     ;
-		WIDTHS   aLen                     ;
-		TOTALS   aTot                     ;
-		NFORMATS aFmt                     ;
-		WORKAREA &cBase                   ;
+   DO REPORT ;
+      TITLE    cBase + ' Database List' ;
+      HEADERS  aHdr1, aHdr              ;
+      FIELDS   aHdr                     ;
+      WIDTHS   aLen                     ;
+      TOTALS   aTot                     ;
+      NFORMATS aFmt                     ;
+      WORKAREA &cBase                   ;
                 LPP 60                            ;
                 CPL 120                           ;
                 LMARGIN  5                        ;
-		PAPERSIZE DMPAPER_LETTER          ;
-		PREVIEW
+      PAPERSIZE DMPAPER_LETTER          ;
+      PREVIEW
 
-	set deleted off
+   set deleted off
 
     Endif
 */

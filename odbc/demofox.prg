@@ -223,7 +223,7 @@ PROCEDURE Bus1()
 *-------------------------
 local csearch:=inputbox("Busca TELEFONO","Pregunta")
 
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 a:=seconds()
 
@@ -269,7 +269,7 @@ if empty(csearch) .or. empty(csearch1)
    return nil
 endif
 
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 cinserta:="(" + csearch1 +",'" + csearch + "',' "+ "',' ',' ',' "+ "')"
 automsgbox(cinserta)
@@ -292,7 +292,7 @@ RETURN  NIL
 PROCEDURE borrarec()
 *-------------------------
 local csearch:=ALLTRIM(upper(inputbox("Numero :","Pregunta")))
-WITH OBJECT dsFunctions 
+WITH OBJECT dsFunctions
 
 ::SetSQL( "SELECT * FROM ABI WHERE NUMERO = "+csearch )
 ::Open()

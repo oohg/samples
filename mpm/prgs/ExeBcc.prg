@@ -69,8 +69,8 @@ Procedure Build( ProjectName )  // Borland C
       Out := Out + 'COBJFLAGS = '+ cFlags + ' -I$(INCLUDE_DIR) -L$(CC_LIB_DIR)' + NewLi
 
       Out := Out + NewLi
-      Out := Out + '$(APP_NAME) :	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 ))  + '.obj \' + NewLi
-      
+      Out := Out + '$(APP_NAME) :   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 ))  + '.obj \' + NewLi
+
       nTotFmgs := 0
 
       For i := 2 TO Len ( PrgFiles )
@@ -83,15 +83,15 @@ Procedure Build( ProjectName )  // Borland C
       For i := 2 To main.List_1.ItemCount
           If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
              If i == main.List_1.ItemCount - nTotFmgs
-                Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
+                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
              Else
-                Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
+                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
              EndIf
           ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
              If i == main.List_1.ItemCount - nTotFmgs
-                Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
+                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
              Else
-                Out := Out + '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
+                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
              EndIf
           Endif
       Next i
@@ -102,17 +102,17 @@ Procedure Build( ProjectName )  // Borland C
 
       If Crea_Temp_rc( GetName(cFilerc)  )
          If WATHGUI = 4
-            Out := Out + '	$(BRC_EXE) -d__BORLANDC__ -r -fo _temp.res _temp.rc ' + NewLi
+            Out := Out + '   $(BRC_EXE) -d__BORLANDC__ -r -fo _temp.res _temp.rc ' + NewLi
          Else
-            Out := Out + '	$(BRC_EXE) -d__BORLANDC__ -r -fo' + MiniGuiFolder + '\RESOURCES\_temp.res ' + MiniGuiFolder +'\RESOURCES\_temp.rc ' + NewLi
+            Out := Out + '   $(BRC_EXE) -d__BORLANDC__ -r -fo' + MiniGuiFolder + '\RESOURCES\_temp.res ' + MiniGuiFolder +'\RESOURCES\_temp.rc ' + NewLi
          Endif
       Endif
 
       For i := 1 To Len ( PrgFiles ) - nTotFmgs
           If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
-             Out := Out + '	echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
+             Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
           ElseIF upper(Right( PRGFILES [i] , 1 )) = 'C'
-             Out := Out + '	echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
+             Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
           Endif
       Next i
 
@@ -140,21 +140,21 @@ Procedure Build( ProjectName )  // Borland C
          cLib_Miniprint :='\LIB\miniprint.lib'
       Endif
 
-      Out := Out + '	echo ' + BCCFOLDER + If ( Right ( BCCFOLDER , 1 ) != '\' , '\' , '' ) + 'LIB\c0w32.obj, + >> b32.bc ' + NewLi
+      Out := Out + '   echo ' + BCCFOLDER + If ( Right ( BCCFOLDER , 1 ) != '\' , '\' , '' ) + 'LIB\c0w32.obj, + >> b32.bc ' + NewLi
 
-      Out := Out + '	echo $(APP_NAME),' + Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 ) + '.map, + >> b32.bc' + NewLi
-      
+      Out := Out + '   echo $(APP_NAME),' + Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 ) + '.map, + >> b32.bc' + NewLi
+
       Out := Out + WathLibLink(MiniGuiFolder,HBCHOICE) // GUI Libs
 
       If WITHGTMODE = 1
-         Out := Out + '	echo $(HRB_LIB_DIR)\gtgui.lib + >> b32.bc' + NewLi
+         Out := Out + '   echo $(HRB_LIB_DIR)\gtgui.lib + >> b32.bc' + NewLi
       Endif
       If WITHGTMODE = 2
-         Out := Out + '	echo $(HRB_LIB_DIR)\gtwin.lib + >> b32.bc' + NewLi
+         Out := Out + '   echo $(HRB_LIB_DIR)\gtwin.lib + >> b32.bc' + NewLi
       Endif
       If WITHGTMODE = 3
-         Out := Out + '	echo $(HRB_LIB_DIR)\gtwin.lib + >> b32.bc' + NewLi
-         Out := Out + '	echo $(HRB_LIB_DIR)\gtgui.lib + >> b32.bc' + NewLi
+         Out := Out + '   echo $(HRB_LIB_DIR)\gtwin.lib + >> b32.bc' + NewLi
+         Out := Out + '   echo $(HRB_LIB_DIR)\gtgui.lib + >> b32.bc' + NewLi
       Endif
 
       If HBCHOICE = 1   // Harbour
@@ -165,25 +165,25 @@ Procedure Build( ProjectName )  // Borland C
 
       For i := 1 To Len ( LIBFILES )
           DO EVENTS
-          Out := Out +'	echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib + >>' + 'b32.bc ' + NewLi
+          Out := Out +'   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib + >>' + 'b32.bc ' + NewLi
       Next i
 
-      Out := Out + '	echo '+BCCFOLDER+'LIB\cw32.lib + >> b32.bc' + NewLi
-      Out := Out + '	echo '+BCCFOLDER+'LIB\import32.lib, >> b32.bc' + NewLi
+      Out := Out + '   echo '+BCCFOLDER+'LIB\cw32.lib + >> b32.bc' + NewLi
+      Out := Out + '   echo '+BCCFOLDER+'LIB\import32.lib, >> b32.bc' + NewLi
 
 
       If WATHGUI = 4
-         Out += '	echo _temp.res >> b32.bc' + NewLi
+         Out += '   echo _temp.res >> b32.bc' + NewLi
       Else
-         Out += '	echo ' + MiniGuiFolder +'\resources\_temp.res >> b32.bc' + NewLi
+         Out += '   echo ' + MiniGuiFolder +'\resources\_temp.res >> b32.bc' + NewLi
       Endif
 
       If WITHDEBUG = 2
          cLFlags :=iif(empty(USERLFLAGS),' -Gn -Tpe -ap ', USERLFLAGS)
-         Out := Out + '	$(ILINK_EXE) '+ cLFlags +' -L$(CC_LIB_DIR) @b32.bc' + NewLi
+         Out := Out + '   $(ILINK_EXE) '+ cLFlags +' -L$(CC_LIB_DIR) @b32.bc' + NewLi
       Else
          cLFlags :=iif(empty(USERLFLAGS),' -Gn -Tpe -aa ', USERLFLAGS)
-         Out := Out + '	$(ILINK_EXE) '+ cLFlags +' -L$(CC_LIB_DIR) @b32.bc' + NewLi
+         Out := Out + '   $(ILINK_EXE) '+ cLFlags +' -L$(CC_LIB_DIR) @b32.bc' + NewLi
       EndIf
 
       Out := Out + NewLi
@@ -193,17 +193,17 @@ Procedure Build( ProjectName )  // Borland C
           If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
              Out := Out + NewLi
              Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ) + '.Prg' + NewLi
-             Out := Out + '	$(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
+             Out := Out + '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
              Out := Out + NewLi
              Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.obj : $(C_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c'  + NewLi
-             Out := Out + '	$(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+             Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
           ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
              Out := Out + NewLi
              Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c' + NewLi
 
              Out := Out + NewLi
              Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.obj : ' +  Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c'  + NewLi
-             Out := Out + '	$(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+             Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
           Endif
       Next i
 

@@ -32,7 +32,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
             COL    30
             WIDTH  120
             HEIGHT 24
-     END TEXTBOX 
+     END TEXTBOX
 
      DEFINE COMBOBOX _DBUfieldtype
             ROW    40
@@ -51,7 +51,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
             WIDTH  80
             HEIGHT 20
             VALUE "Field"
-     END LABEL  
+     END LABEL
 
      DEFINE LABEL _DBUtypelabel
             ROW    20
@@ -59,7 +59,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
             WIDTH  80
             HEIGHT 20
             VALUE "Type"
-     END LABEL  
+     END LABEL
 
      DEFINE LABEL _DBUsizelabel
             ROW    20
@@ -75,7 +75,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
             WIDTH  60
             HEIGHT 16
             VALUE "Digits"
-     END LABEL  
+     END LABEL
 
      DEFINE SPINNER _DBUfieldsize
             ROW    40
@@ -86,7 +86,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
             RANGEMAX 100
             VALUE 10
             on lostfocus DBUsizelostfocus()
-     END SPINNER  
+     END SPINNER
 
      DEFINE SPINNER _DBUfielddecimals
             ROW    40
@@ -105,7 +105,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
            HEIGHT 28
            CAPTION "Add"
            action DBUaddstruct()
-     END BUTTON  
+     END BUTTON
 
     DEFINE BUTTON _DBUinsline
            ROW    70
@@ -114,7 +114,7 @@ DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSIO
            HEIGHT 28
            CAPTION "Insert"
            action DBUinsstruct()
-     END BUTTON  
+     END BUTTON
 
     DEFINE BUTTON _DBUdelline
            ROW    100
@@ -177,13 +177,13 @@ return nil
 function DBUaddstruct
 if _DBUcreadbf._DBUaddline.caption == "Add"
    if .not. DBUnamecheck()
-      
+
       return nil
    endif
    if _DBUcreadbf._DBUfieldsize.value == 0
       msgexclamation("Field size can not be zero!",PROGRAM)
       _DBUcreadbf._DBUfieldsize.setfocus()
-      
+
       return nil
    endif
    DBUtypelostfocus()
@@ -192,7 +192,7 @@ if _DBUcreadbf._DBUaddline.caption == "Add"
    if _DBUcreadbf._DBUfieldtype.value == 2 .and. _DBUcreadbf._DBUfielddecimals.value >= _DBUcreadbf._DBUfieldsize.value
       msgexclamation("You can not have decimal points more than the size!",PROGRAM)
       _DBUcreadbf._DBUfielddecimals.setfocus()
-      
+
       return nil
    endif
    if len(_DBUstructarr) > 0
@@ -200,7 +200,7 @@ if _DBUcreadbf._DBUaddline.caption == "Add"
          if upper(alltrim(_DBUcreadbf._DBUfieldname.value)) == upper(alltrim(_DBUstructarr[_DBUi,1]))
             msgexclamation("Duplicate field names are not allowed!",PROGRAM)
             _DBUcreadbf._DBUfieldname.setfocus()
-            
+
             return nil
          endif
       next _DBUi
@@ -230,11 +230,11 @@ if _DBUcreadbf._DBUaddline.caption == "Add"
             _DBUtype1 := "Logical"
          case _DBUstructarr[_DBUi,2] == "M"
             _DBUtype1 := "Memo"
-      end case	 
+      end case
       _DBUcreadbf._DBUstruct.additem({_DBUstructarr[_DBUi,1],;
                                      _DBUtype1,;
-               			             str(_DBUstructarr[_DBUi,3],8,0),;
-  			                            str(_DBUstructarr[_DBUi,4],3,0)})
+                                     str(_DBUstructarr[_DBUi,3],8,0),;
+                                       str(_DBUstructarr[_DBUi,4],3,0)})
    next _DBUi
    if len(_DBUstructarr) > 0
       _DBUcreadbf._DBUstruct.value := len(_DBUstructarr)
@@ -248,7 +248,7 @@ else
    _DBUcurline := _DBUcreadbf._DBUstruct.value
    if _DBUcurline > 0
       if .not. DBUnamecheck()
-         
+
          return nil
       endif
       if _DBUcreadbf._DBUfieldsize.value == 0
@@ -263,16 +263,16 @@ else
       if _DBUcreadbf._DBUfieldtype.value == 2 .and. _DBUcreadbf._DBUfielddecimals.value >= _DBUcreadbf._DBUfieldsize.value
          msgexclamation("You can not have decimal points more than the size!",PROGRAM)
          _DBUcreadbf._DBUfielddecimals.setfocus()
-         
+
          return nil
       endif
       if len(_DBUstructarr) > 0
          for _DBUi := 1 to len(_DBUstructarr)
             if upper(alltrim(_DBUcreadbf._DBUfieldname.value)) == upper(alltrim(_DBUstructarr[_DBUi,1])) .and. _DBUi <> _DBUcurline
                msgexclamation("Duplicate field names are not allowed!",PROGRAM)
-      	       _DBUcreadbf._DBUfieldname.setfocus()
-               
-   	       return nil
+                _DBUcreadbf._DBUfieldname.setfocus()
+
+             return nil
             endif
          next _DBUi
       endif
@@ -301,11 +301,11 @@ else
                _DBUtype1 := "Logical"
             case _DBUstructarr[_DBUi,2] == "M"
                _DBUtype1 := "Memo"
-         end case	 
+         end case
          _DBUcreadbf._DBUstruct.additem({_DBUstructarr[_DBUi,1],;
                                 _DBUtype1,;
-      			        str(_DBUstructarr[_DBUi,3],8,0),;
-  			        str(_DBUstructarr[_DBUi,4],3,0)})
+                       str(_DBUstructarr[_DBUi,3],8,0),;
+                   str(_DBUstructarr[_DBUi,4],3,0)})
       next _DBUi
       if len(_DBUstructarr) > 0
          _DBUcreadbf._DBUstruct.value := _DBUcurline
@@ -325,24 +325,24 @@ return nil
 
 
 function DBUinsstruct
-if len(_DBUstructarr) == 0 
+if len(_DBUstructarr) == 0
    DBUaddstruct()
-   
+
    return nil
 endif
 if _DBUcreadbf._DBUstruct.value == 0
    DBUaddstruct()
-   
+
    return nil
 endif
 if .not. DBUnamecheck()
-   
+
    return nil
 endif
 if _DBUcreadbf._DBUfieldsize.value == 0
    msgexclamation("Field size can not be zero!",PROGRAM)
    _DBUcreadbf._DBUfieldsize.setfocus()
-   
+
    return nil
 endif
 DBUtypelostfocus()
@@ -351,16 +351,16 @@ DBUdeclostfocus()
 if _DBUcreadbf._DBUfieldtype.value == 2 .and. _DBUcreadbf._DBUfielddecimals.value >= _DBUcreadbf._DBUfieldsize.value
    msgexclamation("You can not have decimal points more than the size!",PROGRAM)
    _DBUcreadbf._DBUfielddecimals.setfocus()
-   
+
    return nil
 endif
 if len(_DBUstructarr) > 0
    for _DBUi := 1 to len(_DBUstructarr)
       if upper(alltrim(_DBUcreadbf._DBUfieldname.value)) == upper(alltrim(_DBUstructarr[_DBUi,1]))
          msgexclamation("Duplicate field names are not allowed!",PROGRAM)
-	 _DBUcreadbf._DBUfieldname.setfocus()
-         
-	 return nil
+    _DBUcreadbf._DBUfieldname.setfocus()
+
+    return nil
       endif
    next _DBUi
 endif
@@ -392,11 +392,11 @@ for _DBUi := 1 to len(_DBUstructarr)
          _DBUtype1 := "Logical"
       case _DBUstructarr[_DBUi,2] == "M"
          _DBUtype1 := "Memo"
-   end case	 
+   end case
    _DBUcreadbf._DBUstruct.additem({_DBUstructarr[_DBUi,1],;
                           _DBUtype1,;
-			  str(_DBUstructarr[_DBUi,3],8,0),;
-			  str(_DBUstructarr[_DBUi,4],3,0)})
+           str(_DBUstructarr[_DBUi,3],8,0),;
+           str(_DBUstructarr[_DBUi,4],3,0)})
 next _DBUi
 if len(_DBUstructarr) > 0
    _DBUcreadbf._DBUstruct.value := _DBUpos
@@ -427,11 +427,11 @@ if _DBUcurline > 0
             _DBUtype1 := "Logical"
          case _DBUstructarr[_DBUi,2] == "M"
             _DBUtype1 := "Memo"
-      end case	 
+      end case
       _DBUcreadbf._DBUstruct.additem({_DBUstructarr[_DBUi,1],;
                              _DBUtype1,;
-   			     str(_DBUstructarr[_DBUi,3],8,0),;
-   			     str(_DBUstructarr[_DBUi,4],3,0)})
+                 str(_DBUstructarr[_DBUi,3],8,0),;
+                 str(_DBUstructarr[_DBUi,4],3,0)})
    next _DBUi
    if len(_DBUstructarr) > 1
       if len(_DBUstructarr) == 1
@@ -529,16 +529,16 @@ if len(_DBUstructarr) > 0
    if len(_DBUfname1) > 0
       if msgyesno("Are you sure to create this database file?",PROGRAM)
          dbcreate(_DBUfname1,_DBUstructarr)
-	      msginfo("File has been created successfully",PROGRAM)
-*	      if .not. used()
-*  	         use &_DBUfname1
-*	         _DBUfname := _DBUfname1
-*	         _DBUdbfopened := .t.
+         msginfo("File has been created successfully",PROGRAM)
+*         if .not. used()
+*              use &_DBUfname1
+*            _DBUfname := _DBUfname1
+*            _DBUdbfopened := .t.
 //                 DBUtogglemenu()
                  release window _DBUcreadbf
-*	      else
+*         else
 *                 release window _DBUcreadbf
-*   	   endif
+*         endif
       endif
    endif
 endif

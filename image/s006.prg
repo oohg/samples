@@ -49,7 +49,7 @@ FUNCTION Main
 
       ON KEY ESCAPE ACTION oWin:Release()
       ON KEY F5 ACTION SwapArea( oImage1 )
-	END WINDOW
+   END WINDOW
 
    oWin:Center()
    oWin:Activate()

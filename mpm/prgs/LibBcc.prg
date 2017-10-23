@@ -67,8 +67,8 @@ Procedure BuildLib( ProjectName )  // Borland C
             cBarra := ''
         Endif
 
-        Out := Out + '$(APP_NAME) :	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 )) + '.obj'+ cBarra + NewLi
-        
+        Out := Out + '$(APP_NAME) :   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 )) + '.obj'+ cBarra + NewLi
+
        nTotFmgs := 0
 
         For i := 2 TO Len ( PrgFiles )
@@ -76,21 +76,21 @@ Procedure BuildLib( ProjectName )  // Borland C
             If upper(Right( PRGFILES [i] , 3 )) = 'FMG'
                 nTotFmgs := nTotFmgs + 1
             Endif
-        Next           
+        Next
 
         For i := 2 TO Len ( PrgFiles )
             DO EVENTS
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 IF i == Len ( PrgFiles ) - nTotFmgs
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
                 ELSE
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
                 ENDIF
             ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
                 IF i == Len ( PrgFiles ) - nTotFmgs
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
                 ELSE
-                    Out += '	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
+                    Out += '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len( PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
                 ENDIF
             Endif
         Next i
@@ -99,7 +99,7 @@ Procedure BuildLib( ProjectName )  // Borland C
             Out := Out + ' $(BRC_EXE) -d__BORLANDC__ -r -fo'+ Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 )+'.Res '+ Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 )+'.Rc' + NewLi
         Endif
 
-        Out := Out + '	echo '
+        Out := Out + '   echo '
 
         For i := 1 To Len( PRGFILES ) - nTotFmgs
             DO EVENTS
@@ -112,25 +112,25 @@ Procedure BuildLib( ProjectName )  // Borland C
 
         Out := Out + ' > b32.bc' + NewLi
 
-        Out := Out + '	$(TLIB) $@ /P32 @b32.bc ' + NewLi
+        Out := Out + '   $(TLIB) $@ /P32 @b32.bc ' + NewLi
 
         For i := 1 To Len ( PrgFiles ) - nTotFmgs
             DO EVENTS
             If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
                 Out := Out + NewLi
                 Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ) + '.Prg' + NewLi
-                Out := Out + '	$(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
+                Out := Out + '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
 
                 Out := Out + NewLi
                 Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.obj : $(C_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4))  + '.c'  + NewLi
-                Out := Out + '	$(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+                Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
             ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
                 Out := Out + NewLi
                 Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c' + NewLi
 
                 Out := Out + NewLi
                 Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.obj : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c'  + NewLi
-                Out := Out + '	$(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+                Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
             Endif
         Next i
 
@@ -153,7 +153,7 @@ Procedure BuildLib( ProjectName )  // Borland C
 
     END SEQUENCE
 
-    QuitarEspera()      
+    QuitarEspera()
 
     main.Tab_1.value := 7
 

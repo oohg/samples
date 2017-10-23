@@ -310,11 +310,11 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
    nMin := nMax / nMaxBar
 
    // First point
-   nPos := nLeft + ( ( nWide + nSep ) / 2 )            
+   nPos := nLeft + ( ( nWide + nSep ) / 2 )
    nRange := ( ( nWide + nSep ) * Len( aSeries ) ) / 2
 
    // Show Y labels
-   IF lYVal .AND. Len( aYVals ) > 0                
+   IF lYVal .AND. Len( aYVals ) > 0
       nWideB  := ( nRight - nLeft ) / ( nMax( aData ) + 1 )
       nI := nLeft + nWideB
       FOR nJ := 1 TO nMax( aData )

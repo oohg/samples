@@ -35,16 +35,16 @@ Function main()
 Return NIL
 
 *------------------------------------------------------------------------------*
-Function CreateZip()  
+Function CreateZip()
 *------------------------------------------------------------------------------*
 local aDir:=Directory("*.txt")
 local afiles:={}
 Local x
 local nLen
 
-	For x:=1 to len(aDir)
-	    aadd(afiles,adir[x,1])
-	next
+   For x:=1 to len(aDir)
+       aadd(afiles,adir[x,1])
+   next
 
     COMPRESSFILES("ziptest.zip", afiles, {|cFile,nPos| ProgressUpdate( nPos,cFile ) } , .T. )
 
@@ -54,12 +54,12 @@ Return nil
 function ProgressUpdate(nPos , cFile )
 *------------------------------------------------------------------------------*
 
-	Form_1.Progress_1.Value := nPos
-	Form_1.Label_1.Value := cFile
+   Form_1.Progress_1.Value := nPos
+   Form_1.Label_1.Value := cFile
 
 Return Nil
 *------------------------------------------------------------------------------*
-Function UnPackZip() 
+Function UnPackZip()
 *------------------------------------------------------------------------------*
 
     UNCOMPRESSFILES( "ziptest.zip", {|cFile,nPos| ProgressUpdate( nPos,cFile ) } )
@@ -73,25 +73,25 @@ PROCEDURE COMPRESSFILES ( cFileName , aDir , bBlock , lOvr )
 * Based upon HBMZIP Harbour contribution library samples.
 LOCAL hZip , i , cPassword
 
-	if valtype (lOvr) == 'L'
-		if lOvr == .t.
-			if file (cFileName)
-				delete file (cFileName)
-			endif
-		endif
-	endif
+   if valtype (lOvr) == 'L'
+      if lOvr == .t.
+         if file (cFileName)
+            delete file (cFileName)
+         endif
+      endif
+   endif
 
-	hZip := HB_ZIPOPEN( cFileName )
-	IF ! EMPTY( hZip )
-		FOR i := 1 To Len (aDir)
-			if valtype (bBlock) == 'B'
-				Eval ( bBlock , aDir [i] , i )     
-			endif
-			HB_ZipStoreFile( hZip, aDir [ i ], aDir [ i ] , cPassword )
-		NEXT
-	ENDIF
+   hZip := HB_ZIPOPEN( cFileName )
+   IF ! EMPTY( hZip )
+      FOR i := 1 To Len (aDir)
+         if valtype (bBlock) == 'B'
+            Eval ( bBlock , aDir [i] , i )
+         endif
+         HB_ZipStoreFile( hZip, aDir [ i ], aDir [ i ] , cPassword )
+      NEXT
+   ENDIF
 
-	HB_ZIPCLOSE( hZip )
+   HB_ZIPCLOSE( hZip )
 
 RETURN
 
@@ -101,25 +101,25 @@ PROCEDURE UNCOMPRESSFILES ( cFileName , bBlock )
 * Based upon HBMZIP Harbour contribution library samples.
 Local i := 0 , hUnzip , nErr, cFile, dDate, cTime, nSize, nCompSize , f
 
-	hUnzip := HB_UNZIPOPEN( cFileName )
+   hUnzip := HB_UNZIPOPEN( cFileName )
 
-	nErr := HB_UNZIPFILEFIRST( hUnzip )
+   nErr := HB_UNZIPFILEFIRST( hUnzip )
 
-	DO WHILE nErr == 0
+   DO WHILE nErr == 0
 
-		HB_UnzipFileInfo( hUnzip, @cFile, @dDate, @cTime,,,, @nSize, @nCompSize )
+      HB_UnzipFileInfo( hUnzip, @cFile, @dDate, @cTime,,,, @nSize, @nCompSize )
 
-		i++
-		if valtype (bBlock) = 'B'
-			Eval ( bBlock , cFile , i )     
-		endif
+      i++
+      if valtype (bBlock) = 'B'
+         Eval ( bBlock , cFile , i )
+      endif
 
-		HB_UnzipExtractCurrentFile( hUnzip, NIL, NIL )
+      HB_UnzipExtractCurrentFile( hUnzip, NIL, NIL )
 
-		nErr := HB_UNZIPFILENEXT( hUnzip )
+      nErr := HB_UNZIPFILENEXT( hUnzip )
 
-	ENDDO
+   ENDDO
 
-	HB_UNZIPCLOSE( hUnzip )
+   HB_UNZIPCLOSE( hUnzip )
 
 RETURN

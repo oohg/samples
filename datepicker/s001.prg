@@ -22,7 +22,7 @@ FUNCTION Main
 
   SET DATE BRITISH
 
-	DEFINE WINDOW Form_1 OBJ Ventana ;
+   DEFINE WINDOW Form_1 OBJ Ventana ;
       AT 0,0 ;
       WIDTH 600 HEIGHT 400 ;
       TITLE "ooHG DatePicker Demo" ;
@@ -89,11 +89,11 @@ FUNCTION Main
       HEIGHT 28
 
       ON KEY ESCAPE ACTION Form_1.Release
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_1
+   CENTER WINDOW Form_1
 
-	ACTIVATE WINDOW Form_1
+   ACTIVATE WINDOW Form_1
 
 RETURN NIL
 

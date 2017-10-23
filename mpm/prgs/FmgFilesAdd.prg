@@ -63,15 +63,15 @@ Function GetFmgFiles()
 
          DEFINE LISTBOX List_fmg
             ITEMS aFiles
-            ROW	20
-            COL	20
+            ROW   20
+            COL   20
             WIDTH 490
             HEIGHT 284
             FONTNAME "Segoe UI"
             ONGOTFOCUS This.BackColor := {211,237,250}
             ONLOSTFOCUS This.BackColor := {255,255,225}
             BACKCOLOR {255,255,225}
-            MULTISELECT	.T.
+            MULTISELECT   .T.
          END LISTBOX
 
          DEFINE BUTTON ALL

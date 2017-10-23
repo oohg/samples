@@ -3,12 +3,12 @@
 
 FUNCTION Main
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 240 HEIGHT 400 ;
-		TITLE "oohg label Demo" ;
-		MAIN ;
-		FONT "Arial" SIZE 10 ;
+   DEFINE WINDOW Form_1 ;
+      AT 0,0 ;
+      WIDTH 240 HEIGHT 400 ;
+      TITLE "oohg label Demo" ;
+      MAIN ;
+      FONT "Arial" SIZE 10 ;
       BACKCOLOR YELLOW
 
       ON KEY ESCAPE ACTION ThisWindow.Release()
@@ -30,11 +30,11 @@ FUNCTION Main
          WIDTH 200 ;
          TOOLTIP "Label 3 RightAlign"
 
-   	@ 110,10 LABEL Label_4 ;
-   		VALUE "Label_4" ;
-   		WIDTH 200 ;
-   		TRANSPARENT ;
-   		TOOLTIP "Label 4 Transparent" ;
+      @ 110,10 LABEL Label_4 ;
+         VALUE "Label_4" ;
+         WIDTH 200 ;
+         TRANSPARENT ;
+         TOOLTIP "Label 4 Transparent" ;
          ON CLICK AutoMsgBox( "Label_4 clicked !!!" )
 
       @ 140,10 LABEL Label_5 ;
@@ -82,9 +82,9 @@ FUNCTION Main
          CLIENTEDGE ;
          VCENTERALIGN
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_1
-	ACTIVATE WINDOW Form_1
+   CENTER WINDOW Form_1
+   ACTIVATE WINDOW Form_1
 
 RETURN Nil

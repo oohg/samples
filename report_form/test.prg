@@ -96,7 +96,7 @@ Function PrintNormal1()
 go top
 
 DO REPORT  ;
-  TITLE 'PRUEBA1|REPORTE DE PRUEBA'   ;  
+  TITLE 'PRUEBA1|REPORTE DE PRUEBA'   ;
   HEADERS {' ',' ',' '} ,  {'CODE','FIRST','LAST'}  ;
   FIELDS {'code','first','last'}                    ;
   WIDTHS {10 , 30 , 19}                                  ;
@@ -109,7 +109,7 @@ DO REPORT  ;
   PREVIEW                                            ;
   SELECT                                             ;
   GROUPED BY 'GROUP'                                  ;
-  HEADRGRP 'Group Field'  
+  HEADRGRP 'Group Field'
 
 return nil
 

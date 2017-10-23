@@ -3,12 +3,12 @@
 
 FUNCTION Main
 
-	DEFINE WINDOW Form_1 OBJ oWin ;
-		AT 0,0 ;
-		WIDTH 330 HEIGHT 200 ;
-		TITLE "OOHG Label Demo" ;
-		MAIN
-		
+   DEFINE WINDOW Form_1 OBJ oWin ;
+      AT 0,0 ;
+      WIDTH 330 HEIGHT 200 ;
+      TITLE "OOHG Label Demo" ;
+      MAIN
+
       @ 20,20 LABEL lbl OBJ oLbl ;
          VALUE "When mouse hovers me you must see a hand cursor" ;
          WIDTH 200 ;
@@ -32,10 +32,10 @@ FUNCTION Main
       Form_1.lbl.OnClick()
 
       ON KEY ESCAPE ACTION Form_1.Release
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_1
-	ACTIVATE WINDOW Form_1
+   CENTER WINDOW Form_1
+   ACTIVATE WINDOW Form_1
 
 RETURN NIL
 

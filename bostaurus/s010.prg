@@ -134,7 +134,7 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
    hBitmap := BT_BitmapClone( hBitmap_Source )
 
    DO CASE
-   CASE nEffect == 1 
+   CASE nEffect == 1
       BT_BitmapInvert( hBitmap )
    CASE nEffect == 2
       BT_BitmapGrayness( hBitmap, 100 )
@@ -343,7 +343,7 @@ Return aFILTER[ index ]
 #define BT_Kernel3x3Filter_26                        { -1, -1,  0, -1,        0,  1,  0,  1,  1,           0, 128 } // SOUTH_EAST
 #define BT_Kernel3x3Filter_27                        {  0, -1, -1,  1,        0, -1,  1,  1,  0,           0, 128 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_28                        {  1,  0, -1,  1,        0, -1,  1,  0, -1,           0, 128 } // WEST
- 
+
 // BLUR
 #define BT_Kernel3x3Filter_29                        {  0,  1,  0,  0,        1,  0,  0,  1,  0,           3,   0 } // VERTICAL
 #define BT_Kernel3x3Filter_30                        {  0,  0,  0,  1,        1,  1,  0,  0,  0,           3,   0 } // HORIZONTAL

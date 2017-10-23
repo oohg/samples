@@ -17,7 +17,7 @@ FUNCTION Main
    LOCAL oGrid
 
    SET AUTOADJUST ON
-   
+
    DEFINE WINDOW Form_1 ;
       AT 0, 0 ;
       CLIENTAREA ;

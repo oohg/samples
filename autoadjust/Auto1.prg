@@ -11,7 +11,7 @@
 Function Main()
 *------------------------------------------------------*
    SET AUTOADJUST ON
-   
+
    msginfo("Test de autoajuste, se ajusta posicion, ancho y font","Informacion")
 
 

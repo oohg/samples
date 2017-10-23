@@ -7,7 +7,7 @@
 Procedure AddCfiles
 *---------------------------------------------------------------------*
    Local Files , x , i , Exists
-   
+
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
 
@@ -48,7 +48,7 @@ Function GetCFiles()
      Aeval( aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]} )
 
      If Len(aFiles)>0
-     
+
         aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
 
         DEFINE WINDOW GetCFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select C Files' ;
@@ -64,15 +64,15 @@ Function GetCFiles()
 
          DEFINE LISTBOX List_C
             ITEMS aFiles
-            ROW	20
-            COL	20
+            ROW   20
+            COL   20
             WIDTH 490
             HEIGHT 284
             FONTNAME "Segoe UI"
             ONGOTFOCUS This.BackColor := {211,237,250}
             ONLOSTFOCUS This.BackColor := {255,255,225}
             BACKCOLOR {255,255,225}
-            MULTISELECT	.T.
+            MULTISELECT   .T.
          END LISTBOX
 
          DEFINE BUTTON ALL
@@ -134,7 +134,7 @@ Function GetCFilesOk( aFiles , aSelected )
       aNew := aFiles
    Else
       For i := 1 To Len ( aSelected )
-          DO EVENTS      
+          DO EVENTS
           aadd ( aNew , aFiles [ aSelected [i] ] )
       Next i
    Endif

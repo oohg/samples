@@ -51,7 +51,7 @@ Function GetLibFiles()
      aFiles :=DIRECTORY(cDirNew + "\" +"*.Lib")
      AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
    Endif
-   
+
      If Len(aFiles)>0
 
         aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
@@ -69,15 +69,15 @@ Function GetLibFiles()
 
          DEFINE LISTBOX List_Lib
             ITEMS aFiles
-            ROW	20
-            COL	20
+            ROW   20
+            COL   20
             WIDTH 490
             HEIGHT 284
             FONTNAME "Segoe UI"
             ONGOTFOCUS This.BackColor := {211,237,250}
             ONLOSTFOCUS This.BackColor := {255,255,225}
             BACKCOLOR {255,255,225}
-            MULTISELECT	.T.
+            MULTISELECT   .T.
          END LISTBOX
 
          DEFINE BUTTON ALL
@@ -106,7 +106,7 @@ Function GetLibFiles()
             CAPTION "Cancel"
             ONCLICK  ( RetVal := {} , GetLibFiles.Release )
          END BUTTON
-         
+
      DEFINE LABEL Label_1
             ROW    315
             COL    40
@@ -139,7 +139,7 @@ Function GetLibFilesOk( aFiles , aSelected )
       aNew := aFiles
    Else
       For i := 1 To Len ( aSelected )
-          DO EVENTS      
+          DO EVENTS
           aadd ( aNew , aFiles [ aSelected [i] ] )
       Next i
    Endif

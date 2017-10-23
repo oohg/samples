@@ -1024,39 +1024,39 @@ Procedure ExportData()
 
                 MsgInfo(cSaveFile,PROGRAM)
 
-		cSaveFile := IF( ( AT( ".", cSaveFile ) > 0 ), cSaveFile, ( cSaveFile + "." + IF( Empty(cExt), "dbf", cExt ) ) )
+      cSaveFile := IF( ( AT( ".", cSaveFile ) > 0 ), cSaveFile, ( cSaveFile + "." + IF( Empty(cExt), "dbf", cExt ) ) )
 
-		IF File( cSaveFile )
-			IF !MsgYesNo( cSaveFile + " already exists." + CRLF + ;
-				"Overwrite existing file?" )
-				Return
-			ENDIF
- 		ENDIF
+      IF File( cSaveFile )
+         IF !MsgYesNo( cSaveFile + " already exists." + CRLF + ;
+            "Overwrite existing file?" )
+            Return
+         ENDIF
+       ENDIF
 
-		nRecno := ( Alias() )->( Recno() )
-		( Alias() )->( DBGoTop() )
+      nRecno := ( Alias() )->( Recno() )
+      ( Alias() )->( DBGoTop() )
 
-		IF nIndex = 2 .OR. nIndex = 3
-			( Alias() )->( __dbSDF(.T.,(cSaveFile),{ },,,,,.F. ) )
-		ELSEIF nIndex = 4
-			SaveToXls( ( Alias() ), cSaveFile )
-		ELSEIF nIndex = 5
-			SaveToPrg( ( Alias() ), cSaveFile )
-		ELSEIF nIndex = 6
+      IF nIndex = 2 .OR. nIndex = 3
+         ( Alias() )->( __dbSDF(.T.,(cSaveFile),{ },,,,,.F. ) )
+      ELSEIF nIndex = 4
+         SaveToXls( ( Alias() ), cSaveFile )
+      ELSEIF nIndex = 5
+         SaveToPrg( ( Alias() ), cSaveFile )
+      ELSEIF nIndex = 6
                         COPY TO (cSaveFile) DELIMITED WITH ( { , ";" } )
-		ELSEIF nIndex = 7
-			Convert2Sql( ( Alias() ), cSaveFile )
-		ELSEIF nIndex = 8
-			dbf2html( cSaveFile )
-		ELSEIF nIndex = 9
-			dbf2xml( ( Alias() ), cSaveFile )
-		ELSE
-			( Alias() )->( __dbCopy((cSaveFile),{ },,,,,.F.,) )
-		ENDIF
+      ELSEIF nIndex = 7
+         Convert2Sql( ( Alias() ), cSaveFile )
+      ELSEIF nIndex = 8
+         dbf2html( cSaveFile )
+      ELSEIF nIndex = 9
+         dbf2xml( ( Alias() ), cSaveFile )
+      ELSE
+         ( Alias() )->( __dbCopy((cSaveFile),{ },,,,,.F.,) )
+      ENDIF
 
-		( Alias() )->( DBGoto(nRecno) )
+      ( Alias() )->( DBGoto(nRecno) )
 
-	ENDIF
+   ENDIF
 
    Endif
 
@@ -1103,23 +1103,23 @@ Procedure SaveToXls( cAlias, cFile )
            ENDIF
 //        ENDIF
 
-	oExcel:Visible := .F.
-	oExcel:WorkBooks:Add()
-	oSheet := oExcel:ActiveSheet
+   oExcel:Visible := .F.
+   oExcel:WorkBooks:Add()
+   oSheet := oExcel:ActiveSheet
 
-	Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| oSheet:Cells( nCell, i ):Value := e[DBS_NAME] } )
-	do while !(cAlias)->( EoF() )
-		nCell++
-		aColumns := (cAlias)->( Scatter() )
-		aEval( aColumns, { |e,i| oSheet:Cells( nCell, i ):Value := e } )
-		(cAlias)->( DBskip() )
-	enddo
+   Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| oSheet:Cells( nCell, i ):Value := e[DBS_NAME] } )
+   do while !(cAlias)->( EoF() )
+      nCell++
+      aColumns := (cAlias)->( Scatter() )
+      aEval( aColumns, { |e,i| oSheet:Cells( nCell, i ):Value := e } )
+      (cAlias)->( DBskip() )
+   enddo
 
-	oBook := oExcel:ActiveWorkBook
-	oBook:Title   := cAlias
-	oBook:Subject := cAlias
-	oBook:SaveAs(cFile)
-	oExcel:Quit()
+   oBook := oExcel:ActiveWorkBook
+   oBook:Title   := cAlias
+   oBook:Subject := cAlias
+   oBook:SaveAs(cFile)
+   oExcel:Quit()
 
    Endif
 
@@ -1135,18 +1135,18 @@ Procedure SaveToPrg( cAlias, cFile )
 
    If !Empty( Alias() )
 
-	fWriteLn(handle, "*-------------------------------------------------*")
-	fWriteLn(handle, " PROCEDURE MAKE_DataBase()")
-	fWriteLn(handle, "*-------------------------------------------------*")
+   fWriteLn(handle, "*-------------------------------------------------*")
+   fWriteLn(handle, " PROCEDURE MAKE_DataBase()")
+   fWriteLn(handle, "*-------------------------------------------------*")
 
-	fWriteLn(handle, ' DBCREATE ("' + SubStr(cAlias, 1, RAT("_", cAlias) - 1) + '", {;')
+   fWriteLn(handle, ' DBCREATE ("' + SubStr(cAlias, 1, RAT("_", cAlias) - 1) + '", {;')
 
-	Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| fWriteLn( handle, ;
-		Chr(9) + '{ ' + padr('"' + e[DBS_NAME] + '",', 14) + '"' + Trim(e[DBS_TYPE]) + '",' + Str(e[DBS_LEN], 4) + ',' + Str(e[DBS_DEC], 3) + ;
-		if(i < nLen, ' },;', ' }}, "'+( cAlias )->( RDDNAME() ) +'")') ) } )
+   Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| fWriteLn( handle, ;
+      Chr(9) + '{ ' + padr('"' + e[DBS_NAME] + '",', 14) + '"' + Trim(e[DBS_TYPE]) + '",' + Str(e[DBS_LEN], 4) + ',' + Str(e[DBS_DEC], 3) + ;
+      if(i < nLen, ' },;', ' }}, "'+( cAlias )->( RDDNAME() ) +'")') ) } )
 
-	fWriteLn(handle, " RETURN")
-	fClose(handle)
+   fWriteLn(handle, " RETURN")
+   fClose(handle)
 
    Endif
 
@@ -1182,34 +1182,34 @@ Procedure PrintList()
 
     If !Empty( cBase )
 
-	aeval(aLen, {|e,i| aLen[i] := e/9})
+   aeval(aLen, {|e,i| aLen[i] := e/9})
 
-	aHdr1 := array(len(aHdr))
-	aTot  := array(len(aHdr))
-	aFmt  := array(len(aHdr))
-	afill(aHdr1, '')
-	afill(aTot, .f.)
-	afill(aFmt, '')
+   aHdr1 := array(len(aHdr))
+   aTot  := array(len(aHdr))
+   aFmt  := array(len(aHdr))
+   afill(aHdr1, '')
+   afill(aTot, .f.)
+   afill(aFmt, '')
 
-	set deleted on
+   set deleted on
 
-	( Alias() )->( dbgotop() )
+   ( Alias() )->( dbgotop() )
 
-	DO REPORT ;
-		TITLE    cBase                    ;
-		HEADERS  aHdr1, aHdr              ;
-		FIELDS   aHdr                     ;
-		WIDTHS   aLen                     ;
-		TOTALS   aTot                     ;
-		NFORMATS aFmt                     ;
-		WORKAREA &cBase                   ;
+   DO REPORT ;
+      TITLE    cBase                    ;
+      HEADERS  aHdr1, aHdr              ;
+      FIELDS   aHdr                     ;
+      WIDTHS   aLen                     ;
+      TOTALS   aTot                     ;
+      NFORMATS aFmt                     ;
+      WORKAREA &cBase                   ;
                 LPP 60                            ;
                 CPL 120                           ;
                 LMARGIN  5                        ;
-		PAPERSIZE DMPAPER_LETTER          ;
-		PREVIEW
+      PAPERSIZE DMPAPER_LETTER          ;
+      PREVIEW
 
-	Set Deleted off
+   Set Deleted off
 
     Endif
 
@@ -1326,95 +1326,95 @@ Procedure DBQuery()
 
 
    If !Empty( ( Alias() ) )
-	cDBFile := cFileNoPath(dbf())
-	cAlias := Alias()
-	IF !Empty(( Alias() )->( DbFilter() ))
-		( Alias() )->( DbClearFilter() )
-	ENDIF
-	aEval(( Alias() )->( DBStruct() ), {|e| aAdd(aFlds_, e[DBS_NAME]) } )
-	aAdd(aFlds_, "Deleted()") // Add this as if it were a logical field!
+   cDBFile := cFileNoPath(dbf())
+   cAlias := Alias()
+   IF !Empty(( Alias() )->( DbFilter() ))
+      ( Alias() )->( DbClearFilter() )
+   ENDIF
+   aEval(( Alias() )->( DBStruct() ), {|e| aAdd(aFlds_, e[DBS_NAME]) } )
+   aAdd(aFlds_, "Deleted()") // Add this as if it were a logical field!
 
-	cField := aFlds_[1]
-	cComp := aComp_[1]
+   cField := aFlds_[1]
+   cComp := aComp_[1]
 
-	DEFINE WINDOW Form_Query ;
-		AT 0, 0 WIDTH 570 HEIGHT 305 ;
-		TITLE PROGRAM+VERSION+"- Query" ;
-		ICON 'MAIN1' ;
-		MODAL ;
-		ON INIT ( Form_Query.List_1.Setfocus, cType := GetType(cField, aFlds_, @cChar), ;
-			Form_Query.Text_1.Enabled := ( cType == "C" ), ;
-			Form_Query.Text_2.Enabled := ( cType == "N" ), ;
-			Form_Query.Date_1.Enabled := ( cType == "D" ), ;
-			Form_Query.Combo_1.Enabled := ( cType == "L" ) ) ;
-		FONT "MS Sans Serif" ;
-		SIZE 8
+   DEFINE WINDOW Form_Query ;
+      AT 0, 0 WIDTH 570 HEIGHT 305 ;
+      TITLE PROGRAM+VERSION+"- Query" ;
+      ICON 'MAIN1' ;
+      MODAL ;
+      ON INIT ( Form_Query.List_1.Setfocus, cType := GetType(cField, aFlds_, @cChar), ;
+         Form_Query.Text_1.Enabled := ( cType == "C" ), ;
+         Form_Query.Text_2.Enabled := ( cType == "N" ), ;
+         Form_Query.Date_1.Enabled := ( cType == "D" ), ;
+         Form_Query.Combo_1.Enabled := ( cType == "L" ) ) ;
+      FONT "MS Sans Serif" ;
+      SIZE 8
 
 
-	    DEFINE FRAME Frame_1
+       DEFINE FRAME Frame_1
             ROW    10
             COL    260
             WIDTH  290
             HEIGHT 135
             CAPTION "Value"
             OPAQUE .T.
-	    END FRAME
+       END FRAME
 
-	    DEFINE LABEL Label_1
+       DEFINE LABEL Label_1
             ROW    30
             COL    270
             WIDTH  60
             HEIGHT 20
             VALUE "Character"+":"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LABEL Label_2
+       DEFINE LABEL Label_2
             ROW    60
             COL    270
             WIDTH  60
             HEIGHT 20
             VALUE "Numeric"+":"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LABEL Label_3
+       DEFINE LABEL Label_3
             ROW    90
             COL    270
             WIDTH  60
             HEIGHT 20
             VALUE "Date"+":"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LABEL Label_4
+       DEFINE LABEL Label_4
             ROW    120
             COL    270
             WIDTH  60
             HEIGHT 20
             VALUE "Logical"+":"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LABEL Label_5
+       DEFINE LABEL Label_5
             ROW    6
             COL    12
             WIDTH  80
             HEIGHT 16
             VALUE "Field"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LABEL Label_6
+       DEFINE LABEL Label_6
             ROW    6
             COL    134
             WIDTH  120
             HEIGHT 16
             VALUE "Comparison"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE LISTBOX List_1
+       DEFINE LISTBOX List_1
             ROW    20
             COL    10
             WIDTH  114
@@ -1422,18 +1422,18 @@ Procedure DBQuery()
             ITEMS aFlds_
             VALUE 1
             ONCHANGE ( cField := aFlds_[This.Value], cType := GetType(cField, aFlds_, @cChar), ;
-			Form_Query.Text_1.Enabled := ( cType == "C" ), ;
-			Form_Query.Text_2.Enabled := ( cType == "N" ), ;
-			Form_Query.Date_1.Enabled := ( cType == "D" ), ;
-			Form_Query.Combo_1.Enabled := ( cType == "L" ) )
+         Form_Query.Text_1.Enabled := ( cType == "C" ), ;
+         Form_Query.Text_2.Enabled := ( cType == "N" ), ;
+         Form_Query.Date_1.Enabled := ( cType == "D" ), ;
+         Form_Query.Combo_1.Enabled := ( cType == "L" ) )
             ONDBLCLICK Form_Query.Button_1.OnClick
             TABSTOP .T.
             VISIBLE .T.
             SORT .F.
             MULTISELECT .F.
-	    END LISTBOX
+       END LISTBOX
 
-	    DEFINE LISTBOX List_2
+       DEFINE LISTBOX List_2
             ROW    20
             COL    132
             WIDTH  118
@@ -1447,35 +1447,35 @@ Procedure DBQuery()
             VISIBLE .T.
             SORT .F.
             MULTISELECT .F.
-	    END LISTBOX
+       END LISTBOX
 
-	    DEFINE EDITBOX Edit_1
+       DEFINE EDITBOX Edit_1
             ROW    170
             COL    10
             WIDTH  240
             HEIGHT 100
             VALUE ""
             ONCHANGE ( cExpr := This.Value, ;
-		Form_Query.Button_2.Enabled := ( !empty(cExpr) ), ;
-		Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
-		Form_Query.Button_10.Enabled := ( !empty(cExpr) ) )
+      Form_Query.Button_2.Enabled := ( !empty(cExpr) ), ;
+      Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
+      Form_Query.Button_10.Enabled := ( !empty(cExpr) ) )
             ONGOTFOCUS Nil
             ONLOSTFOCUS Nil
             FONTBOLD .T.
             TABSTOP .T.
             VISIBLE .T.
-	    END EDITBOX
+       END EDITBOX
 
-	    DEFINE LABEL Label_7
+       DEFINE LABEL Label_7
             ROW    154
             COL    12
             WIDTH  100
             HEIGHT 16
             VALUE "Query expression"+":"
             VISIBLE .T.
-	    END LABEL
+       END LABEL
 
-	    DEFINE TEXTBOX Text_1
+       DEFINE TEXTBOX Text_1
             ROW    26
             COL    340
             WIDTH  200
@@ -1487,207 +1487,207 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
             VALUE cChar
-	    END TEXTBOX
+       END TEXTBOX
 
-	    DEFINE TEXTBOX Text_2
-		ROW    56
-		COL    340
-	        WIDTH  200
-		HEIGHT 24
-	        NUMERIC .T.
-		INPUTMASK "9999999.99"
-	        RIGHTALIGN .T.
-		MAXLENGTH 10
-	        ONCHANGE nNum := This.Value
-		ONGOTFOCUS Form_Query.Text_2.Enabled := ( cType == "N" )
-	        ONENTER ( Form_Query.Button_1.OnClick(), Form_Query.Button_8.Setfocus() )
-		FONTBOLD .T.
-	        TABSTOP .T.
-		VISIBLE .T.
-	        VALUE nNum
-	    END TEXTBOX
+       DEFINE TEXTBOX Text_2
+      ROW    56
+      COL    340
+           WIDTH  200
+      HEIGHT 24
+           NUMERIC .T.
+      INPUTMASK "9999999.99"
+           RIGHTALIGN .T.
+      MAXLENGTH 10
+           ONCHANGE nNum := This.Value
+      ONGOTFOCUS Form_Query.Text_2.Enabled := ( cType == "N" )
+           ONENTER ( Form_Query.Button_1.OnClick(), Form_Query.Button_8.Setfocus() )
+      FONTBOLD .T.
+           TABSTOP .T.
+      VISIBLE .T.
+           VALUE nNum
+       END TEXTBOX
 
             DEFINE DATEPICKER Date_1
-	        ROW    86
-		COL    340
-	        WIDTH  110
-		HEIGHT 24
-	        VALUE dDate
-		SHOWNONE .T.
-	        UPDOWN .T.
-		ONCHANGE dDate := This.Value
-	        ONGOTFOCUS Form_Query.Date_1.Enabled := ( cType == "D" )
-		FONTBOLD .T.
-	        TABSTOP .T.
-		VISIBLE .T.
+           ROW    86
+      COL    340
+           WIDTH  110
+      HEIGHT 24
+           VALUE dDate
+      SHOWNONE .T.
+           UPDOWN .T.
+      ONCHANGE dDate := This.Value
+           ONGOTFOCUS Form_Query.Date_1.Enabled := ( cType == "D" )
+      FONTBOLD .T.
+           TABSTOP .T.
+      VISIBLE .T.
             END DATEPICKER
 
-	    DEFINE COMBOBOX Combo_1
-	        ROW    116
-		COL    340
-	        WIDTH  110
-		HEIGHT 60
-	        ITEMS {"True (.T.)", "False (.F.)"}
-		VALUE nLog
-	        ONCHANGE nLog := This.Value
-		ONGOTFOCUS Form_Query.Combo_1.Enabled := ( cType == "L" )
-	        ONENTER ( Form_Query.Button_1.OnClick(), Form_Query.Button_8.Setfocus() )
-		FONTBOLD .T.
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END COMBOBOX
+       DEFINE COMBOBOX Combo_1
+           ROW    116
+      COL    340
+           WIDTH  110
+      HEIGHT 60
+           ITEMS {"True (.T.)", "False (.F.)"}
+      VALUE nLog
+           ONCHANGE nLog := This.Value
+      ONGOTFOCUS Form_Query.Combo_1.Enabled := ( cType == "L" )
+           ONENTER ( Form_Query.Button_1.OnClick(), Form_Query.Button_8.Setfocus() )
+      FONTBOLD .T.
+           TABSTOP .T.
+      VISIBLE .T.
+       END COMBOBOX
 
-	    DEFINE BUTTON Button_1
-	        ROW    156
-		COL    260
-	        WIDTH  136
-		HEIGHT 24
-	        CAPTION "Add"
-		ACTION IF( CheckComp(cType, cComp), ( AddExpr(@cExpr, aUndo_, cField, cComp, ;
-			iif(cType == "C", cChar, iif(cType == "N", nNum, ;
-			iif(cType == "D", dDate, (nLog == 1))))), ;
-			Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 ), ;
-			Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
-			Form_Query.Button_10.Enabled := ( !empty(cExpr) ) ), Form_Query.List_2.Setfocus )
-	        ONLOSTFOCUS Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 )
-		TABSTOP .T.
-	        VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_1
+           ROW    156
+      COL    260
+           WIDTH  136
+      HEIGHT 24
+           CAPTION "Add"
+      ACTION IF( CheckComp(cType, cComp), ( AddExpr(@cExpr, aUndo_, cField, cComp, ;
+         iif(cType == "C", cChar, iif(cType == "N", nNum, ;
+         iif(cType == "D", dDate, (nLog == 1))))), ;
+         Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 ), ;
+         Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
+         Form_Query.Button_10.Enabled := ( !empty(cExpr) ) ), Form_Query.List_2.Setfocus )
+           ONLOSTFOCUS Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 )
+      TABSTOP .T.
+           VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_2
-	        ROW    156
-		COL    414
-	        WIDTH  136
-		HEIGHT 24
-	        CAPTION "Undo"
-		ACTION ( Undo(@cExpr, aUndo_), ;
-			Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 ), ;
-			Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
-			Form_Query.Button_10.Enabled := ( !empty(cExpr) ) )
-	        ONLOSTFOCUS Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 )
-		TABSTOP .T.
-	        VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_2
+           ROW    156
+      COL    414
+           WIDTH  136
+      HEIGHT 24
+           CAPTION "Undo"
+      ACTION ( Undo(@cExpr, aUndo_), ;
+         Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 ), ;
+         Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
+         Form_Query.Button_10.Enabled := ( !empty(cExpr) ) )
+           ONLOSTFOCUS Form_Query.Button_2.Enabled := ( Len(aUndo_) > 0 )
+      TABSTOP .T.
+           VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_3
-		ROW    196
-	        COL    260
-		WIDTH  44
-	        HEIGHT 24
-		CAPTION ".and."
-	        ACTION AddText(@cExpr, aUndo_, ".and. ")
-		TABSTOP .T.
-	        VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_3
+      ROW    196
+           COL    260
+      WIDTH  44
+           HEIGHT 24
+      CAPTION ".and."
+           ACTION AddText(@cExpr, aUndo_, ".and. ")
+      TABSTOP .T.
+           VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_4
-	        ROW    196
-		COL    321
-	        WIDTH  44
-		HEIGHT 24
-	        CAPTION ".or."
-		ACTION AddText(@cExpr, aUndo_, ".or. ")
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_4
+           ROW    196
+      COL    321
+           WIDTH  44
+      HEIGHT 24
+           CAPTION ".or."
+      ACTION AddText(@cExpr, aUndo_, ".or. ")
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_5
-	        ROW    196
-		COL    383
-	        WIDTH  44
-		HEIGHT 24
-	        CAPTION ".not."
-		ACTION AddText(@cExpr, aUndo_, ".not. ")
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_5
+           ROW    196
+      COL    383
+           WIDTH  44
+      HEIGHT 24
+           CAPTION ".not."
+      ACTION AddText(@cExpr, aUndo_, ".not. ")
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_6
-	        ROW    196
-		COL    444
-	        WIDTH  44
-		HEIGHT 24
-	        CAPTION "("
-		ACTION AddText(@cExpr, aUndo_, "( ")
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_6
+           ROW    196
+      COL    444
+           WIDTH  44
+      HEIGHT 24
+           CAPTION "("
+      ACTION AddText(@cExpr, aUndo_, "( ")
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_7
-	        ROW    196
-		COL    505
-	        WIDTH  44
-		HEIGHT 24
-	        CAPTION ")"
-		ACTION AddText(@cExpr, aUndo_, " ) ")
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_7
+           ROW    196
+      COL    505
+           WIDTH  44
+      HEIGHT 24
+           CAPTION ")"
+      ACTION AddText(@cExpr, aUndo_, " ) ")
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_8
-	        ROW    236
-		COL    260
-	        WIDTH  62
-		HEIGHT 24
-	        CAPTION "Apply"
-		ACTION IF( RunQuery(cExpr), Action_B9(), )
-	        ONLOSTFOCUS Form_Query.Button_8.Enabled := ( !empty(cExpr) )
-		TABSTOP .T.
-	        VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_8
+           ROW    236
+      COL    260
+           WIDTH  62
+      HEIGHT 24
+           CAPTION "Apply"
+      ACTION IF( RunQuery(cExpr), Action_B9(), )
+           ONLOSTFOCUS Form_Query.Button_8.Enabled := ( !empty(cExpr) )
+      TABSTOP .T.
+           VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_9
-	        ROW    236
-		COL    336
-	        WIDTH  62
-		HEIGHT 24
-	        CAPTION "Close"
-		ACTION  Action_B9()
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_9
+           ROW    236
+      COL    336
+           WIDTH  62
+      HEIGHT 24
+           CAPTION "Close"
+      ACTION  Action_B9()
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_10
-	        ROW    236
-		COL    412
-	        WIDTH  62
-		HEIGHT 24
-	        CAPTION "Save"
-		ACTION SaveQuery(cExpr, aQuery_,( Alias() ))
-	        ONLOSTFOCUS Form_Query.Button_10.Enabled := ( !empty(cExpr) )
-		TABSTOP .T.
-	        VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_10
+           ROW    236
+      COL    412
+           WIDTH  62
+      HEIGHT 24
+           CAPTION "Save"
+      ACTION SaveQuery(cExpr, aQuery_,( Alias() ))
+           ONLOSTFOCUS Form_Query.Button_10.Enabled := ( !empty(cExpr) )
+      TABSTOP .T.
+           VISIBLE .T.
+       END BUTTON
 
-	    DEFINE BUTTON Button_11
-	        ROW    236
-		COL    488
-	        WIDTH  62
-		HEIGHT 24
-	        CAPTION "Load"
-		ACTION iif( LoadQuery(@cExpr, aQuery_,( Alias() )), ( aUndo_ := {}, ;
-			Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
-			Form_Query.Button_10.Enabled := ( !empty(cExpr) ) ), )
-	        TABSTOP .T.
-		VISIBLE .T.
-	    END BUTTON
+       DEFINE BUTTON Button_11
+           ROW    236
+      COL    488
+           WIDTH  62
+      HEIGHT 24
+           CAPTION "Load"
+      ACTION iif( LoadQuery(@cExpr, aQuery_,( Alias() )), ( aUndo_ := {}, ;
+         Form_Query.Button_8.Enabled := ( !empty(cExpr) ), ;
+         Form_Query.Button_10.Enabled := ( !empty(cExpr) ) ), )
+           TABSTOP .T.
+      VISIBLE .T.
+       END BUTTON
 
             ON KEY ESCAPE ACTION IF( CheckComp(cType, cComp), Form_Query.Button_9.OnClick, Form_Query.List_2.Setfocus )
 
-	END WINDOW
+   END WINDOW
 
-	Form_Query.Text_1.Enabled := .F.
-	Form_Query.Text_2.Enabled := .F.
-	Form_Query.Date_1.Enabled := .F.
-	Form_Query.Combo_1.Enabled := .F.
-	Form_Query.Button_2.Enabled := .F.
-	Form_Query.Button_8.Enabled := .F.
-	Form_Query.Button_10.Enabled := .F.
+   Form_Query.Text_1.Enabled := .F.
+   Form_Query.Text_2.Enabled := .F.
+   Form_Query.Date_1.Enabled := .F.
+   Form_Query.Combo_1.Enabled := .F.
+   Form_Query.Button_2.Enabled := .F.
+   Form_Query.Button_8.Enabled := .F.
+   Form_Query.Button_10.Enabled := .F.
 
-	CENTER WINDOW Form_Query
-	ACTIVATE WINDOW Form_Query
-	
-	Primero()
+   CENTER WINDOW Form_Query
+   ACTIVATE WINDOW Form_Query
+
+   Primero()
 
    ENDIF
 
@@ -1717,202 +1717,202 @@ Static Procedure Search_Replace( lReplace )
    DEFAULT lReplace := .f.
 
    IF !Empty( Alias() )
-	Private lFirstFind := .T., lFind := .T., cFind := "", cFindStr, cField, cAlias := Alias(), cReplStr, nCurRec
+   Private lFirstFind := .T., lFind := .T., cFind := "", cFindStr, cField, cAlias := Alias(), cReplStr, nCurRec
 
-	Aeval( ( Alias() )->( DBstruct(( Alias() )) ), {|e| Aadd(aColumns, e[1])})
+   Aeval( ( Alias() )->( DBstruct(( Alias() )) ), {|e| Aadd(aColumns, e[1])})
 
-	DEFINE WINDOW Form_Find ;
-		AT 0, 0 WIDTH 449 HEIGHT 222 ;
-		TITLE IF(lReplace, PROGRAM+VERSION+"- Replace", PROGRAM+VERSION+"- Search") ;
-		ICON 'MAIN1' ;
-		MODAL ;
-		ON INIT ( Form_Find.Combo_1.DisplayValue := "", Form_Find.Combo_2.DisplayValue := "", Form_Find.Combo_1.Setfocus ) ;
-		FONT "MS Sans Serif" ;
-		SIZE 8
+   DEFINE WINDOW Form_Find ;
+      AT 0, 0 WIDTH 449 HEIGHT 222 ;
+      TITLE IF(lReplace, PROGRAM+VERSION+"- Replace", PROGRAM+VERSION+"- Search") ;
+      ICON 'MAIN1' ;
+      MODAL ;
+      ON INIT ( Form_Find.Combo_1.DisplayValue := "", Form_Find.Combo_2.DisplayValue := "", Form_Find.Combo_1.Setfocus ) ;
+      FONT "MS Sans Serif" ;
+      SIZE 8
 
-		DEFINE LABEL Label_1
-	        ROW    10
-		COL    12
-	        WIDTH  60
-		HEIGHT 21
-	        VALUE "Table:"
-		VISIBLE .T.
-	        AUTOSIZE .F.
-		END LABEL
+      DEFINE LABEL Label_1
+           ROW    10
+      COL    12
+           WIDTH  60
+      HEIGHT 21
+           VALUE "Table:"
+      VISIBLE .T.
+           AUTOSIZE .F.
+      END LABEL
 
-		DEFINE LABEL Label_11
-	        ROW    10
-		COL    95
-	        WIDTH  240
-		HEIGHT 21
-	        VALUE ( Alias() )
-		VISIBLE .T.
-	        AUTOSIZE .F.
-		END LABEL
+      DEFINE LABEL Label_11
+           ROW    10
+      COL    95
+           WIDTH  240
+      HEIGHT 21
+           VALUE ( Alias() )
+      VISIBLE .T.
+           AUTOSIZE .F.
+      END LABEL
 
-		DEFINE LABEL Label_2
-	        ROW    36
-		COL    12
-	        WIDTH  60
-		HEIGHT 21
-	        VALUE "Look for:"
-		VISIBLE .T.
-	        AUTOSIZE .F.
-		END LABEL
+      DEFINE LABEL Label_2
+           ROW    36
+      COL    12
+           WIDTH  60
+      HEIGHT 21
+           VALUE "Look for:"
+      VISIBLE .T.
+           AUTOSIZE .F.
+      END LABEL
 
-		DEFINE COMBOBOX Combo_1
-			ROW	32
-			COL	95
-			ITEMS aSearch
-			VALUE nSearch
-			WIDTH 240
-			DISPLAYEDIT .T.
-			ON DISPLAYCHANGE ( lFirstFind := .T., Form_Find.Button_1.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) )
-			ON CHANGE ( lFirstFind := .T., Form_Find.Button_1.Enabled := .t. )
-			VISIBLE .T.
-		END COMBOBOX
+      DEFINE COMBOBOX Combo_1
+         ROW   32
+         COL   95
+         ITEMS aSearch
+         VALUE nSearch
+         WIDTH 240
+         DISPLAYEDIT .T.
+         ON DISPLAYCHANGE ( lFirstFind := .T., Form_Find.Button_1.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) )
+         ON CHANGE ( lFirstFind := .T., Form_Find.Button_1.Enabled := .t. )
+         VISIBLE .T.
+      END COMBOBOX
 
-		DEFINE LABEL Label_3
-	        ROW    62
-		COL    12
-	        WIDTH  80
-		HEIGHT 18
-	        VALUE "Replace with:"
-		VISIBLE lReplace
-	        AUTOSIZE .F.
-		END LABEL
+      DEFINE LABEL Label_3
+           ROW    62
+      COL    12
+           WIDTH  80
+      HEIGHT 18
+           VALUE "Replace with:"
+      VISIBLE lReplace
+           AUTOSIZE .F.
+      END LABEL
 
-		DEFINE COMBOBOX Combo_2
-			ROW	60
-			COL	95
-			ITEMS aReplace
-			VALUE nReplace
-			WIDTH 240
-			DISPLAYEDIT .T.
-			ON DISPLAYCHANGE ( Form_Find.Button_3.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) .AND. !Empty(Form_Find.Combo_2.DisplayValue), ;
-				Form_Find.Button_4.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) .AND. !Empty(Form_Find.Combo_2.DisplayValue) )
-			ON CHANGE ( Form_Find.Button_3.Enabled := .t., Form_Find.Button_4.Enabled := .t. )
-			VISIBLE lReplace
-		END COMBOBOX
+      DEFINE COMBOBOX Combo_2
+         ROW   60
+         COL   95
+         ITEMS aReplace
+         VALUE nReplace
+         WIDTH 240
+         DISPLAYEDIT .T.
+         ON DISPLAYCHANGE ( Form_Find.Button_3.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) .AND. !Empty(Form_Find.Combo_2.DisplayValue), ;
+            Form_Find.Button_4.Enabled := !Empty(Form_Find.Combo_1.DisplayValue) .AND. !Empty(Form_Find.Combo_2.DisplayValue) )
+         ON CHANGE ( Form_Find.Button_3.Enabled := .t., Form_Find.Button_4.Enabled := .t. )
+         VISIBLE lReplace
+      END COMBOBOX
 
-		DEFINE FRAME Frame_1
-	        ROW    92
-		COL    12
-	        WIDTH  98
-		HEIGHT 92
-		CAPTION "Direction"
-	        OPAQUE .T.
-		END FRAME
+      DEFINE FRAME Frame_1
+           ROW    92
+      COL    12
+           WIDTH  98
+      HEIGHT 92
+      CAPTION "Direction"
+           OPAQUE .T.
+      END FRAME
 
-		DEFINE RADIOGROUP Radio_1
-			ROW	104
-			COL	22
-			OPTIONS { "Forward" , "Backward" , "Entire scope" }
-			VALUE nDirect
-			WIDTH 82
-			ONCHANGE ( nDirect := This.Value, lFirstFind := .T. )
-			TABSTOP .T.
-		END RADIOGROUP
+      DEFINE RADIOGROUP Radio_1
+         ROW   104
+         COL   22
+         OPTIONS { "Forward" , "Backward" , "Entire scope" }
+         VALUE nDirect
+         WIDTH 82
+         ONCHANGE ( nDirect := This.Value, lFirstFind := .T. )
+         TABSTOP .T.
+      END RADIOGROUP
 
-		DEFINE LABEL Label_4
-	        ROW    100
-		COL    120
-	        WIDTH  100
-		HEIGHT 18
-	        VALUE "Search in column:"
-		VISIBLE .T.
-	        AUTOSIZE .F.
-		END LABEL
+      DEFINE LABEL Label_4
+           ROW    100
+      COL    120
+           WIDTH  100
+      HEIGHT 18
+           VALUE "Search in column:"
+      VISIBLE .T.
+           AUTOSIZE .F.
+      END LABEL
 
-		DEFINE COMBOBOX Combo_3
-			ROW	96
-			COL	215
-			ITEMS aColumns
-			VALUE nColumns
-			WIDTH 120
-			ON CHANGE lFirstFind := .T.
-		END COMBOBOX
+      DEFINE COMBOBOX Combo_3
+         ROW   96
+         COL   215
+         ITEMS aColumns
+         VALUE nColumns
+         WIDTH 120
+         ON CHANGE lFirstFind := .T.
+      END COMBOBOX
 
-		DEFINE CHECKBOX Check_1
-			ROW	130
-			COL	120
-			WIDTH  260
-			CAPTION "Match &case"
-			VALUE lMatchCase
-			ON CHANGE lFirstFind := .T.
-		END CHECKBOX
+      DEFINE CHECKBOX Check_1
+         ROW   130
+         COL   120
+         WIDTH  260
+         CAPTION "Match &case"
+         VALUE lMatchCase
+         ON CHANGE lFirstFind := .T.
+      END CHECKBOX
 
-		DEFINE CHECKBOX Check_2
-			ROW	154
-			COL	120
-			WIDTH  260
-			CAPTION "Match &whole word only"
-			VALUE lMatchWhole
-			ON CHANGE lFirstFind := .T.
-		END CHECKBOX
+      DEFINE CHECKBOX Check_2
+         ROW   154
+         COL   120
+         WIDTH  260
+         CAPTION "Match &whole word only"
+         VALUE lMatchWhole
+         ON CHANGE lFirstFind := .T.
+      END CHECKBOX
 
-		DEFINE BUTTON Button_1
-	        ROW    10
-		COL    350
-	        WIDTH  80
-		HEIGHT 24
-	        CAPTION "&Find Next"
-		ACTION FindNext(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_3.Value, ; //MigSoft
-			Form_Find.Check_1.Value, Form_Find.Check_2.Value)
-	        TABSTOP .T.
-		VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_1
+           ROW    10
+      COL    350
+           WIDTH  80
+      HEIGHT 24
+           CAPTION "&Find Next"
+      ACTION FindNext(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_3.Value, ; //MigSoft
+         Form_Find.Check_1.Value, Form_Find.Check_2.Value)
+           TABSTOP .T.
+      VISIBLE .T.
+      END BUTTON
 
-		DEFINE BUTTON Button_2
-	        ROW    40
-	        COL    350
-		WIDTH  80
-	        HEIGHT 24
-		CAPTION "&Close"
-	        ACTION ( ThisWindow.Release,(cAlias)->( RecNo() ) )
-		TABSTOP .T.
-	        VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_2
+           ROW    40
+           COL    350
+      WIDTH  80
+           HEIGHT 24
+      CAPTION "&Close"
+           ACTION ( ThisWindow.Release,(cAlias)->( RecNo() ) )
+      TABSTOP .T.
+           VISIBLE .T.
+      END BUTTON
 
-		DEFINE BUTTON Button_3
-	        ROW    70
-		COL    350
-	        WIDTH  80
-		HEIGHT 24
-	        CAPTION IF(lReplace, "&"+"Replace", "&Replace...")
-		ACTION IF(lReplace, DoReplace(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_2.DisplayValue, ;
-			Form_Find.Combo_3.Value, Form_Find.Check_1.Value, Form_Find.Check_2.Value), ;
-			( Form_Find.Button_3.Caption := "&"+"Replace", Form_Find.Button_3.Enabled := .f., ;
-			Form_Find.Button_4.Visible := .t., Form_Find.Button_4.Enabled := .f., Form_Find.Label_3.Visible := .t., ;
-			Form_Find.Combo_2.Visible := .t., ThisWindow.Title := PROGRAM+VERSION+"- Replace", Form_Find.Combo_1.Setfocus, lReplace := .t. ))
-	        TABSTOP .T.
-		VISIBLE .T.
-		END BUTTON
+      DEFINE BUTTON Button_3
+           ROW    70
+      COL    350
+           WIDTH  80
+      HEIGHT 24
+           CAPTION IF(lReplace, "&"+"Replace", "&Replace...")
+      ACTION IF(lReplace, DoReplace(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_2.DisplayValue, ;
+         Form_Find.Combo_3.Value, Form_Find.Check_1.Value, Form_Find.Check_2.Value), ;
+         ( Form_Find.Button_3.Caption := "&"+"Replace", Form_Find.Button_3.Enabled := .f., ;
+         Form_Find.Button_4.Visible := .t., Form_Find.Button_4.Enabled := .f., Form_Find.Label_3.Visible := .t., ;
+         Form_Find.Combo_2.Visible := .t., ThisWindow.Title := PROGRAM+VERSION+"- Replace", Form_Find.Combo_1.Setfocus, lReplace := .t. ))
+           TABSTOP .T.
+      VISIBLE .T.
+      END BUTTON
 
-		DEFINE BUTTON Button_4
-	        ROW    100
-		COL    350
-	        WIDTH  80
-		HEIGHT 24
-	        CAPTION "Replace &All"
-		ACTION DoReplace(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_2.DisplayValue, ;
-			Form_Find.Combo_3.Value, Form_Find.Check_1.Value, Form_Find.Check_2.Value, .t.)
-	        TABSTOP .T.
-		VISIBLE lReplace
-		END BUTTON
+      DEFINE BUTTON Button_4
+           ROW    100
+      COL    350
+           WIDTH  80
+      HEIGHT 24
+           CAPTION "Replace &All"
+      ACTION DoReplace(Form_Find.Combo_1.DisplayValue, Form_Find.Combo_2.DisplayValue, ;
+         Form_Find.Combo_3.Value, Form_Find.Check_1.Value, Form_Find.Check_2.Value, .t.)
+           TABSTOP .T.
+      VISIBLE lReplace
+      END BUTTON
 
-		ON KEY RETURN ACTION IF(lReplace, Form_Find.Button_3.OnClick, Form_Find.Button_1.OnClick )
-		ON KEY ESCAPE ACTION Form_Find.Button_2.OnClick
+      ON KEY RETURN ACTION IF(lReplace, Form_Find.Button_3.OnClick, Form_Find.Button_1.OnClick )
+      ON KEY ESCAPE ACTION Form_Find.Button_2.OnClick
 
-	END WINDOW
+   END WINDOW
 
-	Form_Find.Button_1.Enabled := .f.
-	Form_Find.Button_3.Enabled := !lReplace
-	Form_Find.Button_4.Enabled := !lReplace
+   Form_Find.Button_1.Enabled := .f.
+   Form_Find.Button_3.Enabled := !lReplace
+   Form_Find.Button_4.Enabled := !lReplace
 
-	CENTER WINDOW Form_Find
+   CENTER WINDOW Form_Find
 
-	ACTIVATE WINDOW Form_Find
+   ACTIVATE WINDOW Form_Find
 
    ENDIF
 
@@ -1925,198 +1925,198 @@ Static Procedure FindNext( cString, nField, lCase, lWhole )
    Local aColumns := (cAlias)->( DBstruct(cAlias) )
    Local nRecno   := (cAlias)->( RecNo() ), cType
 
-	IF EMPTY(cString)
-		Return
-	ELSEIF ASCAN(aSearch, cString) == 0
-		AADD(aSearch, cString)
-		Form_Find.Combo_1.AddItem(cString)
-	ENDIF
-	IF !EMPTY(nField)
-		nColumns := nField
-	ENDIF
-	lMatchCase := lCase
-	lMatchWhole := lWhole
+   IF EMPTY(cString)
+      Return
+   ELSEIF ASCAN(aSearch, cString) == 0
+      AADD(aSearch, cString)
+      Form_Find.Combo_1.AddItem(cString)
+   ENDIF
+   IF !EMPTY(nField)
+      nColumns := nField
+   ENDIF
+   lMatchCase := lCase
+   lMatchWhole := lWhole
 
-	lFind := .T.
-	IF nField == 1
-		cFind := ""
-		IF lFirstFind
-			lFirstFind := .F.
-			IF nDirect == 3
-				(cAlias)->( DbGotop() )
-				DO WHILE !(cAlias)->( EoF() )
-					cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
-					aColumns := (cAlias)->( Scatter() )
-					Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
-					IF lCase
-						IF cFindStr $ cFind
-							EXIT
-						ENDIF
-					ELSE
-						IF cFindStr $ UPPER(cFind)
-							EXIT
-						ENDIF
-					ENDIF
-					(cAlias)->( DbSkip() )
-				ENDDO
-				IF (cAlias)->( EoF() )
-					lFind := .F.
-					(cAlias)->( DbGoto(nRecno) )
-					MsgInfo( "Can not find the string"+' "'+cString+'"' )
-				ENDIF
-			ELSEIF nDirect == 2
-				(cAlias)->( DbSkip(-1) )
-				DO WHILE !(cAlias)->( BoF() )
-					cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
-					aColumns := (cAlias)->( Scatter() )
-					Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
-					IF lCase
-						IF cFindStr $ cFind
-							EXIT
-						ENDIF
-					ELSE
-						IF cFindStr $ UPPER(cFind)
-							EXIT
-						ENDIF
-					ENDIF
-					(cAlias)->( DbSkip(-1) )
-				ENDDO
-				IF (cAlias)->( BoF() )
-					lFind := .F.
-					(cAlias)->( DbGoto(nRecno) )
-					MsgInfo( "Can not find the string"+' "'+cString+'"' )
-				ENDIF
-			ELSEIF nDirect == 1
-				(cAlias)->( DbSkip() )
-				DO WHILE !(cAlias)->( EoF() )
-					cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
-					aColumns := (cAlias)->( Scatter() )
-					Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
-					IF lCase
-						IF cFindStr $ cFind
-							EXIT
-						ENDIF
-					ELSE
-						IF cFindStr $ UPPER(cFind)
-							EXIT
-						ENDIF
-					ENDIF
-					(cAlias)->( DbSkip() )
-				ENDDO
-				IF (cAlias)->( EoF() )
-					lFind := .F.
-					(cAlias)->( DbGoto(nRecno) )
-					MsgInfo( "Can not find the string"+' "'+cString+'"' )
-				ENDIF
-			ENDIF
-		ELSEIF lFind
-			IF nDirect == 2
-				(cAlias)->( DbSkip(-1) )
-			ELSE
-				(cAlias)->( DbSkip() )
-			ENDIF
-			DO WHILE !IF(nDirect = 2, (cAlias)->( BoF() ), (cAlias)->( EoF() ))
-				cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
-				aColumns := (cAlias)->( Scatter() )
-				Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
-				IF lCase
-					IF cFindStr $ cFind
-						EXIT
-					ENDIF
-				ELSE
-					IF cFindStr $ UPPER(cFind)
-						EXIT
-					ENDIF
-				ENDIF
-				IF nDirect == 2
-					(cAlias)->( DbSkip(-1) )
-				ELSE
-					(cAlias)->( DbSkip() )
-				ENDIF
-			ENDDO
-			IF (cAlias)->( EoF() ) .OR. (cAlias)->( BoF() )
-				lFind := .F.
-				(cAlias)->( DbGoto(nRecno) )
-				MsgInfo( "There are still no such records!" )
-			ENDIF
-		ENDIF
-	ELSE
-		cField := aColumns[nField-1][1]
-		cType := aColumns[nField-1][2]
-		IF cType $ "CND"
-			IF cType == "C"
-				IF lWhole
-					cFindStr := cString
-					cFind := "ALLTRIM((cAlias)->((&cField)))==M->cFindStr"
-				ELSE
-					cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
-					IF lCase
-						cFind := "M->cFindStr $ (cAlias)->((&cField))"
-					ELSE
-						cFind := "M->cFindStr $ UPPER((cAlias)->((&cField)))"
-					ENDIF
-				ENDIF
-			ELSEIF cType == "N"
-				cFindStr := VAL(cString)
-				cFind := "(cAlias)->((&cField))=M->cFindStr"
-				cFind := "(cAlias)->((&cField))=M->cFindStr"
-			ELSEIF cType == "D"
-				cFindStr := CTOD(cString)
-				cFind := "(cAlias)->((&cField))=M->cFindStr"
-			ENDIF
-			IF lFirstFind
-				lFirstFind := .F.
-				IF nDirect == 3
-					(cAlias)->( __dbLocate({||(&cFind)},,,,.F.) )
-					IF (cAlias)->( EoF() )
-						lFind := .F.
-						(cAlias)->( DbGoto(nRecno) )
-						MsgInfo( "Can not find the string"+' "'+cString+'"' )
-					ENDIF
-				ELSEIF nDirect == 2
-					(cAlias)->( DbSkip(-1) )
-					DO WHILE !(cAlias)->( BoF() )
-						IF &cFind
-							EXIT
-						ENDIF
-						(cAlias)->( DbSkip(-1) )
-					ENDDO
-					IF (cAlias)->( BoF() )
-						lFind := .F.
-						(cAlias)->( DbGoto(nRecno) )
-						MsgInfo( "Can not find the string"+' "'+cString+'"' )
-					ENDIF
-				ELSEIF nDirect == 1
-					(cAlias)->( DbSkip() )
-					(cAlias)->( __dbLocate({||(&cFind)},,,,.T.) )
-					IF (cAlias)->( EoF() )
-						lFind := .F.
-						(cAlias)->( DbGoto(nRecno) )
-						MsgInfo( "Can not find the string"+' "'+cString+'"' )
-					ENDIF
-				ENDIF
-			ELSEIF lFind
-				IF nDirect == 2
-					(cAlias)->( DbSkip(-1) )
-					DO WHILE !(cAlias)->( BoF() )
-						IF &cFind
-							EXIT
-						ENDIF
-						(cAlias)->( DbSkip(-1) )
-					ENDDO
-				ELSE
-					(cAlias)->( __dbContinue() )
-				ENDIF
-				IF (cAlias)->( EoF() ) .OR. (cAlias)->( BoF() )
-					lFind := .F.
-					(cAlias)->( DbGoto(nRecno) )
-					MsgInfo( "There are still no such records!" )
-				ENDIF
-			ENDIF
-		ENDIF
-	ENDIF
+   lFind := .T.
+   IF nField == 1
+      cFind := ""
+      IF lFirstFind
+         lFirstFind := .F.
+         IF nDirect == 3
+            (cAlias)->( DbGotop() )
+            DO WHILE !(cAlias)->( EoF() )
+               cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
+               aColumns := (cAlias)->( Scatter() )
+               Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
+               IF lCase
+                  IF cFindStr $ cFind
+                     EXIT
+                  ENDIF
+               ELSE
+                  IF cFindStr $ UPPER(cFind)
+                     EXIT
+                  ENDIF
+               ENDIF
+               (cAlias)->( DbSkip() )
+            ENDDO
+            IF (cAlias)->( EoF() )
+               lFind := .F.
+               (cAlias)->( DbGoto(nRecno) )
+               MsgInfo( "Can not find the string"+' "'+cString+'"' )
+            ENDIF
+         ELSEIF nDirect == 2
+            (cAlias)->( DbSkip(-1) )
+            DO WHILE !(cAlias)->( BoF() )
+               cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
+               aColumns := (cAlias)->( Scatter() )
+               Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
+               IF lCase
+                  IF cFindStr $ cFind
+                     EXIT
+                  ENDIF
+               ELSE
+                  IF cFindStr $ UPPER(cFind)
+                     EXIT
+                  ENDIF
+               ENDIF
+               (cAlias)->( DbSkip(-1) )
+            ENDDO
+            IF (cAlias)->( BoF() )
+               lFind := .F.
+               (cAlias)->( DbGoto(nRecno) )
+               MsgInfo( "Can not find the string"+' "'+cString+'"' )
+            ENDIF
+         ELSEIF nDirect == 1
+            (cAlias)->( DbSkip() )
+            DO WHILE !(cAlias)->( EoF() )
+               cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
+               aColumns := (cAlias)->( Scatter() )
+               Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
+               IF lCase
+                  IF cFindStr $ cFind
+                     EXIT
+                  ENDIF
+               ELSE
+                  IF cFindStr $ UPPER(cFind)
+                     EXIT
+                  ENDIF
+               ENDIF
+               (cAlias)->( DbSkip() )
+            ENDDO
+            IF (cAlias)->( EoF() )
+               lFind := .F.
+               (cAlias)->( DbGoto(nRecno) )
+               MsgInfo( "Can not find the string"+' "'+cString+'"' )
+            ENDIF
+         ENDIF
+      ELSEIF lFind
+         IF nDirect == 2
+            (cAlias)->( DbSkip(-1) )
+         ELSE
+            (cAlias)->( DbSkip() )
+         ENDIF
+         DO WHILE !IF(nDirect = 2, (cAlias)->( BoF() ), (cAlias)->( EoF() ))
+            cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
+            aColumns := (cAlias)->( Scatter() )
+            Aeval(aColumns, {|x| cFind += XtoC(x) + " "})
+            IF lCase
+               IF cFindStr $ cFind
+                  EXIT
+               ENDIF
+            ELSE
+               IF cFindStr $ UPPER(cFind)
+                  EXIT
+               ENDIF
+            ENDIF
+            IF nDirect == 2
+               (cAlias)->( DbSkip(-1) )
+            ELSE
+               (cAlias)->( DbSkip() )
+            ENDIF
+         ENDDO
+         IF (cAlias)->( EoF() ) .OR. (cAlias)->( BoF() )
+            lFind := .F.
+            (cAlias)->( DbGoto(nRecno) )
+            MsgInfo( "There are still no such records!" )
+         ENDIF
+      ENDIF
+   ELSE
+      cField := aColumns[nField-1][1]
+      cType := aColumns[nField-1][2]
+      IF cType $ "CND"
+         IF cType == "C"
+            IF lWhole
+               cFindStr := cString
+               cFind := "ALLTRIM((cAlias)->((&cField)))==M->cFindStr"
+            ELSE
+               cFindStr := IF(lCase, ALLTRIM(cString), UPPER(ALLTRIM(cString)))
+               IF lCase
+                  cFind := "M->cFindStr $ (cAlias)->((&cField))"
+               ELSE
+                  cFind := "M->cFindStr $ UPPER((cAlias)->((&cField)))"
+               ENDIF
+            ENDIF
+         ELSEIF cType == "N"
+            cFindStr := VAL(cString)
+            cFind := "(cAlias)->((&cField))=M->cFindStr"
+            cFind := "(cAlias)->((&cField))=M->cFindStr"
+         ELSEIF cType == "D"
+            cFindStr := CTOD(cString)
+            cFind := "(cAlias)->((&cField))=M->cFindStr"
+         ENDIF
+         IF lFirstFind
+            lFirstFind := .F.
+            IF nDirect == 3
+               (cAlias)->( __dbLocate({||(&cFind)},,,,.F.) )
+               IF (cAlias)->( EoF() )
+                  lFind := .F.
+                  (cAlias)->( DbGoto(nRecno) )
+                  MsgInfo( "Can not find the string"+' "'+cString+'"' )
+               ENDIF
+            ELSEIF nDirect == 2
+               (cAlias)->( DbSkip(-1) )
+               DO WHILE !(cAlias)->( BoF() )
+                  IF &cFind
+                     EXIT
+                  ENDIF
+                  (cAlias)->( DbSkip(-1) )
+               ENDDO
+               IF (cAlias)->( BoF() )
+                  lFind := .F.
+                  (cAlias)->( DbGoto(nRecno) )
+                  MsgInfo( "Can not find the string"+' "'+cString+'"' )
+               ENDIF
+            ELSEIF nDirect == 1
+               (cAlias)->( DbSkip() )
+               (cAlias)->( __dbLocate({||(&cFind)},,,,.T.) )
+               IF (cAlias)->( EoF() )
+                  lFind := .F.
+                  (cAlias)->( DbGoto(nRecno) )
+                  MsgInfo( "Can not find the string"+' "'+cString+'"' )
+               ENDIF
+            ENDIF
+         ELSEIF lFind
+            IF nDirect == 2
+               (cAlias)->( DbSkip(-1) )
+               DO WHILE !(cAlias)->( BoF() )
+                  IF &cFind
+                     EXIT
+                  ENDIF
+                  (cAlias)->( DbSkip(-1) )
+               ENDDO
+            ELSE
+               (cAlias)->( __dbContinue() )
+            ENDIF
+            IF (cAlias)->( EoF() ) .OR. (cAlias)->( BoF() )
+               lFind := .F.
+               (cAlias)->( DbGoto(nRecno) )
+               MsgInfo( "There are still no such records!" )
+            ENDIF
+         ENDIF
+      ENDIF
+   ENDIF
 
-	MueveRec()
+   MueveRec()
 
 Return
 
@@ -2129,246 +2129,246 @@ Static Procedure DoReplace(cString, cReplace, nField, lCase, lWhole, lAll)
 
    DEFAULT lAll := .f.
 
-	IF EMPTY(cString) .OR. EMPTY(cReplace)
-		Return
-	ELSEIF ASCAN(aReplace, cReplace) == 0
-		AADD(aReplace, cReplace)
-		Form_Find.Combo_2.AddItem(cString)
-	ENDIF
-	IF lAll
-		IF ASCAN(aSearch, cString) == 0
-			AADD(aSearch, cString)
-			Form_Find.Combo_1.AddItem(cString)
-		ENDIF
-		IF nField == 1
-			IF nDirect == 3
-				(cAlias)->( DbGotop() )
-				DO WHILE !(cAlias)->( EoF() )
-					aColumns := (cAlias)->( Scatter() )
-					For i := 1 To Len(aColumns)
-						cFld := aColumns[i]
-						IF cType == "N"
-							lReplace := ( cFld = VAL(cString) )
-							IF lReplace
-								(cAlias)->&cField := VAL(cReplace)
-							ENDIF
-						ELSEIF cType == "D"
-							lReplace := ( cFld = CTOD(cString) )
-							IF lReplace
-								(cAlias)->&cField := CTOD(cReplace)
-							ENDIF
-						ELSEIF Valtype( cFld ) == "C"
-							IF lWhole
-								lReplace := ( cFld == cString )
-							ELSE
-								IF lCase
-									lReplace := cString $ cFld
-								ELSE
-									lReplace := UPPER(cString) $ UPPER(cFld)
-								ENDIF
-							ENDIF
-							IF lReplace
-								IF (cAlias)->( Rlock() )
-									cField := (cAlias)->( Field(i) )
-									(cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
-								ENDIF
-								(cAlias)->( DBunlock() )
-							ENDIF
-						ENDIF
-					Next
-					(cAlias)->( DbSkip() )
-				ENDDO
-				(cAlias)->( DbGoto(nRecno) )
-			ELSEIF nDirect == 2
-				(cAlias)->( DbSkip(-1) )
-				DO WHILE !(cAlias)->( BoF() )
-					aColumns := (cAlias)->( Scatter() )
-					For i := 1 To Len(aColumns)
-						cFld := aColumns[i]
-						IF cType == "N"
-							lReplace := ( cFld = VAL(cString) )
-							IF lReplace
-								(cAlias)->&cField := VAL(cReplace)
-							ENDIF
-						ELSEIF cType == "D"
-							lReplace := ( cFld = CTOD(cString) )
-							IF lReplace
-								(cAlias)->&cField := CTOD(cReplace)
-							ENDIF
-						ELSEIF Valtype( cFld ) == "C"
-							IF lWhole
-								lReplace := ( cFld == cString )
-							ELSE
-								IF lCase
-									lReplace := cString $ cFld
-								ELSE
-									lReplace := UPPER(cString) $ UPPER(cFld)
-								ENDIF
-							ENDIF
-							IF lReplace
-								IF (cAlias)->( Rlock() )
-									cField := (cAlias)->( Field(i) )
-									(cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
-								ENDIF
-								(cAlias)->( DBunlock() )
-							ENDIF
-						ENDIF
-					Next
-					(cAlias)->( DbSkip(-1) )
-				ENDDO
-				(cAlias)->( DbGoto(nRecno) )
-			ELSEIF nDirect == 1
-				(cAlias)->( DbSkip() )
-				DO WHILE !(cAlias)->( EoF() )
-					aColumns := (cAlias)->( Scatter() )
-					For i := 1 To Len(aColumns)
-						cFld := aColumns[i]
-						IF cType == "N"
-							lReplace := ( cFld = VAL(cString) )
-							IF lReplace
-								(cAlias)->&cField := VAL(cReplace)
-							ENDIF
-						ELSEIF cType == "D"
-							lReplace := ( cFld = CTOD(cString) )
-							IF lReplace
-								(cAlias)->&cField := CTOD(cReplace)
-							ENDIF
-						ELSEIF Valtype( cFld ) == "C"
-							IF lWhole
-								lReplace := ( cFld == cString )
-							ELSE
-								IF lCase
-									lReplace := cString $ cFld
-								ELSE
-									lReplace := UPPER(cString) $ UPPER(cFld)
-								ENDIF
-							ENDIF
-							IF lReplace
-								IF (cAlias)->( Rlock() )
-									cField := (cAlias)->( Field(i) )
-									(cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
-								ENDIF
-								(cAlias)->( DBunlock() )
-							ENDIF
-						ENDIF
-					Next
-					(cAlias)->( DbSkip() )
-				ENDDO
-				(cAlias)->( DbGoto(nRecno) )
-			ENDIF
-		ELSE
-			cField := aColumns[nField-1][1]
-			cType := aColumns[nField-1][2]
-			IF nDirect == 3
-				(cAlias)->( DbGotop() )
-				IF (cAlias)->( Flock() )
-					cReplStr := cReplace
-					cFindStr := ALLTRIM(cString)
-					IF cType == "N"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},,,,.F.) )
-					ELSEIF cType == "D"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},,,,.F.) )
-					ELSE
-						IF lWhole
-							(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},,,,.F.) )
-						ELSE
-							IF lCase
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->&(cField)},,,,.F.) )
-							ELSE
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},,,,.F.) )
-							ENDIF
-						ENDIF
-					ENDIF
-				ENDIF
-			ELSEIF nDirect == 2
-				(cAlias)->( DbGotop() )
-				IF (cAlias)->( Flock() )
-					nCurRec := nRecno
-					cReplStr := cReplace
-					cFindStr := ALLTRIM(cString)
-					IF cType == "N"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
-					ELSEIF cType == "D"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
-					ELSE
-						IF lWhole
-							(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
-						ELSE
-							IF lCase
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->&(cField)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
-							ELSE
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
-							ENDIF
-						ENDIF
-					ENDIF
-				ENDIF
-			ELSEIF nDirect == 1
-				IF (cAlias)->( Flock() )
-					cReplStr := cReplace
-					cFindStr := ALLTRIM(cString)
-					IF cType == "N"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},,,,.T.) )
-					ELSEIF cType == "D"
-						(cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},,,,.T.) )
-					ELSE
-						IF lWhole
-							(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},,,,.T.) )
-						ELSE
-							IF lCase
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->(&(cField))},,,,.T.) )
-							ELSE
-								(cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},,,,.T.) )
-							ENDIF
-						ENDIF
-					ENDIF
-				ENDIF
-			ENDIF
-			(cAlias)->( DBunlock() )
-			(cAlias)->( DbGoto(nRecno) )
-		ENDIF
-	ELSE
-		lFind := .T.
-		FindNext( cString, nField, lCase, lWhole )
-		IF nField == 1
-			IF lFind
-				aColumns := (cAlias)->( Scatter() )
-				For i := 1 To Len(aColumns)
-					cFld := aColumns[i]
-					IF Valtype( cFld ) == "C"
-						IF lCase
-							lReplace := cString $ cFld
-						ELSE
-							lReplace := UPPER(cString) $ UPPER(cFld)
-						ENDIF
-						IF lReplace
-							IF (cAlias)->( Rlock() )
-								cField := (cAlias)->( Field(i) )
-								(cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
-							ENDIF
-							(cAlias)->( DBunlock() )
-						ENDIF
-					ENDIF
-				Next
-			ENDIF
-		ELSE
-			cField := aColumns[nField-1][1]
-			cType := aColumns[nField-1][2]
-			IF lFind .AND. cType $ "CND"
-				IF (cAlias)->( Rlock() )
-					IF cType == "N"
-						(cAlias)->&cField := VAL(cReplace)
-					ELSEIF cType == "D"
-						(cAlias)->&cField := CTOD(cReplace)
-					ELSE
-						(cAlias)->&cField := cReplace
-					ENDIF
-				ENDIF
-			ENDIF
-			(cAlias)->( DBunlock() )
-		ENDIF
-	ENDIF
+   IF EMPTY(cString) .OR. EMPTY(cReplace)
+      Return
+   ELSEIF ASCAN(aReplace, cReplace) == 0
+      AADD(aReplace, cReplace)
+      Form_Find.Combo_2.AddItem(cString)
+   ENDIF
+   IF lAll
+      IF ASCAN(aSearch, cString) == 0
+         AADD(aSearch, cString)
+         Form_Find.Combo_1.AddItem(cString)
+      ENDIF
+      IF nField == 1
+         IF nDirect == 3
+            (cAlias)->( DbGotop() )
+            DO WHILE !(cAlias)->( EoF() )
+               aColumns := (cAlias)->( Scatter() )
+               For i := 1 To Len(aColumns)
+                  cFld := aColumns[i]
+                  IF cType == "N"
+                     lReplace := ( cFld = VAL(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := VAL(cReplace)
+                     ENDIF
+                  ELSEIF cType == "D"
+                     lReplace := ( cFld = CTOD(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := CTOD(cReplace)
+                     ENDIF
+                  ELSEIF Valtype( cFld ) == "C"
+                     IF lWhole
+                        lReplace := ( cFld == cString )
+                     ELSE
+                        IF lCase
+                           lReplace := cString $ cFld
+                        ELSE
+                           lReplace := UPPER(cString) $ UPPER(cFld)
+                        ENDIF
+                     ENDIF
+                     IF lReplace
+                        IF (cAlias)->( Rlock() )
+                           cField := (cAlias)->( Field(i) )
+                           (cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
+                        ENDIF
+                        (cAlias)->( DBunlock() )
+                     ENDIF
+                  ENDIF
+               Next
+               (cAlias)->( DbSkip() )
+            ENDDO
+            (cAlias)->( DbGoto(nRecno) )
+         ELSEIF nDirect == 2
+            (cAlias)->( DbSkip(-1) )
+            DO WHILE !(cAlias)->( BoF() )
+               aColumns := (cAlias)->( Scatter() )
+               For i := 1 To Len(aColumns)
+                  cFld := aColumns[i]
+                  IF cType == "N"
+                     lReplace := ( cFld = VAL(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := VAL(cReplace)
+                     ENDIF
+                  ELSEIF cType == "D"
+                     lReplace := ( cFld = CTOD(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := CTOD(cReplace)
+                     ENDIF
+                  ELSEIF Valtype( cFld ) == "C"
+                     IF lWhole
+                        lReplace := ( cFld == cString )
+                     ELSE
+                        IF lCase
+                           lReplace := cString $ cFld
+                        ELSE
+                           lReplace := UPPER(cString) $ UPPER(cFld)
+                        ENDIF
+                     ENDIF
+                     IF lReplace
+                        IF (cAlias)->( Rlock() )
+                           cField := (cAlias)->( Field(i) )
+                           (cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
+                        ENDIF
+                        (cAlias)->( DBunlock() )
+                     ENDIF
+                  ENDIF
+               Next
+               (cAlias)->( DbSkip(-1) )
+            ENDDO
+            (cAlias)->( DbGoto(nRecno) )
+         ELSEIF nDirect == 1
+            (cAlias)->( DbSkip() )
+            DO WHILE !(cAlias)->( EoF() )
+               aColumns := (cAlias)->( Scatter() )
+               For i := 1 To Len(aColumns)
+                  cFld := aColumns[i]
+                  IF cType == "N"
+                     lReplace := ( cFld = VAL(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := VAL(cReplace)
+                     ENDIF
+                  ELSEIF cType == "D"
+                     lReplace := ( cFld = CTOD(cString) )
+                     IF lReplace
+                        (cAlias)->&cField := CTOD(cReplace)
+                     ENDIF
+                  ELSEIF Valtype( cFld ) == "C"
+                     IF lWhole
+                        lReplace := ( cFld == cString )
+                     ELSE
+                        IF lCase
+                           lReplace := cString $ cFld
+                        ELSE
+                           lReplace := UPPER(cString) $ UPPER(cFld)
+                        ENDIF
+                     ENDIF
+                     IF lReplace
+                        IF (cAlias)->( Rlock() )
+                           cField := (cAlias)->( Field(i) )
+                           (cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
+                        ENDIF
+                        (cAlias)->( DBunlock() )
+                     ENDIF
+                  ENDIF
+               Next
+               (cAlias)->( DbSkip() )
+            ENDDO
+            (cAlias)->( DbGoto(nRecno) )
+         ENDIF
+      ELSE
+         cField := aColumns[nField-1][1]
+         cType := aColumns[nField-1][2]
+         IF nDirect == 3
+            (cAlias)->( DbGotop() )
+            IF (cAlias)->( Flock() )
+               cReplStr := cReplace
+               cFindStr := ALLTRIM(cString)
+               IF cType == "N"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},,,,.F.) )
+               ELSEIF cType == "D"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},,,,.F.) )
+               ELSE
+                  IF lWhole
+                     (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},,,,.F.) )
+                  ELSE
+                     IF lCase
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->&(cField)},,,,.F.) )
+                     ELSE
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},,,,.F.) )
+                     ENDIF
+                  ENDIF
+               ENDIF
+            ENDIF
+         ELSEIF nDirect == 2
+            (cAlias)->( DbGotop() )
+            IF (cAlias)->( Flock() )
+               nCurRec := nRecno
+               cReplStr := cReplace
+               cFindStr := ALLTRIM(cString)
+               IF cType == "N"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
+               ELSEIF cType == "D"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
+               ELSE
+                  IF lWhole
+                     (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
+                  ELSE
+                     IF lCase
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->&(cField)},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
+                     ELSE
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},{||(cAlias)->( Recno() )<nCurRec},,,.F.) )
+                     ENDIF
+                  ENDIF
+               ENDIF
+            ENDIF
+         ELSEIF nDirect == 1
+            IF (cAlias)->( Flock() )
+               cReplStr := cReplace
+               cFindStr := ALLTRIM(cString)
+               IF cType == "N"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := VAL(cReplStr)},{||(cAlias)->&(cField)=VAL(cFindStr)},,,,.T.) )
+               ELSEIF cType == "D"
+                  (cAlias)->( DBEval({||(cAlias)->&(cField) := CTOD(cReplStr)},{||(cAlias)->&(cField)=CTOD(cFindStr)},,,,.T.) )
+               ELSE
+                  IF lWhole
+                     (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||(cAlias)->&(cField) == M->cFindStr},,,,.T.) )
+                  ELSE
+                     IF lCase
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||M->cFindStr $ (cAlias)->(&(cField))},,,,.T.) )
+                     ELSE
+                        (cAlias)->( DBEval({||(cAlias)->&(cField) := STRTRAN((cAlias)->&(cField), cFindStr, cReplStr)},{||UPPER(M->cFindStr) $ UPPER((cAlias)->&(cField))},,,,.T.) )
+                     ENDIF
+                  ENDIF
+               ENDIF
+            ENDIF
+         ENDIF
+         (cAlias)->( DBunlock() )
+         (cAlias)->( DbGoto(nRecno) )
+      ENDIF
+   ELSE
+      lFind := .T.
+      FindNext( cString, nField, lCase, lWhole )
+      IF nField == 1
+         IF lFind
+            aColumns := (cAlias)->( Scatter() )
+            For i := 1 To Len(aColumns)
+               cFld := aColumns[i]
+               IF Valtype( cFld ) == "C"
+                  IF lCase
+                     lReplace := cString $ cFld
+                  ELSE
+                     lReplace := UPPER(cString) $ UPPER(cFld)
+                  ENDIF
+                  IF lReplace
+                     IF (cAlias)->( Rlock() )
+                        cField := (cAlias)->( Field(i) )
+                        (cAlias)->&cField := STRTRAN(cFld, cString, cReplace)
+                     ENDIF
+                     (cAlias)->( DBunlock() )
+                  ENDIF
+               ENDIF
+            Next
+         ENDIF
+      ELSE
+         cField := aColumns[nField-1][1]
+         cType := aColumns[nField-1][2]
+         IF lFind .AND. cType $ "CND"
+            IF (cAlias)->( Rlock() )
+               IF cType == "N"
+                  (cAlias)->&cField := VAL(cReplace)
+               ELSEIF cType == "D"
+                  (cAlias)->&cField := CTOD(cReplace)
+               ELSE
+                  (cAlias)->&cField := cReplace
+               ENDIF
+            ENDIF
+         ENDIF
+         (cAlias)->( DBunlock() )
+      ENDIF
+   ENDIF
 
-	MueveRec()
+   MueveRec()
 
 Return
 
@@ -2380,13 +2380,13 @@ Static Procedure AppendCopy()
    IF !Empty(( Alias() ))
         aRec := oWndBase.&(Browse_n()).Value
         go aRec[1]
-	aCurrent := (( Alias() ))->( Scatter() )
-	IF (( Alias() ))->( Rlock() )
-		(( Alias() ))->( DBappend() )
-		(( Alias() ))->( Gather(aCurrent) )
-	ENDIF
-	(( Alias() ))->( DBunlock() )
-	Ultimo()
+   aCurrent := (( Alias() ))->( Scatter() )
+   IF (( Alias() ))->( Rlock() )
+      (( Alias() ))->( DBappend() )
+      (( Alias() ))->( Gather(aCurrent) )
+   ENDIF
+   (( Alias() ))->( DBunlock() )
+   Ultimo()
    ENDIF
 
 Return
@@ -2397,15 +2397,15 @@ Static Procedure DeleteAll()
    Local nRecNo
 
    IF !Empty(( Alias() ))
-	nRecNo := (( Alias() ))->( RecNo() )
-	(( Alias() ))->( dbGoTop() )
-	DO WHILE !(( Alias() ))->( Eof() )
-		IF (( Alias() ))->( Rlock() )
-			(( Alias() ))->( DBDelete() )
-		ENDIF
-		(( Alias() ))->( DBskip() )
-	ENDDO
-	(( Alias() ))->( DBunlock() )
+   nRecNo := (( Alias() ))->( RecNo() )
+   (( Alias() ))->( dbGoTop() )
+   DO WHILE !(( Alias() ))->( Eof() )
+      IF (( Alias() ))->( Rlock() )
+         (( Alias() ))->( DBDelete() )
+      ENDIF
+      (( Alias() ))->( DBskip() )
+   ENDDO
+   (( Alias() ))->( DBunlock() )
         Primero()
    ENDIF
 
@@ -2421,7 +2421,7 @@ Function AdjustColumn(nOpt)
               oWndBase.&(Browse_n()).ColumnsAutoFit
          Case nOpt = 3
 *             oWndBase.&(cBrowse_n).ColumnsBetterAutoFit
-	      DoMethod( "oWndBase", Browse_n(), 'ColumnsBetterAutoFit' )
+         DoMethod( "oWndBase", Browse_n(), 'ColumnsBetterAutoFit' )
        Endcase
    Endif
 Return Nil
@@ -2432,15 +2432,15 @@ Static Procedure UnDeleteAll()
    Local nRecNo
 
    IF !Empty(( Alias() ))
-	nRecNo := (( Alias() ))->( RecNo() )
-	(( Alias() ))->( dbGoTop() )
-	DO WHILE !(( Alias() ))->( Eof() )
-		IF (( Alias() ))->( Rlock() )
-			(( Alias() ))->( DBRecall() )
-		ENDIF
-		(( Alias() ))->( DBskip() )
-	ENDDO
-	(( Alias() ))->( DBunlock() )
+   nRecNo := (( Alias() ))->( RecNo() )
+   (( Alias() ))->( dbGoTop() )
+   DO WHILE !(( Alias() ))->( Eof() )
+      IF (( Alias() ))->( Rlock() )
+         (( Alias() ))->( DBRecall() )
+      ENDIF
+      (( Alias() ))->( DBskip() )
+   ENDDO
+   (( Alias() ))->( DBunlock() )
         Primero()
    ENDIF
 
@@ -2887,8 +2887,8 @@ RETURN
  * Revised: 7/29/02 Added special character processing.
  *          Fixed a few bugs. James Bott. jbott@compuserve.com
  * Revised: v1.1 12-aug-2009, Pete Disdale.
- *	    Converted for S87 (crudely...)
- *	    Added metadata node for DBF recreation
+ *       Converted for S87 (crudely...)
+ *       Added metadata node for DBF recreation
  * Modified: v1.2 15-jun-2012, MigSoft
  *          Adapted for ooHG - mig2soft/at/yahoo.com
  *
@@ -2898,30 +2898,30 @@ Function Dbf2Xml( cDbf, cSaveFile )
 PRIVATE cFile
 
         // global string defs
-	tab = chr(9)
-	tab2 = chr(9) + chr(9)
-	tab3 = chr(9) + chr(9) + chr(9)
-	xmlver = '<?xml version="1.0"?>'
-	meta_start_tag = "<metadata>"
-	meta_end_tag = "</metadata>"
-	data_start_tag = "<data>"
-	data_end_tag = "</data>"
+   tab = chr(9)
+   tab2 = chr(9) + chr(9)
+   tab3 = chr(9) + chr(9) + chr(9)
+   xmlver = '<?xml version="1.0"?>'
+   meta_start_tag = "<metadata>"
+   meta_end_tag = "</metadata>"
+   data_start_tag = "<data>"
+   data_end_tag = "</data>"
 
         // DBF field defs
-	col_start_tag = "<column>"
-	col_end_tag = "</column>"
-	name_start_tag = "<name>"
-	name_end_tag = "</name>"
-	type_start_tag = "<type>"
-	type_end_tag = "</type>"
-	width_start_tag = "<width>"
-	width_end_tag = "</width>"
-	decs_start_tag = "<decimals>"
-	decs_end_tag = "</decimals>"
+   col_start_tag = "<column>"
+   col_end_tag = "</column>"
+   name_start_tag = "<name>"
+   name_end_tag = "</name>"
+   type_start_tag = "<type>"
+   type_end_tag = "</type>"
+   width_start_tag = "<width>"
+   width_end_tag = "</width>"
+   decs_start_tag = "<decimals>"
+   decs_end_tag = "</decimals>"
 
         // DBF record defs
-	row_start_tag = "<row>"
-	row_end_tag = "</row>"
+   row_start_tag = "<row>"
+   row_end_tag = "</row>"
 
   cFile = LOWER (cDbf)
   IF At (".dbf", cFile) == 0
@@ -2984,22 +2984,22 @@ FUNCTION GenXML( cDbf, cSaveFile )
   AFIELDS (fldname, fldtype, fldsize, flddecs)
 
   cBuffer = tab + make_comment ("DBF structure info") + crlf + ;
-	    tab + meta_start_tag  + crlf
+       tab + meta_start_tag  + crlf
   fWrite( nHandle, cBuffer )
 
   FOR nField = 1 TO nFields
     fWrite (nHandle, tab2 + col_start_tag + crlf)
     cBuffer = tab3 + name_start_tag + fldname [nField] + name_end_tag + crlf + ;
-	      tab3 + type_start_tag + fldtype [nField] + type_end_tag + crlf + ;
-	      tab3 + width_start_tag + alltrim (str (fldsize [nField])) + width_end_tag + crlf + ;
-	      tab3 + decs_start_tag + alltrim (str (flddecs [nField])) + decs_end_tag + crlf
+         tab3 + type_start_tag + fldtype [nField] + type_end_tag + crlf + ;
+         tab3 + width_start_tag + alltrim (str (fldsize [nField])) + width_end_tag + crlf + ;
+         tab3 + decs_start_tag + alltrim (str (flddecs [nField])) + decs_end_tag + crlf
     fWrite( nHandle, cBuffer )
     fWrite (nHandle, tab2 + col_end_tag + crlf)
   NEXT nField
 
-  cBuffer = tab + meta_end_tag	+ crlf + ;
-	    tab + make_comment ("DBF table data") + crlf + ;
-	    tab + data_start_tag  + crlf
+  cBuffer = tab + meta_end_tag   + crlf + ;
+       tab + make_comment ("DBF table data") + crlf + ;
+       tab + data_start_tag  + crlf
   fWrite( nHandle, cBuffer )
 
   old_percent = -1
@@ -3018,27 +3018,27 @@ FUNCTION GenXML( cDbf, cSaveFile )
        cBuffer = tab3 + make_start_tag (thisfld)
 
        DO CASE
-	 CASE fldtype[nField] == "D"
-	   cValue = Dtos (&thisfld)
+    CASE fldtype[nField] == "D"
+      cValue = Dtos (&thisfld)
 
-	 CASE fldtype[nField] == "N"
-	   cValue = Str (&thisfld)
+    CASE fldtype[nField] == "N"
+      cValue = Str (&thisfld)
 
-	 CASE fldtype[nField] == "L"
-	   cValue = IIf( &thisfld, "true", "false" )
+    CASE fldtype[nField] == "L"
+      cValue = IIf( &thisfld, "true", "false" )
 
-	 OTHERWISE
-	   cValue = &thisfld.
-	   //--- Convert special characters
-	   cValue = strTran(cValue,"&","&amp;")
-	   cValue = strTran(cValue,"<","&lt;")
-	   cValue = strTran(cValue,">","&gt;")
-	   cValue = strTran(cValue,"'","&apos;")
-	   cValue = strTran(cValue,["],[&quot;])
+    OTHERWISE
+      cValue = &thisfld.
+      //--- Convert special characters
+      cValue = strTran(cValue,"&","&amp;")
+      cValue = strTran(cValue,"<","&lt;")
+      cValue = strTran(cValue,">","&gt;")
+      cValue = strTran(cValue,"'","&apos;")
+      cValue = strTran(cValue,["],[&quot;])
        ENDCASE
 
-       cBuffer	= cBuffer + alltrim (cValue) + ;
-		  make_end_tag (thisfld) + crlf
+       cBuffer   = cBuffer + alltrim (cValue) + ;
+        make_end_tag (thisfld) + crlf
 
        fWrite( nHandle, cBuffer )
     NEXT nField
@@ -3052,7 +3052,7 @@ FUNCTION GenXML( cDbf, cSaveFile )
   ENDDO
 
   cBuffer = tab + data_end_tag + crlf + ;
-	    make_end_tag (cDbf) + crlf
+       make_end_tag (cDbf) + crlf
   fWrite( nHandle, cBuffer )
 
 

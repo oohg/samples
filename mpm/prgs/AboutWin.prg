@@ -122,7 +122,7 @@ Procedure About()
             BACKCOLOR {255,255,255}
             VALUE Hb_Compiler()
      END TEXTBOX
-     
+
      ON KEY ESCAPE ACTION mAbout.Release
      ON KEY F1     ACTION mAbout.Release
 

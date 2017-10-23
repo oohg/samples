@@ -97,7 +97,7 @@ PROCEDURE Proc_ON_PAINT
 
    IF Flag_AlphaBlend_Effect
       BT_DrawGradientFillVertical( hDC, 0, 0, Width, Height, RED, BLACK )
-       
+
       BT_DrawBitmapAlphaBlend( hDC, Row + 10, Col + 10, Nil, Nil, Alpha, BT_COPY, hBitmap )
 
       nTypeText  := BT_TEXT_TRANSPARENT + BT_TEXT_BOLD + BT_TEXT_ITALIC + BT_TEXT_UNDERLINE
@@ -117,7 +117,7 @@ PROCEDURE AlphaChange( new_value )
       Grayness_effect_start()      // Capture and Grayness Client Area
       MsgInfo( "Error: No desktop capture" )
       Grayness_effect_end()        // Restore Client Area
-   ELSE         
+   ELSE
       Alpha := new_value
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
@@ -134,9 +134,9 @@ PROCEDURE CaptureDesktop
 
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapCaptureDesktop()
-   Win1.Show     
+   Win1.Show
    BT_ClientAreaInvalidateAll( "Win1" )
-RETURN 
+RETURN
 
 
 PROCEDURE SaveDesktop
@@ -144,7 +144,7 @@ PROCEDURE SaveDesktop
       Grayness_effect_start()
       MsgInfo( "Error: No desktop capture" )
       Grayness_effect_end()
-   ELSE         
+   ELSE
       BT_BitmapSaveFile( hBitmap, "DESKTOP.BMP" )
       MsgInfo( "Capture save as file DESKTOP.BMP" )
       Alpha := 255
@@ -179,7 +179,7 @@ RETURN
 
 PROCEDURE Grayness_effect_end
    BT_BitmapRelease( hBitmap )
-   hBitmap := 0   
+   hBitmap := 0
    Flag_AlphaBlend_Effect := .T.
    BT_ClientAreaInvalidateAll( "Win1" )
 RETURN

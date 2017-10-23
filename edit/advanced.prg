@@ -3,11 +3,11 @@
 function Main()
 
         // Database driver.
-	REQUEST DBFCDX , DBFFPT
+   REQUEST DBFCDX , DBFFPT
 
         // [x]Harbour modifiers.
-	SET CENTURY ON
-	SET DELETED OFF
+   SET CENTURY ON
+   SET DELETED OFF
         SET DATE TO BRITISH
 
         // Request all languages for test.
@@ -41,34 +41,34 @@ function Main()
         HB_LANGSELECT( "EN" )
 
         // Define window.
-	DEFINE WINDOW Win_1			;
-	        AT        0,0 			;
-	        WIDTH     640 			;
-        	HEIGHT    480 			;
-	        TITLE     "EDIT Command Demo" 	;
-        	MAIN 				;
-		ON INIT OpenTable() 		;
-		ON RELEASE CloseTable() 	;
-		BACKCOLOR GRAY
+   DEFINE WINDOW Win_1         ;
+           AT        0,0          ;
+           WIDTH     640          ;
+           HEIGHT    480          ;
+           TITLE     "EDIT Command Demo"    ;
+           MAIN             ;
+      ON INIT OpenTable()       ;
+      ON RELEASE CloseTable()    ;
+      BACKCOLOR GRAY
 
-		DEFINE MAIN MENU OF Win_1
-        		POPUP "&File"
-                		ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
+      DEFINE MAIN MENU OF Win_1
+              POPUP "&File"
+                      ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
                                 ITEM "&Advanced Edit test" ACTION AdvTest()
-				SEPARATOR
+            SEPARATOR
                                 ITEM "Language selection"  ACTION SelecLang()
                                 SEPARATOR
                                 ITEM "About"               ACTION About()
                                 SEPARATOR
-        	        	ITEM "E&xit"               ACTION Win_1.Release
-		        END POPUP
-		END MENU
+                      ITEM "E&xit"               ACTION Win_1.Release
+              END POPUP
+      END MENU
 
-	END WINDOW
+   END WINDOW
 
         // Open window.
-	MAXIMIZE WINDOW Win_1
-	ACTIVATE WINDOW Win_1
+   MAXIMIZE WINDOW Win_1
+   ACTIVATE WINDOW Win_1
 
 Return Nil
 
@@ -77,7 +77,7 @@ Return Nil
 /*------------------------------------------------------------------------------*/
 Procedure OpenTable()
 
-	USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
+   USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
 
 Return Nil
 
@@ -279,8 +279,8 @@ Procedure About()
                  " *  Catalan    - Implemented but not tested (somebody can do it?)" + Chr( 13 ) + ;
                  " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + Chr( 13 ) + ;
                  " *  Polish     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + ;
-		 " *  French     - Ready (Thanks to C. Jouniauxdiv)" + Chr( 13 ) + ;
-		 " *  Italian    - Ready (Thanks to Lupano Piero)" + Chr( 13 ) + ;
+       " *  French     - Ready (Thanks to C. Jouniauxdiv)" + Chr( 13 ) + ;
+       " *  Italian    - Ready (Thanks to Lupano Piero)" + Chr( 13 ) + ;
                  " *  German     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + Chr( 13 ) + ;
-		 "Please report bugs to MiniGUI discusion group at groups.yahoo.com" )
+       "Please report bugs to MiniGUI discusion group at groups.yahoo.com" )
 return ( nil )

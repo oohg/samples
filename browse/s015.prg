@@ -141,7 +141,7 @@ FUNCTION OpenTables( oBrw )
    INDEX ON RECNO() TAG recno TO code
 
    GO BOTTOM
-	oBrw:SetValue( RECNO(), oBrw:CountPerPage )
+   oBrw:SetValue( RECNO(), oBrw:CountPerPage )
 
 RETURN Nil
 

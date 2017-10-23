@@ -12,25 +12,25 @@
 Function Main()
 Local nTra := 210, hWnd
 
-	DEFINE WINDOW WinTr ;
-		AT 0,0 ;
-		WIDTH 300 ;
-		HEIGHT 300 ;
-		TITLE 'Transparent window' ;
-		MAIN ;
-		NOSIZE NOMAXIMIZE ;
-		ON INIT ( hWnd := GetFormHandle('WinTR'), SetTransparent(hWnd, nTra) )
+   DEFINE WINDOW WinTr ;
+      AT 0,0 ;
+      WIDTH 300 ;
+      HEIGHT 300 ;
+      TITLE 'Transparent window' ;
+      MAIN ;
+      NOSIZE NOMAXIMIZE ;
+      ON INIT ( hWnd := GetFormHandle('WinTR'), SetTransparent(hWnd, nTra) )
 
-		@ 200,100 BUTTON But1 ;
-			CAPTION "Click Me" ;
-			HEIGHT 35 WIDTH 100 ;
-			ACTION ( nTra := IIF(nTra == 100, 255, 100), SetTransparent(hWnd, nTra) )
+      @ 200,100 BUTTON But1 ;
+         CAPTION "Click Me" ;
+         HEIGHT 35 WIDTH 100 ;
+         ACTION ( nTra := IIF(nTra == 100, 255, 100), SetTransparent(hWnd, nTra) )
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW WinTR
+   CENTER WINDOW WinTR
 
-	ACTIVATE WINDOW WinTR
+   ACTIVATE WINDOW WinTR
 
 RETURN NIL
 
@@ -48,29 +48,29 @@ RETURN NIL
 #include "hbapi.h"
 
 HB_FUNC( SETTRANSPARENT )
-{ 
+{
 
-	typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
+   typedef BOOL (__stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES) (HWND, COLORREF, BYTE, DWORD);
 
-	PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
+   PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
 
-	HINSTANCE hLib = LoadLibrary("user32.dll");
+   HINSTANCE hLib = LoadLibrary("user32.dll");
 
-	if (hLib != NULL)
-	{
-		pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
-	}
+   if (hLib != NULL)
+   {
+      pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress(hLib, "SetLayeredWindowAttributes");
+   }
 
-	if (pfnSetLayeredWindowAttributes)
-	{
-		SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
-		pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
-	}
+   if (pfnSetLayeredWindowAttributes)
+   {
+      SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
+      pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
+   }
 
-	if (!hLib)
-	{
-		FreeLibrary(hLib);
-	}
+   if (!hLib)
+   {
+      FreeLibrary(hLib);
+   }
 
 }
 

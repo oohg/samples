@@ -32,7 +32,7 @@ FUNCTION Main
                 oForm1:TextBox_1:Enabled := .f., ;
                 oForm1:Button_1:Enabled := .t., ;
                 oForm1:Button_2:Enabled := .f. )
-              
+
       ON KEY ESCAPE ACTION oForm1:Release()
 
       @ 10, 200 LABEL lbl_aviso ;

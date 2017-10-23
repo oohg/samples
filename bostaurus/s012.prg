@@ -37,7 +37,7 @@ PROCEDURE MAIN
       NOSIZE ;
       ON INIT Proc_ON_INIT() ;
       ON RELEASE Proc_ON_RELEASE()
-      
+
       @ 005, 50 IMAGE Image1 ;
          PICTURE "" ;
          IMAGESIZE ;

@@ -7,11 +7,11 @@
 
 * Value property selects a record by its number (RecNo())
 * Value property returns selected record number (recNo())
-* Browse control does not change the active work area 
+* Browse control does not change the active work area
 * Browse control does not change the record pointer in any area
 * (nor change selection when it changes) when SET BROWSESYNC is OFF (the default)
 * You can programatically refresh it using refresh method.
-* Variables called <MemVar>.<WorkAreaName>.<FieldName> are created for 
+* Variables called <MemVar>.<WorkAreaName>.<FieldName> are created for
 * validation in browse editing window. You can use it in VALID array.
 * Using APPEND clause you can add records to table associated with WORKAREA
 * clause. The hotkey to add records is Alt+A.
@@ -26,86 +26,86 @@
 
 Function Main
 
-	REQUEST DBFCDX , DBFFPT
+   REQUEST DBFCDX , DBFFPT
 
-	var := 'Test'
+   var := 'Test'
 
-	SET CENTURY ON
-	SET DELETED ON
+   SET CENTURY ON
+   SET DELETED ON
 
-	SET BROWSESYNC ON	
+   SET BROWSESYNC ON
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 640 HEIGHT 480 ;
-		TITLE 'ooHG Browse Demo)' ;
-		MAIN NOMAXIMIZE ;
-		ON INIT OpenTables() ;
-		ON RELEASE CloseTables()
+   DEFINE WINDOW Form_1 ;
+      AT 0,0 ;
+      WIDTH 640 HEIGHT 480 ;
+      TITLE 'ooHG Browse Demo)' ;
+      MAIN NOMAXIMIZE ;
+      ON INIT OpenTables() ;
+      ON RELEASE CloseTables()
 
-		DEFINE MAIN MENU
-			POPUP 'File'
-				ITEM 'Set Browse Value'	ACTION Form_1.Browse_1.Value := Val ( InputBox ('Set Browse Value','') )
-				ITEM 'Get Browse Value'	ACTION MsgInfo ( Str ( Form_1.Browse_1.Value ) )
-				ITEM 'Refresh Browse'	ACTION Form_1.Browse_1.Refresh
-				SEPARATOR
-				ITEM 'Exit'		ACTION Form_1.Release
-			END POPUP
-			POPUP 'Help'
+      DEFINE MAIN MENU
+         POPUP 'File'
+            ITEM 'Set Browse Value'   ACTION Form_1.Browse_1.Value := Val ( InputBox ('Set Browse Value','') )
+            ITEM 'Get Browse Value'   ACTION MsgInfo ( Str ( Form_1.Browse_1.Value ) )
+            ITEM 'Refresh Browse'   ACTION Form_1.Browse_1.Refresh
+            SEPARATOR
+            ITEM 'Exit'      ACTION Form_1.Release
+         END POPUP
+         POPUP 'Help'
                                 ITEM 'About'            ACTION MsgInfo (oohgversion()+" "+hb_compiler())
-			END POPUP
-		END MENU
+         END POPUP
+      END MENU
 
-		DEFINE STATUSBAR
-			STATUSITEM ''
-		END STATUSBAR
+      DEFINE STATUSBAR
+         STATUSITEM ''
+      END STATUSBAR
 
                 @ 10,10 BROWSE Browse_1                                                                 ;
-			WIDTH 610  										;
-			HEIGHT 390 										;	
-			HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' } ;
-			WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } ;
-			WORKAREA &var ;
-			FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' } ;
-			TOOLTIP 'Browse Test' ;
-			ON CHANGE ChangeTest() ;
-			JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
-			DELETE ;
-			LOCK ;
-			EDIT INPLACE
+         WIDTH 610                                ;
+         HEIGHT 390                               ;
+         HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' } ;
+         WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } ;
+         WORKAREA &var ;
+         FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' } ;
+         TOOLTIP 'Browse Test' ;
+         ON CHANGE ChangeTest() ;
+         JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
+         DELETE ;
+         LOCK ;
+         EDIT INPLACE
 
         on key f10 of form_1 action {|| _oohg_calldump()}
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_1
+   CENTER WINDOW Form_1
 
-	Form_1.Browse_1.SetFocus
+   Form_1.Browse_1.SetFocus
 
-	ACTIVATE WINDOW Form_1
+   ACTIVATE WINDOW Form_1
 
 Return Nil
 
 Procedure OpenTables()
 
-	*CreateTable()
+   *CreateTable()
 
-	Use Test Via "DBFCDX"
-	Go Top
+   Use Test Via "DBFCDX"
+   Go Top
 
-	Form_1.Browse_1.Value := RecNo()	
-	
+   Form_1.Browse_1.Value := RecNo()
+
 Return Nil
 
 Procedure CloseTables()
-	Use
+   Use
 Return Nil
 
 Procedure ChangeTest()
 
-	Form_1.StatusBar.Item(1) := 'RecNo() ' + Alltrim ( Str ( RecNo ( ) ) ) 
+   Form_1.StatusBar.Item(1) := 'RecNo() ' + Alltrim ( Str ( RecNo ( ) ) )
 
-Return 
+Return
 
 Procedure CreateTable
 LOCAL aDbf[6][4]
@@ -143,21 +143,21 @@ LOCAL aDbf[6][4]
 
         DBCREATE("Test", aDbf, "DBFCDX")
 
-	Use test Via "DBFCDX"
-	zap
+   Use test Via "DBFCDX"
+   zap
 
-	For i:= 1 To 100
-		append blank
-		Replace code with i 
-		Replace First With 'First Name '+ Str(i)
-		Replace Last With 'Last Name '+ Str(i)
-		Replace Married With .t.
-		replace birth with date()+i-10000
-	Next i
+   For i:= 1 To 100
+      append blank
+      Replace code with i
+      Replace First With 'First Name '+ Str(i)
+      Replace Last With 'Last Name '+ Str(i)
+      Replace Married With .t.
+      replace birth with date()+i-10000
+   Next i
 
-	Index on code to code
+   Index on code to code
 
-	Use
+   Use
 
 Return
 

@@ -11,11 +11,11 @@ PROCEDURE Test()
    SET CENTURY ON
    SET DATE ANSI
 
-	DEFINE WINDOW pr_form ;
-		AT 0, 0 ;
+   DEFINE WINDOW pr_form ;
+      AT 0, 0 ;
       WIDTH 300 ;
       HEIGHT 300 ;
-		TITLE 'Print Test' ;
+      TITLE 'Print Test' ;
       MODAL
 
       ON KEY ESCAPE OF pr_form ACTION pr_form.Release
@@ -24,8 +24,8 @@ PROCEDURE Test()
 
       DEFINE MAIN MENU
          POPUP 'File 1'
-   			ITEM 'hbprinter'   ACTION PrintTest( "HBPRINTER" )
-   			ITEM 'miniprint'   ACTION PrintTest( "MINIPRINT" )
+            ITEM 'hbprinter'   ACTION PrintTest( "HBPRINTER" )
+            ITEM 'miniprint'   ACTION PrintTest( "MINIPRINT" )
             ITEM 'dos'         ACTION PrintTest( "DOSPRINT" )
             ITEM 'raw'         ACTION PrintTest( "RAWPRINT" )
             ITEM 'excel'       ACTION PrintTest( "EXCELPRINT" )
@@ -38,8 +38,8 @@ PROCEDURE Test()
          END POPUP
 
          POPUP "File 2"
-           	ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
-   			ITEM 'miniprint A' ACTION Eje_Imprimir( "MINIPRINT" )
+              ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
+            ITEM 'miniprint A' ACTION Eje_Imprimir( "MINIPRINT" )
             ITEM 'dos A'       ACTION Eje_Imprimir( "DOSPRINT" )
             ITEM 'raw A'       ACTION Eje_Imprimir( "RAWPRINT" )
             ITEM 'excel A'     ACTION Eje_Imprimir( "EXCELPRINT" )
@@ -52,7 +52,7 @@ PROCEDURE Test()
          END POPUP
 
          POPUP "File 3"
-   			ITEM 'report form hbprinter'  ACTION repof( "HBPRINTER" )
+            ITEM 'report form hbprinter'  ACTION repof( "HBPRINTER" )
             ITEM 'report form MINIPRINT'  ACTION repof( "MINIPRINT" )
             ITEM 'report form DOS'        ACTION repof( "DOSPRINT" )
             ITEM 'report form RAW'        ACTION repof( "RAWPRINT" )
@@ -81,7 +81,7 @@ PROCEDURE Test()
          END POPUP
       END MENU
 
-	END WINDOW
+   END WINDOW
 
    CENTER WINDOW pr_form
    ACTIVATE WINDOW pr_form

@@ -23,7 +23,7 @@
 FUNCTION Main
    LOCAL cUpdated
 
-   IF UpdateIsAvailable()   
+   IF UpdateIsAvailable()
       IF DownloadUpdate()
          RENAME ( "MyApp.exe" ) TO ( "OldApp_" + DTOS(DATE()) + "_" + STRTRAN(TIME(), ":", "_") + ".exe" )
          IF ! FILE( "MyApp.exe" )

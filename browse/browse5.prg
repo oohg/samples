@@ -11,7 +11,7 @@
 * Browse control does not change the record pointer in any area
 * (nor change selection when it changes)
 * You can programatically refresh it using refresh method.
-* Variables called <MemVar>.<WorkAreaName>.<FieldName> are created for 
+* Variables called <MemVar>.<WorkAreaName>.<FieldName> are created for
 * validation in browse editing window. You can use it in VALID array.
 * Using APPEND clause you can add records to table associated with WORKAREA
 * clause. The hotkey to add records is Alt+A.
@@ -25,69 +25,69 @@
 
 Function Main
 
-	SET CENTURY ON
+   SET CENTURY ON
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 640 HEIGHT 480 ;
-		TITLE 'ooHG Browse Demo' ;
-		MAIN NOMAXIMIZE ;
-		ON INIT OpenTables() ;
-		ON RELEASE CloseTables()
+   DEFINE WINDOW Form_1 ;
+      AT 0,0 ;
+      WIDTH 640 HEIGHT 480 ;
+      TITLE 'ooHG Browse Demo' ;
+      MAIN NOMAXIMIZE ;
+      ON INIT OpenTables() ;
+      ON RELEASE CloseTables()
 
-		DEFINE MAIN MENU 
-			POPUP 'File'
+      DEFINE MAIN MENU
+         POPUP 'File'
                                 ITEM 'Set Browse Value' ACTION Form_1.Browse_1.Value := 10
                                 ITEM 'Get Browse Value' ACTION MsgInfo ( Str (  ( Form_1.Browse_1.Value ) ) )
                                 ITEM 'Refresh Browse'   ACTION Form_1.Browse_1.Refresh()
-				SEPARATOR
+            SEPARATOR
                                 ITEM 'Exit'             ACTION Form_1.Release()
-			END POPUP
-			POPUP 'Help'
-				ITEM 'About'		ACTION MsgInfo ("MiniGUI Browse Demo") 
-			END POPUP
-		END MENU
+         END POPUP
+         POPUP 'Help'
+            ITEM 'About'      ACTION MsgInfo ("MiniGUI Browse Demo")
+         END POPUP
+      END MENU
 
-		DEFINE STATUSBAR
-			STATUSITEM 'ooHG Power Ready'
-			STATUSITEM '<Enter> / Double Click To Edit' WIDTH 200
-			STATUSITEM 'Alt+A: Append' WIDTH 120
-		END STATUSBAR
+      DEFINE STATUSBAR
+         STATUSITEM 'ooHG Power Ready'
+         STATUSITEM '<Enter> / Double Click To Edit' WIDTH 200
+         STATUSITEM 'Alt+A: Append' WIDTH 120
+      END STATUSBAR
 
                 DEFINE BROWSE Browse_1
                         ROW 10
                         COL 10
-                        WIDTH 610                                                                               
-                        HEIGHT 390                                                                               
-                        HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' } 
-                        WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } 
-                        WORKAREA Test 
-                        FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' } 
-                        VALUE 1 
+                        WIDTH 610
+                        HEIGHT 390
+                        HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' }
+                        WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 }
+                        WORKAREA Test
+                        FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' }
+                        VALUE 1
                         ALLOWEDIT .t.
                         ALLOWAPPEND .t.
-                        VALID { { || MemVar.Test.Code <= 1000 } , { || !Empty(MemVar.Test.First) } , { || !Empty(MemVar.Test.Last) } , { || Year(MemVar.Test.Birth) >= 1900 } , , } 
-                        VALIDMESSAGES { 'Code Range: 0-1000', 'First Name Cannot Be Empty', , , ,  } 
-                        READONLY { .F. , .F. , .F. , .F. , .T. , .T. } 
+                        VALID { { || MemVar.Test.Code <= 1000 } , { || !Empty(MemVar.Test.First) } , { || !Empty(MemVar.Test.Last) } , { || Year(MemVar.Test.Birth) >= 1900 } , , }
+                        VALIDMESSAGES { 'Code Range: 0-1000', 'First Name Cannot Be Empty', , , ,  }
+                        READONLY { .F. , .F. , .F. , .F. , .T. , .T. }
                         LOCK .t.
                 END BROWSE
 
-	END WINDOW
+   END WINDOW
 
-	CENTER WINDOW Form_1
+   CENTER WINDOW Form_1
 
         Form_1.Browse_1.SetFocus()
 
-	ACTIVATE WINDOW Form_1
+   ACTIVATE WINDOW Form_1
 
 Return Nil
 
 Procedure OpenTables()
-	Use Test 
+   Use Test
 Return Nil
 
 Procedure CloseTables()
-	Use
+   Use
 Return Nil
 
 

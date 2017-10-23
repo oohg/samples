@@ -6,7 +6,7 @@ Function Main
 *-------------------------
 
 DEFINE WINDOW Ventana AT 370 , 333 WIDTH 560 HEIGHT 400 TITLE "Mixed Mode!" ICON NIL MAIN
-   
+
    DEFINE BUTTON Button_1
       ROW    170
       COL    180
@@ -17,7 +17,7 @@ DEFINE WINDOW Ventana AT 370 , 333 WIDTH 560 HEIGHT 400 TITLE "Mixed Mode!" ICON
       FONTNAME  "Arial"
       FONTSIZE  9
    END BUTTON
-   
+
 END WINDOW
 
 Activate window Ventana
