@@ -72,3 +72,4 @@ BEGIN INI FILE "Parametros.Ini"
 END INI
 Parametros.Release
 Return Nil
+

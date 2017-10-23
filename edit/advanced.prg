@@ -284,3 +284,4 @@ Procedure About()
                  " *  German     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + Chr( 13 ) + ;
        "Please report bugs to MiniGUI discusion group at groups.yahoo.com" )
 return ( nil )
+

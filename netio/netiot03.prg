@@ -197,3 +197,4 @@ static func rpc_charstream( pConnSock, nStream )
       hb_idleSleep( 0.1 )
    enddo
 return nil
+

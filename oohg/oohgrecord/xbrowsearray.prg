@@ -163,3 +163,4 @@ METHOD Skip( nRecno ) CLASS XBrowse_Array
 *   METHOD SetIndex   BLOCK { | Self, cFile, lAdditive |       IF( EMPTY( lAdditive ), ( ::cAlias__ )->( ordListClear() ), ) , ( ::cAlias__ )->( ordListAdd( cFile ) ) }
 
 *   ERROR HANDLER FieldAssign
+

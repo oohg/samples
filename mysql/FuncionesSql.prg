@@ -217,3 +217,4 @@ HB_FUNC( SETTRANSPARENT )
 }
 
 #pragma ENDDUMP
+

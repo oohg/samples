@@ -470,3 +470,4 @@ METHOD FieldAssign( xValue ) CLASS ooTextFile
    ENDIF
 
    RETURN uRet
+

@@ -348,3 +348,4 @@ METHOD DeleteItem( nPosition ) CLASS TTabSlider
    EndIf
 
    Return nil
+

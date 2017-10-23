@@ -438,3 +438,4 @@ RETURN nBarHeight
 /*
  * EOF
  */
+

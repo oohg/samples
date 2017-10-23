@@ -247,3 +247,4 @@ METHOD OnLostFocus( uValue ) CLASS MyFullName
    EndIf
 
    Return ::oControl:OnLostFocus
+

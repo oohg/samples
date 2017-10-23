@@ -159,4 +159,3 @@ Procedure BuildLib5( ProjectName )  // Library Visual C
 
 Return
 
-

@@ -40,3 +40,4 @@ PROCEDURE LimitRowLength
    ENDIF
 
 RETURN NIL
+

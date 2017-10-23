@@ -482,3 +482,4 @@ FUNCTION Go_Progress()
     Form_idx.ProgressBar_1.Value := nComplete
 
 Return(.T.)
+

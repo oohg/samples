@@ -19,3 +19,4 @@ PROCEDURE AddFiles( aFiles, oWnd )
    AEVAL( aFiles, { |c| oWnd:Files:Value += c + CHR( 13 ) + CHR( 10 ) } )
 
    RETURN
+

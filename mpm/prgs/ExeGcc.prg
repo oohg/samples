@@ -305,3 +305,4 @@ Procedure CreaGT(nOpt)
     EXECUTE FILE "CMD.EXE" PARAMETERS cDos2 HIDE
 
 Return
+

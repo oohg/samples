@@ -434,3 +434,4 @@ LOCAL nValue := 0
       } / 2
    ENDIF
 RETURN nValue
+

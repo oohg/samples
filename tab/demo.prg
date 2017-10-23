@@ -105,3 +105,4 @@ Form_1.StatusBar.Item(1) := ;
         form_1.tab_1.caption( form_1.tab_1.value )
 
 return nil
+

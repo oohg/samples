@@ -34,3 +34,4 @@ PROCEDURE ChangeValues()
    oVirtual2:Value ++
    Main.Browse.Refresh()
 RETURN
+

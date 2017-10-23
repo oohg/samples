@@ -143,3 +143,4 @@ Procedure Ajust()
    oActiveX:width := WinDemo:width - 7
    oActiveX:height := WinDemo:height - 72
 Return
+

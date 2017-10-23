@@ -628,3 +628,4 @@ Function AgendaOpen()
        Agenda->(DBSetIndex( xBase+'Agenda2'))
     Endif
     Return Nil
+

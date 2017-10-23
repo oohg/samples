@@ -177,3 +177,4 @@ Procedure DrawPointsGraph(paSer,paYval,paCol)
      SHOWLEGENDS
 
    Return
+

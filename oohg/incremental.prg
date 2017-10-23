@@ -39,3 +39,4 @@ PROCEDURE Search()
    Incremental.Brw.Value := INCR->( RECNO() )
 
    RETURN
+

@@ -59,3 +59,4 @@ hb_retnl( (long) LoadCursor( 0, MAKEINTRESOURCE(32649) ) );
 /*
  * EOF
  */
+

@@ -126,3 +126,4 @@ Function AdjustGridColumns()
     oGrid:ColumnWidth(i, aSize[i])
   Next i
 Return Nil
+

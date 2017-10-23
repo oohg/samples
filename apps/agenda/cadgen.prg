@@ -388,4 +388,5 @@ Function GenericOpen( oArea , cAlias )
           (oArea)->(DBSetIndex( xBase + oArea + '1'))
           (oArea)->(DBSetIndex( xBase + oArea + '2'))
        Endif
-         Return Nil     
+         Return Nil
+

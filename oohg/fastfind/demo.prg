@@ -77,3 +77,4 @@ Function SetColValue( xObj, xForm, nCol, xValue )
       SetProperty(xForm, xObj, 'Item', nPos, aRet)
 
    Return NIL
+

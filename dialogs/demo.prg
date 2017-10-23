@@ -114,3 +114,4 @@ Local a
       MsgInfo ( str ( a [8] ) , 'Charset' )
    EndIf
 Return
+

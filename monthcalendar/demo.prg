@@ -67,4 +67,3 @@ cRet += space(2)
 cRet += "Year: "+StrZero(nYear,4)
 Return cRet
 
-

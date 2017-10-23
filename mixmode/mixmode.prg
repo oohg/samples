@@ -41,11 +41,3 @@ alert('Hello')
 
 Return nil
 
-
-
-
-
-
-
-
-

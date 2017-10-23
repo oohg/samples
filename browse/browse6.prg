@@ -84,9 +84,3 @@ Procedure CloseTables()
    Use
 Return Nil
 
-
-
-
-
-
-

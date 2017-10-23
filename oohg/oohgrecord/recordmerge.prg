@@ -416,3 +416,4 @@ METHOD FieldAssign( xValue ) CLASS TRecordMerge
    ENDIF
 
    RETURN NIL
+

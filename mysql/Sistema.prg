@@ -195,3 +195,4 @@ If oQuery1:NetErr()
   MsgExclamation('Error'+chr(13)+oQuery1:Error(),'Creando Tabla...') ; Return .f.
 EndIf
 Return .t.
+

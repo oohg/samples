@@ -441,3 +441,4 @@ relative offset of local header 43: 4 bytes
       hHeader:OffsetHeader := ASC( cBuffer[ 43 ] ) + ( ASC( cBuffer[ 44 ] ) * 256 ) + ( ASC( cBuffer[ 45 ] ) * 65536 ) + ( ASC( cBuffer[ 46 ] ) * 16777216 )
    ENDIF
 RETURN hHeader
+

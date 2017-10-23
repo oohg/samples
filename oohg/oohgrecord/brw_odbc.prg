@@ -223,3 +223,4 @@ METHOD FieldAssign( xValue ) CLASS XBrowse_ODBC
 *   METHOD Append     BLOCK { | Self |                         ( ::cAlias__ )->( DbAppend() ) }
 *   METHOD Lock       BLOCK { | Self |                         ( ::cAlias__ )->( RLock() ) }
 *   METHOD DbStruct   BLOCK { | Self |                         ( ::cAlias__ )->( DbStruct() ) }
+

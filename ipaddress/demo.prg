@@ -106,4 +106,3 @@ Local a := FORM_MAIN.IPADDRESS_3.VALUE
 MsgInfo(StrZero(a[1],3)+"."+StrZero(a[2],3)+"."+StrZero(a[3],3)+"."+StrZero(a[4],3),"Info")
 Return Nil
 
-

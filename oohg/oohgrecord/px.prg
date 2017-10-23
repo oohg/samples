@@ -1957,3 +1957,4 @@ METHOD CurrentIndexKey( nLen ) CLASS XBrowse_Paradox
    ENDIF
 
    RETURN cKey
+

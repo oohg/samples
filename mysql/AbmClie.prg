@@ -281,3 +281,4 @@ If Empty(AbmClie.Text_3.Value) .or. (AbmClie.Text_3.Value<>'S' .and. AbmClie.Tex
   MsgExclamation('El campo [' + AllTrim(AbmClie.Label_3.Value)+cError+chr(13)+"Valores válidos 'S' = Socios, 'C' = Clientes",cTit) ; AbmClie.Text_3.SetFocus ; Return .f.
 EndIf
 Return .t.
+

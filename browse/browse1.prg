@@ -161,5 +161,3 @@ LOCAL aDbf[6][4]
 
 Return
 
-
-

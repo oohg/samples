@@ -122,3 +122,4 @@ METHOD FieldAssign( xValue ) CLASS ooMySql
 *   METHOD SetIndex   BLOCK { | Self, cFile, lAdditive |       IF( EMPTY( lAdditive ), ( ::cAlias__ )->( ordListClear() ), ) , ( ::cAlias__ )->( ordListAdd( cFile ) ) }
 *   METHOD Append     BLOCK { | Self |                         ( ::cAlias__ )->( DbAppend() ) }
 *   METHOD Lock       BLOCK { | Self |                         ( ::cAlias__ )->( RLock() ) }
+

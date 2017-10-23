@@ -295,3 +295,4 @@ if hb_isnumeric( i ) .and. valtype(ctitle) == "C"
    adjust()
 endif
 return nil
+

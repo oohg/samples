@@ -37,4 +37,3 @@ automsginfoext("Este es una prueba de varias lineas"+chr(13)+"esta es otra linea
 
 return nil
 
-

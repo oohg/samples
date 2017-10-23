@@ -374,3 +374,4 @@ Return If( n > 0, Upper( Left( cPathMask, n ) ),;
 Function cFileDisc( cPathMask )
 *---------------------------------------------------------------------*
 Return If( At( ":", cPathMask ) == 2, Upper( Left( cPathMask, 2 ) ), "" )
+

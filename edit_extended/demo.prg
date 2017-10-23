@@ -494,16 +494,3 @@ procedure About()
 
 RETURN NIL
 
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -398,5 +398,3 @@ activate window catalog
 
 return nil
 
-
-
