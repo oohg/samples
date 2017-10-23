@@ -22,14 +22,14 @@ Static oActiveX, bVerde, WinDemo
 
 FUNCTION Main()
    DEFINE WINDOW WinDemo obj Windemo ;
-      AT 118,73 ;
-      WIDTH 808 ;
+      AT     118,73 ;
+      WIDTH  808 ;
       HEIGHT 534 ;
-      TITLE 'ActiveX Support QAC Sample for OOHG' ;
+      TITLE "ActiveX Support QAC Sample for OOHG" ;
       MAIN ;
       ON SIZE Ajust() ;
       ON MAXIMIZE Ajust() ;
-      BACKCOLOR {236 , 233 , 216 } ;
+      BACKCOLOR { 236 , 233 , 216 } ;
       FONT 'Verdana' ;
       SIZE 10 ;
 
@@ -37,8 +37,8 @@ FUNCTION Main()
          VALUE " " ;
          WIDTH 27 ;
          HEIGHT 27 ;
-         FONTCOLOR {255,0,0} ;
-         BACKCOLOR {255,0,0}
+         FONTCOLOR { 255, 0, 0 } ;
+         BACKCOLOR { 255, 0, 0 }
 
       @ windemo:height - 57 , 43 TEXTBOX URL_ToNavigate  ;
          HEIGHT 23 ;
@@ -68,33 +68,41 @@ FUNCTION Main()
 
    Activate window WinDemo
 
-RETURN NIL
+   RETURN NIL
 
-Procedure SwitchSemaforo()
+PROCEDURE SwitchSemaforo()
+
    if oActiveX:Busy()
       if bVerde
          bVerde := .F.
-         WinDemo:LSemaforo:BackColor := {255,0,0}
+         WinDemo:LSemaforo:BackColor := { 255, 0, 0 }
       endif
    else
       if !bVerde
          bVerde := .T.
-         WinDemo:LSemaforo:BackColor := {0,255,0}
+         WinDemo:LSemaforo:BackColor  := { 0, 255, 0 }
          windemo:URL_tonavigate:value := oActiveX:LocationURL()
       endif
    endif
-Return
 
-Procedure Navegar()
+   RETURN
+
+PROCEDURE Navegar()
+
    oActivex:Navigate(windemo:URL_tonavigate:value)
-Return
 
-Procedure Ajust()
-   windemo:lsemaforo:row := WinDemo:height - 60
-   windemo:URL_tonavigate:row := WinDemo:height - 57
-   windemo:URL_tonavigate:width :=  WinDemo:width- 165
-   windemo:Bnavigate:row := WinDemo:height- 60
-   windemo:bnavigate:col := WinDemo:width- 115
-   oActiveX:width := WinDemo:width - 7
-   oActiveX:height := WinDemo:height - 72
-Return
+   RETURN
+
+PROCEDURE Ajust()
+
+   WITH OBJECT windemo
+      :lsemaforo:row        := :height - 60
+      :URL_tonavigate:row   := :height - 57
+      :URL_tonavigate:width := :width - 165
+      :Bnavigate:row        := :height - 60
+      :bnavigate:col        := :width - 115
+      oActiveX:width        := :width - 7
+      oActiveX:height       := :height - 72
+   END WITH
+
+   RETURN

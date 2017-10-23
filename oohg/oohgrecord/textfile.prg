@@ -13,8 +13,9 @@
 #include "hbcompat.ch"
 
 PROCEDURE Main
-Local oTable, aStructure
-Local nHdl, cFile := "TestFile.txt"
+
+   Local oTable, aStructure
+   Local nHdl, cFile := "TestFile.txt"
 
    nHdl := FCREATE( cFile )
    FWRITE( nHdl, "  1,Text,One" + CHR( 13 ) + CHR( 10 ) )
@@ -49,7 +50,7 @@ Local nHdl, cFile := "TestFile.txt"
    END WINDOW
    ACTIVATE WINDOW Main
 
-RETURN
+   RETURN
 
 #endif   // #ifndef NO_SAMPLE
 
@@ -66,9 +67,8 @@ RETURN
  *  It's only a "looks-alike" class.
  */
 
-*-----------------------------------------------------------------------------*
 CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    // Methods always used by XBrowse
 *   METHOD Skipper
    METHOD GoTop
@@ -114,16 +114,17 @@ CLASS ooTextFile
    METHOD FieldName( nPos )  BLOCK { | Self, nPos | IF( HB_IsNumeric( nPos ) .AND. nPos >= 1 .AND. LEN( ::aStructure ) >= nPos, ::aStructure[ nPos ][ 1 ], "" ) }
 
    ERROR HANDLER FieldAssign
-ENDCLASS
 
-*-----------------------------------------------------------------------------*
+   ENDCLASS
+
 METHOD GoTop() CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    FSEEK( ::nHandle, ::nTopOffset, FS_SET )
    ::lEof := .F.
    ::nRecNo := 1
    ::ReadRecord()
-RETURN nil
+
+   RETURN nil
 
 // Database methods not implemented (not used by XBrowse)
 *   METHOD OrdScope
@@ -141,10 +142,10 @@ RETURN nil
 *   METHOD Lock       BLOCK { | Self |                         ( ::cAlias__ )->( RLock() ) }
 *   METHOD DbStruct   BLOCK { | Self |                         ( ::cAlias__ )->( DbStruct() ) }
 
-*-----------------------------------------------------------------------------*
 METHOD New( cFile, aStructure, cDelimiter, xHeaderParameter ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-LOCAL nHandle, I, aStructure2, nWidth, lFreeWidth
+
+   LOCAL nHandle, I, aStructure2, nWidth, lFreeWidth
+
    // Validate delimiter
    IF HB_IsString( cDelimiter ) .AND. ! EMPTY( cDelimiter )
       ::cDelimiter := ALLTRIM( cDelimiter )
@@ -221,12 +222,12 @@ LOCAL nHandle, I, aStructure2, nWidth, lFreeWidth
    // Read first record
    ::GoTop()
 
-RETURN Self
+   RETURN Self
 
-*-----------------------------------------------------------------------------*
 METHOD ReadHeader( xHeaderParameter ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-LOCAL aHeaders, nField, aBakStructure
+
+   LOCAL aHeaders, nField, aBakStructure
+
    // This method would allow to read an special header
    //
    // For this class, it takes fields' name from first line
@@ -250,12 +251,13 @@ LOCAL aHeaders, nField, aBakStructure
          nField++
       ENDDO
    ENDIF
-RETURN .T.
 
-*-----------------------------------------------------------------------------*
+   RETURN .T.
+
 METHOD ReadRecord( aFields ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-LOCAL lData, cBuffer, nPos, nCant, nOffset, nEolLen
+
+   LOCAL lData, cBuffer, nPos, nCant, nOffset, nEolLen
+
    IF ! HB_IsArray( aFields )
       aFields := ::aFields
    ENDIF
@@ -294,10 +296,13 @@ LOCAL lData, cBuffer, nPos, nCant, nOffset, nEolLen
       // Empty record
       ::ReadData( "", 0, aFields )
    ENDIF
-RETURN lData
+
+   RETURN lData
 
 STATIC FUNCTION SearchEol( cBuffer, nCant, nEolLen )
-LOCAL nPos
+
+   LOCAL nPos
+
    nPos := AT( HB_OSNEWLINE(), cBuffer )
    IF nPos > nCant
       nPos := 0
@@ -311,12 +316,13 @@ LOCAL nPos
       nPos := nPos2
       nEolLen := 1
    ENDIF
-RETURN nPos
 
-*-----------------------------------------------------------------------------*
+   RETURN nPos
+
 METHOD ReadData( cBuffer, nLen, aData ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-LOCAL nPos, nLastPos, xItem, nField
+
+   LOCAL nPos, nLastPos, xItem, nField
+
    IF ! HB_IsArray( aData )
       aData := {}
    ENDIF
@@ -369,11 +375,11 @@ LOCAL nPos, nLastPos, xItem, nField
          ENDIF
       ENDIF
    ENDIF
-RETURN aData
 
-*-----------------------------------------------------------------------------*
+   RETURN aData
+
 METHOD Text2Data( xItem, aStructure ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    IF HB_IsArray( aStructure ) .AND. LEN( aStructure ) >= 2
       DO CASE
          CASE aStructure[ 2 ] == "D"
@@ -400,11 +406,11 @@ METHOD Text2Data( xItem, aStructure ) CLASS ooTextFile
             ENDIF
       ENDCASE
    ENDIF
-RETURN xItem
 
-*-----------------------------------------------------------------------------*
+   RETURN xItem
+
 METHOD Skip( nSkip ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    IF ! HB_IsNumeric( nSkip )
       nSkip := 1
    ENDIF
@@ -416,33 +422,33 @@ METHOD Skip( nSkip ) CLASS ooTextFile
       ::nRecNo++
       nSkip--
    ENDDO
-RETURN nil
 
-*-----------------------------------------------------------------------------*
+   RETURN nil
+
 METHOD Close() CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    IF ::nHandle > 0
       FCLOSE( ::nHandle )
       ::lEof := .T.
       ::ReadData( "", 0, ::aFields )
    ENDIF
-RETURN nil
 
-*-----------------------------------------------------------------------------*
+   RETURN nil
+
 METHOD FieldPos( cField ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
+
    cField := UPPER( cField )
-RETURN ASCAN( ::aStructure, { |a| a[ 1 ] == cField } )
 
-*-----------------------------------------------------------------------------*
+   RETURN ASCAN( ::aStructure, { |a| a[ 1 ] == cField } )
+
 METHOD FieldBlock( nPos ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-RETURN { | uValue | IF( PCOUNT() > 0, ::FieldPut( nPos, uValue ), ::FieldGet( nPos ) ) }
 
-*-----------------------------------------------------------------------------*
+   RETURN { | uValue | IF( PCOUNT() > 0, ::FieldPut( nPos, uValue ), ::FieldGet( nPos ) ) }
+
 METHOD FieldAssign( xValue ) CLASS ooTextFile
-*-----------------------------------------------------------------------------*
-LOCAL nPos, cMessage, uRet, lError
+
+   LOCAL nPos, cMessage, uRet, lError
+
    cMessage := ALLTRIM( UPPER( __GetMessage() ) )
    lError := .T.
    IF PCOUNT() == 0
@@ -462,4 +468,5 @@ LOCAL nPos, cMessage, uRet, lError
       uRet := NIL
       ::MsgNotFound( cMessage )
    ENDIF
-RETURN uRet
+
+   RETURN uRet

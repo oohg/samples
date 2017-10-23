@@ -21,10 +21,10 @@
    Win_1.Text_1.Setfocus
    Activate window Win_1
 
-Return
-*--------------------------------------------------------------*
+   Return
+
 Function Captura()
-*--------------------------------------------------------------*
+
    Local cCapt       := Upper(AllTrim(win_1.Text_1.value))
    Local nTaman      := Len(cCapt)
    Local nRegProc    := 0
@@ -52,24 +52,28 @@ Function Captura()
       DBSkip()
    Enddo
    win_1.Grid_1.EnableUpdate
-Return NIL
-*--------------------------------------------------------------*
+
+   Return NIL
+
 Procedure VerItem()
-*--------------------------------------------------------------*
+
    MsgInfo( 'Col 1: ' + GetColValue( "Grid_1", "Win_1", 1 )+'  ';
           + 'Col 2: ' + GetColValue( "Grid_1", "Win_1", 2 ) )
-Return
-*--------------------------------------------------------------*
+
+   Return
+
 Function GetColValue( xObj, xForm, nCol )
-*--------------------------------------------------------------*
+
   Local nPos:= GetProperty(xForm, xObj, 'Value')
   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
-Return aRet[nCol]
-*--------------------------------------------------------------*
+
+   Return aRet[nCol]
+
 Function SetColValue( xObj, xForm, nCol, xValue )
-*--------------------------------------------------------------*
+
   Local nPos:= GetProperty(xForm, xObj, 'Value')
   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
       aRet[nCol] := xValue
       SetProperty(xForm, xObj, 'Item', nPos, aRet)
-Return NIL
+
+   Return NIL

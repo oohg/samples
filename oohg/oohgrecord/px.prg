@@ -12,7 +12,8 @@
 #include "oohg.ch"
 
 PROCEDURE Main
-LOCAL cFile
+
+   LOCAL cFile
 
    SET CENTURY ON
    SET DATE BRITISH
@@ -25,10 +26,11 @@ LOCAL cFile
       BrowsePx( cFile )
    ENDDO
 
-RETURN
+   RETURN
 
 PROCEDURE BrowsePx( cFile )
-Local oPx, aHeaders, aWidths, aFields, oWnd
+
+   Local oPx, aHeaders, aWidths, aFields, oWnd
 
    oPx := XBrowse_Paradox():New( cFile, .T. )
 
@@ -55,10 +57,11 @@ Local oPx, aHeaders, aWidths, aFields, oWnd
 
    oPx:Close()
 
-RETURN
+   RETURN
 
 FUNCTION NewFieldGet( oBase, nPos )
-RETURN { || oBase:FieldGet( nPos ) }
+
+   RETURN { || oBase:FieldGet( nPos ) }
 
 #endif   // #ifndef NO_SAMPLE
 
@@ -70,24 +73,28 @@ RETURN { || oBase:FieldGet( nPos ) }
 #include "fileio.ch"
 
 #pragma BEGINDUMP
+
 #ifdef __XHARBOUR__
 #define HB_ULONGLONG ULONGLONG
 #endif
+
 #pragma ENDDUMP
 
-*-----------------------------------------------------------------------------*
+
 CLASS XBrowse_PseudoFile
-*-----------------------------------------------------------------------------*
+
    DATA nHdl
    METHOD Open
    METHOD Read
    METHOD Seek
    METHOD Close
    METHOD Write
-ENDCLASS
+
+   ENDCLASS
 
 METHOD Open( cFile, lShared, lReadOnly, cExtension ) CLASS XBrowse_PseudoFile
-LOCAL nOpen, nHdl, xRet, nPos, nPos2
+
+   LOCAL nOpen, nHdl, xRet, nPos, nPos2
 
    // Changes filename's extension
    IF ! EMPTY( cExtension )
@@ -111,21 +118,27 @@ LOCAL nOpen, nHdl, xRet, nPos, nPos2
    ELSE
       xRet := Nil
    ENDIF
-RETURN xRet
+
+   RETURN xRet
 
 METHOD Read( cBuffer, nBytes ) CLASS XBrowse_PseudoFile
-RETURN FREAD( ::nHdl, @cBuffer, nBytes )
+
+   RETURN FREAD( ::nHdl, @cBuffer, nBytes )
 
 METHOD Seek( nPosition, nOrigin ) CLASS XBrowse_PseudoFile
-RETURN FSEEK( ::nHdl, nPosition, nOrigin )
+
+   RETURN FSEEK( ::nHdl, nPosition, nOrigin )
 
 METHOD Close() CLASS XBrowse_PseudoFile
+
    FCLOSE( ::nHdl )
    ::nHdl := 0
-RETURN nil
+
+   RETURN nil
 
 METHOD Write( cBuffer, nBytes ) CLASS XBrowse_PseudoFile
-RETURN FWRITE( ::nHdl, cBuffer, nBytes )
+
+   RETURN FWRITE( ::nHdl, cBuffer, nBytes )
 
 /*
  *  This is a template for ooHGRecord's subclasses (database class used
@@ -135,9 +148,8 @@ RETURN FWRITE( ::nHdl, cBuffer, nBytes )
  *  low-level file functions). It allows to use virtual files.
  */
 
-*-----------------------------------------------------------------------------*
 CLASS XBrowse_DirectFile
-*-----------------------------------------------------------------------------*
+
    // Pseudo-file management
    DATA oFile
    DATA bOpenFile     INIT { |c,l1,l2,e| XBrowse_PseudoFile():Open( c, l1, l2, e ) }
@@ -155,18 +167,24 @@ CLASS XBrowse_DirectFile
    METHOD FieldBlock
    METHOD FieldPos
    ERROR HANDLER FieldAssign
-ENDCLASS
+
+   ENDCLASS
 
 METHOD OpenFile( cFile, lShared, lReadOnly ) CLASS XBrowse_DirectFile
-LOCAL oFile
+
+   LOCAL oFile
+
    oFile := EVAL( ::bOpenFile, cFile, lShared, lReadOnly )
    IF oFile != NIL
       ::oFile := oFile
    ENDIF
-RETURN ( oFile != NIL )
+
+   RETURN ( oFile != NIL )
 
 METHOD Skipper( nSkip ) CLASS XBrowse_DirectFile
-LOCAL nCount
+
+   LOCAL nCount
+
    nCount := 0
    nSkip := IF( VALTYPE( nSkip ) == "N", INT( nSkip ), 1 )
    IF nSkip == 0
@@ -193,25 +211,34 @@ LOCAL nCount
          ENDIF
       ENDDO
    ENDIF
-RETURN nCount
+
+   RETURN nCount
 
 METHOD FieldBlock( cField ) CLASS XBrowse_DirectFile
-LOCAL bBlock, nPos
+
+   LOCAL bBlock, nPos
+
    nPos := ::FieldPos( cField )
    IF nPos > 0
       bBlock := { |_x_| IF( PCOUNT() > 0, ::FieldPut( nPos, _x_ ), ::FieldGet( nPos ) ) }
    ELSE
       bBlock := { || NIL }
    ENDIF
-RETURN bBlock
+
+   RETURN bBlock
 
 METHOD FieldPos( cField ) CLASS XBrowse_DirectFile
-LOCAL cField2
+
+   LOCAL cField2
+
    cField2 := UPPER( ALLTRIM( cField ) )
-RETURN ASCAN( ::aFields, { |c| UPPER( c ) == cField2 } )
+
+   RETURN ASCAN( ::aFields, { |c| UPPER( c ) == cField2 } )
 
 METHOD FieldAssign( xValue ) CLASS XBrowse_DirectFile
-LOCAL nPos, cMessage, uRet, lError
+
+   LOCAL nPos, cMessage, uRet, lError
+
    cMessage := ALLTRIM( UPPER( __GetMessage() ) )
    lError := .T.
    IF PCOUNT() == 0
@@ -231,7 +258,8 @@ LOCAL nPos, cMessage, uRet, lError
       uRet := NIL
       ::MsgNotFound( cMessage )
    ENDIF
-RETURN uRet
+
+   RETURN uRet
 
 /*
  *  This is a template for ooHGRecord's subclasses (database class used
@@ -241,9 +269,8 @@ RETURN uRet
  *  your own class, you must define them for your own requirements.
  */
 
-*-----------------------------------------------------------------------------*
 CLASS XBrowse_Paradox FROM XBrowse_DirectFile
-*-----------------------------------------------------------------------------*
+
    METHOD New
 
    // Methods always used by XBrowse
@@ -351,10 +378,12 @@ CLASS XBrowse_Paradox FROM XBrowse_DirectFile
    METHOD SeekKeyTree
    METHOD ValueToBuffer
    METHOD CurrentIndexKey
-ENDCLASS
+
+   ENDCLASS
 
 STATIC FUNCTION StrLen( cBuffer, nStart, nLen )
-RETURN HB_InLine( cBuffer, nStart, nLen ){
+
+   RETURN HB_InLine( cBuffer, nStart, nLen ){
    int iCount, iLen;
    char *cBuffer;
 
@@ -396,7 +425,8 @@ RETURN HB_InLine( cBuffer, nStart, nLen ){
 }
 
 STATIC FUNCTION ReadLittleEndian( cBuffer, nPos, nCount, lTrimTopBit )
-RETURN HB_InLine( cBuffer, nPos, nCount ){
+
+   RETURN HB_InLine( cBuffer, nPos, nCount ){
    int iCount, iLen, iTrimTopBit;
    char *cBuffer;
    HB_ULONGLONG llNum, llSign;
@@ -539,8 +569,11 @@ HB_FUNC( WRITEBIGENDIAN )   // ( nNum, nCount )
 
 #pragma ENDDUMP
 
+
 METHOD New( cFile, lShared, lReadOnly ) CLASS XBrowse_Paradox
-LOCAL cBuffer, nLen, nBase, nPos, nBase2, nPos2, cKeyTypes
+
+   LOCAL cBuffer, nLen, nBase, nPos, nBase2, nPos2, cKeyTypes
+
    IF HB_IsLogical( lShared )
       ::lShared := lShared
    ENDIF
@@ -658,10 +691,13 @@ LOCAL cBuffer, nLen, nBase, nPos, nBase2, nPos2, cKeyTypes
    ::lHot := .F.
    ::lValidBuffer := .F.
    ::GoTop()
-RETURN Self
+
+   RETURN Self
 
 METHOD GoTop() CLASS XBrowse_Paradox
-LOCAL lFound, nFrom, nTo
+
+   LOCAL lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       ::GoTo( 1 )
@@ -681,10 +717,13 @@ LOCAL lFound, nFrom, nTo
          ::GoTo( 1 )
       ENDIF
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD GoBottom() CLASS XBrowse_Paradox
-LOCAL lFound, nFrom, nTo
+
+   LOCAL lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       ::GoTo( ::nRecCount )
@@ -704,13 +743,17 @@ LOCAL lFound, nFrom, nTo
          ::GoTo( ::nRecCount )
       ENDIF
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD RecCount() CLASS XBrowse_Paradox
+
    ::RefreshHeader()
-RETURN ::nRecCount
+
+   RETURN ::nRecCount
 
 METHOD GoTo( nRecno ) CLASS XBrowse_Paradox
+
    ::RefreshHeader()
    IF nRecno < 1 .OR. nRecno > ::nRecCount
       nRecno := ::nRecCount + 1
@@ -721,10 +764,13 @@ METHOD GoTo( nRecno ) CLASS XBrowse_Paradox
    ::lBof := ( ::nRecCount == 0 )
    ::lEof := ( ::nRecno > ::nRecCount )
    ::lFound := .F.
-RETURN nil
+
+   RETURN nil
 
 METHOD OrdKeyNo() CLASS XBrowse_Paradox
-LOCAL nRet, lFound, nFrom, nTo
+
+   LOCAL nRet, lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       nRet := ::nRecNo
@@ -744,10 +790,13 @@ LOCAL nRet, lFound, nFrom, nTo
          nRet := ::nRecNo
       ENDIF
    ENDIF
-RETURN nRet
+
+   RETURN nRet
 
 METHOD OrdKeyCount() CLASS XBrowse_Paradox
-LOCAL nRet, lFound, nFrom, nTo
+
+   LOCAL nRet, lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       nRet := ::nRecCount
@@ -763,10 +812,13 @@ LOCAL nRet, lFound, nFrom, nTo
          nRet := ::nRecCount
       ENDIF
    ENDIF
-RETURN nRet
+
+   RETURN nRet
 
 METHOD OrdKeyGoTo( nRecNo ) CLASS XBrowse_Paradox
-LOCAL lFound, nFrom, nTo
+
+   LOCAL lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       ::GoTo( nRecNo )
@@ -786,10 +838,13 @@ LOCAL lFound, nFrom, nTo
          ::GoTo( nRecNo )
       ENDIF
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD IsTableEmpty() CLASS XBrowse_Paradox
-LOCAL lEmpty, lFound, nFrom, nTo
+
+   LOCAL lEmpty, lFound, nFrom, nTo
+
    ::RefreshHeader()
    IF ::nOrder == 0
       lEmpty := ( ::RecCount == 0 )
@@ -805,11 +860,14 @@ LOCAL lEmpty, lFound, nFrom, nTo
          lEmpty := ( ::RecCount == 0 )
       ENDIF
    ENDIF
-RETURN lEmpty
+
+   RETURN lEmpty
 
 METHOD Skip( nCount ) CLASS XBrowse_Paradox
-LOCAL lFound, nFrom, nTo, nRecordsInBlock, nAux
-LOCAL lBof
+
+   LOCAL lFound, nFrom, nTo, nRecordsInBlock, nAux
+   LOCAL lBof
+
    ::GoCold()
    ::RefreshHeader()
    IF ! HB_IsNumeric( nCount )
@@ -966,10 +1024,13 @@ LOCAL lBof
       ::lBof := .T.
       ::lEof := .F.
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD FieldGet( nPos ) CLASS XBrowse_Paradox
-LOCAL uValue, nBufferPos
+
+   LOCAL uValue, nBufferPos
+
    uValue := NIL
    IF nPos >= 1 .AND. nPos <= ::nFields
       IF ! ::lValidBuffer
@@ -978,10 +1039,12 @@ LOCAL uValue, nBufferPos
       nBufferPos := ::aBufferPos[ nPos ]
       uValue := ::FieldDecode( ::aTypes[ nPos ], ::cRecord, ::aBufferPos[ nPos ], ::aWidths[ nPos ] )
    ENDIF
-RETURN uValue
+
+   RETURN uValue
 
 METHOD FieldDecode( cType, cRecord, nBufferPos, nWidth ) CLASS XBrowse_Paradox
-RETURN HB_INLINE( cType, cRecord, nBufferPos, nWidth ){
+
+   RETURN HB_INLINE( cType, cRecord, nBufferPos, nWidth ){
             char *cBuffer;
             int iLen, iBufferPos, iWidth, iMax;
             unsigned long lAux;
@@ -1173,10 +1236,13 @@ RETURN HB_INLINE( cType, cRecord, nBufferPos, nWidth ){
          }
 
 METHOD FieldPut( nPos, xValue ) CLASS XBrowse_Paradox
-RETURN NIL
+
+   RETURN NIL
 
 METHOD OrdScope( uFrom, uTo ) CLASS XBrowse_Paradox
-LOCAL cKey
+
+   LOCAL cKey
+
    IF PCOUNT() == 0
       ::cScopeFrom := ""
       ::cScopeTo := ""
@@ -1201,10 +1267,13 @@ LOCAL cKey
          ::cScopeTo := LEFT( cKey, ::nPxKeyLen - 6 )
       ENDIF
    ENDIF
-RETURN NIL
+
+   RETURN NIL
 
 METHOD Seek( uKey, lSoftSeek, lLast ) CLASS XBrowse_Paradox
-LOCAL cKey
+
+   LOCAL cKey
+
    IF ::nOrder == 0
       ::lFound := .F.
       ::GoTo( 0 )
@@ -1218,9 +1287,11 @@ LOCAL cKey
       ENDIF
       ::lFound := ::SeekSpecifiedKey( cKey, lSoftSeek, lLast )
    ENDIF
-RETURN ::lFound
+
+   RETURN ::lFound
 
 METHOD Close() CLASS XBrowse_Paradox
+
    IF ::oFile != NIL
       ::oFile:Close()
       ::oFile := NIL
@@ -1229,18 +1300,23 @@ METHOD Close() CLASS XBrowse_Paradox
       ::oPxFile:Close()
       ::oPxFile := NIL
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD SetOrder( nOrder ) CLASS XBrowse_Paradox
+
    IF nOrder == 1
       ::nOrder := 1
    ELSE
       ::nOrder := 0
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD DbStruct() CLASS XBrowse_Paradox
-LOCAL aFields, I
+
+   LOCAL aFields, I
+
    aFields := ARRAY( ::nFields )
    FOR I := 1 TO ::nFields
       aFields[ I ] := { UPPER( ::aFields[ I ] ), "C", ::aWidths[ I ], 0 }
@@ -1290,17 +1366,22 @@ LOCAL aFields, I
 ***         uValue := SUBSTR( ::cRecord, nBufferPos, ::aWidths[ nPos ] )
       ENDIF
    NEXT
-RETURN aFields
+
+   RETURN aFields
 
 METHOD GoCold() CLASS XBrowse_Paradox
+
    IF ::lHot
       * GRABAR BUFFERS!
       ::lHot := .F.
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD RefreshHeader( lForce ) CLASS XBrowse_Paradox
-LOCAL cBuffer
+
+   LOCAL cBuffer
+
    IF ::lShared .OR. ( HB_IsLogical( lForce ) .AND. lForce )
       cBuffer := SPACE( 79 )
       ::oFile:Seek( 0, FS_SET )
@@ -1346,11 +1427,14 @@ LOCAL cBuffer
 */
       ENDIF
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 METHOD ReadRecord() CLASS XBrowse_Paradox
-LOCAL nCant1, nCant2, nPos, nBlock, cBuffer
-LOCAL nLevel
+
+   LOCAL nCant1, nCant2, nPos, nBlock, cBuffer
+   LOCAL nLevel
+
    * ??? ::RefreshHeader()
    ::GoCold()
    IF ::nRecno > ::nRecCount .OR. ::nRecno < 1
@@ -1514,17 +1598,23 @@ LOCAL nLevel
       ::cRecord := SUBSTR( ::cCurrentBlockBuffer, 7 + ( ( ::nCurrentBlockRecord - 1 ) * ::nRecordLen ), ::nRecordLen )
    ENDIF
    ::lValidBuffer := .T.
-RETURN nil
+
+   RETURN nil
 
 METHOD ReadBlock( nBlock ) CLASS XBrowse_Paradox
-LOCAL cBuffer
+
+   LOCAL cBuffer
+
    cBuffer := SPACE( ::nBlockSize )
    ::oFile:Seek( ::nHeaderSize + ( ( nBlock - 1 ) * ::nBlockSize ), FS_SET )
    ::oFile:Read( @cBuffer, ::nBlockSize )
-RETURN cBuffer
+
+   RETURN cBuffer
 
 METHOD ReadBlockHeader( nBlock ) CLASS XBrowse_Paradox
-LOCAL cBuffer, aData, nCount
+
+   LOCAL cBuffer, aData, nCount
+
    cBuffer := SPACE( 6 )
    ::oFile:Seek( ::nHeaderSize + ( ( nBlock - 1 ) * ::nBlockSize ), FS_SET )
    ::oFile:Read( @cBuffer, 6 )
@@ -1533,11 +1623,14 @@ LOCAL cBuffer, aData, nCount
    aData := { nCount, nBlock, ;
               ReadLittleEndian( cBuffer, 1, 2 ), ;
               ReadLittleEndian( cBuffer, 3, 2 )  }
-RETURN aData
+
+   RETURN aData
 
 METHOD SeekSpecifiedKey( cKey, lSoftSeek, lLast ) CLASS XBrowse_Paradox
-LOCAL lFound, nFrom, nTo, lRecordFound
-LOCAL nRecNo
+
+   LOCAL lFound, nFrom, nTo, lRecordFound
+   LOCAL nRecNo
+
    ::GoCold()
    ::lValidBuffer := .F.
 
@@ -1588,11 +1681,14 @@ LOCAL nRecNo
       ENDIF
    ENDIF
    ::lFound := lRecordFound
-RETURN lRecordFound
+
+   RETURN lRecordFound
 
 METHOD SeekKey( cKey, lSoftSeek, lLast, lFound, lKeepBuffer ) CLASS XBrowse_Paradox
-LOCAL cBuffer, nLevel, nBlock, nRecNo, nCant
-LOCAL nPos, nRecNoFound
+
+   LOCAL cBuffer, nLevel, nBlock, nRecNo, nCant
+   LOCAL nPos, nRecNoFound
+
    lFound := .F.
    IF ! HB_IsLogical( lLast )
       lLast := .F.
@@ -1704,10 +1800,13 @@ LOCAL nPos, nRecNoFound
       nRecNo := nRecNoFound
       lFound := .T.
    ENDIF
-RETURN nRecNo
+
+   RETURN nRecNo
 
 METHOD SeekKeyTree( cKey, cBuffer, nRecordLen, lLast, lFound ) CLASS XBrowse_Paradox
-LOCAL nItems, nPos, nFrom, nTo, cCurrentKey
+
+   LOCAL nItems, nPos, nFrom, nTo, cCurrentKey
+
    lFound := .F.
 
    // Item's count
@@ -1750,10 +1849,13 @@ LOCAL nItems, nPos, nFrom, nTo, cCurrentKey
       ENDDO
    ENDIF
    lFound := ( nPos >= 1 .AND. nPos <= nItems .AND. SUBSTR( cBuffer, ( ( nPos - 1 ) * nRecordLen ) + 7, LEN( cKey ) ) == cKey )
-RETURN nPos
+
+   RETURN nPos
 
 METHOD ValueToBuffer( xValue, cType, nWidth ) CLASS XBrowse_Paradox
-LOCAL cValue, nAux
+
+   LOCAL cValue, nAux
+
    IF     cType == "A"
       // Character
       cValue := LEFT( xValue, nWidth )
@@ -1836,10 +1938,13 @@ LOCAL cValue, nAux
          cValue := REPLICATE( CHR( 0 ), nWidth )
       ENDIF
    ENDIF
-RETURN cValue
+
+   RETURN cValue
 
 METHOD CurrentIndexKey( nLen ) CLASS XBrowse_Paradox
-LOCAL cKey
+
+   LOCAL cKey
+
    cKey := ""
    IF ::nOrder == 1
       IF ! ::lValidBuffer
@@ -1850,4 +1955,5 @@ LOCAL cKey
          cKey := LEFT( cKey, nLen )
       ENDIF
    ENDIF
-RETURN cKey
+
+   RETURN cKey

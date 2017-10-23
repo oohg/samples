@@ -13,8 +13,9 @@
 #define CRLF   CHR( 13 ) + CHR( 10 )
 
 PROCEDURE MAIN
-LOCAL oWnd
-LOCAL lHost := .F., oSocket := NIL, aClients := {}
+
+   LOCAL oWnd
+   LOCAL lHost := .F., oSocket := NIL, aClients := {}
 
    // Startup window
    DEFINE WINDOW Connect OBJ oWnd TITLE "Chat sample" ;
@@ -60,7 +61,7 @@ LOCAL lHost := .F., oSocket := NIL, aClients := {}
       @ 330, 10 TEXTBOX Text WIDTH 380 HEIGHT 19 ;
                 ON ENTER oWnd:Send:Click()
       oWnd:Text:Anchor := "LEFTBOTTOMRIGHT"
-                
+
       @ 330,395 BUTTON Send  CAPTION "Send" WIDTH 35 HEIGHT 19 ;
                 ACTION SendText( oWnd, oSocket, lHost, aClients )
       oWnd:Send:Anchor := "BOTTOMRIGHT"
@@ -86,10 +87,12 @@ LOCAL lHost := .F., oSocket := NIL, aClients := {}
    oWnd:Center()
    oWnd:Activate()
 
-RETURN
+   RETURN
 
 FUNCTION CreateConnection( oWnd, lHost )
-LOCAL cServer, nPort, oSocket, oReturn
+
+   LOCAL cServer, nPort, oSocket, oReturn
+
    cServer := ALLTRIM( oWnd:Server:Value )
    nPort := oWnd:Port:Value
    oReturn := NIL
@@ -115,10 +118,13 @@ LOCAL cServer, nPort, oSocket, oReturn
                   LTRIM( STR( nPort ) ), "Chat client" )
       ENDIF
    ENDIF
-RETURN oReturn
+
+   RETURN oReturn
 
 PROCEDURE SendText( oWnd, oSocket, lHost, aClients )
-LOCAL cText
+
+   LOCAL cText
+
    cText := ALLTRIM( oWnd:Text:Value )
    IF ! EMPTY( cText )
       IF lHost
@@ -129,24 +135,31 @@ LOCAL cText
    ENDIF
    oWnd:Text:Value := ""
    oWnd:Text:SetFocus()
-RETURN
+
+   RETURN
 
 PROCEDURE SendToAll( cText, aClients, oWnd )
+
    cText := LEFT( cText, 900 )
    AEVAL( aClients, { |o| IF( o == NIL,, o:WriteBuffer( cText + CRLF ) ) } )
    ShowText( oWnd, cText )
-RETURN
+
+   RETURN
 
 PROCEDURE ShowText( oWnd, cText )
+
    IF oWnd:Chat:ItemCount > 100
       oWnd:Chat:DeleteItem( 1 )
    ENDIF
    oWnd:Chat:AddItem( cText )
    oWnd:Chat:Value := oWnd:Chat:ItemCount
-RETURN
+
+   RETURN
 
 PROCEDURE CheckForExit( oWnd, oSocket, lHost, aClients )
-LOCAL lExit
+
+   LOCAL lExit
+
    IF lHost
       lExit := MsgYesNo( "You are the host of this chat" + CRLF + ;
                "Do you want to close chat sample?", "Chat host" )
@@ -161,10 +174,13 @@ LOCAL lExit
       ENDIF
       oWnd:Release()
    ENDIF
-RETURN
+
+   RETURN
 
 PROCEDURE NewClient( oNewSocket, oWnd, aClients )
-LOCAL nPosition
+
+   LOCAL nPosition
+
    nPosition := ASCAN( aClients, NIL )
    aClients[ nPosition ] := oNewSocket
    oNewSocket:Cargo := nPosition
@@ -173,27 +189,33 @@ LOCAL nPosition
    oNewSocket:Async( oWnd:hWnd )
    SendToAll( STRZERO( oNewSocket:Cargo, 3 ) + " has join chat", ;
               aClients, oWnd )
-RETURN
+
+   RETURN
 
 PROCEDURE CloseClient( oSocket, aClients, oWnd )
+
    oSocket:Close()
    aClients[ oSocket:Cargo ] := NIL
    SendToAll( STRZERO( oSocket:Cargo, 3 ) + " has left chat", ;
               aClients, oWnd )
-RETURN
+   RETURN
 
 PROCEDURE ReadFromHost( oSocket, oWnd )
+
    DO WHILE oSocket:IsLine()
       ShowText( oWnd, oSocket:GetLine() )
    ENDDO
-RETURN
+
+   RETURN
 
 PROCEDURE ReadFromClient( oSocket, aClients, oWnd )
+
    DO WHILE oSocket:IsLine()
       SendToAll( STRZERO( oSocket:Cargo, 3 ) + ": " + oSocket:GetLine(), ;
                  aClients, oWnd )
    ENDDO
-RETURN
+
+   RETURN
 
 #include "stream\TStream.prg"
 #include "stream\TStreamSocket.prg"

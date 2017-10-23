@@ -1,7 +1,9 @@
 #include "oohg.ch"
 
 PROCEDURE MAIN
-LOCAL I
+
+   LOCAL I
+
    DBCREATE( "INCR", { { "DATA", "C", 20, 0 } } )
    USE INCR
    INDEX ON DATA TO INCR
@@ -25,12 +27,15 @@ LOCAL I
    END WINDOW
    CENTER WINDOW Incremental
    ACTIVATE WINDOW Incremental
-RETURN
+
+   RETURN
 
 PROCEDURE Search()
+
    INCR->( DBSEEK( UPPER( ALLTRIM( Incremental.Txt.Value ) ), .T. ) )
    IF INCR->( EOF() )
       INCR->( DBGOBOTTOM() )
    ENDIF
    Incremental.Brw.Value := INCR->( RECNO() )
-RETURN
+
+   RETURN

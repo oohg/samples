@@ -13,74 +13,75 @@
 Static aSer, aClr, aSern, aYVal, cTit
 
 Function Main
+
    Set Navigation extended
    Load Window Grafico
    Center Window Grafico
    Activate Window Grafico
-Return Nil
 
-*-----------------------------------------------------------------------------*
+   Return Nil
+
 Procedure Presenta(nTipo)
-*-----------------------------------------------------------------------------*
+
    Do Case
-      Case nTipo = 0       //  Histogram
+   Case nTipo = 0       //  Histogram
 
-           aSer:= {{Grafico.Text_5.value,Grafico.Text_9.value,Grafico.Text_13.value}, ;
-                   {Grafico.Text_6.value,Grafico.Text_10.value,Grafico.Text_14.value},;
-                   {Grafico.Text_7.value,Grafico.Text_11.value,Grafico.Text_15.value},;
-                   {Grafico.Text_8.value,Grafico.Text_12.value,Grafico.Text_16.value} }
+      aSer:= {{Grafico.Text_5.value,Grafico.Text_9.value,Grafico.Text_13.value}, ;
+             {Grafico.Text_6.value,Grafico.Text_10.value,Grafico.Text_14.value},;
+             {Grafico.Text_7.value,Grafico.Text_11.value,Grafico.Text_15.value},;
+             {Grafico.Text_8.value,Grafico.Text_12.value,Grafico.Text_16.value} }
 
-           aClr:= {Grafico.Label_5.Fontcolor,Grafico.Label_6.Fontcolor, ;
-                   Grafico.Label_7.Fontcolor,Grafico.Label_8.Fontcolor}
+      aClr:= {Grafico.Label_5.Fontcolor,Grafico.Label_6.Fontcolor, ;
+             Grafico.Label_7.Fontcolor,Grafico.Label_8.Fontcolor}
 
-           aSern:={Grafico.Text_1.value,Grafico.Text_2.value, ;
-                   Grafico.Text_3.value,Grafico.Text_4.value }
+      aSern:={Grafico.Text_1.value,Grafico.Text_2.value, ;
+             Grafico.Text_3.value,Grafico.Text_4.value }
 
-           aYVal:={Grafico.Text_17.value,Grafico.Text_18.value,Grafico.Text_19.value }
+      aYVal:={Grafico.Text_17.value,Grafico.Text_18.value,Grafico.Text_19.value }
 
-           cTit:= Grafico.Text_20.value
+      cTit:= Grafico.Text_20.value
 
-           Load Window Veamos
-           Center Window Veamos
-           Activate Window Veamos
+      Load Window Veamos
+      Center Window Veamos
+      Activate Window Veamos
 
-      Case nTipo = 1       //  Pie 1
+   Case nTipo = 1       //  Pie 1
 
-           cTit:= Grafico.Text_1.value
-           aSer:= {Grafico.Text_5.value,Grafico.Text_9.value,Grafico.Text_13.value}
+      cTit:= Grafico.Text_1.value
+      aSer:= {Grafico.Text_5.value,Grafico.Text_9.value,Grafico.Text_13.value}
 
-      Case nTipo = 2       //  Pie 2
+   Case nTipo = 2       //  Pie 2
 
-           cTit:= Grafico.Text_2.value
-           aSer:= {Grafico.Text_6.value,Grafico.Text_10.value,Grafico.Text_14.value}
+      cTit:= Grafico.Text_2.value
+      aSer:= {Grafico.Text_6.value,Grafico.Text_10.value,Grafico.Text_14.value}
 
-      Case nTipo = 3       //  Pie 3
+   Case nTipo = 3       //  Pie 3
 
-           cTit:= Grafico.Text_3.value
-           aSer:= {Grafico.Text_7.value,Grafico.Text_11.value,Grafico.Text_15.value}
+      cTit:= Grafico.Text_3.value
+      aSer:= {Grafico.Text_7.value,Grafico.Text_11.value,Grafico.Text_15.value}
 
-      Case nTipo = 4       //  Pie 4
+   Case nTipo = 4       //  Pie 4
 
-           cTit:= Grafico.Text_4.value
-           aSer:= {Grafico.Text_8.value,Grafico.Text_12.value,Grafico.Text_16.value}
+      cTit:= Grafico.Text_4.value
+      aSer:= {Grafico.Text_8.value,Grafico.Text_12.value,Grafico.Text_16.value}
 
-      Case nTipo = 5       //  Pie 5
+   Case nTipo = 5       //  Pie 5
 
-           cTit:= Grafico.Text_17.value
-           aSer:= {Grafico.Text_5.value,Grafico.Text_6.value,;
-                   Grafico.Text_7.value,Grafico.Text_8.value }
+      cTit:= Grafico.Text_17.value
+      aSer:= {Grafico.Text_5.value,Grafico.Text_6.value,;
+             Grafico.Text_7.value,Grafico.Text_8.value }
 
-      Case nTipo = 6       //  Pie 6
+   Case nTipo = 6       //  Pie 6
 
-           cTit:= Grafico.Text_18.value
-           aSer:= {Grafico.Text_9.value ,Grafico.Text_10.value,;
-                   Grafico.Text_11.value,Grafico.Text_12.value }
+      cTit:= Grafico.Text_18.value
+      aSer:= {Grafico.Text_9.value ,Grafico.Text_10.value,;
+             Grafico.Text_11.value,Grafico.Text_12.value }
 
-      Case nTipo = 7       //  Pie 7
+   Case nTipo = 7       //  Pie 7
 
-           cTit:= Grafico.Text_19.value
-           aSer:= {Grafico.Text_13.value,Grafico.Text_14.value,;
-                   Grafico.Text_15.value,Grafico.Text_16.value }
+      cTit:= Grafico.Text_19.value
+      aSer:= {Grafico.Text_13.value,Grafico.Text_14.value,;
+             Grafico.Text_15.value,Grafico.Text_16.value }
 
    EndCase
 
@@ -100,10 +101,9 @@ Procedure Presenta(nTipo)
       Activate Window Veamos2
    Endif
 
-Return
-*-----------------------------------------------------------------------------*
+   Return
+
 Procedure elGrafico()
-*-----------------------------------------------------------------------------*
 
 	ERASE WINDOW Veamos
 
@@ -127,10 +127,9 @@ Procedure elGrafico()
 		SHOWLEGENDS 						;
 		NOBORDER
 
-Return
-*-----------------------------------------------------------------------------*
+   Return
+
 Procedure PieGraph()
-*-----------------------------------------------------------------------------*
 
    ERASE Window Veamos2
 
@@ -145,4 +144,4 @@ Procedure PieGraph()
         SHOWLEGENDS					;
 	NOBORDER
 
-Return
+   Return

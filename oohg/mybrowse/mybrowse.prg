@@ -18,7 +18,7 @@ Function Main()
    SET CENTURY ON
    SET EPOCH TO YEAR(DATE())-20
    SET DATE TO BRITISH
-   
+
    cBaseFolder := GetStartupFolder()
 
    aTypes      := { {'Database files (*.dbf)', '*.dbf'} }
@@ -43,7 +43,7 @@ Function Main()
 
    Endif
 
-Return Nil
+   Return Nil
 
 Function CreaBrowse( cBase, aNomb, aLong, aJust )
 
@@ -73,7 +73,7 @@ Function CreaBrowse( cBase, aNomb, aLong, aJust )
         BUTTON Buscar    CAPTION "Buscar"    PICTURE "MINIGUI_EDIT_FIND"   ACTION MsgInfo( "My Find routine", cBase ) AUTOSIZE
         BUTTON Imprimir  CAPTION "Imprimir"  PICTURE "MINIGUI_EDIT_PRINT"  ACTION printlist(cBase, aNomb, aLong)      AUTOSIZE
       END TOOLBAR
-      
+
       IF !IsControlDefined(Browse_1,oWndBase)
 
                   @ 45,20 BROWSE Browse_1               ;
@@ -104,7 +104,7 @@ Function CreaBrowse( cBase, aNomb, aLong, aJust )
     oWndBase.Center
     oWndBase.Activate
 
-Return Nil
+   Return Nil
 
 Function VerHeadIcon()
 
@@ -132,20 +132,22 @@ Function VerHeadIcon()
        End
    Next
 
-Return(aHeadIcon)
+   Return(aHeadIcon)
 
 Procedure Adjust()
+
    oWndBase.Browse_1.Width  := oWndBase.width  - 40
    oWndBase.Browse_1.Height := oWndBase.height - 95
-Return
+
+   Return
 
 Procedure Append()
 
-Return
+   Return
 
 Procedure Edit()
 
-Return
+   Return
 
 Procedure DeleteRecall()
 
@@ -159,7 +161,7 @@ Procedure DeleteRecall()
    oWndBase.Browse_1.Refresh
    oWndBase.Browse_1.SetFocus
 
-Return
+   Return
 
 Procedure printlist()
 
@@ -178,7 +180,7 @@ Procedure printlist()
         Aadd(aLen,Max(100,Min(160,aEst[i,3]*14)))
     Next
 
-	
+
 	aeval(aLen, {|e,i| aLen[i] := e/9})
 
 	aHdr1 := array(len(aHdr))
@@ -208,4 +210,4 @@ Procedure printlist()
 
 	Set Deleted off
 
-Return
+   Return

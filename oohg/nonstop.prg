@@ -13,10 +13,11 @@ PROCEDURE MAIN
     CENTER WINDOW MainWindow
     ACTIVATE WINDOW MainWindow
 
-RETURN
+   RETURN
 
 PROCEDURE NonStop()
-LOCAL oWnd, nSeconds, nCount, lLoop
+
+   LOCAL oWnd, nSeconds, nCount, lLoop
 
     DEFINE WINDOW NonStop OBJ oWnd AT 0,0 ;
            WIDTH 100 HEIGHT 70 TITLE "Working..." MODAL NOSYSMENU NOSIZE ;
@@ -47,4 +48,4 @@ LOCAL oWnd, nSeconds, nCount, lLoop
         oWnd:Release()
     ENDIF
 
-RETURN
+   RETURN

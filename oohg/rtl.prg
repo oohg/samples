@@ -9,7 +9,8 @@
 #include "oohg.ch"
 
 Function Main()
-Local oWnd
+
+   Local oWnd
 
    SET GLOBALRTL ON
 
@@ -64,4 +65,4 @@ Local oWnd
    oWnd:Center()
    oWnd:Activate()
 
-Return
+   Return

@@ -21,10 +21,11 @@ Static aYval2do   := { "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" }
 Static aSerieNames
 
 Procedure Main
-local aClr := { RED,YELLOW,AZUL,ORANGE,VERDE,FUCHSIA,GREEN,CAFE, ;
+
+   local aClr := { RED,YELLOW,AZUL,ORANGE,VERDE,FUCHSIA,GREEN,CAFE, ;
                 BLUE,BROWN,PINK,PURPLE, BLACK, WHITE, GRAY       }
-local n := 1, cNombre, m
-local nReg, aColor, aColor1, aSer, aSer1, aSer2
+   local n := 1, cNombre, m
+   local nReg, aColor, aColor1, aSer, aSer1, aSer2
 
    USE SALDOMES
 
@@ -50,7 +51,7 @@ local nReg, aColor, aColor1, aSer, aSer1, aSer2
       n++
    enddo
 
-   For n = 1 to nReg              
+   For n = 1 to nReg
        For m = 1 to 6
            aSer1[n,m] := aSer[n,m]
            aSer2[n,m] := aSer[n,m+6]
@@ -103,7 +104,7 @@ local nReg, aColor, aColor1, aSer, aSer1, aSer2
    GraphTest.Center
    Activate Window GraphTest
 
-Return
+   Return
 
 Procedure DrawBarGraph(paSer,paYval,paCol)
 
@@ -127,8 +128,7 @@ Procedure DrawBarGraph(paSer,paYval,paCol)
 	  SHOWYVALUES                       ;
 	  SHOWLEGENDS
 
-
-Return
+   Return
 
 Procedure DrawLinesGraph(paSer,paYval,paCol)
 
@@ -152,8 +152,7 @@ Procedure DrawLinesGraph(paSer,paYval,paCol)
 	  SHOWYVALUES                       ;
 	  SHOWLEGENDS
 
-
-Return
+   Return
 
 Procedure DrawPointsGraph(paSer,paYval,paCol)
 
@@ -177,5 +176,4 @@ Procedure DrawPointsGraph(paSer,paYval,paCol)
 	  SHOWYVALUES                       ;
 	  SHOWLEGENDS
 
-
-Return
+   Return
