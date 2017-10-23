@@ -531,7 +531,6 @@ Procedure OpenMPM( ProjectFile ) // Versión nueva de .mpm
          GET nTotFmg                 SECTION 'NFILES'     ENTRY "TOTFMGFILES"     DEFAULT 0
          GET nTotRc                  SECTION 'NFILES'     ENTRY "TOTRCFILES"      DEFAULT 0
 
-
          If nTotSou > 0
             For i := 1 To nTotSou
                 DO EVENTS
@@ -1004,7 +1003,6 @@ Procedure BuildMode(nModo,nCChoice,nHChoice)
     // nModo    = RadioGroup_7 - Exe - Librería
 
     Aadd( cPrgFile , Alltrim(main.List_1.Item(1)) )
-
 
     //If !VerifyTop( cPrgFile[1] )
     //   MsgInfo("Select Main Source File")
@@ -1741,7 +1739,6 @@ Procedure FocoEnText()
            main.text_30.Setfocus // cGuixHbVisual
    Endcase
 
-
 Return
 *---------------------------------------------------------------------*
 Procedure DisableText()
@@ -1779,7 +1776,6 @@ Procedure DisableText()
          main.Frame_2.Hide
          main.Frame_3.Hide
          // main.Frame_37.Hide
-
 
          // Tab C Compiler
 

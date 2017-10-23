@@ -17,7 +17,6 @@
 ///#xcommand WITH <oObject> DO => Self := <oObject>
 ///#xcommand ENDWITH           => Self := NIL
 
-
 *-------------------------
 Function Main
 *-------------------------
@@ -47,8 +46,6 @@ END WINDOW
 ACTIVATE WINDOW Win_1
 Return
 
-
-
 *-------------------------
 PROCEDURE INDEXA()
 *-------------------------
@@ -69,13 +66,11 @@ ELSE
 MSGBOX("INDEXADO")
 endif
 
-
 :Close()
 
 END
 
 return
-
 
 *-------------------------
 procedure borrai()
@@ -94,13 +89,10 @@ if .not. ::Open()
 msgbox("error")
 endif
 
-
 ::Close()
 
 END
 return
-
-
 
 *-------------------------
 procedure conectar()
@@ -110,7 +102,6 @@ procedure conectar()
 
  ///  Public cConStr   :=
 ///   "Driver={Microsoft Visual FoxPro Driver};SourceType=DBF;SourceDB=c:\analisis\iden;Exclusive=No;Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;"
-
 
 Public cConStr := ;
  "Driver={Microsoft Visual FoxPro Driver};SourceType=DBF;SourceDB=c:\oohg\samples\odbc; Exclusive=No;Collate=Machine;NULL=NO;Deleted=NO"
@@ -129,13 +120,11 @@ dsfunctions:lcachers:=.F.
 
 return
 
-
 *-------------------------
 procedure cerrar()
 *-------------------------
 dsFunctions:Destroy()
 return
-
 
 *-------------------------
 PROCEDURE list()
@@ -143,7 +132,6 @@ PROCEDURE list()
 local i
 
 ///WITH  dsFunctions DO
-
 
 dsFunctions:SetSQL( "SELECT * FROM ABI order by NOMBRE " )
 
@@ -176,8 +164,6 @@ dsFunctions:Close()
 
 ///END
 RETURN( NIL )
-
-
 
 *-------------------------
 PROCEDURE Bus()
@@ -217,7 +203,6 @@ dsFunctions:Close()
 ///END
 RETURN  NIL
 
-
 *-------------------------
 PROCEDURE Bus1()
 *-------------------------
@@ -253,10 +238,8 @@ endif
 
 ///      :destroy()
 
-
 END
 RETURN  NIL
-
 
 *-------------------------
 PROCEDURE addrec()
@@ -285,8 +268,6 @@ endif
 END
 
 RETURN  NIL
-
-
 
 *-------------------------
 PROCEDURE borrarec()

@@ -11,8 +11,6 @@
 Function Main()
 *------------------------------------------------------*
 
-
-
 msginfo("Test de autoajuste, se ajusta posicion, ancho pero no font")
 
 SET AUTOADJUST ON
@@ -20,10 +18,6 @@ SET ADJUSTWIDTH ON  /// por defecto si
 SET ADJUSTFONT OFF  /// por defecto si
 
 msginfo("Test de autoajuste, se ajusta posicion, ancho pero no font","Informacion")
-
-
-
-
 
    DEFINE WINDOW  Principal AT 126,66 WIDTH 648 HEIGHT 404 ;
    TITLE 'AutoAdjust (c)2007 MigSoft ' ;

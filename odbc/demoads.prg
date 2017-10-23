@@ -43,8 +43,6 @@ END WINDOW
 ACTIVATE WINDOW Win_1
 Return
 
-
-
 *-------------------------
 PROCEDURE INDEXA()
 *-------------------------
@@ -65,13 +63,11 @@ ELSE
 MSGBOX("INDEXADO")
 endif
 
-
 :Close()
 
 END
 
 return
-
 
 *-------------------------
 procedure borrai()
@@ -90,13 +86,10 @@ if .not. :Open()
 msgbox("error")
 endif
 
-
 :Close()
 
 END
 return
-
-
 
 *-------------------------
 procedure conectar()
@@ -117,13 +110,11 @@ dsfunctions:lcachers:=.F.
 
 return
 
-
 *-------------------------
 procedure cerrar()
 *-------------------------
 dsFunctions:Destroy()
 return
-
 
 *-------------------------
 PROCEDURE list()
@@ -132,11 +123,9 @@ local i
 
 WITH OBJECT dsFunctions
 
-
 :SetSQL( "SELECT * FROM ABI order by NOMBRE " )
 
 :Open()
-
 
 creg:=""
 contador:=0
@@ -157,8 +146,6 @@ ENDDO
 
 END
 RETURN( NIL )
-
-
 
 *-------------------------
 PROCEDURE Bus()
@@ -194,10 +181,8 @@ endif
 
 :Close()
 
-
 END
 RETURN  NIL
-
 
 *-------------------------
 PROCEDURE Bus1()
@@ -235,7 +220,6 @@ endif
 END
 RETURN  NIL
 
-
 *-------------------------
 PROCEDURE addrec()
 *-------------------------
@@ -263,8 +247,6 @@ endif
 END
 
 RETURN  NIL
-
-
 
 *-------------------------
 PROCEDURE borrarec()

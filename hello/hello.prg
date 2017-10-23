@@ -1,6 +1,5 @@
 #include "oohg.ch"
 
-
 PROCEDURE SetValue
 
   DECLARE WINDOW &(cMainWin)
@@ -8,7 +7,6 @@ PROCEDURE SetValue
   &(cMainWin).Txt1.value := "hola"
 
 RETURN
-
 
 PROCEDURE Main
 

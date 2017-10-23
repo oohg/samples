@@ -148,7 +148,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Background_Change( hBitmap, hBitmap1, hBitmap2, nMode, Flag_Erase )
    STATIC Flag_Image := .T.
 
@@ -166,18 +165,15 @@ PROCEDURE Background_Change( hBitmap, hBitmap1, hBitmap2, nMode, Flag_Erase )
    BT_ClientAreaInvalidateAll( "Win1", .T. )
 RETURN
 
-
 PROCEDURE Background_Erase( Flag_Erase )
    Flag_Erase := .T.
    BT_ClientAreaInvalidateAll( "Win1", .T. )
 RETURN
 
-
 PROCEDURE Proc_ON_RELEASE( hBitmap1, hBitmap2 )
    BT_BitmapRelease( hBitmap1 )
    BT_BitmapRelease( hBitmap2 )
 RETURN
-
 
 PROCEDURE Proc_ON_PAINT( nMode, Flag_Erase, hBitmap )
    LOCAL Width := BT_ClientAreaWidth( "Win1" )

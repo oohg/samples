@@ -7,7 +7,6 @@
  *
  */
 
-
 #include "oohg.ch"
 
 Function Main()

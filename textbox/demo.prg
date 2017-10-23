@@ -17,7 +17,6 @@ Function Main
       TITLE 'ooHG textbox Demo' ;
       MAIN
 
-
       @ 10,10 TEXTBOX Txt WIDTH 200 OBJ oTxt ;
                 action msginfo("uno!") ;
                 action2 msginfo("dos!") ;
@@ -32,8 +31,6 @@ Function Main
                 @ 40,10 BUTTON Mover CAPTION "Mover" ACTION ;
                ( IF( oTxt:Row == 10, oTxt:Row := 80, oTxt:Row := 10 ) )
 
-
-
       @ 120,10 TEXTBOX Text_1 ;
          VALUE 123 ;
          FONT 'Verdana' SIZE 12 ;
@@ -42,7 +39,6 @@ Function Main
          inputmask "999,999,999.99"  ;
          RIGHTALIGN ;
          ON LOSTFOCUS if ( This.Value < 100 , This.SetFocus , Nil)
-
 
    END WINDOW
 

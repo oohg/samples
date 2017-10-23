@@ -75,7 +75,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
@@ -110,7 +109,6 @@ PROCEDURE Proc_ON_PAINT
    BT_DeleteDC( BTstruct )
 RETURN
 
-
 PROCEDURE AlphaChange( new_value )
    IF hBitmap == 0
       BT_DELAY_EXECUTION( 100 )    // Allow the system time to repaint the window after hiding the popup menu
@@ -122,7 +120,6 @@ PROCEDURE AlphaChange( new_value )
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
 RETURN
-
 
 PROCEDURE CaptureDesktop
    Win1.Hide
@@ -138,7 +135,6 @@ PROCEDURE CaptureDesktop
    BT_ClientAreaInvalidateAll( "Win1" )
 RETURN
 
-
 PROCEDURE SaveDesktop
    IF hBitmap == 0
       Grayness_effect_start()
@@ -151,7 +147,6 @@ PROCEDURE SaveDesktop
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
 RETURN
-
 
 PROCEDURE EraseCapture
    IF hBitmap == 0
@@ -166,7 +161,6 @@ PROCEDURE EraseCapture
    ENDIF
 RETURN
 
-
 PROCEDURE Grayness_effect_start
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapCaptureClientArea( "Win1" )
@@ -175,7 +169,6 @@ PROCEDURE Grayness_effect_start
    Flag_AlphaBlend_Effect := .F.
    BT_ClientAreaInvalidateAll( "Win1" )
 RETURN
-
 
 PROCEDURE Grayness_effect_end
    BT_BitmapRelease( hBitmap )

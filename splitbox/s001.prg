@@ -50,7 +50,6 @@ Function Main()
          END TOOLBAR
       END SPLITBOX
 
-
       /*
        * The band number is given by the control's creation order.
        * In this sample ToolBar_1 has band number 1, cmb_Address
@@ -76,7 +75,6 @@ Function Main()
          OBJ btn_IsV ;
          CAPTION "Is Visible" ;
          ACTION AUTOMSGBOX( Split:IsBandVisible( 3 ), "Info" )
-
 
       @ 90, 230 BUTTON btn_ShowG ;
          OBJ btn_ShowG ;

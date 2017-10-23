@@ -93,7 +93,6 @@ FUNCTION Main()
          HEIGHT 28 ;
          FONT 'Verdana' ;
 
-
       @  0, 0 ACTIVEX ActiveX WIDTH WinDemo:width - 7 HEIGHT WinDemo:height - 72 PROGID "Shell.Explorer.2" OBJ oActiveX INVISIBLE
 
      oActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| WinDemo:Title := cTitle } )

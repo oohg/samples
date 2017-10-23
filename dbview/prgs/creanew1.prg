@@ -173,7 +173,6 @@ else
 endif
 return nil
 
-
 function DBUaddstruct
 if _DBUcreadbf._DBUaddline.caption == "Add"
    if .not. DBUnamecheck()
@@ -322,7 +321,6 @@ else
 endif
 
 return nil
-
 
 function DBUinsstruct
 if len(_DBUstructarr) == 0

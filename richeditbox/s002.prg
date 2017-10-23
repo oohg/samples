@@ -32,7 +32,6 @@ FUNCTION Main
 
 RETURN Nil
 
-
 FUNCTION CheckLineMax( nLenght )
 
    IF oRich:GetLineLength( oRich:GetCurrentLine() ) >= nLenght

@@ -34,7 +34,6 @@ Local nTra := 210, hWnd
 
 RETURN NIL
 
-
 #pragma BEGINDUMP
 
 #define _WIN32_IE 0x0500

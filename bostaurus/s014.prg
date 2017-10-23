@@ -216,7 +216,6 @@ FUNCTION Main
    frm_barcode.Activate
 RETURN Nil
 
-
 FUNCTION ShowBarcode
    LOCAL hBitMap
 
@@ -255,7 +254,6 @@ FUNCTION ShowBarcode
    ACTIVATE WINDOW frm_showbarcode
 RETURN Nil
 
-
 FUNCTION SaveBarcodeToPNG
    LOCAL cImageFileName
 
@@ -286,7 +284,6 @@ FUNCTION SaveBarcodeToPNG
    ENDIF
 RETURN Nil
 
-
 FUNCTION ChangeBarColor
    LOCAL aColor := GetColor( frm_barcode.lbl_barcolor.FontColor )
 
@@ -296,7 +293,6 @@ FUNCTION ChangeBarColor
    ENDIF
 RETURN Nil
 
-
 FUNCTION ChangeBackColor
    LOCAL aColor := GetColor( frm_barcode.lbl_backgroundcolor.BackColor )
 
@@ -305,7 +301,6 @@ FUNCTION ChangeBackColor
       aBackColor := aColor
    ENDIF
 RETURN Nil
-
 
 /*
   CreateBarcode() function can be used to create barcode image in PNG file format if cImageFileName parameter is included.
@@ -357,7 +352,6 @@ FUNCTION CreateBarcode( cCode, cType, nLineWidth, nLineHeight, lShowDigits, cIma
    ENDIF
 RETURN hBitmap
 
-
 FUNCTION Zebra_CreateBitmapBarcode( aBarColor, aBackColor, nLineWidth, nLineHeight, cType, cCode, nFlags, lShowDigits, cTextCode )
    LOCAL hBitmap := 0, hZebra
    LOCAL hDC, BTstruct, nFontSize
@@ -403,14 +397,12 @@ FUNCTION Zebra_CreateBitmapBarcode( aBarColor, aBackColor, nLineWidth, nLineHeig
    ENDIF
 RETURN hBitmap
 
-
 FUNCTION Zebra_Draw( hZebra, hDC, aBarColor, nRow, nCol, nLineWidth, nLineHeight, iFlags )
    IF hb_zebra_GetError( hZebra ) != 0
       RETURN HB_ZEBRA_ERROR_INVALIDZEBRA
    ENDIF
 //     hb_zebra_draw( hZebra, bCodeBlock,                                                          dX,   dY,   dWidth,     dHeight,     iFlags )
 RETURN hb_zebra_draw( hZebra, { |x, y, w, h| BT_DrawFillRectangle( hDC, y, x, w, h, aBarColor ) }, nCol, nRow, nLineWidth, nLineHeight, iFlags )
-
 
 FUNCTION Zebra_GetWidth( hZebra, nLineWidth, nLineHeight, iFlags )
    LOCAL x1 := 0, y1 := 0, nBarWidth := 0, nBarHeight := 0
@@ -422,7 +414,6 @@ FUNCTION Zebra_GetWidth( hZebra, nLineWidth, nLineHeight, iFlags )
 // hb_zebra_draw( hZebra, bCodeBlock,                                                         dX, dY, dWidth,     dHeight,     iFlags )
    hb_zebra_draw( hZebra, { |x, y, w, h| nBarWidth := x + w - x1, nBarHeight := y + h - y1 }, x1, y1, nLineWidth, nLineHeight, iFlags )
 RETURN nBarWidth
-
 
 FUNCTION Zebra_GetHeight( hZebra, nLineWidth, nLineHeight, iFlags )
    LOCAL x1 := 0, y1 := 0, nBarWidth := 0, nBarHeight := 0

@@ -69,7 +69,6 @@ Function Main
                         VALIDMESSAGES { 'Code Range: 0-1000', 'First Name Cannot Be Empty', , , ,  }  ;
                         LOCK
 
-
    END WINDOW
 
    CENTER WINDOW Form_1

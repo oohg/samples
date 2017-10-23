@@ -64,7 +64,6 @@ Return NIL
 
    RETURN
 
-
 STATIC PROCEDURE IEXPLORER()
 
 LOCAL oIE
@@ -91,7 +90,6 @@ RETURN
 
 oLe := NIL
 
-
 RETURN
 
 //--------------------------------------------------------------------
@@ -108,11 +106,8 @@ ELSE
    msgbox( "Error. MS Outlook not available.", win_oleErrorText())
 ENDIF
 
-
-
 oLista := NIL
 oOL := NIL
-
 
 RETURN
 
@@ -236,7 +231,6 @@ STATIC PROCEDURE Exm_OOCalc()
    ENDIF
 
    RETURN
-
 
 STATIC PROCEDURE Exm_OOWriter()
    LOCAL oServiceManager, oDesktop, oDoc, oText, oCursor, oTable, oRow, oCell, oCellCursor, oRows

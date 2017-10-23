@@ -38,7 +38,6 @@ FUNCTION MAIN
 
 RETURN NIL
 
-
 PROCEDURE AddButton
 
    oTBut := oTool:AddButton( "But4", 0, 0, "But4", {|| MsgBox("But4")}, Nil, Nil, Nil, ;
@@ -51,7 +50,6 @@ PROCEDURE AddButton
 */
 
 RETURN
-
 
 PROCEDURE DeleteButton
 

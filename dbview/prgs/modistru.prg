@@ -231,7 +231,6 @@ function DBUmodistructure(cBase)
       cAreaPos  := AllTrim( Str( ( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) ) ))
       cBrowse_n := "Browse_"+cAreaPos
 
-
     _DBUfname  := cBase
      cPathDBFm := cFilePath(aFiles[( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) )])
 
@@ -329,7 +328,6 @@ function DBUexitmodidbf
         endif
     endif
 return (lModYes)
-
 
 *------------------------------------------------------------*
 FUNCTION Modi_Now(cBase)

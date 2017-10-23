@@ -9,7 +9,6 @@
 Procedure Build( ProjectName )  // Borland C
 *---------------------------------------------------------------------*
 
-
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
 
@@ -170,7 +169,6 @@ Procedure Build( ProjectName )  // Borland C
 
       Out := Out + '   echo '+BCCFOLDER+'LIB\cw32.lib + >> b32.bc' + NewLi
       Out := Out + '   echo '+BCCFOLDER+'LIB\import32.lib, >> b32.bc' + NewLi
-
 
       If WATHGUI = 4
          Out += '   echo _temp.res >> b32.bc' + NewLi

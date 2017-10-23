@@ -72,8 +72,6 @@ function Main()
 
 Return Nil
 
-
-
 /*------------------------------------------------------------------------------*/
 Procedure OpenTable()
 
@@ -81,16 +79,12 @@ Procedure OpenTable()
 
 Return Nil
 
-
-
 /*------------------------------------------------------------------------------*/
 Procedure CloseTable()
 
         CLOSE CLIENTES
 
 Return Nil
-
-
 
 /*------------------------------------------------------------------------------*/
 Procedure AdvTest()
@@ -115,8 +109,6 @@ Procedure AdvTest()
                 SAVE     bSave
 
 Return Nil
-
-
 
 /*------------------------------------------------------------------------------*/
 Procedure AdvTestSave( aContent, lEdit )
@@ -149,8 +141,6 @@ Procedure AdvTestSave( aContent, lEdit )
         NEXT
 
 Return .t.
-
-
 
 /*------------------------------------------------------------------------------*/
 Procedure SelecLang()
@@ -220,8 +210,6 @@ Procedure SelecLang()
 
 return ( nil )
 
-
-
 /*------------------------------------------------------------------------------*/
 Procedure SelItem( aItems )
 
@@ -260,7 +248,6 @@ Procedure SelItem( aItems )
         ACTIVATE WINDOW wndSelItem
 
 return ( nItem )
-
 
 /*------------------------------------------------------------------------------*/
 Procedure About()

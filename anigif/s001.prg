@@ -52,7 +52,6 @@ PROCEDURE Main()
 
 RETURN
 
-
 PROCEDURE ShowInfo
 
    oAniGif:Stop()

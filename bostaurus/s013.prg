@@ -71,7 +71,6 @@ PROCEDURE Main
    WinGraph.Activate
 RETURN
 
-
 PROCEDURE DrawGraph
    LOCAL cImage := GetTempFolder() + '\graph.bmp'
    LOCAL nImageWidth := WinGraph.GraphArea.Width
@@ -107,7 +106,6 @@ PROCEDURE DrawGraph
    WinGraph.GraphArea.Picture := cImage
    FErase( cImage )
 RETURN
-
 
 PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBarD, nWideB, nSep, nXRanges, l3D, lGrid, lXGrid, lYGrid, lXVal, lYVal, lLegends, aSeries, aColors, nType, lViewVal, cPicture, nLegendWindth, lNoBorder )
    LOCAL nI, nJ, nPos, nMax, nMin, nMaxBar, nDeep
@@ -430,21 +428,17 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
    BT_BitmapRelease( hBitmap )
 RETURN
 
-
 PROCEDURE DrawWindowBoxInBitmap( hDC, row, col, rowr, colr )
    BT_DrawRectangle( hDC, Row, Col, Colr - col, rowr - row, { 0, 0, 0 }, nPenWidth )
 RETURN
-
 
 PROCEDURE DrawRectInBitmap( hDC, row, col, row1, col1, aColor )
    BT_DrawFillRectangle( hDC, Row, Col, col1 - col, row1 - row, aColor, aColor, nPenWidth )
 RETURN
 
-
 PROCEDURE DrawLineInBitmap( hDC, Row1, Col1, Row2, Col2, aColor )
    BT_DrawLine ( hDC, Row1, Col1, Row2, Col2, aColor, nPenWidth )
 RETURN
-
 
 FUNCTION DrawTextInBitmap( hDC, Row, Col, cText, cFontName, nFontSize, aColor, nAlign )
    DEFAULT nAlign := 0
@@ -457,7 +451,6 @@ FUNCTION DrawTextInBitmap( hDC, Row, Col, cText, cFontName, nFontSize, aColor, n
       BT_DrawText( hDC, Row, Col, cText, cFontName, nFontSize, aColor, , , BT_TEXT_CENTER + BT_TEXT_TOP )
    ENDCASE
 RETURN NIL
-
 
 PROCEDURE DrawBarInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep, aColor )
    LOCAL nI, nColTop, nShadow, nH := nHigh
@@ -498,7 +491,6 @@ PROCEDURE DrawBarInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep, aColor )
    ENDIF
 RETURN
 
-
 FUNCTION ClrShadow( nColor, nFactor )
    LOCAL aHSL, aRGB
 
@@ -507,7 +499,6 @@ FUNCTION ClrShadow( nColor, nFactor )
    aRGB := HSL2RGB( aHSL[ 1 ], aHSL[ 2 ], aHSL[ 3 ] )
 RETURN RGB( aRGB[ 1 ], aRGB[ 2 ], aRGB[ 3 ] )
 
-
 FUNCTION nMax( aData )
    LOCAL nI, nMax := 0
 
@@ -515,7 +506,6 @@ FUNCTION nMax( aData )
       nMax := Max( Len( aData[ nI ] ), nMax )
    NEXT nI
 RETURN nMax
-
 
 FUNCTION DetMaxVal( nNum )
    LOCAL nE, nMax, nMan, nVal, nOffset
@@ -542,7 +532,6 @@ FUNCTION DetMaxVal( nNum )
    ENDDO
 RETURN nVal
 
-
 PROCEDURE DrawPointInBitmap( hDC, nType, nY, nX, nHigh, aColor )
    IF nType == 3         // POINTS
       DrawCircleInBitmap( hDC, nX - nHigh - 3, nY - 3, 8, aColor )
@@ -551,11 +540,9 @@ PROCEDURE DrawPointInBitmap( hDC, nType, nY, nX, nHigh, aColor )
    ENDIF
 RETURN
 
-
 PROCEDURE DrawCircleInBitmap( hDC, nCol, nRow, nWidth, aColor )
    BT_DrawFillEllipse( hDC, nCol, nRow, nWidth, nWidth, aColor, aColor, nPenWidth )
 RETURN
-
 
 PROCEDURE DrawPieGraphInBitmap( cImageFileName, nWidth, nHeight, aSeries, aName, aColors, cTitle, nDepth, l3D, lXVal, lSLeg, lNoBorder )
    LOCAL fromrow := 0
@@ -765,7 +752,6 @@ PROCEDURE DrawPieGraphInBitmap( cImageFileName, nWidth, nHeight, aSeries, aName,
    BT_BitmapRelease( hBitmap )
 RETURN
 
-
 PROCEDURE DrawArcInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth )
    IF ValType( penrgb ) == "U"
       penrgb = { 0, 0, 0 }
@@ -776,7 +762,6 @@ PROCEDURE DrawArcInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, 
 
    ArcDrawBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth )
 RETURN
-
 
 PROCEDURE DrawPieInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth, fillrgb )
    LOCAL fill
@@ -796,7 +781,6 @@ PROCEDURE DrawPieInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, 
 
    PieDrawBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth, fillrgb, fill )
 RETURN
-
 
 PROCEDURE DrawPolygonInBitmap( hDC, apoints, penrgb, penwidth, fillrgb )
    LOCAL xarr := {}
@@ -823,7 +807,6 @@ PROCEDURE DrawPolygonInBitmap( hDC, apoints, penrgb, penwidth, fillrgb )
 
    PolygonDrawBitmap( hDC, xarr, yarr, penrgb, penwidth, fillrgb, fill )
 RETURN
-
 
 FUNCTION RGB2HSL( nR, nG, nB )
    LOCAL nMax, nMin
@@ -870,7 +853,6 @@ FUNCTION RGB2HSL( nR, nG, nB )
    nS := Int( nS * 239 )
    nL := Int( nL * 239 )
 RETURN { nH, nS, nL }
-
 
 FUNCTION HSL2RGB( nH, nS, nL )
    LOCAL nFor
@@ -921,7 +903,6 @@ FUNCTION HSL2RGB( nH, nS, nL )
    ENDIF
 RETURN { Int( nR * 255 ), Int( nG * 255 ), Int( nB * 255 ) }
 
-
 PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
    // Set border
    DrawLineInBitmap( hDC, nX, nY, nX - nHigh + nDeep, nY, BLACK )                           // Left
@@ -944,12 +925,10 @@ PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
    ENDIF
 RETURN
 
-
 #pragma BEGINDUMP
 
 #include <windows.h>
 #include "hbapi.h"
-
 
 HB_FUNC( PIEDRAWBITMAP )
 {
@@ -979,7 +958,6 @@ HB_FUNC( PIEDRAWBITMAP )
    DeleteObject( hpen );
    DeleteObject( hbrush );
 }
-
 
 HB_FUNC( POLYGONDRAWBITMAP )
 {
@@ -1018,7 +996,6 @@ HB_FUNC( POLYGONDRAWBITMAP )
    DeleteObject( hbrush );
 }
 
-
 HB_FUNC ( ARCDRAWBITMAP )
 {
    HDC hdc1;
@@ -1034,7 +1011,6 @@ HB_FUNC ( ARCDRAWBITMAP )
    SelectObject( hdc1, hgdiobj1 );
    DeleteObject( hpen );
 }
-
 
 HB_FUNC( POLYBEZIERDRAWBITMAP )
 {
@@ -1060,9 +1036,7 @@ HB_FUNC( POLYBEZIERDRAWBITMAP )
    DeleteObject( hpen );
 }
 
-
 #pragma ENDDUMP
-
 
 /*
  * EOF

@@ -26,7 +26,6 @@ Function main()
 
       @ 120,120 LABEL label_1 VALUE ''
 
-
    END WINDOW
 
    form_1.center
@@ -65,7 +64,6 @@ Function UnPackZip()
     UNCOMPRESSFILES( "ziptest.zip", {|cFile,nPos| ProgressUpdate( nPos,cFile ) } )
 
 Return nil
-
 
 *------------------------------------------------------------------------------*
 PROCEDURE COMPRESSFILES ( cFileName , aDir , bBlock , lOvr )

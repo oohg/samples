@@ -8,15 +8,9 @@ set date ansi
 set century on
 set navigation extended
 
-
-
-
 bColor:=   {|| if(.T., RGB( 255,255,255 ), RGB(255,255,255) ) }
 
-
 bcolor1:=   {|| if( this.cellvalue = 0 , { 255,0,0 }, {255,255,255}  )}
-
-
 
 DEFINE WINDOW Form_1 ;
    AT 0,0 ;
@@ -34,8 +28,6 @@ DEFINE WINDOW Form_1 ;
    @ 10,280 checkbox c3 obj oc3 caption  "Full Move" ON change cambiax()
    @ 10,400 checkbox c4 obj oc4 caption  "Append Mode" ON change cambiay()
 
-
-
    @ 40,10 GRID Grid_1 obj ogrid ;
    WIDTH 520 ;
    HEIGHT 330 ;
@@ -47,8 +39,6 @@ DEFINE WINDOW Form_1 ;
    EDIT  INPLACE  ;
    ON EDITCELL  procesa()  ;
 
-
-
    @ 390,290 label l value "Total"
 
    @ 390,390 textbox nSuma numeric inputmask "999,999,999.99"
@@ -56,7 +46,6 @@ DEFINE WINDOW Form_1 ;
    form_1.nSuma.readonly:=.T.
 
    sumatoria()
-
 
    @ 415,5 label label_1 value "Ingrese 99 en la primera columna, 50 o 77 en la segunda para observar las posibilidades de movimiento." autosize
    @ 440,5 label label_2 value "Ingrese 43 en la primera columna y en la segunda aparecera 88 y pasara a la quinta." autosize
@@ -100,7 +89,6 @@ else
    ogrid:append:=.F.
 endif
 return nil
-
 
 static procedure procesa()
 

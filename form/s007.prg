@@ -45,7 +45,6 @@ FUNCTION Main()
 
 RETURN Nil
 
-
 FUNCTION RGB_VALUE( aColor )
 
 RETURN RGB( aColor[ 1 ], aColor[ 2 ], aColor[ 3 ] )

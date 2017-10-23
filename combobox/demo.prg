@@ -24,7 +24,6 @@ Function Main
          END POPUP
       END MENU
 
-
                 @ 10,10 COMBOBOX Combo_1 obj Ocombo ;
          ITEMS { 'A' , 'B' , 'C' } ;
          VALUE 1 ;

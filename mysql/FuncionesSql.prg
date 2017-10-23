@@ -159,7 +159,6 @@ Function VeoAyuda(cArchivo)
 Execute File cArchivo
 Return
 
-
 #pragma BEGINDUMP
 
 #ifndef _WIN32_IE
@@ -181,7 +180,6 @@ Return
    #undef _WIN32_WINNT
    #define _WIN32_WINNT 0x0400
 #endif
-
 
 #define WS_EX_LAYERED 0x80000
 #define LWA_ALPHA 0x02

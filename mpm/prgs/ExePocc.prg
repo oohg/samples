@@ -64,13 +64,11 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
        Out += 'HRB_LIB_DIR = ' + cHarbourFolder + '\LIB\WIN\POCC' + NewLi
     Endif
 
-
     IF WITHDEBUG = 2
        Out += 'HARBOUR_FLAGS = /i$(INCLUDE_DIR) /n /b '+RetHbLevel()+' $(USER_FLAGS)' + NewLi
     ELSE
        Out += 'HARBOUR_FLAGS = /i$(INCLUDE_DIR) /n '+RetHbLevel()+' $(USER_FLAGS)' + NewLi
     ENDIF
-
 
     cFlags := iif(empty(USERCFLAGS),' /Ze /Zx /Go /Tx86-coff /D__WIN32__ ', USERCFLAGS)
 
@@ -169,7 +167,6 @@ Procedure Build4(ProjectName) //(x)Harbour - Pelles C
           DO EVENTS
           Out += '   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib >> b32.bc' + NewLi
       Next i
-
 
     Out += '   echo crt.lib >> b32.bc' + NewLi
     Out += '   echo kernel32.lib >> b32.bc' + NewLi

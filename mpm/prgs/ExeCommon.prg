@@ -134,7 +134,6 @@ Procedure EndBuild()
 
 Return
 
-
 Function WathLibLink(MiniGuiFolder,HBCHOICE)
     Local Out := ""
 

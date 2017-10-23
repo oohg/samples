@@ -58,7 +58,6 @@ FUNCTION Main
 
 RETURN NIL
 
-
 FUNCTION OpenTables()
 
    LOCAL i
@@ -112,7 +111,6 @@ FUNCTION OpenTables()
 
 RETURN NIL
 
-
 FUNCTION CloseTables()
 
   CLOSE DATABASES
@@ -124,7 +122,6 @@ FUNCTION CloseTables()
   ENDIF
 
 RETURN NIL
-
 
 FUNCTION ChangeDbf( oDbf, oBrw, oForm )
 

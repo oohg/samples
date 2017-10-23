@@ -11,7 +11,6 @@
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
  */
 
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -77,7 +76,6 @@ FUNCTION Main
 
 RETURN Nil
 
-
 FUNCTION SetChkState( nState )
 
    DO case
@@ -90,7 +88,6 @@ FUNCTION SetChkState( nState )
    ENDCASE
 
 RETURN Nil
-
 
 FUNCTION ShowState()
    LOCAL ret := Form1.Chk4.Value

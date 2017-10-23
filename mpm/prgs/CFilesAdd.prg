@@ -111,7 +111,6 @@ Function GetCFiles()
             TRANSPARENT .T.
          END LABEL
 
-
         END WINDOW
 
         CENTER WINDOW GetCFiles

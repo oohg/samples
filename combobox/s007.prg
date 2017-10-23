@@ -42,7 +42,6 @@ FUNCTION Main
          END POPUP
       END MENU
 
-
       @ 10,10 COMBOBOX Combo_1 OBJ oCombo ;
          ITEMS { 'Orange' , 'Black' , 'Yellow' } ;
          VALUE 1 ;

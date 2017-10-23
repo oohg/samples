@@ -109,7 +109,6 @@ FUNCTION Main
    Form_1.Activate
 RETURN Nil
 
-
 PROCEDURE Item_add
    LOCAL nn := Form_1.lst_1.ItemCount + 1
 
@@ -117,7 +116,6 @@ PROCEDURE Item_add
    Form_1.lst_1.Value := nn
    Form_1.lst_1.SetFocus
 RETURN
-
 
 PROCEDURE Item_del
    LOCAL n1
@@ -133,7 +131,6 @@ PROCEDURE Item_del
    Form_1.lst_1.SetFocus
 RETURN
 
-
 PROCEDURE Item_modify
    LOCAL nn := Form_1.lst_1.Value
 
@@ -141,7 +138,6 @@ PROCEDURE Item_modify
    Form_1.lst_1.Value := nn
    Form_1.lst_1.SetFocus
 RETURN
-
 
 PROCEDURE Item_view
    MsgInfo( Form_1.lst_1.Item( Form_1.lst_1.Value ) )

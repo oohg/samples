@@ -252,7 +252,6 @@ Procedure READMEM( cFileName )
 
 Return
 
-
 Function GETVARFROM( cMemFile )
 
 local xVarValue    := NIL
@@ -358,7 +357,6 @@ endif
 
 return aMemVarArray
 
-
 Function FEOF( nHandle )
 
 local nCurrPos
@@ -369,7 +367,6 @@ nFileSize := fseek( nHandle, 0, 2 )
 fseek( nHandle, nCurrPos, 0 )
 
 return nFileSize < nCurrPos
-
 
 Function MODULUS( nParm1, nParm2 )
 

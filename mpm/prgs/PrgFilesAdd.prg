@@ -124,7 +124,6 @@ Function GetPrgFiles()
          RetVal := {}
      Endif
 
-
    Endif
 
 Return ( RetVal )

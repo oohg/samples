@@ -10,13 +10,10 @@
 
 ***************************************************************************
 
-
 Function Main
 public _OOHG_printlibrary:="MINIPRINT"
 
 request dbfntx,dbfdbt
-
-
 
 SET INTERACTIVECLOSE OFF
         DEFINE WINDOW Form_Main obj oWind ;
@@ -25,7 +22,6 @@ SET INTERACTIVECLOSE OFF
                 HEIGHT 300 ;
                 TITLE 'DO report Form and Do report sample' ;
                 MAIN
-
 
                 DEFINE MAIN MENU
                    POPUP 'Test '
@@ -71,7 +67,6 @@ endcase
 return nil
 
 /////#include "MINIFRM.PRG"
-
 
 **********************
 Function PrintNormal()

@@ -14,7 +14,6 @@ Function Main()
 
    msginfo("Test de autoajuste, se ajusta posicion, ancho y font","Informacion")
 
-
    DEFINE WINDOW  Principal OBJ oWin AT 126,66 WIDTH 648 HEIGHT 404 ;
    TITLE 'AutoAdjust (c)2007 MigSoft ' ;
    ON INIT ( oWin:Height := GetDesktopHeight(), ;

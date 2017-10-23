@@ -36,10 +36,8 @@ FUNCTION Main
 
 RETURN NIL
 
-
 #define hKey HKEY_CURRENT_USER
 #define cKey 'Software\OOHG\RegistrySample\FormMain'
-
 
 FUNCTION LoadReg
    LOCAL col, row, width, height
@@ -65,7 +63,6 @@ FUNCTION LoadReg
 
 RETURN NIL
 
-
 FUNCTION SaveReg
 
    IF ! IsRegistryKey( hKey, cKey )
@@ -82,7 +79,6 @@ FUNCTION SaveReg
    ENDIF
 
 RETURN NIL
-
 
 FUNCTION DeleteReg
 

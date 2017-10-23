@@ -94,7 +94,6 @@ Procedure Tab_1( lStyle )
          VALUE 1 ;
          TOOLTIP 'Tab Control' ;
 
-
 ////                        BOTTOM
 
    ENDIF

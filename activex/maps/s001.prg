@@ -14,9 +14,7 @@
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ActiveX
  */
 
-
 #include "oohg.ch"
-
 
 #ifndef __XHARBOUR__
 
@@ -25,7 +23,6 @@
       hb_cwd() + 'temp.html'
 
 #endif
-
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION Main()
@@ -112,7 +109,6 @@ FUNCTION Main()
 
    RETURN NIL
 
-
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
    LOCAL cHtml := MemoRead( "gmap2.html" )
@@ -125,7 +121,6 @@ FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
    oActiveX:Navigate( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' )
 
    RETURN NIL
-
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByAddress( oActiveX, cAddress, cCity, cCountry )

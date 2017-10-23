@@ -3,37 +3,23 @@
 ///Bruno Luciani
 ///bruno.luciani@gmail.com
 
-
 #include "oohg.ch"
 
 procedure main
 
-
 load window mailing
 mailing.smtp.value:="mail.servidor.com"
-
-
 
 center window mailing
 activate window mailing
 
 return
 
-
-
 function enviomail
 sendmail(mailing.send.value,mailing.rname.value,mailing.smtp.value)
 return
 
-
-
 return
-
-
-
-
-
-
 
 //-----------------------------------------------------------------------------*
 function sendmail(email,nombre,cServer)
@@ -41,14 +27,12 @@ function sendmail(email,nombre,cServer)
 local oSock, cRet
 ///local cServer := "mail.tuservidor.com"   / puedes poner la IP tambien
 
-
 oSock := TSmtp():New()
 
 Mailing.statusbar.value:= "Conectando a " +cServer
 
 if oSock:Connect( cServer )
 Mailing.statusbar.value:= "Conectado...."
-
 
 if !Empty(alltrim(email))
 

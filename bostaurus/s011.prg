@@ -71,7 +71,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Proc_ON_PAINT
    LOCAL hDC, BTstruct
 
@@ -81,7 +80,6 @@ PROCEDURE Proc_ON_PAINT
    BT_DrawBitmap( hDC, 30, 180, 300, 200, BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
 RETURN
-
 
 PROCEDURE Proc_Save_Image( nAction )
    LOCAL Ret, Button
@@ -106,7 +104,6 @@ PROCEDURE Proc_Save_Image( nAction )
 
    MsgInfo( "Save Image: " + IF( Ret, "OK", "FAIL" ) )
 RETURN
-
 
 FUNCTION Proc_Create_Logo
    LOCAL hDC, BTstruct, hBitmap, hBitmap_aux

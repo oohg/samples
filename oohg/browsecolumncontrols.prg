@@ -83,7 +83,6 @@ FUNCTION SaveIPAddress( aIPAddress )
 
    RETURN { IP1, IP2, IP3, IP4 }
 
-
 CLASS MyIpAddress FROM TGridControl // CLASS TGridControlIpAddress
 
    METHOD CreateControl
@@ -120,7 +119,6 @@ METHOD Str2Val( uValue ) CLASS MyIpAddress
    EndDo
 
    Return aValue
-
 
 CLASS MyRadioGroup FROM TGridControl // CLASS TGridControlRadioGroup
 
@@ -165,7 +163,6 @@ METHOD CreateControl( uValue, cWindow, nRow, nCol, nWidth, nHeight ) CLASS MyRad
 METHOD Str2Val( uValue ) CLASS MyRadioGroup
 
    Return ASCAN( ::aItems, { |c| c == uValue } )
-
 
 CLASS MyFullName FROM TGridControl
 

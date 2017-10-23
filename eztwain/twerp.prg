@@ -46,7 +46,6 @@ Procedure Main
 
               ////  oWnd:=GetFormObject( "win_1" )
 
-
       DEFINE MAIN MENU
          DEFINE POPUP '&File'
             menuitem '&Select Source...' action TWAIN_SelectImageSource( hWnd )
@@ -88,7 +87,6 @@ Procedure Main
    ACTIVATE WINDOW Win_1
 
 Return
-
 
 *************************************
 Function Acquire()
@@ -324,8 +322,6 @@ Function DiscardImage()
 return nil
 **********
 
-
-
 *------------------------------------------------------------------------------*
 DECLARE DLL_TYPE_VOID SaveToJpgEx(DLL_TYPE_LONG hWnd, DLL_TYPE_LPCSTR cFileName, ;
    DLL_TYPE_INT nWidth, DLL_TYPE_INT nHeight) IN JPG.DLL ALIAS SAVE2JPG
@@ -393,7 +389,6 @@ HB_FUNC( GETDESKTOPRECTHEIGHT )
    hb_retni(rect.bottom - rect.top);
 }
 
-
 HB_FUNC( SETPALETTE )
 {
    HDC hDC = (HDC) hb_parnl(1);
@@ -402,7 +397,6 @@ HB_FUNC( SETPALETTE )
    SelectPalette (hDC, hPal, FALSE);
    RealizePalette (hDC);
 }
-
 
 HB_FUNC( DEFINEPAINTSTRU )
 {
@@ -435,7 +429,6 @@ HB_FUNC( GETMINWIDTH )
       hb_retni(xMin);
     }
 }
-
 
 #pragma ENDDUMP
 

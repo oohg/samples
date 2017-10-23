@@ -283,7 +283,6 @@ Procedure MakeBrowse()
 
 Return
 
-
 *------------------------------------------------------*
 Procedure NuevoTab() // Cortesía: Ciro Vargas Clemow
 *------------------------------------------------------*
@@ -1324,7 +1323,6 @@ Procedure DBQuery()
 
    Private cAlias, cDBFile
 
-
    If !Empty( ( Alias() ) )
    cDBFile := cFileNoPath(dbf())
    cAlias := Alias()
@@ -1349,7 +1347,6 @@ Procedure DBQuery()
          Form_Query.Combo_1.Enabled := ( cType == "L" ) ) ;
       FONT "MS Sans Serif" ;
       SIZE 8
-
 
        DEFINE FRAME Frame_1
             ROW    10
@@ -3054,7 +3051,6 @@ FUNCTION GenXML( cDbf, cSaveFile )
   cBuffer = tab + data_end_tag + crlf + ;
        make_end_tag (cDbf) + crlf
   fWrite( nHandle, cBuffer )
-
 
 RETURN FCLOSE (nHandle)
 

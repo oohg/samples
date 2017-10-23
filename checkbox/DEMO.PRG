@@ -20,7 +20,6 @@ Function main()
                ONCHANGE PLAYOK()
             END CHECKBOX
 
-
      end page
      define page "p2"
                                 DEFINE CHECKBOX Check_1b
@@ -30,8 +29,6 @@ Function main()
                VALUE .T.
                TOOLTIP 'CheckBox'
              END CHECKBOX
-
-
 
      end page
      end tab
@@ -56,13 +53,10 @@ Function main()
 
                @ 290,203 CHECKBOX CheckBox_99 CAPTION "CheckBox_99" WIDTH 100 HEIGHT 28
 
-
-
    END WINDOW
 
         center window form_1
         activate window form_1
-
 
 Return Nil
 

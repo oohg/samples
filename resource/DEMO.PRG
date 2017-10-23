@@ -29,7 +29,6 @@ Function Main
                    WIDTH 200 ;
          HEIGHT 30
 
-
    END WINDOW
 
    ACTIVATE WINDOW Form_Main

@@ -63,7 +63,6 @@ Function Main
          STATUSITEM ''
       END STATUSBAR
 
-
       @ 10,10 BROWSE Browse_1 ;
          WIDTH 610 ;
          HEIGHT 390 ;

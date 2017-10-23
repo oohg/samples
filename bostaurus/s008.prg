@@ -157,13 +157,11 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE OnOff( oAct )
    Win1.Tab_1.Visible := ! Win1.Tab_1.Visible
    Win1.RadioGroup_1.Visible := Win1.Tab_1.Visible
    oAct:SetFocus()
 RETURN
-
 
 PROCEDURE Proc_ON_PAINT( hBitmap )
    LOCAL hDC, BTstruct

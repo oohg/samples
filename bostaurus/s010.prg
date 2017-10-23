@@ -114,7 +114,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Proc_ON_PAINT
    LOCAL Col := - Win1.HscrollBar.value
    LOCAL Row := - Win1.VscrollBar.value
@@ -127,7 +126,6 @@ PROCEDURE Proc_ON_PAINT
    BT_DrawBitmap( hDC, Row + 10, Col + 10, BT_BitmapWidth( hBitmap ), BT_BitmapHeight( hBitmap ), BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
 RETURN
-
 
 PROCEDURE Proc_EFFECT( nEffect, nIndex )
    BT_BitmapRelease( hBitmap )
@@ -175,7 +173,6 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
    BT_ClientAreaInvalidateAll( "Win1" )
 RETURN
 
-
 /*
  *
  * RULES OF THUMB TO CREATE USER DEFINED CONVOLUTION FILTERS
@@ -205,7 +202,6 @@ RETURN
  *
  */
 
-
 FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
    LOCAL aFILTER, v
 
@@ -226,7 +222,6 @@ FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
         { v, 0, 0, 0, weight, 0, 0,  0, v, weight + add + v * 2, bias}, ; // ANGLE135
         { v, v, v, v, weight, v, v,  v, v, weight + add + v * 8, bias} }  // ALLDIRECTIONS
 Return aFILTER[ index ]
-
 
 FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
    LOCAL aFILTER, v
@@ -249,7 +244,6 @@ FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
         { -v, -v, -v, -v, weight, -v, -v, -v, -v, weight + add - v * 8, bias} }  // ALLDIRECTIONS
 Return aFILTER[ index ]
 
-
 FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
    LOCAL aFILTER, v
 
@@ -270,7 +264,6 @@ FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
         { v, 0, 0, 0, -weight, 0, 0, 0, v, -weight + add + v * 2, bias}, ; // ANGLE135
         { v, v, v, v, -weight, v, v, v, v, -weight + add + v * 8, bias} }  // ALLDIRECTIONS
 Return aFILTER[ index ]
-
 
 FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
    LOCAL aFILTER, v
@@ -297,7 +290,6 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
         {  0, -v, -v,  v, weight, -v,  v,  v,  0, weight + add, bias }, ; // Bottom_Left    SOUTH_WEST
         {  v,  0, -v,  v, weight, -v,  v,  0, -v, weight + add, bias } }  // Left           WEST
 Return aFILTER[ index ]
-
 
 /*
  * aFILTER :=                                        { k1, k2, k3, k4,       k5, k6, k7, k8, k9,     Divisor, Bias }
@@ -362,7 +354,6 @@ Return aFILTER[ index ]
 #define BT_Kernel3x3Filter_41                        {  0, -2, -2,  2,        1, -2,  2,  2,  0,           1,   0 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_42                        {  2,  0, -2,  2,        1, -2,  2,  0, -2,           1,   0 } // WEST
 */
-
 
 /*
  * EOF

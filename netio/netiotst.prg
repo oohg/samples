@@ -31,12 +31,10 @@ proc main()
    createdb( DBNAME )
    testdb( DBNAME )
 
-
 return
 
 procedure createdb( cName )
    local n
-
 
    dbCreate( cName, {{"F1", "C", 20, 0},;
                      {"F2", "C",  4, 0},;
@@ -80,7 +78,6 @@ proc testdb( cName )
    edit extended workarea tests
    close
 return
-
 
 function browse_gui ()
 

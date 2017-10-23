@@ -29,7 +29,6 @@ FUNCTION Form_Win_1()
             FONT 'Arial' ;
             SIZE 8.00
 
-
     END WINDOW
 
     ACTIVATE WINDOW Win_1

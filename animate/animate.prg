@@ -11,7 +11,6 @@ Function main()
 
                 @ 20,200 animatebox ani_a obj oani width 300 height 80 file "sample.avi"
 
-
       DEFINE BUTTON Button_D1
          ROW   60
          COL   0

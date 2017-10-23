@@ -79,7 +79,6 @@ PROCEDURE UpdateCounter( aAlarmInfo )
 
    RETURN
 
-
 #pragma BEGINDUMP
 
 #include <windows.h>

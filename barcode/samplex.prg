@@ -6,7 +6,6 @@ function main()
    @ 60,80 button but_2 caption "HBPRINTER" action test("HBPRINTER")
    @100,80 button but_3 caption "PDFPRINT" action test("PDFPRINT")
 
-
    end window
    center window oWnd
    activate window oWnd

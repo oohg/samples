@@ -11,7 +11,6 @@
  *
  */
 
-
 /* to execute this code run server (netiosrv) on the same machine
  * with support for RPC and "topsecret" password, i.e.:
  *    netiosrv "" "" "" 1 topsecret
@@ -22,7 +21,6 @@
  * and rebuild it or link netiosrv with Harbour dynamic library
  * (-shared hbmk2 switch)
  */
-
 
 /* few PP rules which allow to execute RPC function using
  * pseudo object 'net', i.e. ? net:date()
@@ -42,14 +40,12 @@
 #xtranslate net:exists:[<server>]:<port>:<!func!> => ;
             netio_procexists( [ #<server> + ] ":" + #<port> + ":" + #<func> )
 
-
 /* address of computer executing netiosrv,
  * change it if it's not the same machine
  */
 #define NETSERVER  "127.0.0.1"
 #define NETPORT    2941
 #define NETPASSWD  "topsecret"
-
 
 proc main()
 

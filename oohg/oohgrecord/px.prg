@@ -80,7 +80,6 @@ FUNCTION NewFieldGet( oBase, nPos )
 
 #pragma ENDDUMP
 
-
 CLASS XBrowse_PseudoFile
 
    DATA nHdl
@@ -568,7 +567,6 @@ HB_FUNC( WRITEBIGENDIAN )   // ( nNum, nCount )
 }
 
 #pragma ENDDUMP
-
 
 METHOD New( cFile, lShared, lReadOnly ) CLASS XBrowse_Paradox
 

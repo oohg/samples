@@ -55,7 +55,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Proc_ON_RELEASE
    BT_BitmapRelease( hBitmap1 )
    BT_BitmapRelease( hBitmap2 )
@@ -76,7 +75,6 @@ PROCEDURE Proc_ON_INIT
 
    MsgInfo( "Click on the images" )
 RETURN
-
 
 PROCEDURE Proc_Image( cControlName, cText, aColor )
    LOCAL hDC, BTstruct, hBitmap, hUY

@@ -31,7 +31,6 @@ FUNCTION Main
 
 RETURN
 
-
 PROCEDURE ChangeImg
 
    STATIC nIndex := 0

@@ -80,7 +80,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1, Win2
 RETURN
 
-
 PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
@@ -90,7 +89,6 @@ PROCEDURE Proc_ON_PAINT
    BT_DrawGradientFillVertical( hDC, 0, 0, Width, Height, WHITE, BLACK )
    BT_DeleteDC( BTstruct )
 RETURN
-
 
 PROCEDURE Proc_Mirror
    LOCAL Width1, Height1

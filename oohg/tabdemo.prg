@@ -70,7 +70,6 @@ PROCEDURE CreateTabPage( cOption, cSubClass, lVertical, lCheckbox, cTitle )
 
    RETURN
 
-
 #include "hbclass.ch"
 
 CLASS TTabList FROM TMultiPage
@@ -114,7 +113,6 @@ METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
    ::oContainerBase:OnChange := { || ::Refresh() , ::DoChange() }
 
    Return Self
-
 
 CLASS TTabCheck FROM TMultiPage
 
@@ -215,7 +213,6 @@ METHOD VerifyCaption() CLASS TTabCheck
 
    RETURN nil
 
-
 CLASS TTabSpinner FROM TMultiPage
 
    DATA Type                INIT "TAB" READONLY
@@ -281,7 +278,6 @@ METHOD DeleteItem( nPosition ) CLASS TTabSpinner
    EndIf
 
    Return nil
-
 
 CLASS TTabSlider FROM TMultiPage
 

@@ -69,7 +69,6 @@ ANNOUNCE RDDSYS
 #include 'harupdf.ch'
 #include "minigui.ch"
 
-
 #ifdef __XHARBOUR__
 #define hb_NumToHex NUMTOHEX
 #endif
@@ -153,7 +152,6 @@ Function DesignHaruPDF( cFileToSave )
 
    HPDF_SetCompressionMode( pdf, HPDF_COMP_ALL )
 
-
    // Passwords and Permissions
    //
    if Mh.Check_1.value
@@ -173,7 +171,6 @@ Function DesignHaruPDF( cFileToSave )
    HPDF_Page_SetSize(page, HPDF_PAGE_SIZE_A4, HPDF_PAGE_PORTRAIT )
    height := HPDF_Page_GetHeight(page)
    width  := HPDF_Page_GetWidth(page)
-
 
    /* Print the lines of the page. */
 
@@ -686,7 +683,6 @@ Static Function Page_Text( pdf, grid )
 
    HPDF_Page_GRestore(page)
 
-
    /* Rotated coordinate system */
    HPDF_Page_GSave(page)
 
@@ -715,7 +711,6 @@ Static Function Page_Text( pdf, grid )
    HPDF_Page_EndText(page)
 
    HPDF_Page_GRestore(page)
-
 
    /* text along a circle */
    HPDF_Page_SetGrayStroke(page, 0)
@@ -936,7 +931,6 @@ Static Function Page_TextScaling( pdf, grid )
    HPDF_Page_SetRGBFill(page, 0, 0, 0)
    HPDF_Page_SetFontAndSize(page, font, 30)
 
-
    /*
     * Rotating text
     */
@@ -948,7 +942,6 @@ Static Function Page_TextScaling( pdf, grid )
    HPDF_Page_SetTextMatrix(page, cos(rad1), sin(rad1), -sin(rad1), cos(rad1), 330, ypos - 60)
    HPDF_Page_ShowText(page, "ABCabc123")
    HPDF_Page_EndText(page)
-
 
    /*
     * Skewing text.
@@ -965,7 +958,6 @@ Static Function Page_TextScaling( pdf, grid )
    HPDF_Page_ShowText(page, "ABCabc123")
    HPDF_Page_EndText(page)
 
-
    /*
     * scaling text(X direction)
     */
@@ -975,7 +967,6 @@ Static Function Page_TextScaling( pdf, grid )
    HPDF_Page_ShowText(page, "ABCabc12")
    HPDF_Page_EndText(page)
 
-
    /*
     * scaling text(Y direction)
     */
@@ -984,7 +975,6 @@ Static Function Page_TextScaling( pdf, grid )
    HPDF_Page_SetTextMatrix(page, 1, 0, 0, 2, 320, ypos - 250)
    HPDF_Page_ShowText(page, "ABCabc123")
    HPDF_Page_EndText(page)
-
 
    /*
     * char spacing, word spacing
@@ -1300,7 +1290,6 @@ Static Function Page_Annotation( pdf )
    HPDF_Page_MoveTextPos(page, 130, 450)
    HPDF_Page_ShowText(page, "Annotation Demo")
    HPDF_Page_EndText(page)
-
 
    annot = HPDF_Page_CreateTextAnnot(page, rect1, ;
                "Annotation with Comment Icons"+chr(13)+chr(10)+;
@@ -1670,7 +1659,6 @@ Static function print_grid( pdf, page )
         y += 5
     End
 
-
     /* Draw virtical text */
 
     x := 0
@@ -1731,7 +1719,6 @@ Static Function Page_Link_Annotation( pdf )
     HPDF_Page_MoveTextPos (index_page, 15, 200)
     HPDF_Page_ShowText (index_page, "Link Annotation Demo")
     HPDF_Page_EndText (index_page)
-
 
      * Create Link-Annotation object on index page.
 
@@ -1809,7 +1796,6 @@ Static Function Page_Link_Annotation( pdf )
 
     HPDF_LinkAnnot_SetHighlightMode (annot, HPDF_ANNOT_DOWN_APPEARANCE)
 
-
     /* page5 (dash border) */
     tp = HPDF_Page_GetCurrentTextPos (index_page)
 
@@ -1826,7 +1812,6 @@ Static Function Page_Link_Annotation( pdf )
     annot := HPDF_Page_CreateLinkAnnot (index_page, rect, dst)
 
     HPDF_LinkAnnot_SetBorderStyle (annot, 1, 3, 2)
-
 
     /* page6 (no border) */
     tp = HPDF_Page_GetCurrentTextPos (index_page)
@@ -1845,7 +1830,6 @@ Static Function Page_Link_Annotation( pdf )
 
     HPDF_LinkAnnot_SetBorderStyle (annot, 0, 0, 0)
 
-
     /* page7 (bold border) */
     tp = HPDF_Page_GetCurrentTextPos (index_page)
 
@@ -1862,7 +1846,6 @@ Static Function Page_Link_Annotation( pdf )
     annot := HPDF_Page_CreateLinkAnnot (index_page, rect, dst)
 
     HPDF_LinkAnnot_SetBorderStyle (annot, 2, 0, 0)
-
 
     /* URI link */
     tp = HPDF_Page_GetCurrentTextPos (index_page)
@@ -2137,7 +2120,6 @@ Static Procedure Page_Zebra( pdf )
                                HPDF_Page_GetHeight(page) - 50)
    HPDF_Page_ShowText(page, "Barcode & QrCode" )
    HPDF_Page_EndText(page)
-
 
    HPDF_Page_SetFontAndSize( page, HPDF_GetFont( pdf, "Helvetica", NIL ), 12 )
    DrawBarcode( page,  80,   1, "EAN13",      "477012345678" )

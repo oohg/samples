@@ -7,7 +7,6 @@
  *
  */
 
-
 #include "oohg.ch"
 
 Static aSer, aClr, aSern, aYVal, cTit

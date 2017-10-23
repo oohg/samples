@@ -2,8 +2,6 @@
 
 #define CRLF    HB_OsNewLine()
 
-
-
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
  * (c) Roberto López [roblez@ciudad.com.ar]
@@ -90,8 +88,6 @@ function Main()
 
 return NIL
 
-
-
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
  * (c) Roberto López [roblez@ciudad.com.ar]
@@ -152,7 +148,6 @@ procedure OpenTable()
         TEST1->( ordListAdd( "TEST1.CDX", "Married" ) )
         TEST1->( ordSetFocus( 1 ) )
 
-
         // Open the TEST2 database file with the DBFNTX Driver.----------------
         dbUseArea( .t., "DBFNTX", "TEST2.DBF", "TEST2" )
 
@@ -210,8 +205,6 @@ procedure OpenTable()
 
 return
 
-
-
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
  * (c) Roberto López [roblez@ciudad.com.ar]
@@ -230,8 +223,6 @@ procedure CloseTable()
 
 return
 
-
-
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
  * (c) Roberto López [roblez@ciudad.com.ar]
@@ -248,10 +239,7 @@ procedure BasicDemo( cArea )
         // Basic demo of EDIT command.
         EDIT EXTENDED WORKAREA &cArea
 
-
 return
-
-
 
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
@@ -307,7 +295,6 @@ procedure AdvancedDemo( cArea )
                 ON FIND bSearch                 ;
                 ON PRINT bPrint
 
-
 return
 
 /****************************************************************************************
@@ -345,8 +332,6 @@ function AdvancedSave( aValues, lNew, cArea )
         NEXT
 
 return ( .t. )
-
-
 
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
@@ -398,8 +383,6 @@ procedure SelectLang()
 
 return
 
-
-
 /****************************************************************************************
  * HMG EDIT EXTENDED command demo
  * (c) Roberto López [roblez@ciudad.com.ar]
@@ -450,8 +433,6 @@ function SelectItem( acItems )
         ACTIVATE WINDOW wndSelItem
 
 return ( nItem )
-
-
 
 /****************************************************************************************
  * MiniGUI EDIT EXTENDED command demo

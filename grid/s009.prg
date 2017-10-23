@@ -48,7 +48,6 @@ FUNCTION Main
       aRows[ 19 ] := {'Pradon',    'Alejandra', '???-????'}
       aRows[ 20 ] := {'Reyes',     'Monica',    '432-5836'}
 
-
       @ 10, 10 GRID Grid_2 OBJ ogrid ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT 230 ;

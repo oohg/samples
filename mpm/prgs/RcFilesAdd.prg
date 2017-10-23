@@ -47,7 +47,6 @@ Function GetRcFiles()
      aFiles :=DIRECTORY(cDirNew + "\" +"*.RC")
      AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
 
-
      aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
 
    DEFINE WINDOW GetRcFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select RC Files' ;

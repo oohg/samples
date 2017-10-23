@@ -131,14 +131,12 @@ Function main()
    Form_1.Activate
 RETURN Nil
 
-
 PROCEDURE Item_Add_1
    LOCAL nn := Form_1.lst_1.ItemCount + 1
    Form_1.lst_1.AddItem( {'XX', STRZERO( nn, 3, 0 ), 'Col3'} )
    Form_1.lst_1.Value := nn
    Form_1.lst_1.SetFocus
 RETURN
-
 
 PROCEDURE Item_Del_1
    LOCAL n1
@@ -153,7 +151,6 @@ PROCEDURE Item_Del_1
    Form_1.lst_1.SetFocus
 RETURN
 
-
 PROCEDURE Item_Modify_1
    LOCAL nn := Form_1.lst_1.Value
    Form_1.lst_1.Item( nn ) := {'YY', STRZERO( nn, 3, 0 ), 'Col3'}
@@ -162,13 +159,11 @@ PROCEDURE Item_Modify_1
    Form_1.lst_1.SetFocus
 RETURN
 
-
 PROCEDURE Item_View_1
    LOCAL uValue := Form_1.lst_1.Item( Form_1.lst_1.Value )
    AutoMsgBox( {"ValType: " + VALTYPE( uValue ), "", "Items:", uValue } )
    Form_1.lst_1.SetFocus
 RETURN
-
 
 PROCEDURE Item_Add_2
    LOCAL nn := Form_1.lst_2.ItemCount + 1
@@ -176,7 +171,6 @@ PROCEDURE Item_Add_2
    Form_1.lst_2.Value := nn
    Form_1.lst_2.SetFocus
 RETURN
-
 
 PROCEDURE Item_Del_2
    LOCAL n1
@@ -191,7 +185,6 @@ PROCEDURE Item_Del_2
    Form_1.lst_2.SetFocus
 RETURN
 
-
 PROCEDURE Item_Modify_2
    LOCAL nn := Form_1.lst_2.Value
    Form_1.lst_2.Item( nn ) := {'MM', STRZERO( nn, 3, 0 ), 'Data in Col 3'}
@@ -200,13 +193,11 @@ PROCEDURE Item_Modify_2
    Form_1.lst_2.SetFocus
 RETURN
 
-
 PROCEDURE Item_View_2
    LOCAL uValue := Form_1.lst_2.Item( Form_1.lst_2.Value )
    AutoMsgBox( {"ValType: " + VALTYPE( uValue ), "", "Items:", uValue } )
    Form_1.lst_2.SetFocus
 RETURN
-
 
 /*
  * EOF

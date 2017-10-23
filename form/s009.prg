@@ -38,7 +38,6 @@ PROCEDURE Main
 
 RETURN
 
-
 PROCEDURE Save( cType )
 
    oWin:SaveAs( "SnapShot." + cType, .T., cType )

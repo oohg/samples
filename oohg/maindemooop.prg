@@ -35,7 +35,6 @@ FUNCTION Main()
    oWnd:title:="Main Demo oop version"
    oWnd:OnClick:={|| msginfo(str(_OOHG_MouseRow)+str(_OOHG_MouseCol)) }
 
-
    _DefineAnyKey( oWnd, "ESCAPE", {|| oWnd:Release } )
 
    DEFINE TOOLBAR Toolbr buttonsize 50,20
@@ -77,7 +76,6 @@ FUNCTION Main()
       oMenup:endpopup()
       oItem := TMenuItem():DefineItem( "Salir" , {|| oWnd:Release()}  )
    oMenum:endmenu()
-
 
    on key F5 action msginfo( str( olabel:row  )+str( olabel:col ),"Hello window" )
 
@@ -135,7 +133,6 @@ FUNCTION Main()
    END WITH
 
    // @ 150,10 TEXTBOX Txt5 obj od VALUE date() WIDTH 150 height 20 DATE
-
 
    // DefineTextBox( "Txt5", , 10, 150, 150, 20, date(),,,,, .F., .F., .F.,,,,, .F.,, .F. ,.F., .F., .F., .F. , , , , .F. , .F. , .F., .F., .F.,, .F.,, .T., .F.,,, )
 

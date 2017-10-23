@@ -37,7 +37,6 @@ Procedure ImportFile()
 
 Return
 
-
 Procedure ImportGetFile()
    Iif ( !Empty( sFile := GetFile( aTypes[Import.RadioGroup_i1.value], 'Select Import files', CurDir(), .T.) ) , Import.text_ii1.Value := sFile[1] , )
 Return
@@ -72,7 +71,6 @@ Function OpenImpFile()
    Import.Release
 
 Return(Nil)
-
 
 Function ImpAppend( cFile, cStrDelim, cFldSepar )
    Local lSucces := .F.

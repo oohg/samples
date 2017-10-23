@@ -198,7 +198,6 @@ Function Bt_Novo_Generic(nTipo)
     lNovo := .F.
     Return NIL
 
-
 /*
 */
 Function Bt_Excluir_Generic()

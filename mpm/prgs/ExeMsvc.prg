@@ -177,7 +177,6 @@ Procedure Build5(ProjectName) //(x)Harbour - Visual C
           Out += '   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib >> b32.bc' + NewLi
       Next i
 
-
     Out += '   echo user32.lib >> b32.bc' + NewLi
     Out += '   echo ws2_32.lib >> b32.bc' + NewLi
     Out += '   echo winspool.lib >> b32.bc' + NewLi

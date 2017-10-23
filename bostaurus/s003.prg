@@ -73,7 +73,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 FUNCTION Proc_Paint_on_the_Bitmap
    LOCAL hDC, BTstruct
    LOCAL hBitmap, aRGBcolor := { 153, 217, 234 }
@@ -93,12 +92,10 @@ FUNCTION Proc_Paint_on_the_Bitmap
    BT_DeleteDC( BTstruct )
 RETURN hBitmap
 
-
 PROCEDURE Proc_ON_RELEASE( hBitmap1, hBitmap2 )
    BT_BitmapRelease( hBitmap1 )
    BT_BitmapRelease( hBitmap2 )
 RETURN
-
 
 PROCEDURE Proc_ON_SIZE
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
@@ -109,7 +106,6 @@ PROCEDURE Proc_ON_SIZE
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 RETURN
-
 
 PROCEDURE Proc_ON_PAINT( hBitmap1, hBitmap2 )
    LOCAL Width := BT_ClientAreaWidth( "Win1" )

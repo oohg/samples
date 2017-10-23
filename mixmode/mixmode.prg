@@ -1,6 +1,5 @@
 #include "oohg.ch"
 
-
 *-------------------------
 Function Main
 *-------------------------
@@ -24,12 +23,10 @@ Activate window Ventana
 
 Return Nil
 
-
 *-------------------------
 Function Console()
 *-------------------------
 REQUEST HB_GT_WIN_DEFAULT
-
 
 SetMode(25,80)
 

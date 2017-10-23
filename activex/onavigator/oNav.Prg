@@ -14,7 +14,6 @@
 #endif
 static s_bBreak := { |oErr| break( oErr ) }
 
-
 #define AX_SE2_STATUSTEXTCHANGE           102
 #define AX_SE2_PROGRESSCHANGE             108
 #define AX_SE2_COMMANDSTATECHANGE         105
@@ -51,12 +50,10 @@ static s_bBreak := { |oErr| break( oErr ) }
 #define AX_SE2_SETPHISHINGFILTERSTATUS    282
 #define AX_SE2_WINDOWSTATECHANGED         283
 
-
 *------------------------------------------------------*
 Function Main()
 *------------------------------------------------------*
 public x:=1,otab,oprog,ocombo,sw:=0,z:=0, atitle:={""}, aobj:={}
-
 
 DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
        ICON "ONE" MAIN ON INIT {|| navegar(),  adjust() }  ON SIZE adjust()
@@ -78,11 +75,9 @@ DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
             BUTTON Acerca  Tooltip "Acerca"  Picture "MINIGUI_EDIT_OK" ACTION acerca() AUTOSIZE
         END TOOLBAR
 
-
         @ 30,0 COMBOBOX directo obj ocombo ;
         font "Arial" size 9 width 720 items {"http://www.oohg.org","http://www.google.com","http://www.yahoo.com"} ;
         value 1  on enter navegar() displayedit ///////// on change navegar()
-
 
         DEFINE TOOLBAR ir BUTTONSIZE 20,20 FONT "Arial" SIZE 9 FLAT BOTTOM
             BUTTON ir_Btn1 PICTURE "seis" ACTION Navegar() TOOLTIP "Ir" AUTOSIZE
@@ -103,8 +98,6 @@ DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
     otab:lfixfont:=.T.
 
     @   st1.height - 44,  st1.width - 206 PROGRESSBAR ProgressBar_1 width 100 height 18 range 0,10
-
-
 
     oprog:=getcontrolobject("progressbar_1","st1")
 
@@ -130,8 +123,6 @@ local i:=otab:value
    if sw = 1
       ocombo:additem(ocombo:displayvalue)
    endif
-
-
 
      &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| cambiatitulo(ctitle)  } )
 ///         &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle|  refresca() }    )
@@ -261,10 +252,7 @@ local i:= otab:value
 
    if i> 0
 
-
       xoActivex := "oActiveX_" + StrZero( i, 4 )
-
-
 
          &xoActiveX:width        := st1:width - 8
          &xoActiveX:height       := st1:height - 154

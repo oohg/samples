@@ -15,7 +15,6 @@ FUNCTION Main()
           Title "Demo RMChart 2 - Adapted by MigSoft for ooHG" Main ;
           ON Size Ajust() ON Maximize Ajust() ON MOUSECLICK oWnd:print()
 
-
           @ 0,0 ACTIVEX ActiveX OBJ oChart Width oWnd:Width - 7 ;
           Height oWnd:Height - 35 PROGID "RMChart.RMChartX"
 

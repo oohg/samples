@@ -52,7 +52,6 @@ FUNCTION Main
 
 RETURN NIL
 
-
 FUNCTION OpenTables()
 
    LOCAL i
@@ -73,7 +72,6 @@ FUNCTION OpenTables()
    GO TOP
 
 RETURN NIL
-
 
 FUNCTION CloseTables()
 

@@ -50,7 +50,6 @@ FUNCTION Main
 
 RETURN NIL
 
-
 PROCEDURE PrintImage( cTLibrary )
 
    LOCAL oPrint := TPrint( cTLibrary )

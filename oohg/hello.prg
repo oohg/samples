@@ -70,7 +70,6 @@ Function Main()
          ITEM "Salir" ACTION Win_1.Release
       END MENU
 
-
       on key F5 action msginfo( str( olabel:row  )+str( olabel:col ),"Hello window" )
 
       // @ 10,10 LABEL Hello VALUE "(F5) Hello!!" AUTOSIZE ACTION MSGINFO("CLICK!")
@@ -249,7 +248,6 @@ function printform( )
                { 8350,10315,15870, 5347,12340},;
                {12345, -8945,10560,15600,17610} }
 
-
    Define Window GraphTest obj graphtest ;
       At 0,0 ;
       Width 640 ;
@@ -259,7 +257,6 @@ function printform( )
                 BACKCOLOR {255,255,255 } ;
       On Init DrawBarGraph ( aser ) ;
                 on mouseclick graphtest:print()
-
 
    End Window
 

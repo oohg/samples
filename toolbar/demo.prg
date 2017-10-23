@@ -74,7 +74,6 @@ Function Main
 
       END TOOLBAR
 
-
    END WINDOW
 
    CENTER WINDOW Form_0

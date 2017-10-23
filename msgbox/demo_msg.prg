@@ -13,7 +13,6 @@ else
    msgbox("Negativo")
 endif
 
-
 MsgInfo("Esta es una prueba","Informacion")
 
 Automsgbox("Estos  son mensajes con formato automatico","Titulo")
@@ -31,7 +30,6 @@ automsgstop(l,"Logico")
 a:={ { 1,2,3 }, {3,2,1}, {5,6,7 }}
 
 automsginfo (A, "Arreglo 2 dimensiones")
-
 
 automsginfoext("Este es una prueba de varias lineas"+chr(13)+"esta es otra linea"+chr(13)+"le agregue temporizador opcional"+chr(13)+chr(13)+"estara disponible proxima version", "aporte de Lucho Miranda",4)
 

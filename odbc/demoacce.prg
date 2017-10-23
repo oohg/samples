@@ -49,7 +49,6 @@ PROCEDURE TEST
       :SetSQL( "SELECT * FROM table1" )
       :Open()
 
-
       :Skip()
 
       autoMsgInfo ( :FieldByName( "field1" ):Value )
@@ -79,7 +78,6 @@ PROCEDURE TEST
      /// :SetSQL( "MODIFY * FROM table1 BY 'Vargas' FOR :FieldByName( 'field1' ):Value='pablo'" )
     ///  :Open()
     /// :close()
-
 
    END
 

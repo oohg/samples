@@ -26,7 +26,6 @@ Function main()
 
       @ 120,120 LABEL label_1 VALUE ''
 
-
    END WINDOW
 
    form_1.center
@@ -66,7 +65,6 @@ Function UnPackZip()
 
 Return nil
 
-
 /* Notas sobre las funciones:
 
 FUNCTION hb_ZipFile( cFileName, acFiles, nLevel, bUpdate,lOverwrite, cPassword,;
@@ -96,9 +94,7 @@ FUNCTION hb_ZipFile( cFileName, acFiles, nLevel, bUpdate,lOverwrite, cPassword,;
 
     RETURN
 
-
 FUNCTION hb_UnzipFile( cFileName, bUpdate, lWithPath, cPassword, cPath, acFiles, bProgress )
-
 
  EXAMPLES
 

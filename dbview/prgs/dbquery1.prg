@@ -36,7 +36,6 @@ Function AddText(cExpr, aUndo_, cText)
 
 Return(NIL)
 
-
 Function GetType(cField, aFlds_, cChar)
   local cType, n
 
@@ -55,7 +54,6 @@ Function GetType(cField, aFlds_, cChar)
   endif
 
 Return(cType)
-
 
 Function CheckComp(cType, cComp)
   local lOk := .T.
@@ -79,7 +77,6 @@ Function CheckComp(cType, cComp)
   endif
 
 Return(lOk)
-
 
 Function AddExpr(cExpr, aUndo_, cField, cComp, uVal)
   local cVT, cTemp
@@ -111,7 +108,6 @@ Function AddExpr(cExpr, aUndo_, cField, cComp, uVal)
 
 Return(NIL)
 
-
 Function Undo(cExpr, aUndo_)
   local l := len(aUndo_)
   local x, cTemp := cExpr
@@ -125,7 +121,6 @@ Function Undo(cExpr, aUndo_)
   asize(aUndo_, l - 1)
 
 Return(NIL)
-
 
 Function RunQuery(cExpr)
   local nCurRec := (cAlias)->( recno() )
@@ -166,7 +161,6 @@ Function RunQuery(cExpr)
   endif
 
 Return(lOk)
-
 
 Function SaveQuery(cExpr, aQuery_,cBase)
   local cDesc := ""
@@ -244,7 +238,6 @@ Function SaveQuery(cExpr, aQuery_,cBase)
 
 Return(NIL)
 
-
 Function LoadQuery(cExpr, aQuery_,cBase)
   //local cQFile := ""
   local lLoaded := .F., lCancel := .F.
@@ -291,7 +284,6 @@ Function LoadQuery(cExpr, aQuery_,cBase)
          READONLYFIELDS { .t., .t., .t., .t. }
          ONDBLCLICK Form_Load.Button_1.OnClick()
            END BROWSE
-
 
       DEFINE BUTTON Button_1
            ROW    GetProperty( 'Form_Load', 'Height' ) - 58
@@ -351,7 +343,6 @@ Function LoadQuery(cExpr, aQuery_,cBase)
 
 Return(lLoaded)
 
-
 Function NotDBQ( cQFile )
   local lNot := .F.
 
@@ -363,7 +354,6 @@ Function NotDBQ( cQFile )
   endif
 
 Return(lNot)
-
 
 Function LoadIt(aQuery_)
   local lLoaded := .F.
@@ -384,7 +374,6 @@ Function LoadIt(aQuery_)
   endif
 
 Return(lLoaded)
-
 
 Function DelRec()
   local lDel := .F.
@@ -408,7 +397,6 @@ Function DelRec()
   endif
 
 Return(lDel)
-
 
 Function QueryError(e)
   local cMsg := 'Syntax error in Query expression!'

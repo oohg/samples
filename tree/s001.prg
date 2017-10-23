@@ -77,7 +77,6 @@ FUNCTION Main()
       Form_1.Tree_1.ItemEnabled(5, .F.)
       Form_1.Tree_1.ItemEnabled(6, .F.)
 
-
       DEFINE TREE Tree_2 OBJ oTree2 ;
          AT 10,320 ;
          WIDTH 300 ;

@@ -180,7 +180,6 @@ Procedure printlist()
         Aadd(aLen,Max(100,Min(160,aEst[i,3]*14)))
     Next
 
-
    aeval(aLen, {|e,i| aLen[i] := e/9})
 
    aHdr1 := array(len(aHdr))

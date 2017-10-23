@@ -12,7 +12,6 @@ Function Main
       TITLE 'Statusbar Keyboard Demo' ;
       MAIN
 
-
       DEFINE STATUSBAR FONT 'Arial' SIZE 9 OBJ oStat
 
          STATUSITEM "Statusbar Demo"

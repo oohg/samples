@@ -15,7 +15,6 @@
 #define NETPORT    2940
 #define NETPASSWD  "toptopsecret"
 
-
 proc main()
 
    /* connect to the server */

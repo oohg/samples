@@ -11,11 +11,9 @@
    #xtranslate MemoWrit(<a>,<b>,<c>) => hb_MemoWrit(<a>,<b>)
 #endif
 
-
 *---------------------------------------------------------------------*
 Procedure Build2( ProjectName )  // Executable MinGW
 *---------------------------------------------------------------------*
-
 
     DECLARE WINDOW main
     DECLARE WINDOW MigMess

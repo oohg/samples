@@ -82,7 +82,6 @@ PROCEDURE MAIN
    ACTIVATE WINDOW Win1
 RETURN
 
-
 PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" ) - 40
    LOCAL Height := BT_ClientAreaHeight( "Win1" ) - 40
@@ -107,7 +106,6 @@ PROCEDURE Proc_ON_PAINT
    ENDIF
    BT_DeleteDC( BTstruct )
 RETURN
-
 
 PROCEDURE Proc_Get_Clipboard_Timer
    LOCAL hBitmap_aux

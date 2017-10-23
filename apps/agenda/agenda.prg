@@ -23,9 +23,6 @@ Procedure Main()
  REQUEST DBFNTX
  REQUEST DBFDBT
 
-
-
-
      Cria_frmPrincipal()
      Frm_Principal.Center()
      Frm_Principal.Activate()
@@ -88,7 +85,6 @@ Function Cria_frmPrincipal()
          WIDTH 300 ;
          HEIGHT 80 ;
          FILE 'Minigui' AUTOPLAY
-
 
     DEFINE MAIN MENU
              POPUP "Sistema"

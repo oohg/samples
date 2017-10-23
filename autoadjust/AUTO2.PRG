@@ -16,9 +16,6 @@ Function Main()
 
    msginfo("Test de autoajuste, se ajusta las posiciones , pero no el ancho ni el font","Informacion")
 
-
-
-
    DEFINE WINDOW  Principal AT 126,66 WIDTH 648 HEIGHT 404 ;
    TITLE 'AutoAdjust (c)2007 MigSoft ' ;
 

@@ -66,7 +66,6 @@ Local aRows [20] [3]
                Nil ;
                }
 
-
    END WINDOW
 
    CENTER WINDOW Form_1
