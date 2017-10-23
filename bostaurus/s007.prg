@@ -35,40 +35,40 @@ PROCEDURE MAIN
       
       DEFINE MAIN MENU
          DEFINE POPUP "File"
-         MENUITEM "Exit" ACTION Win1.Release
-      END POPUP
-   END MENU
+            MENUITEM "Exit" ACTION Win1.Release
+         END POPUP
+      END MENU
+      
+      DEFINE STATUSBAR
+         STATUSITEM "OOHG Power !!!"
+         DATE
+         CLOCK
+      END STATUSBAR
+      
+      @ 30, 300 LABEL Label_1 ;
+         VALUE "Client Area WIDTH " + STR( oWin:ClientWidth ) ;
+         AUTOSIZE
+      
+      @ 80, 300 LABEL Label_2 ;
+         VALUE "Client Area HEIGHT" + STR( oWin:ClientHeight + oWin:Statusbar:ClientHeightUsed ) ;
+         AUTOSIZE ;
+         TRANSPARENT ;
+         FONTCOLOR BLACK
+      
+      @ 435, 410 BUTTON Button_1 ;
+         CAPTION "Maximize" ;
+         ACTION Win1.Maximize
+      
+      @ 435, 280 BUTTON Button_2 ;
+         CAPTION "Credits" ;
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+      
+      ON KEY ESCAPE ACTION ThisWindow.Release
+   END WINDOW
    
-   DEFINE STATUSBAR
-      STATUSITEM "OOHG Power !!!"
-      DATE
-      CLOCK
-   END STATUSBAR
-   
-   @ 30, 300 LABEL Label_1 ;
-      VALUE "Client Area WIDTH " + STR( oWin:ClientWidth ) ;
-      AUTOSIZE
-   
-   @ 80, 300 LABEL Label_2 ;
-      VALUE "Client Area HEIGHT" + STR( oWin:ClientHeight + oWin:Statusbar:ClientHeightUsed ) ;
-      AUTOSIZE ;
-      TRANSPARENT ;
-      FONTCOLOR BLACK
-   
-   @ 435, 410 BUTTON Button_1 ;
-      CAPTION "Maximize" ;
-      ACTION Win1.Maximize
-   
-   @ 435, 280 BUTTON Button_2 ;
-      CAPTION "Credits" ;
-      ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
-   
-   ON KEY ESCAPE ACTION ThisWindow.Release
-END WINDOW
-
-CENTER WINDOW Win1
-ACTIVATE WINDOW Win1
-RETURN
+   CENTER WINDOW Win1
+   ACTIVATE WINDOW Win1
+   RETURN
 
 PROCEDURE Proc_ON_SIZE
    LOCAL Width  := BT_ClientAreaWidth( "Win1" )

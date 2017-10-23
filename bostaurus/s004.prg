@@ -50,103 +50,103 @@ PROCEDURE MAIN
       
       DEFINE MAIN MENU
          DEFINE POPUP "Automatic"
-         MENUITEM "Automatic background change" ;
-            ACTION {|| Win1.Flag_Automatic.Checked := ! Win1.Flag_Automatic.Checked } ;
-            NAME Flag_Automatic ;
-            CHECKED
-      END POPUP
-   END MENU
-   Win1.Flag_Automatic.Checked := .F.
-   
-   DEFINE TAB Tab_1 ;
-         AT 30, 10 ;
-         WIDTH 400 ;
-         HEIGHT 300 ;
-         VALUE 1 ;
-         FONT "ARIAL" SIZE 10
+            MENUITEM "Automatic background change" ;
+               ACTION {|| Win1.Flag_Automatic.Checked := ! Win1.Flag_Automatic.Checked } ;
+               NAME Flag_Automatic ;
+               CHECKED
+         END POPUP
+      END MENU
+      Win1.Flag_Automatic.Checked := .F.
       
-      PAGE "Page1"
-         @  55, 90 LABEL Label_1 ;
-            VALUE "This is Page 1" ;
-            WIDTH 100 ;
-            HEIGHT 27 ;
-            TRANSPARENT
+      DEFINE TAB Tab_1 ;
+            AT 30, 10 ;
+            WIDTH 400 ;
+            HEIGHT 300 ;
+            VALUE 1 ;
+            FONT "ARIAL" SIZE 10
          
-         @ 100, 10 EDITBOX ED_ctrl ;
-            WIDTH 200 ;
-            HEIGHT 100 ;
-            VALUE "Hello HMG World" ;
-            BACKCOLOR YELLOW ;
-            FONTCOLOR BLUE
-      END PAGE
+         PAGE "Page1"
+            @  55, 90 LABEL Label_1 ;
+               VALUE "This is Page 1" ;
+               WIDTH 100 ;
+               HEIGHT 27 ;
+               TRANSPARENT
+            
+            @ 100, 10 EDITBOX ED_ctrl ;
+               WIDTH 200 ;
+               HEIGHT 100 ;
+               VALUE "Hello HMG World" ;
+               BACKCOLOR YELLOW ;
+               FONTCOLOR BLUE
+         END PAGE
+         
+         DEFINE PAGE "Page2"
+            @ 55, 90 LABEL Label_2 ;
+               VALUE "This is Page 2" ;
+               WIDTH 100 ;
+               HEIGHT 27
+         END PAGE
+      END TAB
       
-      DEFINE PAGE "Page2"
-      @ 55, 90 LABEL Label_2 ;
-         VALUE "This is Page 2" ;
-         WIDTH 100 ;
-         HEIGHT 27
-   END PAGE
-END TAB
-
-@ 10, 450 GRID Grid_1 ;
-   WIDTH 300 ;
-   HEIGHT 330 ;
-   HEADERS { "Column 1", "Column 2", "Column 3" } ;
-   WIDTHS { 140, 140, 140 } ;
-   VIRTUAL ;
-   ITEMCOUNT 30 ;
-   ON QUERYDATA {|| This.QueryData := STR( This.QueryRowIndex ) + "," + STR( This.QueryColIndex ) }
-
-@ 350, 100 IMAGE Image_1 ;
-   PICTURE "img1.bmp" ;
-   WIDTH 160 ;
-   HEIGHT 120 ;
-   STRETCH
-
-@ 500, 50 BUTTON button_1 ;
-   CAPTION "On/Off Image" ;
-   ACTION  Win1.image_1.visible := ! Win1.image_1.visible
-
-@ 500, 200 BUTTON button_2 ;
-   CAPTION "On/Off TAB" ;
-   ACTION Win1.Tab_1.visible := ! Win1.Tab_1.visible
-
-@ 500, 350 BUTTON button_3 ;
-   CAPTION "On/Off GRID" ;
-   ACTION Win1.Grid_1.visible := ! Win1.Grid_1.visible
-
-@ 500, 500 BUTTON button_4 ;
-   CAPTION "CHANGE" ;
-   ACTION Background_Change( @hBitmap, hBitmap1, hBitmap2, nMode, @Flag_Erase )
-
-@ 500, 650 BUTTON button_5 ;
-   CAPTION "ERASE" ;
-   ACTION Background_Erase( @Flag_Erase )
-
-@ 400, 650 BUTTON button_6 ;
-   CAPTION "Credits" ;
-   ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
-
-DRAW LINE IN WINDOW Win1 ;
-   AT 0, 400 TO 600, 400 ;
-   PENCOLOR RED ;
-   PENWIDTH 2
-
-DRAW LINE IN WINDOW Win1 ;
-   AT 300, 0 TO 300, 800 ;
-   PENCOLOR RED ;
-   PENWIDTH 3
-
-DEFINE TIMER Timer_1 ;
-   INTERVAL 2000 ;
-   ACTION IF( Win1.Flag_Automatic.Checked, Background_Change( @hBitmap, hBitmap1, hBitmap2, nMode, @Flag_Erase ), Nil )
-
-ON KEY ESCAPE ACTION ThisWindow.Release
-END WINDOW
-
-CENTER WINDOW Win1
-ACTIVATE WINDOW Win1
-RETURN
+      @ 10, 450 GRID Grid_1 ;
+         WIDTH 300 ;
+         HEIGHT 330 ;
+         HEADERS { "Column 1", "Column 2", "Column 3" } ;
+         WIDTHS { 140, 140, 140 } ;
+         VIRTUAL ;
+         ITEMCOUNT 30 ;
+         ON QUERYDATA {|| This.QueryData := STR( This.QueryRowIndex ) + "," + STR( This.QueryColIndex ) }
+      
+      @ 350, 100 IMAGE Image_1 ;
+         PICTURE "img1.bmp" ;
+         WIDTH 160 ;
+         HEIGHT 120 ;
+         STRETCH
+      
+      @ 500, 50 BUTTON button_1 ;
+         CAPTION "On/Off Image" ;
+         ACTION  Win1.image_1.visible := ! Win1.image_1.visible
+      
+      @ 500, 200 BUTTON button_2 ;
+         CAPTION "On/Off TAB" ;
+         ACTION Win1.Tab_1.visible := ! Win1.Tab_1.visible
+      
+      @ 500, 350 BUTTON button_3 ;
+         CAPTION "On/Off GRID" ;
+         ACTION Win1.Grid_1.visible := ! Win1.Grid_1.visible
+      
+      @ 500, 500 BUTTON button_4 ;
+         CAPTION "CHANGE" ;
+         ACTION Background_Change( @hBitmap, hBitmap1, hBitmap2, nMode, @Flag_Erase )
+      
+      @ 500, 650 BUTTON button_5 ;
+         CAPTION "ERASE" ;
+         ACTION Background_Erase( @Flag_Erase )
+      
+      @ 400, 650 BUTTON button_6 ;
+         CAPTION "Credits" ;
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+      
+      DRAW LINE IN WINDOW Win1 ;
+         AT 0, 400 TO 600, 400 ;
+         PENCOLOR RED ;
+         PENWIDTH 2
+      
+      DRAW LINE IN WINDOW Win1 ;
+         AT 300, 0 TO 300, 800 ;
+         PENCOLOR RED ;
+         PENWIDTH 3
+      
+      DEFINE TIMER Timer_1 ;
+         INTERVAL 2000 ;
+         ACTION IF( Win1.Flag_Automatic.Checked, Background_Change( @hBitmap, hBitmap1, hBitmap2, nMode, @Flag_Erase ), Nil )
+      
+      ON KEY ESCAPE ACTION ThisWindow.Release
+   END WINDOW
+   
+   CENTER WINDOW Win1
+   ACTIVATE WINDOW Win1
+   RETURN
 
 PROCEDURE Background_Change( hBitmap, hBitmap1, hBitmap2, nMode, Flag_Erase )
    STATIC Flag_Image := .T.

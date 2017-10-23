@@ -40,40 +40,40 @@ PROCEDURE MAIN
       
       DEFINE MAIN MENU
          DEFINE POPUP "Alpha Blend"
-         MENUITEM "Alpha   0 (min)" ACTION AlphaChange( 0 )
-         MENUITEM "Alpha  50      " ACTION AlphaChange( 50 )
-         MENUITEM "Alpha 150      " ACTION AlphaChange( 150 )
-         MENUITEM "Alpha 200      " ACTION AlphaChange( 200 )
-         MENUITEM "Alpha 255 (max)" ACTION AlphaChange( 255 )
-      END POPUP
-   END MENU
+            MENUITEM "Alpha   0 (min)" ACTION AlphaChange( 0 )
+            MENUITEM "Alpha  50      " ACTION AlphaChange( 50 )
+            MENUITEM "Alpha 150      " ACTION AlphaChange( 150 )
+            MENUITEM "Alpha 200      " ACTION AlphaChange( 200 )
+            MENUITEM "Alpha 255 (max)" ACTION AlphaChange( 255 )
+         END POPUP
+      END MENU
+      
+      @ 350, 180 BUTTON Button_1 ;
+         CAPTION "Capture Desktop" ;
+         WIDTH 120 ;
+         ACTION CaptureDesktop()
+      
+      @ 350, 320 BUTTON Button_2 ;
+         CAPTION "Save Capture" ;
+         WIDTH 120 ;
+         ACTION SaveDeskTop()
+      
+      @ 350, 460 BUTTON Button_3 ;
+         CAPTION "Erase Capture" ;
+         WIDTH 120 ;
+         ACTION EraseCapture()
+      
+      @ 435, 320 BUTTON Button_4 ;
+         CAPTION "Credits" ;
+         WIDTH 120 ;
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+      
+      ON KEY ESCAPE ACTION ThisWindow.Release
+   END WINDOW
    
-   @ 350, 180 BUTTON Button_1 ;
-      CAPTION "Capture Desktop" ;
-      WIDTH 120 ;
-      ACTION CaptureDesktop()
-   
-   @ 350, 320 BUTTON Button_2 ;
-      CAPTION "Save Capture" ;
-      WIDTH 120 ;
-      ACTION SaveDeskTop()
-   
-   @ 350, 460 BUTTON Button_3 ;
-      CAPTION "Erase Capture" ;
-      WIDTH 120 ;
-      ACTION EraseCapture()
-   
-   @ 435, 320 BUTTON Button_4 ;
-      CAPTION "Credits" ;
-      WIDTH 120 ;
-      ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
-   
-   ON KEY ESCAPE ACTION ThisWindow.Release
-END WINDOW
-
-CENTER WINDOW Win1
-ACTIVATE WINDOW Win1
-RETURN
+   CENTER WINDOW Win1
+   ACTIVATE WINDOW Win1
+   RETURN
 
 PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" )

@@ -44,41 +44,41 @@ PROCEDURE MAIN
             HEIGHT 200
          
          DEFINE PAGE "EditBox"
-         @ 50, 50 EDITBOX EditBox_1 ;
-            WIDTH 300 ;
-            HEIGHT 120 ;
-            VALUE "Write your memories here." + CRLF + CRLF ;
-            BOLD ;
-            BACKCOLOR ORANGE
-      END PAGE
+            @ 50, 50 EDITBOX EditBox_1 ;
+               WIDTH 300 ;
+               HEIGHT 120 ;
+               VALUE "Write your memories here." + CRLF + CRLF ;
+               BOLD ;
+               BACKCOLOR ORANGE
+         END PAGE
+         
+         DEFINE PAGE "Image"
+            @ 40, 120 IMAGE Image_1 ;
+               PICTURE "cowbook.bmp" ;
+               WIDTH 128 ;
+               HEIGHT 128
+         END PAGE
+      END TAB
       
-      DEFINE PAGE "Image"
-      @ 40, 120 IMAGE Image_1 ;
-         PICTURE "cowbook.bmp" ;
-         WIDTH 128 ;
-         HEIGHT 128
-   END PAGE
-END TAB
-
-@ 300, 180 BUTTON Button_1 CAPTION "Click" ACTION MsgInfo( "Hello" )
-
-DEFINE TIMER Timer1 INTERVAL 200 ACTION Proc_Mirror()
-
-ON KEY ESCAPE ACTION ThisWindow.Release
-END WINDOW
-
-DEFINE WINDOW Win2 ;
-      AT 0, 0 ;
-      WIDTH 500 ;
-      HEIGHT 400 ;
-      TITLE "Mirror of Win1's Client Area" ;
-      NOSYSMENU ;
-      CHILD ;
-      ON INIT Win1.EditBox_1.SetFocus()
-END WINDOW
-
-ACTIVATE WINDOW Win1, Win2
-RETURN
+      @ 300, 180 BUTTON Button_1 CAPTION "Click" ACTION MsgInfo( "Hello" )
+      
+      DEFINE TIMER Timer1 INTERVAL 200 ACTION Proc_Mirror()
+      
+      ON KEY ESCAPE ACTION ThisWindow.Release
+   END WINDOW
+   
+   DEFINE WINDOW Win2 ;
+         AT 0, 0 ;
+         WIDTH 500 ;
+         HEIGHT 400 ;
+         TITLE "Mirror of Win1's Client Area" ;
+         NOSYSMENU ;
+         CHILD ;
+         ON INIT Win1.EditBox_1.SetFocus()
+   END WINDOW
+   
+   ACTIVATE WINDOW Win1, Win2
+   RETURN
 
 PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
