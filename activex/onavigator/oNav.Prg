@@ -8,9 +8,9 @@
 
 #include 'oohg.ch'
 #ifndef __XHARBOUR__
-#xcommand TRY => BEGIN SEQUENCE WITH s_bBreak
-#xcommand CATCH [<!oErr!>] => RECOVER [USING <oErr>] <-oErr->
-#xcommand FINALLY => ALWAYS
+   #xcommand TRY => BEGIN SEQUENCE WITH s_bBreak
+   #xcommand CATCH [<!oErr!>] => RECOVER [USING <oErr>] <-oErr->
+   #xcommand FINALLY => ALWAYS
 #endif
 static s_bBreak := { |oErr| break( oErr ) }
 

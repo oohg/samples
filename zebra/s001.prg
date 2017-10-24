@@ -1,26 +1,26 @@
 /*
- * Zebra Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to create barcodes using Zebra library.
- *
- * Adapted from "HMG_Zebra" sample included in HMG Extended package.
- *
- * To build execute:
- *    BUILDAPP demo -ic:\oohg\hb32\contrib\hbzebra
- * or:
- *    COMPILE demo -ic:\oohg\hb32\contrib\hbzebra
- * or:
- *    BUILD.BAT
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download demo.ico and build.bat from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Zebra
- */
+* Zebra Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to create barcodes using Zebra library.
+*
+* Adapted from "HMG_Zebra" sample included in HMG Extended package.
+*
+* To build execute:
+*    BUILDAPP demo -ic:\oohg\hb32\contrib\hbzebra
+* or:
+*    COMPILE demo -ic:\oohg\hb32\contrib\hbzebra
+* or:
+*    BUILD.BAT
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download demo.ico and build.bat from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Zebra
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
@@ -34,44 +34,44 @@ MEMVAR aBackColor
 
 FUNCTION Main
    PRIVATE aTypeItems := { "EAN13", ;
-                           "EAN8", ;
-                           "UPCA", ;
-                           "UPCE", ;
-                           "CODE39", ;
-                           "ITF", ;
-                           "MSI", ;
-                           "CODABAR", ;
-                           "CODE93", ;
-                           "CODE11", ;
-                           "CODE128", ;
-                           "PDF417", ;
-                           "DATAMATRIX", ;
-                           "QRCODE" }
+      "EAN8", ;
+      "UPCA", ;
+      "UPCE", ;
+      "CODE39", ;
+      "ITF", ;
+      "MSI", ;
+      "CODABAR", ;
+      "CODE93", ;
+      "CODE11", ;
+      "CODE128", ;
+      "PDF417", ;
+      "DATAMATRIX", ;
+      "QRCODE" }
    PRIVATE aValues := { "477012345678", ;
-                        "1234567", ;
-                        "01234567891", ;
-                        "123456", ;
-                        "ABC123", ;
-                        "12345678901", ;
-                        "1234", ;
-                        "1234567", ;
-                        "-1234", ;
-                        "ABC-123", ;
-                        "Code 128", ;
-                        "Hello, World of Harbour! It's 2D barcode PDF417", ;
-                        "Hello, World of Harbour! It's 2D barcode DataMatrix", ;
-                        "https://harbour.github.io/" }
+      "1234567", ;
+      "01234567891", ;
+      "123456", ;
+      "ABC123", ;
+      "12345678901", ;
+      "1234", ;
+      "1234567", ;
+      "-1234", ;
+      "ABC-123", ;
+      "Code 128", ;
+      "Hello, World of Harbour! It's 2D barcode PDF417", ;
+      "Hello, World of Harbour! It's 2D barcode DataMatrix", ;
+      "https://harbour.github.io/" }
    PRIVATE aBarColor := { 0, 0, 0 }
    PRIVATE aBackColor := { 255, 255, 255 }
 
    SET DEFAULT ICON TO 'demo.ico'
 
    DEFINE WINDOW frm_barcode ;
-      AT 0, 0 ;
-      WIDTH 450 HEIGHT 270 ;
-      MAIN ;
-      TITLE 'BarCode Generator' ;
-      NOMAXIMIZE NOSIZE
+         AT 0, 0 ;
+         WIDTH 450 HEIGHT 270 ;
+         MAIN ;
+         TITLE 'BarCode Generator' ;
+         NOMAXIMIZE NOSIZE
 
       DEFINE LABEL lbl_barcodetype
          ROW 10
@@ -214,22 +214,22 @@ FUNCTION Main
    frm_barcode.cmb_type.Value := 1
    frm_barcode.Center
    frm_barcode.Activate
-RETURN Nil
+   RETURN Nil
 
 FUNCTION ShowBarcode
    LOCAL hBitMap
 
    hBitMap := CreateBarCode( frm_barcode.txt_code.Value, ;
-                             frm_barcode.cmb_type.Item( frm_barcode.cmb_type.Value ), ;
-                             frm_barcode.spn_linewidth.Value, ;
-                             frm_barcode.spn_lineheight.Value, ;
-                             frm_barcode.chk_showdigits.Value, ;
-                             "", ;
-                             aBarColor, ;
-                             aBackColor, ;
-                             frm_barcode.chk_checksum.Value, ;
-                             frm_barcode.chk_wide2_5.Value, ;
-                             frm_barcode.chk_wide3.Value )
+      frm_barcode.cmb_type.Item( frm_barcode.cmb_type.Value ), ;
+      frm_barcode.spn_linewidth.Value, ;
+      frm_barcode.spn_lineheight.Value, ;
+      frm_barcode.chk_showdigits.Value, ;
+      "", ;
+      aBarColor, ;
+      aBackColor, ;
+      frm_barcode.chk_checksum.Value, ;
+      frm_barcode.chk_wide2_5.Value, ;
+      frm_barcode.chk_wide3.Value )
    IF hBitMap == 0
       RETURN Nil
    ENDIF
@@ -239,12 +239,12 @@ FUNCTION ShowBarcode
    ENDIF
 
    DEFINE WINDOW frm_showbarcode ;
-      AT BT_DesktopHeight() / 2, BT_DesktopWidth() / 2 ;
-      WIDTH  BT_BitmapWidth( hBitmap ) + 300 ;
-      HEIGHT BT_BitmapHeight( hBitmap ) + 150 ;
-      TITLE 'Display Bar Code' ;
-      MODAL NOMAXIMIZE ;
-      ON RELEASE {|| BT_BitmapRelease( hBitmap ), IIF( OSisWinXPorLater(), SET WINDOW frm_barcode TRANSPARENT TO OPAQUE, Nil ) }
+         AT BT_DesktopHeight() / 2, BT_DesktopWidth() / 2 ;
+         WIDTH  BT_BitmapWidth( hBitmap ) + 300 ;
+         HEIGHT BT_BitmapHeight( hBitmap ) + 150 ;
+         TITLE 'Display Bar Code' ;
+         MODAL NOMAXIMIZE ;
+         ON RELEASE {|| BT_BitmapRelease( hBitmap ), IIF( OSisWinXPorLater(), SET WINDOW frm_barcode TRANSPARENT TO OPAQUE, Nil ) }
 
       @ 10, 10 IMAGE img_barcode HBITMAP hBitmap
    END WINDOW
@@ -252,7 +252,7 @@ FUNCTION ShowBarcode
    FLASH WINDOW frm_showbarcode COUNT 5 INTERVAL 50
 
    ACTIVATE WINDOW frm_showbarcode
-RETURN Nil
+   RETURN Nil
 
 FUNCTION SaveBarcodeToPNG
    LOCAL cImageFileName
@@ -269,20 +269,20 @@ FUNCTION SaveBarcodeToPNG
       ENDIF
    ENDIF
    CreateBarcode( frm_barcode.txt_code.Value, ;
-                  frm_barcode.cmb_type.Item( frm_barcode.cmb_type.Value ), ;
-                  frm_barcode.spn_linewidth.Value, ;
-                  frm_barcode.spn_lineheight.Value, ;
-                  frm_barcode.chk_showdigits.Value, ;
-                  cImageFileName, ;
-                  aBarColor, ;
-                  aBackColor, ;
-                  frm_barcode.chk_checksum.Value, ;
-                  frm_barcode.chk_wide2_5.Value, ;
-                  frm_barcode.chk_wide3.Value )
+      frm_barcode.cmb_type.Item( frm_barcode.cmb_type.Value ), ;
+      frm_barcode.spn_linewidth.Value, ;
+      frm_barcode.spn_lineheight.Value, ;
+      frm_barcode.chk_showdigits.Value, ;
+      cImageFileName, ;
+      aBarColor, ;
+      aBackColor, ;
+      frm_barcode.chk_checksum.Value, ;
+      frm_barcode.chk_wide2_5.Value, ;
+      frm_barcode.chk_wide3.Value )
    IF FILE( cImageFileName )
       EXECUTE FILE cImageFileName
    ENDIF
-RETURN Nil
+   RETURN Nil
 
 FUNCTION ChangeBarColor
    LOCAL aColor := GetColor( frm_barcode.lbl_barcolor.FontColor )
@@ -291,7 +291,7 @@ FUNCTION ChangeBarColor
       frm_barcode.lbl_barcolor.FontColor := aColor
       aBarColor := aColor
    ENDIF
-RETURN Nil
+   RETURN Nil
 
 FUNCTION ChangeBackColor
    LOCAL aColor := GetColor( frm_barcode.lbl_backgroundcolor.BackColor )
@@ -300,14 +300,14 @@ FUNCTION ChangeBackColor
       frm_barcode.lbl_backgroundcolor.BackColor := aColor
       aBackColor := aColor
    ENDIF
-RETURN Nil
+   RETURN Nil
 
 /*
-  CreateBarcode() function can be used to create barcode image in PNG file format if cImageFileName parameter is included.
-  If cImageFileName is omitted, the function returns the hBitMap handle of the barcode.
-  Anyone of the following barcode types is allowed:
-  { "EAN13", "EAN8", "UPCA", "UPCE", "CODE39", "ITF", "MSI", "CODABAR", "CODE93", "CODE11", "CODE128", "PDF417", "DATAMATRIX", "QRCODE" }
-  The check digit will be generated by the library if omitted.
+CreateBarcode() function can be used to create barcode image in PNG file format if cImageFileName parameter is included.
+If cImageFileName is omitted, the function returns the hBitMap handle of the barcode.
+Anyone of the following barcode types is allowed:
+{ "EAN13", "EAN8", "UPCA", "UPCE", "CODE39", "ITF", "MSI", "CODABAR", "CODE93", "CODE11", "CODE128", "PDF417", "DATAMATRIX", "QRCODE" }
+The check digit will be generated by the library if omitted.
 */
 
 FUNCTION CreateBarcode( cCode, cType, nLineWidth, nLineHeight, lShowDigits, cImageFileName, aBarColor, aBackColor, lCheckSum, lWide2_5, lWide3 )
@@ -350,7 +350,7 @@ FUNCTION CreateBarcode( cCode, cType, nLineWidth, nLineHeight, lShowDigits, cIma
       BT_BitmapRelease( hBitmap )
       RETURN 1
    ENDIF
-RETURN hBitmap
+   RETURN hBitmap
 
 FUNCTION Zebra_CreateBitmapBarcode( aBarColor, aBackColor, nLineWidth, nLineHeight, cType, cCode, nFlags, lShowDigits, cTextCode )
    LOCAL hBitmap := 0, hZebra
@@ -395,14 +395,14 @@ FUNCTION Zebra_CreateBitmapBarcode( aBarColor, aBackColor, nLineWidth, nLineHeig
    ELSE
       MsgStop( "Invalid barcode type !", cType )
    ENDIF
-RETURN hBitmap
+   RETURN hBitmap
 
 FUNCTION Zebra_Draw( hZebra, hDC, aBarColor, nRow, nCol, nLineWidth, nLineHeight, iFlags )
    IF hb_zebra_GetError( hZebra ) != 0
       RETURN HB_ZEBRA_ERROR_INVALIDZEBRA
    ENDIF
-//     hb_zebra_draw( hZebra, bCodeBlock,                                                          dX,   dY,   dWidth,     dHeight,     iFlags )
-RETURN hb_zebra_draw( hZebra, { |x, y, w, h| BT_DrawFillRectangle( hDC, y, x, w, h, aBarColor ) }, nCol, nRow, nLineWidth, nLineHeight, iFlags )
+   //     hb_zebra_draw( hZebra, bCodeBlock,                                                          dX,   dY,   dWidth,     dHeight,     iFlags )
+   RETURN hb_zebra_draw( hZebra, { |x, y, w, h| BT_DrawFillRectangle( hDC, y, x, w, h, aBarColor ) }, nCol, nRow, nLineWidth, nLineHeight, iFlags )
 
 FUNCTION Zebra_GetWidth( hZebra, nLineWidth, nLineHeight, iFlags )
    LOCAL x1 := 0, y1 := 0, nBarWidth := 0, nBarHeight := 0
@@ -411,9 +411,9 @@ FUNCTION Zebra_GetWidth( hZebra, nLineWidth, nLineHeight, iFlags )
    IF hb_zebra_GetError( hZebra ) != 0
       RETURN HB_ZEBRA_ERROR_INVALIDZEBRA
    ENDIF
-// hb_zebra_draw( hZebra, bCodeBlock,                                                         dX, dY, dWidth,     dHeight,     iFlags )
+   // hb_zebra_draw( hZebra, bCodeBlock,                                                         dX, dY, dWidth,     dHeight,     iFlags )
    hb_zebra_draw( hZebra, { |x, y, w, h| nBarWidth := x + w - x1, nBarHeight := y + h - y1 }, x1, y1, nLineWidth, nLineHeight, iFlags )
-RETURN nBarWidth
+   RETURN nBarWidth
 
 FUNCTION Zebra_GetHeight( hZebra, nLineWidth, nLineHeight, iFlags )
    LOCAL x1 := 0, y1 := 0, nBarWidth := 0, nBarHeight := 0
@@ -422,11 +422,11 @@ FUNCTION Zebra_GetHeight( hZebra, nLineWidth, nLineHeight, iFlags )
    IF hb_zebra_GetError( hZebra ) != 0
       RETURN HB_ZEBRA_ERROR_INVALIDZEBRA
    ENDIF
-// hb_zebra_draw( hZebra, bCodeBlock,                                                          dX, dY, dWidth,     dHeight,     iFlags )
+   // hb_zebra_draw( hZebra, bCodeBlock,                                                          dX, dY, dWidth,     dHeight,     iFlags )
    hb_zebra_draw( hZebra, { |x, y, w, h | nBarWidth := x + w - x1, nBarHeight := y + h - y1 }, x1, y1, nLineWidth, nLineHeight, iFlags )
-RETURN nBarHeight
+   RETURN nBarHeight
 
 /*
- * EOF
- */
+* EOF
+*/
 

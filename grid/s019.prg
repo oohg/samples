@@ -1,24 +1,24 @@
 /*
- * Grid Sample n° 19
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to show a menu when user rights
- * click on the grid's header.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Grid Sample n° 19
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to show a menu when user rights
+* click on the grid's header.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 PROCEDURE MAIN
 
    DEFINE WINDOW MAIN ;
-      CLIENTAREA ;
-      TITLE "Right Click on Headers" ;
-      WIDTH 400 HEIGHT 400
+         CLIENTAREA ;
+         TITLE "Right Click on Headers" ;
+         WIDTH 400 HEIGHT 400
 
       @ 10, 10 GRID Grid ;
          WIDTH 300 HEIGHT 300 ;
@@ -26,9 +26,9 @@ PROCEDURE MAIN
          HEADERS { "One", "Two", "Three" } ;
          WIDTHS  { 50, 50, 50 } ;
          ITEMS { { "1111111111", "1", "1" }, ;
-                 { "2", "2", "2222222222" },  ;
-                 { "3", "3333333333", "3" }, ;
-                 { "4444", "4444", "4444" } } ;
+         { "2", "2", "2222222222" },  ;
+         { "3", "3333333333", "3" }, ;
+         { "4444", "4444", "4444" } } ;
          VALUE 1 ;
          ONHEADRCLICK {|nColumn| ShowMenu( nColumn ) }
 
@@ -42,7 +42,7 @@ PROCEDURE MAIN
 
    CENTER WINDOW MAIN
    ACTIVATE WINDOW MAIN
-RETURN
+   RETURN
 
 FUNCTION ShowMenu( nColumn )
 
@@ -54,19 +54,19 @@ FUNCTION ShowMenu( nColumn )
 
    oMenu:Activate()
 
-/*
- * Return values:
- *
- *    .F. prevents the grid's from scrolling to the left until the first
- *   column is shown.
- *
- *   other values: the grid scrolls to the left until the first column
- *   is shown (this is the default action).
- */
+   /*
+   * Return values:
+   *
+   *    .F. prevents the grid's from scrolling to the left until the first
+   *   column is shown.
+   *
+   *   other values: the grid scrolls to the left until the first column
+   *   is shown (this is the default action).
+   */
 
-RETURN .F.
+   RETURN .F.
 
 /*
- * EOF
- */
+* EOF
+*/
 

@@ -18,9 +18,9 @@
 
 #ifndef __XHARBOUR__
 
-#xtranslate CurDrive() + ':\' + CurDir() + '\' + 'temp.html' ;
-   => ;
-   hb_cwd() + 'temp.html'
+   #xtranslate CurDrive() + ':\' + CurDir() + '\' + 'temp.html' ;
+      => ;
+      hb_cwd() + 'temp.html'
 
 #endif
 

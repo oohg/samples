@@ -67,37 +67,37 @@ d.- El indice de imagen comienza en cero
 Propiedades del ListBox:
 ------------------------
 LISTBOX <name> [ OBJ <obj> ] ;
-   [ <dummy1: OF, PARENT> <parent> ] ;
-   [ WIDTH <w> ] ;
-   [ HEIGHT <h> ] ;
-   [ ITEMS <aRows> ] ;
-   [ VALUE <value> ] ;
-   [ NOVSCROLL ] ;
-   [ FONT <fontname> ] ;
-   [ SIZE <fontsize> ] ;
-   [ <bold : BOLD> ] ;
-   [ <italic : ITALIC> ] ;
-   [ <underline : UNDERLINE> ] ;
-   [ <strikeout : STRIKEOUT> ] ;
-   [ TOOLTIP <tooltip> ] ;
-   [ BACKCOLOR <backcolor> ] ;
-   [ FONTCOLOR <fontcolor> ] ;
-   [ ON GOTFOCUS <gotfocus> ] ;
-   [ ON CHANGE <change> ] ;
-   [ ON LOSTFOCUS <lostfocus> ] ;
-   [ ON DBLCLICK <dblclick> ] ;
-   [ <multiselect : MULTISELECT> ] ;
-   [ HELPID <helpid> ]       ;
-   [ <break: BREAK> ] ;
-   [ <invisible : INVISIBLE> ] ;
-   [ <notabstop : NOTABSTOP> ] ;
-   [ <sort : SORT> ] ;
-   [ <rtl: RTL> ] ;
-   [ ON ENTER <enter> ]            ;
-   [ <disabled: DISABLED> ]        ;
-   [ SUBCLASS <subclass> ]         ;
-   [ IMAGE <aImage> [ <fit: FIT> ] ] ;
-   [ TEXTHEIGHT <textheight> ] ;
+[ <dummy1: OF, PARENT> <parent> ] ;
+[ WIDTH <w> ] ;
+[ HEIGHT <h> ] ;
+[ ITEMS <aRows> ] ;
+[ VALUE <value> ] ;
+[ NOVSCROLL ] ;
+[ FONT <fontname> ] ;
+[ SIZE <fontsize> ] ;
+[ <bold : BOLD> ] ;
+[ <italic : ITALIC> ] ;
+[ <underline : UNDERLINE> ] ;
+[ <strikeout : STRIKEOUT> ] ;
+[ TOOLTIP <tooltip> ] ;
+[ BACKCOLOR <backcolor> ] ;
+[ FONTCOLOR <fontcolor> ] ;
+[ ON GOTFOCUS <gotfocus> ] ;
+[ ON CHANGE <change> ] ;
+[ ON LOSTFOCUS <lostfocus> ] ;
+[ ON DBLCLICK <dblclick> ] ;
+[ <multiselect : MULTISELECT> ] ;
+[ HELPID <helpid> ]       ;
+[ <break: BREAK> ] ;
+[ <invisible : INVISIBLE> ] ;
+[ <notabstop : NOTABSTOP> ] ;
+[ <sort : SORT> ] ;
+[ <rtl: RTL> ] ;
+[ ON ENTER <enter> ]            ;
+[ <disabled: DISABLED> ]        ;
+[ SUBCLASS <subclass> ]         ;
+[ IMAGE <aImage> [ <fit: FIT> ] ] ;
+[ TEXTHEIGHT <textheight> ] ;
 
 Recursos Gráficos:
 ------------------

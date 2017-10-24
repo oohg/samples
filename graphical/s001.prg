@@ -38,8 +38,8 @@ PROCEDURE MAIN
       /*
       * When Form has no BackColor, use:
       FILLCOLOR { GetRed( GetSysColor( COLOR_3DFACE ) ), ;
-         GetGreen( GetSysColor( COLOR_3DFACE ) ), ;
-         GetBlue( GetSysColor( COLOR_3DFACE ) ) }
+      GetGreen( GetSysColor( COLOR_3DFACE ) ), ;
+      GetBlue( GetSysColor( COLOR_3DFACE ) ) }
       * so the frame's interior matches the color of the Form's background.
       *
       * When Form has BackColor, use the same color in FILLCOLOR clause

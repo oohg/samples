@@ -45,8 +45,8 @@ PROCEDURE AddButton
       .F., .F., .F. )
    /*
    oTBut := TToolButton():Define( "But4", 0, 0, "But4", {|| MsgBox("But4")}, Nil, Nil, Nil, ;
-      "Added button", Nil, Nil, .F., .F., .F.,  .F., ;
-      .F., .F., .F., oTool )
+   "Added button", Nil, Nil, .F., .F., .F.,  .F., ;
+   .F., .F., .F., oTool )
    */
 
    RETURN

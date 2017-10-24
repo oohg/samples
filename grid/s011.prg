@@ -1,15 +1,15 @@
 /*
- * Grid Sample n° 11
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to sort the items of a grid by
- * a defined criteria.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Grid Sample n° 11
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to sort the items of a grid by
+* a defined criteria.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include 'oohg.ch'
 
@@ -21,18 +21,18 @@ FUNCTION Main()
    SET NAVIGATION EXTENDED
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 600 ;
-      HEIGHT 480 ;
-      TITLE "Sort the Items of a Grid" ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 600 ;
+         HEIGHT 480 ;
+         TITLE "Sort the Items of a Grid" ;
+         MAIN
 
       FOR i := 1 TO 15
-          aRows[ i ] := { Str(HB_RandomInt( 99 ), 2), ;
-                          HB_RandomInt( 100 ), ;
-                          Date() + Random( HB_RandomInt() ), ;
-                          'Refer ' + Str( HB_RandomInt( 10 ), 2 ), ;
-                          HB_RandomInt( 10000 ) }
+         aRows[ i ] := { Str(HB_RandomInt( 99 ), 2), ;
+            HB_RandomInt( 100 ), ;
+            Date() + Random( HB_RandomInt() ), ;
+            'Refer ' + Str( HB_RandomInt( 10 ), 2 ), ;
+            HB_RandomInt( 10000 ) }
       NEXT i
 
       @ 20,20 GRID Grid_1 obj oGrid1 ;
@@ -42,10 +42,10 @@ FUNCTION Main()
          WIDTHS {60, 80, 100, 120, 140} ;
          ITEMS aRows ;
          COLUMNCONTROLS { { 'TEXTBOX', 'CHARACTER', '99' } , ;
-                          { 'TEXTBOX', 'NUMERIC', '999999' } , ;
-                          { 'TEXTBOX', 'DATE' }, ;
-                          { 'TEXTBOX', 'CHARACTER' }, ;
-                          { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99' } } ;
+         { 'TEXTBOX', 'NUMERIC', '999999' } , ;
+         { 'TEXTBOX', 'DATE' }, ;
+         { 'TEXTBOX', 'CHARACTER' }, ;
+         { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99' } } ;
          FONT 'COURIER NEW' SIZE 10
 
       @ 370,20 BUTTON btn_Sort ;
@@ -59,18 +59,18 @@ FUNCTION Main()
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION Order( o, i1, i2 )
    LOCAL lPrecedes
 
    lPrecedes := ( o:Cell( i1, 1 ) + StrZero( o:Cell( i1, 2 ), 6, 0 ) ;
-                  <= ;
-                  o:Cell( i2, 1 ) + StrZero( o:Cell( i2, 2 ), 6, 0 ) )
+      <= ;
+      o:Cell( i2, 1 ) + StrZero( o:Cell( i2, 2 ), 6, 0 ) )
 
-RETURN IIF( lPrecedes, -1, 1 )
+   RETURN IIF( lPrecedes, -1, 1 )
 
 /*
- * EOF
- */
+* EOF
+*/
 

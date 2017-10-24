@@ -1,18 +1,18 @@
 /*
- * Grid Sample n° 10
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * Based on a sample from OOHG distribution build by
- * Ciro Vargas C. <cvc@oohg.org>
- *
- * This sample shows how to show only whole rows in a
- * Grid (it also applies to Browse and xBrowse).
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Grid Sample n° 10
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* Based on a sample from OOHG distribution build by
+* Ciro Vargas C. <cvc@oohg.org>
+*
+* This sample shows how to show only whole rows in a
+* Grid (it also applies to Browse and xBrowse).
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 #include "i_windefs.ch"
@@ -22,12 +22,12 @@ FUNCTION Main
    LOCAL aRows[ 20 ]
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'GRID - Show Whole Rows Only' ;
-      MAIN ;
-      ON INIT oGrid:Height := SetHeightForWholeRows( 10 )
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'GRID - Show Whole Rows Only' ;
+         MAIN ;
+         ON INIT oGrid:Height := SetHeightForWholeRows( 10 )
 
       aRows[ 01 ] := {'Simpson, Homer'}
       aRows[ 02 ] := {'Mulder, Fox'}
@@ -65,22 +65,22 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SetHeightForWholeRows( NumberOfWholeRows )
 
    LOCAL NeededHeight
 
    NeededHeight := NumberOfWholeRows * oGrid:ItemHeight() + ;
-                   oGrid:HeaderHeight + ;
-                   IF( IsWindowStyle( oGrid:hWnd, WS_HSCROLL ), ;
-                       GetHScrollBarHeight(), 0 ) + ;
-                   IF( IsWindowExStyle( oGrid:hWnd, WS_EX_CLIENTEDGE ), ;
-                       GetEdgeHeight() * 2, 0 )
+      oGrid:HeaderHeight + ;
+      IF( IsWindowStyle( oGrid:hWnd, WS_HSCROLL ), ;
+      GetHScrollBarHeight(), 0 ) + ;
+      IF( IsWindowExStyle( oGrid:hWnd, WS_EX_CLIENTEDGE ), ;
+      GetEdgeHeight() * 2, 0 )
 
-RETURN NeededHeight
+   RETURN NeededHeight
 
 /*
- * EOF
- */
+* EOF
+*/
 
