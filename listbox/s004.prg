@@ -1,15 +1,15 @@
 /*
- * Listbox Sample n° 4
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to define a Drag ListBox and how
- * to use some of it's methods.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Listbox Sample n° 4
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to define a Drag ListBox and how
+* to use some of it's methods.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -18,11 +18,11 @@ FUNCTION Main
    LOCAL oList2
 
    DEFINE WINDOW Win1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 400 ;
-      TITLE 'DRAGITEMS ListBox' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 400 ;
+         TITLE 'DRAGITEMS ListBox' ;
+         MAIN
 
       DEFINE MAIN MENU
          POPUP "Action"
@@ -37,7 +37,7 @@ FUNCTION Main
       END MENU
 
       @ 10,20 LISTBOX lst_1 OBJ oList1 ;         // it's not required to declare oList1, it's created PRIVATE
-         WIDTH 100 ;
+      WIDTH 100 ;
          HEIGHT 200 ;
          ITEMS { '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20' } ;
          DRAGITEMS ;
@@ -62,9 +62,9 @@ FUNCTION Main
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

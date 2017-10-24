@@ -3,11 +3,11 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0, 0 ;
-      WIDTH 400 ;
-      HEIGHT 400 ;
-      TITLE 'Listbox' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 400 ;
+         HEIGHT 400 ;
+         TITLE 'Listbox' ;
+         MAIN
 
       @ 03, 03 BUTTON but_1 ;
          CAPTION "Change Image" ;
@@ -29,7 +29,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN
+   RETURN
 
 PROCEDURE ChangeImg
 
@@ -57,9 +57,9 @@ PROCEDURE ChangeImg
       */
    ENDIF
 
-RETURN
+   RETURN
 
 /*
- * EOF
- */
+* EOF
+*/
 

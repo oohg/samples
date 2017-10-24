@@ -1,19 +1,19 @@
 /*
- * Tree Sample n° 5
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample is an adaptation of a contribution provided by
- * Alejandro Carvalho <alejandrocarvalho@gmail.com>
- *
- * This sample shows how to save the structure and items of a
- * Tree control into an INI file and how to populate a
- * Tree control by reading its items from an INI file.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Tree Sample n° 5
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample is an adaptation of a contribution provided by
+* Alejandro Carvalho <alejandrocarvalho@gmail.com>
+*
+* This sample shows how to save the structure and items of a
+* Tree control into an INI file and how to populate a
+* Tree control by reading its items from an INI file.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -21,18 +21,18 @@ FUNCTION Main()
    LOCAL oTree1
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 368 ;
-      HEIGHT 368 ;
-      TITLE 'Tree Control - Save to / Create from INI file' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 368 ;
+         HEIGHT 368 ;
+         TITLE 'Tree Control - Save to / Create from INI file' ;
+         MAIN
 
       DEFINE TREE Tree_1 OBJ oTree1 ;
-         AT 10,10 ;
-         WIDTH 340 ;
-         HEIGHT 260 ;
-         VALUE 1 ;
-         SELBOLD
+            AT 10,10 ;
+            WIDTH 340 ;
+            HEIGHT 260 ;
+            VALUE 1 ;
+            SELBOLD
 
          FOR i := 1 TO 4
             NODE 'T1 Item ' + LTRIM(STR(i))
@@ -40,9 +40,9 @@ FUNCTION Main()
                   NODE 'T1 Item ' + LTRIM(STR(i)) + '.' + LTRIM(STR(j))
                      FOR k := 1 TO 5
                         TREEITEM 'T1 Item ' + ;
-                                 LTRIM(STR(i)) + '.' + ;
-                                 LTRIM(STR(j)) + '.' + ;
-                                 LTRIM(STR(k))
+                           LTRIM(STR(i)) + '.' + ;
+                           LTRIM(STR(j)) + '.' + ;
+                           LTRIM(STR(k))
                      NEXT
                   END NODE
                NEXT
@@ -66,7 +66,7 @@ FUNCTION Main()
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SaveTreeToINI(oTree)
    LOCAL nItems, nLen, i, Parent, cItem, cValue
@@ -97,7 +97,7 @@ FUNCTION SaveTreeToINI(oTree)
 
    MsgInfo(LTRIM(STR(nItems)) + " items saved to TREE.INI")
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SaveChildren(oTree, Parent, nLen)
    LOCAL aChildren, i, cItem, cValue
@@ -113,7 +113,7 @@ FUNCTION SaveChildren(oTree, Parent, nLen)
       SaveChildren(oTree, aChildren[i], nLen)
    NEXT i
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION LoadTreeFromINI(oTree)
    LOCAL nItems, nLen, i, cItem, cValue
@@ -136,9 +136,9 @@ FUNCTION LoadTreeFromINI(oTree)
 
    MsgInfo(LTRIM(STR(nItems)) + " items loaded from TREE.INI")
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
 

@@ -1,34 +1,34 @@
 /*
- * Tree Sample n° 8
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to use checkboxes in a Tree control.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Tree Sample n° 8
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to use checkboxes in a Tree control.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "ooHG.ch"
 
 PROCEDURE Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      ON RELEASE Bye();
-      MAIN ;
-      TITLE "How to use checkboxes in a Tree control"
+         AT 0, 0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         ON RELEASE Bye();
+         MAIN ;
+         TITLE "How to use checkboxes in a Tree control"
 
       ON KEY ESCAPE ACTION Form_1.Release
 
       DEFINE TREE Tree_1 obj oTree;
-         AT 10, 10 ;
-         WIDTH 200 ;
-         HEIGHT 400 ;
-         CHECKBOXES
+            AT 10, 10 ;
+            WIDTH 200 ;
+            HEIGHT 400 ;
+            CHECKBOXES
 
          NODE 'Item 1'
             TREEITEM 'Item 1.1' CHECKED
@@ -43,7 +43,7 @@ PROCEDURE Main
    Form_1.Center
    Form_1.Activate
 
-RETURN
+   RETURN
 
 PROCEDURE Bye
    LOCAL cMsg, nNum
@@ -58,9 +58,9 @@ PROCEDURE Bye
 
    MSGBOX(cMsg)
 
-RETURN
+   RETURN
 
 /*
- * EOF
- */
+* EOF
+*/
 

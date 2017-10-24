@@ -1,55 +1,55 @@
 /*
- * Bos Taurus Sample n° 8
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to use different functions to draw
- * on a bitmap, and how to use the resulting bitmap to
- * paint the window's background.
- *
- * Based on a sample from Bos Taurus library for HMG
- * created by Dr. CLAUDIO SOTO (from Uruguay) <srvet@adinet.com.uy>
- * <http://srvet.blogspot.com>
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download cowbook.bmp and bostaurus_logo.bmp from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
- */
+* Bos Taurus Sample n° 8
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to use different functions to draw
+* on a bitmap, and how to use the resulting bitmap to
+* paint the window's background.
+*
+* Based on a sample from Bos Taurus library for HMG
+* created by Dr. CLAUDIO SOTO (from Uruguay) <srvet@adinet.com.uy>
+* <http://srvet.blogspot.com>
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download cowbook.bmp and bostaurus_logo.bmp from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
 
 PROCEDURE MAIN
    LOCAL aRows := { {"Simpson",   "Homer",     "555-5555"}, ;
-                    {"Mulder",    "Fox",       "324-6432"}, ;
-                    {"Smart",     "Max",       "432-5892"}, ;
-                    {"Grillo",    "Pepe",      "894-2332"}, ;
-                    {"Kirk",      "James",     "346-9873"}, ;
-                    {"Barriga",   "Carlos",    "394-9654"}, ;
-                    {"Flanders",  "Ned",       "435-3211"}, ;
-                    {"Smith",     "John",      "123-1234"}, ;
-                    {"Pedemonti", "Flavio",    "000-0000"}, ;
-                    {"Gomez",     "Juan",      "583-4832"}, ;
-                    {"Fernandez", "Raul",      "321-4332"}, ;
-                    {"Borges",    "Javier",    "326-9430"}, ;
-                    {"Alvarez",   "Alberto",   "543-7898"}, ;
-                    {"Gonzalez",  "Ambo",      "437-8473"}, ;
-                    {"Vinazzi",   "Amigo",     "394-5983"}, ;
-                    {"Pedemonti", "Flavio",    "534-7984"}, ;
-                    {"Samarbide", "Armando",   "854-7873"}, ;
-                    {"Pradon",    "Alejandra", "???-????"} }
+      {"Mulder",    "Fox",       "324-6432"}, ;
+      {"Smart",     "Max",       "432-5892"}, ;
+      {"Grillo",    "Pepe",      "894-2332"}, ;
+      {"Kirk",      "James",     "346-9873"}, ;
+      {"Barriga",   "Carlos",    "394-9654"}, ;
+      {"Flanders",  "Ned",       "435-3211"}, ;
+      {"Smith",     "John",      "123-1234"}, ;
+      {"Pedemonti", "Flavio",    "000-0000"}, ;
+      {"Gomez",     "Juan",      "583-4832"}, ;
+      {"Fernandez", "Raul",      "321-4332"}, ;
+      {"Borges",    "Javier",    "326-9430"}, ;
+      {"Alvarez",   "Alberto",   "543-7898"}, ;
+      {"Gonzalez",  "Ambo",      "437-8473"}, ;
+      {"Vinazzi",   "Amigo",     "394-5983"}, ;
+      {"Pedemonti", "Flavio",    "534-7984"}, ;
+      {"Samarbide", "Armando",   "854-7873"}, ;
+      {"Pradon",    "Alejandra", "???-????"} }
    LOCAL hBitmap, hBitmap_aux, hDC, BTstruct
    LOCAL nTypeText, nAlignText, nOrientation, oAct
 
    /*
-    * Because OOHG executes ON PAINT before executing ON INIT
-    * the image must be loaded before the window's activation.
-    *
-    * All loaded bitmaps must be released to avoid memory leaks.
-    */
+   * Because OOHG executes ON PAINT before executing ON INIT
+   * the image must be loaded before the window's activation.
+   *
+   * All loaded bitmaps must be released to avoid memory leaks.
+   */
 
    hBitmap := BT_BitmapCreateNew( 800, 600 )
 
@@ -78,21 +78,21 @@ PROCEDURE MAIN
    BT_BitmapRelease( hBitmap_aux )
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 700 ;
-      HEIGHT 600 ;
-      TITLE "Bos Taurus: Draw in BITMAP" ;
-      NOSIZE ;
-      NOMAXIMIZE ;
-      MAIN ;
-      ON RELEASE BT_BitmapRelease( hBitmap ) ;
-      ON PAINT Proc_ON_PAINT( hBitmap )
+         AT 0, 0 ;
+         WIDTH 700 ;
+         HEIGHT 600 ;
+         TITLE "Bos Taurus: Draw in BITMAP" ;
+         NOSIZE ;
+         NOMAXIMIZE ;
+         MAIN ;
+         ON RELEASE BT_BitmapRelease( hBitmap ) ;
+         ON PAINT Proc_ON_PAINT( hBitmap )
 
       DEFINE TAB Tab_1 ;
-         AT 100, 50 ;
-         WIDTH 400 ;
-         HEIGHT 300 ;
-         ON CHANGE Win1.RadioGroup_1.Value := Win1.Tab_1.Value
+            AT 100, 50 ;
+            WIDTH 400 ;
+            HEIGHT 300 ;
+            ON CHANGE Win1.RadioGroup_1.Value := Win1.Tab_1.Value
 
          DEFINE PAGE "Image"
             @ 30, 80 IMAGE Image_1 ;
@@ -155,33 +155,33 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
+   RETURN
 
 PROCEDURE OnOff( oAct )
    Win1.Tab_1.Visible := ! Win1.Tab_1.Visible
    Win1.RadioGroup_1.Visible := Win1.Tab_1.Visible
    oAct:SetFocus()
-RETURN
+   RETURN
 
 PROCEDURE Proc_ON_PAINT( hBitmap )
    LOCAL hDC, BTstruct
 
    /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
+   * Since OOHG executes the default window procedure at the start of
+   * the function that process WM_PAINT message, thus validating the
+   * update region before calling the ON PAINT codeblock, we need to
+   * invalidate the whole client area to force the correct painting
+   * of all the controls.
+   */
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawBitmap( hDC, 0, 0, 800, 600, BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
-RETURN
+   RETURN
 
 /*
- * EOF
- */
+* EOF
+*/
 

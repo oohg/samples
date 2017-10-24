@@ -1,26 +1,26 @@
 /*
- * CheckList Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to create a CheckList control
- * and how to use it's methods and events.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* CheckList Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to create a CheckList control
+* and how to use it's methods and events.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 500 ;
-      HEIGHT 500 ;
-      TITLE 'CheckList Demo' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 500 ;
+         HEIGHT 500 ;
+         TITLE 'CheckList Demo' ;
+         MAIN
 
       DEFINE STATUSBAR
          STATUSITEM ""
@@ -31,12 +31,12 @@ FUNCTION Main
          HEIGHT 300 ;
          ITEMS { {'Red', 0}, {'Green', 1}, {'Black', 2}, {'Pink', 1} } ;
          IMAGE { 'MINIGUI_EDIT_CANCEL', ;
-                 'MINIGUI_EDIT_COPY', ;
-                 'MINIGUI_EDIT_OK' } ;
+         'MINIGUI_EDIT_COPY', ;
+         'MINIGUI_EDIT_OK' } ;
          ON CHANGE { || Form_1.StatusBar.Item( 1 ) := "Item " + ;
-                        LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
-                        " checkbox changed !!!" }
-/*
+         LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
+         " checkbox changed !!!" }
+      /*
       DEFINE CHECKLIST ckl_1
          ROW 10
          COL 10
@@ -44,26 +44,26 @@ FUNCTION Main
          HEIGHT 300
          ITEMS { {'Red', 0}, {'Green', 1}, {'Black', 2}, {'Pink', 1} }
          IMAGE { 'MINIGUI_EDIT_CANCEL', ;
-                 'MINIGUI_EDIT_COPY', ;
-                 'MINIGUI_EDIT_OK' }
+            'MINIGUI_EDIT_COPY', ;
+            'MINIGUI_EDIT_OK' }
          ON CHANGE { || Form_1.StatusBar.Item( 1 ) := "Item " + ;
-                        LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
-                        " checkbox changed !!!" }
+            LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
+            " checkbox changed !!!" }
       END CHECKLIST
 
       oChkL1 := GetControlObject('ckl_1','Form_1')
-*/
+      */
 
-/*
- * LastChangedItem:
- * Item responsible for the last OnChange event.
- * Zero when the event was fired by Sort or DeleteItem methods.
- */
+      /*
+      * LastChangedItem:
+      * Item responsible for the last OnChange event.
+      * Zero when the event was fired by Sort or DeleteItem methods.
+      */
 
       DEFINE CONTEXT MENU CONTROL ckl_1
          MENUITEM 'Change Selected' ;
             ACTION oChkL1:CheckItem( oChkL1:FirstSelectedItem, ;
-                            ! oChkL1:CheckItem( oChkL1:FirstSelectedItem ) )
+            ! oChkL1:CheckItem( oChkL1:FirstSelectedItem ) )
          SEPARATOR
          MENUITEM 'Check Item 2' ;
             ACTION oChkL1:CheckItem( 2, .T. )
@@ -71,7 +71,7 @@ FUNCTION Main
             ACTION oChkL1:CheckItem( 2, .F. )
          MENUITEM 'Status of Item 2' ;
             ACTION AutoMsgBox( IF( oChkL1:CheckItem( 2 ), ;
-                                   'Checked', 'Unchecked' ) )
+            'Checked', 'Unchecked' ) )
          MENUITEM 'Check All Items' ;
             ACTION CheckAllItems( oChkL1 )
          MENUITEM 'Uncheck All Items' ;
@@ -113,7 +113,7 @@ FUNCTION Main
          SORT ;
          VALUE { 1,2 }
 
-/*
+      /*
       DEFINE CHECKLIST chk_2
          ROW 10
          COL 340
@@ -126,7 +126,7 @@ FUNCTION Main
       END CHECKLIST
 
       oChkL2 := GetControlObject('chk_2','Form_1')
-*/
+      */
 
       DEFINE CONTEXT MENU CONTROL chk_2
          MENUITEM 'Check Item 2' ;
@@ -135,7 +135,7 @@ FUNCTION Main
             ACTION oChkL2:CheckItem( 2, .F. )
          MENUITEM 'Status of Item 2' ;
             ACTION AutoMsgBox( IF( oChkL2:CheckItem( 2 ), ;
-                                   'Checked', 'Unchecked' ) )
+            'Checked', 'Unchecked' ) )
          MENUITEM 'Check All Items' ;
             ACTION CheckAllItems( oChkL2 )
          MENUITEM 'Uncheck All Items' ;
@@ -178,7 +178,7 @@ FUNCTION Main
 
    ACTIVATE WINDOW Form_1
 
-Return Nil
+   Return Nil
 
 FUNCTION CheckAllItems( oChkL )
    LOCAL i
@@ -187,7 +187,7 @@ FUNCTION CheckAllItems( oChkL )
       oChkL:CheckItem( i, .T. )
    NEXT i
 
-Return Nil
+   Return Nil
 
 FUNCTION UncheckAllItems( oChkL )
    LOCAL i
@@ -196,9 +196,9 @@ FUNCTION UncheckAllItems( oChkL )
       oChkL:CheckItem( i, .F. )
    NEXT i
 
-Return Nil
+   Return Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 
