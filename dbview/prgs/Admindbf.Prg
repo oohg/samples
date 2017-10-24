@@ -426,40 +426,40 @@ Procedure Imprimir()
 
    If !Empty( cbase )
 
-      aeval(aLen, {|e,i| aLen[i] := e/9})
-      adel(aLen, 1)
-      asize(aLen, len(aLen)-1)
-      adel(aHdr, 1)
-      asize(aHdr, len(aHdr)-1)
-      adel(aHdr, len(aHdr))
-      asize(aHdr, len(aHdr)-1)
-      asize(aLen, len(aLen)-1)
-      aHdr1 := array(len(aHdr))
-      aTot  := array(len(aHdr))
-      aFmt  := array(len(aHdr))
-      afill(aHdr1, '')
-      afill(aTot, .f.)
-      afill(aFmt, '')
+   aeval(aLen, {|e,i| aLen[i] := e/9})
+   adel(aLen, 1)
+   asize(aLen, len(aLen)-1)
+   adel(aHdr, 1)
+   asize(aHdr, len(aHdr)-1)
+   adel(aHdr, len(aHdr))
+   asize(aHdr, len(aHdr)-1)
+   asize(aLen, len(aLen)-1)
+   aHdr1 := array(len(aHdr))
+   aTot  := array(len(aHdr))
+   aFmt  := array(len(aHdr))
+   afill(aHdr1, '')
+   afill(aTot, .f.)
+   afill(aFmt, '')
 
-      set deleted on
+   set deleted on
 
-      ( cBase )->( dbgotop() )
+   ( cBase )->( dbgotop() )
 
-      DO REPORT ;
-         TITLE    cBase + ' Database List' ;
-         HEADERS  aHdr1, aHdr              ;
-         FIELDS   aHdr                     ;
-         WIDTHS   aLen                     ;
-         TOTALS   aTot                     ;
-         NFORMATS aFmt                     ;
-         WORKAREA &cBase                   ;
-         LPP 60                            ;
-         CPL 120                           ;
-         LMARGIN  5                        ;
-         PAPERSIZE DMPAPER_LETTER          ;
-         PREVIEW
+   DO REPORT ;
+   TITLE    cBase + ' Database List' ;
+   HEADERS  aHdr1, aHdr              ;
+   FIELDS   aHdr                     ;
+   WIDTHS   aLen                     ;
+   TOTALS   aTot                     ;
+   NFORMATS aFmt                     ;
+   WORKAREA &cBase                   ;
+   LPP 60                            ;
+   CPL 120                           ;
+   LMARGIN  5                        ;
+   PAPERSIZE DMPAPER_LETTER          ;
+   PREVIEW
 
-      set deleted off
+   set deleted off
 
    Endif
    */

@@ -134,11 +134,11 @@ Function ImpAppend( cFile, cStrDelim, cFldSepar )
 /*
 *---------------------------------------------------------------------*
 FUNCTION GetName(cFileName)
-   *---------------------------------------------------------------------*
-   Local cTrim  := ALLTRIM(cFileName)
-   Local nSlash := MAX(RAT('\', cTrim), AT(':', cTrim))
-   Local cName  := IF(EMPTY(nSlash), cTrim, SUBSTR(cTrim, nSlash + 1))
-   RETURN( cName )
+*---------------------------------------------------------------------*
+Local cTrim  := ALLTRIM(cFileName)
+Local nSlash := MAX(RAT('\', cTrim), AT(':', cTrim))
+Local cName  := IF(EMPTY(nSlash), cTrim, SUBSTR(cTrim, nSlash + 1))
+RETURN( cName )
 */
 
 *------------------------------------------------------------*
@@ -168,14 +168,14 @@ FUNCTION Append_Now( cFile, cStrDelim, cFldSepar )
 /*
 *------------------------------------------------------------*
 FUNCTION App_Progress()
-   *------------------------------------------------------------*
-   Local nComplete := Max( Min( ( RecNo()/LastRec() ) * 100, 100 ), 0 )
-   Local cComplete := Ltrim(Str(nComplete))
+*------------------------------------------------------------*
+Local nComplete := Max( Min( ( RecNo()/LastRec() ) * 100, 100 ), 0 )
+Local cComplete := Ltrim(Str(nComplete))
 
-   Form_idx.Label_001.Value := "Completed "+ cComplete + "%"
-   Form_idx.ProgressBar_1.Value := nComplete
+Form_idx.Label_001.Value := "Completed "+ cComplete + "%"
+Form_idx.ProgressBar_1.Value := nComplete
 
-   Return(.T.)
+Return(.T.)
 */
 
 *------------------------------------------------------------------------------*

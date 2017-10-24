@@ -38,17 +38,17 @@ FUNCTION Main
          " checkbox changed !!!" }
       /*
       DEFINE CHECKLIST ckl_1
-         ROW 10
-         COL 10
-         WIDTH 300
-         HEIGHT 300
-         ITEMS { {'Red', 0}, {'Green', 1}, {'Black', 2}, {'Pink', 1} }
-         IMAGE { 'MINIGUI_EDIT_CANCEL', ;
-            'MINIGUI_EDIT_COPY', ;
-            'MINIGUI_EDIT_OK' }
-         ON CHANGE { || Form_1.StatusBar.Item( 1 ) := "Item " + ;
-            LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
-            " checkbox changed !!!" }
+      ROW 10
+      COL 10
+      WIDTH 300
+      HEIGHT 300
+      ITEMS { {'Red', 0}, {'Green', 1}, {'Black', 2}, {'Pink', 1} }
+      IMAGE { 'MINIGUI_EDIT_CANCEL', ;
+      'MINIGUI_EDIT_COPY', ;
+      'MINIGUI_EDIT_OK' }
+      ON CHANGE { || Form_1.StatusBar.Item( 1 ) := "Item " + ;
+      LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
+      " checkbox changed !!!" }
       END CHECKLIST
 
       oChkL1 := GetControlObject('ckl_1','Form_1')
@@ -115,14 +115,14 @@ FUNCTION Main
 
       /*
       DEFINE CHECKLIST chk_2
-         ROW 10
-         COL 340
-         WIDTH 140
-         HEIGHT 300
-         ITEMS { 'Peaches', 'Bananas', 'Apples', 'Grapes' }
-         JUSTIFY CHKL_JTFY_RIGHT
-         SORT .T.
-         VALUE { 1,2 }
+      ROW 10
+      COL 340
+      WIDTH 140
+      HEIGHT 300
+      ITEMS { 'Peaches', 'Bananas', 'Apples', 'Grapes' }
+      JUSTIFY CHKL_JTFY_RIGHT
+      SORT .T.
+      VALUE { 1,2 }
       END CHECKLIST
 
       oChkL2 := GetControlObject('chk_2','Form_1')

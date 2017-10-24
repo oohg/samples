@@ -85,28 +85,28 @@ Function Main
 
       /*
       DEFINE BROWSE Browse_1
-         ROW 10
-         COL 10
-         WIDTH 610
-         HEIGHT 390
-         HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' }
-         HEADERIMAGES {'MINIGUI_EDIT_EDIT', 'MINIGUI_EDIT_DELETE', 'MINIGUI_EDIT_EDIT', 'MINIGUI_EDIT_CLOSE', 'MINIGUI_EDIT_EDIT'}
-         IMAGESALIGN {HEADER_IMG_AT_RIGHT, HEADER_IMG_AT_LEFT, HEADER_IMG_AT_RIGHT, HEADER_IMG_AT_LEFT, HEADER_IMG_AT_RIGHT}
-         WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 }
-         WORKAREA &var
-         FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' }
-         TOOLTIP 'Browse Test'
-         ON CHANGE {|| ChangeTest()}
-         JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER}
-         ALLOWDELETE .T.
-         DELETEWHEN {|| test->(recno()) % 2 == 0}
-         DELETEMSG "Odd records can't be deleted !!!"
-         ON DELETE {|| automsgbox("Record " + ltrim(str(test->(recno()))) + " deleted !!!")}
-         LOCK .T.
-         ALLOWAPPEND .T.
-         ALLOWEDIT .T.
-         FULLMOVE .T.
-         INPLACEEDIT .T.
+      ROW 10
+      COL 10
+      WIDTH 610
+      HEIGHT 390
+      HEADERS { 'Code' , 'First Name' , 'Last Name', 'Birth Date', 'Married' , 'Biography' }
+      HEADERIMAGES {'MINIGUI_EDIT_EDIT', 'MINIGUI_EDIT_DELETE', 'MINIGUI_EDIT_EDIT', 'MINIGUI_EDIT_CLOSE', 'MINIGUI_EDIT_EDIT'}
+      IMAGESALIGN {HEADER_IMG_AT_RIGHT, HEADER_IMG_AT_LEFT, HEADER_IMG_AT_RIGHT, HEADER_IMG_AT_LEFT, HEADER_IMG_AT_RIGHT}
+      WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 }
+      WORKAREA &var
+      FIELDS { 'Test->Code' , 'Test->First' , 'Test->Last' , 'Test->Birth' , 'Test->Married' , 'Test->Bio' }
+      TOOLTIP 'Browse Test'
+      ON CHANGE {|| ChangeTest()}
+      JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER}
+      ALLOWDELETE .T.
+      DELETEWHEN {|| test->(recno()) % 2 == 0}
+      DELETEMSG "Odd records can't be deleted !!!"
+      ON DELETE {|| automsgbox("Record " + ltrim(str(test->(recno()))) + " deleted !!!")}
+      LOCK .T.
+      ALLOWAPPEND .T.
+      ALLOWEDIT .T.
+      FULLMOVE .T.
+      INPLACEEDIT .T.
       END BROWSE
       */
    END WINDOW
