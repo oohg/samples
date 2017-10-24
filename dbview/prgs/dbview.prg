@@ -1,7 +1,6 @@
 /*
 * $Id: dbview.prg,v 1.7 2017-08-25 19:28:44 fyurisich Exp $
 */
-
 /*
 *
 * Program to view DBF files using standard Browse control
@@ -10,46 +9,40 @@
 * and Rathinagiri <srathinagiri@gmail.com>
 *
 */
-
 #include "oohg.ch"
 #include "dbstruct.ch"
 #include "fileio.ch"
 #include "dbuvar.ch"
-
 *------------------------------------------------------------------------------*
-Function Main( cDBF )
-   *------------------------------------------------------------------------------*
 
+Function Main( cDBF )
+
+   *------------------------------------------------------------------------------*
    REQUEST DBFNTX
    REQUEST DBFCDX, DBFFPT
    RDDSETDEFAULT( "DBFCDX" )
    SET AUTOPEN OFF
-
    Publicar()
-
    Load window oWndBase
-
    ON KEY F3 OF oWndBase ACTION AutoMsgInfo( aFiles, "aFiles" )
    ON KEY F4 OF oWndBase ACTION AutoMsgInfo( nRecCopy, "nRecCopy" )
    ON KEY F5 OF oWndBase ACTION AutoMsgInfo( ( Alias() )->( Select() ), "Select()" )
    ON KEY F6 OF oWndBase ACTION AutoMsgInfo( ( Alias() )->( Dbf() ), "Dbf()" )
    ON KEY F7 OF oWndBase ACTION AutoMsgInfo( ( Alias() )->( Used() ), "Used()" )
-
    If PCOUNT() > 0
       OpenBase( cDBF )
    Else
       OpenBase( "" )
    Endif
-
    oWndBase.Center
    oWndBase.Activate
 
    Return Nil
-
 *------------------------------------------------------------------------------*
-Procedure Publicar()
-   *------------------------------------------------------------------------------*
 
+Procedure Publicar()
+
+   *------------------------------------------------------------------------------*
    Public nAltoPantalla  := GetDesktopHeight() + GetTitleHeight() + GetBorderHeight()
    Public nAnchoPantalla := GetDesktopWidth()
    Public nRow           := nAltoPantalla  * 0.10
@@ -85,15 +78,15 @@ Procedure Publicar()
    DECLARE WINDOW oWndBase
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Procedure OpenBase( cDBF )
+
    *------------------------------------------------------------------------------*
    local nn, aTemp := {}
 
    cBaseFolder := GetStartupFolder()
    LoadArchIni(cBaseFolder+'\')
-
    If Empty(cDBF) .OR. ValType ( cDBF ) == 'U'
       If !IsControlDefined(Tab_1,oWndBase)
          oWndBase.Image_1.Show
@@ -107,33 +100,24 @@ Procedure OpenBase( cDBF )
    Else
       AAdd( aNewFile, cDBF )
    Endif
-
    IF !Empty(aNewFile)
       For nn := 1 to Len(aNewFile)
          If !Empty(aNewFile[nn]) .AND. Upper(Right(aNewFile[nn],3))="DBF"
             If DB_Open( aNewFile[nn] )
                _DBULastPath := hb_Curdrive()+':\'+CurDir()+'\'
-
                If Used(aNewFile[nn])
-
                   Aadd( aFiles, aNewFile[nn] )
                   oWndBase.Title := PROGRAM+VERSION+COPYRIGHT+aNewfile[nn]
-
                   ArmMatrix()
-
                   cAreaPos  := AllTrim( Str( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) ) )
                   cBrowse_n := "Browse_"+cAreaPos
-
                   oWndBase.&(cBrowse_n).ColumnsAutoFitH
                   oWndBase.&(cBrowse_n).SetFocus             // Ilumina barra en primer registro
                   oWndBase.&(cBrowse_n).GoTop
                Endif
-
             Endif
-
          Endif
       Next nn
-
    Else
       cBase := ''
       MuestraRec()
@@ -144,15 +128,16 @@ Procedure OpenBase( cDBF )
    Endif
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Procedure ArmMatrix()
+
    *------------------------------------------------------------------------------*
    Local i
+
    cBase := Alias() ; nCamp := Fcount() ; aEst  := DBstruct() ; aCtrl := {}
    aNomb := {'iif(deleted(),0,1)'} ; aJust := {0} ; aLong := {0} ; aFtype:={}
    cCtrl := "{},"
-
    For i := 1 to nCamp
       Aadd(aNomb,aEst[i,1])                             // Carga el nombre de campo
       Aadd(aJust,iif(aEst[i,2]=='N',1,0))               // Justifica a la izquierda o derecha de acuerdo al tipo de dato
@@ -167,14 +152,14 @@ Procedure ArmMatrix()
       Endif
       Aadd(aFtype, aEst[i,2])                           // Carga el tipo de campo
    Next
-
    aCtrl :=  &("{"+cCtrl+"}")                            // Asigna controles por tipo de campo
    CreaBrowse( cBase, aNomb, aLong, aJust, aFtype, aCtrl )
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Function DB_Open( cFileDBF )
+
    *------------------------------------------------------------------------------*
    lSuc := .F.
    TRY
@@ -188,37 +173,47 @@ Function DB_Open( cFileDBF )
    CATCH loError
       MsgInfo("Unable open file: "+cFileDBF, PROGRAM+" TRY")
    END
+
    Return (lSuc)
-
 *---------------------------------------------------------------------*
+
 FUNCTION GetName(cFileName)
-   *---------------------------------------------------------------------*
-   LOCAL cTrim  := ALLTRIM(cFileName)
-   LOCAL nSlash := MAX(RAT('\', cTrim), AT(':', cTrim))
-   LOCAL cName  := IF(EMPTY(nSlash), cTrim, SUBSTR(cTrim, nSlash + 1))
-   RETURN( cName )
 
-*---------------------------------------------------------------------*
-FUNCTION DelExt(cFileName)
    *---------------------------------------------------------------------*
    LOCAL cTrim  := ALLTRIM(cFileName)
-   LOCAL nDot   := RAT('.', cTrim)
+
    LOCAL nSlash := MAX(RAT('\', cTrim), AT(':', cTrim))
+
+   LOCAL cName  := IF(EMPTY(nSlash), cTrim, SUBSTR(cTrim, nSlash + 1))
+
+
+   RETURN( cName )
+*---------------------------------------------------------------------*
+
+FUNCTION DelExt(cFileName)
+
+   *---------------------------------------------------------------------*
+   LOCAL cTrim  := ALLTRIM(cFileName)
+
+   LOCAL nDot   := RAT('.', cTrim)
+
+   LOCAL nSlash := MAX(RAT('\', cTrim), AT(':', cTrim))
+
    LOCAL cNamew := IF(nDot <= nSlash .OR. nDot == nSlash + 1, ;
       cTrim, LEFT(cTrim, nDot - 1))
-   RETURN( cNamew )
 
+   RETURN( cNamew )
 *------------------------------------------------------------------------------*
+
 Function CreaBrowse( cBase, aNomb, aLong, aJust, aFtype, aCtrl )
+
    *------------------------------------------------------------------------------*
    aHdr       := aClone(aNomb)
    aJst       := aClone(aJust)
    aHdr[1]    := ""
    aLong[1]   := 20
    aCabImg    := aClone(VerHeadIcon(aFtype))
-
    oWndBase.Image_1.Hide
-
    If IsControlDefined(Tab_1,oWndBase)
       NuevoTab()
    Else
@@ -228,24 +223,20 @@ Function CreaBrowse( cBase, aNomb, aLong, aJust, aFtype, aCtrl )
             MakeBrowse()
          END PAGE
       END TAB
-
       oTab := GetControlObject("Tab_1","oWndBase")
       oTab:Anchor := "TOPLEFTBOTTOMRIGHT"
-
    Endif
-
    SetHeaderImages()
 
    Return Nil
-
 *------------------------------------------------------*
+
 Procedure MakeBrowse()
+
    *------------------------------------------------------*
    cAreaPos  := AllTrim( Str( ( Alias() )->( Select() ) ) )
    cBrowse_n := "Browse_"+cAreaPos
-
    If !IsControlDefined(&cBrowse_n,oWndBase)
-
       @ 26,0 BROWSE &cBrowse_n              ;
          OF oWndBase                        ;
          WIDTH  ooWndBase:Clientwidth  - 32  ;
@@ -273,60 +264,50 @@ Procedure MakeBrowse()
       WHITE, {128,128,128},          ;           // Cursor ventana sin foco Fuente/Fondo
       {106,90,205}, {135,206,250},   ;           // Fila resaltada  Fuente/Fondo
       {105,105,105},{220,220,220} }              // Fila resaltada click en columna  Fuente/Fondo
-
    Endif
-
    oBrowse := GetControlObject(cBrowse_n,"oWndBase")
    oBrowse:Anchor := "TOPLEFTBOTTOMRIGHT"
-
    nBrow++
 
    Return
-
 *------------------------------------------------------*
+
 Procedure NuevoTab() // Cortesía: Ciro Vargas Clemow
+
    *------------------------------------------------------*
    cAreaPos  := AllTrim( Str( aArea[nBase] ) )
    cBrowse_n := "Browse_"+cAreaPos
-
    oTab := GetControlObject("Tab_1","oWndBase")
-
    oTab:AddPage ( ( Alias() )->( Select() ), Alias() )
    nPage++
    oTab:Value := ( Alias() )->( Select() )
-
    MakeBrowse()
-
    oTab:AddControl( cBrowse_n, ( Alias() )->( Select() ), 26, 0 )
 
    Return
-
 *------------------------------------------------------*
+
 Procedure SeleArea()
+
    *------------------------------------------------------*
    If !Empty( Alias() )
-
       DBSelectArea( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) )
       cBase := Alias()
-
       If IsControlDefine(&(Browse_n()),oWndBase)
          oWndBase.&(Browse_n()).SetFocus
       Endif
-
    Endif
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Procedure CierraBase()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
-
       oTab      := GetControlObject("Tab_1","oWndBase")
       nPos      := ( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) )
-
       Set Index To
-
       If IsControlDefine( &(Browse_n()), oWndBase )
          oWndBase.&(Browse_n()).release
          Close ( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) )
@@ -345,15 +326,16 @@ Procedure CierraBase()
       Else
          Close data
       Endif
-
    Endif
 
    return
-
 *------------------------------------------------------------------------------*
+
 Procedure CierraAll()
+
    *------------------------------------------------------------------------------*
    Local nc
+
    If !Empty( Alias() )
       For nc := 1 to oWndBase.Tab_1.ItemCount
          Close ( oWndBase.Tab_1.caption( nc ) )
@@ -366,21 +348,22 @@ Procedure CierraAll()
    Endif
 
    Return
-
 *------------------------------------------------------*
+
 Function Iniciando()     // Cortesía: Fernando Yurisich
+
    *------------------------------------------------------*
    ooWndBase:AcceptFiles := .T.
    ooWndBase:OnDropFiles := { |f| AEval( f, { |c| OpenBase( c ) } ) }
+
    Return Nil
-
 *------------------------------------------------------*
-Function AssiCtrlBrw( cTypeField, nlongTot, nLongDec, cFieldName )
-   *------------------------------------------------------*
 
+Function AssiCtrlBrw( cTypeField, nlongTot, nLongDec, cFieldName )
+
+   *------------------------------------------------------*
    cCtrlBrw := ""
    cComa    := iif( (FieldNum(cFieldName)<=FCount()-1),',','')
-
    If cTypeField=='L'
       //cCtrlBrw := "{'CHECKBOX','Yes','No'}"+cComa
       cCtrlBrw := "TGridControlLComboBox():New( 'Yes', 'No' )"+cComa
@@ -404,14 +387,15 @@ Function AssiCtrlBrw( cTypeField, nlongTot, nLongDec, cFieldName )
    Endif
 
    Return( cCtrlBrw )
-
 *------------------------------------------------------------------------------*
+
 Function VerHeadIcon( aTip )
+
    *------------------------------------------------------------------------------*
    Local nv
+
    aFtype    := aClone( aTip )
    aHeadIcon := {"hdel"}
-
    For nv := 1 to FCount()
       Do Case
       Case aFType[nv]=='L'
@@ -446,18 +430,17 @@ Function VerHeadIcon( aTip )
    Next
 
    Return( aHeadIcon )
-
 *------------------------------------------------------------------------------*
+
 Function SetHeaderImages()
+
    *------------------------------------------------------------------------------*
    Local nc
 
    If !Empty( Alias() )
-
       For nc := 1 to oWndBase.Tab_1.ItemCount
          cAreaPos  := AllTrim( Str(nc) )
          cBrowse_n := "Browse_"+cAreaPos
-
          If IsControlDefined(&cBrowse_n,oWndBase)
             oWndBase.&(cBrowse_n).Fontname  := cFont
             oWndBase.&(cBrowse_n).Fontsize  := nSize
@@ -468,9 +451,10 @@ Function SetHeaderImages()
    Endif
 
    Return Nil
-
 *------------------------------------------------------------------------------*
+
 Function GetIndexInfo()
+
    *------------------------------------------------------------------------------*
    LOCAL aInd:= {}, ig, cKey
 
@@ -484,19 +468,23 @@ Function GetIndexInfo()
    Endif
 
    RETURN aInd
-
 *------------------------------------------------------------------------------*
+
 Procedure SeleOrder()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       ( Alias() )->(OrdSetFocus(0))
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure IndexItems()
+
    *------------------------------------------------------------------------------*
    Local ni
+
    If !Empty( Alias() )
       nTags := ( Alias() )->( OrdCount() )
       for ni = 1 to nTags
@@ -509,13 +497,14 @@ Procedure IndexItems()
          endif
       next
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure CopyRec(nOp)  // Copiar
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
-
       If nOp = 1   // Selecciona registro
          RecReply()
          MuestraRec()
@@ -526,12 +515,15 @@ Procedure CopyRec(nOp)  // Copiar
          Actualizar()
       Endif
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Function RecToMost()
+
    *------------------------------------------------------------------------------*
    Local nr
+
    If Empty(nRecCopy)
       nRet := 0
    Else
@@ -539,24 +531,26 @@ Function RecToMost()
          nRet := nRecCopy[ iif(AScan( nRecCopy[nr], nArea )>0, AScan( nRecCopy[nr], nArea ),1), 2 ]
       Next
    Endif
+
    Return(nRet)
-
 *------------------------------------------------------------------------------*
+
 Function RecReply()
+
    *------------------------------------------------------------------------------*
-
    aRec := oWndBase.&( Browse_n() ).Value
-
    If Empty(nRecCopy)
       Aadd( nRecCopy, { ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ), aRec[1] } )
    Endif
 
    Return Nil
-
 *------------------------------------------------------------------------------*
+
 procedure PasteRec() // Pegar
+
    *------------------------------------------------------------------------------*
    local nPos   := 0, i := 1
+
    local aDatos := {}
 
    If !Empty( Alias() )
@@ -586,15 +580,16 @@ procedure PasteRec() // Pegar
    Endif
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Function DBF_Idx()   // Indices de la base de datos
+
    *------------------------------------------------------------------------------*
    Local ix
+
    lSalida := .t. ; k := 1 ; nVeces := 1
    aIndice       := {}
    aIndiceCampo  := {}
-
    Do while lSalida
       If ( (Alias() )->( OrdName( k ) ) == "" )
          lSalida := .f.
@@ -615,50 +610,44 @@ Function DBF_Idx()   // Indices de la base de datos
       k++
       nVeces := 1
    Enddo
-
    // Numero de indice
    If ( (Alias())->( ordSetFocus() ) == "" )
       nIndiceActivo := 1
    Else
       nIndiceActivo := AScan( aIndice, (Alias())->( OrdSetFocus() ) )
    Endif
-
    AutoMsgInfo( aIndice, "aIndice" )
 
    Return(aIndiceCampo)
-
 *------------------------------------------------------------------------------*
+
 Procedure DeleteRecall()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
-
       aRec := oWndBase.&(Browse_n()).Value
       ( Alias() )->( DbGoto( aRec[1] ) )
-
       if ( Alias() )->( Rlock() )
          iif( ( Alias() )->( Deleted() ), ( Alias() )->( DbRecall() ), ( Alias() )->( DbDelete() ) )
          siguiente()
       endif
       ( Alias() )->( dbUnlock() )
       Actualizar()
-
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure MuestraRec()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       nPos      := ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) )
-
       If !Empty(nRecCopy)
          nRecSel := Iif(nPos==nRecCopy[1,1],RecToMost(),0)
       Endif
-
       Titulo()
-
       aRec := oWndBase.&( Browse_n() ).Value
-
       oWndBase.StatusBar.Item(1) := ' Record: '      ;
          +padl(Alltrim(Str(aRec[1])),7) ;
          +'/'+padl(Alltrim(Str(( Alias() )->(LastRec()))),7)+'         Row: '+padl(Alltrim(Str(aRec[1])),7)+'   Col:'+padl(Alltrim(Str(aRec[2])),7)
@@ -668,21 +657,26 @@ Procedure MuestraRec()
    Else
       oWndBase.StatusBar.Item(1) := ''
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure Titulo()
+
    *------------------------------------------------------------------------------*
    Local nPos := ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) )
+
    TRY
       oWndBase.Title := PROGRAM+VERSION+COPYRIGHT+iif(Empty(aFiles[nPos]),"",aFiles[nPos])
    CATCH loError
       oWndBase.Title := PROGRAM+VERSION+COPYRIGHT
    END
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure primero()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       //( Alias() )->( DbGotop() )
@@ -691,12 +685,13 @@ Procedure primero()
       oBrowse:value := { 1, 1 }
       oBrowse:setfocus()
       oBrowse:GoTop()
-
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure anterior()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       //( Alias() )->( dBSkip ( -1 ) )
@@ -704,12 +699,13 @@ Procedure anterior()
       oBrowse := GetControlObject(Browse_n(),"oWndBase")
       oBrowse:setfocus()
       oBrowse:Up()
-
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure siguiente()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       //( Alias() )->( dBSkip (1) )
@@ -718,34 +714,39 @@ Procedure siguiente()
       //    keybd_event(VK_END)
       //endif
       //keybd_event(VK_DOWN)
-
       oBrowse := GetControlObject(Browse_n(),"oWndBase")
       oBrowse:setfocus()
       oBrowse:Down()
-
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure ultimo()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       ( Alias() )->( DbGoBottom() )
       oBrowse := GetControlObject( Browse_n(), "oWndBase" )
       oBrowse:value := { ( Alias() )->( LastRec() ) , 1 }
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Function Browse_n()
+
    *------------------------------------------------------------------------------*
    Local cAreaPos, cBrowse_n
+
    cAreaPos  := AllTrim( Str( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) ) )
    cBrowse_n := "Browse_"+cAreaPos
-   Return( cBrowse_n )
 
+   Return( cBrowse_n )
 *------------------------------------------------------------------------------*
+
 Procedure primeraC()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       oBrowse := GetControlObject(Browse_n(),"oWndBase")
@@ -753,10 +754,12 @@ Procedure primeraC()
       oBrowse:value := { ( Alias() )->( recno() ), 1 }
       oBrowse:setfocus()
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure IzquierdaC()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       // keybd_event(VK_LEFT)
@@ -765,10 +768,12 @@ Procedure IzquierdaC()
       oBrowse:setfocus()
       oBrowse:Left()
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure DerechaC()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       //keybd_event(VK_RIGHT)
@@ -777,10 +782,12 @@ Procedure DerechaC()
       oBrowse:setfocus()
       oBrowse:Right()
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure ultimaC()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       oBrowse := GetControlObject( Browse_n(),"oWndBase" )
@@ -788,10 +795,12 @@ Procedure ultimaC()
       oBrowse:value := { ( Alias() )->( recno() ), ( Alias() )->( Fcount() )+1 }
       oBrowse:setfocus()
    Endif
-   return
 
+   return
 *------------------------------------------------------------------------------*
+
 Procedure Append()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       If IsControlDefine(&(Browse_n()),oWndBase)
@@ -800,9 +809,12 @@ Procedure Append()
          Siguiente()
       Endif
    Endif
+
    return
 *------------------------------------------------------------------------------*
+
 Procedure Edit()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       aRec := oWndBase.&(Browse_n()).Value
@@ -810,9 +822,12 @@ Procedure Edit()
       oWndBase.&(Browse_n()).Value := ( Alias() )->( RecNo() )
       oWndBase.&(Browse_n()).SetFocus
    Endif
+
    Return
 *------------------------------------------------------------------------------*
+
 Procedure JumpEdit(nOpt)
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       If nOpt == 1
@@ -826,27 +841,34 @@ Procedure JumpEdit(nOpt)
       Endif
       Actualizar()
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure Actualizar()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       oWndBase.&(Browse_n()).SetFocus
       oWndBase.&(Browse_n()).Refresh
    Endif
+
    Return
 *------------------------------------------------------------------------------*
+
 Procedure MueveRec()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       oBrowse := GetControlObject( Browse_n(),"oWndBase" )
       oBrowse:value := { ( Alias() )->( Recno() ) , 1 }
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Procedure PackBase()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       if MsgYesNo("Are you sure Pack Database?",PROGRAM)
@@ -854,9 +876,12 @@ Procedure PackBase()
          Primero()
       Endif
    Endif
+
    Return
 *------------------------------------------------------------------------------*
+
 Procedure ZapBase()
+
    *------------------------------------------------------------------------------*
    If !Empty( Alias() )
       if MsgYesNo("DANGER!! - Are you sure Zap Database?",PROGRAM)
@@ -864,11 +889,15 @@ Procedure ZapBase()
          Actualizar()
       Endif
    Endif
+
    Return
 *------------------------------------------------------------------------------*
+
 Procedure GoToRecord()
+
    *------------------------------------------------------------------------------*
    Local VamosA
+
    If !Empty( Alias() )
       nUltimo := ( Alias() )->( LastRec() )
       VamosA := val(InputBox( 'Goto Record:' , PROGRAM ))
@@ -882,10 +911,12 @@ Procedure GoToRecord()
          Endif
       EndIf
    Endif
-   Return
 
+   Return
 *--------------------------------------------------------*
+
 Procedure InsertRecord()
+
    *--------------------------------------------------------*
    If !Empty( Alias() )
       If MsgYesNo( "A blank record will be inserted before the current record!!!" + Hb_OSNewLine() + "Are You sure ?", "Insert Record")
@@ -895,12 +926,15 @@ Procedure InsertRecord()
          Actualizar()
       Endif
    Endif
-   Return
 
+   Return
 *--------------------------------------------------------*
+
 Procedure BackColorBrowse()
+
    *--------------------------------------------------------*
    Local nc
+
    If !Empty( Alias() )
       If IsControlDefine(&(Browse_n()),oWndBase)
          aBackClr := GetColor()
@@ -913,11 +947,15 @@ Procedure BackColorBrowse()
          Actualizar()
       Endif
    Endif
+
    Return
 *--------------------------------------------------------*
+
 Procedure FontColorBrowse()
+
    *--------------------------------------------------------*
    Local nc
+
    If !Empty( Alias() )
       If IsControlDefine(&(Browse_n()),oWndBase)
          aBackClr := GetColor()
@@ -930,12 +968,15 @@ Procedure FontColorBrowse()
          Actualizar()
       Endif
    Endif
-   Return
 
+   Return
 *--------------------------------------------------------*
+
 Procedure FontNameBrowse(nOpt)
+
    *--------------------------------------------------------*
    Local nc
+
    If !Empty( Alias() )
       If IsControlDefine(&(Browse_n()),oWndBase)
          if nOpt == 1
@@ -944,7 +985,6 @@ Procedure FontNameBrowse(nOpt)
                For nc := 1 to oWndBase.Tab_1.ItemCount
                   cAreaPos  := AllTrim( Str( ( Alias() )->( Select( oWndBase.Tab_1.caption( nc ) ) ) ) )
                   cBrowse_n := "Browse_"+cAreaPos
-
                   oWndBase.&(cbrowse_n).Fontname := aFont[1]
                   oWndBase.&(cbrowse_n).Fontsize := aFont[2]
                Next
@@ -953,7 +993,6 @@ Procedure FontNameBrowse(nOpt)
             For nc := 1 to oWndBase.Tab_1.ItemCount
                cAreaPos  := AllTrim( Str( ( Alias() )->( Select( oWndBase.Tab_1.caption( nc ) ) ) ) )
                cBrowse_n := "Browse_"+cAreaPos
-
                oWndBase.&(cbrowse_n).Fontname := 'MS Sans Serif'
                oWndBase.&(cbrowse_n).Fontsize := 8
             Next
@@ -962,16 +1001,16 @@ Procedure FontNameBrowse(nOpt)
          Actualizar()
       Endif
    Endif
+
    Return
-
 *--------------------------------------------------------*
-Procedure ExportData()
-   *--------------------------------------------------------*
 
+Procedure ExportData()
+
+   *--------------------------------------------------------*
    Local aFiltro := {}, cExt, cSaveFile, cAlias, nRecno ,nIndex := 1
 
    If !Empty( Alias() )
-
       aFiltro :={ {"DBF FoxPro files (*.dbf)", "*.dbf" } , ;
          {"Text files (*.txt)"      , "*.txt" } , ;
          {"CSV files (*.csv)"       , "*.csv" } , ;
@@ -982,16 +1021,13 @@ Procedure ExportData()
          {"Excel files (*.xls)"     , "*.xls" } , ;
          {"Dbase III files (*.prg)" , "*.prg" } , ;
          {"All files (*.*)"         , "*.*"   }  }
-
       BEGIN SEQUENCE WITH {| oError | Break( oError ) }
          cSaveFile := PutFile( aFiltro,"Save As",,,TokenUpper( Lower( Alias() ) ), .T. )
          // Putfile( aFilter, title, cIniFolder, nochangedir, cDefaultFileName, lForceExt )
       RECOVER USING oError
          MsgInfo( dbv_ErrorMessage( oError ), PROGRAM+" Error !!!" )
       END /* SEQUENCE */
-
       IF !Empty( cSaveFile )
-
          If right(cSaveFile,3)=='dbf'
             nIndex := 1
             cExt :='dbf'
@@ -1020,21 +1056,17 @@ Procedure ExportData()
             nIndex := 9
             cExt :='xml'
          Endif
-
          MsgInfo(cSaveFile,PROGRAM)
-
          cSaveFile := IF( ( AT( ".", cSaveFile ) > 0 ), cSaveFile, ( cSaveFile + "." + IF( Empty(cExt), "dbf", cExt ) ) )
-
          IF File( cSaveFile )
             IF !MsgYesNo( cSaveFile + " already exists." + CRLF + ;
                   "Overwrite existing file?" )
+
                Return
             ENDIF
          ENDIF
-
          nRecno := ( Alias() )->( Recno() )
          ( Alias() )->( DBGoTop() )
-
          IF nIndex = 2 .OR. nIndex = 3
             ( Alias() )->( __dbSDF(.T.,(cSaveFile),{ },,,,,.F. ) )
          ELSEIF nIndex = 4
@@ -1052,11 +1084,8 @@ Procedure ExportData()
          ELSE
             ( Alias() )->( __dbCopy((cSaveFile),{ },,,,,.F.,) )
          ENDIF
-
          ( Alias() )->( DBGoto(nRecno) )
-
       ENDIF
-
    Endif
 
    Return
@@ -1068,15 +1097,12 @@ STATIC FUNCTION dbv_ErrorMessage( oError )
 
    /* add subsystem name if available */
    cMessage += iif( HB_ISSTRING( oError:subsystem ), oError:subsystem(), "???" )
-
    /* add subsystem's error code if available */
    cMessage += "/" + iif( HB_ISNUMERIC( oError:subCode ), hb_ntos( oError:subCode ), "???" )
-
    /* add error description if available */
    IF HB_ISSTRING( oError:description )
       cMessage += "  " + oError:description
    ENDIF
-
    /* add either filename or operation */
    DO CASE
    CASE ! Empty( oError:filename )
@@ -1086,26 +1112,25 @@ STATIC FUNCTION dbv_ErrorMessage( oError )
    ENDCASE
 
    RETURN( cMessage )
-
 *--------------------------------------------------------*
+
 Procedure SaveToXls( cAlias, cFile )
+
    *--------------------------------------------------------*
    Local oExcel,  oSheet, oBook, aColumns, nCell := 1
 
    If !Empty( Alias() )
-
       //        IF ( oExcel := win_oleGetActiveObject("Excel.Application" )) == NIL
       //           IF ( oExcel := win_oleCreateObject("Excel.Application" ) ) == NIL
       IF ( oExcel := CreateObject("Excel.Application" ) ) == NIL
          MsgStop( "ERROR! Excel is not available. ["+ Ole2TxtError()+ "]", PROGRAM )
+
          Return
       ENDIF
       //        ENDIF
-
       oExcel:Visible := .F.
       oExcel:WorkBooks:Add()
       oSheet := oExcel:ActiveSheet
-
       Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| oSheet:Cells( nCell, i ):Value := e[DBS_NAME] } )
       do while !(cAlias)->( EoF() )
          nCell++
@@ -1113,87 +1138,80 @@ Procedure SaveToXls( cAlias, cFile )
          aEval( aColumns, { |e,i| oSheet:Cells( nCell, i ):Value := e } )
          (cAlias)->( DBskip() )
       enddo
-
       oBook := oExcel:ActiveWorkBook
       oBook:Title   := cAlias
       oBook:Subject := cAlias
       oBook:SaveAs(cFile)
       oExcel:Quit()
-
    Endif
 
    Return
-
 #xtranslate fWriteLn( <xHandle>, <cString> ) ;
    => ;
    fWrite( <xHandle>, <cString> + CRLF )
 *--------------------------------------------------------*
+
 Procedure SaveToPrg( cAlias, cFile )
+
    *--------------------------------------------------------*
    Local handle := fCreate(cFile, FC_NORMAL), nLen := Len( (cAlias)->( DBstruct(cAlias) ) )
 
    If !Empty( Alias() )
-
       fWriteLn(handle, "*-------------------------------------------------*")
       fWriteLn(handle, " PROCEDURE MAKE_DataBase()")
       fWriteLn(handle, "*-------------------------------------------------*")
-
       fWriteLn(handle, ' DBCREATE ("' + SubStr(cAlias, 1, RAT("_", cAlias) - 1) + '", {;')
-
       Aeval( (cAlias)->( DBstruct(cAlias) ), { |e,i| fWriteLn( handle, ;
          Chr(9) + '{ ' + padr('"' + e[DBS_NAME] + '",', 14) + '"' + Trim(e[DBS_TYPE]) + '",' + Str(e[DBS_LEN], 4) + ',' + Str(e[DBS_DEC], 3) + ;
          if(i < nLen, ' },;', ' }}, "'+( cAlias )->( RDDNAME() ) +'")') ) } )
-
       fWriteLn(handle, " RETURN")
       fClose(handle)
-
    Endif
 
    Return
 *--------------------------------------------------------*
+
 Function Scatter()
+
    *--------------------------------------------------------*
    Local aRecord[FCount()]
+
+
    Return aEval( aRecord, {|x,n| aRecord[n] := FieldGet( n,x ) } )
 *--------------------------------------------------------*
-Function Gather( paRecord )
-   *--------------------------------------------------------*
-   Return aEval( paRecord, {|x,n| FieldPut( n, x ) } )
 
+Function Gather( paRecord )
+
+   *--------------------------------------------------------*
+
+   Return aEval( paRecord, {|x,n| FieldPut( n, x ) } )
 *--------------------------------------------------------*
+
 Procedure PrintList()
+
    *--------------------------------------------------------*
    Local aHdr1, aTot, aFmt, i
 
    //    _OOHG_PRINTLIBRARY="HBPRINTER"
    _OOHG_PRINTLIBRARY="MINIPRINT"
-
    cBase := Alias()
    aEst  := DBstruct()
-
    aHdr  := {}
    aLen  := {}
-
    For i := 1 to ( Alias() )->(FCount())
       Aadd(aHdr,aEst[i,1])
       Aadd(aLen,Max(100,Min(160,aEst[i,3]*14)))
    Next
-
    If !Empty( cBase )
-
       aeval(aLen, {|e,i| aLen[i] := e/9})
-
       aHdr1 := array(len(aHdr))
       aTot  := array(len(aHdr))
       aFmt  := array(len(aHdr))
       afill(aHdr1, '')
       afill(aTot, .f.)
       afill(aFmt, '')
-
       set deleted on
-
       ( Alias() )->( dbgotop() )
-
       DO REPORT ;
          TITLE    cBase                    ;
          HEADERS  aHdr1, aHdr              ;
@@ -1207,31 +1225,26 @@ Procedure PrintList()
          LMARGIN  5                        ;
          PAPERSIZE DMPAPER_LETTER          ;
          PREVIEW
-
       Set Deleted off
-
    Endif
 
    Return
-
 *--------------------------------------------------------*
-Procedure Salida()
-   *--------------------------------------------------------*
 
+Procedure Salida()
+
+   *--------------------------------------------------------*
    if( MsgYesNo("Exit of DBF Viewer 2020?",PROGRAM), oWndBase.release, Nil )
 
    Return
-
 *--------------------------------------------------------*
+
 Procedure OnlyDel(nOpt)
+
    *--------------------------------------------------------*
-
    If !Empty( Alias() )
-
       aReg := oWndBase.&(Browse_n()).Value
-
       ( Alias() )->( DbGoto( aReg[1] ) )
-
       If nOpt = 1
          Set Filter to Deleted()
       Endif
@@ -1242,16 +1255,16 @@ Procedure OnlyDel(nOpt)
       If nOpt = 3
          Set Filter to
       Endif
-
       go top
       Actualizar()
    Endif
 
    Return
 *------------------------------------------------------------*
-PROCEDURE Unsorted
-   *------------------------------------------------------------*
 
+PROCEDURE Unsorted
+
+   *------------------------------------------------------------*
    If !Empty( Alias() )
       SET INDEX TO
       SET ORDER TO
@@ -1261,13 +1274,14 @@ PROCEDURE Unsorted
 
    RETURN
 *------------------------------------------------------------*
+
 Procedure LoadArchIni(cPath)
+
    *------------------------------------------------------------*
    cFont       := 'MS Sans Serif'
    nSize       := 8
    aFntClr     := {0,0,0}
    aBackClr    := {255,255,255}
-
    BEGIN INI FILE cpath+'dbview.ini'
       GET cFont     SECTION "Font"      ENTRY "Name"   DEFAULT cFont
       GET nSize     SECTION "Font"      ENTRY "Size"   DEFAULT nSize
@@ -1277,9 +1291,10 @@ Procedure LoadArchIni(cPath)
 
    Return
 *------------------------------------------------------------*
-Procedure SaveArchIni(cPath)
-   *------------------------------------------------------------*
 
+Procedure SaveArchIni(cPath)
+
+   *------------------------------------------------------------*
    BEGIN INI FILE cpath+'dbview.ini'
       SET SECTION "Font"      ENTRY "Name"  TO oWndBase.&(Browse_n()).Fontname
       SET SECTION "Font"      ENTRY "Size"  TO oWndBase.&(Browse_n()).Fontsize
@@ -1289,7 +1304,9 @@ Procedure SaveArchIni(cPath)
 
    Return
 *------------------------------------------------------------*
+
 Procedure VerRegistro()
+
    *------------------------------------------------------------*
    If !Empty( Alias() )
       If IsControlDefine(Tab_1,oWndBase)
@@ -1300,17 +1317,25 @@ Procedure VerRegistro()
          Endif
       Endif
    Endif
-   Return
 
+   Return
 *--------------------------------------------------------*
+
 Procedure DBQuery()
+
    *--------------------------------------------------------*
    Local cField, cComp, cType := ""
+
    Local cChar := "", nNum := 0, dDate := ctod(""), nLog := 1
+
    Local cExpr := ""
+
    Local aQuery_ := {"", "", ""}
+
    Local aUndo_ := {}
+
    Local aFlds_ := {}
+
    Local aComp_ := { "== Equal", ;
       "<> Not equal", ;
       "<  Less than", ;
@@ -1320,9 +1345,7 @@ Procedure DBQuery()
       "() Contains", ;
       "$  Is contained in", ;
       '"" Is empty (Blank)' }
-
    Private cAlias, cDBFile
-
    If !Empty( ( Alias() ) )
       cDBFile := cFileNoPath(dbf())
       cAlias := Alias()
@@ -1331,10 +1354,8 @@ Procedure DBQuery()
       ENDIF
       aEval(( Alias() )->( DBStruct() ), {|e| aAdd(aFlds_, e[DBS_NAME]) } )
       aAdd(aFlds_, "Deleted()") // Add this as if it were a logical field!
-
       cField := aFlds_[1]
       cComp := aComp_[1]
-
       DEFINE WINDOW Form_Query ;
             AT 0, 0 WIDTH 570 HEIGHT 305 ;
             TITLE PROGRAM+VERSION+"- Query" ;
@@ -1347,7 +1368,6 @@ Procedure DBQuery()
             Form_Query.Combo_1.Enabled := ( cType == "L" ) ) ;
             FONT "MS Sans Serif" ;
             SIZE 8
-
          DEFINE FRAME Frame_1
             ROW    10
             COL    260
@@ -1356,7 +1376,6 @@ Procedure DBQuery()
             CAPTION "Value"
             OPAQUE .T.
          END FRAME
-
          DEFINE LABEL Label_1
             ROW    30
             COL    270
@@ -1365,7 +1384,6 @@ Procedure DBQuery()
             VALUE "Character"+":"
             VISIBLE .T.
          END LABEL
-
          DEFINE LABEL Label_2
             ROW    60
             COL    270
@@ -1374,7 +1392,6 @@ Procedure DBQuery()
             VALUE "Numeric"+":"
             VISIBLE .T.
          END LABEL
-
          DEFINE LABEL Label_3
             ROW    90
             COL    270
@@ -1383,7 +1400,6 @@ Procedure DBQuery()
             VALUE "Date"+":"
             VISIBLE .T.
          END LABEL
-
          DEFINE LABEL Label_4
             ROW    120
             COL    270
@@ -1392,7 +1408,6 @@ Procedure DBQuery()
             VALUE "Logical"+":"
             VISIBLE .T.
          END LABEL
-
          DEFINE LABEL Label_5
             ROW    6
             COL    12
@@ -1401,7 +1416,6 @@ Procedure DBQuery()
             VALUE "Field"
             VISIBLE .T.
          END LABEL
-
          DEFINE LABEL Label_6
             ROW    6
             COL    134
@@ -1410,7 +1424,6 @@ Procedure DBQuery()
             VALUE "Comparison"
             VISIBLE .T.
          END LABEL
-
          DEFINE LISTBOX List_1
             ROW    20
             COL    10
@@ -1429,7 +1442,6 @@ Procedure DBQuery()
             SORT .F.
             MULTISELECT .F.
          END LISTBOX
-
          DEFINE LISTBOX List_2
             ROW    20
             COL    132
@@ -1445,7 +1457,6 @@ Procedure DBQuery()
             SORT .F.
             MULTISELECT .F.
          END LISTBOX
-
          DEFINE EDITBOX Edit_1
             ROW    170
             COL    10
@@ -1462,7 +1473,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END EDITBOX
-
          DEFINE LABEL Label_7
             ROW    154
             COL    12
@@ -1471,7 +1481,6 @@ Procedure DBQuery()
             VALUE "Query expression"+":"
             VISIBLE .T.
          END LABEL
-
          DEFINE TEXTBOX Text_1
             ROW    26
             COL    340
@@ -1485,7 +1494,6 @@ Procedure DBQuery()
             VISIBLE .T.
             VALUE cChar
          END TEXTBOX
-
          DEFINE TEXTBOX Text_2
             ROW    56
             COL    340
@@ -1503,7 +1511,6 @@ Procedure DBQuery()
             VISIBLE .T.
             VALUE nNum
          END TEXTBOX
-
          DEFINE DATEPICKER Date_1
             ROW    86
             COL    340
@@ -1518,7 +1525,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END DATEPICKER
-
          DEFINE COMBOBOX Combo_1
             ROW    116
             COL    340
@@ -1533,7 +1539,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END COMBOBOX
-
          DEFINE BUTTON Button_1
             ROW    156
             COL    260
@@ -1550,7 +1555,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_2
             ROW    156
             COL    414
@@ -1565,7 +1569,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_3
             ROW    196
             COL    260
@@ -1576,7 +1579,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_4
             ROW    196
             COL    321
@@ -1587,7 +1589,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_5
             ROW    196
             COL    383
@@ -1598,7 +1599,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_6
             ROW    196
             COL    444
@@ -1609,7 +1609,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_7
             ROW    196
             COL    505
@@ -1620,7 +1619,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_8
             ROW    236
             COL    260
@@ -1632,7 +1630,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_9
             ROW    236
             COL    336
@@ -1643,7 +1640,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_10
             ROW    236
             COL    412
@@ -1655,7 +1651,6 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_11
             ROW    236
             COL    488
@@ -1668,11 +1663,8 @@ Procedure DBQuery()
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          ON KEY ESCAPE ACTION IF( CheckComp(cType, cComp), Form_Query.Button_9.OnClick, Form_Query.List_2.Setfocus )
-
       END WINDOW
-
       Form_Query.Text_1.Enabled := .F.
       Form_Query.Text_2.Enabled := .F.
       Form_Query.Date_1.Enabled := .F.
@@ -1680,44 +1672,43 @@ Procedure DBQuery()
       Form_Query.Button_2.Enabled := .F.
       Form_Query.Button_8.Enabled := .F.
       Form_Query.Button_10.Enabled := .F.
-
       CENTER WINDOW Form_Query
       ACTIVATE WINDOW Form_Query
-
       Primero()
-
    ENDIF
 
    RETURN
 
 Procedure Action_B9()
+
    Form_Query.Release
    Actualizar()
    Primero()
-   Return
 
+   Return
 *--------------------------------------------------------*
+
 Procedure LimpiaFiltro()
+
    *--------------------------------------------------------*
    If !Empty( ( Alias() ) )
       ( Alias() )->( DbClearFilter() )
       Actualizar()
       go top
    Endif
-   Return
 
+   Return
 *------------------------------------------------------------------------------*
+
 Static Procedure Search_Replace( lReplace )
+
    *------------------------------------------------------------------------------*
    Local aColumns := { FCount() }
 
    DEFAULT lReplace := .f.
-
    IF !Empty( Alias() )
       Private lFirstFind := .T., lFind := .T., cFind := "", cFindStr, cField, cAlias := Alias(), cReplStr, nCurRec
-
       Aeval( ( Alias() )->( DBstruct(( Alias() )) ), {|e| Aadd(aColumns, e[1])})
-
       DEFINE WINDOW Form_Find ;
             AT 0, 0 WIDTH 449 HEIGHT 222 ;
             TITLE IF(lReplace, PROGRAM+VERSION+"- Replace", PROGRAM+VERSION+"- Search") ;
@@ -1726,7 +1717,6 @@ Static Procedure Search_Replace( lReplace )
             ON INIT ( Form_Find.Combo_1.DisplayValue := "", Form_Find.Combo_2.DisplayValue := "", Form_Find.Combo_1.Setfocus ) ;
             FONT "MS Sans Serif" ;
             SIZE 8
-
          DEFINE LABEL Label_1
             ROW    10
             COL    12
@@ -1736,7 +1726,6 @@ Static Procedure Search_Replace( lReplace )
             VISIBLE .T.
             AUTOSIZE .F.
          END LABEL
-
          DEFINE LABEL Label_11
             ROW    10
             COL    95
@@ -1746,7 +1735,6 @@ Static Procedure Search_Replace( lReplace )
             VISIBLE .T.
             AUTOSIZE .F.
          END LABEL
-
          DEFINE LABEL Label_2
             ROW    36
             COL    12
@@ -1756,7 +1744,6 @@ Static Procedure Search_Replace( lReplace )
             VISIBLE .T.
             AUTOSIZE .F.
          END LABEL
-
          DEFINE COMBOBOX Combo_1
             ROW   32
             COL   95
@@ -1768,7 +1755,6 @@ Static Procedure Search_Replace( lReplace )
             ON CHANGE ( lFirstFind := .T., Form_Find.Button_1.Enabled := .t. )
             VISIBLE .T.
          END COMBOBOX
-
          DEFINE LABEL Label_3
             ROW    62
             COL    12
@@ -1778,7 +1764,6 @@ Static Procedure Search_Replace( lReplace )
             VISIBLE lReplace
             AUTOSIZE .F.
          END LABEL
-
          DEFINE COMBOBOX Combo_2
             ROW   60
             COL   95
@@ -1791,7 +1776,6 @@ Static Procedure Search_Replace( lReplace )
             ON CHANGE ( Form_Find.Button_3.Enabled := .t., Form_Find.Button_4.Enabled := .t. )
             VISIBLE lReplace
          END COMBOBOX
-
          DEFINE FRAME Frame_1
             ROW    92
             COL    12
@@ -1800,7 +1784,6 @@ Static Procedure Search_Replace( lReplace )
             CAPTION "Direction"
             OPAQUE .T.
          END FRAME
-
          DEFINE RADIOGROUP Radio_1
             ROW   104
             COL   22
@@ -1810,7 +1793,6 @@ Static Procedure Search_Replace( lReplace )
             ONCHANGE ( nDirect := This.Value, lFirstFind := .T. )
             TABSTOP .T.
          END RADIOGROUP
-
          DEFINE LABEL Label_4
             ROW    100
             COL    120
@@ -1820,7 +1802,6 @@ Static Procedure Search_Replace( lReplace )
             VISIBLE .T.
             AUTOSIZE .F.
          END LABEL
-
          DEFINE COMBOBOX Combo_3
             ROW   96
             COL   215
@@ -1829,7 +1810,6 @@ Static Procedure Search_Replace( lReplace )
             WIDTH 120
             ON CHANGE lFirstFind := .T.
          END COMBOBOX
-
          DEFINE CHECKBOX Check_1
             ROW   130
             COL   120
@@ -1838,7 +1818,6 @@ Static Procedure Search_Replace( lReplace )
             VALUE lMatchCase
             ON CHANGE lFirstFind := .T.
          END CHECKBOX
-
          DEFINE CHECKBOX Check_2
             ROW   154
             COL   120
@@ -1847,7 +1826,6 @@ Static Procedure Search_Replace( lReplace )
             VALUE lMatchWhole
             ON CHANGE lFirstFind := .T.
          END CHECKBOX
-
          DEFINE BUTTON Button_1
             ROW    10
             COL    350
@@ -1859,7 +1837,6 @@ Static Procedure Search_Replace( lReplace )
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_2
             ROW    40
             COL    350
@@ -1870,7 +1847,6 @@ Static Procedure Search_Replace( lReplace )
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_3
             ROW    70
             COL    350
@@ -1885,7 +1861,6 @@ Static Procedure Search_Replace( lReplace )
             TABSTOP .T.
             VISIBLE .T.
          END BUTTON
-
          DEFINE BUTTON Button_4
             ROW    100
             COL    350
@@ -1897,32 +1872,30 @@ Static Procedure Search_Replace( lReplace )
             TABSTOP .T.
             VISIBLE lReplace
          END BUTTON
-
          ON KEY RETURN ACTION IF(lReplace, Form_Find.Button_3.OnClick, Form_Find.Button_1.OnClick )
          ON KEY ESCAPE ACTION Form_Find.Button_2.OnClick
-
       END WINDOW
-
       Form_Find.Button_1.Enabled := .f.
       Form_Find.Button_3.Enabled := !lReplace
       Form_Find.Button_4.Enabled := !lReplace
-
       CENTER WINDOW Form_Find
-
       ACTIVATE WINDOW Form_Find
-
    ENDIF
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Static Procedure FindNext( cString, nField, lCase, lWhole )
+
    *------------------------------------------------------------------------------*
    Local cAlias   := Alias()
+
    Local aColumns := (cAlias)->( DBstruct(cAlias) )
+
    Local nRecno   := (cAlias)->( RecNo() ), cType
 
    IF EMPTY(cString)
+
       Return
    ELSEIF ASCAN(aSearch, cString) == 0
       AADD(aSearch, cString)
@@ -1933,7 +1906,6 @@ Static Procedure FindNext( cString, nField, lCase, lWhole )
    ENDIF
    lMatchCase := lCase
    lMatchWhole := lWhole
-
    lFind := .T.
    IF nField == 1
       cFind := ""
@@ -2112,21 +2084,23 @@ Static Procedure FindNext( cString, nField, lCase, lWhole )
          ENDIF
       ENDIF
    ENDIF
-
    MueveRec()
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Static Procedure DoReplace(cString, cReplace, nField, lCase, lWhole, lAll)
+
    *------------------------------------------------------------------------------*
    Local cAlias := Alias()
+
    Local aColumns := (cAlias)->( DBstruct(cAlias) ), cType, cFld, i, lReplace
+
    Local nRecno := (cAlias)->( RecNo() )
 
    DEFAULT lAll := .f.
-
    IF EMPTY(cString) .OR. EMPTY(cReplace)
+
       Return
    ELSEIF ASCAN(aReplace, cReplace) == 0
       AADD(aReplace, cReplace)
@@ -2364,13 +2338,13 @@ Static Procedure DoReplace(cString, cReplace, nField, lCase, lWhole, lAll)
          (cAlias)->( DBunlock() )
       ENDIF
    ENDIF
-
    MueveRec()
 
    Return
-
 *------------------------------------------------------------------------------*
+
 Static Procedure AppendCopy()
+
    *------------------------------------------------------------------------------*
    Local aCurrent
 
@@ -2387,9 +2361,10 @@ Static Procedure AppendCopy()
    ENDIF
 
    Return
-
 *--------------------------------------------------------*
+
 Static Procedure DeleteAll()
+
    *--------------------------------------------------------*
    Local nRecNo
 
@@ -2409,8 +2384,8 @@ Static Procedure DeleteAll()
    Return
 
 Function AdjustColumn(nOpt)
-   IF !Empty(( Alias() ))
 
+   IF !Empty(( Alias() ))
       Do Case
       Case nOpt = 1
          oWndBase.&(Browse_n()).ColumnsAutoFitH
@@ -2421,10 +2396,12 @@ Function AdjustColumn(nOpt)
          DoMethod( "oWndBase", Browse_n(), 'ColumnsBetterAutoFit' )
       Endcase
    Endif
-   Return Nil
 
+   Return Nil
 *--------------------------------------------------------*
+
 Static Procedure UnDeleteAll()
+
    *--------------------------------------------------------*
    Local nRecNo
 
@@ -2442,123 +2419,89 @@ Static Procedure UnDeleteAll()
    ENDIF
 
    Return
-
 /*
-
 This is a Clipper 5.x function which emulates dBase's INSERT command.  I
 believe it's as fast as it can be for pure Clipper code, but feel free to
 improve upon it if you can (and let me know what you did).
-
 Todd MacDonald
-
 */
-
 //--------------------------------------------------------------------------//
+
 FUNCTION dbInsert( lBefore )
+
    //--------------------------------------------------------------------------//
-
    /*
-
    Syntax
-
    dbInsert( [<lBefore>] )  ->  nil
-
    Arguments
-
    <lBefore> is true if you wish to insert the record before the current
    record, false (or not passed) if after.
 
    Returns
-
    nil
-
    Description
-
    dbInsert emulates the dBase INSERT command by appending a blank record
    at the end of the current file and "moving" all the records down leaving
    a blank record at the current position (or current position + 1 depending
    on the value of <lBefore>).
-
    Examples
-
    #command INSERT [<b4: BEFORE>] => dbInsert( <.b4.> )
-
    use WHATEVER
-
    INSERT BEFORE
-
    Author
-
    Todd C. MacDonald
-
    Notes
-
    This function is an original work and is placed into the Public Domain by
    the author.
-
    History
-
    05/19/92 TCM Created
    05/20/92 TCM Bug fix: Added code to carry each record's deleted status
    forward when the record is "moved".
    05/21/92 TCM Bug fix: Fixed the aeval responsible for blanking out the
    "inserted" record so that it really *does* blank it out.
-
    */
-
    #define DBS_NAME  1
    #define FLD_BLK   1
    #define FLD_VAL   2
-
    LOCAL nRec     := recno() + 1
+
    LOCAL lSavDel  := SET( _SET_DELETED, .f. )
+
    LOCAL nSavOrd  := indexord()
+
    LOCAL aFields  := {}
+
    LOCAL lDeleted := .f.
 
    IF lBefore = nil
       lBefore := .f.
    ENDIF
-
    IF lBefore
-
       // stop moving records when the current record is reached
       --nRec
-
    ENDIF
-
    // build the array of field get/set blocks with cargo space for field values
    aeval( dbstruct(), { | a | ;
       aadd( aFields, { fieldblock( a[ DBS_NAME ] ), nil } ) } )
-
    // process in physical order for speed
    dbsetorder( 0 )
-
    // add a new record at eof
    dbappend()
-
    // back up through the file moving records down as we go
    WHILE recno() > nRec
-
       // store all values from previous record in the appropriate cargo space
       dbskip( -1 )
       aeval( aFields, { | a | a[ FLD_VAL ] := eval( a[ FLD_BLK ] ) } )
-
       // save deleted status
       lDeleted := deleted()
-
       // replace all values in next record with stored cargo values
       dbskip()
       aeval( aFields, { | a | eval( a[ FLD_BLK ], a[ FLD_VAL ] ) } )
-
       // set deleted status
       iif( lDeleted, dbdelete(), dbrecall() )
-
       // go to previous record
       dbskip( -1 )
-
    END
-
    // blank out the "inserted" record
    aeval( aFields, { | a, cType | ;
       cType := valtype( eval( a[ FLD_BLK ] ) ), ;
@@ -2567,18 +2510,17 @@ FUNCTION dbInsert( lBefore )
       iif( cType = 'N',  0, ;
       iif( cType = 'D',  ctod( '  /  /  ' ), ;
       iif( cType = 'L',  .f., nil ) ) ) ) ) } )
-
    // make sure it's not deleted
    dbrecall()
-
    // leave things the way we found them
    dbsetorder( nSavOrd )
    SET( _SET_DELETED, lSavDel )
 
    RETURN nil
-
 *-----------------------------------------------------------------------------*
+
 Function Convert2Sql( cAlias, cSaveFile )
+
    *-----------------------------------------------------------------------------*
    LOCAL i, cSqlCreate, cSqlDatos, cSqlCampos, nHandle, TABULADOR := Chr(9)
 
@@ -2586,7 +2528,6 @@ Function Convert2Sql( cAlias, cSaveFile )
       MsgInfo('You must choose a file to convert','Warning')
    Else
       cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ CRLF
-
       For i := 1 to LEN(aEst)
          cSqlCreate += TABULADOR + aEst[i,DBS_NAME]+' '
          DO CASE
@@ -2605,32 +2546,24 @@ Function Convert2Sql( cAlias, cSaveFile )
          CASE aEst[i,DBS_TYPE] = 'M'
             cSqlCreate+= 'blob'
          ENDCASE
-
          If i < LEN(aEst)
             cSqlCreate+= ','+CRLF  // , exception de last
          else
             cSqlCreate+= CRLF
          endif
-
       Next
-
       cSqlCreate += ');'
-
       // the data
       cSqlCampos := 'INSERT INTO '+(cAlias)+' ('
-
       For i := 1 to LEN(aEst)
          cSqlCampos+= aEst[i,DBS_NAME]
          If i < LEN(aEst)
             cSqlCampos+= ','  // , exception de last
          endif
       next
-
       cSqlCampos += ') VALUES ('
       cSqlDatos := ''
-
       (cAlias)->(DbGoTop())
-
       While !(cAlias)->(Eof())
          cSqlDatos += cSqlCampos
          For i := 1 to LEN(aEst)
@@ -2656,26 +2589,24 @@ Function Convert2Sql( cAlias, cSaveFile )
          cSqlDatos += ');'+CRLF
          (cAlias)->(DbSkip())
       End
-
       nHandle := FCreate( cSaveFile, FC_NORMAL )
       FWrite(nHandle, cSqlCreate)
       FWrite(nHandle, CRLF)
       FWrite(nHandle, CRLF)
       FWrite(nHandle, cSqlDatos)
       FClose(nHandle)
-
       If File( cSaveFile )
          MsgInfo( "File created: " + cSaveFile )
       Else
          MsgInfo( "Error: ", FError() )
       Endif
-
    Endif
 
    RETURN Nil
-
 *-----------------------------------------------------------------------------*
+
 Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
+
    *-----------------------------------------------------------------------------*
    LOCAL i, cSqlCreate, cSqlDatos, cSqlCampos, nHandle, TABULADOR := Chr(9)
 
@@ -2683,7 +2614,6 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
       MsgInfo('You must choose a file to convert','Warning')
    Else
       cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ CRLF
-
       For i := 1 to LEN(aEst)
          cSqlCreate += TABULADOR + aEst[i,DBS_NAME]+' '
          DO CASE
@@ -2702,32 +2632,24 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
          CASE aEst[i,DBS_TYPE] = 'M'
             cSqlCreate+= 'blob'
          ENDCASE
-
          If i < LEN(aEst)
             cSqlCreate+= ','+CRLF  // , exception de last
          else
             cSqlCreate+= CRLF
          endif
-
       Next
-
       cSqlCreate += ');'
-
       // the data
       cSqlCampos:= 'INSERT INTO '+(cAlias)+' ('
-
       For i := 1 to LEN(aEst)
          cSqlCampos+= aEst[i,DBS_NAME]
          If i < LEN(aEst)
             cSqlCampos+= ','  // , exception de last
          endif
       next
-
       cSqlCampos += ') VALUES ('
       cSqlDatos := ''
-
       (cAlias)->(DbGoTop())
-
       While !(cAlias)->(Eof())
          cSqlDatos += cSqlCampos
          For i := 1 to LEN(aEst)
@@ -2753,82 +2675,68 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
          cSqlDatos += ');'+CRLF
          (cAlias)->(DbSkip())
       End
-
       cSqlDatos += CRLF+'COMMIT WORK;'+CRLF
-
       nHandle := FCreate( cSaveFile, FC_NORMAL )
       FWrite(nHandle, cSqlCreate)
       FWrite(nHandle, CRLF)
       FWrite(nHandle, CRLF)
       FWrite(nHandle, cSqlDatos)
       FClose(nHandle)
-
    Endif
 
    RETURN Nil
-
 *-----------------------------------------------------------------------------*
+
 FUNCTION FormatDate(dFecha)
+
    *-----------------------------------------------------------------------------*
    /* dada una variable tipo fecha devuelve un string con este formato:
    AAAA-MM-DD.
    Dicho formato es necesario para las consultas de firebird
    */
-   RETURN substr(dtos(dFecha),1,4)+'-'+substr(dtos(dFecha),5,2)+'-'+substr(dtos(dFecha),7,2)
 
+   RETURN substr(dtos(dFecha),1,4)+'-'+substr(dtos(dFecha),5,2)+'-'+substr(dtos(dFecha),7,2)
 *-----------------------------------------------------------------------------*
+
 PROCEDURE Dbf2Html ( cSaveFile )
+
    *-----------------------------------------------------------------------------*
    LOCAL oDoc, oNode, oTable, oRow, oCell
+
    LOCAL i, j
 
    If !Empty( cSavefile )
-
       //USE ( cDbf )
-
       oDoc          := THtmlDocument():new()
-
       /* Operator "+" creates a new node */
       oNode         := oDoc:head + "meta"
       oNode:name    := "Generator"
       oNode:content := "THtmlDocument"
-
       /* Operator ":" returns first "h1" from body (creates if not existent) */
       oNode         := oDoc:body:h1
       oNode:text    := "DBF Viewer 2020"
-
       /* Operator "+" creates a new <p> node */
       oNode         := oDoc:body + "p"
-
       /* Operator "+" creates a new <font> node with attribute */
       oNode         := oNode   + 'font size="5"'
       // oNode:text    := alias()
-
       /* Operator "+" creates a new <b> node */
       oNode         := oNode   + "b"
-
       /* Operator "+" creates a new <font> node with attribute */
       oNode         := oNode   + "font color='blue'"
       oNode:text    := Alias()+ ".DBF "
-
       /* Operator "-" closes 2nd <font>, result is <b> node */
       oNode         := oNode   - "font"
-
       /* Operator "-" closes <b> node, result is 1st <font> node */
       oNode         := oNode   - "b"
-
       oNode:text    := "database!"
-
       /* Operator "-" closes 1st <font> node, result is <p> node */
       oNode         := oNode   - "font"
-
       oNode         := oNode   + "hr"
       HB_SYMBOL_UNUSED( oNode )
-
       /* Operator ":" returns first "table" from body (creates if not existent) */
       oTable        := oDoc:body:table
       oTable:attr   := 'border="0" width="100%" cellspacing="0" cellpadding="0"'
-
       oRow          := oTable  + 'tr bgcolor="lightcyan"'
       FOR i := 1 TO FCount()
          oCell     := oRow + "th"
@@ -2836,46 +2744,35 @@ PROCEDURE Dbf2Html ( cSaveFile )
          oCell     := oCell - "th"
          HB_SYMBOL_UNUSED( oCell )
       NEXT
-
       oRow := oRow - "tr"
       HB_SYMBOL_UNUSED( oRow )
-
       FOR i := 1 TO LastRec()
          oRow         := oTable + "tr"
          oRow:bgColor := iif( RecNo() % 2 == 0, "lightgrey", "white" )
-
          FOR j := 1 TO FCount()
             oCell      := oRow + "td"
             oCell:text := FieldGet( j )
             oCell      := oCell - "td"
             HB_SYMBOL_UNUSED( oCell )
          NEXT
-
          oRow := oRow - "tr"
          HB_SYMBOL_UNUSED( oRow )
-
          SKIP
       NEXT
-
       oNode := oDoc:body  + "hr"
       HB_SYMBOL_UNUSED( oNode )
       oNode := oDoc:body  + "p"
-
       oNode:text := "Records from database " + Alias() + ".dbf"
-
       IF oDoc:writeFile( cSaveFile )
          MsgInfo( "File created: " + cSaveFile )
       ELSE
          MsgInfo( "Error: ", FError() )
       ENDIF
-
       TIP_HTMLTOSTR( oDoc:body:getText() )
       //HtmlToOem( oDoc:body:getText() )
-
    Endif
 
    RETURN
-
 /*---------------------------------------------------------
 * Dbf2XML Version 1.0
 * This program converts a dbf file to xml file
@@ -2892,10 +2789,10 @@ PROCEDURE Dbf2Html ( cSaveFile )
 *          Adapted for ooHG - mig2soft/at/yahoo.com
 *
 */
+
 Function Dbf2Xml( cDbf, cSaveFile )
 
    PRIVATE cFile
-
    // global string defs
    tab = chr(9)
    tab2 = chr(9) + chr(9)
@@ -2905,7 +2802,6 @@ Function Dbf2Xml( cDbf, cSaveFile )
    meta_end_tag = "</metadata>"
    data_start_tag = "<data>"
    data_end_tag = "</data>"
-
    // DBF field defs
    col_start_tag = "<column>"
    col_end_tag = "</column>"
@@ -2917,23 +2813,19 @@ Function Dbf2Xml( cDbf, cSaveFile )
    width_end_tag = "</width>"
    decs_start_tag = "<decimals>"
    decs_end_tag = "</decimals>"
-
    // DBF record defs
    row_start_tag = "<row>"
    row_end_tag = "</row>"
-
    cFile = LOWER (cDbf)
    IF At (".dbf", cFile) == 0
       cFile = cFile + ".dbf"
    ENDIF
-
    IF !File( cFile )
       MsgInfo(cFile + " does not exist!!!")
+
       Return Nil
    ENDIF
-
    GenXML( cFile, cSaveFile )
-
    If File( cSaveFile )
       MsgInfo( "File created: " + cSaveFile )
    Else
@@ -2941,10 +2833,10 @@ Function Dbf2Xml( cDbf, cSaveFile )
    Endif
 
    RETURN Nil
-
 */---------------------------------------------------------
 */ Generates the file
 */---------------------------------------------------------
+
 FUNCTION GenXML( cDbf, cSaveFile )
 
    PRIVATE fldname, fldtype, fldsize, flddecs
@@ -2955,37 +2847,31 @@ FUNCTION GenXML( cDbf, cSaveFile )
    PRIVATE nFields
    PRIVATE nField
    PRIVATE nPos
-
    cFile  = cSaveFile
-
    IF EMPTY (ALIAS())
       MsgInfo("Error opening " + cDbf)
+
       Return Nil
    ENDIF
-
    nHandle = fCreate (cFile, 0)
    IF nHandle < 0
       MsgInfo("Error creating " + cFile)
       MsgInfo("nHandle = " + alltrim(str(nhandle)))
+
       Return Nil
    ENDIF
-
    //------------------
    // Writes XML header
    //------------------
    fWrite( nHandle, xmlver + crlf )
-
    // root tag
    fWrite( nHandle, make_start_tag (cDbf) + crlf )
-
    nFields = FCOUNT()
    DECLARE fldname [nfields], fldtype [nfields], fldsize [nfields], flddecs [nfields]
    AFIELDS (fldname, fldtype, fldsize, flddecs)
-
    cBuffer = tab + make_comment ("DBF structure info") + crlf + ;
       tab + meta_start_tag  + crlf
    fWrite( nHandle, cBuffer )
-
    FOR nField = 1 TO nFields
       fWrite (nHandle, tab2 + col_start_tag + crlf)
       cBuffer = tab3 + name_start_tag + fldname [nField] + name_end_tag + crlf + ;
@@ -2995,37 +2881,27 @@ FUNCTION GenXML( cDbf, cSaveFile )
       fWrite( nHandle, cBuffer )
       fWrite (nHandle, tab2 + col_end_tag + crlf)
    NEXT nField
-
    cBuffer = tab + meta_end_tag   + crlf + ;
       tab + make_comment ("DBF table data") + crlf + ;
       tab + data_start_tag  + crlf
    fWrite( nHandle, cBuffer )
-
    old_percent = -1
-
    DO WHILE !Eof()
       cBuffer = tab2 + row_start_tag  + crlf
       fWrite( nHandle, cBuffer )
-
       FOR nField = 1 TO nFields
-
          //-------------------
          // Beginning Record Tag
          //-------------------
-
          thisfld = fldname [nfield]
          cBuffer = tab3 + make_start_tag (thisfld)
-
          DO CASE
          CASE fldtype[nField] == "D"
             cValue = Dtos (&thisfld)
-
          CASE fldtype[nField] == "N"
             cValue = Str (&thisfld)
-
          CASE fldtype[nField] == "L"
             cValue = IIf( &thisfld, "true", "false" )
-
             OTHERWISE
             cValue = &thisfld.
             //--- Convert special characters
@@ -3035,47 +2911,49 @@ FUNCTION GenXML( cDbf, cSaveFile )
             cValue = strTran(cValue,"'","&apos;")
             cValue = strTran(cValue,["],[&quot;])
          ENDCASE
-
          cBuffer   = cBuffer + alltrim (cValue) + ;
             make_end_tag (thisfld) + crlf
-
          fWrite( nHandle, cBuffer )
       NEXT nField
-
       //------------------
       // Ending Record Tag
       //------------------
       fWrite (nHandle, tab2 + row_end_tag  + crlf)
       SKIP
-
    ENDDO
-
    cBuffer = tab + data_end_tag + crlf + ;
       make_end_tag (cDbf) + crlf
    fWrite( nHandle, cBuffer )
 
    RETURN FCLOSE (nHandle)
-
 */------------------------------------------------
 */ create a "start" tag with value "node"
 */------------------------------------------------
-FUNCTION make_start_tag( node )
-   RETURN "<" + node + ">"
 
+FUNCTION make_start_tag( node )
+
+
+   RETURN "<" + node + ">"
 */------------------------------------------------
 */ create an "end" tag with value "node"
 */------------------------------------------------
-FUNCTION make_end_tag( node )
-   RETURN "</" + node + ">"
 
+FUNCTION make_end_tag( node )
+
+
+   RETURN "</" + node + ">"
 */------------------------------------------------
 */ create a comment tag with value "text"
 */------------------------------------------------
-FUNCTION make_comment( text )
-   RETURN "<!-- " + text + " -->"
 
+FUNCTION make_comment( text )
+
+
+   RETURN "<!-- " + text + " -->"
 *------------------------------------------------------------------------------*
+
 Function WhatCvsVer()
+
    *------------------------------------------------------------------------------*
    Local oFile, cLine, aCvs := {}
 
@@ -3094,4 +2972,3 @@ Function WhatCvsVer()
    oFile:Close()
 
    Return( aCvs )
-
