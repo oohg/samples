@@ -5,7 +5,7 @@
 #include "oohg.ch"
 *---------------------------------------------------------------------*
 Procedure AddFmgfiles
-*---------------------------------------------------------------------*
+   *---------------------------------------------------------------------*
    Local Files , x , i , Exists
 
    DECLARE WINDOW main
@@ -13,24 +13,24 @@ Procedure AddFmgfiles
 
    Files :=  GetFmgFiles( )
    For x := 1 To Len ( Files )
-       DO EVENTS
-       Exists := .F.
-       For i := 1 To main.List_3.ItemCount
-           DO EVENTS
-           If Upper(alltrim(Files [x])) == Upper(alltrim(main.List_3.Item(i)))
-              Exists := .T.
-              Exit
-           EndIf
-       Next i
-       If .Not. Exists
-          main.List_3.AddItem ( Files [x] )
-       EndIf
+      DO EVENTS
+      Exists := .F.
+      For i := 1 To main.List_3.ItemCount
+         DO EVENTS
+         If Upper(alltrim(Files [x])) == Upper(alltrim(main.List_3.Item(i)))
+            Exists := .T.
+            Exit
+         EndIf
+      Next i
+      If .Not. Exists
+         main.List_3.AddItem ( Files [x] )
+      EndIf
    Next x
-Return
+   Return
 
 *---------------------------------------------------------------------*
 Function GetFmgFiles()
-*---------------------------------------------------------------------*
+   *---------------------------------------------------------------------*
    Local RetVal := {} , BaseFolder
 
    If Empty ( main.text_1.Value )
@@ -42,107 +42,107 @@ Function GetFmgFiles()
    cDirNew := GetFolder("Folder of .FMG and Include Files:",cDirOld)
 
    IF !EMPTY(cDirNew)
-     cDirOld  :=cDirNew
-     aFiles :=DIRECTORY(cDirNew + "\" +"*.*")
-     AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
+      cDirOld  :=cDirNew
+      aFiles :=DIRECTORY(cDirNew + "\" +"*.*")
+      AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
 
-     If Len(aFiles)>0
+      If Len(aFiles)>0
 
-     aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
+         aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
 
-   DEFINE WINDOW GetFmgFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select FMG/CH/H Files' ;
-      ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
+         DEFINE WINDOW GetFmgFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select FMG/CH/H Files' ;
+               ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
 
-         DEFINE FRAME Frame_21
-            ROW    0
-            COL    10
-            WIDTH  508
-            HEIGHT 344
-            OPAQUE .T.
-         END FRAME
+            DEFINE FRAME Frame_21
+               ROW    0
+               COL    10
+               WIDTH  508
+               HEIGHT 344
+               OPAQUE .T.
+            END FRAME
 
-         DEFINE LISTBOX List_fmg
-            ITEMS aFiles
-            ROW   20
-            COL   20
-            WIDTH 490
-            HEIGHT 284
-            FONTNAME "Segoe UI"
-            ONGOTFOCUS This.BackColor := {211,237,250}
-            ONLOSTFOCUS This.BackColor := {255,255,225}
-            BACKCOLOR {255,255,225}
-            MULTISELECT   .T.
-         END LISTBOX
+            DEFINE LISTBOX List_fmg
+               ITEMS aFiles
+               ROW   20
+               COL   20
+               WIDTH 490
+               HEIGHT 284
+               FONTNAME "Segoe UI"
+               ONGOTFOCUS This.BackColor := {211,237,250}
+               ONLOSTFOCUS This.BackColor := {255,255,225}
+               BACKCOLOR {255,255,225}
+               MULTISELECT   .T.
+            END LISTBOX
 
-         DEFINE BUTTON ALL
-            ROW 310
-            COL 210
-            WIDTH  100
-            HEIGHT 28
-            CAPTION  'ALL'
-            ONCLICK  ( RetVal := GetFmgFilesOk( aFiles , GetFmgFiles.List_fmg.Value ) , GetFmgFiles.Release )
-         END BUTTON
+            DEFINE BUTTON ALL
+               ROW 310
+               COL 210
+               WIDTH  100
+               HEIGHT 28
+               CAPTION  'ALL'
+               ONCLICK  ( RetVal := GetFmgFilesOk( aFiles , GetFmgFiles.List_fmg.Value ) , GetFmgFiles.Release )
+            END BUTTON
 
-         DEFINE BUTTON OK
-            ROW 310
-            COL 310
-            WIDTH  100
-            HEIGHT 28
-            CAPTION  'Ok'
-            ONCLICK  ( RetVal := GetFmgFilesOk( aFiles , GetFmgFiles.List_fmg.Value ) , GetFmgFiles.Release )
-         END BUTTON
+            DEFINE BUTTON OK
+               ROW 310
+               COL 310
+               WIDTH  100
+               HEIGHT 28
+               CAPTION  'Ok'
+               ONCLICK  ( RetVal := GetFmgFilesOk( aFiles , GetFmgFiles.List_fmg.Value ) , GetFmgFiles.Release )
+            END BUTTON
 
-         DEFINE BUTTON CANCEL
-            ROW    310
-            COL    410
-            WIDTH  100
-            HEIGHT 28
-            CAPTION "Cancel"
-            ONCLICK  ( RetVal := {} , GetFmgFiles.Release )
-         END BUTTON
+            DEFINE BUTTON CANCEL
+               ROW    310
+               COL    410
+               WIDTH  100
+               HEIGHT 28
+               CAPTION "Cancel"
+               ONCLICK  ( RetVal := {} , GetFmgFiles.Release )
+            END BUTTON
 
-         DEFINE LABEL Label_1
-            ROW    315
-            COL    40
-            WIDTH  120
-            HEIGHT 24
-            VALUE "Select ( Ctrl + Click )"
-            TRANSPARENT .T.
-         END LABEL
+            DEFINE LABEL Label_1
+               ROW    315
+               COL    40
+               WIDTH  120
+               HEIGHT 24
+               VALUE "Select ( Ctrl + Click )"
+               TRANSPARENT .T.
+            END LABEL
 
-   END WINDOW
+         END WINDOW
 
-   CENTER WINDOW GetFmgFiles
-   GetFmgFiles.Ok.Setfocus
-   ACTIVATE WINDOW GetFmgFiles
+         CENTER WINDOW GetFmgFiles
+         GetFmgFiles.Ok.Setfocus
+         ACTIVATE WINDOW GetFmgFiles
 
-     Else
+      Else
          MsgInfo("FMG/CH/H Files not found","FMG/CH/H Files")
          RetVal := {}
-     Endif
+      Endif
 
    Endif
 
-Return ( RetVal )
+   Return ( RetVal )
 
 *---------------------------------------------------------------------*
 Function GetFmgFilesOk( aFiles , aSelected )
-*---------------------------------------------------------------------*
+   *---------------------------------------------------------------------*
    Local aNew := {} , i
 
    If Empty( aSelected )
       aNew := aFiles
    Else
       For i := 1 To Len ( aSelected )
-          DO EVENTS
-          aadd ( aNew , aFiles [ aSelected [i] ] )
+         DO EVENTS
+         aadd ( aNew , aFiles [ aSelected [i] ] )
       Next i
    Endif
-Return aNew
+   Return aNew
 
 *---------------------------------------------------------------------*
 Procedure RemoveFileFmg()
-*---------------------------------------------------------------------*
+   *---------------------------------------------------------------------*
    Local a_Mig := main.List_3.value
    If !Empty(a_Mig)
       If MsgYesNo('Remove File(s) ' + UPPER( main.List_3.Item( main.List_3.Value ) ) + ' From Project ?','Confirm')
@@ -155,5 +155,5 @@ Procedure RemoveFileFmg()
          main.List_3.value := {1}
       endif
    Endif
-Return
+   Return
 

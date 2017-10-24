@@ -20,11 +20,11 @@ FUNCTION Main
    SET NAVIGATION EXTENDED
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 600 ;
-      HEIGHT 480 ;
-      TITLE 'Open an Excel workbook in readonly mode' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 600 ;
+         HEIGHT 480 ;
+         TITLE 'Open an Excel workbook in readonly mode' ;
+         MAIN
 
       DEFINE STATUSBAR
          STATUSITEM 'OOHG power !!!'
@@ -41,7 +41,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION Open
 
@@ -53,25 +53,25 @@ FUNCTION Open
 
    #ifndef __XHARBOUR__
       IF( oExcel := win_oleCreateObject( 'Excel.Application' ) ) == NIL
-         MsgStop( 'Error: Excel not available. [' + win_oleErrorText()+ ']' )
-         RETURN NIL
-      ENDIF
+      MsgStop( 'Error: Excel not available. [' + win_oleErrorText()+ ']' )
+      RETURN NIL
+   ENDIF
    #else
-      oExcel := TOleAuto():New( 'Excel.Application' )
-      IF Ole2TxtError() != 'S_OK'
-         MsgStop( 'Error: Excel not available.' )
-         RETURN NIL
-      ENDIF
+   oExcel := TOleAuto():New( 'Excel.Application' )
+   IF Ole2TxtError() != 'S_OK'
+      MsgStop( 'Error: Excel not available.' )
+      RETURN NIL
+   ENDIF
    #endif
 
    // catch any errors
    bErrBlck1 := ErrorBlock( { | x | break( x ) } )
 
    BEGIN SEQUENCE
-      oExcel:WorkBooks:Open(w_arch, NIL, .T.)
-      oExcel:Visible := .t.
+   oExcel:WorkBooks:Open(w_arch, NIL, .T.)
+   oExcel:Visible := .t.
    RECOVER USING x
-      MsgStop( x:Description, "Excel Error" )
+   MsgStop( x:Description, "Excel Error" )
    END SEQUENCE
 
    ErrorBlock( bErrBlck1 )

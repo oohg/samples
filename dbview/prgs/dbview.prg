@@ -986,7 +986,7 @@ Procedure ExportData()
       BEGIN SEQUENCE WITH {| oError | Break( oError ) }
          cSaveFile := PutFile( aFiltro,"Save As",,,TokenUpper( Lower( Alias() ) ), .T. )
          // Putfile( aFilter, title, cIniFolder, nochangedir, cDefaultFileName, lForceExt )
-         RECOVER USING oError
+      RECOVER USING oError
          MsgInfo( dbv_ErrorMessage( oError ), PROGRAM+" Error !!!" )
       END /* SEQUENCE */
 

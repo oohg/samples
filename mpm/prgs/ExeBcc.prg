@@ -7,7 +7,7 @@
 
 *---------------------------------------------------------------------*
 Procedure Build( ProjectName )  // Borland C
-*---------------------------------------------------------------------*
+   *---------------------------------------------------------------------*
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
@@ -73,26 +73,26 @@ Procedure Build( ProjectName )  // Borland C
       nTotFmgs := 0
 
       For i := 2 TO Len ( PrgFiles )
-          DO EVENTS
-          If upper(Right( PRGFILES [i] , 3 )) = 'FMG'
-             nTotFmgs := nTotFmgs + 1
-          Endif
+         DO EVENTS
+         If upper(Right( PRGFILES [i] , 3 )) = 'FMG'
+            nTotFmgs := nTotFmgs + 1
+         Endif
       Next
 
       For i := 2 To main.List_1.ItemCount
-          If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
-             If i == main.List_1.ItemCount - nTotFmgs
-                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
-             Else
-                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
-             EndIf
-          ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
-             If i == main.List_1.ItemCount - nTotFmgs
-                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
-             Else
-                Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
-             EndIf
-          Endif
+         If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
+            If i == main.List_1.ItemCount - nTotFmgs
+               Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj' + NewLi
+            Else
+               Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ))  + '.obj \' + NewLi
+            EndIf
+         ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
+            If i == main.List_1.ItemCount - nTotFmgs
+               Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj' + NewLi
+            Else
+               Out := Out + '   $(OBJ_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ))  + '.obj \' + NewLi
+            EndIf
+         Endif
       Next i
 
       Out := Out + NewLi
@@ -108,11 +108,11 @@ Procedure Build( ProjectName )  // Borland C
       Endif
 
       For i := 1 To Len ( PrgFiles ) - nTotFmgs
-          If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
-             Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
-          ElseIF upper(Right( PRGFILES [i] , 1 )) = 'C'
-             Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
-          Endif
+         If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
+            Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
+         ElseIF upper(Right( PRGFILES [i] , 1 )) = 'C'
+            Out := Out + '   echo $(OBJ_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) +  '.obj + >' + if(i>1,'>','') +'b32.bc ' + NewLi
+         Endif
       Next i
 
       If File(MiniGuiFolder+'\LIB\oohg.lib')
@@ -163,8 +163,8 @@ Procedure Build( ProjectName )  // Borland C
       Endif
 
       For i := 1 To Len ( LIBFILES )
-          DO EVENTS
-          Out := Out +'   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib + >>' + 'b32.bc ' + NewLi
+         DO EVENTS
+         Out := Out +'   echo ' + Left ( LIBFILES [i] , Len(LIBFILES [i] ) - 4 ) + '.lib + >>' + 'b32.bc ' + NewLi
       Next i
 
       Out := Out + '   echo '+BCCFOLDER+'LIB\cw32.lib + >> b32.bc' + NewLi
@@ -187,22 +187,22 @@ Procedure Build( ProjectName )  // Borland C
       Out := Out + NewLi
 
       For i := 1 To Len ( PrgFiles ) - nTotFmgs
-          DO EVENTS
-          If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
-             Out := Out + NewLi
-             Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ) + '.Prg' + NewLi
-             Out := Out + '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
-             Out := Out + NewLi
-             Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.obj : $(C_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c'  + NewLi
-             Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
-          ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
-             Out := Out + NewLi
-             Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c' + NewLi
+         DO EVENTS
+         If upper(Right( PRGFILES [i] , 3 )) = 'PRG'
+            Out := Out + NewLi
+            Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 ) + '.Prg' + NewLi
+            Out := Out + '   $(HARBOUR_EXE) $(HARBOUR_FLAGS) $** -o$@'  + NewLi
+            Out := Out + NewLi
+            Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.obj : $(C_DIR)\' +  GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 4 )) + '.c'  + NewLi
+            Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+         ElseIf upper(Right( PRGFILES [i] , 1 )) = 'C'
+            Out := Out + NewLi
+            Out := Out + '$(C_DIR)\' + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.c : ' + Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c' + NewLi
 
-             Out := Out + NewLi
-             Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.obj : ' +  Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c'  + NewLi
-             Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
-          Endif
+            Out := Out + NewLi
+            Out := Out + '$(OBJ_DIR)\'  + GetName(Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 )) + '.obj : ' +  Left ( PRGFILES [i] , Len(PRGFILES [i] ) - 2 ) + '.c'  + NewLi
+            Out := Out + '   $(CC) $(COBJFLAGS) -o$@ $**' + NewLi
+         Endif
       Next i
 
       Memowrit ( PROJECTFOLDER + '\_Temp.Bc' , Out )
@@ -211,9 +211,9 @@ Procedure Build( ProjectName )  // Borland C
       ParamString := '/f' + PROJECTFOLDER + '\_Temp.Bc' + ' 1>' + PROJECTFOLDER + '\_Temp.Log 2>&1'
 
       Memowrit ( PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) + ;
-                '_Build.Bat' , '@ECHO OFF' + NewLi + MakeName + ' ' + ParamString + ;
-                 NewLi + 'Echo End > ' + PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) + ;
-                 'End.Txt' + NewLi )
+         '_Build.Bat' , '@ECHO OFF' + NewLi + MakeName + ' ' + ParamString + ;
+         NewLi + 'Echo End > ' + PROJECTFOLDER + If ( Right ( PROJECTFOLDER , 1 ) != '\' , '\' , '' ) + ;
+         'End.Txt' + NewLi )
 
       Procesando(1)
       Processing  := .T.
@@ -222,9 +222,9 @@ Procedure Build( ProjectName )  // Borland C
 
       CorreBuildBat()
 
-      END SEQUENCE
+   END SEQUENCE
 
-      QuitarEspera()
+   QuitarEspera()
 
       EndBuild()
 

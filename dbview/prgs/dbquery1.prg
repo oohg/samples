@@ -130,7 +130,7 @@ Function RunQuery(cExpr)
 
    begin sequence
       (cAlias)->( DbSetFilter(COMPILE(cExpr), cExpr) )
-      recover
+   recover
       (cAlias)->( DbClearFilter() )
       lOk := .F.
    end sequence
@@ -439,7 +439,7 @@ FUNCTION OpenDataBaseFile( cDataBaseFileName, cAlias, lExclusive, lReadOnly, cDr
 
       dbUseArea( lNew, cDriverName, cDataBaseFileName, cAlias, !lExclusive, lReadOnly )
 
-      RECOVER //USING oError
+   RECOVER //USING oError
 
       _lGood := .F.
       MsgInfo( "Unable to open file:" + CRLF + cDataBaseFileName )

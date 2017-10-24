@@ -20,13 +20,13 @@ FUNCTION Main
    // This declaration is needed for OBJECT clause
 
    DEFINE WINDOW frm_Main OBJ oWin ;
-      AT 100,100 ;
-      CLIENTAREA ;
-      WIDTH 341 ;
-      HEIGHT 155 ;
-      TITLE 'Picture on Picture' ;
-      MAIN ;
-      ON INIT SetExcludeArea( oPict1 )
+         AT 100,100 ;
+         CLIENTAREA ;
+         WIDTH 341 ;
+         HEIGHT 155 ;
+         TITLE 'Picture on Picture' ;
+         MAIN ;
+         ON INIT SetExcludeArea( oPict1 )
 
       @ 20,20 PICTURE img_Pict2 ;
          OBJ oPict2 ;
@@ -34,31 +34,31 @@ FUNCTION Main
          HEIGHT 60 ;
          STRETCH ;
          PICTURE "oohg.jpg" ;   // 95 x 95
-         ON CLICK AutoMsgBox("Pict2") ;
+      ON CLICK AutoMsgBox("Pict2") ;
          TOOLTIP "I'm oPict2, click me." ;
          TRANSPARENT  // This clause is needed, see note at the end.
 
       DEFINE PICTURE img_Pict1
-         OBJECT oPict1
-         ROW 0
-         COL 0
-         IMAGESIZE .T.
-         PICTURE  "logo.jpg"
-         TOOLTIP "I'm oPict1, click me."
-         ONCLICK AutoMsgBox( "Pict1" )
-         // Do not use TRANSPARENT here, see note at the end.
-      END PICTURE
+      OBJECT oPict1
+      ROW 0
+      COL 0
+      IMAGESIZE .T.
+      PICTURE  "logo.jpg"
+      TOOLTIP "I'm oPict1, click me."
+      ONCLICK AutoMsgBox( "Pict1" )
+      // Do not use TRANSPARENT here, see note at the end.
+   END PICTURE
 
-      @ 20, 200 LABEL lbl_1 ;
-         OBJ oLbl1 ;
-         VALUE "LABEL" ;
-         BOLD ;
-         AUTOSIZE ;
-         TOOLTIP "I'm a label !!!" ;
-         ON CLICK AutoMsgBox("lbl_1") ;
-         TRANSPARENT
+   @ 20, 200 LABEL lbl_1 ;
+      OBJ oLbl1 ;
+      VALUE "LABEL" ;
+      BOLD ;
+      AUTOSIZE ;
+      TOOLTIP "I'm a label !!!" ;
+      ON CLICK AutoMsgBox("lbl_1") ;
+      TRANSPARENT
 
-      ON KEY ESCAPE ACTION oWin:Release()
+   ON KEY ESCAPE ACTION oWin:Release()
    END WINDOW
 
    oWin:Center()
@@ -67,17 +67,17 @@ FUNCTION Main
 RETURN NIL
 
 FUNCTION SetExcludeArea( oPict1 )
-/*
+   /*
    The coordinates of the area to exclude must be relative to oPict1.
    You can add aditional sectors by adding elements to oPict1:aExcludeArea
    array.
-*/
+   */
    oPict1:aExcludeArea := ;
       { { oLbl1:col - oPict1:col, ;                   // left
-          oLbl1:row - oPict1:row, ;                   // top
-          oLbl1:col - oPict1:col + oLbl1:Width, ;     // right
-          oLbl1:row - oPict1:row + oLbl1:Height } }   // bottom
-RETURN NIL
+   oLbl1:row - oPict1:row, ;                   // top
+   oLbl1:col - oPict1:col + oLbl1:Width, ;     // right
+   oLbl1:row - oPict1:row + oLbl1:Height } }   // bottom
+   RETURN NIL
 
 /*
    Note that if you delete TRANSPARENT clause from img_Pict2, the excluded
