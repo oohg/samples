@@ -16,262 +16,262 @@
 
 *-------------------------
 Function Main
-*-------------------------
+   *-------------------------
 
-DEFINE WINDOW Win_1 ;
-   AT 0,0 ;
-   WIDTH 400 ;
-   HEIGHT 400 ;
-   TITLE 'OOHG ODBC Demo ADS DBF/CDX ' ;
-   MAIN  on init conectar() ;
-   on release cerrar()
+   DEFINE WINDOW Win_1 ;
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 400 ;
+         TITLE 'OOHG ODBC Demo ADS DBF/CDX ' ;
+         MAIN  on init conectar() ;
+         on release cerrar()
 
-   DEFINE MAIN MENU
-      DEFINE POPUP 'File'
-      MENUITEM 'Listado' ACTION list()
-      menuitem 'Busqueda POR APELLIDO' Action Bus()
-      menuitem 'Busqueda POR telefono' Action Bus1()
-      menuitem 'Agregar' Action Addrec()
-      menuitem 'Borrar' Action Borrarec()
-      menuitem  'INDEX' action indexa()
-      menuitem 'borra index' action borrai()
-      menuitem  "version " action automsgbox(miniguiversion())
-   END POPUP
-END MENU
+      DEFINE MAIN MENU
+         DEFINE POPUP 'File'
+            MENUITEM 'Listado' ACTION list()
+            menuitem 'Busqueda POR APELLIDO' Action Bus()
+            menuitem 'Busqueda POR telefono' Action Bus1()
+            menuitem 'Agregar' Action Addrec()
+            menuitem 'Borrar' Action Borrarec()
+            menuitem  'INDEX' action indexa()
+            menuitem 'borra index' action borrai()
+            menuitem  "version " action automsgbox(miniguiversion())
+         END POPUP
+      END MENU
 
-END WINDOW
-ACTIVATE WINDOW Win_1
-Return
+   END WINDOW
+   ACTIVATE WINDOW Win_1
+   Return
 
 *-------------------------
 PROCEDURE INDEXA()
-*-------------------------
-WITH OBJECT dsFunctions
-///      :SetSQL( "CREATE INDEX pornom ON ABI (NOMBRE)" )
-////      :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
+   *-------------------------
+   WITH OBJECT dsFunctions
+      ///      :SetSQL( "CREATE INDEX pornom ON ABI (NOMBRE)" )
+      ////      :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
 
-///      if .not. :Open()
-///          msgbox("error")
-///      endif
+      ///      if .not. :Open()
+      ///          msgbox("error")
+      ///      endif
 
-:SetSQL( "CREATE INDEX pornUM ON ABI (NUMERO)" )
-////         :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
+      :SetSQL( "CREATE INDEX pornUM ON ABI (NUMERO)" )
+      ////         :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
 
-if .not. :Open()
-msgbox("error")
-ELSE
-MSGBOX("INDEXADO")
-endif
+      if .not. :Open()
+         msgbox("error")
+      ELSE
+         MSGBOX("INDEXADO")
+      endif
 
-:Close()
+      :Close()
 
-END
+   END
 
-return
+   return
 
 *-------------------------
 procedure borrai()
-*-------------------------
-WITH OBJECT dsFunctions
-//      :SetSQL( "DROP INDEX pornom ON ABI" )
-///         :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
+   *-------------------------
+   WITH OBJECT dsFunctions
+      //      :SetSQL( "DROP INDEX pornom ON ABI" )
+      ///         :setsql( "ALTER TABLE ABI ADD INDEX pornumero (numero)")
 
-//      if .not. :Open()
-//          msgbox("error")
-//      endif
+      //      if .not. :Open()
+      //          msgbox("error")
+      //      endif
 
-:SetSQL( "DROP INDEX pornUM ON ABI" )
+      :SetSQL( "DROP INDEX pornUM ON ABI" )
 
-if .not. :Open()
-msgbox("error")
-endif
+      if .not. :Open()
+         msgbox("error")
+      endif
 
-:Close()
+      :Close()
 
-END
-return
+   END
+   return
 
 *-------------------------
 procedure conectar()
-*-------------------------
-Public cConStr   := ;
-"Driver={Advantage StreamlineSQL ODBC};SourceType=DBF;SourceDB=c:\analisis\iden;"
+   *-------------------------
+   Public cConStr   := ;
+      "Driver={Advantage StreamlineSQL ODBC};SourceType=DBF;SourceDB=c:\analisis\iden;"
 
-Public  dsFunctions := TODBC():New( cConStr ) // cConStr )
+   Public  dsFunctions := TODBC():New( cConStr ) // cConStr )
 
-if SQL_ERROR = -1
-msgbox("si conecto")
-else
-msgbox("no conecto")
-return
-endif
+   if SQL_ERROR = -1
+      msgbox("si conecto")
+   else
+      msgbox("no conecto")
+      return
+   endif
 
-dsfunctions:lcachers:=.F.
+   dsfunctions:lcachers:=.F.
 
-return
+   return
 
 *-------------------------
 procedure cerrar()
-*-------------------------
-dsFunctions:Destroy()
-return
+   *-------------------------
+   dsFunctions:Destroy()
+   return
 
 *-------------------------
 PROCEDURE list()
-*-------------------------
-local i
+   *-------------------------
+   local i
 
-WITH OBJECT dsFunctions
+   WITH OBJECT dsFunctions
 
-:SetSQL( "SELECT * FROM ABI order by NOMBRE " )
+      :SetSQL( "SELECT * FROM ABI order by NOMBRE " )
 
-:Open()
+      :Open()
 
-creg:=""
-contador:=0
-DO WHILE (:FETCH( SQL_FETCH_NEXT ,1)= SQL_SUCCESS)
-creg:=creg+ :Fieldbyname("nombre"):value+ :fieldbyname("NUMERO"):value+ chr(13)+chr(10)
-contador++
-IF CONTADOR>=25
-   if .not. msgyesno(creg,"Continua ?")
-      exit
-   ELSE
-      CREG:=""
-      CONTADOR:=0
-   endif
-ENDIF
+      creg:=""
+      contador:=0
+      DO WHILE (:FETCH( SQL_FETCH_NEXT ,1)= SQL_SUCCESS)
+         creg:=creg+ :Fieldbyname("nombre"):value+ :fieldbyname("NUMERO"):value+ chr(13)+chr(10)
+         contador++
+         IF CONTADOR>=25
+            if .not. msgyesno(creg,"Continua ?")
+               exit
+            ELSE
+               CREG:=""
+               CONTADOR:=0
+            endif
+         ENDIF
 
-ENDDO
-:Close()
+      ENDDO
+      :Close()
 
-END
-RETURN( NIL )
+   END
+   RETURN( NIL )
 
 *-------------------------
 PROCEDURE Bus()
-*-------------------------
-local csearch:=upper(inputbox("Busca APELLIDO","Pregunta"))
+   *-------------------------
+   local csearch:=upper(inputbox("Busca APELLIDO","Pregunta"))
 
-WITH OBJECT dsFunctions
+   WITH OBJECT dsFunctions
 
-a:=seconds()
+      a:=seconds()
 
-:SetSQL( "SELECT top 50 * FROM ABI WHERE Nombre LIKE "+"'"+csearch+"%'" )
+      :SetSQL( "SELECT top 50 * FROM ABI WHERE Nombre LIKE "+"'"+csearch+"%'" )
 
-if .not. :Open()
-msgbox("error")
-endif
+      if .not. :Open()
+         msgbox("error")
+      endif
 
-creg:=""
-sw:=0
-cn:=0
-while (:FETCH( SQL_FETCH_NEXT ,1)= SQL_SUCCESS)
-      creg:=creg+:FieldByName( "NOMBRE" ):Value+" "+(:FieldByName( "Numero" ):Value )+chr(13)+chr(10)
-      sw:=1
-      cn++
-/////
-enddo
-if sw=1
+      creg:=""
+      sw:=0
+      cn:=0
+      while (:FETCH( SQL_FETCH_NEXT ,1)= SQL_SUCCESS)
+         creg:=creg+:FieldByName( "NOMBRE" ):Value+" "+(:FieldByName( "Numero" ):Value )+chr(13)+chr(10)
+         sw:=1
+         cn++
+         /////
+      enddo
+      if sw=1
 
-automsginfo(creg)
+         automsginfo(creg)
 
-else
-msgbox("registro no encontrado")
-endif
+      else
+         msgbox("registro no encontrado")
+      endif
 
-:Close()
+      :Close()
 
-END
-RETURN  NIL
+   END
+   RETURN  NIL
 
 *-------------------------
 PROCEDURE Bus1()
-*-------------------------
-local csearch:=inputbox("Busca TELEFONO","Pregunta")
+   *-------------------------
+   local csearch:=inputbox("Busca TELEFONO","Pregunta")
 
-WITH OBJECT dsFunctions
+   WITH OBJECT dsFunctions
 
-a:=seconds()
+      a:=seconds()
 
-:lcachers:=.T.
-:SetSQL( "SELECT * FROM abi WHERE NUMERO = "+CSEARCH )
+      :lcachers:=.T.
+      :SetSQL( "SELECT * FROM abi WHERE NUMERO = "+CSEARCH )
 
-if .not. :Open()
-msgbox("error")
-endif
-CREG:=""
-SW:=0
-while .not. :eof()
-creg:=creg+:FieldByName( "NOMBRE" ):Value+" "+(:FieldByName( "Numero" ):Value )+chr(13)+chr(10)
-:skip()
-sw:=1
-enddo
-if sw=1
-automsginfo(creg)
-///         automsgbox(b-a)
-else
-msgbox("registro no encontrado")
-endif
+      if .not. :Open()
+         msgbox("error")
+      endif
+      CREG:=""
+      SW:=0
+      while .not. :eof()
+         creg:=creg+:FieldByName( "NOMBRE" ):Value+" "+(:FieldByName( "Numero" ):Value )+chr(13)+chr(10)
+         :skip()
+         sw:=1
+      enddo
+      if sw=1
+         automsginfo(creg)
+         ///         automsgbox(b-a)
+      else
+         msgbox("registro no encontrado")
+      endif
 
-:lcachers:=.F.
+      :lcachers:=.F.
 
-:Close()
+      :Close()
 
-END
-RETURN  NIL
+   END
+   RETURN  NIL
 
 *-------------------------
 PROCEDURE addrec()
-*-------------------------
-local csearch:=upper(inputbox("Nombre :","Pregunta"))
-local csearch1:=upper(inputbox("Numero :","Pregunta"))
+   *-------------------------
+   local csearch:=upper(inputbox("Nombre :","Pregunta"))
+   local csearch1:=upper(inputbox("Numero :","Pregunta"))
 
-if empty(csearch) .or. empty(csearch1)
-   msginfo("no se puede a¤adir datos en blanco")
-   return nil
-endif
+   if empty(csearch) .or. empty(csearch1)
+      msginfo("no se puede a¤adir datos en blanco")
+      return nil
+   endif
 
-WITH OBJECT dsFunctions
+   WITH OBJECT dsFunctions
 
-cinserta:="(" + csearch1 +",'" + csearch + "',' "+ "',' ',' ',' "+ "')"
-automsgbox(cinserta)
-:SetSQL( "INSERT INTO ABI VALUES " + cinserta )
-if (:Open())
-   msgbox("registro agregado")
-else
-   msgbox("fallo agrega registro")
-endif
+      cinserta:="(" + csearch1 +",'" + csearch + "',' "+ "',' ',' ',' "+ "')"
+      automsgbox(cinserta)
+      :SetSQL( "INSERT INTO ABI VALUES " + cinserta )
+      if (:Open())
+         msgbox("registro agregado")
+      else
+         msgbox("fallo agrega registro")
+      endif
 
-:Close()
+      :Close()
 
-END
+   END
 
-RETURN  NIL
+   RETURN  NIL
 
 *-------------------------
 PROCEDURE borrarec()
-*-------------------------
-local csearch:=ALLTRIM(upper(inputbox("Numero :","Pregunta")))
-WITH OBJECT dsFunctions
+   *-------------------------
+   local csearch:=ALLTRIM(upper(inputbox("Numero :","Pregunta")))
+   WITH OBJECT dsFunctions
 
-:SetSQL( "SELECT * FROM ABI WHERE NUMERO = "+csearch )
-:Open()
-   if .not. :eof()
-       if  msgyesno("Esta seguro de borrar: "+csearch)
-           :close()
-           :SetSQL( "DELETE FROM ABI WHERE NUMERO = "+csearch )
-           IF (:Open())
+      :SetSQL( "SELECT * FROM ABI WHERE NUMERO = "+csearch )
+      :Open()
+      if .not. :eof()
+         if  msgyesno("Esta seguro de borrar: "+csearch)
+            :close()
+            :SetSQL( "DELETE FROM ABI WHERE NUMERO = "+csearch )
+            IF (:Open())
                msgbox("registro borrado")
-           ELSE
+            ELSE
                MSGBOX("NO SE PUDO BORRAR")
-           ENDIF
-       endif
-   else
-     msgbox("registro no encontrado")
-   endif
+            ENDIF
+         endif
+      else
+         msgbox("registro no encontrado")
+      endif
 
-:close()
-END
+      :close()
+   END
 
-RETURN nil
+   RETURN nil
 

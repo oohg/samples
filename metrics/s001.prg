@@ -16,7 +16,7 @@ Function Main
 
    MsgInfo( "Decimal separator is " + GetDecimalSeparator(), "Info" )
 
-Return Nil
+   Return Nil
 
 #pragma BEGINDUMP
 

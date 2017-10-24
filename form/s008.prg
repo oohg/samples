@@ -20,18 +20,18 @@ FUNCTION Main
    LOCAL oForm1
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 200 ;
-      MAIN ;
-      TITLE "ooHG - Window with transparency" ;
-      BACKCOLOR YELLOW ;
-      ON INIT ( oForm1:Slider_1:Enabled := .f., ;
-                MakeOpaque( oForm1 ), ;
-                oForm1:TextBox_1:Enabled := .f., ;
-                oForm1:Button_1:Enabled := .t., ;
-                oForm1:Button_2:Enabled := .f. )
+         OBJ oForm1 ;
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 200 ;
+         MAIN ;
+         TITLE "ooHG - Window with transparency" ;
+         BACKCOLOR YELLOW ;
+         ON INIT ( oForm1:Slider_1:Enabled := .f., ;
+         MakeOpaque( oForm1 ), ;
+         oForm1:TextBox_1:Enabled := .f., ;
+         oForm1:Button_1:Enabled := .t., ;
+         oForm1:Button_2:Enabled := .f. )
 
       ON KEY ESCAPE ACTION oForm1:Release()
 
@@ -44,20 +44,20 @@ FUNCTION Main
          FONTCOLOR BLUE ;
          CENTER ;
          ON CLICK ( oForm1:Slider_1:Enabled := .f., ;
-                     MakeOpaque( oForm1 ), ;
-                     oForm1:TextBox_1:Enabled := .f., ;
-                     oForm1:Button_1:Enabled := .t., ;
-                     oForm1:Button_2:Enabled := .f. )
+         MakeOpaque( oForm1 ), ;
+         oForm1:TextBox_1:Enabled := .f., ;
+         oForm1:Button_1:Enabled := .t., ;
+         oForm1:Button_2:Enabled := .f. )
 
       @ 10, 10 BUTTON Button_1 ;
          OBJ oBut1 ;
          CAPTION 'Set Transparency ON' ;
          WIDTH   140 ;
          ACTION ( oForm1:Slider_1:Enabled := .t., ;
-                  oForm1:TextBox_1:Enabled := .t., ;
-                  oForm1:Button_1:Enabled := .f., ;
-                  oForm1:Button_2:Enabled := .t., ;
-                  oForm1:Slider_1:Value := 180 )
+         oForm1:TextBox_1:Enabled := .t., ;
+         oForm1:Button_1:Enabled := .f., ;
+         oForm1:Button_2:Enabled := .t., ;
+         oForm1:Slider_1:Value := 180 )
       oBut1:Transparent := .T.
 
       @ 40, 10 BUTTON Button_2 ;
@@ -65,10 +65,10 @@ FUNCTION Main
          CAPTION 'Set Transparency OFF' ;
          WIDTH   140 ;
          ACTION ( oForm1:Slider_1:Enabled := .f., ;
-                  MakeOpaque( oForm1 ), ;
-                  oForm1:TextBox_1:Enabled := .f., ;
-                  oForm1:Button_1:Enabled := .t., ;
-                  oForm1:Button_2:Enabled := .f. )
+         MakeOpaque( oForm1 ), ;
+         oForm1:TextBox_1:Enabled := .f., ;
+         oForm1:Button_1:Enabled := .t., ;
+         oForm1:Button_2:Enabled := .f. )
       oBut2:Transparent := .T.
 
       @ 50, 200 BUTTON Button_3 ;
@@ -76,9 +76,9 @@ FUNCTION Main
          CAPTION "Invisible Background" ;
          WIDTH   140 ;
          ACTION {|| SetBackgroundInvisible( oBut1:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oBut2:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oBut3:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oForm1:hWnd, oForm1:BackColorCode ) }
+         SetBackgroundInvisible( oBut2:hWnd, oForm1:BackColorCode ), ;
+         SetBackgroundInvisible( oBut3:hWnd, oForm1:BackColorCode ), ;
+         SetBackgroundInvisible( oForm1:hWnd, oForm1:BackColorCode ) }
       oBut3:Transparent := .T.
 
       DEFINE SLIDER Slider_1
@@ -125,42 +125,42 @@ FUNCTION Main
    oForm1:Center()
    oForm1:Activate()
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION TextBox_Change (oWin)
 
-  WITH OBJECT oWin
-    :Slider_1:Value := :TextBox_1:Value
+   WITH OBJECT oWin
+      :Slider_1:Value := :TextBox_1:Value
 
-     IF .not. SetTransparency( :hWnd, :Slider_1:Value )
-        MsgStop( "Transparency is not supported by OS !!!", "Error" )
-     ENDIF
-  END WITH
+      IF .not. SetTransparency( :hWnd, :Slider_1:Value )
+         MsgStop( "Transparency is not supported by OS !!!", "Error" )
+      ENDIF
+   END WITH
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION Slider_Change (oWin)
 
-  WITH OBJECT oWin
-     :TextBox_1:Value := :Slider_1:Value
+   WITH OBJECT oWin
+      :TextBox_1:Value := :Slider_1:Value
 
-     IF .not. SetTransparency( :hWnd, :Slider_1:Value )
-        MsgStop( "Transparency is not supported by OS !!!", "Error" )
-     ENDIF
-  END WITH
+      IF .not. SetTransparency( :hWnd, :Slider_1:Value )
+         MsgStop( "Transparency is not supported by OS !!!", "Error" )
+      ENDIF
+   END WITH
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION MakeOpaque( oWin )
 
-  WITH OBJECT oWin
-    :Slider_1:Value := 255
-    :TextBox_1:Value := 255
+   WITH OBJECT oWin
+      :Slider_1:Value := 255
+      :TextBox_1:Value := 255
 
-    RemoveTransparency( :hWnd )
-  END WITH
+      RemoveTransparency( :hWnd )
+   END WITH
 
-RETURN NIL
+   RETURN NIL
 
 #pragma BEGINDUMP
 

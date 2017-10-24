@@ -21,7 +21,7 @@
 #define DBFILE    "_tst_"
 
 #define DBNAME    "net:" + DBSERVER + ":" + hb_ntos( DBPORT ) + ":" + ;
-                  DBPASSWD + ":" + DBDIR + "/" + DBFILE
+   DBPASSWD + ":" + DBDIR + "/" + DBFILE
 
 request DBFCDX
 
@@ -84,7 +84,7 @@ proc main()
    ? "Directory './data'", iif( !lExists, "not exists", "exists" )
    if !lExists
       ? "Creating directory './data' ->", ;
-       iif( netio_funcexec( "hb_DirCreate", "./data" ) == -1, "error", "OK" )
+         iif( netio_funcexec( "hb_DirCreate", "./data" ) == -1, "error", "OK" )
    endif
 
    createdb( DBNAME )
@@ -109,15 +109,15 @@ proc main()
    ?
    ? "stopping the server..."
    netio_serverstop( pSockSrv, .t. )
-return
+   return
 
 proc createdb( cName )
    local n
 
    dbCreate( cName, {{"F1", "C", 20, 0},;
-                     {"F2", "M",  4, 0},;
-                     {"F3", "N", 10, 2},;
-                     {"F4", "T",  8, 0}} )
+      {"F2", "M",  4, 0},;
+      {"F3", "N", 10, 2},;
+      {"F4", "T",  8, 0}} )
    ? "create neterr:", neterr(), hb_osError()
    use (cName)
    ? "use neterr:", neterr(), hb_osError()
@@ -134,7 +134,7 @@ proc createdb( cName )
    index on field->F4 tag T4
    close
    ?
-return
+   return
 
 proc testdb( cName )
    local i, j
@@ -164,17 +164,17 @@ proc testdb( cName )
    browse()
    setpos( i, j )
    close
-return
+   return
 
 func reg_stream( pConnSock, nStream )
    ? PROCNAME(), nStream
    hb_threadDetach( hb_threadStart( @rpc_timer(), pConnSock, nStream ) )
-return nStream
+   return nStream
 
 func reg_charstream( pConnSock, nStream )
    ? PROCNAME(), nStream
    hb_threadDetach( hb_threadStart( @rpc_charstream(), pConnSock, nStream ) )
-return nStream
+   return nStream
 
 static func rpc_timer( pConnSock, nStream )
    while .t.
@@ -184,7 +184,7 @@ static func rpc_timer( pConnSock, nStream )
       endif
       hb_idleSleep( 1 )
    enddo
-return nil
+   return nil
 
 static func rpc_charstream( pConnSock, nStream )
    local n := 0
@@ -196,5 +196,5 @@ static func rpc_charstream( pConnSock, nStream )
       n := int( ( n + 1 ) % 26 )
       hb_idleSleep( 0.1 )
    enddo
-return nil
+   return nil
 

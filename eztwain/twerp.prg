@@ -33,18 +33,18 @@ Procedure Main
    SET MULTIPLE OFF
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 500 ;
-      HEIGHT 350 ;
-      TITLE 'Twerp - EZTwain sample app by Spike' ;
-      ICON 'twerp.ico' ;
-      MAIN ;
-      ON INIT hWnd := GetFormHandle ('Win_1') ;
-      ON RELEASE DiscardImage() ;
-      ON PAINT OnPaint() ;
-      BACKCOLOR CLR_DARK_BLUE
+         AT 0,0 ;
+         WIDTH 500 ;
+         HEIGHT 350 ;
+         TITLE 'Twerp - EZTwain sample app by Spike' ;
+         ICON 'twerp.ico' ;
+         MAIN ;
+         ON INIT hWnd := GetFormHandle ('Win_1') ;
+         ON RELEASE DiscardImage() ;
+         ON PAINT OnPaint() ;
+         BACKCOLOR CLR_DARK_BLUE
 
-              ////  oWnd:=GetFormObject( "win_1" )
+      ////  oWnd:=GetFormObject( "win_1" )
 
       DEFINE MAIN MENU
          DEFINE POPUP '&File'
@@ -86,45 +86,45 @@ Procedure Main
 
    ACTIVATE WINDOW Win_1
 
-Return
+   Return
 
 *************************************
 Function Acquire()
 
    // free up current image and palette if any
    DiscardImage()
-*   InvalidateRect( _HMG_MainHandle, 1 )
+   *   InvalidateRect( _HMG_MainHandle, 1 )
 
    TWAIN_SetHideUI(fHideUI)
 
-//   if TWAIN_OpenDefaultSource() > 0
-      hdib = TWAIN_AcquireNative(hWnd, wPixTypes)
-      if !EMPTY(hdib)
-         // compute or guess a palette to use for display
-         hpal = TWAIN_CreateDibPalette(hdib)
+   //   if TWAIN_OpenDefaultSource() > 0
+   hdib = TWAIN_AcquireNative(hWnd, wPixTypes)
+   if !EMPTY(hdib)
+      // compute or guess a palette to use for display
+      hpal = TWAIN_CreateDibPalette(hdib)
 
-         // size the window to just contain the image
-         ResizeWindow()
-      endif
-//   else
-//      MsgStop( "Unable to open default Data Source.", "Error" )
-//   endif
+      // size the window to just contain the image
+      ResizeWindow()
+   endif
+   //   else
+   //      MsgStop( "Unable to open default Data Source.", "Error" )
+   //   endif
 
-return nil
+   return nil
 **********
 
 *************************************
 Function AcquireToFilename()
-Local nResult := 1
-Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files (*.jpg)', '*.jpg'}  }, , ;
-          , @nResult )
+   Local nResult := 1
+   Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files (*.jpg)', '*.jpg'}  }, , ;
+      , @nResult )
 
    if !EMPTY(cFilename)
-*      cFilename := cFilePath(cFilename) + "\" + cFileNoExt(cFilename) + ".bmp"   GetMyDocumentsFolder()
+      *      cFilename := cFilePath(cFilename) + "\" + cFileNoExt(cFilename) + ".bmp"   GetMyDocumentsFolder()
 
       // free up current image and palette if any
       DiscardImage()
-*      InvalidateRect( _HMG_MainHandle, 1 )
+      *      InvalidateRect( _HMG_MainHandle, 1 )
 
       if TWAIN_AcquireToFilename( hWnd, cFilename ) == 0
          hdib = TWAIN_LoadNativeFromFilename( cFilename )
@@ -145,7 +145,7 @@ Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files 
       endif
    endif
 
-return nil
+   return nil
 **********
 
 **********************************
@@ -157,39 +157,39 @@ function AcquireToClipboard()
       MsgInfo( "The image was transfered to the clipboard.", "Twerp", , .f. )
    endif
 
-return nil
+   return nil
 **********
 
 *************************************
 Function OnPaint()
-Local x := GetDesktopRectWidth(), y := GetDesktopRectHeight()
-Local pps, hDC, w, h
+   Local x := GetDesktopRectWidth(), y := GetDesktopRectHeight()
+   Local pps, hDC, w, h
 
    // force repaint of window
-*   InvalidateRect( _HMG_MainHandle, 1 )
+   *   InvalidateRect( _HMG_MainHandle, 1 )
 
    pps := DefinePaintStru()
    hDC := BeginPaint(hWnd, pps )
 
-if valtype(hpal) == 'N'
-   SetPalette(hDC, hpal)
-endif
-if valtype(hdib) == 'N'
-   w := TWAIN_DibWidth(hdib)
-   h := TWAIN_DibHeight(hdib)
+   if valtype(hpal) == 'N'
+      SetPalette(hDC, hpal)
+   endif
+   if valtype(hdib) == 'N'
+      w := TWAIN_DibWidth(hdib)
+      h := TWAIN_DibHeight(hdib)
 
-   // wait cursor (hourglass)
-   CursorWait()
-   SetCursorPos(x / 2, y / 2)
+      // wait cursor (hourglass)
+      CursorWait()
+      SetCursorPos(x / 2, y / 2)
 
-   TWAIN_DrawDibToDC(hDC, 0, 0, w, h, hdib, 0, 0)
+      TWAIN_DrawDibToDC(hDC, 0, 0, w, h, hdib, 0, 0)
 
-   // delay emulation for power PC
-   InKey(.1)
-   CursorArrow()
+      // delay emulation for power PC
+      InKey(.1)
+      CursorArrow()
 
-   Win_1.TW_APP_SAVEAS.Enabled := .T.
-endif
+      Win_1.TW_APP_SAVEAS.Enabled := .T.
+   endif
 
    EndPaint( hWnd, pps )
 
@@ -201,7 +201,7 @@ Function OnOpen()
 
    // free up current image and palette if any
    DiscardImage()
-*   InvalidateRect( _HMG_MainHandle, 1 )
+   *   InvalidateRect( _HMG_MainHandle, 1 )
 
    hdib = TWAIN_LoadNativeFromFilename(0)
    if !EMPTY(hdib)
@@ -212,14 +212,14 @@ Function OnOpen()
       ResizeWindow()
    endif
 
-return nil
+   return nil
 **********
 
 ****************
 Function SaveAs()
-Local nResult := 1, aExt := { "bmp" , "jpg" }
-Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files (*.jpg)', '*.jpg'}  }, , ;
-          , @nResult )
+   Local nResult := 1, aExt := { "bmp" , "jpg" }
+   Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files (*.jpg)', '*.jpg'}  }, , ;
+      , @nResult )
 
    if !Empty( cFilename )
       cFilename := IF( RAT( ".", cFilename ) == 4, cFilename, cFilename + "." + aExt[nResult] )
@@ -237,57 +237,57 @@ Local cFilename := Putfile( { {'Windows Bitmaps (*.bmp)', '*.bmp'}, {'Jpg Files 
       endif
    endif
 
-return nil
+   return nil
 **********
 
 ****************
 Function SetTypes()
-Local cItem := This.name, cCurrentType
+   Local cItem := This.name, cCurrentType
 
    if !"UI" $ cItem
       do case
-         case wPixTypes = TWAIN_BW
-            cCurrentType := "TW_APP_BW"
-         case wPixTypes = TWAIN_GRAY
-            cCurrentType := "TW_APP_GRAYSCALE"
-         case wPixTypes = TWAIN_RGB
-            cCurrentType := "TW_APP_RGB"
-         case wPixTypes = TWAIN_PALETTE
-            cCurrentType := "TW_APP_PALETTE"
-         case wPixTypes = TWAIN_ANYTYPE
-            cCurrentType := "TW_APP_ANYPIX"
+      case wPixTypes = TWAIN_BW
+         cCurrentType := "TW_APP_BW"
+      case wPixTypes = TWAIN_GRAY
+         cCurrentType := "TW_APP_GRAYSCALE"
+      case wPixTypes = TWAIN_RGB
+         cCurrentType := "TW_APP_RGB"
+      case wPixTypes = TWAIN_PALETTE
+         cCurrentType := "TW_APP_PALETTE"
+      case wPixTypes = TWAIN_ANYTYPE
+         cCurrentType := "TW_APP_ANYPIX"
       endcase
-//      Win_1.&cCurrentType.Checked := .F.
+      //      Win_1.&cCurrentType.Checked := .F.
       SetProperty("Win_1", cCurrentType, "Checked", .F.)
    endif
 
    do case
-            case cItem == "TW_APP_BW"
-               wPixTypes := TWAIN_BW
-      case cItem == "TW_APP_GRAYSCALE"
-              wPixTypes := TWAIN_GRAY
-      case cItem == "TW_APP_RGB"
-              wPixTypes := TWAIN_RGB
-      case cItem == "TW_APP_PALETTE"
-              wPixTypes := TWAIN_PALETTE
-      case cItem == "TW_APP_ANYPIX"
-              wPixTypes := TWAIN_ANYTYPE
-      case cItem == "TW_APP_SHOWUI"
-         fHideUI = 0
-         Win_1.TW_APP_HIDEUI.Checked := .F.
-      case cItem == "TW_APP_HIDEUI"
-         fHideUI = 1
-         Win_1.TW_APP_SHOWUI.Checked := .F.
+   case cItem == "TW_APP_BW"
+      wPixTypes := TWAIN_BW
+   case cItem == "TW_APP_GRAYSCALE"
+      wPixTypes := TWAIN_GRAY
+   case cItem == "TW_APP_RGB"
+      wPixTypes := TWAIN_RGB
+   case cItem == "TW_APP_PALETTE"
+      wPixTypes := TWAIN_PALETTE
+   case cItem == "TW_APP_ANYPIX"
+      wPixTypes := TWAIN_ANYTYPE
+   case cItem == "TW_APP_SHOWUI"
+      fHideUI = 0
+      Win_1.TW_APP_HIDEUI.Checked := .F.
+   case cItem == "TW_APP_HIDEUI"
+      fHideUI = 1
+      Win_1.TW_APP_SHOWUI.Checked := .F.
    endcase
-//   Win_1.&cItem.Checked := .T.
+   //   Win_1.&cItem.Checked := .T.
    SetProperty("Win_1", cItem, "Checked", .T.)
 
-return nil
+   return nil
 **********
 
 ****************
 Procedure ResizeWindow()
-Local w := GetDesktopRectWidth(), h := GetDesktopRectHeight()
+   Local w := GetDesktopRectWidth(), h := GetDesktopRectHeight()
 
    Win_1.Hide
 
@@ -303,7 +303,7 @@ Local w := GetDesktopRectWidth(), h := GetDesktopRectHeight()
 
    Win_1.Show
 
-return
+   return
 **********
 
 *************************************
@@ -319,7 +319,7 @@ Function DiscardImage()
       Win_1.TW_APP_SAVEAS.Enabled := .F.
    endif
 
-return nil
+   return nil
 **********
 
 *------------------------------------------------------------------------------*

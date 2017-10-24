@@ -16,11 +16,11 @@
 Function Main
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 400 ;
-      TITLE 'ooHG Access ODBC Demo (MDB)' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 400 ;
+         TITLE 'ooHG Access ODBC Demo (MDB)' ;
+         MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP 'File'
@@ -32,7 +32,7 @@ Function Main
 
    ACTIVATE WINDOW Win_1
 
-Return
+   Return
 
 PROCEDURE TEST
 
@@ -75,13 +75,13 @@ PROCEDURE TEST
 
       :Close()
 
-     /// :SetSQL( "MODIFY * FROM table1 BY 'Vargas' FOR :FieldByName( 'field1' ):Value='pablo'" )
-    ///  :Open()
-    /// :close()
+      /// :SetSQL( "MODIFY * FROM table1 BY 'Vargas' FOR :FieldByName( 'field1' ):Value='pablo'" )
+      ///  :Open()
+      /// :close()
 
    END
 
    dsFunctions:Destroy()
 
-RETURN( NIL )
+   RETURN( NIL )
 

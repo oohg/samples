@@ -22,20 +22,20 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 640 ;
-      HEIGHT 520 ;
-      NOSIZE ;
-      NOMAXIMIZE ;
-      FONT "Arial" ;
-      SIZE 12 ;
-      TITLE "System Fonts and Metrics"
+         AT 0, 0 ;
+         WIDTH 640 ;
+         HEIGHT 520 ;
+         NOSIZE ;
+         NOMAXIMIZE ;
+         FONT "Arial" ;
+         SIZE 12 ;
+         TITLE "System Fonts and Metrics"
 
       @ 10, 10 LABEL label_01 ;
          VALUE "Default Font: " + GetDefaultFontName() + ;
-               LTrim( Str( GetDefaultFontSize() ) ) + ;
-               " (Height: " + LTrim( Str( GetDefaultFontHeight() ) ) + ")"  + ;
-               " - " + Str( GetScreenDPIX() ) ;
+         LTrim( Str( GetDefaultFontSize() ) ) + ;
+         " (Height: " + LTrim( Str( GetDefaultFontHeight() ) ) + ")"  + ;
+         " - " + Str( GetScreenDPIX() ) ;
          AUTOSIZE
 
       // See https://technet.microsoft.com/en-us/library/cc951790.aspx
@@ -85,17 +85,17 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION FontData( aFont )
 
-RETURN ( aFont[1] + " " + ;
-         Alltrim(str(aFont[2])) + " " + ;
-         IF( aFont[3], "Bold ", "" ) + ;
-         IF( aFont[4], "Italic ", "" ) + ;
-         IF( aFont[5], "Underline ", "" ) + ;
-         IF( aFont[6], "StrikeOut ", "" ) + ;
-         "Charset: " + AllTrim( Str( aFont[7] ) ) )
+   RETURN ( aFont[1] + " " + ;
+   Alltrim(str(aFont[2])) + " " + ;
+   IF( aFont[3], "Bold ", "" ) + ;
+   IF( aFont[4], "Italic ", "" ) + ;
+   IF( aFont[5], "Underline ", "" ) + ;
+   IF( aFont[6], "StrikeOut ", "" ) + ;
+   "Charset: " + AllTrim( Str( aFont[7] ) ) )
 
 //--------------------------------------------------------------------------
 #pragma BEGINDUMP

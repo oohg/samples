@@ -24,24 +24,24 @@ proc main()
    set deleted on
    rddSetDefault( "DBFCDX" )
 
-  hb_inetInit()
+   hb_inetInit()
 
    f:=netio_connect()
 
    createdb( DBNAME )
    testdb( DBNAME )
 
-return
+   return
 
 procedure createdb( cName )
    local n
 
    dbCreate( cName, {{"F1", "C", 20, 0},;
-                     {"F2", "C",  4, 0},;
-                     {"F3", "N", 10, 2},;
-                     {"F4", "D",  8, 0}} )
+      {"F2", "C",  4, 0},;
+      {"F3", "N", 10, 2},;
+      {"F4", "D",  8, 0}} )
    use (cName)
-n:=0
+   n:=0
    while n<100
       append blank
       n := recno() ////- 1
@@ -54,15 +54,15 @@ n:=0
    index on field->F3 tag T3
    index on field->F4 tag T4
    close
-  /// ?
-return
+   /// ?
+   return
 
 proc testdb( cName )
    local i, j
    use (cName)
    for i:=1 to ordCount()
       ordSetFocus( i )
-///      ? i, "name:", ordName(), "key:", ordKey(), "keycount:", ordKeyCount()
+      ///      ? i, "name:", ordName(), "key:", ordKey(), "keycount:", ordKeyCount()
    next
    ordSetFocus( 1 )
    dbgotop()
@@ -77,24 +77,24 @@ proc testdb( cName )
    browse_gui()
    edit extended workarea tests
    close
-return
+   return
 
 function browse_gui ()
 
-define window form_1 at 0,0 width 640 height 480 main title "Netio Client Demo"
+   define window form_1 at 0,0 width 640 height 480 main title "Netio Client Demo"
 
-@ 10,10  button button_1 caption "exit" action {|| form_1.release }
-@ 10,200 button button_2 caption "abm" action { || otroabm() }
+      @ 10,10  button button_1 caption "exit" action {|| form_1.release }
+      @ 10,200 button button_2 caption "abm" action { || otroabm() }
 
-@ 50,10  browse browse_1 width 600 height 280 workarea tests edit append delete inplace lock headers {"f1","f2","f3","f4"} fields { "f1" ," f2" ,"f3" ," f4" }
+      @ 50,10  browse browse_1 width 600 height 280 workarea tests edit append delete inplace lock headers {"f1","f2","f3","f4"} fields { "f1" ," f2" ,"f3" ," f4" }
 
-end window
+   end window
 
-center window form_1
-activate window form_1
+   center window form_1
+   activate window form_1
 
-return nil
+   return nil
 function otroabm()
-edit extended workarea tests
-return nil
+   edit extended workarea tests
+   return nil
 

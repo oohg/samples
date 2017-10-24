@@ -12,12 +12,12 @@
 Function Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 640 HEIGHT 480 ;
-      TITLE 'ooHG Demo' ;
-      MAIN ;
+         AT 0,0 ;
+         WIDTH 640 HEIGHT 480 ;
+         TITLE 'ooHG Demo' ;
+         MAIN ;
 
-//////////                ON SIZE SizeTest()
+      //////////                ON SIZE SizeTest()
 
       DEFINE MAIN MENU
 
@@ -59,14 +59,14 @@ Function Main
 
    Form_1.Activate
 
-Return Nil
+   Return Nil
 
 Procedure SizeTest()
 
    Form_1.Tab_1.Width := Form_1.Width - 30
    Form_1.Tab_1.Height := Form_1.Height - 100
 
-Return
+   Return
 
 Procedure Tab_1( lStyle )
 
@@ -77,26 +77,26 @@ Procedure Tab_1( lStyle )
    IF lStyle
 
       DEFINE TAB Tab_1 ;
-         OF Form_1 ;
-         AT 10,10 ;
-         WIDTH 600 ;
-         HEIGHT 400 ;
-         VALUE 1 ;
-         TOOLTIP 'Tab Control'
+            OF Form_1 ;
+            AT 10,10 ;
+            WIDTH 600 ;
+            HEIGHT 400 ;
+            VALUE 1 ;
+            TOOLTIP 'Tab Control'
 
-   ELSE
+      ELSE
 
-      DEFINE TAB Tab_1 ;
-         OF Form_1 ;
-         AT 10,10 ;
-         WIDTH 600 ;
-         HEIGHT 400 ;
-         VALUE 1 ;
-         TOOLTIP 'Tab Control' ;
+         DEFINE TAB Tab_1 ;
+               OF Form_1 ;
+               AT 10,10 ;
+               WIDTH 600 ;
+               HEIGHT 400 ;
+               VALUE 1 ;
+               TOOLTIP 'Tab Control' ;
 
-////                        BOTTOM
+            ////                        BOTTOM
 
-   ENDIF
+         ENDIF
          PAGE 'Page 1' IMAGE 'Exit.Bmp'
 
          END PAGE
@@ -111,5 +111,5 @@ Procedure Tab_1( lStyle )
 
       END TAB
 
-Return
+      Return
 

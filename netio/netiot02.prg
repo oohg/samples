@@ -26,19 +26,19 @@
  * pseudo object 'net', i.e. ? net:date()
  */
 #xtranslate net:<!func!>([<params,...>]) => ;
-            netio_funcexec( #<func> [,<params>] )
+   netio_funcexec( #<func> [,<params>] )
 #xtranslate net:[<server>]:<!func!>([<params,...>]) => ;
-            netio_funcexec( [ #<server> + ] ":" + #<func> [,<params>] )
+   netio_funcexec( [ #<server> + ] ":" + #<func> [,<params>] )
 #xtranslate net:[<server>]:<port>:<!func!>([<params,...>]) => ;
-            netio_funcexec( [ #<server> + ] ":" + #<port> + ":" + #<func> ;
-                            [,<params>] )
+   netio_funcexec( [ #<server> + ] ":" + #<port> + ":" + #<func> ;
+   [,<params>] )
 
 #xtranslate net:exists:<!func!> => ;
-            netio_procexists( #<func> )
+   netio_procexists( #<func> )
 #xtranslate net:exists:[<server>]:<!func!> => ;
-            netio_procexists( [ #<server> + ] ":" + #<func> )
+   netio_procexists( [ #<server> + ] ":" + #<func> )
 #xtranslate net:exists:[<server>]:<port>:<!func!> => ;
-            netio_procexists( [ #<server> + ] ":" + #<port> + ":" + #<func> )
+   netio_procexists( [ #<server> + ] ":" + #<port> + ":" + #<func> )
 
 /* address of computer executing netiosrv,
  * change it if it's not the same machine
@@ -75,5 +75,5 @@ proc main()
 
    /* close the connection to the server */
    ? "NETIO_DISCONNECT():", netio_disconnect( NETSERVER, NETPORT )
-return
+   return
 

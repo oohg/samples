@@ -10,16 +10,16 @@
 #include "oohg.ch"
 
 Function Main()
-Local nTra := 210, hWnd
+   Local nTra := 210, hWnd
 
    DEFINE WINDOW WinTr ;
-      AT 0,0 ;
-      WIDTH 300 ;
-      HEIGHT 300 ;
-      TITLE 'Transparent window' ;
-      MAIN ;
-      NOSIZE NOMAXIMIZE ;
-      ON INIT ( hWnd := GetFormHandle('WinTR'), SetTransparent(hWnd, nTra) )
+         AT 0,0 ;
+         WIDTH 300 ;
+         HEIGHT 300 ;
+         TITLE 'Transparent window' ;
+         MAIN ;
+         NOSIZE NOMAXIMIZE ;
+         ON INIT ( hWnd := GetFormHandle('WinTR'), SetTransparent(hWnd, nTra) )
 
       @ 200,100 BUTTON But1 ;
          CAPTION "Click Me" ;
@@ -32,7 +32,7 @@ Local nTra := 210, hWnd
 
    ACTIVATE WINDOW WinTR
 
-RETURN NIL
+   RETURN NIL
 
 #pragma BEGINDUMP
 

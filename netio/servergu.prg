@@ -30,10 +30,10 @@ proc main()
 
    msginfo("NETIO server activated.")
    hb_idleSleep( 0.1 )
-///   wait "aguanta"
+   ///   wait "aguanta"
    do while .t.
       inkey(0.9)
       processmessages()
    enddo
-return
+   return
 

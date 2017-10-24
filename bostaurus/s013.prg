@@ -925,7 +925,6 @@ PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
    ENDIF
    RETURN
 
-
 #pragma BEGINDUMP
 
 #include <windows.h>
