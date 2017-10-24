@@ -1,28 +1,28 @@
 /*
- * InputWindow Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed byThe Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * Based on an original contribution by
- * Antonio Vázquez <avazquezc@telefonica.net>
- *
- * This sample shows how to capture data using the
- * InputWindow function.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* InputWindow Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed byThe Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* Based on an original contribution by
+* Antonio Vázquez <avazquezc@telefonica.net>
+*
+* This sample shows how to capture data using the
+* InputWindow function.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main()
 
    DEFINE WINDOW Frm1 ;
-      AT 0, 0 ;
-      WIDTH 300 HEIGHT 300 ;
-      MAIN ;
-      TITLE "InputWindow Function"
+         AT 0, 0 ;
+         WIDTH 300 HEIGHT 300 ;
+         MAIN ;
+         TITLE "InputWindow Function"
 
       @  20, 20 LABEL lbl_0 VALUE "Concept:"
       @  50, 20 LABEL lbl_1 VALUE "Motive:"
@@ -76,92 +76,92 @@ FUNCTION Main()
    CENTER WINDOW Frm1
    ACTIVATE WINDOW Frm1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION Capture()
 
-/*
- * InputWindow function parameters:
- *
- * ( cTitle, ;
- *   aLabels, ;
- *   aValues, ;
- *   aFormats, ;
- *   nRow, ;
- *   nCol, ;
- *   aButOKCancelCaptions, ;
- *   nLabelWidth, ;
- *   nControlWidth, ;
- *   nButtonWidth  )
- *
- * cTitle
- *    String.
- *    Window's title.
- * aLabels
- *    Array of strings.
- *    Labels to show.
- *    The number of items determines the number of capture fields.
- * aInitValues
- *    Array.
- *    Initial values for the capture fields.
- *    The type of each item determines the type of control to use for the
- *    capture. Valid types are logical, date, numeric, string and memo.
- *    The corresponding controls are checkbox, datepicker, combobox or
- *    editbox (see next parameter), textbox or editbox (see next parameter),
- *    and editbox.
- * aFormats
- *    Array.
- *    Aditional data for the capture. They depend on the type of the items in
- *    aInitValues (see previous parameter):
- *    Logical and Memo: NIL.
- *    Date: "SHOWNONE" to allow blank dates, NIL otherwise.
- *    Numeric: array or string. If it's an array, a combobox control is used
- *       for capture and the array content is used as items in the combobox.
- *       If it's a string (or memo) a numeric textbox is used for capture.
- *       If the string contains a decimal point, it's content is used as mask;
- *       if not, the string length is used as the maximum length to capture.
- *    String: numeric. If the value is less than or equal to 32 a textbox is
- *       used for the capture, if is greater an editbox control is used.
- *       The value is used as the maximun length to capture.
- * nRow y nCol
- *   Numeric.
- *   Window's position.
- *   A non numeric value means the window will be centered in the screen.
- * aButOKCancelCaptions
- *   An array with two items of character type.
- *   Text for the window's buttons.
- *   Defaults to {'Ok','Cancel'} or their respective translations according
- *   to the SET LANGUAGE specified.
- * nLabelWidth
- *   Numeric.
- *   Width of the labels. Defaults to 110.
- * nControlWidth
- *   Numeric.
- *   Width of the controls. Defaults to 140.
- * nButtonWidth
- *   Numeric.
- *   Width of the buttons. Defaults to 100.
- */
+   /*
+   * InputWindow function parameters:
+   *
+   * ( cTitle, ;
+      *   aLabels, ;
+      *   aValues, ;
+      *   aFormats, ;
+      *   nRow, ;
+      *   nCol, ;
+      *   aButOKCancelCaptions, ;
+      *   nLabelWidth, ;
+      *   nControlWidth, ;
+      *   nButtonWidth  )
+   *
+   * cTitle
+   *    String.
+   *    Window's title.
+   * aLabels
+   *    Array of strings.
+   *    Labels to show.
+   *    The number of items determines the number of capture fields.
+   * aInitValues
+   *    Array.
+   *    Initial values for the capture fields.
+   *    The type of each item determines the type of control to use for the
+   *    capture. Valid types are logical, date, numeric, string and memo.
+   *    The corresponding controls are checkbox, datepicker, combobox or
+   *    editbox (see next parameter), textbox or editbox (see next parameter),
+   *    and editbox.
+   * aFormats
+   *    Array.
+   *    Aditional data for the capture. They depend on the type of the items in
+   *    aInitValues (see previous parameter):
+   *    Logical and Memo: NIL.
+   *    Date: "SHOWNONE" to allow blank dates, NIL otherwise.
+   *    Numeric: array or string. If it's an array, a combobox control is used
+   *       for capture and the array content is used as items in the combobox.
+   *       If it's a string (or memo) a numeric textbox is used for capture.
+   *       If the string contains a decimal point, it's content is used as mask;
+      *       if not, the string length is used as the maximum length to capture.
+   *    String: numeric. If the value is less than or equal to 32 a textbox is
+   *       used for the capture, if is greater an editbox control is used.
+   *       The value is used as the maximun length to capture.
+   * nRow y nCol
+   *   Numeric.
+   *   Window's position.
+   *   A non numeric value means the window will be centered in the screen.
+   * aButOKCancelCaptions
+   *   An array with two items of character type.
+   *   Text for the window's buttons.
+   *   Defaults to {'Ok','Cancel'} or their respective translations according
+   *   to the SET LANGUAGE specified.
+   * nLabelWidth
+   *   Numeric.
+   *   Width of the labels. Defaults to 110.
+   * nControlWidth
+   *   Numeric.
+   *   Width of the controls. Defaults to 140.
+   * nButtonWidth
+   *   Numeric.
+   *   Width of the buttons. Defaults to 100.
+   */
 
    cTitle      := "Enter Data"
    aLabels     := { "Concept:", ;
-                    "Motive:", ;
-                    "Date:", ;
-                    "Amount:", ;
-                    "Register:", ;
-                    "Type:" }
+      "Motive:", ;
+      "Date:", ;
+      "Amount:", ;
+      "Register:", ;
+      "Type:" }
    aInitValues := { Frm1.lbl_Concept.Value, ;
-                    Frm1.lbl_Motive.Value, ;
-                    Frm1.dtp_Date.Value, ;
-                    Frm1.txt_Amount.Value, ;
-                    Frm1.chk_Register.Value, ;
-                    Frm1.cmb_Type.Value }
+      Frm1.lbl_Motive.Value, ;
+      Frm1.dtp_Date.Value, ;
+      Frm1.txt_Amount.Value, ;
+      Frm1.chk_Register.Value, ;
+      Frm1.cmb_Type.Value }
    aFormats    := { 40, ;
-                    20, ;
-                    NIL, ;
-                    "@E 999,999.99", ;
-                    NIL, ;
-                    { "Collect", "Payment" } }
+      20, ;
+      NIL, ;
+      "@E 999,999.99", ;
+      NIL, ;
+      { "Collect", "Payment" } }
 
    aResults    := InputWindow( cTitle, aLabels, aInitValues, aFormats )
 
@@ -172,9 +172,9 @@ FUNCTION Capture()
    Frm1.chk_Register.Value := aResults[5]
    Frm1.cmb_Type.Value     := aResults[6]
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
 

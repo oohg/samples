@@ -1,17 +1,17 @@
 /*
- * Image Sample n° 7
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to paint one image over another and
- * how to simulate a moving image, using methods Copy and Blend.
- * Be advised that under XP the flicker is awful.
- * See notes in Changelog.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Image Sample n° 7
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to paint one image over another and
+* how to simulate a moving image, using methods Copy and Blend.
+* Be advised that under XP the flicker is awful.
+* See notes in Changelog.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -19,16 +19,16 @@ FUNCTION Main
    PUBLIC oImage, oSprite, wB, hB, wS, hS, hImage
 
    DEFINE WINDOW frm_Main ;
-      AT 0, 0 ;
-      MAIN ;
-      CLIENTAREA ;
-      WIDTH 600 ;
-      HEIGHT 400 ;
-      ON INIT ( wS := _OOHG_BitMapWidth( oSprite:HBitMap ), ;
-                hS := _OOHG_BitMapHeight( oSprite:HBitMap ), ;
-                wB := _OOHG_BitMapWidth( oImage:HBitMap ), ;
-                hB := _OOHG_BitMapHeight( oImage:HBitMap ), ;
-                hImage := oImage:Copy() )
+         AT 0, 0 ;
+         MAIN ;
+         CLIENTAREA ;
+         WIDTH 600 ;
+         HEIGHT 400 ;
+         ON INIT ( wS := _OOHG_BitMapWidth( oSprite:HBitMap ), ;
+         hS := _OOHG_BitMapHeight( oSprite:HBitMap ), ;
+         wB := _OOHG_BitMapWidth( oImage:HBitMap ), ;
+         hB := _OOHG_BitMapHeight( oImage:HBitMap ), ;
+         hImage := oImage:Copy() )
 
       @ 20, 20 IMAGE img_Back ;
          OBJ oImage ;
@@ -53,7 +53,7 @@ FUNCTION Main
    CENTER WINDOW frm_Main
    ACTIVATE WINDOW frm_Main
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION MoveImage
    LOCAL hAux
@@ -67,11 +67,11 @@ FUNCTION MoveImage
 
    IF lX
       IF x + wS + 10 > wB
-        lX := ! lX
+         lX := ! lX
       ENDIF
    ELSE
       IF x - 10 < 0
-        lX := ! lX
+         lX := ! lX
       ENDIF
    ENDIF
 
@@ -83,11 +83,11 @@ FUNCTION MoveImage
 
    IF lY
       IF y + hS + 15 > hB
-        lY := ! lY
+         lY := ! lY
       ENDIF
    ELSE
       IF y - 15 < 0
-        lY := ! lY
+         lY := ! lY
       ENDIF
    ENDIF
 
@@ -97,9 +97,9 @@ FUNCTION MoveImage
       y -= 15
    ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
 

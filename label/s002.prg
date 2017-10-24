@@ -1,14 +1,14 @@
 /*
- * Label Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to display a vertical or rotated label
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Label Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to display a vertical or rotated label
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -17,37 +17,37 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 OBJ oWin ;
-      AT 0,0 ;
-      WIDTH 640 HEIGHT 480 ;
-      CLIENTAREA ;
-      TITLE "OOHG Label Demo" ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 HEIGHT 480 ;
+         CLIENTAREA ;
+         TITLE "OOHG Label Demo" ;
+         MAIN
 
       @ 20, 20 LABEL lbl_1 ;
          VALUE "T" + CRLF + ;
-               "h" + CRLF + ;
-               "i" + CRLF + ;
-               "s" + CRLF + ;
-               " " + CRLF + ;
-               "i" + CRLF + ;
-               "s" + CRLF + ;
-               " " + CRLF + ;
-               "a" + CRLF + ;
-               " " + CRLF + ;
-               "v" + CRLF + ;
-               "e" + CRLF + ;
-               "r" + CRLF + ;
-               "t" + CRLF + ;
-               "i" + CRLF + ;
-               "c" + CRLF + ;
-               "a" + CRLF + ;
-               "l" + CRLF + ;
-               " " + CRLF + ;
-               "l" + CRLF + ;
-               "a" + CRLF + ;
-               "b" + CRLF + ;
-               "e" + CRLF + ;
-               "l"          ;
+         "h" + CRLF + ;
+         "i" + CRLF + ;
+         "s" + CRLF + ;
+         " " + CRLF + ;
+         "i" + CRLF + ;
+         "s" + CRLF + ;
+         " " + CRLF + ;
+         "a" + CRLF + ;
+         " " + CRLF + ;
+         "v" + CRLF + ;
+         "e" + CRLF + ;
+         "r" + CRLF + ;
+         "t" + CRLF + ;
+         "i" + CRLF + ;
+         "c" + CRLF + ;
+         "a" + CRLF + ;
+         "l" + CRLF + ;
+         " " + CRLF + ;
+         "l" + CRLF + ;
+         "a" + CRLF + ;
+         "b" + CRLF + ;
+         "e" + CRLF + ;
+         "l"          ;
          WIDTH 24 ;
          HEIGHT 440
 
@@ -73,9 +73,9 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
 

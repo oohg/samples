@@ -1,30 +1,30 @@
 /*
- * Message Boxes Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how display message boxes with
- * different modes. See "Messagebox function" in MSDN.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Message Boxes Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how display message boxes with
+* different modes. See "Messagebox function" in MSDN.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 #include "i_windefs.ch"
 
 FUNCTION Main
 
-  SetMsgDefaultMode( MB_APPLMODAL )
-  SetMsgDefaultMessage( "Default message." )
-  SetMsgDefaultTitle( "Default Title" )
+   SetMsgDefaultMode( MB_APPLMODAL )
+   SetMsgDefaultMessage( "Default message." )
+   SetMsgDefaultTitle( "Default Title" )
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 600 HEIGHT 280 ;
-      TITLE 'ooHg - MessageBox modes' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 600 HEIGHT 280 ;
+         TITLE 'ooHg - MessageBox modes' ;
+         MAIN
 
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Use defaults Mode, Message and Title" ;
@@ -43,14 +43,14 @@ FUNCTION Main
          WIDTH 500 ;
          HEIGHT 28 ;
          ACTION MsgExclamation( "There's no icon in the title bar !!!", ;
-                                "MB_APPLMODAL" )
+         "MB_APPLMODAL" )
 
       @ 130, 10 BUTTON btn_4 ;
          CAPTION "Use defined Mode, Message and Title" ;
          WIDTH 500 ;
          HEIGHT 28 ;
          ACTION MsgBox( "This box has a system icon.", ;
-                        "MB_SYSTEMMODAL", MB_SYSTEMMODAL )
+         "MB_SYSTEMMODAL", MB_SYSTEMMODAL )
 
       @ 180, 10 LABEL lbl_1 ;
          VALUE "Click the buttons to see message boxes with diferent modes." ;
@@ -64,9 +64,9 @@ FUNCTION Main
 
    Form_1.Activate
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

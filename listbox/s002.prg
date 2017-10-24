@@ -1,17 +1,17 @@
 /*
- * Listbox Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to display images in a listbox.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download the images used in this sample from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ListBox
- */
+* Listbox Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to display images in a listbox.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download the images used in this sample from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ListBox
+*/
 
 #include "oohg.ch"
 
@@ -20,22 +20,22 @@ FUNCTION Main
    SET AUTOADJUST ON
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 480 ;
-      HEIGHT 680 ;
-      TITLE 'Listbox with Images' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 480 ;
+         HEIGHT 680 ;
+         TITLE 'Listbox with Images' ;
+         MAIN
 
       /*
       Each item can be:
       a) a string.
       b) a two-item array with a string at position 1 and a reference to
-         an image at position two. The image will be displayed left to the
-         string all the time.
+      an image at position two. The image will be displayed left to the
+      string all the time.
       c) a three-item array with a string at position 1 and two references
-         to images at position 2 and 3. The images are displayed left to the
-         string. The one at position 2 when the item has the focus and the
-         other when it hasn't.
+      to images at position 2 and 3. The images are displayed left to the
+      string. The one at position 2 when the item has the focus and the
+      other when it hasn't.
 
       Notes:
       - Items can be of mixed types: some a), some b) and some c) at the same time.
@@ -100,9 +100,9 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

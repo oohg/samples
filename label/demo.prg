@@ -4,12 +4,12 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 240 HEIGHT 400 ;
-      TITLE "oohg label Demo" ;
-      MAIN ;
-      FONT "Arial" SIZE 10 ;
-      BACKCOLOR YELLOW
+         AT 0,0 ;
+         WIDTH 240 HEIGHT 400 ;
+         TITLE "oohg label Demo" ;
+         MAIN ;
+         FONT "Arial" SIZE 10 ;
+         BACKCOLOR YELLOW
 
       ON KEY ESCAPE ACTION ThisWindow.Release()
 
@@ -87,5 +87,5 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+   RETURN Nil
 

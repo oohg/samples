@@ -3,11 +3,11 @@
 Function main()
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 200 ;
-      TITLE 'Menu Test' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 200 ;
+         TITLE 'Menu Test' ;
+         MAIN
 
       DEFINE MAIN MENU
 
@@ -78,5 +78,5 @@ Function main()
 
    ACTIVATE WINDOW Form_1
 
-Return
+   Return
 

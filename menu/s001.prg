@@ -1,30 +1,30 @@
 /*
- * Menu Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to use BREAKMENU [SEPARATOR].
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Menu Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to use BREAKMENU [SEPARATOR].
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm_1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 200 ;
-      TITLE 'ooHG Demo - Menu with breakmenu clause' ;
-      MAIN
+         OBJ oForm_1 ;
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 200 ;
+         TITLE 'ooHG Demo - Menu with breakmenu clause' ;
+         MAIN
 
       DEFINE STATUSBAR
-        KEYBOARD
-        DATE
+         KEYBOARD
+         DATE
       END STATUSBAR
 
       DEFINE MAIN MENU
@@ -104,9 +104,9 @@ FUNCTION Main()
 
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

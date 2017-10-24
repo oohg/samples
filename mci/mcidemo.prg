@@ -5,11 +5,11 @@ Function main()
    MsgInfo('To run this sample, you need the following files: sample.avi,sample.mp3,sample.wav,sample.mid and sample.asf','Multimedia Demo')
 
    DEFINE WINDOW Media_Test ;
-      AT 0,0 ;
-      WIDTH 550 ;
-      HEIGHT 400 ;
-      TITLE 'Media Test' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 550 ;
+         HEIGHT 400 ;
+         TITLE 'Media Test' ;
+         MAIN
 
       @ 200,0 PLAYER Player_1 ;
          WIDTH 100 ;
@@ -137,5 +137,5 @@ Function main()
 
    ACTIVATE WINDOW Media_Test
 
-Return
+   Return
 
