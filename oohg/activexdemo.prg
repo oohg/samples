@@ -1,18 +1,18 @@
 /*
- * $Id: activexdemo.prg,v 1.1 2007-03-25 22:41:42 guerra000 Exp $
- */
+* $Id: activexdemo.prg,v 1.1 2007-03-25 22:41:42 guerra000 Exp $
+*/
 /*
-   Marcelo Torres, Noviembre de 2006.
-   TActivex para [x]Harbour Minigui.
-   Adaptacion del trabajo de:
-   ---------------------------------------------
-   Lira Lira Oscar Joel [oSkAr]
-   Clase TAxtiveX_FreeWin para Fivewin
-   Noviembre 8 del 2006
-   email: oscarlira78@hotmail.com
-   http://freewin.sytes.net
-   @CopyRight 2006 Todos los Derechos Reservados
-   ---------------------------------------------
+Marcelo Torres, Noviembre de 2006.
+TActivex para [x]Harbour Minigui.
+Adaptacion del trabajo de:
+---------------------------------------------
+Lira Lira Oscar Joel [oSkAr]
+Clase TAxtiveX_FreeWin para Fivewin
+Noviembre 8 del 2006
+email: oscarlira78@hotmail.com
+http://freewin.sytes.net
+@CopyRight 2006 Todos los Derechos Reservados
+---------------------------------------------
 */
 
 #include "oohg.ch"
@@ -22,16 +22,16 @@ Static oActiveX, bVerde, WinDemo
 
 FUNCTION Main()
    DEFINE WINDOW WinDemo obj Windemo ;
-      AT     118,73 ;
-      WIDTH  808 ;
-      HEIGHT 534 ;
-      TITLE "ActiveX Support QAC Sample for OOHG" ;
-      MAIN ;
-      ON SIZE Ajust() ;
-      ON MAXIMIZE Ajust() ;
-      BACKCOLOR { 236 , 233 , 216 } ;
-      FONT 'Verdana' ;
-      SIZE 10 ;
+         AT     118,73 ;
+         WIDTH  808 ;
+         HEIGHT 534 ;
+         TITLE "ActiveX Support QAC Sample for OOHG" ;
+         MAIN ;
+         ON SIZE Ajust() ;
+         ON MAXIMIZE Ajust() ;
+         BACKCOLOR { 236 , 233 , 216 } ;
+         FONT 'Verdana' ;
+         SIZE 10 ;
 
       @ Windemo:height - 60 , 10 LABEL LSemaforo ;
          VALUE " " ;

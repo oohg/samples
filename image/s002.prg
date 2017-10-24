@@ -1,15 +1,15 @@
 /*
- * Image Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to store/retrieve and image into/from
- * a BLOB field and how to show it using an IMAGE control.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Image Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to store/retrieve and image into/from
+* a BLOB field and how to show it using an IMAGE control.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 #include "blob.ch"
@@ -45,15 +45,15 @@ FUNCTION Main
 
    // Show
    DEFINE WINDOW Form_1 ;
-      OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 588 ;
-      HEIGHT 480 ;
-      TITLE 'Show image from BLOB file' ;
-      MAIN ;
-      ON RELEASE IIF( MsgYesNo( "Clean auxiliary files?" ), ;
-                      Clean( cOutput ), ;
-                      NIL )
+         OBJ oForm ;
+         AT 0,0 ;
+         WIDTH 588 ;
+         HEIGHT 480 ;
+         TITLE 'Show image from BLOB file' ;
+         MAIN ;
+         ON RELEASE IIF( MsgYesNo( "Clean auxiliary files?" ), ;
+         Clean( cOutput ), ;
+         NIL )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
@@ -68,16 +68,16 @@ FUNCTION Main
 
    CLOSE DATABASES
 
-RETURN NIL
+   RETURN NIL
 
 PROCEDURE Clean( cOutput )
    CLOSE DATABASES
    FERASE( "IMAGES.DBF" )
    FERASE( "IMAGES.FPT" )
    FERASE( cOutput )
-RETURN
+   RETURN
 
 /*
- * EOF
- */
+* EOF
+*/
 

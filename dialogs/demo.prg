@@ -16,25 +16,25 @@ Function Main()
 
       DEFINE MAIN MENU
          POPUP 'Common &Dialog Functions'
-         ITEM 'GetFile()'  ACTION getfile_Click()
-         ITEM 'PutFile()'  ACTION Putfile ( { {'Images','*.jpg'} } , 'Save Image' , 'C:\' )
-         ITEM 'GetFont()'  ACTION GetFont_Click()
-         ITEM 'GetColor()' ACTION GetColor_Click()
-         ITEM 'GetFolder()' ACTION Getfolder_Click()
-      END POPUP
+            ITEM 'GetFile()'  ACTION getfile_Click()
+            ITEM 'PutFile()'  ACTION Putfile ( { {'Images','*.jpg'} } , 'Save Image' , 'C:\' )
+            ITEM 'GetFont()'  ACTION GetFont_Click()
+            ITEM 'GetColor()' ACTION GetColor_Click()
+            ITEM 'GetFolder()' ACTION Getfolder_Click()
+         END POPUP
 
-      POPUP 'H&elp'
-      ITEM 'About'      ACTION MsgInfo ("Free GUI Library For Harbour","ooHG Demo")
-   END POPUP
-END MENU
+         POPUP 'H&elp'
+            ITEM 'About'      ACTION MsgInfo ("Free GUI Library For Harbour","ooHG Demo")
+         END POPUP
+      END MENU
 
-END WINDOW
+   END WINDOW
 
-Form_1.Center()
+   Form_1.Center()
 
-Form_1.Activate()
+   Form_1.Activate()
 
-Return Nil
+   Return Nil
 
 *-----------------------------------------------------------------------------
 Procedure GetFolder_Click

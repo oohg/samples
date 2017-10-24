@@ -1,18 +1,18 @@
 /*
- * GDIPlus Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to use GDI+ library to load
- * and save bmp, jpeg, gif, tiff and png images.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download the images used in this sample from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/GDIPlus
- */
+* GDIPlus Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to use GDI+ library to load
+* and save bmp, jpeg, gif, tiff and png images.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download the images used in this sample from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/GDIPlus
+*/
 
 #include "oohg.ch"
 
@@ -34,25 +34,25 @@ PROCEDURE Main()
 
    aMimeType := gPlusGetEncoders()
    /*
-    * Default types:
-    * image/bmp
-    * image/jpeg
-    * image/gif
-    * image/tiff
-    * image/png
-    */
+   * Default types:
+   * image/bmp
+   * image/jpeg
+   * image/gif
+   * image/tiff
+   * image/png
+   */
 
    DEFINE WINDOW Form_Main OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'GDI+: Save Bitmap To File' ;
-      MAIN ;
-      NOMAXIMIZE ;
-      NOSIZE ;
-      ON RELEASE IIF( gPlusDeInit(), ;
-                      NIL, ;
-                      MsgExclamation( "Exit GDI+ Error", "Error" ) )
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'GDI+: Save Bitmap To File' ;
+         MAIN ;
+         NOMAXIMIZE ;
+         NOSIZE ;
+         ON RELEASE IIF( gPlusDeInit(), ;
+         NIL, ;
+         MsgExclamation( "Exit GDI+ Error", "Error" ) )
 
       DEFINE MAIN MENU
          DEFINE POPUP "&File"
@@ -60,47 +60,47 @@ PROCEDURE Main()
                IF "jpeg" $ aMimeType[i]
                   MENUITEM 'Save as JPEG' NAME mnu_JPEG DISABLED ;
                      ACTION SaveToFile( oImage:HBitMap, ;
-                                        "new.jpeg", ;
-                                        aSize[HBITMAP_WIDTH], ;
-                                        aSize[HBITMAP_HEIGHT], ;
-                                        "image/jpeg", ;
-                                        100 )
+                     "new.jpeg", ;
+                     aSize[HBITMAP_WIDTH], ;
+                     aSize[HBITMAP_HEIGHT], ;
+                     "image/jpeg", ;
+                     100 )
                ENDIF
                IF "gif" $ aMimeType[i]
                   MENUITEM 'Save as GIF' NAME mnu_GIF DISABLED ;
                      ACTION SaveToFile( oImage:HBitMap, ;
-                                        "new.gif", ;
-                                        aSize[HBITMAP_WIDTH], ;
-                                        aSize[HBITMAP_HEIGHT], ;
-                                        "image/gif", ;
-                                        100 )
+                     "new.gif", ;
+                     aSize[HBITMAP_WIDTH], ;
+                     aSize[HBITMAP_HEIGHT], ;
+                     "image/gif", ;
+                     100 )
                ENDIF
                IF "tiff" $ aMimeType[i]
                   MENUITEM 'Save as TIFF' NAME mnu_TIFF DISABLED ;
                      ACTION SaveToFile( oImage:HBitMap, ;
-                                        "new.tiff", ;
-                                        aSize[HBITMAP_WIDTH], ;
-                                        aSize[HBITMAP_HEIGHT], ;
-                                        "image/tiff", ;
-                                        100 )
+                     "new.tiff", ;
+                     aSize[HBITMAP_WIDTH], ;
+                     aSize[HBITMAP_HEIGHT], ;
+                     "image/tiff", ;
+                     100 )
                ENDIF
                IF "png" $ aMimeType[i]
                   MENUITEM 'Save as PNG' NAME mnu_PNG DISABLED ;
                      ACTION SaveToFile( oImage:HBitMap, ;
-                                        "new.png", ;
-                                        aSize[HBITMAP_WIDTH], ;
-                                        aSize[HBITMAP_HEIGHT], ;
-                                        "image/png", ;
-                                        100 )
+                     "new.png", ;
+                     aSize[HBITMAP_WIDTH], ;
+                     aSize[HBITMAP_HEIGHT], ;
+                     "image/png", ;
+                     100 )
                ENDIF
                IF "bmp" $ aMimeType[i]
                   MENUITEM 'Save as BMP' NAME mnu_BMP DISABLED ;
                      ACTION SaveToFile( oImage:HBitMap, ;
-                                        "new.bmp", ;
-                                        aSize[HBITMAP_WIDTH], ;
-                                        aSize[HBITMAP_HEIGHT], ;
-                                        "image/bmp", ;
-                                        100 )
+                     "new.bmp", ;
+                     aSize[HBITMAP_WIDTH], ;
+                     aSize[HBITMAP_HEIGHT], ;
+                     "image/bmp", ;
+                     100 )
                ENDIF
             NEXT
             SEPARATOR
@@ -109,19 +109,19 @@ PROCEDURE Main()
          DEFINE POPUP "&?"
             MENUITEM 'Get number of image encoders' ;
                ACTION MsgInfo( "Number of image encoders: " + ;
-                                  LTrim( Str( gPlusGetEncodersNum() ) ), ;
-                               "Info" )
+               LTrim( Str( gPlusGetEncodersNum() ) ), ;
+               "Info" )
             SEPARATOR
             MENUITEM "Image Info" NAME mnu_INFO DISABLED ;
                ACTION AutoMsgInfo( { "Name: " + hb_OSNewLine() + ;
-                                        cPicture, ;
-                                     "Width: " + hb_OSNewLine() + ;
-                                        LTrim( Str( aSize[HBITMAP_WIDTH] ) ), ;
-                                     "Height: " + hb_OSNewLine() + ;
-                                        LTrim( Str( aSize[HBITMAP_HEIGHT] ) ), ;
-                                     "Bits per Pixel: " + hb_OSNewLine() + ;
-                                        LTrim( Str( aSize[HBITMAP_BITSPIXEL] ) ) }, ;
-                                   "Image Info" )
+               cPicture, ;
+               "Width: " + hb_OSNewLine() + ;
+               LTrim( Str( aSize[HBITMAP_WIDTH] ) ), ;
+               "Height: " + hb_OSNewLine() + ;
+               LTrim( Str( aSize[HBITMAP_HEIGHT] ) ), ;
+               "Bits per Pixel: " + hb_OSNewLine() + ;
+               LTrim( Str( aSize[HBITMAP_BITSPIXEL] ) ) }, ;
+               "Image Info" )
             MENUITEM '"rainbow.jpg" Info' ;
                ACTION GetImageInfo( GetStartupFolder() + "\rainbow.jpg" )
             MENUITEM '"fondo.jpg" Info' ;
@@ -155,7 +155,7 @@ PROCEDURE Main()
 
    CENTER WINDOW Form_Main
    ACTIVATE WINDOW Form_Main
-RETURN
+   RETURN
 
 FUNCTION LoadImage( i )
    cType          := {'bmp','jpeg','gif','tiff','png','emf'}[i]
@@ -170,7 +170,7 @@ FUNCTION LoadImage( i )
    oForm:mnu_TIFF:Enabled := ( i # 4 )
    oForm:mnu_PNG:Enabled  := ( i # 5 )
    oForm:mnu_INFO:Enabled := .T.
-RETURN NIL
+   RETURN NIL
 
 FUNCTION GetImageInfo( cFile )
    LOCAL nImage, nWidth, nHeight
@@ -180,22 +180,22 @@ FUNCTION GetImageInfo( cFile )
    nHeight := gPlusGetImageHeight( nImage )
 
    AutoMsgInfo( { "Name: " + hb_OSNewLine() + cFile, ;
-                  "Width: "  + hb_OSNewLine() + LTrim( Str( nWidth ) ), ;
-                  "Height: " + hb_OSNewLine() + LTrim( Str( nHeight ) ) }, ;
-                "Image Info" )
-RETURN NIL
+      "Width: "  + hb_OSNewLine() + LTrim( Str( nWidth ) ), ;
+      "Height: " + hb_OSNewLine() + LTrim( Str( nHeight ) ) }, ;
+      "Image Info" )
+   RETURN NIL
 
 FUNCTION SaveToFile( hBitMap, cFile, nWidth, nHeight, cMimeType, nQuality )
    LOCAL lRet := gPlusSaveHBitmapToFile( hBitMap, ;
-                                         cFile, ;
-                                         nWidth, ;
-                                         nHeight, ;
-                                         cMimeType, ;
-                                         nQuality, ;
-                                         24 )
-RETURN MsgInfo( IIF( lRet, "Saved to " + cFile, "Failure" ), "Result" )
+      cFile, ;
+      nWidth, ;
+      nHeight, ;
+      cMimeType, ;
+      nQuality, ;
+      24 )
+   RETURN MsgInfo( IIF( lRet, "Saved to " + cFile, "Failure" ), "Result" )
 
 /*
- * EOF
- */
+* EOF
+*/
 

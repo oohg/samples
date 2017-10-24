@@ -4,14 +4,14 @@
 #include "oohg.ch"
 
 Function Main
-Public x := 1
+   Public x := 1
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 400 ;
-      TITLE 'Hello World!' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 400 ;
+         TITLE 'Hello World!' ;
+         MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP 'File'
@@ -24,18 +24,18 @@ Public x := 1
 
    ACTIVATE WINDOW Win_1
 
-Return
+   Return
 
 Procedure Test1()
-Local x
+   Local x
 
    x := Getfile ( { {'All Files','*.*'} } , 'Open File' , 'c:\' , .f. , .t. )
    msginfo (x)
 
-Return
+   Return
 
 Procedure Test2()
-Local x , i
+   Local x , i
 
    x := Getfile ( { {'All Files','*.*'} } , 'Open File' , 'c:\' , .t. , .t. )
 
@@ -43,5 +43,5 @@ Local x , i
       msginfo (x [i])
    Next x
 
-Return
+   Return
 

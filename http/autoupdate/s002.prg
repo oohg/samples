@@ -1,22 +1,22 @@
 /*
- * HTTP Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licenced under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to autoupdate an application
- * from Internet. To test you also need "MyApp.prg".
- * This sample was successfully tested using an "http"
- * address to download the new file. The test with an
- * "https" address was unsuccessfull.
- * Please send me a mail if you succeed.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download MyApp.prg from
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Http
- */
+* HTTP Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licenced under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to autoupdate an application
+* from Internet. To test you also need "MyApp.prg".
+* This sample was successfully tested using an "http"
+* address to download the new file. The test with an
+* "https" address was unsuccessfull.
+* Please send me a mail if you succeed.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download MyApp.prg from
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Http
+*/
 
 #include "oohg.ch"
 
@@ -42,10 +42,10 @@ FUNCTION Main
    ELSE
       MsgStop( "Application not found !!!" )
    ENDIF
-RETURN NIL
+   RETURN NIL
 
 FUNCTION UpdateIsAvailable
-RETURN .T.
+   RETURN .T.
 
 FUNCTION DownloadUpdate
    LOCAL cUrl := "http://..."
@@ -58,9 +58,9 @@ FUNCTION DownloadUpdate
       oHTTP:ReadToFile( "NewApp.zip" )
       oHTTP:Close()
    ENDIF
-RETURN lRetVal
+   RETURN lRetVal
 
 /*
- * EOF
- */
+* EOF
+*/
 

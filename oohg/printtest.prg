@@ -1,6 +1,6 @@
 /*
- * $Id: printtest.prg,v 1.12 2016-12-30 16:36:23 fyurisich Exp $
- */
+* $Id: printtest.prg,v 1.12 2016-12-30 16:36:23 fyurisich Exp $
+*/
 
 #include 'oohg.ch'
 
@@ -12,11 +12,11 @@ PROCEDURE Test()
    SET DATE ANSI
 
    DEFINE WINDOW pr_form ;
-      AT 0, 0 ;
-      WIDTH 300 ;
-      HEIGHT 300 ;
-      TITLE 'Print Test' ;
-      MODAL
+         AT 0, 0 ;
+         WIDTH 300 ;
+         HEIGHT 300 ;
+         TITLE 'Print Test' ;
+         MODAL
 
       ON KEY ESCAPE OF pr_form ACTION pr_form.Release
 
@@ -38,7 +38,7 @@ PROCEDURE Test()
          END POPUP
 
          POPUP "File 2"
-              ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
+            ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
             ITEM 'miniprint A' ACTION Eje_Imprimir( "MINIPRINT" )
             ITEM 'dos A'       ACTION Eje_Imprimir( "DOSPRINT" )
             ITEM 'raw A'       ACTION Eje_Imprimir( "RAWPRINT" )

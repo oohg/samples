@@ -1,15 +1,15 @@
 /*
- * Form Sample n° 11
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to save the current values of the
- * controls of a given form to an array.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Form Sample n° 11
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to save the current values of the
+* controls of a given form to an array.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -19,16 +19,16 @@ FUNCTION MAIN
    SetOneArrayItemPerLine( .T. )
 
    DEFINE WINDOW Win_1 OBJ oWin ;
-      AT 0, 0 ;
-      TITLE "Save control's values" ;
-      WIDTH 400 ;
-      HEIGHT 330 ;
-      MAIN
+         AT 0, 0 ;
+         TITLE "Save control's values" ;
+         WIDTH 400 ;
+         HEIGHT 330 ;
+         MAIN
 
       DEFINE TAB Tab1 OBJ oT ;
-         AT 5, 5 ;
-         WIDTH 300 ;
-         HEIGHT 220
+            AT 5, 5 ;
+            WIDTH 300 ;
+            HEIGHT 220
 
          DEFINE PAGE "Data"
 
@@ -73,9 +73,9 @@ FUNCTION MAIN
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

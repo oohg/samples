@@ -1,27 +1,27 @@
 /*
- * Checkbox Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to define, set and check the state
- * of a leftaligned and a threestate checkboxes.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Checkbox Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to define, set and check the state
+* of a leftaligned and a threestate checkboxes.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main
 
-    DEFINE WINDOW Form1 ;
-      AT 0,0 ;
-      WIDTH 448 ;
-      HEIGHT 176 ;
-      TITLE 'oohg - Three state and leftalign CheckBox demo' ;
-      MAIN ;
-      NOSIZE
+   DEFINE WINDOW Form1 ;
+         AT 0,0 ;
+         WIDTH 448 ;
+         HEIGHT 176 ;
+         TITLE 'oohg - Three state and leftalign CheckBox demo' ;
+         MAIN ;
+         NOSIZE
 
       DEFINE MAIN MENU
          POPUP 'CheckBox'
@@ -54,7 +54,7 @@ FUNCTION Main
          CAPTION 'Chk3 AltSyntax'
          VALUE .T.
          LEFTALIGN .T.
-       END CHECKBOX
+      END CHECKBOX
 
       DEFINE CHECKBOX Chk4
          ROW 60
@@ -74,7 +74,7 @@ FUNCTION Main
    CENTER WINDOW Form1
    ACTIVATE WINDOW Form1
 
-RETURN Nil
+   RETURN Nil
 
 FUNCTION SetChkState( nState )
 
@@ -83,11 +83,11 @@ FUNCTION SetChkState( nState )
       Form1.Chk2.Value := .F.
    CASE nState == 1                 // CHECKED
       Form1.Chk2.Value := .T.
-   OTHERWISE                        // INDETERMINATE
+      OTHERWISE                        // INDETERMINATE
       Form1.Chk2.Value := Nil
    ENDCASE
 
-RETURN Nil
+   RETURN Nil
 
 FUNCTION ShowState()
    LOCAL ret := Form1.Chk4.Value
@@ -97,13 +97,13 @@ FUNCTION ShowState()
       MsgInfo('Chk4 status is INDETERMINATE')
    CASE ret == .t.
       MsgInfo('Chk4 status is CHECKED')
-   OTHERWISE
+      OTHERWISE
       MsgInfo('Chk4 status is UNCHECKED')
    ENDCASE
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

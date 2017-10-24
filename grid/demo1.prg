@@ -7,16 +7,16 @@
 
 Function Main
 
-Local aRows [20] [3]
+   Local aRows [20] [3]
 
-       set navigation extended
+   set navigation extended
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 400 ;
-      TITLE 'Mixed Data Type Grid Test' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 400 ;
+         TITLE 'Mixed Data Type Grid Test' ;
+         MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP 'File'
@@ -47,13 +47,13 @@ Local aRows [20] [3]
       aRows [20]   := {123.12,date(),2,20, .f. }
 
       @ 10,10 GRID Grid_1 ;
-      WIDTH 620 ;
-      HEIGHT 330 ;
-      HEADERS {'Column 1','Column 2','Column 3','Column 4','Column 5'} ;
-      WIDTHS {140,140,140,140,140} ;
-      ITEMS aRows ;
-      EDIT ;
-      COLUMNCONTROLS { {'TEXTBOX','NUMERIC','$ 999,999.99'} , {'DATEPICKER','DROPDOWN'} , {'COMBOBOX',{'One','Two','Three'}} , { 'SPINNER' , 1 , 20 } , { 'CHECKBOX' , 'Yes' , 'No' } }
+         WIDTH 620 ;
+         HEIGHT 330 ;
+         HEADERS {'Column 1','Column 2','Column 3','Column 4','Column 5'} ;
+         WIDTHS {140,140,140,140,140} ;
+         ITEMS aRows ;
+         EDIT ;
+         COLUMNCONTROLS { {'TEXTBOX','NUMERIC','$ 999,999.99'} , {'DATEPICKER','DROPDOWN'} , {'COMBOBOX',{'One','Two','Three'}} , { 'SPINNER' , 1 , 20 } , { 'CHECKBOX' , 'Yes' , 'No' } }
 
    END WINDOW
 
@@ -61,16 +61,16 @@ Local aRows [20] [3]
 
    ACTIVATE WINDOW Form_1
 
-Return
+   Return
 
 PROCEDURE SETITEM()
 
    Form_1.Grid_1.Item (2) := { 123.45 , date() , 2 , 10 , .T. }
 
-RETURN
+   RETURN
 
 PROCEDURE GETITEM()
-local a
+   local a
 
    a := Form_1.Grid_1.Item (2)
 
@@ -80,5 +80,5 @@ local a
    msginfo ( str ( a [4] )            , '4' )
    msginfo ( if ( a [5] == .t. , '.t.' , '.f.' )   , '5' )
 
-RETURN
+   RETURN
 

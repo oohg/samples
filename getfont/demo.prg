@@ -1,8 +1,8 @@
 /*
- * MINIGUI - Harbour Win32 GUI library Demo
- *
- * Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
- * http://www.geocities.com/harbour_minigui/
+* MINIGUI - Harbour Win32 GUI library Demo
+*
+* Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
+* http://www.geocities.com/harbour_minigui/
 */
 
 #include "oohg.ch"
@@ -10,10 +10,10 @@
 Function Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 640 HEIGHT 480 ;
-      TITLE 'Harbour MiniGUI Demo' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 HEIGHT 480 ;
+         TITLE 'Harbour MiniGUI Demo' ;
+         MAIN
 
       DEFINE MAIN MENU
          POPUP 'Common &Dialog Functions'
@@ -27,12 +27,12 @@ Function Main
 
    Form_1.Activate()
 
-Return Nil
+   Return Nil
 
 *------------------------------------------------------------------------------*
 Procedure GetFont_Click
-*------------------------------------------------------------------------------*
-Local a
+   *------------------------------------------------------------------------------*
+   Local a
 
    a := GetFont ( 'Arial' , 12 , .f. , .t. , {0,0,255} , .f. , .f. , 0 )
 
@@ -74,5 +74,5 @@ Local a
 
    EndIf
 
-Return Nil
+   Return Nil
 

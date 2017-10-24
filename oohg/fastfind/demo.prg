@@ -1,15 +1,15 @@
 /*
- * $Id: demo.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
- */
+* $Id: demo.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
+*/
 /*
- * This demo shows how to use GRID.
- * Copyright (c)2007-2017 MigSoft <migsoft/at/oohg.org>
- *
- */
+* This demo shows how to use GRID.
+* Copyright (c)2007-2017 MigSoft <migsoft/at/oohg.org>
+*
+*/
 
 #include "oohg.ch"
 
- Procedure Main()
+Procedure Main()
 
    Set Multiple Off Warning
 
@@ -45,7 +45,7 @@ Function Captura()
             EXIT
          Endif
          ADD ITEM { TRANSF(Cuentas->Imputacion,"9999999") , ;
-                           Cuentas->Nombre } TO Grid_1 of Win_1
+            Cuentas->Nombre } TO Grid_1 of Win_1
       ElseIf Substr(FIELD->&cCampo,1,nTaman) > cCapt
          EXIT
       Endif
@@ -58,23 +58,23 @@ Function Captura()
 Procedure VerItem()
 
    MsgInfo( 'Col 1: ' + GetColValue( "Grid_1", "Win_1", 1 )+'  ';
-          + 'Col 2: ' + GetColValue( "Grid_1", "Win_1", 2 ) )
+      + 'Col 2: ' + GetColValue( "Grid_1", "Win_1", 2 ) )
 
    Return
 
 Function GetColValue( xObj, xForm, nCol )
 
-  Local nPos:= GetProperty(xForm, xObj, 'Value')
-  Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
+   Local nPos:= GetProperty(xForm, xObj, 'Value')
+   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
 
    Return aRet[nCol]
 
 Function SetColValue( xObj, xForm, nCol, xValue )
 
-  Local nPos:= GetProperty(xForm, xObj, 'Value')
-  Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
-      aRet[nCol] := xValue
-      SetProperty(xForm, xObj, 'Item', nPos, aRet)
+   Local nPos:= GetProperty(xForm, xObj, 'Value')
+   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
+   aRet[nCol] := xValue
+   SetProperty(xForm, xObj, 'Item', nPos, aRet)
 
    Return NIL
 

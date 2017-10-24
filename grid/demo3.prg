@@ -5,11 +5,11 @@ FUNCTION Main
    LOCAL aRows [20] [3]
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 450 ;
-      HEIGHT 500 ;
-      TITLE 'Hello World!' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 450 ;
+         HEIGHT 500 ;
+         TITLE 'Hello World!' ;
+         MAIN
 
       aRows[ 01 ] := { 'Simpson',   'Homer',     '555-5555' }
       aRows[ 02 ] := { 'Mulder',    'Fox',       '324-6432' }
@@ -45,8 +45,8 @@ FUNCTION Main
          DELETE ;
          ENABLEALTA ;
          ON HEADCLICK { { || MsgInfo( 'Click 1' ) }, ;
-                        { || MsgInfo( 'Click 2' ) }, ;
-                        { || MsgInfo( 'Click 3' ) } } ;
+         { || MsgInfo( 'Click 2' ) }, ;
+         { || MsgInfo( 'Click 3' ) } } ;
          JUSTIFY { BROWSE_JTFY_LEFT, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER }
 
       @ 350, 010 BUTTON But_1 CAPTION "Hide Column" ACTION { || oGrid:ColumnHide( 2 ) }
@@ -61,14 +61,14 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN
+   RETURN
 
 FUNCTION Cambia
    oGrid:Header( 1, "Apellido" )
    SetProperty('Form_1', 'Grid_1', 'HEADER', 3, 'Teléfono' )
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
 

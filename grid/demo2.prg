@@ -7,19 +7,19 @@
 
 Function Main
 
-Local aRows [20] [3]
+   Local aRows [20] [3]
 
-        set century on
-        set epoch to 1960
+   set century on
+   set epoch to 1960
 
    Private fColor := { || if ( This.CellRowIndex/2 == int(This.CellRowIndex/2) , { 0,0,255 } , { 0,255,0 } ) }
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 400 ;
-      TITLE 'Mixed Data Type Grid Test' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 400 ;
+         TITLE 'Mixed Data Type Grid Test' ;
+         MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP 'File'
@@ -57,14 +57,14 @@ Local aRows [20] [3]
          ITEMS aRows ;
          EDIT INPLACE ;
          COLUMNCONTROLS { ;
-               {'TEXTBOX','NUMERIC','$ 999,999.99'} , {'DATEPICKER','DROPDOWN'} , {'COMBOBOX',{'One','Two','Three'}} , { 'SPINNER' , 1 , 20 } , { 'CHECKBOX' , 'Yes' , 'No' } } ;
+         {'TEXTBOX','NUMERIC','$ 999,999.99'} , {'DATEPICKER','DROPDOWN'} , {'COMBOBOX',{'One','Two','Three'}} , { 'SPINNER' , 1 , 20 } , { 'CHECKBOX' , 'Yes' , 'No' } } ;
          VALID   { ;
-               { || This.CellValue > 100 } , ;
-               { || This.CellValue = Date() } , ;
-               Nil , ;
-               Nil , ;
-               Nil ;
-               }
+         { || This.CellValue > 100 } , ;
+         { || This.CellValue = Date() } , ;
+         Nil , ;
+         Nil , ;
+         Nil ;
+         }
 
    END WINDOW
 
@@ -72,16 +72,16 @@ Local aRows [20] [3]
 
    ACTIVATE WINDOW Form_1
 
-Return
+   Return
 
 PROCEDURE SETITEM()
 
    Form_1.Grid_1.Item (2) := { 123.45 , date() , 2 , 10 , .T. }
 
-RETURN
+   RETURN
 
 PROCEDURE GETITEM()
-local a
+   local a
 
    a := Form_1.Grid_1.Item (2)
 
@@ -91,5 +91,5 @@ local a
    msginfo ( str ( a [4] )            , '4' )
    msginfo ( if ( a [5] == .t. , '.t.' , '.f.' )   , '5' )
 
-RETURN
+   RETURN
 

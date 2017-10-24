@@ -1,23 +1,23 @@
 /*
- * Importante: Enlazar librería hbmzip
- *
- */
+* Importante: Enlazar librería hbmzip
+*
+*/
 
 #include "oohg.ch"
 
 Function main()
 
    DEFINE WINDOW form_1 ;
-      AT 114,218 ;
-      WIDTH 334 ;
-      HEIGHT 276 ;
-      TITLE 'ZIP TEST' ;
-      MAIN
+         AT 114,218 ;
+         WIDTH 334 ;
+         HEIGHT 276 ;
+         TITLE 'ZIP TEST' ;
+         MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP "Test"
-             MENUITEM 'Create Zip' ACTION CreateZip()
-             MENUITEM 'UnZip File' ACTION UnPackZip()
+            MENUITEM 'Create Zip' ACTION CreateZip()
+            MENUITEM 'UnZip File' ACTION UnPackZip()
          END POPUP
 
       END MENU
@@ -31,45 +31,45 @@ Function main()
    form_1.center
    form_1.activate
 
-Return NIL
+   Return NIL
 
 *------------------------------------------------------------------------------*
 Function CreateZip()
-*------------------------------------------------------------------------------*
-local aDir:=Directory("*.txt")
-local afiles:={}
-Local x
-local nLen
+   *------------------------------------------------------------------------------*
+   local aDir:=Directory("*.txt")
+   local afiles:={}
+   Local x
+   local nLen
 
    For x:=1 to len(aDir)
-       aadd(afiles,adir[x,1])
+      aadd(afiles,adir[x,1])
    next
 
-    COMPRESSFILES("ziptest.zip", afiles, {|cFile,nPos| ProgressUpdate( nPos,cFile ) } , .T. )
+   COMPRESSFILES("ziptest.zip", afiles, {|cFile,nPos| ProgressUpdate( nPos,cFile ) } , .T. )
 
-Return nil
+   Return nil
 
 *------------------------------------------------------------------------------*
 function ProgressUpdate(nPos , cFile )
-*------------------------------------------------------------------------------*
+   *------------------------------------------------------------------------------*
 
    Form_1.Progress_1.Value := nPos
    Form_1.Label_1.Value := cFile
 
-Return Nil
+   Return Nil
 *------------------------------------------------------------------------------*
 Function UnPackZip()
-*------------------------------------------------------------------------------*
+   *------------------------------------------------------------------------------*
 
-    UNCOMPRESSFILES( "ziptest.zip", {|cFile,nPos| ProgressUpdate( nPos,cFile ) } )
+   UNCOMPRESSFILES( "ziptest.zip", {|cFile,nPos| ProgressUpdate( nPos,cFile ) } )
 
-Return nil
+   Return nil
 
 *------------------------------------------------------------------------------*
 PROCEDURE COMPRESSFILES ( cFileName , aDir , bBlock , lOvr )
-*------------------------------------------------------------------------------*
-* Based upon HBMZIP Harbour contribution library samples.
-LOCAL hZip , i , cPassword
+   *------------------------------------------------------------------------------*
+   * Based upon HBMZIP Harbour contribution library samples.
+   LOCAL hZip , i , cPassword
 
    if valtype (lOvr) == 'L'
       if lOvr == .t.
@@ -91,13 +91,13 @@ LOCAL hZip , i , cPassword
 
    HB_ZIPCLOSE( hZip )
 
-RETURN
+   RETURN
 
 *------------------------------------------------------------------------------*
 PROCEDURE UNCOMPRESSFILES ( cFileName , bBlock )
-*------------------------------------------------------------------------------*
-* Based upon HBMZIP Harbour contribution library samples.
-Local i := 0 , hUnzip , nErr, cFile, dDate, cTime, nSize, nCompSize , f
+   *------------------------------------------------------------------------------*
+   * Based upon HBMZIP Harbour contribution library samples.
+   Local i := 0 , hUnzip , nErr, cFile, dDate, cTime, nSize, nCompSize , f
 
    hUnzip := HB_UNZIPOPEN( cFileName )
 
@@ -120,5 +120,5 @@ Local i := 0 , hUnzip , nErr, cFile, dDate, cTime, nSize, nCompSize , f
 
    HB_UNZIPCLOSE( hUnzip )
 
-RETURN
+   RETURN
 

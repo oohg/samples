@@ -1,12 +1,12 @@
 /*
- * $Id: chat.prg,v 1.2 2012-06-24 16:35:16 fyurisich Exp $
- */
+* $Id: chat.prg,v 1.2 2012-06-24 16:35:16 fyurisich Exp $
+*/
 /*
- *  Simple chat program, using TStreamWSocket class.
- *
- *  For compile, be sure TStream.prg and TStreamSocket.prg
- *  files are in the include path (or in current path).
- */
+*  Simple chat program, using TStreamWSocket class.
+*
+*  For compile, be sure TStream.prg and TStreamSocket.prg
+*  files are in the include path (or in current path).
+*/
 
 #include "oohg.ch"
 
@@ -19,22 +19,22 @@ PROCEDURE MAIN
 
    // Startup window
    DEFINE WINDOW Connect OBJ oWnd TITLE "Chat sample" ;
-          WIDTH 290 HEIGHT 130 ;
-          NOSIZE NOMAXIMIZE CLIENTAREA ;
-          FONT "MS Sans Serif" SIZE 9
+         WIDTH 290 HEIGHT 130 ;
+         NOSIZE NOMAXIMIZE CLIENTAREA ;
+         FONT "MS Sans Serif" SIZE 9
 
       @  12, 10 LABEL L_Server VALUE "Host name" AUTOSIZE
       @  10, 80 TEXTBOX Server WIDTH 200 HEIGHT 19 VALUE "127.0.0.1"
       @  35, 10 CHECKBOX Host  AUTOSIZE ;
-                CAPTION "This computer will be host" ;
-                ON CHANGE ( oWnd:Server:Enabled := ! oWnd:Host:Value )
+         CAPTION "This computer will be host" ;
+         ON CHANGE ( oWnd:Server:Enabled := ! oWnd:Host:Value )
       @  62, 10 LABEL L_Port   VALUE "Port number" AUTOSIZE
       @  60, 80 TEXTBOX Port   WIDTH 45 HEIGHT 19 VALUE 3000 ;
-                MAXLENGTH 5 NUMERIC
+         MAXLENGTH 5 NUMERIC
       @  95,100 BUTTON Ok      WIDTH 80 HEIGHT 25 CAPTION "Connect" ;
-                ACTION ( oSocket := CreateConnection( oWnd, @lHost ) )
+         ACTION ( oSocket := CreateConnection( oWnd, @lHost ) )
       @  95,200 BUTTON Exit    WIDTH 80 HEIGHT 25 CAPTION "Exit"    ;
-                ACTION oWnd:Release()
+         ACTION oWnd:Release()
 
       ON KEY RETURN ACTION oWnd:Ok:Click()
       ON KEY ESCAPE ACTION oWnd:Exit:Click()
@@ -48,26 +48,26 @@ PROCEDURE MAIN
 
    // Chat window
    DEFINE WINDOW Chat OBJ oWnd TITLE "Chat sample" + ;
-                                     IF( lHost, " (host)", "" ) ;
-          WIDTH 440 HEIGHT 400 CLIENTAREA ;
-          MINWIDTH 200 MINHEIGHT 200 ;
-          ON INIT oWnd:Text:SetFocus() ;
-          ON INTERACTIVECLOSE ( oWnd:Close:Click() , .F. ) ;
-          FONT "MS Sans Serif" SIZE 9
+         IF( lHost, " (host)", "" ) ;
+         WIDTH 440 HEIGHT 400 CLIENTAREA ;
+         MINWIDTH 200 MINHEIGHT 200 ;
+         ON INIT oWnd:Text:SetFocus() ;
+         ON INTERACTIVECLOSE ( oWnd:Close:Click() , .F. ) ;
+         FONT "MS Sans Serif" SIZE 9
 
       @  10, 10 LISTBOX Chat WIDTH 420 HEIGHT 310
       oWnd:Chat:Anchor := "TOPLEFTBOTTOMRIGHT"
 
       @ 330, 10 TEXTBOX Text WIDTH 380 HEIGHT 19 ;
-                ON ENTER oWnd:Send:Click()
+         ON ENTER oWnd:Send:Click()
       oWnd:Text:Anchor := "LEFTBOTTOMRIGHT"
 
       @ 330,395 BUTTON Send  CAPTION "Send" WIDTH 35 HEIGHT 19 ;
-                ACTION SendText( oWnd, oSocket, lHost, aClients )
+         ACTION SendText( oWnd, oSocket, lHost, aClients )
       oWnd:Send:Anchor := "BOTTOMRIGHT"
 
       @ 365,370 BUTTON Close CAPTION "Exit" WIDTH 60 HEIGHT 25 ;
-                ACTION CheckForExit( oWnd, oSocket, lHost, aClients )
+         ACTION CheckForExit( oWnd, oSocket, lHost, aClients )
       oWnd:Close:Anchor := "BOTTOMRIGHT"
 
       ON KEY ESCAPE ACTION oWnd:Close:Click()
@@ -78,7 +78,7 @@ PROCEDURE MAIN
       oSocket:bAccept := { || NewClient( oSocket:Accept(), oWnd, aClients ) }
    ELSE
       oSocket:bClose := { || oWnd:Text:Enabled := .F. , ;
-                             oWnd:Send:Enabled := .F. }
+         oWnd:Send:Enabled := .F. }
       oSocket:bRead  := { || ReadFromHost( oSocket, oWnd ) }
    ENDIF
    oSocket:Async( oWnd:hWnd )
@@ -104,7 +104,7 @@ FUNCTION CreateConnection( oWnd, lHost )
          lHost := .T.
       ELSE
          MsgInfo( "Can't create host at port " + LTRIM( STR( nPort ) ), ;
-                  "Chat host" )
+            "Chat host" )
       ENDIF
    ELSEIF EMPTY( cServer )
       MsgInfo( "Must specify host name", "Chat client" )
@@ -115,7 +115,7 @@ FUNCTION CreateConnection( oWnd, lHost )
          oReturn := oSocket
       ELSE
          MsgInfo( "Can't connect to server " + cServer + " at port " + ;
-                  LTRIM( STR( nPort ) ), "Chat client" )
+            LTRIM( STR( nPort ) ), "Chat client" )
       ENDIF
    ENDIF
 
@@ -162,7 +162,7 @@ PROCEDURE CheckForExit( oWnd, oSocket, lHost, aClients )
 
    IF lHost
       lExit := MsgYesNo( "You are the host of this chat" + CRLF + ;
-               "Do you want to close chat sample?", "Chat host" )
+         "Do you want to close chat sample?", "Chat host" )
    ELSE
       lExit := MsgYesNo( "Do you want to close chat sample?", "Chat host" )
    ENDIF
@@ -188,7 +188,7 @@ PROCEDURE NewClient( oNewSocket, oWnd, aClients )
    oNewSocket:bRead  := { || ReadFromClient( oNewSocket, aClients, oWnd ) }
    oNewSocket:Async( oWnd:hWnd )
    SendToAll( STRZERO( oNewSocket:Cargo, 3 ) + " has join chat", ;
-              aClients, oWnd )
+      aClients, oWnd )
 
    RETURN
 
@@ -197,7 +197,7 @@ PROCEDURE CloseClient( oSocket, aClients, oWnd )
    oSocket:Close()
    aClients[ oSocket:Cargo ] := NIL
    SendToAll( STRZERO( oSocket:Cargo, 3 ) + " has left chat", ;
-              aClients, oWnd )
+      aClients, oWnd )
    RETURN
 
 PROCEDURE ReadFromHost( oSocket, oWnd )
@@ -212,7 +212,7 @@ PROCEDURE ReadFromClient( oSocket, aClients, oWnd )
 
    DO WHILE oSocket:IsLine()
       SendToAll( STRZERO( oSocket:Cargo, 3 ) + ": " + oSocket:GetLine(), ;
-                 aClients, oWnd )
+         aClients, oWnd )
    ENDDO
 
    RETURN

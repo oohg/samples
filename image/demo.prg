@@ -4,11 +4,11 @@
 Function Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Hello World!' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Hello World!' ;
+         MAIN
 
       DEFINE MAIN MENU
          POPUP 'File'
@@ -20,7 +20,7 @@ Function Main
          ROW   0
          COL   0
          HEIGHT   430
-              WIDTH   635
+         WIDTH   635
          PICTURE   'HMGLogo.gif'
          STRETCH   .F.
       END IMAGE
@@ -31,5 +31,5 @@ Function Main
 
    ACTIVATE WINDOW Form_1
 
-Return
+   Return
 

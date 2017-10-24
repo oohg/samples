@@ -1,6 +1,6 @@
 /*
- * $Id: rtl.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
- */
+* $Id: rtl.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
+*/
 /*
 * ooHG Right-to-left demo
 * (c) 2005-2017 Vic
@@ -15,13 +15,13 @@ Function Main()
    SET GLOBALRTL ON
 
    DEFINE WINDOW Main OBJ oWnd ;
-          AT 0,0 ;
-          WIDTH 400 ;
-          HEIGHT 300 ;
-          TITLE 'Right-To-Left demo' ;
-          MAIN ;
-          VIRTUAL HEIGHT 400 ;
-          RTL
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 300 ;
+         TITLE 'Right-To-Left demo' ;
+         MAIN ;
+         VIRTUAL HEIGHT 400 ;
+         RTL
 
       DEFINE MAIN MENU
          POPUP "One"

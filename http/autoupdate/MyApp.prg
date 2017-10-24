@@ -1,14 +1,14 @@
 /*
- * This file is part of HTTP Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licenced under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This file is needed to test the sample.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* This file is part of HTTP Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licenced under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This file is needed to test the sample.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -19,11 +19,11 @@ FUNCTION Main( cAct )
    ENDIF
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Hello World !!!' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Hello World !!!' ;
+         MAIN
 
       @ 10, 10 LABEL lbl_Act ;
          AUTOSIZE ;
@@ -35,9 +35,9 @@ FUNCTION Main( cAct )
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
-RETURN Nil
+   RETURN Nil
 
 /*
- * EOF
- */
+* EOF
+*/
 

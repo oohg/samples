@@ -6,11 +6,11 @@ Function Main
    LOCAL oText
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 400 ;
-      HEIGHT 200 ;
-      TITLE 'CaretPos Property Demo' ;
-      MAIN
+         AT 0,0 ;
+         WIDTH 400 ;
+         HEIGHT 200 ;
+         TITLE 'CaretPos Property Demo' ;
+         MAIN
 
       DEFINE MAIN MENU
 
@@ -36,7 +36,7 @@ Function Main
 
    ACTIVATE WINDOW Form_1
 
-Return
+   Return
 
 #include "oohg.ch"
 

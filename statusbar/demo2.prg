@@ -1,8 +1,8 @@
 /*
- * MINIGUI - Harbour Win32 GUI library Demo
- *
- * Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
- * http://www.geocities.com/harbour_minigui/
+* MINIGUI - Harbour Win32 GUI library Demo
+*
+* Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
+* http://www.geocities.com/harbour_minigui/
 */
 
 #include "oohg.ch"
@@ -10,18 +10,18 @@
 Function Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 600 HEIGHT 400 ;
-      TITLE 'MiniGUI StatusBar Demo' ;
-      MAIN ;
-      FONT 'Arial' SIZE 10
+         AT 0,0 ;
+         WIDTH 600 HEIGHT 400 ;
+         TITLE 'MiniGUI StatusBar Demo' ;
+         MAIN ;
+         FONT 'Arial' SIZE 10
 
       DEFINE MAIN MENU
          POPUP '&StatusBar Test'
             ITEM 'Set StatusBar Item 1'   ACTION Form_1.StatusBar.Item(1) := "New value 1"
             ITEM 'Set StatusBar Item 2'   ACTION Form_1.StatusBar.Item(2) := "New value 2"
             ITEM 'Open Other Window...'   ACTION Modal_Click()
-                        END POPUP
+         END POPUP
          POPUP '&Help'
             ITEM '&About'      ACTION MsgInfo ("MiniGUI StatusBar Demo")
          END POPUP
@@ -44,17 +44,17 @@ Function Main
 
    ACTIVATE WINDOW Form_1
 
-Return Nil
+   Return Nil
 
 *------------------------------------------------------------------------------*
 Procedure Modal_CLick
-*------------------------------------------------------------------------------*
+   *------------------------------------------------------------------------------*
 
    DEFINE WINDOW Form_2 ;
-      AT 0,0 ;
-      WIDTH 400 HEIGHT 300 ;
-      TITLE 'StatusBar Test'  ;
-      MODAL NOSIZE
+         AT 0,0 ;
+         WIDTH 400 HEIGHT 300 ;
+         TITLE 'StatusBar Test'  ;
+         MODAL NOSIZE
 
       DEFINE STATUSBAR
 
@@ -69,5 +69,5 @@ Procedure Modal_CLick
 
    Form_2.Activate
 
-Return Nil
+   Return Nil
 
