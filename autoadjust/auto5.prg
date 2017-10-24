@@ -139,13 +139,13 @@ Function Main()
                IMAGE ''
 
             ///@ 263,327 RADIOGROUP radio_1 ;
-               ///OPTIONS  {'Por nombre','Por código'}  ;
-               ///VALUE 2 ;
-               ///WIDTH  120 ;
-               ////SPACING  25 ;
-               ///FONT 'MS Sans Serif' ;
-               ///SIZE 10 ;
-               ///TOOLTIP 'Ordenado por...' ;
+            ///OPTIONS  {'Por nombre','Por código'}  ;
+            ///VALUE 2 ;
+            ///WIDTH  120 ;
+            ////SPACING  25 ;
+            ///FONT 'MS Sans Serif' ;
+            ///SIZE 10 ;
+            ///TOOLTIP 'Ordenado por...' ;
 
             @ 64,326 LABEL label_5 ;
                WIDTH 58 ;

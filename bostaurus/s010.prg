@@ -178,9 +178,9 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
 * RULES OF THUMB TO CREATE USER DEFINED CONVOLUTION FILTERS
 *
 * BT_aFILTER := { k1, k2, k3, ;
-   *                 k4, k5, k6, ;
-   *                 k7, k8, k9, ;
-   *                 divisor, bias}
+*                 k4, k5, k6, ;
+*                 k7, k8, k9, ;
+*                 divisor, bias}
 *
 *         Center Cell Value    Surrounding Cell Values
 *         (k5)                 (k1, k2, k3, k4, k6, k7, k8, k9)
