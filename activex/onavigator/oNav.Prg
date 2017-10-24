@@ -201,11 +201,11 @@ Procedure retro1()
 
    If HB_IsObject(&xoActiveX)
       Try
-      &xoActiveX:GoBack()
-   Catch e
-   End
-endif
-Return nil
+         &xoActiveX:GoBack()
+      Catch e
+      End
+   endif
+   Return nil
 
 *------------------------------------------------------*
 Procedure avanza1()
@@ -214,11 +214,11 @@ Procedure avanza1()
    xoActivex := "oActiveX_" + StrZero( i, 4 )
    If HB_IsObject(&xoActiveX)
       Try
-      &xoActiveX:GoForward()
-   Catch e
-   End
-endif
-Return nil
+         &xoActiveX:GoForward()
+      Catch e
+      End
+   endif
+   Return nil
 
 *------------------------------------------------------*
 Procedure recarga1()
