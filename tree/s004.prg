@@ -11,10 +11,10 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
+
    LOCAL oTree1
 
    DEFINE WINDOW Form_1 ;
@@ -23,14 +23,12 @@ FUNCTION Main()
          HEIGHT 530 ;
          TITLE 'TreeView - Save to / Create from an array' ;
          MAIN
-
       DEFINE TREE Tree_1 OBJ oTree1 ;
             AT 10,10 ;
             WIDTH 300 ;
             HEIGHT 202 ;
             VALUE 1 ;
             SELBOLD
-
          FOR i := 1 TO 4
             NODE 'T1 Item ' + LTRIM(STR(i))
                FOR j := 1 TO 3
@@ -46,51 +44,45 @@ FUNCTION Main()
             END NODE
          NEXT
       END TREE
-
       @ 250,10 BUTTON Button_1 ;
          CAPTION 'Process' ;
          ACTION ToArray(oTree1);
          WIDTH 140
-
       ON KEY ESCAPE OF Form_1 ACTION Form_1.Release()
-
    END WINDOW
-
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
+
 Return value: an array of the root items.
 Each item in the Tree is represented by a three item array:
 { item's reference number, children, item's text }
 where children is an array of items.
 */
+
 FUNCTION ToArray( oTree )
+
    LOCAL i, nItems, aTree, Parent
 
    // save in aTree
    aTree := {}
    nItems := oTree:ItemCount
-
    FOR i := 1 TO nItems
       If ( Parent := oTree:GetParent(i) ) == NIL
          // it's a root item
          AADD(aTree, { i, Children(oTree, i), oTree:Item(i) })
       EndIf
    NEXT i
-
    // show aTree
    nItems := LEN(aTree)
    FOR i := 1 to nItems
       MsgBox("Root: " + LTRIM(STR(aTree[i,1])) + HB_OsNewLine() + ;
          ListChildren(aTree[i,2], 0))
    NEXT i
-
    IF IsControlDefined("Tree_2", "Form_1")
       Form_1.Tree_2.Release()
    ENDIF
-
    // create a Tree from aTree
    DEFINE TREE Tree_2 ;
          PARENT Form_1 ;
@@ -99,18 +91,17 @@ FUNCTION ToArray( oTree )
          HEIGHT 202 ;
          VALUE 1 ;
          SELBOLD
-
       CreateChildren(aTree)
    END TREE
 
    RETURN NIL
 
 FUNCTION Children( oTree, nItem )
+
    LOCAL aChildren, i, t
 
    aChildren := oTree:GetChildren(nItem)
    t := LEN(aChildren)
-
    FOR i := 1 TO t
       aChildren[i] := { aChildren[i], ;
          Children(oTree, aChildren[i]), ;
@@ -120,6 +111,7 @@ FUNCTION Children( oTree, nItem )
    RETURN aChildren
 
 FUNCTION ListChildren( aChildren, nCol )
+
    LOCAL cMsg, i
 
    IF LEN(aChildren) > 0
@@ -136,6 +128,7 @@ FUNCTION ListChildren( aChildren, nCol )
    RETURN cMsg
 
 FUNCTION CreateChildren( aChildren )
+
    LOCAL nItems, i
 
    nItems := LEN( aChildren )
@@ -151,8 +144,6 @@ FUNCTION CreateChildren( aChildren )
    NEXT
 
    RETURN NIL
-
 /*
 * EOF
 */
-

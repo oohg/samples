@@ -7,18 +7,15 @@ function main
          height 600 ;
          title "Shapes Demo" ;
          main on init drawshapes()
-
       on key f9 action oWin:Print()
-
    end window
-
    x.center
-
    x.activate
 
    return nil
 
 function drawshapes
+
    msginfo("Lines")
    // Line
    for i := 1 to 5
@@ -45,5 +42,5 @@ function drawshapes
    msginfo("Polybezier")
    // Polybezier
    draw polybezier in window x points {{400,400},{350,350},{300,500},{350,575},{400,640},{500,550},{400,350}} pencolor {random(255),random(255),random(255)} penwidth 2
-   return nil
 
+   return nil

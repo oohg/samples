@@ -26,7 +26,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
@@ -35,18 +34,15 @@ FUNCTION Main()
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0, 0 ;
          WIDTH 600 ;
          HEIGHT 500 ;
          TITLE 'Grid with Navigation By Cell' ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k := 1 TO 15
          aRows[ k ] := { Str(HB_RandomInt( 99 ), 2), ;
             HB_RandomInt( 100 ), ;
@@ -54,7 +50,6 @@ FUNCTION Main()
             'Refer ' + Str( HB_RandomInt( 10 ), 2 ), ;
             HB_RandomInt( 10000 ) }
       NEXT k
-
       @ 20, 20 GRID Grid_1 obj oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -87,7 +82,6 @@ FUNCTION Main()
          ON CHANGE { || Form_1.StatusBar.Item( 1 ) := ;
          'Value changed to ' + Autotype( oGrid:Value ) } ;
          VALUE { 5, 4 }
-
       DEFINE CONTEXT MENU CONTROL Grid_1
          MENUITEM 'Go to row 4 col 2' ;
             ACTION {|| oGrid:Value := { 4, 2 } }
@@ -140,32 +134,24 @@ FUNCTION Main()
             Form_1.mnu_Hide.Enabled := .T., ;
             Form_1.mnu_Show.Enabled := .F. }
       END MENU
-
       @ 370, 20 CHECKBOX chk_Append ;
          CAPTION 'Append Mode' ;
          ON CHANGE oGrid:Append := ! oGrid:Append
-
       @ 410, 20 LABEL lbl_Try ;
          VALUE 'Try the Context Menu !!!' ;
          AUTOSIZE
-
       @ 370, 220 CHECKBOX chk_FullMode ;
          CAPTION 'FullMove' ;
          ON CHANGE oGrid:FullMove := ! oGrid:FullMove
-
       @ 410, 220 LABEL lbl_Enter ;
          VALUE 'Use Enter or DoubleClick to start edition.' ;
          AUTOSIZE
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

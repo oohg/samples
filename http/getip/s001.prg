@@ -13,7 +13,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "i_socket.ch"
 #include "h_http.prg"
@@ -23,27 +22,24 @@ PROCEDURE Main
    #ifdef __XHARBOUR__
       EMPTY( _OOHG_ALLVARS )
    #endif
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 400 ;
          HEIGHT 200 ;
          TITLE 'Get IP public address' ;
          MAIN
-
       @ 20, 20 BUTTON btn_1 ;
          CAPTION "Get" ;
          ACTION GetIP()
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN
 
 PROCEDURE GetIP()
+
    LOCAL cResponse, oConn, nAt, cIP
 
    OPEN CONNECTION OBJ oConn SERVER 'whatismyipaddress.com' PORT 80 HTTP
@@ -53,7 +49,6 @@ PROCEDURE GetIP()
    ELSE
       GET URL '/' TO cResponse CONNECTION oConn
       CLOSE CONNECTION oConn
-
       IF Empty( cResponse )
          AutoMsgBox( { "Can't connect to whatismyipaddress.com !!!", ;
             "Check Internet connection and site status."} )
@@ -69,9 +64,8 @@ PROCEDURE GetIP()
          ENDIF
       ENDIF
    ENDIF
-   RETURN NIL
 
+   RETURN NIL
 /*
 * EOF
 */
-

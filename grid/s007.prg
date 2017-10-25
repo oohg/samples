@@ -10,26 +10,23 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
+
    LOCAL k, aRows[ 40, 5 ]
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 558 ;
          HEIGHT 460 ;
          TITLE 'Grid with IMAGEDATA ColumnControl' ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k :=1 TO LEN( aRows )
          aRows[k] := { { STR( HB_RANDOMINT( 99 ), 2 ), k % 3 }, ;
             HB_RANDOMINT( 100 ), ;
@@ -37,7 +34,6 @@ FUNCTION Main()
             'Refer ' + STR( HB_RANDOMINT( 10 ), 2 ), ;
             HB_RANDOMINT( 10000 ) }
       NEXT k
-
       @ 10,10 GRID Grid_1 OBJ oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -54,11 +50,9 @@ FUNCTION Main()
          { 'TEXTBOX', 'NUMERIC', '999,999,999.99' } } ;
          FONT 'COURIER NEW' SIZE 10 ;
          EDIT INPLACE
-
       @ 360,10 LABEL lbl_1 ;
          VALUE 'Try the context menu.' ;
          AUTOSIZE
-
       DEFINE CONTEXT MENU CONTROL Grid_1
          MENUITEM 'Insert Item 2' ;
             ACTION { || oGrid:InsertItem( 2, ;
@@ -69,16 +63,12 @@ FUNCTION Main()
          MENUITEM 'Data in Item 4' ;
             ACTION { || AutoMsgBox( oGrid:Item( 4 ) ) }
       END MENU
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

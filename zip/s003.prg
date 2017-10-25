@@ -9,7 +9,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 #include 'directry.ch'
 
@@ -21,20 +20,18 @@ FUNCTION Main()
          HEIGHT 276 ;
          TITLE 'How to Zip Selected Files Using MiniZip Library' ;
          MAIN
-
       @ 20,20 BUTTON btn_1 ;
          CAPTION 'Build' ;
          ACTION ZipFiles()
-
       ON KEY ESCAPE ACTION MainForm.Release
    END WINDOW
-
    MainForm.Center
    MainForm.Activate
 
    RETURN NIL
 
 FUNCTION ZipFiles
+
    LOCAL aFiles := {}
 
    MemoWrit( 'C:\File0.txt', 'This is file 0' )
@@ -42,7 +39,6 @@ FUNCTION ZipFiles
    CreateFolder( 'C:\Data\Test' )
    MemoWrit( 'C:\Data\Test\File1.txt', 'This is file 1' )
    MemoWrit( 'C:\Data\Test\File2.txt', 'This is file 2' )
-
    /* The path of the added files must be relative to an
    upper level folder. Do not add files like:
    \path\file.ext
@@ -54,17 +50,14 @@ FUNCTION ZipFiles
    */
    AEVAL( DIRECTORY( 'C:\*.TXT'), {|e| AADD( aFiles, e[1] )} )
    AEVAL( DIRECTORY( 'C:\Data\Test\*.TXT'), {|e| AADD( aFiles, 'Data\Test\' + e[1])} )
-
    DIRCHANGE( 'C:\' )
    HB_ZIPFILE( hb_dirbase() + 'myzip.zip', aFiles, 9, NIL , .T., NIL, .T. )
    DIRCHANGE( 'C:\' + hb_dirbase() )
-
    DELETE FILE 'C:\Data\Test\File2.txt'
    DELETE FILE 'C:\Data\Test\File1.txt'
    RemoveFolder( 'C:\Data\Test' )
    RemoveFolder( 'C:\Data' )
    DELETE FILE 'C:\File0.txt'
-
    IF FILE( hb_dirbase() + 'myzip.zip' )
       MsgInfo( 'File myzip.zip was builded !!! ')
    ELSE
@@ -72,8 +65,6 @@ FUNCTION ZipFiles
    ENDIF
 
    RETURN NIL
-
 /*
 * EOF
 */
-

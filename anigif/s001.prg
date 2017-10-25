@@ -12,41 +12,34 @@
 * You can download the resource and gif files from
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/AniGif
 */
-
 #include "oohg.ch"
 
 PROCEDURE Main()
 
    SetOneArrayItemPerLine( .T. )
-
    DEFINE WINDOW Form_Main ;
          AT 0, 0 ;
          WIDTH 320 ;
          HEIGHT 240 ;
          TITLE 'ANIGIF Demo' ;
          MAIN
-
       DEFINE MAIN MENU
          MENUITEM '&Play' ACTION oAniGif:Play()
          MENUITEM '&Stop' ACTION oAniGif:Stop()
          MENUITEM '&Info' ACTION ShowInfo()
          MENUITEM 'E&xit' ACTION Form_Main.Release()
       END MENU
-
       // from disk
       @ 20, 20 ANIGIF myGIF_1 ;
          OBJ oAniGif ;
          FILE "ani-free.gif" ;
          BORDER
-
       // from rc file
       @ 20, 200 ANIGIF myGIF_2 ;
          FILE "MYGIF" ;
          BORDER
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    CENTER WINDOW Form_Main
    ACTIVATE WINDOW Form_Main
 
@@ -64,8 +57,6 @@ PROCEDURE ShowInfo
    oAniGif:Play()
 
    RETURN
-
 /*
 * EOF
 */
-

@@ -13,25 +13,21 @@
 * You can download the images used in this sample from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/GDIPlus
 */
-
 #include "oohg.ch"
-
 #define HBITMAP_WIDTH     1
 #define HBITMAP_HEIGHT    2
 #define HBITMAP_BITSPIXEL 3
-
 MEMVAR cPicture, cType, aSize, aMimeType, oImage, oForm, i
 
 PROCEDURE Main()
+
    PUBLIC cPicture, cType, aSize, aMimeType, oImage, oForm, i
-
    SetOneArrayItemPerLine( .T. )
-
    IF ! gPlusInit()
       MsgStop( "Init GDI+ Error", "Error" )
+
       RETURN
    ENDIF
-
    aMimeType := gPlusGetEncoders()
    /*
    * Default types:
@@ -41,7 +37,6 @@ PROCEDURE Main()
    * image/tiff
    * image/png
    */
-
    DEFINE WINDOW Form_Main OBJ oForm ;
          AT 0,0 ;
          WIDTH 640 ;
@@ -53,7 +48,6 @@ PROCEDURE Main()
          ON RELEASE IIF( gPlusDeInit(), ;
          NIL, ;
          MsgExclamation( "Exit GDI+ Error", "Error" ) )
-
       DEFINE MAIN MENU
          DEFINE POPUP "&File"
             FOR i := 1 TO Len( aMimeType )
@@ -130,39 +124,34 @@ PROCEDURE Main()
                ACTION GetImageInfo( GetStartupFolder() + "\ohh.png" )
          END POPUP
       END MENU
-
       @ 05, 20 LABEL lbl_Type ;
          VALUE "Type:" ;
          WIDTH 50 ;
          HEIGHT 24
-
       @ 05, 70 COMBOBOX cmb_Type ;
          WIDTH 150 ;
          ITEMS {'bmp','jpeg','gif','tiff','png','emf'} ;
          VALUE 0 ;
          ON CHANGE LoadImage( Form_Main.cmb_Type.Value )
-
       @ 05, 240 LABEL lbl_Image ;
          VALUE "Image loaded: <none>" ;
          WIDTH 350 ;
          HEIGHT 24
-
       @ 40, 20 IMAGE Image_1 OBJ oImage ;
          IMAGESIZE
-
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
-
    CENTER WINDOW Form_Main
    ACTIVATE WINDOW Form_Main
+
    RETURN
 
 FUNCTION LoadImage( i )
+
    cType          := {'bmp','jpeg','gif','tiff','png','emf'}[i]
    cPicture       := "demo." + cType
    aSize          := _OOHG_SizeOfBitmapFromFile( cPicture )
    oImage:Picture := cPicture
-
    oForm:lbl_Image:Value  := "Image loaded: " + cPicture
    oForm:mnu_BMP:Enabled  := ( i # 1 )
    oForm:mnu_JPEG:Enabled := ( i # 2 )
@@ -170,22 +159,25 @@ FUNCTION LoadImage( i )
    oForm:mnu_TIFF:Enabled := ( i # 4 )
    oForm:mnu_PNG:Enabled  := ( i # 5 )
    oForm:mnu_INFO:Enabled := .T.
+
    RETURN NIL
 
 FUNCTION GetImageInfo( cFile )
+
    LOCAL nImage, nWidth, nHeight
 
    nImage  := gPlusLoadImageFromFile( cFile )
    nWidth  := gPlusGetImageWidth( nImage )
    nHeight := gPlusGetImageHeight( nImage )
-
    AutoMsgInfo( { "Name: " + hb_OSNewLine() + cFile, ;
       "Width: "  + hb_OSNewLine() + LTrim( Str( nWidth ) ), ;
       "Height: " + hb_OSNewLine() + LTrim( Str( nHeight ) ) }, ;
       "Image Info" )
+
    RETURN NIL
 
 FUNCTION SaveToFile( hBitMap, cFile, nWidth, nHeight, cMimeType, nQuality )
+
    LOCAL lRet := gPlusSaveHBitmapToFile( hBitMap, ;
       cFile, ;
       nWidth, ;
@@ -193,9 +185,8 @@ FUNCTION SaveToFile( hBitMap, cFile, nWidth, nHeight, cMimeType, nQuality )
       cMimeType, ;
       nQuality, ;
       24 )
-   RETURN MsgInfo( IIF( lRet, "Saved to " + cFile, "Failure" ), "Result" )
 
+   RETURN MsgInfo( IIF( lRet, "Saved to " + cFile, "Failure" ), "Result" )
 /*
 * EOF
 */
-

@@ -9,18 +9,14 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
 
    SetOneArrayItemPerLine( .T. )
-
    AutoMsgBox( WindowsVersion() )
 
    RETURN Nil
-
 /*
 * EOF
 */
-

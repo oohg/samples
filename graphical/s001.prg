@@ -9,7 +9,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "i_windefs.ch"
 
@@ -24,9 +23,7 @@ PROCEDURE MAIN
          NOSIZE ;
          NOMAXIMIZE ;
          TITLE "How to draw a frame"
-
       ON KEY ESCAPE ACTION oWin:Release()
-
       DRAW ROUNDRECTANGLE IN WINDOW Form AT 40,40 ;
          TO 400,500 ;
          ROUNDWIDTH 8 ;
@@ -34,7 +31,6 @@ PROCEDURE MAIN
          PENCOLOR BLUE ;
          PENWIDTH 5 ;
          FILLCOLOR YELLOW
-
       /*
       * When Form has no BackColor, use:
       FILLCOLOR { GetRed( GetSysColor( COLOR_3DFACE ) ), ;
@@ -45,19 +41,15 @@ PROCEDURE MAIN
       * When Form has BackColor, use the same color in FILLCOLOR clause
       * so the frame's interior matches the color of the Form's background.
       */
-
       @ 34,50 LABEL Title ;
          AUTOSIZE ;
          VALUE " My Frame " ;
          BACKCOLOR YELLOW
    END WINDOW
-
    oWin:Center()
    oWin:Activate()
 
    RETURN
-
 /*
 * EOF
 */
-

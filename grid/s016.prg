@@ -9,7 +9,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
@@ -22,7 +21,6 @@ FUNCTION Main()
          HEIGHT 320 ;
          TITLE 'Auto-number Grid lines on append' ;
          MAIN
-
       @ 20, 20 GRID Grid_1 OBJ oGrid ;
          WIDTH oForm:ClientWidth - 40 ;
          HEIGHT oForm:ClientHeight - 84 ;
@@ -38,18 +36,14 @@ FUNCTION Main()
          ON APPEND OnAppendItem( oGrid ) ;
          DELETE ;
          EDIT INPLACE
-
       oGrid:Cargo := 0
-
       @ oForm:ClientHeight - 44, oForm:ClientWidth - 120 BUTTON Button_1 ;
          CAPTION 'Append Item' ;
          WIDTH 100 ;
          HEIGHT 24 ;
          ACTION AddNewItem( oGrid )
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -73,8 +67,6 @@ FUNCTION AddNewItem( oGrid )
    END WITH
 
    RETURN NIL
-
 /*
 * EOF
 */
-

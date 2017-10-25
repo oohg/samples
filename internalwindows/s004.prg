@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION MAIN
@@ -22,11 +21,9 @@ FUNCTION MAIN
          HEIGHT 480 ;
          TITLE "Toolbar in a window with virtual dimensions" ;
          MAIN
-
       DEFINE TOOLBAR Tool OBJ oTool BUTTONSIZE 70,20 FLAT BORDER
          BUTTON But1 CAPTION "&Exit" ACTION oWin:Release()
       END TOOLBAR
-
       DEFINE WINDOW Int ;
             OBJ oInt ;
             AT oTool:Height, 0 ;
@@ -35,38 +32,29 @@ FUNCTION MAIN
             INTERNAL ;
             VIRTUAL HEIGHT 1000 ;
             VIRTUAL WIDTH 1000
-
          @ 100,20 TEXTBOX Text1 ;
             WIDTH 100 ;
             HEIGHT 25
-
          @ 300,20 TEXTBOX Text2 ;
             WIDTH 100 ;
             HEIGHT 25
-
          @ 500,20 TEXTBOX Text3 ;
             WIDTH 100 ;
             HEIGHT 25
-
          @ 700,20 TEXTBOX Text4 ;
             WIDTH 100 ;
             HEIGHT 25
-
          @ 900,20 TEXTBOX Text5 ;
             WIDTH 100 ;
             HEIGHT 25
       END WINDOW
    END WINDOW
-
    // This reduces flicker
    oInt:VScrollBar:nLineSkip := 50
-
    oWin:Center()
    oWin:Activate()
 
    RETURN NIL
-
 /*
 * EOF
 */
-

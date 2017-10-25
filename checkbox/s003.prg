@@ -13,10 +13,10 @@
 * You can download fondo.jpg from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/CheckBox
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
+
    LOCAL oImg
 
    DEFINE WINDOW Form_1 ;
@@ -26,12 +26,10 @@ FUNCTION Main()
          CLIENTAREA ;
          MAIN ;
          TITLE "oohg - Checkbox with transparent background"
-
       @ 00, 00 IMAGE img_1 ;
          PICTURE "fondo.jpg" ;
          WIDTH 450 HEIGHT 400 ;
          OBJ oImg
-
       DEFINE CHECKBOX ChkBox
          ROW 70
          COL 10
@@ -43,16 +41,12 @@ FUNCTION Main()
          LEFTALIGN .T.
          BACKGROUND oImg
       END CHECKBOX
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

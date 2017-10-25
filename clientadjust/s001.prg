@@ -16,21 +16,18 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
 
    LOCAL oLbl1, oTree1, oFrame1, oBut1, ;
       oInt2, oFrame2, oFrame3, oBrowse1
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 658;
          HEIGHT 480 ;
          TITLE 'ooHG - ClientAdjust Sample' ;
          MAIN
-
       /*
       * ClientAdjust values:
       * 0 = none
@@ -40,7 +37,6 @@ FUNCTION Main()
       * 4 = right
       * 5 = client
       */
-
       @ 0,0 LABEL lbl_1 ;
          OBJ oLbl1 ;
          WIDTH 30 ;
@@ -49,14 +45,12 @@ FUNCTION Main()
          BORDER ;
          FONTCOLOR WHITE
       oLbl1:ClientAdjust := 1       // top
-
       DEFINE TREE tree_1 ;
             OBJ oTree1 ;
             AT 10,10 ;
             WIDTH 160 ;
             HEIGHT 400 ;
             VALUE 15
-
          NODE 'Item 1'
             TREEITEM 'Item 1.1'
             TREEITEM 'Item 1.2'
@@ -86,22 +80,18 @@ FUNCTION Main()
          END NODE
       END TREE
       oTree1:ClientAdjust := 3       // left
-
       DEFINE WINDOW int_1 ;
             OBJ oFrame1 ;
             HEIGHT 80 ;
             BACKCOLOR ORANGE ;
             INTERNAL
-
          @ 33,10 LABEL lbl_2 ;
             WIDTH 100 ;
             HEIGHT 24 ;
             VALUE 'Select an item:'
-
          @ 30,100 COMBOBOX cmb_1 ;
             ITEMS {'Item A', 'Item B', 'Item C'} ;
             VALUE 1
-
          @ 0,0 BUTTON btn_1 ;
             OBJ oBut1 ;
             CAPTION "Close" ;
@@ -112,7 +102,6 @@ FUNCTION Main()
          oBut1:ClientAdjust := 1       // top
       END WINDOW
       oFrame1:ClientAdjust := 1       // top
-
       DEFINE WINDOW int_2 ;
             OBJ oInt2 ;
             WIDTH 10 ;
@@ -120,48 +109,40 @@ FUNCTION Main()
             BACKCOLOR YELLOW
       END WINDOW
       oInt2:ClientAdjust := 4       // right
-
       DEFINE WINDOW int_3 ;
             OBJ oFrame2 ;
             HEIGHT 80 ;
             INTERNAL
-
          @ 10,10 BUTTON btn_1 ;
             WIDTH 120 ;
             HEIGHT 24 ;
             CAPTION 'Hide/Show Frame 1' ;
             ACTION oFrame1:Visible := ! oFrame1:Visible
-
          @ 10,140 BUTTON btn_2 ;
             WIDTH 120 ;
             HEIGHT 24 ;
             CAPTION 'Hide/Show Caption' ;
             ACTION oLbl1:Visible := ! oLbl1:Visible
-
          @ 10,270 BUTTON btn_3 ;
             WIDTH 120 ;
             HEIGHT 24 ;
             CAPTION 'Hide/Show Tree' ;
             ACTION oTree1:Visible := ! oTree1:Visible
-
          @ 35,10 BUTTON btn_4 ;
             WIDTH 100 ;
             HEIGHT 24 ;
             CAPTION 'Caption Top' ;
             ACTION ( oLbl1:nHeight := 30, oLbl1:Adjust := 1 )
-
          @ 35,120 BUTTON btn_5 ;
             WIDTH 100 ;
             HEIGHT 24 ;
             CAPTION 'Caption Bottom' ;
             ACTION ( olbl1:nHeight := 30, oLbl1:Adjust := 2 )
-
          @ 35,230 BUTTON btn_6 ;
             WIDTH 100 ;
             HEIGHT 24 ;
             CAPTION 'Caption Left' ;
             ACTION ( oLbl1:nWidth := 30, oLbl1:Adjust := 3 )
-
          @ 35,340 BUTTON btn_7 ;
             WIDTH 100 ;
             HEIGHT 24 ;
@@ -169,27 +150,21 @@ FUNCTION Main()
             ACTION ( oLbl1:nWidth := 30, oLbl1:Adjust := 4 )
       END WINDOW
       oFrame2:ClientAdjust := 2       // bottom
-
       @ 10,10 FRAME frm_3 ;
          OBJ oFrame3 ;
          CAPTION "Frame Right" ;
          WIDTH 120
       oFrame3:ClientAdjust := 4       // right
-
       @ 0,0 BROWSE brw_1 ;
          OBJ oBrowse1 ;
          WIDTH 100
       oBrowse1:ClientAdjust := 5       // client
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

@@ -12,12 +12,11 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
-   PUBLIC oImage, oSprite, wB, hB, wS, hS, hImage
 
+   PUBLIC oImage, oSprite, wB, hB, wS, hS, hImage
    DEFINE WINDOW frm_Main ;
          AT 0, 0 ;
          MAIN ;
@@ -29,42 +28,37 @@ FUNCTION Main
          wB := _OOHG_BitMapWidth( oImage:HBitMap ), ;
          hB := _OOHG_BitMapHeight( oImage:HBitMap ), ;
          hImage := oImage:Copy() )
-
       @ 20, 20 IMAGE img_Back ;
          OBJ oImage ;
          PICTURE "back.bmp" ;
          WIDTH 560 ;
          HEIGHT 360
-
       @ 20, 20 IMAGE img_Sprite ;
          OBJ oSprite ;
          PICTURE "oohg.bmp" ;
          WIDTH 60 ;
          HEIGHT 80 ;
          INVISIBLE
-
       DEFINE TIMER tmr_Move ;
          INTERVAL 500 ;
          ACTION MoveImage()
-
       ON KEY ESCAPE ACTION frm_Main.Release
    END WINDOW
-
    CENTER WINDOW frm_Main
    ACTIVATE WINDOW frm_Main
 
    RETURN NIL
 
 FUNCTION MoveImage
-   LOCAL hAux
-   STATIC lX := .T., lY := .T., x := 0, y := 0
 
+   LOCAL hAux
+
+   STATIC lX := .T., lY := .T., x := 0, y := 0
    hAux := oImage:hImage
    oImage:hImage := hImage
    hImage := oImage:Copy()
    oImage:Blend( oSprite:HBitMap, x, y )
    DeleteObject( hAux )
-
    IF lX
       IF x + wS + 10 > wB
          lX := ! lX
@@ -74,13 +68,11 @@ FUNCTION MoveImage
          lX := ! lX
       ENDIF
    ENDIF
-
    IF lX
       x += 10
    ELSE
       x -= 10
    ENDIF
-
    IF lY
       IF y + hS + 15 > hB
          lY := ! lY
@@ -90,7 +82,6 @@ FUNCTION MoveImage
          lY := ! lY
       ENDIF
    ENDIF
-
    IF lY
       y += 15
    ELSE
@@ -98,8 +89,6 @@ FUNCTION MoveImage
    ENDIF
 
    RETURN NIL
-
 /*
 * EOF
 */
-

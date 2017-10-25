@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "dbstruct.ch"
 
@@ -19,7 +18,6 @@ FUNCTION Main
    LOCAL lOpen, oWnd, aRows[10,4], i
 
    REQUEST DBFCDX, DBFFPT
-
    /*
    * Database must be opened before the grid is created so the initial rows
    * values can be displayed correctly. If it's not, the initial values are
@@ -28,7 +26,6 @@ FUNCTION Main
    IF ( lOpen := MsgYesNo( "Open database before INIT ?" ) )
       OpenTables()
    ENDIF
-
    DEFINE WINDOW Form_1 ;
          MAIN ;
          TITLE "Cell edition in Grid using a ComboBox ColumnControl" ;
@@ -36,7 +33,6 @@ FUNCTION Main
          HEIGHT 400 ;
          ON INIT IF( ! lOpen, OpenTables(), NIL ) ;
          ON RELEASE CleanUp()
-
       /*
       * Row definition
       * Cell value must correspond to the type of the ColumnControl returned value.
@@ -54,7 +50,6 @@ FUNCTION Main
             aRows[i] := {0, "", 0, 0, "", 0}
          ENDIF
       NEXT
-
       /*
       * Value of Col 1 is Test->CodeLast and it's type is Numeric as the field.
       * Value of Col 2 is Test->CodeFirst and it's type is String because the
@@ -77,7 +72,6 @@ FUNCTION Main
             ShowItem(5) + HB_OsNewLine() + ;
             ShowItem(6) )
       END MENU
-
       @ 10,10 GRID Grid_1 ;
          WIDTH 620 ;
          HEIGHT 330 ;
@@ -118,17 +112,14 @@ FUNCTION Main
       *          Defaults to 'NUMERIC'.
       *          This constant must matchs par3's type or a RTE will rise.
       */
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    Return
-
 //--------------------------------------------------------------------------//
+
 FUNCTION OpenTables()
 
    LOCAL aDbf[ 4, 4 ]
@@ -137,27 +128,21 @@ FUNCTION OpenTables()
    aDbf[1][ DBS_TYPE ] := "Numeric"
    aDbf[1][ DBS_LEN ]  := 2
    aDbf[1][ DBS_DEC ]  := 0
-
    aDbf[2][ DBS_NAME ] := "Last"
    aDbf[2][ DBS_TYPE ] := "Character"
    aDbf[2][ DBS_LEN ]  := 25
    aDbf[2][ DBS_DEC ]  := 0
-
    aDbf[3][ DBS_NAME ] := "CodeFirst"
    aDbf[3][ DBS_TYPE ] := "Character"
    aDbf[3][ DBS_LEN ]  := 2
    aDbf[3][ DBS_DEC ]  := 0
-
    aDbf[4][ DBS_NAME ] := "First"
    aDbf[4][ DBS_TYPE ] := "Character"
    aDbf[4][ DBS_LEN ]  := 25
    aDbf[4][ DBS_DEC ]  := 0
-
    DBCREATE("Test", aDbf, "DBFCDX")
-
    USE Test VIA "DBFCDX"
    ZAP
-
    FOR i := 1 TO 30
       APPEND BLANK
       REPLACE CodeLast  WITH i * 3
@@ -167,9 +152,10 @@ FUNCTION OpenTables()
    NEXT i
 
    RETURN NIL
-
 //--------------------------------------------------------------------------//
+
 STATIC FUNCTION ShowItem( nItem )
+
 
    RETURN ( "Col " + ;
    LTRIM(STR(nItem)) + ;
@@ -177,16 +163,14 @@ STATIC FUNCTION ShowItem( nItem )
    VALTYPE(Form_1.Grid_1.Item( Form_1.Grid_1.Value )[nItem]) + ;
    " Value: " + ;
    LTRIM(AUTOTYPE(Form_1.Grid_1.Item( Form_1.Grid_1.Value )[nItem])) )
-
 //--------------------------------------------------------------------------//
+
 STATIC FUNCTION CleanUp()
 
    CLOSE DATABASES
    ERASE Test.dbf
 
    RETURN NIL
-
 /*
 * EOF
 */
-

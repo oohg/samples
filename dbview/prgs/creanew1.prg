@@ -1,7 +1,6 @@
 /*
 * $Id: creanew1.prg,v 1.2 2016-10-17 01:55:33 fyurisich Exp $
 */
-
 /*
 *
 * MINIGUI - Harbour Win32 GUI library
@@ -14,7 +13,6 @@
 * and Rathinagiri <srathinagiri@gmail.com>
 *
 */
-
 #include "oohg.ch"
 #include "dbuvar.ch"
 
@@ -22,18 +20,14 @@ function DBUcreanew(cBase)
 
    _DBUstructarr := {}
    _DBUdbfsaved := .f.
-
    _dbufname := cBase
-
    DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSION+"- Create a New DataBase Table (.dbf)" MODAL nosize nosysmenu
-
       DEFINE TEXTBOX _DBUfieldname
          ROW    40
          COL    30
          WIDTH  120
          HEIGHT 24
       END TEXTBOX
-
       DEFINE COMBOBOX _DBUfieldtype
          ROW    40
          COL    160
@@ -44,7 +38,6 @@ function DBUcreanew(cBase)
          ON LOSTFOCUS DBUtypelostfocus()
          ON ENTER DBUtypelostfocus()
       END COMBOBOX
-
       DEFINE LABEL _DBUnamelabel
          ROW    20
          COL    30
@@ -52,7 +45,6 @@ function DBUcreanew(cBase)
          HEIGHT 20
          VALUE "Field"
       END LABEL
-
       DEFINE LABEL _DBUtypelabel
          ROW    20
          COL    160
@@ -60,7 +52,6 @@ function DBUcreanew(cBase)
          HEIGHT 20
          VALUE "Type"
       END LABEL
-
       DEFINE LABEL _DBUsizelabel
          ROW    20
          COL    290
@@ -68,7 +59,6 @@ function DBUcreanew(cBase)
          HEIGHT 20
          VALUE "Size"
       END LABEL
-
       DEFINE LABEL _DBUdecimallabel
          ROW    20
          COL    360
@@ -76,7 +66,6 @@ function DBUcreanew(cBase)
          HEIGHT 16
          VALUE "Digits"
       END LABEL
-
       DEFINE SPINNER _DBUfieldsize
          ROW    40
          COL    290
@@ -87,7 +76,6 @@ function DBUcreanew(cBase)
          VALUE 10
          on lostfocus DBUsizelostfocus()
       END SPINNER
-
       DEFINE SPINNER _DBUfielddecimals
          ROW    40
          COL    360
@@ -97,7 +85,6 @@ function DBUcreanew(cBase)
          RANGEMAX 99
          on lostfocus DBUdeclostfocus()
       END SPINNER
-
       DEFINE BUTTON _DBUaddline
          ROW    40
          COL    430
@@ -106,7 +93,6 @@ function DBUcreanew(cBase)
          CAPTION "Add"
          action DBUaddstruct()
       END BUTTON
-
       DEFINE BUTTON _DBUinsline
          ROW    70
          COL    430
@@ -115,7 +101,6 @@ function DBUcreanew(cBase)
          CAPTION "Insert"
          action DBUinsstruct()
       END BUTTON
-
       DEFINE BUTTON _DBUdelline
          ROW    100
          COL    430
@@ -124,7 +109,6 @@ function DBUcreanew(cBase)
          CAPTION "Delete"
          action DBUdelstruct()
       END BUTTON
-
       DEFINE GRID _DBUstruct
          ROW    80
          COL    30
@@ -136,7 +120,6 @@ function DBUcreanew(cBase)
          items _DBUstructarr
          on dblclick DBUlineselected()
       END GRID
-
       DEFINE BUTTON _DBUsavestruct
          ROW    140
          COL    430
@@ -145,7 +128,6 @@ function DBUcreanew(cBase)
          CAPTION "Create"
          action DBUsavestructure()
       END BUTTON
-
       DEFINE BUTTON _DBUexitnew
          ROW    170
          COL    430
@@ -154,14 +136,14 @@ function DBUcreanew(cBase)
          CAPTION "Exit"
          action DBUexitcreatenew()
       END BUTTON
-
    END WINDOW
-
    center window _DBUcreadbf
    activate window _DBUcreadbf
+
    return nil
 
 function DBUexitcreatenew
+
    if len(_DBUstructarr) == 0 .or. _DBUdbfsaved
       //   DBUtogglemenu()
       release window _DBUcreadbf
@@ -171,9 +153,11 @@ function DBUexitcreatenew
          release window _DBUcreadbf
       endif
    endif
+
    return nil
 
 function DBUaddstruct
+
    if _DBUcreadbf._DBUaddline.caption == "Add"
       if .not. DBUnamecheck()
 
@@ -323,6 +307,7 @@ function DBUaddstruct
    return nil
 
 function DBUinsstruct
+
    if len(_DBUstructarr) == 0
       DBUaddstruct()
 
@@ -408,6 +393,7 @@ function DBUinsstruct
    return nil
 
 function DBUdelstruct
+
    _DBUcurline := _DBUcreadbf._DBUstruct.value
    if _DBUcurline > 0
       _DBUstructarr := adel(_DBUstructarr,_DBUcurline)
@@ -443,30 +429,38 @@ function DBUdelstruct
    return nil
 
 function DBUnamecheck
+
    local _DBUname := alltrim(_DBUcreadbf._DBUfieldname.value)
+
    local _DBUlegalchars := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890'
+
    public _DBUi := 0
    if len(_DBUname) == 0
       msgexclamation("Field Name can not be empty!",PROGRAM)
       _DBUcreadbf._DBUfieldname.setfocus()
+
       return .f.
    endif
    if val(substr(_DBUname,1,1)) > 0 .or. substr(_DBUname,1,1) == "_"
       msgexclamation("First letter of the field name can not be a numeric character or special character!",PROGRAM)
       _DBUcreadbf._DBUfieldname.setfocus()
+
       return .f.
    else
       for _DBUi := 1 to len(_DBUname)
          if at(upper(substr(_DBUname,_DBUi,1)),_DBUlegalchars) == 0
             msgexclamation("Field name contains illegal characters. Allowed characters are alphabets, numbers and the special character '_'.",PROGRAM)
             _DBUcreadbf._DBUfieldname.setfocus()
+
             return .f.
          endif
       next _DBUi
    endif
+
    return .t.
 
 function DBUtypelostfocus
+
    do case
    case _DBUcreadbf._DBUfieldtype.value == 3
       _DBUcreadbf._DBUfieldsize.value := 8
@@ -478,24 +472,30 @@ function DBUtypelostfocus
       _DBUcreadbf._DBUfieldsize.value := 10
       _DBUcreadbf._DBUfielddecimals.value := 0
    endcase
+
    return nil
 
 function DBUsizelostfocus
+
    DBUtypelostfocus()
    if _DBUcreadbf._DBUfieldtype.value == 1
       _DBUcreadbf._DBUfielddecimals.value := 0
    endif
+
    return nil
 
 function DBUdeclostfocus
+
    DBUtypelostfocus()
    DBUsizelostfocus()
    if _DBUcreadbf._DBUfieldtype.value <> 2
       _DBUcreadbf._DBUfielddecimals.value := 0
    endif
+
    return nil
 
 function DBUlineselected
+
    _DBUcurline := _DBUcreadbf._DBUstruct.value
    if _DBUcurline > 0
       _DBUcreadbf._DBUfieldname.value := _DBUstructarr[_DBUcurline,1]
@@ -518,9 +518,11 @@ function DBUlineselected
       _DBUcreadbf._DBUaddline.caption := "Modify"
       _DBUcreadbf._DBUfieldname.setfocus()
    endif
+
    return nil
 
 function DBUsavestructure
+
    _DBUfname1 := ""
    if len(_DBUstructarr) > 0
       _DBUfname1 := alltrim(putfile({{"Harbour Database File","*.dbf"}},"Enter a filename"))
@@ -540,5 +542,5 @@ function DBUsavestructure
          endif
       endif
    endif
-   return nil
 
+   return nil

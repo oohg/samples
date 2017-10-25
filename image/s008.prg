@@ -16,7 +16,6 @@
 * You can download oohg.gif from
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Image
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -28,33 +27,26 @@ FUNCTION Main
          TITLE 'Image vs Picture Test Case' ;
          MAIN ;
          BACKCOLOR CYAN
-
       @ 0,300 IMAGE Img_1 ;
          WIDTH 200;
          HEIGHT 150;
          PICTURE 'oohg.gif' ;
          ON CLICK MsgBox( "I'm an IMAGE control !!!")
-
       @ 0,0 PICTURE Img_2 ;
          WIDTH 200;
          HEIGHT 150;
          PICTURE 'oohg.gif' ;
          ON CLICK MsgBox( "I'm a PICTURE control !!!")
-
       /*
       * Note that IMAGE uses IMAGESIZE by default and
       * PICTURE uses STRETCH by default.
       */
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

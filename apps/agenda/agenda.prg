@@ -22,15 +22,14 @@ Procedure Main()
 
    REQUEST DBFNTX
    REQUEST DBFDBT
-
    Cria_frmPrincipal()
    Frm_Principal.Center()
    Frm_Principal.Activate()
 
    Return Nil
-
 /*
 */
+
 Function Cria_frmPrincipal()
 
    DEFINE WINDOW Frm_Principal AT 0,0   ;
@@ -41,51 +40,41 @@ Function Cria_frmPrincipal()
          MAIN               ;
          NOMAXIMIZE            ;
          ON INIT    { || InicializaAmbiente() }
-
       DEFINE STATUSBAR
          STATUSITEM "www.geocities.com/harbourminas  - hfornazier@brfree.com.br"
       END STATUSBAR
-
       @000,005 FRAME Panel_Menu WIDTH 740 HEIGHT 40 OPAQUE
-
       @ 008,010 BUTTON Bt_Contatos ;
          PICTURE 'AGENDA'   ;
          ACTION  Agenda2() ;
          WIDTH 40 HEIGHT 27 ;
          TOOLTIP 'Cadastro dos Contatos'
-
       @ 008,050 BUTTON Bt_Tabelas_Grupos  ;
          PICTURE 'TABELAS';
          ACTION  CadastroGenerico( "Tipos" ,  "Tipos de Contato") ;
          WIDTH 40 HEIGHT 27 ;
          TOOLTIP 'Cadastro dos Tipos de Contato'
-
       @ 008,090 BUTTON Bt_Imprime_Agenda  ;
          PICTURE 'PRINT';
          ACTION  Relatorio_Contatos() ;
          WIDTH 40 HEIGHT 27 ;
          TOOLTIP 'Imprime Contatos Cadastrados'
-
       @ 008,130 BUTTON Bt_Help     ;
          PICTURE 'XHELP'     ;
          ACTION  Sobre_o_Sistema() ;
          WIDTH 40 HEIGHT 27 ;
          TOOLTIP 'Sobre o Sistema'
-
       @385,130 FRAME Panel_Msg WIDTH 520 HEIGHT 40 OPAQUE
-
       @ 392,175 LABEL Label_Mensagem          ;
          VALUE "O Clipper não Morreu!!   Conheça o Harbour / xHarbour & o MiniGUI";
          WIDTH 450              ;
          HEIGHT 27              ;
          FONT "Arial" SIZE 10                ;
          FONTCOLOR WHITE BOLD
-
       @002,604 ANIMATEBOX Ani_Minigui ;
          WIDTH 300 ;
          HEIGHT 80 ;
          FILE 'Minigui' AUTOPLAY
-
       DEFINE MAIN MENU
          POPUP "Sistema"
             ITEM "&Contatos     " ACTION Agenda2()
@@ -98,21 +87,24 @@ Function Cria_frmPrincipal()
             ITEM "Sobre         " ACTION Sobre_o_Sistema()
          END POPUP
       END MENU
-
    END WINDOW
 
    Return Nil
-
 /*
 */
+
 Function Btn_Sair_Sistema()
+
    if MsgYesNo("Deseja Sair do Sistema??",SISTEMA)
       RELEASE WINDOW ALL
    EndIf
+
    Return NIL
 /*
 */
+
 Function Sobre_o_Sistema()
+
    PlayExclamation()
    MsgINFO (PadC("*** Agenda de Contatos ***",60)+QUEBRA+;
       PadC(" ",30)+QUEBRA+;
@@ -125,10 +117,11 @@ Function Sobre_o_Sistema()
       PadC(" ",30)+QUEBRA+;
       PadC("xHarbour Compiler Build 0.73.5 (SimpLex)",60)+QUEBRA+;
       PadC("http://www.xharbour.org https://harbour.github.io/",60),SISTEMA)
-   Return NIL
 
+   Return NIL
 /*                              http://www.xharbour.org https://harbour.github.io/
 */
+
 Function InicializaAmbiente()
 
    REQUEST HB_LANG_PT
@@ -141,18 +134,21 @@ Function InicializaAmbiente()
    Return Nil
 /*
 */
-Function LinhaDeStatus(cMensagem)
-   Frm_Principal.StatusBar.Item(1) :=  "   " + cMensagem
-   Return Nil
 
+Function LinhaDeStatus(cMensagem)
+
+   Frm_Principal.StatusBar.Item(1) :=  "   " + cMensagem
+
+   Return Nil
 /*
 */
-Function NoModulo()
-   MsgBox("Modulo será desenvolvido na próxima Versão!!")
-   Return Nil
 
+Function NoModulo()
+
+   MsgBox("Modulo será desenvolvido na próxima Versão!!")
+
+   Return Nil
 *------------------------------ Arquivos --------------------------------------*
 #Include "Agenda2.PRG"
 #Include "CadGen.PRG"
 #Include "Funcoes.PRG"
-

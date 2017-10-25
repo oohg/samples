@@ -16,10 +16,8 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "dbstruct.ch"
-
 REQUEST DBFCDX, DBFFPT
 
 FUNCTION Main
@@ -29,7 +27,6 @@ FUNCTION Main
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
-
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0,0 ;
          CLIENTAREA ;
@@ -39,7 +36,6 @@ FUNCTION Main
          MAIN;
          ON INIT OpenTables( Browse_1 ) ;
          ON RELEASE CleanUp()
-
       @ 10,10 BROWSE Browse_1 OBJ Browse_1 ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight - 20 ;
@@ -71,10 +67,8 @@ FUNCTION Main
          BROWSE_JTFY_CENTER, ;
          BROWSE_JTFY_CENTER, ;
          BROWSE_JTFY_CENTER }
-
       cMode := ""
       Browse_1:Anchor := cMode
-
       /*
       * cMode is composed by the words TOP, LEFT, BOTTOM and RIGHT.
       * The default value is "TOPLEFT".
@@ -95,16 +89,14 @@ FUNCTION Main
       * between both sides. If none is specified, the control stays
       * unanchored and centered in the form's client area.
       */
-
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
-
    oForm:Center()
    oForm:Activate()
 
    RETURN NIL
-
 //--------------------------------------------------------------------------//
+
 FUNCTION OpenTables( oBrw )
 
    LOCAL i
@@ -117,10 +109,8 @@ FUNCTION OpenTables( oBrw )
       { "Birth",   "Date",       8, 0 }, ;
       { "Bio",     "Memo",      10, 0 } }, ;
       "DBFCDX" )
-
    USE test VIA "DBFCDX"
    ZAP
-
    FOR i := 1 TO 100
       APPEND BLANK
       REPLACE Code    WITH i * 10000
@@ -129,11 +119,8 @@ FUNCTION OpenTables( oBrw )
       REPLACE Married WITH .t.
       REPLACE Birth   WITH DATE() + i - 10000
    NEXT i
-
    INDEX ON code TO code
-
    GO BOTTOM
-
    /*
    * Force the browse to show the last record in the last row.
    * By default the last record is shown in the middle row.
@@ -142,23 +129,19 @@ FUNCTION OpenTables( oBrw )
    * to select. The second indicates the row where that record
    * must be shown.
    */
-
    oBrw:SetValue( RECNO(), oBrw:CountPerPage )
 
    RETURN Nil
-
 //--------------------------------------------------------------------------//
+
 FUNCTION CleanUp()
 
    dbCloseAll()
-
    ERASE Test.dbf
    ERASE Test.fpt
    ERASE Code.cdx
 
    RETURN NIL
-
 /*
 * EOF
 */
-

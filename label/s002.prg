@@ -9,9 +9,7 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
-
 #define CRLF Chr(13) + Chr(10)
 
 FUNCTION Main
@@ -22,7 +20,6 @@ FUNCTION Main
          CLIENTAREA ;
          TITLE "OOHG Label Demo" ;
          MAIN
-
       @ 20, 20 LABEL lbl_1 ;
          VALUE "T" + CRLF + ;
          "h" + CRLF + ;
@@ -50,7 +47,6 @@ FUNCTION Main
          "l"          ;
          WIDTH 24 ;
          HEIGHT 440
-
       @ 20, 100 LABEL lbl_2 OBJ oLbl2 ;
          VALUE " This is a rotated label" ;
          WIDTH 150 ;
@@ -58,7 +54,6 @@ FUNCTION Main
          CENTERALIGN ;
          BORDER
       oLbl2:SetFont( NIL, NIL, NIL, NIL, NIL, NIL, -900, NIL )
-
       @ 20, 260 LABEL lbl_3 OBJ oLbl3 ;
          VALUE " This is another" ;
          WIDTH 150 ;
@@ -66,16 +61,12 @@ FUNCTION Main
          CENTERALIGN ;
          BORDER
       oLbl3:SetFont( NIL, NIL, NIL, NIL, NIL, NIL, -450, NIL )
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

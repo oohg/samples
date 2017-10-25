@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -21,11 +20,9 @@ FUNCTION Main
          HEIGHT 500 ;
          TITLE 'CheckList Demo' ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM ""
       END STATUSBAR
-
       @ 10,10 CHECKLIST ckl_1 obj oChkL1 ;
          WIDTH 300 ;
          HEIGHT 300 ;
@@ -50,16 +47,13 @@ FUNCTION Main
       LTRIM( STR( oChkL1:LastChangedItem ) ) + ;
       " checkbox changed !!!" }
       END CHECKLIST
-
       oChkL1 := GetControlObject('ckl_1','Form_1')
       */
-
       /*
       * LastChangedItem:
       * Item responsible for the last OnChange event.
       * Zero when the event was fired by Sort or DeleteItem methods.
       */
-
       DEFINE CONTEXT MENU CONTROL ckl_1
          MENUITEM 'Change Selected' ;
             ACTION oChkL1:CheckItem( oChkL1:FirstSelectedItem, ;
@@ -100,11 +94,9 @@ FUNCTION Main
          MENUITEM 'Sort Items Descending' ;
             ACTION oChkL1:Sort( .T. )
       END MENU
-
       @ 330,10 BUTTON btn_Value1 ;
          CAPTION "Show Value" ;
          ACTION AutoMsgBox(oChkL1:Value)
-
       @ 10,340 CHECKLIST chk_2 obj oChkL2 ;
          WIDTH 140 ;
          HEIGHT 300 ;
@@ -112,7 +104,6 @@ FUNCTION Main
          JUSTIFY CHKL_JTFY_RIGHT ;
          SORT ;
          VALUE { 1,2 }
-
       /*
       DEFINE CHECKLIST chk_2
       ROW 10
@@ -124,10 +115,8 @@ FUNCTION Main
       SORT .T.
       VALUE { 1,2 }
       END CHECKLIST
-
       oChkL2 := GetControlObject('chk_2','Form_1')
       */
-
       DEFINE CONTEXT MENU CONTROL chk_2
          MENUITEM 'Check Item 2' ;
             ACTION oChkL2:CheckItem( 2, .T. )
@@ -162,25 +151,21 @@ FUNCTION Main
          MENUITEM 'Sort Items Descending' ;
             ACTION oChkL2:Sort( .T. )
       END MENU
-
       @ 330,340 BUTTON btn_Value2 ;
          CAPTION "Show Value" ;
          ACTION AutoMsgBox( oChkL2:Value )
-
       @ 370,10 BUTTON btn_Clear ;
          CAPTION "Clear StatusBar" ;
          ACTION Form_1.StatusBar.Item( 1 ) := ""
-
       ON KEY ESCAPE OF Form_1 ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    Return Nil
 
 FUNCTION CheckAllItems( oChkL )
+
    LOCAL i
 
    FOR i := 1 TO oChkL:ItemCount
@@ -190,6 +175,7 @@ FUNCTION CheckAllItems( oChkL )
    Return Nil
 
 FUNCTION UncheckAllItems( oChkL )
+
    LOCAL i
 
    FOR i := 1 TO oChkL:ItemCount
@@ -197,8 +183,6 @@ FUNCTION UncheckAllItems( oChkL )
    NEXT i
 
    Return Nil
-
 /*
 * EOF
 */
-

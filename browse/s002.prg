@@ -15,7 +15,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "dbstruct.ch"
 
@@ -24,11 +23,9 @@ Function Main
    LOCAL Form_1, Browse_1
 
    REQUEST DBFCDX, DBFFPT
-
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
-
    DEFINE WINDOW Form_1 OBJ Form_1 ;
          AT 0,0 ;
          CLIENTAREA ;
@@ -39,7 +36,6 @@ Function Main
          ON INIT {|| OnPaint(Form_1), OpenTables()} ;
          ON RELEASE CleanUp() ;
          ON SIZE OnPaint(Form_1)
-
       @ 10,10 BROWSE Browse_1 OBJ Browse_1 ;
          WIDTH 610 ;
          HEIGHT 390 ;
@@ -61,7 +57,6 @@ Function Main
          LOCK ;
          EDIT INPLACE ;
          APPEND
-
       /*
       * This is the same browse but in alternative syntax
       */
@@ -93,17 +88,14 @@ Function Main
       ALLOWAPPEND .T.
       END BROWSE
       */
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    RETURN Nil
-
 //--------------------------------------------------------------------------//
+
 FUNCTION OpenTables()
 
    LOCAL aDbf[6][4]
@@ -112,37 +104,29 @@ FUNCTION OpenTables()
    aDbf[1][ DBS_TYPE ] := "Numeric"
    aDbf[1][ DBS_LEN ]  := 10
    aDbf[1][ DBS_DEC ]  := 0
-
    aDbf[2][ DBS_NAME ] := "First"
    aDbf[2][ DBS_TYPE ] := "Character"
    aDbf[2][ DBS_LEN ]  := 25
    aDbf[2][ DBS_DEC ]  := 0
-
    aDbf[3][ DBS_NAME ] := "Last"
    aDbf[3][ DBS_TYPE ] := "Character"
    aDbf[3][ DBS_LEN ]  := 25
    aDbf[3][ DBS_DEC ]  := 0
-
    aDbf[4][ DBS_NAME ] := "Married"
    aDbf[4][ DBS_TYPE ] := "Logical"
    aDbf[4][ DBS_LEN ]  := 1
    aDbf[4][ DBS_DEC ]  := 0
-
    aDbf[5][ DBS_NAME ] := "Birth"
    aDbf[5][ DBS_TYPE ] := "Date"
    aDbf[5][ DBS_LEN ]  := 8
    aDbf[5][ DBS_DEC ]  := 0
-
    aDbf[6][ DBS_NAME ] := "Bio"
    aDbf[6][ DBS_TYPE ] := "Memo"
    aDbf[6][ DBS_LEN ]  := 10
    aDbf[6][ DBS_DEC ]  := 0
-
    DBCREATE("Test", aDbf, "DBFCDX")
-
    USE test VIA "DBFCDX"
    ZAP
-
    FOR i:= 1 TO 100
       APPEND BLANK
       REPLACE code    WITH i * 10000
@@ -151,16 +135,13 @@ FUNCTION OpenTables()
       REPLACE Married WITH .t.
       REPLACE birth   WITH DATE() + i - 10000
    NEXT i
-
    INDEX ON code TO code
-
    GO TOP
-
    Form_1.Browse_1.Value := RECNO()
 
    RETURN Nil
-
 //--------------------------------------------------------------------------//
+
 FUNCTION OnPaint (Ventana)
 
    WITH OBJECT Ventana
@@ -171,19 +152,16 @@ FUNCTION OnPaint (Ventana)
    END WITH
 
    RETURN Nil
-
 //--------------------------------------------------------------------------//
+
 FUNCTION CleanUp()
 
    dbCloseAll()
-
    ERASE Test.dbf
    ERASE Test.fpt
    ERASE Code.cdx
 
    RETURN NIL
-
 /*
 * EOF
 */
-

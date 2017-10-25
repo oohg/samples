@@ -1,14 +1,14 @@
 /*
  * $Id: MpmAso.prg,v 1.2 2014-07-11 19:38:40 migsoft Exp $
  */
-
 #include "oohg.ch"
-
 *---------------------------------------------------------------------*
-PROCEDURE ShowAssociation(cExt)
-   *---------------------------------------------------------------------*
 
+PROCEDURE ShowAssociation(cExt)
+
+   *---------------------------------------------------------------------*
    LOCAL cKey
+
    LOCAL cVal
 
    BEGIN SEQUENCE
@@ -40,13 +40,15 @@ PROCEDURE ShowAssociation(cExt)
    END SEQUENCE
 
    RETURN
-
 *---------------------------------------------------------------------*
-FUNCTION IsAssociated(cExt, lInit)
-   *---------------------------------------------------------------------*
 
+FUNCTION IsAssociated(cExt, lInit)
+
+   *---------------------------------------------------------------------*
    LOCAL cKey
+
    LOCAL cVal
+
    LOCAL lAssoc
 
    BEGIN SEQUENCE
@@ -73,12 +75,13 @@ FUNCTION IsAssociated(cExt, lInit)
    END SEQUENCE
 
    RETURN lAssoc
-
 *---------------------------------------------------------------------*
-PROCEDURE ChangeAssociation(cExt, lSet)
-   *---------------------------------------------------------------------*
 
+PROCEDURE ChangeAssociation(cExt, lSet)
+
+   *---------------------------------------------------------------------*
    LOCAL lAssoc := IsAssociated(cExt)
+
    LOCAL cKey
 
    DO CASE
@@ -114,4 +117,3 @@ PROCEDURE ChangeAssociation(cExt, lSet)
    ENDCASE
 
    RETURN
-

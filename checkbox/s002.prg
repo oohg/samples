@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -22,7 +21,6 @@ FUNCTION Main
          TITLE 'oohg - Three state and leftalign CheckBox demo' ;
          MAIN ;
          NOSIZE
-
       DEFINE MAIN MENU
          POPUP 'CheckBox'
             ITEM 'Set Chk2 to UNCHECKED'     ACTION SetChkState(0)
@@ -32,20 +30,17 @@ FUNCTION Main
             ITEM 'Exit' ACTION Form1.Release
          END POPUP
       END MENU
-
       @ 30,30 CHECKBOX Chk1 ;
          CAPTION 'Chk1 LeftAlign' ;
          WIDTH 120 ;
          HEIGHT 28 ;
          LEFTALIGN
-
       @ 30,200 CHECKBOX Chk2 ;
          OBJ Chk2 ;
          CAPTION 'Chk2 Three State' ;
          WIDTH 120 ;
          HEIGHT 28 ;
          THREESTATE
-
       DEFINE CHECKBOX Chk3
          ROW 60
          COL 30
@@ -55,7 +50,6 @@ FUNCTION Main
          VALUE .T.
          LEFTALIGN .T.
       END CHECKBOX
-
       DEFINE CHECKBOX Chk4
          ROW 60
          COL 200
@@ -67,10 +61,8 @@ FUNCTION Main
          ONCHANGE ShowState()
          THREESTATE .T.
       END CHECKBOX
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    CENTER WINDOW Form1
    ACTIVATE WINDOW Form1
 
@@ -90,6 +82,7 @@ FUNCTION SetChkState( nState )
    RETURN Nil
 
 FUNCTION ShowState()
+
    LOCAL ret := Form1.Chk4.Value
 
    DO CASE
@@ -102,8 +95,6 @@ FUNCTION ShowState()
    ENDCASE
 
    RETURN Nil
-
 /*
 * EOF
 */
-

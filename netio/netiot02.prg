@@ -1,7 +1,6 @@
 /*
  * $Id: netiot02.prg 14688 2010-06-04 13:32:23Z vszakats $
  */
-
 /*
  * Harbour Project source code:
  *    demonstration/test code for RPC in NETIO
@@ -10,7 +9,6 @@
  * www - http://harbour-project.org
  *
  */
-
 /* to execute this code run server (netiosrv) on the same machine
  * with support for RPC and "topsecret" password, i.e.:
  *    netiosrv "" "" "" 1 topsecret
@@ -21,7 +19,6 @@
  * and rebuild it or link netiosrv with Harbour dynamic library
  * (-shared hbmk2 switch)
  */
-
 /* few PP rules which allow to execute RPC function using
  * pseudo object 'net', i.e. ? net:date()
  */
@@ -32,14 +29,12 @@
 #xtranslate net:[<server>]:<port>:<!func!>([<params,...>]) => ;
    netio_funcexec( [ #<server> + ] ":" + #<port> + ":" + #<func> ;
    [,<params>] )
-
 #xtranslate net:exists:<!func!> => ;
    netio_procexists( #<func> )
 #xtranslate net:exists:[<server>]:<!func!> => ;
    netio_procexists( [ #<server> + ] ":" + #<func> )
 #xtranslate net:exists:[<server>]:<port>:<!func!> => ;
    netio_procexists( [ #<server> + ] ":" + #<port> + ":" + #<func> )
-
 /* address of computer executing netiosrv,
  * change it if it's not the same machine
  */
@@ -51,7 +46,6 @@ proc main()
 
    SET DATE ANSI
    SET CENTURY ON
-
    /* connect to the server */
    ? "CONNECTING..."
    ? "NETIO_CONNECT():", netio_connect( NETSERVER, NETPORT,, NETPASSWD )
@@ -65,15 +59,13 @@ proc main()
    net:QOUT( repl( "=", 70 ) )
    net:QOUT( "This is RPC TEST", hb_datetime(), version() )
    net:QOUT( repl( "=", 70 ) )
-
    /* execute some functions on the server side and display the results */
    ? "SERVER DATE:",     net:DATE()
    ? "SERVER TIME:",     net:TIME()
    ? "SERVER DATETIME:", net:HB_DATETIME()
    ? net:upper( "hello world !!!" )
    ?
-
    /* close the connection to the server */
    ? "NETIO_DISCONNECT():", netio_disconnect( NETSERVER, NETPORT )
-   return
 
+   return

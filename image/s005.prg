@@ -10,13 +10,13 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main
-   LOCAL oImage1
-   // This declaration is needed for OBJECT clause
 
+   LOCAL oImage1
+
+   // This declaration is needed for OBJECT clause
    DEFINE WINDOW frm_Main OBJ oWin ;
          AT 100,100 ;
          CLIENTAREA ;
@@ -24,7 +24,6 @@ FUNCTION Main
          HEIGHT 155 ;
          TITLE 'Image on Image' ;
          MAIN
-
       @ 20,20 IMAGE img_Image2 ;
          OBJ oImage2 ;
          WIDTH 200 ;
@@ -53,16 +52,12 @@ FUNCTION Main
          ONCLICK AutoMsgBox( "Image1" )
          // Do not use TRANSPARENT here
       END IMAGE
-
       ON KEY ESCAPE ACTION oWin:Release()
    END WINDOW
-
    oWin:Center()
    oWin:Activate()
 
    RETURN NIL
-
 /*
 * EOF
 */
-

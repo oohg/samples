@@ -13,7 +13,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -26,7 +25,6 @@ FUNCTION Main
          HEIGHT 420 ;
          TITLE 'Automatic Search By Column Content in Grid Navigated by Cell' ;
          MAIN
-
       aRows[ 01 ] := {'Simpson',   'Homer',     '555-5555'}
       aRows[ 02 ] := {'Mulder',    'Fox',       '324-6432'}
       aRows[ 03 ] := {'Smart',     'Max',       '432-5892'}
@@ -47,7 +45,6 @@ FUNCTION Main
       aRows[ 18 ] := {'Samarbide', 'Armando',   '854-7873'}
       aRows[ 19 ] := {'Pradon',    'Alejandra', '???-????'}
       aRows[ 20 ] := {'Reyes',     'Monica',    '432-5836'}
-
       @ 10, 10 GRID Grid_2 OBJ ogrid ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT 230 ;
@@ -56,14 +53,12 @@ FUNCTION Main
          ITEMS aRows ;
          VALUE { 1, 1 } ;
          NAVIGATEBYCELL
-
       @ 270, 10 LABEL Lbl_1 OBJ oLbl1 ;
          AUTOSIZE ;
          VALUE "Search by Col " + ;
          LTRIM( STR( oGrid:SearchCol ) ) + ;
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" )
-
       @ 300, 10 BUTTON But_1 ;
          CAPTION "Search by Col 1" ;
          WIDTH 120 ;
@@ -73,7 +68,6 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       @ 300, 150 BUTTON But_2 ;
          CAPTION "Search by Col 2" ;
          WIDTH 120 ;
@@ -83,7 +77,6 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       @ 300, 290 BUTTON But_3 OBJ oBut3 ;
          CAPTION "Wrap " + IF( oGrid:SearchWrap, "OFF", "ON" ) ;
          WIDTH 120 ;
@@ -95,7 +88,6 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       @ 340, 10 BUTTON But_4 ;
          CAPTION "Use Grid Default" ;
          WIDTH 120 ;
@@ -105,7 +97,6 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       @ 340, 150 BUTTON But_5 ;
          CAPTION "Disable Search" ;
          WIDTH 120 ;
@@ -115,7 +106,6 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       @ 340, 290 BUTTON But_6 ;
          CAPTION "Search Current" ;
          WIDTH 120 ;
@@ -125,16 +115,12 @@ FUNCTION Main
          " - Wrap " + ;
          IF( oGrid:SearchWrap, "ON", "OFF" ), ;
          oGrid:SetFocus() ) }
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

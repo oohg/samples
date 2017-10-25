@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -21,15 +20,12 @@ FUNCTION Main
          HEIGHT 480 ;
          TITLE 'ooHg - CheckBox with transparent background in tab control' ;
          MAIN
-
       DEFINE TAB Tab_1 ;
             AT 10,10 ;
             WIDTH 600 ;
             HEIGHT 400 ;
             VALUE 1
-
          PAGE 'Page &1'
-
             DEFINE CHECKBOX ChkBox
                ROW 70
                COL 10
@@ -40,20 +36,14 @@ FUNCTION Main
                THREESTATE .T.
                LEFTALIGN .T.
             END CHECKBOX
-
          END PAGE
-
       END TAB
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN Nil
-
 /*
 * EOF
 */
-

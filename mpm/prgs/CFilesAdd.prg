@@ -1,16 +1,16 @@
 /*
  * $Id: CFilesAdd.prg,v 1.1 2013-11-18 20:40:24 migsoft Exp $
  */
-
 #include "oohg.ch"
 *---------------------------------------------------------------------*
+
 Procedure AddCfiles
+
    *---------------------------------------------------------------------*
    Local Files , x , i , Exists
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
-
    Files :=  GetCFiles( )
    For x := 1 To Len ( Files )
       DO EVENTS
@@ -29,31 +29,27 @@ Procedure AddCfiles
 
    Return
 *---------------------------------------------------------------------*
+
 Function GetCFiles()
+
    *---------------------------------------------------------------------*
    Local RetVal := {} , BaseFolder
 
    If Empty ( main.text_1.Value )
       MsgStop('You must select project base folder first','')
+
       Return ( {} )
    EndIf
-
    cDirOld := GetCurrentFolder()
    cDirNew := GetFolder("Folder:",cDirOld)
-
    IF !Empty(cDirNew)
-
       cDirOld :=cDirNew
       aFiles  :=Directory( cDirNew + "\" +"*.C" )
       Aeval( aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]} )
-
       If Len(aFiles)>0
-
          aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
-
          DEFINE WINDOW GetCFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select C Files' ;
                ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
-
             DEFINE FRAME Frame_21
                ROW    0
                COL    10
@@ -61,7 +57,6 @@ Function GetCFiles()
                HEIGHT 344
                OPAQUE .T.
             END FRAME
-
             DEFINE LISTBOX List_C
                ITEMS aFiles
                ROW   20
@@ -74,7 +69,6 @@ Function GetCFiles()
                BACKCOLOR {255,255,225}
                MULTISELECT   .T.
             END LISTBOX
-
             DEFINE BUTTON ALL
                ROW 310
                COL 210
@@ -83,7 +77,6 @@ Function GetCFiles()
                CAPTION  'ALL'
                ONCLICK  ( RetVal := GetCFilesOk( aFiles , GetCFiles.List_C.Value ) , GetCFiles.Release )
             END BUTTON
-
             DEFINE BUTTON OK
                ROW 310
                COL 310
@@ -92,7 +85,6 @@ Function GetCFiles()
                CAPTION  'Ok'
                ONCLICK  ( RetVal := GetCFilesOk( aFiles , GetCFiles.List_C.Value ) , GetCFiles.Release )
             END BUTTON
-
             DEFINE BUTTON CANCEL
                ROW    310
                COL    410
@@ -101,7 +93,6 @@ Function GetCFiles()
                CAPTION "Cancel"
                ONCLICK  ( RetVal := {} , GetCFiles.Release )
             END BUTTON
-
             DEFINE LABEL Label_1
                ROW    315
                COL    40
@@ -110,9 +101,7 @@ Function GetCFiles()
                VALUE "Select ( Ctrl + Click )"
                TRANSPARENT .T.
             END LABEL
-
          END WINDOW
-
          CENTER WINDOW GetCFiles
          GetCFiles.Ok.Setfocus
          ACTIVATE WINDOW GetCFiles
@@ -120,12 +109,13 @@ Function GetCFiles()
          MsgInfo("C Files not found","C Files")
          RetVal := {}
       Endif
-
    Endif
 
    Return ( RetVal )
 *---------------------------------------------------------------------*
+
 Function GetCFilesOk( aFiles , aSelected )
+
    *---------------------------------------------------------------------*
    Local aNew := {} , i
 
@@ -139,4 +129,3 @@ Function GetCFilesOk( aFiles , aSelected )
    Endif
 
    Return aNew
-

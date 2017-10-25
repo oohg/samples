@@ -9,100 +9,80 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
-
 MEMVAR oApp, oBtn2, oBtn3, oLbl12, oLbl13
 
 FUNCTION Main( ... )
+
    PUBLIC oApp, oBtn2, oBtn3, oLbl12, oLbl13
-
    oApp := TApplication()
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          CLIENTAREA WIDTH 640 HEIGHT 480 ;
          TITLE "Application Class Sample" ;
          MAIN ;
          HELPBUTTON
-
       @ 10, 10 LABEL lbl_1 ;
          AUTOSIZE ;
          VALUE "Exe name: " + oApp:ExeName
-
       @ 40, 10 LABEL lbl_2 ;
          AUTOSIZE ;
          VALUE "Drive: " + oApp:Drive
-
       @ 70, 10 LABEL lbl_3 ;
          AUTOSIZE ;
          VALUE "Path: " + oApp:Path
-
       @ 100, 10 LABEL lbl_4 ;
          AUTOSIZE ;
          VALUE "Name: " + oApp:Name
-
       @ 130, 10 LABEL lbl_5 ;
          AUTOSIZE ;
          VALUE "Argument Count: " + LTRIM( STR( oApp:ArgC ) )
-
       @ 160, 10 LABEL lbl_6 ;
          AUTOSIZE ;
          VALUE AutoType( { "Argument List: ", oApp:Args } )
-
       @ 190, 10 LABEL lbl_7 ;
          AUTOSIZE ;
          VALUE "Main Form: " + oApp:MainName
-
       @ 220, 10 LABEL lbl_8 ;
          AUTOSIZE ;
          VALUE "BackColor: " + ColorToStr( oApp:BackColor )
-
       @ 250, 10 LABEL lbl_9 ;
          AUTOSIZE ;
          VALUE "Row, Col: " + LTRIM( STR( oApp:Row ) ) + ", " + LTRIM( STR( oApp:Col ) )
-
       @ 280, 10 LABEL lbl_10 ;
          AUTOSIZE ;
          VALUE "Width, Height: " + LTRIM( STR( oApp:Width ) ) + ", " + LTRIM( STR( oApp:Height ) )
-
       @ 310, 10 LABEL lbl_11 ;
          AUTOSIZE ;
          VALUE "Title: " + oApp:Title
-
       @ 340, 10 LABEL lbl_12 ;
          OBJ oLbl12 ;
          AUTOSIZE ;
          VALUE "Topmost: " + IF( oApp:Topmost, ".T.", ".F." )
-
       @ 370, 10 LABEL lbl_13 ;
          OBJ oLbl13 ;
          AUTOSIZE ;
          VALUE "Help Button: " + IF( oApp:HelpButton, ".T.", ".F." )
-
       @ 400, 10 BUTTON btn_1 ;
          CAPTION "Cursor Hand" ;
          ACTION oApp:Cursor := IDC_HAND
-
       @ 400, 120 BUTTON btn_2 ;
          OBJ oBtn2 ;
          CAPTION "Hide Help" ;
          ACTION ChangeHelpButton()
-
       @ 400, 230 BUTTON btn_3 ;
          OBJ oBtn3 ;
          CAPTION "Topmost" ;
          ACTION ChangeTopmost()
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
 
 STATIC FUNCTION ColorToStr( nColor )
+
    LOCAL cRet
 
    IF HB_IsNil( nColor )
@@ -146,8 +126,6 @@ STATIC FUNCTION ChangeHelpButton()
    ENDIF
 
    RETURN Nil
-
 /*
 * EOF
 */
-

@@ -16,10 +16,10 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
+
    LOCAL oForm, oGrid, aRows[ 20 ]
 
    DEFINE WINDOW Form_1 OBJ oForm ;
@@ -28,7 +28,6 @@ FUNCTION Main
          HEIGHT 400 ;
          TITLE 'Grid - Images in Column Headers' ;
          MAIN
-
       DEFINE MAIN MENU
          DEFINE POPUP 'Look at me'
             MENUITEM 'Remove col 1' ACTION oGrid:DeleteColumn( 1, .T. )
@@ -83,7 +82,6 @@ FUNCTION Main
             MENUITEM 'Change Header 1' ACTION ChangeHeader(oGrid)
          END POPUP
       END MENU
-
       aRows [01] := { 113.12, date(), 1, 01, .T. }
       aRows [02] := { 123.12, date(), 2, 02, .F. }
       aRows [03] := { 133.12, date(), 3, 03, .T. }
@@ -104,7 +102,6 @@ FUNCTION Main
       aRows [18] := { 193.12, date(), 3, 18, .F. }
       aRows [19] := { 113.12, date(), 1, 19, .T. }
       aRows [20] := { 123.12, date(), 2, 20, .F. }
-
       DEFINE GRID Grid_1
          ROW 10
          COL 10
@@ -136,18 +133,13 @@ FUNCTION Main
             { 'CHECKBOX', 'Yes', 'No' } }
          VALID { {|uValue| uValue > 100}, {|| .T.}, {|| .T.}, {|| .T.}, {|| .T.} }
       END GRID
-
       oGrid := GetControlObject( "Grid_1", "Form_1" )
-
       ON KEY ESCAPE OF Form_1 ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 *  HEADERIMAGES {'MINIGUI_EDIT_EDIT', ;
 *                'MINIGUI_EDIT_DELETE', ;
@@ -179,10 +171,10 @@ PROCEDURE SetItem
    RETURN
 
 PROCEDURE GetItem
+
    LOCAL a
 
    a := Form_1.Grid_1.Item( 2 )
-
    MsgInfo( str( a[ 1 ] ), 'Item 2  Col. 1' )
    MsgInfo( dtoc( a[ 2 ] ), 'Item 2  Col. 2' )
    MsgInfo( str( a[ 3 ] ), 'Item 2  Col. 3' )
@@ -200,8 +192,6 @@ PROCEDURE ChangeHeader
    ENDIF
 
    RETURN
-
 /*
 * EOF
 */
-

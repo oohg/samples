@@ -17,7 +17,6 @@
 * You can download check.bmp, free.bmp and info.bmp from
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Menu
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -28,7 +27,6 @@ FUNCTION Main
          HEIGHT 200 ;
          TITLE 'Menu Colors' ;
          MAIN
-
       DEFINE MAIN MENU OBJ oMain
          ITEM 'Exit' ACTION MsgInfo( 'Exit' )
          POPUP 'File' OBJ oFile
@@ -73,7 +71,6 @@ FUNCTION Main
             ITEM 'About'
          END POPUP
       END MENU
-
       /* This doesn't works in Win Vista or 7 when themes are enabled.
       It doesn't works works in Win 10 because themes are _always_ enabled.
       To change to color of the main menu you must disable the themes
@@ -81,7 +78,6 @@ FUNCTION Main
       Note that after disabling the themes you can't reenable them.
       */
       oMain:SetMenuBarColor( RED, .F. )
-
       oFile:SetItemsColor( {170,213,255}, .T. )
       oItem3:SetItemsColor( {170,213,255}, .F. )
       /* Only the menu containing
@@ -90,7 +86,6 @@ FUNCTION Main
       Item 3.3
       will be colored with pale blue
       */
-
       DEFINE CONTEXT MENU OBJ oContext
          ITEM 'Item 1'
          ITEM 'Item 2'
@@ -101,14 +96,10 @@ FUNCTION Main
          ITEM 'Disable themes and change color to RED' ;
             ACTION ( oMain:DisableVisualStyle(), oMain:SetMenuBarColor( RED, .F. ) )
       END MENU
-
       oContext:SetMenuBarColor( {170,213,255}, .T. )
-
       @ 20,10 LABEL lbl_1 VALUE "Use Toggle in Context Menu" AUTOSIZE
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -117,9 +108,7 @@ FUNCTION Main
 STATIC FUNCTION ToggleItem3Colors
 
    STATIC lColoredSubMenus := .F.
-
    lColoredSubMenus := ! lColoredSubMenus
-
    IF lColoredSubMenus
       oItem3:SetItemsColor( YELLOW, .T. )
       /* The menu containing
@@ -146,8 +135,6 @@ STATIC FUNCTION ToggleItem3Colors
    ENDIF
 
    RETURN NIL
-
 /*
 * EOF
 */
-

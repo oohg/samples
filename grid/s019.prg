@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 PROCEDURE MAIN
@@ -19,7 +18,6 @@ PROCEDURE MAIN
          CLIENTAREA ;
          TITLE "Right Click on Headers" ;
          WIDTH 400 HEIGHT 400
-
       @ 10, 10 GRID Grid ;
          WIDTH 300 HEIGHT 300 ;
          OBJ oGrid ;
@@ -31,17 +29,15 @@ PROCEDURE MAIN
          { "4444", "4444", "4444" } } ;
          VALUE 1 ;
          ONHEADRCLICK {|nColumn| ShowMenu( nColumn ) }
-
       @ 370, 10 LABEL label ;
          WIDTH 400 HEIGHT 30 ;
          FONTCOLOR RED ;
          VALUE "See what happens when you right click on a column's header."
-
       ON KEY ESCAPE ACTION MAIN.RELEASE()
    END WINDOW
-
    CENTER WINDOW MAIN
    ACTIVATE WINDOW MAIN
+
    RETURN
 
 FUNCTION ShowMenu( nColumn )
@@ -51,9 +47,7 @@ FUNCTION ShowMenu( nColumn )
    DEFINE MENU DYNAMIC OF MAIN OBJ oMenu
       ITEM 'RClick on Column ' + ltrim(str(nColumn)) ACTION NIL
    END MENU
-
    oMenu:Activate()
-
    /*
    * Return values:
    *
@@ -65,8 +59,6 @@ FUNCTION ShowMenu( nColumn )
    */
 
    RETURN .F.
-
 /*
 * EOF
 */
-

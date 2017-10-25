@@ -19,7 +19,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -28,7 +27,6 @@ FUNCTION Main
 
    SET DATE BRITISH
    SET CENTURY ON
-
    aRows := { {01, 'Simpson',   1234.56, ctod('01/01/2000')}, ;
       {02, 'Mulder',    5897.55, ctod('02/02/2001')}, ;
       {03, 'Smart',     6972.44, ctod('03/03/2002')}, ;
@@ -49,14 +47,12 @@ FUNCTION Main
       {18, 'Samarbide', 1234.81, ctod('18/06/2017')}, ;
       {19, 'Pradon',    3674.25, ctod('19/07/2018')}, ;
       {20, 'Reyes',     2546.01, ctod('20/08/2019')} }
-
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0, 0 ;
          WIDTH 640 ;
          HEIGHT 420 ;
          TITLE 'Grid behaves like Excel' ;
          MAIN
-
       /*
       COLUMNCONTROLS format:
       {'TEXTBOX', cType, cPicture, cFunction, nOnFocusPos, lButtons, aImages, lLikeExcel, cEditKey, lNoModal}
@@ -70,7 +66,6 @@ FUNCTION Main
       {'IMAGEDATA', oData, lButtons, aImages, lNoModal}
       {'LCOMBOBOX', cTrue, cFalse, lButtons, aImages, lNoModal}
       */
-
       @ 20, 20 GRID Grid_1 OBJ oGrid ;
          WIDTH oForm:ClientWidth - 40 ;
          HEIGHT oForm:ClientHeight - 130 ;
@@ -88,7 +83,6 @@ FUNCTION Main
          NAVIGATEBYCELL ;
          EDITLIKEEXCEL ;
          NOMODALEDIT
-
       @ oForm:ClientHeight - 90, 20 LABEL Label_1 ;
          VALUE "See what happens when you are editing a cell and a " + ;
          "cursor key is pressed or when you click the mouse " + ;
@@ -96,29 +90,23 @@ FUNCTION Main
          "Enter, DblClick, F2 and the buttons.";
          WIDTH oForm:ClientWidth - 40 ;
          HEIGHT 30
-
       @ oForm:ClientHeight - 44, oForm:ClientWidth - 120 BUTTON Button_1 ;
          CAPTION "Edit One Cell" ;
          WIDTH 100 ;
          HEIGHT 24 ;
          ACTION ( oGrid:SetFocus(), oGrid:EditCell() )
-
       @ oForm:ClientHeight - 44, oForm:ClientWidth - 230 BUTTON Button_2 ;
          CAPTION "Edit Grid" ;
          WIDTH 100 ;
          HEIGHT 24 ;
          ACTION ( oGrid:SetFocus(), oGrid:EditGrid() )
-
       ON KEY ESCAPE ACTION oForm:Release()
       ON KEY F2 ACTION oGrid:EditCell()
    END WINDOW
-
    oForm:Center()
    oForm:Activate()
 
    RETURN NIL
-
 /*
 * EOF
 */
-

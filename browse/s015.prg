@@ -11,9 +11,7 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
-
 REQUEST DBFCDX, DBFFPT
 
 FUNCTION Main
@@ -23,7 +21,6 @@ FUNCTION Main
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
-
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0,0 ;
          CLIENTAREA ;
@@ -33,11 +30,9 @@ FUNCTION Main
          MAIN;
          ON INIT OpenTables( oBrowse ) ;
          ON RELEASE CleanUp()
-
       @ 05,10 LABEL Label_1 OBJ oLbl ;
          VALUE "Use Alt-A to add a record and see what happens" ;
          AUTOSIZE
-
       @ 30,10 BROWSE Browse_1 OBJ oBrowse ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight - 40 ;
@@ -89,29 +84,26 @@ FUNCTION Main
          BROWSE_JTFY_CENTER, ;
          BROWSE_JTFY_CENTER, ;
          BROWSE_JTFY_CENTER }
-
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
-
    oForm:Center()
    oForm:Activate()
 
    RETURN NIL
-
 //--------------------------------------------------------------------------//
+
 FUNCTION FillRecNo( oBrw )
 
    // Set the underlying grid's cell with the not yet added record number
    // This works because the DBF is at EOF while Alt-A is being processed.
    oBrw:Cell( oBrw:ItemCount, 1, Test->(RECNO()) )
-
    // Force the immediate repaint of the edition row.
    oBrw:RefreshRow( oBrw:ItemCount )
-
    // Do not edit cell
-   RETURN .T.
 
+   RETURN .T.
 //--------------------------------------------------------------------------//
+
 FUNCTION OpenTables( oBrw )
 
    LOCAL i
@@ -124,10 +116,8 @@ FUNCTION OpenTables( oBrw )
       { "Birth",   "Date",       8, 0 }, ;
       { "Bio",     "Memo",      10, 0 } }, ;
       "DBFCDX" )
-
    USE test VIA "DBFCDX"
    ZAP
-
    FOR i := 1 TO 100
       APPEND BLANK
       REPLACE Code    WITH ( i % 3 ) + 1
@@ -136,27 +126,22 @@ FUNCTION OpenTables( oBrw )
       REPLACE Married WITH .t.
       REPLACE Birth   WITH DATE() + i - 10000
    NEXT i
-
    INDEX ON code TAG code TO code
    INDEX ON RECNO() TAG recno TO code
-
    GO BOTTOM
    oBrw:SetValue( RECNO(), oBrw:CountPerPage )
 
    RETURN Nil
-
 //--------------------------------------------------------------------------//
+
 FUNCTION CleanUp()
 
    dbCloseAll()
-
    ERASE Test.dbf
    ERASE Test.fpt
    ERASE Code.cdx
 
    RETURN NIL
-
 /*
 * EOF
 */
-

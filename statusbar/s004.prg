@@ -11,42 +11,34 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 PROCEDURE MAIN
 
    PUBLIC oStat
-
    DEFINE WINDOW Main ;
          TITLE "Progressbar inside a Statusbar" ;
          WIDTH 640 ;
          HEIGHT 480 ;
          ON INIT ResizeStatusbar()
-
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Animate" ;
          ACTION AnimateProgressBar()
-
       @ 10, 120 BUTTON btn_2 ;
          CAPTION "Resize" ;
          ACTION ResizeStatusbar()
-
       DEFINE STATUSBAR OBJ oStat
          STATUSITEM "ooHG power !!!"
          STATUSITEM "" WIDTH 200
          STATUSITEM "ooHG power !!!" WIDTH 100
-
          @ 4, 102 PROGRESSBAR pgb_status ;
             RANGE 0, 100 ;
             WIDTH 192 ;
             HEIGHT oStat:ClientHeight - 6 ;
             SMOOTH
       END STATUSBAR
-
       ON KEY ESCAPE ACTION Main.Release
    END WINDOW
-
    Main.Activate
 
    RETURN
@@ -72,8 +64,6 @@ PROCEDURE ResizeStatusbar
    Main.pgb_status.Width := oStat:ItemWidth( 2 ) - 8
 
    RETURN
-
 /*
 * EOF
 */
-

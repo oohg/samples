@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -23,28 +22,22 @@ FUNCTION Main
          MAIN ;
          NOMAXIMIZE ;
          NOSIZE
-
       @ 20, 20 BUTTON btn1 ;
          CAPTION "Click me"
-
       @ 50, 20 TEXTBOX txt1 ;
          NUMERIC ;
          PICTURE "999,999.99" ;
          VALUE 0
-
       @ 80, 20 TEXTBOX txt2 ;
          NUMERIC ;
          PICTURE "999,999.99" ;
          VALUE 0
-
       @ 110, 20 LABEL lbl1 ;
          VALUE 'Click any control and hit F5' ;
          AUTOSIZE
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
       ON KEY F5 ACTION OpenSecond( GetControlObjectByHandle( GetFocus() ) )
    END WINDOW
-
    ACTIVATE WINDOW FormMain
 
    RETURN NIL
@@ -54,9 +47,9 @@ FUNCTION OpenSecond( oCtrl )
    LOCAL lSet := .F.
 
    IF ! ( oCtrl:Type == "NUMTEXT" .OR. ( oCtrl:Type == "TEXTPICTURE" .AND. oCtrl:DataType == "N" ) )
+
       RETURN NIL
    ENDIF
-
    DEFINE WINDOW SecondForm ;
          AT 100, 400 ;
          WIDTH 420 ;
@@ -65,29 +58,22 @@ FUNCTION OpenSecond( oCtrl )
          NOMAXIMIZE ;
          NOSIZE ;
          ON RELEASE IIF( lSet, oCtrl:Value := oNewValue:Value, NIL )
-
       @ 20, 20 TEXTBOX txt3 OBJ oNewValue ;
          NUMERIC ;
          PICTURE "999,999.99" ;
          VALUE 0
-
       @ 50, 20 LABEL lbl2 ;
          HEIGHT 40 ;
          VALUE 'Enter new value for [' + oCtrl:Name + '] and click Save, hit ESC or click X to Abort' ;
          AUTOSIZE
-
       @ 100, 20 BUTTON btn2 ;
          CAPTION "Save" ;
          ACTION ( lSet := .T., ThisWindow.Release() )
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    ACTIVATE WINDOW SecondForm
 
    RETURN NIL
-
 /*
 * EOF
 */
-

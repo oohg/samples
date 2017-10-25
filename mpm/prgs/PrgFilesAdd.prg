@@ -1,18 +1,17 @@
 /*
  * $Id: PrgFilesAdd.prg,v 1.1 2013-11-18 20:40:25 migsoft Exp $
  */
-
 #include "oohg.ch"
 #include "mpm.ch"
-
 *---------------------------------------------------------------------*
+
 Procedure Addprgfiles
+
    *---------------------------------------------------------------------*
    Local Files , x , i , Exists
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
-
    Files :=  GetPrgFiles( )
    For x := 1 To Len ( Files )
       DO EVENTS
@@ -30,32 +29,28 @@ Procedure Addprgfiles
    Next x
 
    Return
-
 *---------------------------------------------------------------------*
+
 Function GetPrgFiles()
+
    *---------------------------------------------------------------------*
    Local RetVal := {} , BaseFolder, aFiles := {}
 
    If Empty ( main.text_1.Value )
       MsgStop('You must select project base folder first','')
+
       Return ( {} )
    EndIf
-
    cDirOld := GetCurrentFolder() //NIL
    cDirNew := GetFolder("Folder:",cDirOld)
-
    IF !EMPTY(cDirNew)
       cDirOld  :=cDirNew
       aFiles :=DIRECTORY(cDirNew + "\" +"*.PRG")
       AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
-
       If Len(aFiles)>0
-
          aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
-
          DEFINE WINDOW GetPrgFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select PRG Files' ;
                ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
-
             DEFINE FRAME Frame_21
                ROW    0
                COL    10
@@ -63,7 +58,6 @@ Function GetPrgFiles()
                HEIGHT 344
                OPAQUE .T.
             END FRAME
-
             DEFINE LISTBOX List_prg
                ITEMS aFiles
                ROW   20
@@ -76,7 +70,6 @@ Function GetPrgFiles()
                BACKCOLOR {255,255,225}
                MULTISELECT   .T.
             END LISTBOX
-
             DEFINE BUTTON ALL
                ROW 310
                COL 210
@@ -85,7 +78,6 @@ Function GetPrgFiles()
                CAPTION  'All'
                ONCLICK  ( RetVal := GetPrgFilesOk( aFiles , GetPrgFiles.List_prg.Value ) , GetPrgFiles.Release )
             END BUTTON
-
             DEFINE BUTTON OK
                ROW 310
                COL 310
@@ -94,7 +86,6 @@ Function GetPrgFiles()
                CAPTION  'Ok'
                ONCLICK  ( RetVal := GetPrgFilesOk( aFiles , GetPrgFiles.List_prg.Value ) , GetPrgFiles.Release )
             END BUTTON
-
             DEFINE BUTTON CANCEL
                ROW    310
                COL    410
@@ -103,7 +94,6 @@ Function GetPrgFiles()
                CAPTION "Cancel"
                ONCLICK  ( RetVal := {} , GetPrgFiles.Release )
             END BUTTON
-
             DEFINE LABEL Label_1
                ROW    315
                COL    40
@@ -112,23 +102,21 @@ Function GetPrgFiles()
                VALUE "Select ( Ctrl + Click )"
                TRANSPARENT .T.
             END LABEL
-
          END WINDOW
-
          CENTER WINDOW GetPrgFiles
          GetPrgFiles.Ok.Setfocus
          ACTIVATE WINDOW GetPrgFiles
-
       Else
          MsgInfo("PRG Files not found","PRG Files")
          RetVal := {}
       Endif
-
    Endif
 
    Return ( RetVal )
 *---------------------------------------------------------------------*
+
 Function GetPrgFilesOk( aFiles , aSelected )
+
    *---------------------------------------------------------------------*
    Local aNew := {} , i
 
@@ -143,9 +131,12 @@ Function GetPrgFilesOk( aFiles , aSelected )
 
    Return ( aNew )
 *---------------------------------------------------------------------*
+
 Procedure RemoveFilePrg()
+
    *---------------------------------------------------------------------*
    Local a_Mig := main.List_1.value
+
    If !Empty(a_Mig)
       If MsgYesNo('Remove File(s) ' + UPPER( main.List_1.Item( main.List_1.Value ) ) + ' From Project ?','Confirm')
          While Len(a_Mig) > 0
@@ -157,5 +148,5 @@ Procedure RemoveFilePrg()
          main.List_1.value := {1}
       endif
    Endif
-   Return
 
+   Return

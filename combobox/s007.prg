@@ -15,7 +15,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -26,7 +25,6 @@ FUNCTION Main
          HEIGHT 200 ;
          TITLE 'CaretPos in ComboBox with DisplaEdit Clause' ;
          MAIN
-
       DEFINE MAIN MENU
          DEFINE POPUP 'Test'
             MENUITEM 'Get Value' ;
@@ -41,7 +39,6 @@ FUNCTION Main
                oCombo:CaretPos := 3 )
          END POPUP
       END MENU
-
       @ 10,10 COMBOBOX Combo_1 OBJ oCombo ;
          ITEMS { 'Orange' , 'Black' , 'Yellow' } ;
          VALUE 1 ;
@@ -50,13 +47,9 @@ FUNCTION Main
          ON DISPLAYCHANGE ForceUpperCase( oCombo, oText )
       oCombo:FontColorSelected := GREEN
       oCombo:BackColorSelected := YELLOW
-
       @ 50, 10 TEXTBOX Text_1 OBJ oText
-
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
@@ -66,14 +59,10 @@ STATIC FUNCTION ForceUpperCase( oCombo, oText )
    LOCAL nPos := oCombo:CaretPos
 
    oText:value := oCombo:DisplayValue
-
    oCombo:DisplayValue := Upper( oCombo:DisplayValue )
-
    oCombo:CaretPos := nPos
 
    RETURN NIL
-
 /*
 * EOF
 */
-

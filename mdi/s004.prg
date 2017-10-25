@@ -13,10 +13,10 @@
 * You can download fondo.jpg from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Mdi
 */
-
 #include "oohg.ch"
 
 PROCEDURE MAIN()
+
    LOCAL oMain
 
    DEFINE WINDOW wMain OBJ oMain ;
@@ -25,11 +25,9 @@ PROCEDURE MAIN()
          HEIGHT 600 ;
          TITLE "MDI" ;
          MDI
-
       DEFINE STATUSBAR
          STATUSITEM "OOHG Power !!!"
       END STATUSBAR
-
       DEFINE TOOLBAR TB BUTTONSIZE 70, 22 BORDER
          BUTTON TBN1 ;
             CAPTION "New" ;
@@ -56,18 +54,17 @@ PROCEDURE MAIN()
             CAPTION "IsActive" ;
             ACTION ShowActiveStatus( oMain )
       END TOOLBAR
-
       DEFINE MAIN MENU
          ITEM "Exit" ACTION oMain:Release()
       END MENU
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    ACTIVATE WINDOW wMain
+
    RETURN
 
 PROCEDURE ArrangeChilds( oMain, nAction )
+
    IF HB_IsObject( oMain:oWndClient )
       IF Len( oMain:oWndClient:SplitChildList ) > 0
          DO CASE
@@ -82,17 +79,21 @@ PROCEDURE ArrangeChilds( oMain, nAction )
          ENDCASE
       ENDIF
    ENDIF
+
    RETURN
 
 PROCEDURE GetActiveChildName( oMain )
+
    LOCAL cName := "No child is active !!!"
 
    IF HB_IsObject( oMain:oWndClient )
       cName := oMain:oWndClient:ActiveChild():Name
    ENDIF
+
    RETURN cName
 
 PROCEDURE ShowActiveStatus( oMain )
+
    LOCAL oChild, cActive := {}
 
    IF HB_IsObject( oMain:oWndClient )
@@ -103,9 +104,11 @@ PROCEDURE ShowActiveStatus( oMain )
    ELSE
       AutoMsgBox( "No child is active !!!" )
    ENDIF
+
    RETURN
 
 PROCEDURE ShowChilds( oMain )
+
    LOCAL oChild, cNames := {}
 
    IF HB_IsObject( oMain:oWndClient )
@@ -116,9 +119,11 @@ PROCEDURE ShowChilds( oMain )
    ELSE
       AutoMsgBox( "No child is active !!!" )
    ENDIF
+
    RETURN
 
 PROCEDURE NewChild( oMain )
+
    DEFINE WINDOW 0 ;
          AT 0, 0 ;
          PARENT wMain ;
@@ -128,34 +133,29 @@ PROCEDURE NewChild( oMain )
          ON INIT InitChild( oMain, _OOHG_ThisForm ) ;
          ON RELEASE oMain:StatusBar:Item( 1, "" ) ;
          ON GOTFOCUS oMain:StatusBar:Item( 1, "Active: " + ThisWindow:Title )
-
       DEFINE STATUSBAR
          STATUSITEM ""
       END STATUSBAR
-
       ThisWindow:StatusBar:Item( 1, ThisWindow:Name )
-
       @ 20, 20 LABEL lbl_1 ;
          PARENT ( ThisWindow:Name ) ;
          VALUE "Label on " + _OOHG_ThisForm:Title + " - Click me !!!" ;
          AUTOSIZE ;
          FONTCOLOR RED BOLD ;
          ACTION MyMessage( oMain:oWndClient:ActiveChild() )
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
 
    RETURN
 
 PROCEDURE InitChild( oMain, oChild )
+
    LOCAL nPos
 
    FOR EACH oChild IN oMain:oWndClient:SplitChildList
       oChild:Hide()
    NEXT
-
    SetWindowBackColor( oMain:oWndClient:hWnd )
-
    IF ! _IsControlDefined( "Image_1", oMain:oWndClient:Name )
       DEFINE IMAGE Image_1
          PARENT (oMain:oWndClient:Name)
@@ -167,35 +167,30 @@ PROCEDURE InitChild( oMain, oChild )
          TRANSPARENT .T.
       END IMAGE
    ENDIF
-
    nPos := Len( oMain:oWndClient:SplitChildList )
-
    oChild:Title := "Documento n° " + Ltrim( Str( nPos ) )
    oChild:Row := ( nPos - 1 ) * 20
    oChild:Col := ( nPos - 1 ) * 20
-
    @ 50, 20 BUTTON but_1 ;
       PARENT ( oChild ) ;
       CAPTION "Close" ;
       ACTION oChild:Release()
-
    oMain:StatusBar:Item( 1, "New child: " + oChild:Name )
-
    FOR EACH oChild IN oMain:oWndClient:SplitChildList
       oChild:Restore()
    NEXT
-
    /*
    * Note that at this point a runtime error occurs if you try to
    * access the oChild:StatusBar or oChild:lbl_1 controls.
    */
+
    RETURN
 
 PROCEDURE MyMessage( oWin )
-   MsgBox( "You just clicked on lbl_1 of " + oWin:Name )
-   RETURN
 
+   MsgBox( "You just clicked on lbl_1 of " + oWin:Name )
+
+   RETURN
 /*
 * EOF
 */
-

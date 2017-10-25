@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -18,8 +17,6 @@ FUNCTION Main
    AutoMsgBox( _GetCompactPath( "C:\OOHG_Samples\English\Samples\ClientAdjust\GetCompactPath", 32 ) )
 
    RETURN Nil
-
 /*
 * EOF
 */
-

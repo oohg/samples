@@ -4,7 +4,6 @@
 * Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
 * http://www.geocities.com/harbour_minigui/
 */
-
 * Value property selects a record by its number (RecNo())
 * Value property returns selected record number (recNo())
 * Browse control does not change the active work area
@@ -18,23 +17,17 @@
 * Append Clause Can't Be Used With Fields Not Belonging To Browse WorkArea
 * Using DELETE clause allows to mark selected record for deletion pressing <Del> key
 * The leftmost column in a browse control must be left aligned.
-
 * Enjoy !
-
 #include "oohg.ch"
 #include "Dbstruct.ch"
 
 Function Main
 
    REQUEST DBFCDX , DBFFPT
-
    var := 'Test'
-
    SET CENTURY ON
    SET DELETED ON
-
    SET BROWSESYNC ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 640 HEIGHT 480 ;
@@ -42,7 +35,6 @@ Function Main
          MAIN NOMAXIMIZE ;
          ON INIT OpenTables() ;
          ON RELEASE CloseTables()
-
       DEFINE MAIN MENU
          POPUP 'File'
             ITEM 'Set Browse Value'   ACTION Form_1.Browse_1.Value := Val ( InputBox ('Set Browse Value','') )
@@ -55,11 +47,9 @@ Function Main
             ITEM 'About'            ACTION MsgInfo (oohgversion()+" "+hb_compiler())
          END POPUP
       END MENU
-
       DEFINE STATUSBAR
          STATUSITEM ''
       END STATUSBAR
-
       @ 10,10 BROWSE Browse_1                                                                 ;
          WIDTH 610                                ;
          HEIGHT 390                               ;
@@ -73,15 +63,10 @@ Function Main
          DELETE ;
          LOCK ;
          EDIT INPLACE
-
       on key f10 of form_1 action {|| _oohg_calldump()}
-
    END WINDOW
-
    CENTER WINDOW Form_1
-
    Form_1.Browse_1.SetFocus
-
    ACTIVATE WINDOW Form_1
 
    Return Nil
@@ -89,16 +74,16 @@ Function Main
 Procedure OpenTables()
 
    *CreateTable()
-
    Use Test Via "DBFCDX"
    Go Top
-
    Form_1.Browse_1.Value := RecNo()
 
    Return Nil
 
 Procedure CloseTables()
+
    Use
+
    Return Nil
 
 Procedure ChangeTest()
@@ -108,6 +93,7 @@ Procedure ChangeTest()
    Return
 
 Procedure CreateTable
+
    LOCAL aDbf[6][4]
 
    aDbf[1][ DBS_NAME ] := "Code"
@@ -140,12 +126,9 @@ Procedure CreateTable
    aDbf[6][ DBS_LEN ]  := 10
    aDbf[6][ DBS_DEC ]  := 0
    //
-
    DBCREATE("Test", aDbf, "DBFCDX")
-
    Use test Via "DBFCDX"
    zap
-
    For i:= 1 To 100
       append blank
       Replace code with i
@@ -154,10 +137,7 @@ Procedure CreateTable
       Replace Married With .t.
       replace birth with date()+i-10000
    Next i
-
    Index on code to code
-
    Use
 
    Return
-

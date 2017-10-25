@@ -10,18 +10,15 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 PROCEDURE MAIN
 
    DEFINE WINDOW Main ;
          TITLE "Progressbar inside a Statusbar"
-
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Animate" ;
          ACTION AnimateProgressBar()
-
       DEFINE STATUSBAR OBJ oStat
          @ 4, 2 PROGRESSBAR pgb_status ;
             RANGE 0, 100 ;
@@ -29,10 +26,8 @@ PROCEDURE MAIN
             HEIGHT oStat:ClientHeight - 6 ;
             SMOOTH
       END STATUSBAR
-
       ON KEY ESCAPE ACTION Main.Release
    END WINDOW
-
    Main.Activate
 
    RETURN
@@ -46,8 +41,6 @@ PROCEDURE AnimateProgressBar
    ENDDO
 
    RETURN
-
 /*
 * EOF
 */
-

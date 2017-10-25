@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
@@ -21,14 +20,11 @@ FUNCTION Main()
          HEIGHT 276 ;
          TITLE 'How to Open a Registered Type File' ;
          MAIN
-
       @ 20,20 BUTTON btn_1 ;
          CAPTION 'Open' ;
          ACTION OpenFile()
-
       ON KEY ESCAPE ACTION MainForm.Release
    END WINDOW
-
    MainForm.Center
    MainForm.Activate
 
@@ -43,8 +39,6 @@ FUNCTION OpenFile
    EXECUTE FILE 'CMD.EXE' PARAMETERS '/C test.txt' HIDE
 
    RETURN NIL
-
 /*
 * EOF
 */
-

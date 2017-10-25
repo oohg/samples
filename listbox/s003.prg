@@ -12,10 +12,10 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "minigui.ch"
 
 Function main()
+
    LOCAL aItem := {{'AG','001','ARGENTINA       '},;
       {'AK','002','ALASKA          '},;
       {'AL','003','ALABAMA         '},;
@@ -77,9 +77,7 @@ Function main()
       {'WV','059','WEST VIRGINIA   '},;
       {'WY','060','WYOMING         '},;
       {'HI','061','HAWAII          '}}
-
    SetOneArrayItemPerLine( .T. )
-
    DEFINE WINDOW Form_1 ;
          AT 100, 60 ;
          WIDTH 750 ;
@@ -88,29 +86,24 @@ Function main()
          MAIN ;
          NOMAXIMIZE ;
          NOSIZE
-
       @ 010, 010 LABEL lbl_1 ;
          VALUE 'Style MULTITAB' ;
          AUTOSIZE ;
          BOLD
-
       @ 030, 010 LISTBOX lst_1 ;
          WIDTH 700 ;
          HEIGHT 160 ;
          ITEMS aItem ;
          VALUE 2 ;
          MULTITAB TABSWIDTH {100,300}     // first column starts at 0
-
       @ 200, 010 BUTTON btn_11 CAPTION 'Add'    ACTION Item_Add_1()
       @ 200, 120 BUTTON btn_12 CAPTION 'Del'    ACTION Item_Del_1()
       @ 200, 230 BUTTON btn_13 CAPTION 'Modify' ACTION Item_Modify_1()
       @ 200, 340 BUTTON btn_14 CAPTION 'View'   ACTION Item_View_1()
-
       @ 240, 010 LABEL lbl_2 ;
          VALUE 'Style MULTITAB and MULTICOLUMN ' ;
          AUTOSIZE ;
          BOLD
-
       @ 260, 010 LISTBOX lst_2 ;
          WIDTH 700 ;
          HEIGHT 160 ;
@@ -118,29 +111,33 @@ Function main()
          VALUE 3 ;
          MULTICOLUMN COLUMNWIDTH 348 ;
          MULTITAB TABSWIDTH {50,200}      // pixels
-
       @ 430, 010 BUTTON btn_21 CAPTION 'Add'    ACTION Item_Add_2()
       @ 430, 120 BUTTON btn_22 CAPTION 'Del'    ACTION Item_Del_2()
       @ 430, 230 BUTTON btn_23 CAPTION 'Modify' ACTION Item_Modify_2()
       @ 430, 340 BUTTON btn_24 CAPTION 'View'   ACTION Item_View_2()
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    Form_1.Center
    Form_1.Activate
+
    RETURN Nil
 
 PROCEDURE Item_Add_1
+
    LOCAL nn := Form_1.lst_1.ItemCount + 1
+
    Form_1.lst_1.AddItem( {'XX', STRZERO( nn, 3, 0 ), 'Col3'} )
    Form_1.lst_1.Value := nn
    Form_1.lst_1.SetFocus
+
    RETURN
 
 PROCEDURE Item_Del_1
+
    LOCAL n1
+
    LOCAL nn := Form_1.lst_1.Value
+
    Form_1.lst_1.DeleteItem( nn )
    n1 := Form_1.lst_1.ItemCount
    IF nn <= n1
@@ -149,32 +146,45 @@ PROCEDURE Item_Del_1
       Form_1.lst_1.Value := n1
    ENDIF
    Form_1.lst_1.SetFocus
+
    RETURN
 
 PROCEDURE Item_Modify_1
+
    LOCAL nn := Form_1.lst_1.Value
+
    Form_1.lst_1.Item( nn ) := {'YY', STRZERO( nn, 3, 0 ), 'Col3'}
    // You can also assign LB_Array2String( {'YY', STRZERO( nn, 3, 0 ), 'Col3'} )
    Form_1.lst_1.Value := nn
    Form_1.lst_1.SetFocus
+
    RETURN
 
 PROCEDURE Item_View_1
+
    LOCAL uValue := Form_1.lst_1.Item( Form_1.lst_1.Value )
+
    AutoMsgBox( {"ValType: " + VALTYPE( uValue ), "", "Items:", uValue } )
    Form_1.lst_1.SetFocus
+
    RETURN
 
 PROCEDURE Item_Add_2
+
    LOCAL nn := Form_1.lst_2.ItemCount + 1
+
    Form_1.lst_2.AddItem( {'AA', STRZERO( nn, 3, 0 ), 'Info in Col 3'} )
    Form_1.lst_2.Value := nn
    Form_1.lst_2.SetFocus
+
    RETURN
 
 PROCEDURE Item_Del_2
+
    LOCAL n1
+
    LOCAL nn := Form_1.lst_2.Value
+
    Form_1.lst_2.DeleteItem( nn )
    n1 := Form_1.lst_2.ItemCount
    IF nn <= n1
@@ -183,23 +193,28 @@ PROCEDURE Item_Del_2
       Form_1.lst_2.Value := n1
    ENDIF
    Form_1.lst_2.SetFocus
+
    RETURN
 
 PROCEDURE Item_Modify_2
+
    LOCAL nn := Form_1.lst_2.Value
+
    Form_1.lst_2.Item( nn ) := {'MM', STRZERO( nn, 3, 0 ), 'Data in Col 3'}
    // You can also assign LB_Array2String( {'MM', STRZERO( nn, 3, 0 ), 'Data in Col 3'} )
    Form_1.lst_2.Value := nn
    Form_1.lst_2.SetFocus
+
    RETURN
 
 PROCEDURE Item_View_2
+
    LOCAL uValue := Form_1.lst_2.Item( Form_1.lst_2.Value )
+
    AutoMsgBox( {"ValType: " + VALTYPE( uValue ), "", "Items:", uValue } )
    Form_1.lst_2.SetFocus
-   RETURN
 
+   RETURN
 /*
 * EOF
 */
-

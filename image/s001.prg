@@ -13,7 +13,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -24,7 +23,6 @@ FUNCTION Main
          HEIGHT 480 ;
          TITLE 'Image Control' ;
          MAIN
-
       DEFINE MAIN MENU
          POPUP 'File'
             ITEM 'Select Image' ACTION Form_1.Image_1.Picture := ;
@@ -35,7 +33,6 @@ FUNCTION Main
             ITEM 'Clear' ACTION Form_1.Image_1.Picture := ''
          END POPUP
       END MENU
-
       @ 00,00 IMAGE Image_1 ;
          OBJ oImage ;
          IMAGESIZE ;
@@ -43,17 +40,12 @@ FUNCTION Main
          AutoType( oImage:nHeight ) + ;
          " Width: " + ;
          AutoType( oImage:nWidth ) )
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

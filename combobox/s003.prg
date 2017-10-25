@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -21,28 +20,22 @@ FUNCTION Main
          HEIGHT 200 ;
          TITLE 'ComboBox Demo' ;
          MAIN
-
       @ 10,10 COMBOBOX cmb_1 ;
          OBJ oCombo ;
          ITEMS { "B" , "A" , "C"  } ;
          VALUE 3 ;
          SORT
-
       @ 50, 10 BUTTON boton ;
          CAPTION "Change" ;
          ACTION {|| AutoMsgBox(oCombo:value), ;
          oCombo:Item(2, "Z"), ;
          AutoMsgBox(oCombo:value) }
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

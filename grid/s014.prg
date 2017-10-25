@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -19,7 +18,6 @@ FUNCTION Main
 
    SET DATE BRITISH
    SET CENTURY ON
-
    aRows := { {01, 'Simpson',   1234.56, ctod('01/01/2000'), ctod('01/01/2000')}, ;
       {02, 'Mulder',    5897.55, ctod('02/02/2001'), ctod('02/02/2001')}, ;
       {03, 'Smart',     6972.44, ctod('03/03/2002'), ctod('03/03/2002')}, ;
@@ -40,14 +38,12 @@ FUNCTION Main
       {18, 'Samarbide', 1234.81, ctod('18/06/2017'), ctod('18/06/2017')}, ;
       {19, 'Pradon',    3674.25, ctod('19/07/2018'), ctod('19/07/2018')}, ;
       {20, 'Reyes',     2546.01, ctod('20/08/2019'), ctod('20/08/2019')} }
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 648 ;
          HEIGHT 408 ;
          TITLE 'Grid without keyboard' ;
          MAIN
-
       /*
       COLUMNCONTROLS format:
       {'TEXTBOX', cType, cPicture, cFunction, nOnFocusPos, lButtons, aImages, lLikeExcel}
@@ -61,7 +57,6 @@ FUNCTION Main
       {'IMAGEDATA', oData, lButtons, aImages}
       {'LCOMBOBOX', cTrue, cFalse, lButtons, aImages}
       */
-
       @ 10,10 GRID Grid_1 ;
          WIDTH 620 ;
          HEIGHT 300 ;
@@ -74,20 +69,15 @@ FUNCTION Main
          {'TEXTBOX', 'DATE', , , , .T.} } ;
          ITEMS aRows ;
          EDIT INPLACE
-
       @ 320,10 LABEL Label_1 ;
          VALUE "See what happens when you edit a cell." ;
          AUTOSIZE
-
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

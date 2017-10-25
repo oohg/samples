@@ -17,10 +17,8 @@
 * You can download sami.jpg from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
 */
-
 #include "oohg.ch"
 #include "bostaurus.ch"
-
 MEMVAR hBitmap_Source, hBitmap
 
 PROCEDURE MAIN
@@ -31,10 +29,8 @@ PROCEDURE MAIN
    *
    * All loaded bitmaps must be released to avoid memory leaks.
    */
-
    PRIVATE hBitmap_Source := BT_BitmapLoadFile( "sami.jpg" )
    PRIVATE hBitmap := BT_BitmapClone( hBitmap_Source )
-
    DEFINE WINDOW Win1 ;
          AT 0, 0 ;
          WIDTH 700 ;
@@ -46,7 +42,6 @@ PROCEDURE MAIN
          ON RELEASE BT_BitmapRelease( hBitmap ) ;
          ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
          ON PAINT Proc_ON_PAINT()
-
       DEFINE MAIN MENU
          DEFINE POPUP "EFFECTS"
             MENUITEM "Invert"         ACTION Proc_EFFECT( 1 )
@@ -56,7 +51,6 @@ PROCEDURE MAIN
             MENUITEM "Modify Color"   ACTION Proc_EFFECT( 5 )
             MENUITEM "Gamma Correct"  ACTION Proc_EFFECT( 6 )
          END POPUP
-
          DEFINE POPUP "BLUR"
             MENUITEM "VERTICAL"       ACTION Proc_EFFECT( 7, 1 )
             MENUITEM "HORIZONTAL"     ACTION Proc_EFFECT( 7, 2 )
@@ -64,7 +58,6 @@ PROCEDURE MAIN
             MENUITEM "ANGLE135"       ACTION Proc_EFFECT( 7, 4 )
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 7, 5 )
          END POPUP
-
          DEFINE POPUP "SHARPEN"
             MENUITEM "VERTICAL"       ACTION Proc_EFFECT( 8, 1 )
             MENUITEM "HORIZONTAL"     ACTION Proc_EFFECT( 8, 2 )
@@ -72,14 +65,12 @@ PROCEDURE MAIN
             MENUITEM "ANGLE135"       ACTION Proc_EFFECT( 8, 4 )
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 8, 5 )
          END POPUP
-
          DEFINE POPUP "EDGE"
             MENUITEM "ALLDIRECTIONS"  ACTION Proc_EFFECT( 9, 5 )
             MENUITEM "SOBEL Method"   ACTION Proc_EFFECT( 9, 6 )
             MENUITEM "PREWITT Method" ACTION Proc_EFFECT( 9, 7 )
             MENUITEM "KIRSH Method"   ACTION Proc_EFFECT( 9, 8 )
          END POPUP
-
          DEFINE POPUP "EMBOSS1"
             MENUITEM "EAST"           ACTION Proc_EFFECT( 10, 1 )
             MENUITEM "NORTH"          ACTION Proc_EFFECT( 10, 2 )
@@ -90,7 +81,6 @@ PROCEDURE MAIN
             MENUITEM "SOUTH_WEST"     ACTION Proc_EFFECT( 10, 7 )
             MENUITEM "WEST"           ACTION Proc_EFFECT( 10, 8 )
          END POPUP
-
          DEFINE POPUP "EMBOSS2"
             MENUITEM "EAST"           ACTION Proc_EFFECT( 11, 1 )
             MENUITEM "NORTH"          ACTION Proc_EFFECT( 11, 2 )
@@ -102,35 +92,36 @@ PROCEDURE MAIN
             MENUITEM "WEST"           ACTION Proc_EFFECT( 11, 8 )
          END POPUP
       END MENU
-
       @ 450, 280 BUTTON Button_1 ;
          CAPTION "Restore Image" ;
          ACTION Proc_EFFECT( 0 )
-
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
-
    MAXIMIZE WINDOW Win1
    ACTIVATE WINDOW Win1
+
    RETURN
 
 PROCEDURE Proc_ON_PAINT
+
    LOCAL Col := - Win1.HscrollBar.value
+
    LOCAL Row := - Win1.VscrollBar.value
+
    LOCAL hDC, BTstruct
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
-
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeighT( "Win1" ), { 100, 0, 33 }, BLACK )
    BT_DrawBitmap( hDC, Row + 10, Col + 10, BT_BitmapWidth( hBitmap ), BT_BitmapHeight( hBitmap ), BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
+
    RETURN
 
 PROCEDURE Proc_EFFECT( nEffect, nIndex )
+
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapClone( hBitmap_Source )
-
    DO CASE
    CASE nEffect == 1
       BT_BitmapInvert( hBitmap )
@@ -169,10 +160,9 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
    CASE nEffect == 11
       BT_BitmapConvolutionFilter3x3( hBitmap, BT_aFILTER_EMBOSS( nIndex, 3, 1, 0, 0 ) )
    ENDCASE
-
    BT_ClientAreaInvalidateAll( "Win1" )
-   RETURN
 
+   RETURN
 /*
 *
 * RULES OF THUMB TO CREATE USER DEFINED CONVOLUTION FILTERS
@@ -203,6 +193,7 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
 */
 
 FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -210,20 +201,20 @@ FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-
    /* For a Blur filter, use a positive center value and surround
    * it with a symmetrical pattern of other positive values.
    */
-
    aFILTER := ;
       { { 0, v, 0, 0, weight, 0, 0,  v, 0, weight + add + v * 2, bias}, ; // VERTICAL
    { 0, 0, 0, v, weight, v, 0,  0, 0, weight + add + v * 2, bias}, ; // HORIZONTAL
    { 0, 0, v, 0, weight, 0, v,  0, 0, weight + add + v * 2, bias}, ; // ANGLE45
    { v, 0, 0, 0, weight, 0, 0,  0, v, weight + add + v * 2, bias}, ; // ANGLE135
    { v, v, v, v, weight, v, v,  v, v, weight + add + v * 8, bias} }  // ALLDIRECTIONS
+
    Return aFILTER[ index ]
 
 FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -231,20 +222,20 @@ FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-
    /* For a Sharpen filter, use a positive center value and surround
    * it with a symmetrical pattern of negative values.
    */
-
    aFILTER := ;
       { {  0, -v,  0,  0, weight,  0,  0, -v,  0, weight + add - v * 2, bias}, ; // VERTICAL
    {  0,  0,  0, -v, weight, -v,  0,  0,  0, weight + add - v * 2, bias}, ; // HORIZONTAL
    {  0,  0, -v,  0, weight,  0, -v,  0,  0, weight + add - v * 2, bias}, ; // ANGLE45
    { -v,  0,  0,  0, weight,  0,  0,  0, -v, weight + add - v * 2, bias}, ; // ANGLE135
    { -v, -v, -v, -v, weight, -v, -v, -v, -v, weight + add - v * 8, bias} }  // ALLDIRECTIONS
+
    Return aFILTER[ index ]
 
 FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -252,20 +243,20 @@ FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
    DEFAULT weight := 1
    DEFAULT add    := 0
    DEFAULT bias   := 0
-
    /* For an edge filter, use a negative center value and surround
    * it with a symmetrical pattern of positive values.
    */
-
    aFILTER := ;
       { { 0, v, 0, 0, -weight, 0, 0, v, 0, -weight + add + v * 2, bias}, ; // VERTICAL
    { 0, 0, 0, v, -weight, v, 0, 0, 0, -weight + add + v * 2, bias}, ; // HORIZONTAL
    { 0, 0, v, 0, -weight, 0, v, 0, 0, -weight + add + v * 2, bias}, ; // ANGLE45
    { v, 0, 0, 0, -weight, 0, 0, 0, v, -weight + add + v * 2, bias}, ; // ANGLE135
    { v, v, v, v, -weight, v, v, v, v, -weight + add + v * 8, bias} }  // ALLDIRECTIONS
+
    Return aFILTER[ index ]
 
 FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    // Gray   Color
@@ -274,12 +265,10 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
    DEFAULT weight := 0     // 1
    DEFAULT add    := 0     // 0
    DEFAULT bias   := 128   // 0
-
    /* For an Embossing filter, use a positive center value and surround
    * it in a symmetrical pattern of negative values on one side and
    * positive values on the other.
    */
-
    aFILTER := ;
       { { -v,  0,  v, -v, weight,  v, -v,  0,  v, weight + add, bias }, ; // Right          EAST
    {  v,  v,  v,  0, weight,  0, -v, -v, -v, weight + add, bias }, ; // Top            NORTH
@@ -289,8 +278,8 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
    { -v, -v,  0, -v, weight,  v,  0,  v,  v, weight + add, bias }, ; // Bottom_Right   SOUTH_EAST
    {  0, -v, -v,  v, weight, -v,  v,  v,  0, weight + add, bias }, ; // Bottom_Left    SOUTH_WEST
    {  v,  0, -v,  v, weight, -v,  v,  0, -v, weight + add, bias } }  // Left           WEST
-   Return aFILTER[ index ]
 
+   Return aFILTER[ index ]
 /*
 * aFILTER :=                                        { k1, k2, k3, k4,       k5, k6, k7, k8, k9,     Divisor, Bias }
 */
@@ -303,7 +292,6 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
 #define BT_Kernel3x3Filter_MeanRemoval( nWeight )    { -1, -1, -1, -1,  nWeight, -1, -1, -1, -1, nWeight  -8,   0 } // Mean Removal
 #define BT_Kernel3x3Filter_EdgeDetection1            {  1,  1,  1,  1,       -8,  1,  1,  1,  1,           0,   0 } // Detects Edges in All Directions
 #define BT_Kernel3x3Filter_EdgeDetection2            {  1,  1,  1,  1,       -7,  1,  1,  1,  1,           1,   0 } // Detects Edges Execessively
-
 #define BT_Kernel3x3Filter_0                         {  0,  0,  0,  0,        1,  0,  0,  0,  0,           1,   0 } // Identity Filter, returning the original image
 #define BT_Kernel3x3Filter_1                         {  1,  1,  1,  1,        1,  1,  1,  1,  1,           9,   0 } // Smooth // Blur // Mean
 #define BT_Kernel3x3Filter_2                         {  0,  1,  0,  1,        4,  1,  0,  1,  0,           8,   0 } // Gaussian Smooth
@@ -325,7 +313,6 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
 #define BT_Kernel3x3Filter_18                        {  0,  0,  0,  0,        1,  0,  0,  0, -1,           0, 128 } // Emboss
 #define BT_Kernel3x3Filter_19                        {  2,  0,  0,  0,       -1,  0,  0,  0, -1,           0, 128 } // Emboss
 #define BT_Kernel3x3Filter_20                        { -2, -1,  0, -1,        1,  1,  0,  1,  2,           1,   0 } // Emboss Color
-
 // EMBOSS Gray
 #define BT_Kernel3x3Filter_21                        { -1,  0,  1, -1,        0,  1, -1,  0,  1,           0, 128 } // EAST
 #define BT_Kernel3x3Filter_22                        {  1,  1,  1,  0,        0,  0, -1, -1, -1,           0, 128 } // NORTH
@@ -335,14 +322,12 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
 #define BT_Kernel3x3Filter_26                        { -1, -1,  0, -1,        0,  1,  0,  1,  1,           0, 128 } // SOUTH_EAST
 #define BT_Kernel3x3Filter_27                        {  0, -1, -1,  1,        0, -1,  1,  1,  0,           0, 128 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_28                        {  1,  0, -1,  1,        0, -1,  1,  0, -1,           0, 128 } // WEST
-
 // BLUR
 #define BT_Kernel3x3Filter_29                        {  0,  1,  0,  0,        1,  0,  0,  1,  0,           3,   0 } // VERTICAL
 #define BT_Kernel3x3Filter_30                        {  0,  0,  0,  1,        1,  1,  0,  0,  0,           3,   0 } // HORIZONTAL
 #define BT_Kernel3x3Filter_31                        {  0,  0,  1,  0,        1,  0,  1,  0,  0,           3,   0 } // ANGLE45
 #define BT_Kernel3x3Filter_32                        {  1,  0,  0,  0,        1,  0,  0,  0,  1,           3,   0 } // ANGLE135
 #define BT_Kernel3x3Filter_33                        {  1,  1,  1,  1,        1,  1,  1,  1,  1,           9,   0 } // ALLDIRECTIONS
-
 // EMBOSS Color
 #define BT_Kernel3x3Filter_34                        { -5,  0,  0,  0,        1,  0,  0,  0,  5,           1,   0 } // Emboss Color
 #define BT_Kernel3x3Filter_35                        { -2,  0,  2, -2,        1,  2, -2,  0,  2,           1,   0 } // EAST
@@ -354,8 +339,6 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
 #define BT_Kernel3x3Filter_41                        {  0, -2, -2,  2,        1, -2,  2,  2,  0,           1,   0 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_42                        {  2,  0, -2,  2,        1, -2,  2,  0, -2,           1,   0 } // WEST
 */
-
 /*
 * EOF
 */
-

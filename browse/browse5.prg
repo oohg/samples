@@ -4,7 +4,6 @@
 * Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
 * http://www.geocities.com/harbour_minigui/
 */
-
 * Value property selects a record by its number (RecNo())
 * Value property returns selected record number (recNo())
 * Browse control does not change the active work area
@@ -18,15 +17,12 @@
 * Append Clause Can't Be Used With Fields Not Belonging To Browse WorkArea
 * Using DELETE clause allows to mark selected record for deletion pressing <Del> key
 * The leftmost column in a browse control must be left aligned.
-
 * Enjoy !
-
 #include "oohg.ch"
 
 Function Main
 
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 640 HEIGHT 480 ;
@@ -34,7 +30,6 @@ Function Main
          MAIN NOMAXIMIZE ;
          ON INIT OpenTables() ;
          ON RELEASE CloseTables()
-
       DEFINE MAIN MENU
          POPUP 'File'
             ITEM 'Set Browse Value' ACTION Form_1.Browse_1.Value := 10
@@ -47,13 +42,11 @@ Function Main
             ITEM 'About'      ACTION MsgInfo ("MiniGUI Browse Demo")
          END POPUP
       END MENU
-
       DEFINE STATUSBAR
          STATUSITEM 'ooHG Power Ready'
          STATUSITEM '<Enter> / Double Click To Edit' WIDTH 200
          STATUSITEM 'Alt+A: Append' WIDTH 120
       END STATUSBAR
-
       DEFINE BROWSE Browse_1
          ROW 10
          COL 10
@@ -71,22 +64,21 @@ Function Main
          READONLY { .F. , .F. , .F. , .F. , .T. , .T. }
          LOCK .t.
       END BROWSE
-
    END WINDOW
-
    CENTER WINDOW Form_1
-
    Form_1.Browse_1.SetFocus()
-
    ACTIVATE WINDOW Form_1
 
    Return Nil
 
 Procedure OpenTables()
+
    Use Test
+
    Return Nil
 
 Procedure CloseTables()
-   Use
-   Return Nil
 
+   Use
+
+   Return Nil

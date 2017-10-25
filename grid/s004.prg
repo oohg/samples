@@ -12,26 +12,23 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
+
    LOCAL k, aRows[ 15, 5 ]
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 558 ;
          HEIGHT 460 ;
          TITLE 'Grid with Checkboxes' ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k :=1 TO 15
          aRows[k] := { STR( HB_RANDOMINT( 99 ), 2 ), ;
             HB_RANDOMINT( 100 ), ;
@@ -39,7 +36,6 @@ FUNCTION Main()
             'Refer ' + STR( HB_RANDOMINT( 10 ), 2 ), ;
             HB_RANDOMINT( 10000 ) }
       NEXT k
-
       @ 10,10 GRID Grid_1 OBJ oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -57,12 +53,10 @@ FUNCTION Main()
          ON CHECKCHANGE { |nItem| MsgBox( "Item " + ;
          LTRIM( STR( nItem ) ) + ;
          " checkbox changed !!!" ) }
-
       @ 360,10 LABEL lbl_1 ;
          VALUE 'Try the context menu. Use the mouse or the ' + ;
          'spacebar to check/uncheck items.' ;
          AUTOSIZE
-
       DEFINE CONTEXT MENU CONTROL Grid_1
          MENUITEM 'Check Item' ;
             ACTION { || oGrid:CheckItem( oGrid:Value, .T. ) }
@@ -78,16 +72,15 @@ FUNCTION Main()
          MENUITEM 'Items Checked' ;
             ACTION { || ItemsChecked( oGrid ) }
       END MENU
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
 
 FUNCTION CheckAllItems( oGrid )
+
    LOCAL i
 
    FOR i := 1 TO oGrid:ItemCount
@@ -97,6 +90,7 @@ FUNCTION CheckAllItems( oGrid )
    RETURN NIL
 
 FUNCTION UncheckAllItems( oGrid )
+
    LOCAL i
 
    FOR i := 1 TO oGrid:ItemCount
@@ -106,6 +100,7 @@ FUNCTION UncheckAllItems( oGrid )
    RETURN NIL
 
 FUNCTION ItemsChecked( oGrid )
+
    LOCAL i, aItems := {}
 
    FOR i := 1 TO oGrid:ItemCount
@@ -113,7 +108,6 @@ FUNCTION ItemsChecked( oGrid )
          AADD( aItems, i )
       ENDIF
    NEXT i
-
    IF LEN( aItems ) > 0
       AutoMsgBox( aItems )
    ELSE
@@ -121,8 +115,6 @@ FUNCTION ItemsChecked( oGrid )
    ENDIF
 
    RETURN NIL
-
 /*
 * EOF
 */
-

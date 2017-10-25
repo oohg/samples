@@ -13,7 +13,6 @@
 * You can download the resource file and the images from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Tree
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
@@ -21,7 +20,6 @@ FUNCTION Main()
    PUBLIC nRow := 0, ;
       nImage := 1, ;
       aImages := { "WINDOW", "WATCH", "LED_OFF", "LED_ON" }
-
    DEFINE WINDOW Form_1 ;
          OBJ oForm ;
          AT 0,0 ;
@@ -29,7 +27,6 @@ FUNCTION Main()
          HEIGHT 480 ;
          TITLE 'Tree Control - Drag to a window' ;
          MAIN
-
       DEFINE TREE Tree_1 ;
             OBJ oTree ;
             AT 10,10 ;
@@ -39,16 +36,13 @@ FUNCTION Main()
             TARGET { {|| oAuxWin } } ;
             NODEIMAGES {"WINDOW", "WATCH"} ;
             ITEMIMAGES {"LED_OFF", "LED_ON"}
-
          NODE 'Item 1'
             TREEITEM 'Item 1.1'
             TREEITEM 'Item 1.2'
             TREEITEM 'Item 1.3'
          END NODE
-
          NODE 'Item 2'
             TREEITEM 'Item 2.1'
-
             NODE 'Item 2.2'
                TREEITEM 'Item 2.2.1'
                TREEITEM 'Item 2.2.2'
@@ -59,21 +53,17 @@ FUNCTION Main()
                TREEITEM 'Item 2.2.7'
                TREEITEM 'Item 2.2.8'
             END NODE
-
             TREEITEM 'Item 2.3'
          END NODE
-
          NODE 'Item 3'
             TREEITEM 'Item 3.1'
             TREEITEM 'Item 3.2'
-
             NODE 'Item 3.3'
                TREEITEM 'Item 3.3.1'
                TREEITEM 'Item 3.3.2'
             END NODE
          END NODE
       END TREE
-
       DEFINE INTERNAL AuxWin ;
             OBJ oAuxWin ;
             AT oTree:Row, oTree:Col + oTree:Width + 20 ;
@@ -82,7 +72,6 @@ FUNCTION Main()
             BACKCOLOR WHITE ;
             BORDER
       END INTERNAL
-
       WITH OBJECT oAuxWin
          :DropEnabled := .T.
          :OnMouseDrag := ;
@@ -90,10 +79,8 @@ FUNCTION Main()
          :OnMouseDrop := ;
             { |oOrigin, oTarget, wParam| AuxWin_OnDrop( oOrigin, oTarget ) }
       END WITH
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -111,7 +98,6 @@ FUNCTION AuxWin_OnDrop( oOrigin, oTarget )
       Else
          nImage := aItemImages[ 1 ] + 1     // unselected image
       EndIf
-
       DEFINE IMAGE ( "Image_" + LTRIM( STR( nImage ) ) )
          PARENT  (oTarget)
          ROW     nRow
@@ -121,14 +107,11 @@ FUNCTION AuxWin_OnDrop( oOrigin, oTarget )
          HEIGHT  50
          STRETCH .T.
       END IMAGE
-
       nRow += 60
       nImage ++
    END WITH
 
    RETURN Nil
-
 /*
 * EOF
 */
-

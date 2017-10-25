@@ -16,7 +16,6 @@
 * You can download Button6.bmp from
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Button
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
@@ -28,7 +27,6 @@ FUNCTION Main()
          MAIN ;
          TITLE "ooHG - Button Demo" ;
          BACKCOLOR YELLOW
-
       @ 10,80 BUTTON btn_1 ;
          OBJ But1 ;
          CAPTION "&Click Me" ;
@@ -39,7 +37,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          TOOLTIP "Click to change image's margins." ;
          IMAGEMARGIN {0, 10, 0, 0}
-
       @ 80,80 BUTTON btn_2 ;
          CAPTION "On the right" ;
          PICTURE "hbprint_save" ;
@@ -49,7 +46,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          TOOLTIP "Text and image (on the right) button." ;
          IMAGEMARGIN {0, 0, 0, 10}
-
       @ 150,80 BUTTON btn_3 ;
          CAPTION "On the top" ;
          PICTURE "hbprint_print"  ;
@@ -59,7 +55,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          TOOLTIP "Text and image (on the top) button." ;
          IMAGEMARGIN {10, 0, 0, 0}
-
       @ 220,80 BUTTON btn_4 ;
          CAPTION "On the bottom" ;
          PICTURE "hbprint_save" ;
@@ -69,7 +64,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          TOOLTIP "Text and image (on the bottom) button." ;
          IMAGEMARGIN {0, 0, 10, 0}
-
       @ 290,80 BUTTON btn_5 ;
          CAPTION "Really Long &Multiline Text Only Button"  ;
          MULTILINE ;
@@ -78,7 +72,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          TOOLTIP "Multiline text only button." ;
          IMAGEMARGIN {150, 150, 150, 150}
-
       @ 360,80 BUTTON btn_6 ;
          PICTURE "Button6.bmp" ;
          ACTION MsgInfo('btn_6') ;
@@ -86,7 +79,6 @@ FUNCTION Main()
          WIDTH 140 ;
          HEIGHT 60 ;
          TOOLTIP "Image (centered) only button, OOHGDRAW."
-
       @ 430,80 BUTTON btn_7 ;
          PICTURE "Button6.bmp"  ;
          ACTION MsgInfo('btn_7') ;
@@ -95,7 +87,6 @@ FUNCTION Main()
          HEIGHT 60 ;
          WINDRAW ;
          TOOLTIP "Image (centered) only button, WINDRAW."
-
       @ 500,80 BUTTON btn_8 ;
          CAPTION "Texto y             &Bitmap" ;
          PICTURE  "hbprint_save"   ;
@@ -104,17 +95,12 @@ FUNCTION Main()
          WIDTH 140 ;
          HEIGHT 60 ;
          TOOLTIP "Text and image (centered) button."
-
       ON KEY ESCAPE ACTION Form_1.Release
-
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

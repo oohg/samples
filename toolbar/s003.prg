@@ -10,13 +10,11 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION MAIN
 
    PUBLIC oTool, oTBut
-
    DEFINE WINDOW Win ;
          OBJ oWin ;
          AT 0,0 ;
@@ -24,15 +22,12 @@ FUNCTION MAIN
          HEIGHT 480 ;
          TITLE "Add and remove toolbar buttons at runtime" ;
          MAIN
-
       DEFINE TOOLBAR Tool OBJ oTool BUTTONSIZE 70,20 FLAT BORDER
          BUTTON But1 CAPTION "&Exit"   ACTION oWin:Release()
          BUTTON But2 CAPTION "&Add"    ACTION AddButton()
          BUTTON But3 CAPTION "&Remove" ACTION DeleteButton()
       END TOOLBAR
-
    END WINDOW
-
    oWin:Center()
    oWin:Activate()
 
@@ -59,8 +54,6 @@ PROCEDURE DeleteButton
    */
 
    RETURN
-
 /*
 * EOF
 */
-

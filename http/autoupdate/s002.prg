@@ -17,10 +17,10 @@
 * You can download MyApp.prg from
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Http
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
+
    LOCAL cUpdated
 
    IF UpdateIsAvailable()
@@ -42,14 +42,20 @@ FUNCTION Main
    ELSE
       MsgStop( "Application not found !!!" )
    ENDIF
+
    RETURN NIL
 
 FUNCTION UpdateIsAvailable
+
+
    RETURN .T.
 
 FUNCTION DownloadUpdate
+
    LOCAL cUrl := "http://..."
+
    LOCAL oUrl
+
    LOCAL oHTTP
 
    oUrl := TUrl():New( cUrl )
@@ -58,9 +64,8 @@ FUNCTION DownloadUpdate
       oHTTP:ReadToFile( "NewApp.zip" )
       oHTTP:Close()
    ENDIF
-   RETURN lRetVal
 
+   RETURN lRetVal
 /*
 * EOF
 */
-

@@ -4,7 +4,6 @@
 * Copyright 2002 Roberto Lopez <roblez@ciudad.com.ar>
 * http://www.geocities.com/harbour_minigui/
 */
-
 * Value property selects a record by its number (RecNo())
 * Value property returns selected record number (recNo())
 * Browse control does not change the active work area
@@ -18,16 +17,13 @@
 * Append Clause Can't Be Used With Fields Not Belonging To Browse WorkArea
 * Using DELETE clause allows to mark selected record for deletion pressing <Del> key
 * The leftmost column in a browse control must be left aligned.
-
 * Enjoy !
-
 #include "oohg.ch"
 
 Function Main
 
    SET CENTURY ON
    SET DELETED ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 640 HEIGHT 480 ;
@@ -35,7 +31,6 @@ Function Main
          MAIN NOMAXIMIZE ;
          ON INIT OpenTables() ;
          ON RELEASE CloseTables()
-
       DEFINE MAIN MENU
          POPUP 'File'
             ITEM 'Set Browse Value' ACTION Form_1.Browse_1.Value := 50
@@ -48,14 +43,12 @@ Function Main
             ITEM 'About'      ACTION MsgInfo ("MiniGUI Browse Demo")
          END POPUP
       END MENU
-
       DEFINE STATUSBAR
          STATUSITEM 'ooHG Power Ready'
          STATUSITEM '<Enter> / Double Click To Edit' WIDTH 190
          STATUSITEM 'Alt+A: Append Record' WIDTH 140
          STATUSITEM '<Del>: Delete Record' WIDTH 140
       END STATUSBAR
-
       @ 10,10  BROWSE Browse_1  ;
          WIDTH 610   ;
          HEIGHT 390   ;
@@ -68,22 +61,21 @@ Function Main
          VALID { { || MemVar.Test.Code <= 1000 } , { || !Empty(MemVar.Test.First) } , { || !Empty(MemVar.Test.Last) } , { || Year(MemVar.Test.Birth) >= 1900 } , , } ;
          VALIDMESSAGES { 'Code Range: 0-1000', 'First Name Cannot Be Empty', , , ,  }  ;
          LOCK
-
    END WINDOW
-
    CENTER WINDOW Form_1
-
    Form_1.Browse_1.SetFocus()
-
    ACTIVATE WINDOW Form_1
 
    Return Nil
 
 Procedure OpenTables()
+
    Use Test Shared
+
    Return Nil
 
 Procedure CloseTables()
-   Use
-   Return Nil
 
+   Use
+
+   Return Nil

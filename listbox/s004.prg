@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -23,7 +22,6 @@ FUNCTION Main
          HEIGHT 400 ;
          TITLE 'DRAGITEMS ListBox' ;
          MAIN
-
       DEFINE MAIN MENU
          POPUP "Action"
             ITEM "GetTopIndex of ListBox 1"    ACTION AutoMsgBox( oList1:TopIndex() )
@@ -35,14 +33,12 @@ FUNCTION Main
             ITEM "GetTopIndex of ListBox 2"    ACTION AutoMsgBox( oList2:TopIndex() )
          END POPUP
       END MENU
-
       @ 10,20 LISTBOX lst_1 OBJ oList1 ;         // it's not required to declare oList1, it's created PRIVATE
       WIDTH 100 ;
          HEIGHT 200 ;
          ITEMS { '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20' } ;
          DRAGITEMS ;
          TEXTHEIGHT 20
-
       DEFINE LISTBOX lst_2
          OBJECT      oList2         // it's required to declare oList2 or a RTE will rise
          ROW         10
@@ -55,16 +51,12 @@ FUNCTION Main
          DRAGITEMS   .T.
          COLUMNWIDTH 50
       END LISTBOX
-
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
-
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
 
    RETURN Nil
-
 /*
 * EOF
 */
-

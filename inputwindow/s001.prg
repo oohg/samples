@@ -13,7 +13,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main()
@@ -23,14 +22,12 @@ FUNCTION Main()
          WIDTH 300 HEIGHT 300 ;
          MAIN ;
          TITLE "InputWindow Function"
-
       @  20, 20 LABEL lbl_0 VALUE "Concept:"
       @  50, 20 LABEL lbl_1 VALUE "Motive:"
       @  83, 20 LABEL lbl_2 VALUE "Date:"
       @ 113, 20 LABEL lbl_3 VALUE "Amount:"
       @ 143, 20 LABEL lbl_4 VALUE "Register:"
       @ 173, 20 LABEL lbl_5 VALUE "Type:"
-
       @  20, 120 LABEL lbl_Concept ;
          VALUE "ADVANCE ON" ;
          AUTOSIZE
@@ -63,16 +60,13 @@ FUNCTION Main()
          VALUE 1 ;
          DISABLED ;
          NOTABSTOP
-
       @ 220, 90 BUTTON btn_Capture ;
          CAPTION "Capture" ;
          ACTION Capture() ;
          WIDTH 120 ;
          HEIGHT 28
-
       ON KEY ESCAPE ACTION Frm1.Release
    END WINDOW
-
    CENTER WINDOW Frm1
    ACTIVATE WINDOW Frm1
 
@@ -142,7 +136,6 @@ FUNCTION Capture()
    *   Numeric.
    *   Width of the buttons. Defaults to 100.
    */
-
    cTitle      := "Enter Data"
    aLabels     := { "Concept:", ;
       "Motive:", ;
@@ -162,9 +155,7 @@ FUNCTION Capture()
       "@E 999,999.99", ;
       NIL, ;
       { "Collect", "Payment" } }
-
    aResults    := InputWindow( cTitle, aLabels, aInitValues, aFormats )
-
    Frm1.lbl_Concept.Value  := aResults[1]
    Frm1.lbl_Motive.Value   := aResults[2]
    Frm1.dtp_Date.Value     := aResults[3]
@@ -173,8 +164,6 @@ FUNCTION Capture()
    Frm1.cmb_Type.Value     := aResults[6]
 
    RETURN NIL
-
 /*
 * EOF
 */
-

@@ -1,6 +1,5 @@
 /*
 */
-
 #include "oohg.ch"
 
 Function Main
@@ -11,25 +10,21 @@ Function Main
          HEIGHT 400 ;
          TITLE 'Hello World!' ;
          MAIN
-
       DEFINE BUTTON B1
          ROW 10
          COL 10
          CAPTION 'Execute'
          ACTION ExecTest()
       END BUTTON
-
    END WINDOW
-
    ACTIVATE WINDOW Win_1
 
    Return
-
 *------------------------------------------------------------------------------*
-Procedure ExecTest()
-   *------------------------------------------------------------------------------*
 
+Procedure ExecTest()
+
+   *------------------------------------------------------------------------------*
    EXECUTE FILE "NOTEPAD.EXE"
 
    Return Nil
-

@@ -13,7 +13,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 #include "i_windefs.ch"
 
@@ -28,7 +27,6 @@ FUNCTION Main
          TITLE 'GRID - Show Whole Rows Only' ;
          MAIN ;
          ON INIT oGrid:Height := SetHeightForWholeRows( 10 )
-
       aRows[ 01 ] := {'Simpson, Homer'}
       aRows[ 02 ] := {'Mulder, Fox'}
       aRows[ 03 ] := {'Smart, Max'}
@@ -49,7 +47,6 @@ FUNCTION Main
       aRows[ 18 ] := {'Samarbide, Armando'}
       aRows[ 19 ] := {'Pradon, Alejandra'}
       aRows[ 20 ] := {'Reyes, Monica'}
-
       @ 10,10 GRID Grid_1 OBJ oGrid;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT 100 ;
@@ -58,10 +55,8 @@ FUNCTION Main
          JUSTIFY {BROWSE_JTFY_LEFT} ;
          ITEMS aRows ;
          VALUE 1
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -79,8 +74,6 @@ FUNCTION SetHeightForWholeRows( NumberOfWholeRows )
       GetEdgeHeight() * 2, 0 )
 
    RETURN NeededHeight
-
 /*
 * EOF
 */
-

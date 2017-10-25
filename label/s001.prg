@@ -11,7 +11,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -21,14 +20,12 @@ FUNCTION Main
          WIDTH 330 HEIGHT 200 ;
          TITLE "Label Demo - Change cursor and Set an Action" ;
          MAIN
-
       @ 20,20 LABEL lbl OBJ oLbl ;
          VALUE "When mouse hovers me you must see a hand cursor." ;
          WIDTH 200 ;
          HEIGHT 50 ;
          TOOLTIP "Click me to trigger an action !!!" ;
          ACTION {|| AutoMsgBox( "Action triggered !!!" ) }
-
       /*
       * Acceptable values are:
       * a) standard cursors, use constants defined in i_controlmisc.ch
@@ -36,7 +33,6 @@ FUNCTION Main
       * c) cursors from disk, use "filename"
       */
       oLbl:Cursor := IDC_HAND
-
       /*
       * The ACTION can also be specified using:
       * oLbl:OnClick := {|| AutoMsgBox( "Action triggered !!!" ) }
@@ -50,16 +46,12 @@ FUNCTION Main
       * Eval( Form.lbl.Action )
       * Eval( oLbl:Action )
       */
-
       ON KEY ESCAPE ACTION Form.Release
    END WINDOW
-
    CENTER WINDOW Form
    ACTIVATE WINDOW Form
 
    RETURN NIL
-
 /*
 * EOF
 */
-

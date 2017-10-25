@@ -14,7 +14,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
@@ -23,18 +22,15 @@ FUNCTION Main()
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 OBJ oForm ;
          AT 0, 0 ;
          WIDTH 600 ;
          HEIGHT 500 ;
          TITLE 'GRID - Abort Edition Using a Timer' ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k := 1 TO 15
          aRows[ k ] := { Str(HB_RandomInt( 99 ), 2), ;
             HB_RandomInt( 100 ), ;
@@ -42,7 +38,6 @@ FUNCTION Main()
             'Refer ' + Str( HB_RandomInt( 10 ), 2 ), ;
             HB_RandomInt( 10000 ) }
       NEXT k
-
       @ 20, 20 GRID Grid_1 obj oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -57,12 +52,9 @@ FUNCTION Main()
          FONT 'COURIER NEW' SIZE 10 ;
          EDIT INPLACE ;
          VALUE 4
-
       DEFINE TIMER Timer1 INTERVAL 3000 ACTION CheckIdleTime()
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -71,11 +63,10 @@ FUNCTION Main()
 FUNCTION CheckIdleTime
 
    LOCAL obj, ctr
-   STATIC IdleTime := 0
 
+   STATIC IdleTime := 0
    ctr := GetControlObjectByHandle( GetFocus() )
    obj := ctr:Parent
-
    IF obj:Name == "_OOHG_GRIDWN"
       IF EMPTY( ctr:Value ) .OR. ctr:Value == _OOHG_ThisItemCellValue
          IdleTime += 3000
@@ -91,8 +82,6 @@ FUNCTION CheckIdleTime
    ENDIF
 
    RETURN NIL
-
 /*
 * EOF
 */
-

@@ -10,7 +10,6 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include "oohg.ch"
 
 FUNCTION Main
@@ -22,7 +21,6 @@ FUNCTION Main
          TITLE 'TextArray control' ;
          MAIN ;
          ON INIT ( oTxtArr:DevPos( 0, 0 ), oTxtArr:CursorType( 2 ) )
-
       @ 10, 10 TEXTARRAY tar OBJ oTxtArr ;
          WIDTH 500 ;
          HEIGHT 400 ;
@@ -58,21 +56,16 @@ FUNCTION Main
          "      [ <disabled: DISABLED> ] ;" + hb_eol() + ;
          "      [ <dummy2: ONGOTFOCUS, ON GOTFOCUS> <gotfocus> ] ;" + hb_eol() + ;
          "      [ <dummy3: ONLOSTFOCUS, ON LOSTFOCUS> <lostfocus> ]"
-
       @ 400, 520 BUTTON btn ;
          CAPTION "try me" ;
          ACTION oTxtArr:QQOut( "New text" ) ;
          WIDTH 80
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN Nil
-
 /*
 * EOF
 */
-

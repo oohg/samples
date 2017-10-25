@@ -1,7 +1,6 @@
 /*
  * $Id: netiot03.prg 16163 2011-01-31 14:49:20Z vszakats $
  */
-
 /*
  * Harbour Project source code:
  *    demonstration/test code for alternative RDD IO API, RPC and
@@ -11,56 +10,46 @@
  * www - http://harbour-project.org
  *
  */
-
 /* net:127.0.0.1:2941:topsecret:data/_tst_ */
-
 #define DBSERVER  "127.0.0.1"
 #define DBPORT    2941
 #define DBPASSWD  "topsecret"
 #define DBDIR     "data"
 #define DBFILE    "_tst_"
-
 #define DBNAME    "net:" + DBSERVER + ":" + hb_ntos( DBPORT ) + ":" + ;
    DBPASSWD + ":" + DBDIR + "/" + DBFILE
-
 request DBFCDX
-
 request HB_DIREXISTS
 request HB_DIRCREATE
 request HB_DATETIME
 
 proc main()
+
    local pSockSrv, lExists, nStream1, nStream2, nSec, xData
 
    set exclusive off
    rddSetDefault( "DBFCDX" )
-
    pSockSrv := netio_mtserver( DBPORT,,, /* RPC */ .T., DBPASSWD )
    if empty( pSockSrv )
       ? "Cannot start NETIO server !!!"
       wait "Press any key to exit..."
       quit
    endif
-
    ? "NETIO server activated."
    hb_idleSleep( 0.1 )
    wait
-
    ?
    ? "NETIO_CONNECT():", netio_connect( DBSERVER, DBPORT, , DBPASSWD )
    ?
-
    netio_procexec( "QOut", "PROCEXEC", "P2", "P3", "P4" )
    netio_funcexec( "QOut", "FUNCEXEC", "P2", "P3", "P4" )
    ? "SERVER TIME:", netio_funcexec( "hb_dateTime" )
    ?
    wait
-
    nStream1 := NETIO_OPENITEMSTREAM( "reg_stream" )
    ? "NETIO_OPENITEMSTREAM:", nStream1
    nStream2 := NETIO_OPENDATASTREAM( "reg_charstream" )
    ? "NETIO_OPENDATASTREAM:", nStream2
-
    hb_idleSleep( 3 )
    ? "NETIO_GETDATA 1:", hb_valToExp( NETIO_GETDATA( nStream1 ) )
    ? "NETIO_GETDATA 2:", hb_valToExp( NETIO_GETDATA( nStream2 ) )
@@ -79,27 +68,22 @@ proc main()
    ? "NETIO_GETDATA 1:", hb_valToExp( NETIO_GETDATA( nStream1 ) )
    ? "NETIO_GETDATA 2:", hb_valToExp( NETIO_GETDATA( nStream2 ) )
    wait
-
    lExists := netio_funcexec( "HB_DirExists", "./data" )
    ? "Directory './data'", iif( !lExists, "not exists", "exists" )
    if !lExists
       ? "Creating directory './data' ->", ;
          iif( netio_funcexec( "hb_DirCreate", "./data" ) == -1, "error", "OK" )
    endif
-
    createdb( DBNAME )
    testdb( DBNAME )
    wait
-
    ?
    ? "table exists:", dbExists( DBNAME )
    wait
-
    ?
    ? "delete table with indexes:", dbDrop( DBNAME )
    ? "table exists:", dbExists( DBNAME )
    wait
-
    ? "NETIO_GETDATA 1:", hb_valToExp( NETIO_GETDATA( nStream1 ) )
    ? "NETIO_GETDATA 2:", hb_valToExp( NETIO_GETDATA( nStream2 ) )
    ? "NETIO_DISCONNECT():", netio_disconnect( DBSERVER, DBPORT )
@@ -109,9 +93,11 @@ proc main()
    ?
    ? "stopping the server..."
    netio_serverstop( pSockSrv, .t. )
+
    return
 
 proc createdb( cName )
+
    local n
 
    dbCreate( cName, {{"F1", "C", 20, 0},;
@@ -134,10 +120,13 @@ proc createdb( cName )
    index on field->F4 tag T4
    close
    ?
+
    return
 
 proc testdb( cName )
+
    local i, j
+
    use (cName)
    ? "used:", used()
    ? "nterr:", neterr()
@@ -164,19 +153,25 @@ proc testdb( cName )
    browse()
    setpos( i, j )
    close
+
    return
 
 func reg_stream( pConnSock, nStream )
+
    ? PROCNAME(), nStream
    hb_threadDetach( hb_threadStart( @rpc_timer(), pConnSock, nStream ) )
+
    return nStream
 
 func reg_charstream( pConnSock, nStream )
+
    ? PROCNAME(), nStream
    hb_threadDetach( hb_threadStart( @rpc_charstream(), pConnSock, nStream ) )
+
    return nStream
 
 static func rpc_timer( pConnSock, nStream )
+
    while .t.
       if !netio_srvSendItem( pConnSock, nStream, time() )
          ? "CLOSED STREAM:", nStream
@@ -184,10 +179,13 @@ static func rpc_timer( pConnSock, nStream )
       endif
       hb_idleSleep( 1 )
    enddo
+
    return nil
 
 static func rpc_charstream( pConnSock, nStream )
+
    local n := 0
+
    while .t.
       if !netio_srvSendData( pConnSock, nStream, chr( 65 + n ) )
          ? "CLOSED STREAM:", nStream
@@ -196,5 +194,5 @@ static func rpc_charstream( pConnSock, nStream )
       n := int( ( n + 1 ) % 26 )
       hb_idleSleep( 0.1 )
    enddo
-   return nil
 
+   return nil

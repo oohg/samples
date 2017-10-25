@@ -1,7 +1,6 @@
 /*
 * $Id: modistru.prg,v 1.2 2016-10-17 01:55:33 fyurisich Exp $
 */
-
 /*
 *
 * MINIGUI - Harbour Win32 GUI library
@@ -14,33 +13,27 @@
 * and Rathinagiri <srathinagiri@gmail.com>
 *
 */
-
 #include "oohg.ch"
 #include "dbuvar.ch"
-
 *------------------------------------------------------------*
+
 Function DBUmodistruct(cBase)
+
    *------------------------------------------------------------*
    DECLARE WINDOW oWndBase
-
    lModYes           := .F.
    _dbufname         := cBase
-
    IF !Empty(Alias())
-
       _DBUoriginalarr := dbstruct()
       _DBUstructarr   := dbstruct()
       _DBUdbfsaved    := .f.
-
       DEFINE WINDOW _DBUcreadbf AT 295 , 312 WIDTH 549 HEIGHT 266 title PROGRAM+VERSION+"- Modify DataBase Table" MODAL nosize nosysmenu
-
          DEFINE TEXTBOX _DBUfieldname
             ROW    40
             COL    30
             WIDTH  120
             HEIGHT 24
          END TEXTBOX
-
          DEFINE COMBOBOX _DBUfieldtype
             ROW    40
             COL    160
@@ -51,7 +44,6 @@ Function DBUmodistruct(cBase)
             ON LOSTFOCUS DBUtypelostfocus()
             ON ENTER DBUtypelostfocus()
          END COMBOBOX
-
          DEFINE LABEL _DBUnamelabel
             ROW    20
             COL    30
@@ -59,7 +51,6 @@ Function DBUmodistruct(cBase)
             HEIGHT 20
             VALUE "Field"
          END LABEL
-
          DEFINE LABEL _DBUtypelabel
             ROW    20
             COL    160
@@ -67,7 +58,6 @@ Function DBUmodistruct(cBase)
             HEIGHT 20
             VALUE "Type"
          END LABEL
-
          DEFINE LABEL _DBUsizelabel
             ROW    20
             COL    290
@@ -75,7 +65,6 @@ Function DBUmodistruct(cBase)
             HEIGHT 20
             VALUE "Size"
          END LABEL
-
          DEFINE LABEL _DBUdecimallabel
             ROW    20
             COL    360
@@ -83,7 +72,6 @@ Function DBUmodistruct(cBase)
             HEIGHT 16
             VALUE "Digits"
          END LABEL
-
          DEFINE SPINNER _DBUfieldsize
             ROW    40
             COL    290
@@ -94,7 +82,6 @@ Function DBUmodistruct(cBase)
             VALUE 10
             on lostfocus DBUsizelostfocus()
          END SPINNER
-
          DEFINE SPINNER _DBUfielddecimals
             ROW    40
             COL    360
@@ -104,7 +91,6 @@ Function DBUmodistruct(cBase)
             RANGEMAX 99
             on lostfocus DBUdeclostfocus()
          END SPINNER
-
          DEFINE BUTTON _DBUaddline
             ROW    40
             COL    430
@@ -113,7 +99,6 @@ Function DBUmodistruct(cBase)
             CAPTION "Add"
             action DBUaddstruct()
          END BUTTON
-
          DEFINE BUTTON _DBUinsline
             ROW    70
             COL    430
@@ -122,7 +107,6 @@ Function DBUmodistruct(cBase)
             CAPTION "Insert"
             action DBUinsstruct()
          END BUTTON
-
          DEFINE BUTTON _DBUdelline
             ROW    100
             COL    430
@@ -131,7 +115,6 @@ Function DBUmodistruct(cBase)
             CAPTION "Delete"
             action DBUdelstruct()
          END BUTTON
-
          DEFINE GRID _DBUstruct
             ROW    80
             COL    30
@@ -143,7 +126,6 @@ Function DBUmodistruct(cBase)
             items _DBUstructarr
             on dblclick DBUlineselected()
          END GRID
-
          DEFINE BUTTON _DBUsavestruct
             ROW    140
             COL    430
@@ -152,7 +134,6 @@ Function DBUmodistruct(cBase)
             CAPTION "Save"
             action lModYes := Modi_Now(cBase) //DBUmodistructure()
          END BUTTON
-
          DEFINE BUTTON _DBUexitnew
             ROW    170
             COL    430
@@ -161,12 +142,9 @@ Function DBUmodistruct(cBase)
             CAPTION "Cancel"
             action lModYes := DBUexitmodidbf()
          END BUTTON
-
       END WINDOW
-
       center window _DBUcreadbf
       _DBUcreadbf._DBUstruct.deleteallitems()
-
       for _DBUi := 1 to len(_DBUstructarr)
          do case
          case _DBUstructarr[_DBUi,2] == "C"
@@ -206,18 +184,16 @@ Function DBUmodistruct(cBase)
       if len(_DBUstructarr) > 0
          _DBUcreadbf._DBUstruct.value := len(_DBUstructarr)
       endif
-
       ON KEY F5 OF _DBUcreadbf ACTION AutoMsgInfo( ( Alias() )->( Select() ), "Select()" )
-
       activate window _DBUcreadbf
    Endif
 
    return ( lModYes )
-
 *------------------------------------------------------------*
-function DBUmodistructure(cBase)
-   *------------------------------------------------------------*
 
+function DBUmodistructure(cBase)
+
+   *------------------------------------------------------------*
    if !msgyesno( PadC("C A U T I O N",70)+ CRLF + CRLF +;
          PadC("If you had modified either the field name or the field type,",70) + CRLF +;
          PadC("the data for that fields can not be saved in the modified .DBF",70) + CRLF +;
@@ -226,18 +202,13 @@ function DBUmodistructure(cBase)
 
       return (.F.)
    endif
-
    nPos      := ( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) )
    cAreaPos  := AllTrim( Str( ( ( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) ) ) ))
    cBrowse_n := "Browse_"+cAreaPos
-
    _DBUfname  := cBase
    cPathDBFm := cFilePath(aFiles[( Alias() )->( Select( oWndBase.Tab_1.caption( oWndBase.Tab_1.value ) ) )])
-
    _DBUfname1 := "DBTemp"
-
    CursorWait()
-
    _DBUmodarr := {}
    for _DBUi := 1 to len(_DBUstructarr)
       if _DBUi <= len(_DBUoriginalarr)
@@ -272,7 +243,6 @@ function DBUmodistructure(cBase)
          close &_DBUfname
          select &_DBUfname1
          close &_DBUfname1
-
          if at(".",cPathDBFm+_DBUfname) == 0
             _DBUbackname := alltrim(cPathDBFm+_DBUfname)+".dbf"
             if file(_DBUbackname)
@@ -310,13 +280,13 @@ function DBUmodistructure(cBase)
          release window _DBUcreadbf
       endif
    endif
-
    CursorArrow()
 
    return (.T.)
-
 *------------------------------------------------------------*
+
 function DBUexitmodidbf
+
    *------------------------------------------------------------*
    if len(_DBUstructarr) == 0 .or. _DBUdbfsaved
       release window _DBUcreadbf
@@ -327,10 +297,12 @@ function DBUexitmodidbf
          release window _DBUcreadbf
       endif
    endif
-   return (lModYes)
 
+   return (lModYes)
 *------------------------------------------------------------*
+
 FUNCTION Modi_Now(cBase)
+
    *------------------------------------------------------------*
    Local lResult := .F.
 
@@ -338,38 +310,40 @@ FUNCTION Modi_Now(cBase)
          TITLE "Structure Changing in progress !!!" ICON "Main1" MODAL NOSIZE ;
          ON INIT lResult := DBUmodistructure(cBase) ;
          FONT 'Arial' SIZE 09 nosysmenu nomaximize nominimize
-
       @  6,94 LABEL Label_001 VALUE "Completed " WIDTH 120 HEIGHT 18
       @ 26,19 PROGRESSBAR ProgressBar_1 RANGE 0,100 WIDTH 252 HEIGHT 18
-
    END WINDOW
-
    Form_idx.Center
    Form_idx.Activate
 
    Return( lResult )
-
 *------------------------------------------------------------*
+
 FUNCTION App_Progress()
+
    *------------------------------------------------------------*
    Local nComplete := Max( Min( ( RecNo()/LastRec() ) * 100, 100 ), 0 )
+
    Local cComplete := Ltrim(Str(nComplete))
 
    Form_idx.Label_001.Value := "Completed "+ cComplete + "%"
    Form_idx.ProgressBar_1.Value := nComplete
 
    Return(.T.)
-
 *---------------------------------------------------------------------*
+
 Function cFilePath( cPathMask )
+
    *---------------------------------------------------------------------*
    local n := RAt( "\", cPathMask ), cDisk
 
+
    Return If( n > 0, Upper( Left( cPathMask, n ) ),;
    ( cDisk := cFileDisc( cPathMask ) ) + If( ! Empty( cDisk ), "\", "" ) )
-
 *---------------------------------------------------------------------*
-Function cFileDisc( cPathMask )
-   *---------------------------------------------------------------------*
-   Return If( At( ":", cPathMask ) == 2, Upper( Left( cPathMask, 2 ) ), "" )
 
+Function cFileDisc( cPathMask )
+
+   *---------------------------------------------------------------------*
+
+   Return If( At( ":", cPathMask ) == 2, Upper( Left( cPathMask, 2 ) ), "" )

@@ -2,7 +2,6 @@
 * MiniGUI Grid Demo
 * (c) 2005 Roberto Lopez
 */
-
 #include "oohg.ch"
 
 Function Main
@@ -11,23 +10,19 @@ Function Main
 
    set century on
    set epoch to 1960
-
    Private fColor := { || if ( This.CellRowIndex/2 == int(This.CellRowIndex/2) , { 0,0,255 } , { 0,255,0 } ) }
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 640 ;
          HEIGHT 400 ;
          TITLE 'Mixed Data Type Grid Test' ;
          MAIN
-
       DEFINE MAIN MENU
          DEFINE POPUP 'File'
             MENUITEM 'Set Item'   ACTION SetItem()
             MENUITEM 'Get Item'   ACTION GetItem()
          END POPUP
       END MENU
-
       aRows [1]   := {113.12,date(),1,1 , .t. }
       aRows [2]   := {123.12,date(),2,2 , .f. }
       aRows [3]   := {133.12,date(),3,3, .t. }
@@ -48,7 +43,6 @@ Function Main
       aRows [18]   := {193.12,date(),3,18, .f. }
       aRows [19]   := {113.12,date(),1,19, .t. }
       aRows [20]   := {123.12,date(),2,20, .f. }
-
       @ 10,10 GRID Grid_1 ;
          WIDTH 620 ;
          HEIGHT 330 ;
@@ -65,11 +59,8 @@ Function Main
          Nil , ;
          Nil ;
          }
-
    END WINDOW
-
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
    Return
@@ -81,10 +72,10 @@ PROCEDURE SETITEM()
    RETURN
 
 PROCEDURE GETITEM()
+
    local a
 
    a := Form_1.Grid_1.Item (2)
-
    msginfo ( str ( a [1] )            , '1' )
    msginfo ( dtoc ( a [2] )         , '2' )
    msginfo ( str( a [3] )            , '3' )
@@ -92,4 +83,3 @@ PROCEDURE GETITEM()
    msginfo ( if ( a [5] == .t. , '.t.' , '.f.' )   , '5' )
 
    RETURN
-

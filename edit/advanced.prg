@@ -4,12 +4,10 @@ function Main()
 
    // Database driver.
    REQUEST DBFCDX , DBFFPT
-
    // [x]Harbour modifiers.
    SET CENTURY ON
    SET DELETED OFF
    SET DATE TO BRITISH
-
    // Request all languages for test.
    REQUEST HB_LANG_ES
    REQUEST HB_LANG_EU
@@ -36,10 +34,8 @@ function Main()
    REQUEST HB_LANG_SRISO
    REQUEST HB_LANG_SR852
    REQUEST HB_LANG_ES
-
    // Set default language to English.
    HB_LANGSELECT( "EN" )
-
    // Define window.
    DEFINE WINDOW Win_1         ;
          AT        0,0          ;
@@ -50,7 +46,6 @@ function Main()
          ON INIT OpenTable()       ;
          ON RELEASE CloseTable()    ;
          BACKCOLOR GRAY
-
       DEFINE MAIN MENU OF Win_1
          POPUP "&File"
             ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
@@ -63,36 +58,35 @@ function Main()
             ITEM "E&xit"               ACTION Win_1.Release
          END POPUP
       END MENU
-
    END WINDOW
-
    // Open window.
    MAXIMIZE WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
    Return Nil
-
 /*------------------------------------------------------------------------------*/
+
 Procedure OpenTable()
 
    USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
 
    Return Nil
-
 /*------------------------------------------------------------------------------*/
+
 Procedure CloseTable()
 
    CLOSE CLIENTES
 
    Return Nil
-
 /*------------------------------------------------------------------------------*/
+
 Procedure AdvTest()
 
    LOCAL aFields   := { "Nombre", "Apellidos", "Dirección", "Población " ,;
       "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
       "Edad", "Salario", "Notas"    }
    LOCAL aReadOnly := { .f., .f., .f., .f., .f., .f., .f., .f., .t., .f., .f. }
+
    LOCAL bSave     := {|aContent, lEdit| AdvTestSave( aContent, lEdit ) }
 
    // Advise.
@@ -100,7 +94,6 @@ Procedure AdvTest()
       "It's designed for Spanish language, so changing to" + Chr(13) + ;
       "Spanish language for better performance", "" )
    HB_LANGSELECT( "ES" )
-
    // Advanced EDIT.
    EDIT WORKAREA    CLIENTES ;
       TITLE    "Clientes" ;
@@ -109,29 +102,28 @@ Procedure AdvTest()
       SAVE     bSave
 
    Return Nil
-
 /*------------------------------------------------------------------------------*/
+
 Procedure AdvTestSave( aContent, lEdit )
 
    LOCAL i
+
    LOCAL aFields  := { "Nombre", "Apellidos", "Dirección", "Población " ,;
       "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
       "Edad", "Salario", "Notas"    }
-
    // Chek content.
    FOR i := 1 TO Len( aContent )-4
       IF Empty( aContent[i] )
          MsgInfo( aFields[i] + " no puede estar vacio" )
+
          Return .f.
       ENDIF
    NEXT
-
    // Calculate age.
    aContent[9] := 0
    FOR i := ( Year( aContent[7] ) + 1 ) to Year( Date() )
       aContent[9] += 1
    NEXT
-
    // Save record.
    IF .NOT. lEdit
       CLIENTES->( dbAppend() )
@@ -141,8 +133,8 @@ Procedure AdvTestSave( aContent, lEdit )
    NEXT
 
    Return .t.
-
 /*------------------------------------------------------------------------------*/
+
 Procedure SelecLang()
 
    LOCAL aLangName := { "Basque"             ,;
@@ -169,7 +161,6 @@ Procedure SelecLang()
       "Serbian ISO-8859-2" ,;
       "Serbian 852"        ,;
       "Spanish"             }
-
    LOCAL aLangID   := { "EU"    ,;
       "CS852" ,;
       "CSISO" ,;
@@ -194,7 +185,6 @@ Procedure SelecLang()
       "SRISO" ,;
       "SR852" ,;
       "ES"     }
-
    LOCAL nItem
 
    // Language selection.
@@ -209,8 +199,8 @@ Procedure SelecLang()
    ENDIF
 
    return ( nil )
-
 /*------------------------------------------------------------------------------*/
+
 Procedure SelItem( aItems )
 
    LOCAL nItem := 0
@@ -223,7 +213,6 @@ Procedure SelItem( aItems )
          MODAL ;
          NOSIZE ;
          NOSYSMENU
-
       @ 20, 20 LISTBOX lbxItems ;
          WIDTH 140 ;
          HEIGHT 100 ;
@@ -231,7 +220,6 @@ Procedure SelItem( aItems )
          VALUE 1 ;
          FONT "Arial" ;
          SIZE 9
-
       @ 20, 170 BUTTON btnSel ;
          CAPTION "&Select" ;
          ACTION {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release } ;
@@ -239,17 +227,14 @@ Procedure SelItem( aItems )
          HEIGHT 30 ;
          FONT "ms sans serif" ;
          SIZE 8
-
    END WINDOW
-
    wndSelItem.lbxItems.SetFocus
-
    CENTER WINDOW wndSelItem
    ACTIVATE WINDOW wndSelItem
 
    return ( nItem )
-
 /*------------------------------------------------------------------------------*/
+
 Procedure About()
 
    MsgInfo( Chr( 13 ) + ;
@@ -270,5 +255,5 @@ Procedure About()
       " *  Italian    - Ready (Thanks to Lupano Piero)" + Chr( 13 ) + ;
       " *  German     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + Chr( 13 ) + ;
       "Please report bugs to MiniGUI discusion group at groups.yahoo.com" )
-   return ( nil )
 
+   return ( nil )

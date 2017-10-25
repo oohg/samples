@@ -10,7 +10,6 @@
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
  */
-
 #include "oohg.ch"
 
 FUNCTION Main()
@@ -21,7 +20,6 @@ FUNCTION Main()
          HEIGHT 200 ;
          TITLE 'Create and Delete Menu Items' ;
          MAIN
-
       DEFINE MAIN MENU OBJ mnu_Main
          POPUP 'Actions'  OBJ mnu_Actions
             ITEM 'Action 1' ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1
@@ -29,7 +27,6 @@ FUNCTION Main()
             ITEM 'Action 2' ACTION MsgInfo( 'Action 2' ) NAME mnu_Action2
             ITEM 'Action 3' ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3
          END POPUP
-
          POPUP 'Test'
             ITEM 'Delete Action 2' ;
                ACTION ( oForm:mnu_Action2:Release(), ;
@@ -57,27 +54,19 @@ FUNCTION Main()
                DISABLED
          END POPUP
       END MENU
-
       INSERT ITEM 'Action 4' ;
          AT -1 ACTION MsgInfo( 'Action 4' ) FROM mnu_Actions
-
       INSERT SEPARATOR AT 3 FROM mnu_Actions
-
       INSERT POPUP 'About' OBJ mnu_About FROM mnu_Main
    END POPUP
-
    INSERT ITEM 'OOHG Power !!!' ;
       AT -1 ACTION MsgInfo( 'Enjoy !!!' ) FROM mnu_About
-
    ON KEY ESCAPE ACTION Form.Release
    END WINDOW
-
    CENTER WINDOW Form
    ACTIVATE WINDOW Form
 
 RETURN NIL
-
 /*
  * EOF
  */
-

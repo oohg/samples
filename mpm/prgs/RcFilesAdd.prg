@@ -1,16 +1,16 @@
 /*
  * $Id: RcFilesAdd.prg,v 1.1 2013-11-18 20:40:25 migsoft Exp $
  */
-
 #include "oohg.ch"
 *---------------------------------------------------------------------*
+
 Procedure AddRcfiles
+
    *---------------------------------------------------------------------*
    Local Files , x , i , Exists
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
-
    Files :=  GetRcFiles( )
    For x := 1 To Len ( Files )
       DO EVENTS
@@ -28,30 +28,27 @@ Procedure AddRcfiles
    Next x
 
    Return
-
 *---------------------------------------------------------------------*
+
 Function GetRcFiles()
+
    *---------------------------------------------------------------------*
    Local RetVal := {} , BaseFolder, aFiles := {}
 
    If Empty ( main.text_1.Value )
       MsgStop('You must select project base folder first','')
+
       Return ( {} )
    EndIf
-
    cDirOld := GetCurrentFolder() // NIL
    cDirNew := GetFolder("Folder:",cDirOld)
-
    IF !EMPTY(cDirNew)
       cDirOld  :=cDirNew
       aFiles :=DIRECTORY(cDirNew + "\" +"*.RC")
       AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
-
       aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
-
       DEFINE WINDOW GetRcFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select RC Files' ;
             ICON "mpm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
-
          DEFINE FRAME Frame_21
             ROW    0
             COL    10
@@ -59,7 +56,6 @@ Function GetRcFiles()
             HEIGHT 344
             OPAQUE .T.
          END FRAME
-
          DEFINE LISTBOX List_rc
             ITEMS aFiles
             ROW   20
@@ -72,7 +68,6 @@ Function GetRcFiles()
             BACKCOLOR {255,255,225}
             MULTISELECT   .T.
          END LISTBOX
-
          DEFINE BUTTON ALL
             ROW 310
             COL 210
@@ -81,7 +76,6 @@ Function GetRcFiles()
             CAPTION  'All'
             ONCLICK  ( RetVal := GetRcFilesOk( aFiles , GetRcFiles.List_rc.Value ) , GetRcFiles.Release )
          END BUTTON
-
          DEFINE BUTTON OK
             ROW 310
             COL 310
@@ -90,7 +84,6 @@ Function GetRcFiles()
             CAPTION  'Ok'
             ONCLICK  ( RetVal := GetRcFilesOk( aFiles , GetRcFiles.List_rc.Value ) , GetRcFiles.Release )
          END BUTTON
-
          DEFINE BUTTON CANCEL
             ROW    310
             COL    410
@@ -99,7 +92,6 @@ Function GetRcFiles()
             CAPTION "Cancel"
             ONCLICK  ( RetVal := {} , GetRcFiles.Release )
          END BUTTON
-
          DEFINE LABEL Label_1
             ROW    315
             COL    40
@@ -108,22 +100,20 @@ Function GetRcFiles()
             VALUE "Select ( Ctrl + Click )"
             TRANSPARENT .T.
          END LABEL
-
       END WINDOW
-
       CENTER WINDOW GetRcFiles
       GetRcFiles.Ok.Setfocus
       ACTIVATE WINDOW GetRcFiles
-
    Else
       MsgInfo("RC Files not found","RC Files")
       RetVal := {}
    Endif
 
    Return ( RetVal )
-
 *---------------------------------------------------------------------*
+
 Function GetRcFilesOk( aFiles , aSelected )
+
    *---------------------------------------------------------------------*
    Local aNew := {} , i
 
@@ -137,11 +127,13 @@ Function GetRcFilesOk( aFiles , aSelected )
    Endif
 
    Return( aNew )
-
 *---------------------------------------------------------------------*
+
 Procedure RemoveFileRc()
+
    *---------------------------------------------------------------------*
    Local a_Mig := main.List_4.value
+
    If !Empty(a_Mig)
       If MsgYesNo('Remove File(s) ' + UPPER( main.List_4.Item( main.List_4.Value ) ) + ' From Project ?','Confirm')
          While Len(a_Mig) > 0
@@ -153,5 +145,5 @@ Procedure RemoveFileRc()
          main.List_4.value := {1}
       endif
    Endif
-   Return
 
+   Return

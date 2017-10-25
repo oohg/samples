@@ -1,7 +1,6 @@
 /*
  * $Id: ExeCommon.prg,v 1.2 2014-07-11 19:38:40 migsoft Exp $
  */
-
 #include "oohg.ch"
 #include "mpm.ch"
 
@@ -9,22 +8,18 @@ Procedure StartBuild()
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
-
    Out                   := ''
    main.RichEdit_1.Value := ''
    PRGFILES              := {}
    CFILES                := {}
    LIBFILES              := {}
-
    PROJECTFOLDER  := AllTrim(main.text_1.Value)
    EXEOUTPUTNAME  := AllTrim(main.text_2.Value)
-
    WLEVEL         := main.RadioGroup_1.Value
    WITHDEBUG      := main.RadioGroup_2.Value
    WITHGTMODE     := main.RadioGroup_3.Value
    INCREMENTAL    := main.RadioGroup_4.Value
    HBCHOICE       := main.RadioGroup_5.Value
-
    If     main.RadioGroup_6.Value = 1
       USERFLAGS      := AllTrim(main.text_24.Value)
       USERCFLAGS     := AllTrim(main.text_12.Value)
@@ -42,7 +37,6 @@ Procedure StartBuild()
       USERCFLAGS     := AllTrim(main.text_52.Value)
       USERLFLAGS     := AllTrim(main.text_53.Value)
    Endif
-
    OBJFOLDER      := UPPER(AllTrim(main.Text_5.Value))
    LIBFOLDER      := UPPER(AllTrim(main.Text_6.Value))
    INCFOLDER      := UPPER(AllTrim(main.Text_7.Value))
@@ -52,27 +46,20 @@ Procedure StartBuild()
 Procedure MsgBuild()
 
    DO EVENTS
-
    if Empty ( ProjectName )
       MsgStop('You must save project first')
       BREAK
    EndIf
-
    If Empty ( ProjectFolder ) .Or. Empty ( main.List_1.Item(1) )  .Or. Empty (CCOMPFOLDER) .Or. Empty (MiniGUIFolder) .Or. Empty (HarbourFolder)
       MsgStop ( 'One or more required fields is not complete','')
       BREAK
    EndIf
-
    SetCurrentFolder (PROJECTFOLDER)
-
    cOBJ_DIR := iif(empty(OBJFOLDER),'\'+MyOBJName(),'\'+GetName(OBJFOLDER))
-
    MakeInclude(MINIGUIFOLDER,Auto_GUI(MINIGUIFOLDER))
-
    If INCREMENTAL = 2
       BorraOBJ(PROJECTFOLDER,cOBJ_DIR)
    Endif
-
    If ( main.RadioGroup_7.Value == 1 ) // EXE
       If File( GetName(ExeName)+'.exe' )
          if MsgYesNo('File: '+ GetName(ExeName)+'.exe Already Exist, Rebuild?',"Rebuild Project") == .F.
@@ -84,24 +71,19 @@ Procedure MsgBuild()
          Endif
       Endif
    Endif
-
    PonerEspera('Compiling...')
-
    For i := 1 To main.List_1.ItemCount
       DO EVENTS
       aadd ( PRGFILES , Alltrim(main.List_1.Item(i)) )
    Next i
-
    For i := 1 To main.List_1.ItemCount
       DO EVENTS
       aadd ( CFILES , Alltrim(main.List_1.Item(i)) )
    Next i
-
    For i := 1 To main.List_2.ItemCount
       DO EVENTS
       aadd ( LIBFILES , Alltrim(main.List_2.Item(i)) )
    Next i
-
    CreateFolder ( PROJECTFOLDER + cOBJ_DIR )
 
    Return
@@ -109,7 +91,6 @@ Procedure MsgBuild()
 Procedure EndBuild()
 
    main.Tab_1.value := 7
-
    If File(PROJECTFOLDER+'\'+GetName(ExeName)+'.exe') .and. TxtSearch('error') == .F.
       if MsgYesNo('Execute File: ['+ GetName(ExeName)+'.exe] ?',"Project Build") == .T.
          cursorwait2()
@@ -135,6 +116,7 @@ Procedure EndBuild()
    Return
 
 Function WathLibLink(MiniGuiFolder,HBCHOICE)
+
    Local Out := ""
 
    If HBCHOICE = 2               // xHarbour
@@ -182,4 +164,3 @@ Function WathLibLink(MiniGuiFolder,HBCHOICE)
    Endif
 
    Return( Out )
-

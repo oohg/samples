@@ -1,16 +1,16 @@
 /*
  * $Id: LibFilesAdd.prg,v 1.1 2013-11-18 20:40:25 migsoft Exp $
  */
-
 #include "oohg.ch"
 *---------------------------------------------------------------------*
+
 Procedure AddLibfiles
+
    *---------------------------------------------------------------------*
    Local Files , x , i , Exists
 
    DECLARE WINDOW main
    DECLARE WINDOW MigMess
-
    Files :=  GetLibFiles( )
    For x := 1 To Len ( Files )
       DO EVENTS
@@ -29,21 +29,21 @@ Procedure AddLibfiles
 
    Return
 *---------------------------------------------------------------------*
+
 Function GetLibFiles()
+
    *---------------------------------------------------------------------*
    Local RetVal := {} , LibFolder
 
    If Empty ( main.text_1.Value )
       MsgStop('You must select project base folder first','')
+
       Return ( {} )
    EndIf
-
    cDirOld := GetCurrentFolder() // NIL
    cDirNew := GetFolder("Folder:",cDirOld)
-
    IF !Empty(cDirNew)
       cDirOld  :=cDirNew
-
       If (main.RadioGroup_6.value = 1)
          aFiles :=DIRECTORY(cDirNew + "\" +"*.a")
          AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
@@ -51,14 +51,10 @@ Function GetLibFiles()
          aFiles :=DIRECTORY(cDirNew + "\" +"*.Lib")
          AEVAL(aFiles,{|x,y| aFiles[y] :=cDirNew + "\" + x[1]})
       Endif
-
       If Len(aFiles)>0
-
          aFiles :=ASORT(aFiles,{|x,y| UPPER(x) < UPPER(y)})
-
          DEFINE WINDOW GetLibFiles AT 0,0 WIDTH 533 HEIGHT 384 TITLE 'Select LIB Files' ;
                ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
-
             DEFINE FRAME Frame_21
                ROW    0
                COL    10
@@ -66,7 +62,6 @@ Function GetLibFiles()
                HEIGHT 344
                OPAQUE .T.
             END FRAME
-
             DEFINE LISTBOX List_Lib
                ITEMS aFiles
                ROW   20
@@ -79,7 +74,6 @@ Function GetLibFiles()
                BACKCOLOR {255,255,225}
                MULTISELECT   .T.
             END LISTBOX
-
             DEFINE BUTTON ALL
                ROW 310
                COL 210
@@ -88,7 +82,6 @@ Function GetLibFiles()
                CAPTION  'All'
                ONCLICK  ( RetVal := GetLibFilesOk( aFiles , GetLibFiles.List_Lib.Value ) , GetLibFiles.Release )
             END BUTTON
-
             DEFINE BUTTON OK
                ROW 310
                COL 310
@@ -97,7 +90,6 @@ Function GetLibFiles()
                CAPTION  'Ok'
                ONCLICK  ( RetVal := GetLibFilesOk( aFiles , GetLibFiles.List_Lib.Value ) , GetLibFiles.Release )
             END BUTTON
-
             DEFINE BUTTON CANCEL
                ROW    310
                COL    410
@@ -106,7 +98,6 @@ Function GetLibFiles()
                CAPTION "Cancel"
                ONCLICK  ( RetVal := {} , GetLibFiles.Release )
             END BUTTON
-
             DEFINE LABEL Label_1
                ROW    315
                COL    40
@@ -115,23 +106,21 @@ Function GetLibFiles()
                VALUE "Select ( Ctrl + Click )"
                TRANSPARENT .T.
             END LABEL
-
          END WINDOW
-
          CENTER WINDOW GetLibFiles
          GetLibFiles.Ok.Setfocus
          ACTIVATE WINDOW GetLibFiles
-
       Else
          MsgInfo("(*.Lib or *.a ) Files not found","Libraries files")
          RetVal := {}
       Endif
-
    Endif
 
    Return ( RetVal )
 *---------------------------------------------------------------------*
+
 Function GetLibFilesOk( aFiles , aSelected )
+
    *---------------------------------------------------------------------*
    Local aNew := {} , i
 
@@ -146,9 +135,12 @@ Function GetLibFilesOk( aFiles , aSelected )
 
    Return( aNew )
 *---------------------------------------------------------------------*
+
 Procedure RemoveLibFile()
+
    *---------------------------------------------------------------------*
    Local a_Mig := main.List_2.value
+
    If !Empty(a_Mig)
       If MsgYesNo('Remove File(s) ' + UPPER( main.List_2.Item( main.List_2.Value ) ) + ' From Project ?','Confirm')
          While Len(a_Mig) > 0
@@ -160,5 +152,5 @@ Procedure RemoveLibFile()
          main.List_2.value := {1}
       endif
    Endif
-   Return
 
+   Return

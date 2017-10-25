@@ -17,16 +17,13 @@
 * You can download img.png from:
 * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
 */
-
 #include "oohg.ch"
 #include "bostaurus.ch"
-
 MEMVAR hBitmap
 
 PROCEDURE MAIN
 
    PRIVATE hBitmap := Proc_Create_Logo()
-
    DEFINE WINDOW Win1 ;
          AT 0, 0 ;
          WIDTH 500 ;
@@ -36,52 +33,47 @@ PROCEDURE MAIN
          ON RELEASE BT_BitmapRelease( hBitmap ) ;
          ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
          ON PAINT Proc_ON_PAINT()
-
       @ 200, 190 LABEL Label1 ;
          VALUE "Save Image as ..." ;
          FONT "Times New Roman" ;
          SIZE 14 ;
          BOLD ;
          AUTOSIZE
-
       @ 250, 100 BUTTON Button1 ;
          CAPTION "BMP" ;
          ACTION Proc_Save_Image( 1 )
-
       @ 250, 210 BUTTON Button2 ;
          CAPTION "JPG" ;
          ACTION Proc_Save_Image( 2 )
-
       @ 250, 320 BUTTON Button3 ;
          CAPTION "GIF" ;
          ACTION Proc_Save_Image( 3 )
-
       @ 300, 150 BUTTON Button4 ;
          CAPTION "TIF" ;
          ACTION Proc_Save_Image( 4 )
-
       @ 300, 260 BUTTON Button5 ;
          CAPTION "PNG" ;
          ACTION Proc_Save_Image( 5 )
-
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
-
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
+
    RETURN
 
 PROCEDURE Proc_ON_PAINT
+
    LOCAL hDC, BTstruct
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
-
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawBitmap( hDC, 30, 180, 300, 200, BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
+
    RETURN
 
 PROCEDURE Proc_Save_Image( nAction )
+
    LOCAL Ret, Button
 
    DO CASE
@@ -96,48 +88,43 @@ PROCEDURE Proc_Save_Image( nAction )
    CASE nAction == 5
       Ret := BT_BitmapSaveFile( hBitmap, "LOGO_PNG.PNG", BT_FILEFORMAT_PNG )
    ENDCASE
-
    IF Ret
       Button := "Button" + ALLTRIM( STR( nAction ) )
       SetProperty( "Win1", Button, "Enabled", .F. )
    ENDIF
-
    MsgInfo( "Save Image: " + IF( Ret, "OK", "FAIL" ) )
+
    RETURN
 
 FUNCTION Proc_Create_Logo
+
    LOCAL hDC, BTstruct, hBitmap, hBitmap_aux
+
    LOCAL nTypeText, nAlignText, nOrientation
+
    LOCAL aRGBcolor := { 153, 217, 234 }
 
    // Create bitmap in memory
    hBitmap := BT_BitmapCreateNew( 150, 100, aRGBcolor )
-
    // Create hDC to a bitmap
    hDC := BT_CreateDC( hBitmap, BT_HDC_BITMAP, @BTstruct )
-
    // Paint Gradient
    BT_DrawGradientFillVertical( hDC, 0, 0, 150, 100, aRGBcolor, BLACK )
-
    // Draw Text
    nTypeText    := BT_TEXT_TRANSPARENT + BT_TEXT_BOLD
    nAlignText   := BT_TEXT_LEFT + BT_TEXT_TOP
    nOrientation := BT_TEXT_NORMAL_ORIENTATION
    BT_DrawText( hDC, 10, 20, "OOHG Casino", "Times New Roman", 14, BLACK, WHITE, nTypeText, nAlignText, nOrientation )
-
    // Draw Rectangle
    BT_DrawRectangle( hDC, 5, 5, 140, 90, BLUE, 2 )
-
    // Paste image
    hBitmap_aux := BT_BitmapLoadFile( "img.png" )
    BT_DrawBitmapTransparent( hDC, 30, 30, 100, 100, BT_SCALE, hBitmap_aux, Nil )
    BT_BitmapRelease( hBitmap_aux )
-
    // Release hDC bitmap
    BT_DeleteDC( BTstruct )
-   RETURN hBitmap
 
+   RETURN hBitmap
 /*
 * EOF
 */
-

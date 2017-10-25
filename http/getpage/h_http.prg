@@ -53,63 +53,51 @@
 */
 /*----------------------------------------------------------------------------
 MINIGUI - Harbour Win32 GUI library source code
-
 Copyright 2002-2005 Roberto Lopez <roblez@ciudad.com.ar>
 http://www.geocities.com/harbour_minigui/
-
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
 Foundation; either version 2 of the License, or (at your option) any later
 version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License along with
 this software; see the file COPYING. If not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA (or
 visit the web site http://www.gnu.org/).
-
 As a special exception, you have permission for additional uses of the text
 contained in this release of Harbour Minigui.
-
 The exception is that, if you link the Harbour Minigui library with other
 files to produce an executable, this does not by itself cause the resulting
 executable to be covered by the GNU General Public License.
 Your use of that executable is in no way restricted on account of linking the
 Harbour-Minigui library code into it.
-
 Parts of this project are based upon:
-
 "Harbour GUI framework for Win32"
 Copyright 2001 Alexander S.Kresin <alex@belacy.belgorod.su>
 Copyright 2001 Antonio Linares <alinares@fivetech.com>
 www - http://www.harbour-project.org
-
 "Harbour Project"
 Copyright 1999-2003, https://harbour.github.io/
 ---------------------------------------------------------------------------*/
-
 *-----------------------------------------------------------------------------*
+
 Function httpconnect( Connection, Server, Port )
+
    *-----------------------------------------------------------------------------*
    Local oUrl
 
    If ! Upper( Left( Server, 7 ) ) == "HTTP://"
       Server := "http://" + Server
    EndIf
-
    oUrl := tURL():New( Server + ":" + Ltrim( Str( Port ) ) )
-
    If HB_IsString( Connection )
       Public &Connection
-
       If Empty( oUrl )
          &Connection := Nil
       Else
          &Connection := TIpClientHttp():New( oUrl )
-
          If ! (&Connection):Open()
             &Connection := Nil
          EndIf
@@ -119,7 +107,6 @@ Function httpconnect( Connection, Server, Port )
          Connection := Nil
       Else
          Connection := TIpClientHttp():New( oUrl )
-
          If ! Connection:Open()
             Connection := Nil
          EndIf
@@ -127,9 +114,10 @@ Function httpconnect( Connection, Server, Port )
    EndIf
 
    Return Nil
-
 *-----------------------------------------------------------------------------*
+
 Function httpgeturl( Connection, cPage, uRet )
+
    *-----------------------------------------------------------------------------*
    Local cUrl, cResponse, cHeader, i, cRet
 
@@ -148,20 +136,17 @@ Function httpgeturl( Connection, cPage, uRet )
       EndIf
    EndIf
    cUrl += cPage
-
    If Connection:Open( cUrl )
       cResponse := Connection:Read()
       If ! hb_IsString( cResponse )
          cResponse := "<No data returned>"
       EndIf
-
       If hb_IsLogical( uRet )
          cHeader := Connection:cReply
          If ! hb_IsString( cHeader )
             cHeader := "<No header returned>"
          EndIf
          cHeader += hb_OsNewLine()
-
          For i := 1 to Len( Connection:hHeaders )
             #ifdef __XHARBOUR__
                cHeader += hGetKeyAt( Connection:hHeaders, i ) + ": " + hGetValueAt( Connection:hHeaders, i ) + hb_OsNewLine()
@@ -170,7 +155,6 @@ Function httpgeturl( Connection, cPage, uRet )
             #endif
          Next
          cHeader += hb_OsNewLine()
-
          If uRet                       // return DATA and HEADERS
             cRet := cHeader + cResponse
          Else                          // return HEADERS only
@@ -184,4 +168,3 @@ Function httpgeturl( Connection, cPage, uRet )
    EndIf
 
    Return cRet
-

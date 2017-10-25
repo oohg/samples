@@ -14,15 +14,14 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
 
 FUNCTION Main()
+
    LOCAL k, aRows[ 15, 5 ]
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0,0 ;
          WIDTH 558 ;
@@ -30,11 +29,9 @@ FUNCTION Main()
          TITLE 'Grid with Editable Images' ;
          MAIN ;
          ON INIT oGrid:ColumnBetterAutoFit(1)
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k := 1 TO 15
          aRows[k] := { k % 3, ;
             Str(HB_RANDOMINT( 99 ), 2), ;
@@ -43,7 +40,6 @@ FUNCTION Main()
             'Refer ' + Str( HB_RANDOMINT( 10 ), 2 ), ;
             HB_RANDOMINT( 10000 ) }
       NEXT k
-
       @ 10,10 GRID Grid_1 obj oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -61,16 +57,12 @@ FUNCTION Main()
          { 'TEXTBOX', 'NUMERIC', '999,999,999.99' } } ;
          FONT 'COURIER NEW' SIZE 10 ;
          EDIT INPLACE
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
    RETURN NIL
-
 /*
 * EOF
 */
-

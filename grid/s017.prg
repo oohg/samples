@@ -12,9 +12,7 @@
 * Visit us at https://github.com/fyurisich/OOHG_Samples or at
 * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
 */
-
 #include 'oohg.ch'
-
 #define bColor { |nCol,nRow,aItem| If( Val( aItem[ 1 ] ) % 2 == 0, WHITE, RED ) }
 
 FUNCTION Main()
@@ -23,23 +21,19 @@ FUNCTION Main()
 
    SET DATE BRITISH
    SET CENTURY ON
-
    DEFINE WINDOW Form_1 ;
          AT 0, 0 ;
          WIDTH 600 ;
          HEIGHT 500 ;
          TITLE "Virtual Grid with DynamicBackColor" ;
          MAIN
-
       DEFINE STATUSBAR
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
-
       FOR k := 1 TO 30
          aRows[ k ] := { Str(HB_RandomInt( 99 ), 2, 0), ;
             'Refer ' + Str( HB_RandomInt( 10 ), 2 ) }
       NEXT k
-
       @ 20, 20 GRID Grid_1 OBJ oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
@@ -50,13 +44,10 @@ FUNCTION Main()
          DYNAMICBACKCOLOR { bColor, bColor } ;
          VIRTUAL ;
          ON QUERYDATA SetData( oGrid, aRows )
-
       @ 360, 10 BUTTON Button_1 ;
          CAPTION "Change" ACTION ChangeData( oGrid, aRows )
-
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
@@ -75,8 +66,6 @@ FUNCTION ChangeData( oGrid, aRows )
    oGrid:Refresh()
 
    RETURN NIL
-
 /*
 * EOF
 */
-
