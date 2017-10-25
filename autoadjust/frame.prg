@@ -2,10 +2,11 @@
 #include 'oohg.ch'
 
 FUNCTION Main
+
    LOCAL oLbl
 
    DEFINE WINDOW Main ;
-   TITLE 'Simulated colored frame'
+         TITLE 'Simulated colored frame'
 
       @ 18,36 LABEL label_1 VALUE "Datos Generales" ;
          FONTCOLOR BLUE OBJ oLbl
@@ -17,4 +18,6 @@ FUNCTION Main
    END WINDOW
 
    ACTIVATE WINDOW Main
-RETURN Nil
+
+   RETURN NIL
+
