@@ -7,18 +7,18 @@
 #include "oohg.ch"
 #include "RMChart.ch"
 
-Static oChart, oWnd
+STATIC oChart, oWnd
 
 FUNCTION Main()
 
-   Define Window Start OBJ oWnd At 0,0 Width 480 Height 300     ;
-          Title "Demo RMChart - Thanks |oSkAr|" Main            ;
-          ON Size Ajust() ON Maximize Ajust()
+   DEFINE WINDOW Start OBJ oWnd At 0,0 Width 480 Height 300     ;
+         Title "Demo RMChart - Thanks |oSkAr|" Main            ;
+         ON Size Ajust() ON Maximize Ajust()
 
-          @ 0,0 ACTIVEX ActiveX OBJ oChart Width oWnd:Width - 7 ;
-          Height oWnd:Height - 35 PROGID "RMChart.RMChartX"
+      @ 0,0 ACTIVEX ActiveX OBJ oChart Width oWnd:Width - 7 ;
+         Height oWnd:Height - 35 PROGID "RMChart.RMChartX"
 
-   end window
+   END WINDOW
 
    oChart:Font             := "Tahoma"
    oChart:RMCStyle         := RMC_CTRLSTYLEFLAT
@@ -28,39 +28,42 @@ FUNCTION Main()
 
    WITH OBJECT oChart:Region( 1 )
 
-        :Footer = "http://www.oohg.org"
-        :AddCaption()
+      :Footer = "http://www.oohg.org"
+      :AddCaption()
 
-         WITH OBJECT :Caption()
-              :Titel     := "ooHG Test"
-              :FontSize  := 10
-              :Bold      := .T.
-         END
+      WITH OBJECT :Caption()
+         :Titel     := "ooHG Test"
+         :FontSize  := 10
+         :Bold      := .T.
+      END
 
-         :AddGridlessSeries()
+      :AddGridlessSeries()
 
-         WITH OBJECT :GridLessSeries
-               :SeriesStyle      := RMC_PIE_GRADIENT
-               :Alignment        := RMC_FULL
-               :Explodemode      := RMC_EXPLODE_NONE
-               :Lucent           := .F.
-               :ValueLabelOn     := RMC_VLABEL_ABSOLUTE
-               :HatchMode        := RMC_HATCHBRUSH_OFF
-               :StartAngle       := 0
-               :DataString       := "30*15*40*35"
-         END
+      WITH OBJECT :GridLessSeries
+         :SeriesStyle      := RMC_PIE_GRADIENT
+         :Alignment        := RMC_FULL
+         :Explodemode      := RMC_EXPLODE_NONE
+         :Lucent           := .F.
+         :ValueLabelOn     := RMC_VLABEL_ABSOLUTE
+         :HatchMode        := RMC_HATCHBRUSH_OFF
+         :StartAngle       := 0
+         :DataString       := "30*15*40*35"
+      END
 
    END
 
-  /// oChart:Draw2Clipboard( RMC_EMF )
+   /// oChart:Draw2Clipboard( RMC_EMF )
    oChart:Draw( .T. )
 
    oWnd:Center()
    oWnd:Activate()
 
-RETURN(Nil)
+   RETURN NIL
 
-Procedure Ajust()
+PROCEDURE Ajust()
+
    oChart:Width  := iif( oWnd:Width  -  7 < 50, 50, oWnd:Width  -  7 )
    oChart:Height := iif( oWnd:Height - 35 < 50, 50, oWnd:Height - 35 )
-Return(Nil)
+
+   RETURN NIL
+

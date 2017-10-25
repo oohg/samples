@@ -12,36 +12,32 @@
  *
  * You can download gmap1.html and gmap2.html from:
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ActiveX
- */
-
+*/
 
 #include "oohg.ch"
 
-
 #ifndef __XHARBOUR__
 
-#xtranslate CurDrive() + ':\' + CurDir() + '\' + 'temp.html' ;
+   #xtranslate CurDrive() + ':\' + CurDir() + '\' + 'temp.html' ;
       => ;
       hb_cwd() + 'temp.html'
 
 #endif
 
-
-/*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION Main()
 
    LOCAL oForm, oActiveX, oLat, oLng, oAddr, oCity, oCntr
 
    DEFINE WINDOW Form OBJ oForm ;
-      AT 0, 0 ;
-      WIDTH 650 ;
-      HEIGHT 608 ;
-      TITLE "Show a Google Map" ;
-      MAIN ;
-      NOMAXIMIZE ;
-      NOSIZE ;
-      ON INIT ShowLocationByCoords( oActiveX, oLat:Value, oLng:Value ) ;
-      ON RELEASE FErase( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' )
+         AT 0, 0 ;
+         WIDTH 650 ;
+         HEIGHT 608 ;
+         TITLE "Show a Google Map" ;
+         MAIN ;
+         NOMAXIMIZE ;
+         NOSIZE ;
+         ON INIT ShowLocationByCoords( oActiveX, oLat:Value, oLng:Value ) ;
+         ON RELEASE FErase( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' )
 
       @ 0, 0 ACTIVEX ActiveX OBJ oActiveX ;
          WIDTH 640 ;
@@ -112,9 +108,8 @@ FUNCTION Main()
 
    RETURN NIL
 
-
-/*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
+
    LOCAL cHtml := MemoRead( "gmap2.html" )
 
    cHtml := StrTran( cHtml, "<<LAT>>", LTrim( Str( nLat ) ) )
@@ -126,9 +121,8 @@ FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
 
    RETURN NIL
 
-
-/*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByAddress( oActiveX, cAddress, cCity, cCountry )
+
    LOCAL cHtml := MemoRead( "gmap1.html" )
 
    cHtml = StrTran( cHtml, "<<STREET>>", AllTrim( cAddress ) )
@@ -141,6 +135,3 @@ FUNCTION ShowLocationByAddress( oActiveX, cAddress, cCity, cCountry )
 
    RETURN NIL
 
-/*
- * EOF
- */

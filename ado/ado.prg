@@ -3,16 +3,16 @@
  * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
- */
+*/
 /*
  * This sample shows how to browse an Access database using ADORDD.
- */
+*/
 /*
  * To compile this sample save it as "ado.prg" and create a .bat file with:
  *    @echo off
  *    set THR_LIB=-lrddado -lhbusrrdd
  *    compile ado
- */
+*/
 
 #include "oohg.ch"
 #include "adordd.ch"
@@ -27,11 +27,11 @@ FUNCTION Main
    SET( _SET_DATEFORMAT, "yyyy-mm-dd" )
 
    DBCREATE( "test2.mdb;table1", ;
-             { { "FIRST", "C", 10, 0 }, ;
-             { "LAST",    "C", 10, 0 }, ;
-             { "AGE",     "N",  8, 0 }, ;
-             { "MYDATE",  "D",  8, 0 } }, ;
-             "ADORDD" )
+      { { "FIRST", "C", 10, 0 }, ;
+      { "LAST",    "C", 10, 0 }, ;
+      { "AGE",     "N",  8, 0 }, ;
+      { "MYDATE",  "D",  8, 0 } }, ;
+      "ADORDD" )
 
    USE test2.mdb VIA "ADORDD" TABLE "table1"
 
@@ -50,14 +50,14 @@ FUNCTION Main
    GO TOP
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Access Database via ADORDD' ;
-      MAIN ;
-      ON RELEASE CleanUp()
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Access Database via ADORDD' ;
+         MAIN ;
+         ON RELEASE CleanUp()
 
       DEFINE STATUSBAR
-        STATUSITEM "OOHG Power !!!"
+         STATUSITEM "OOHG Power !!!"
       END STATUSBAR
 
       @ 20, 20 XBROWSE xBrowse_1 ;
@@ -71,7 +71,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 PROCEDURE CleanUp
 
@@ -80,8 +80,4 @@ PROCEDURE CleanUp
       ERASE test2.mdb
    ENDIF
 
-RETURN
-
-/*
- * EOF
- */
+   RETURN

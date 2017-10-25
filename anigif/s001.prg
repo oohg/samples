@@ -11,7 +11,7 @@
  *
  * You can download the resource and gif files from
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/AniGif
- */
+*/
 
 #include "oohg.ch"
 
@@ -20,11 +20,11 @@ PROCEDURE Main()
    SetOneArrayItemPerLine( .T. )
 
    DEFINE WINDOW Form_Main ;
-      AT 0, 0 ;
-      WIDTH 320 ;
-      HEIGHT 240 ;
-      TITLE 'ANIGIF Demo' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 320 ;
+         HEIGHT 240 ;
+         TITLE 'ANIGIF Demo' ;
+         MAIN
 
       DEFINE MAIN MENU
          MENUITEM '&Play' ACTION oAniGif:Play()
@@ -50,22 +50,18 @@ PROCEDURE Main()
    CENTER WINDOW Form_Main
    ACTIVATE WINDOW Form_Main
 
-RETURN
-
+   RETURN
 
 PROCEDURE ShowInfo
 
    oAniGif:Stop()
    AutoMsgBox( { "Name"  + Chr( 9 ) + ": " + oAniGif:FileName, ;
-                 "Version"   + Chr( 9 ) + ": " + oAniGif:Version, ;
-                 "Width"   + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameWidth ) ), ;
-                 "Height"  + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameHeight ) ), ;
-                 "Frames"  + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameCount ) ) }, ;
-               "GIF Info" )
+      "Version"   + Chr( 9 ) + ": " + oAniGif:Version, ;
+      "Width"   + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameWidth ) ), ;
+      "Height"  + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameHeight ) ), ;
+      "Frames"  + Chr( 9 ) + ": " + LTrim( Str( oAniGif:FrameCount ) ) }, ;
+      "GIF Info" )
    oAniGif:Play()
 
-RETURN
+   RETURN
 
-/*
- * EOF
- */
