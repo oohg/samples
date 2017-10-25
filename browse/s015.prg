@@ -10,7 +10,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 
@@ -25,14 +25,14 @@ FUNCTION Main
    SET BROWSESYNC ON
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0,0 ;
-      CLIENTAREA ;
-      WIDTH 500 HEIGHT 380 ;
-      MINWIDTH 500 MINHEIGHT 380 ;
-      TITLE "Browse: new record's default values" ;
-      MAIN;
-      ON INIT OpenTables( oBrowse ) ;
-      ON RELEASE CleanUp()
+         AT 0,0 ;
+         CLIENTAREA ;
+         WIDTH 500 HEIGHT 380 ;
+         MINWIDTH 500 MINHEIGHT 380 ;
+         TITLE "Browse: new record's default values" ;
+         MAIN;
+         ON INIT OpenTables( oBrowse ) ;
+         ON RELEASE CleanUp()
 
       @ 05,10 LABEL Label_1 OBJ oLbl ;
          VALUE "Use Alt-A to add a record and see what happens" ;
@@ -42,53 +42,53 @@ FUNCTION Main
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight - 40 ;
          ONHEADCLICK { { || ordSetFocus( "recno" ), oBrowse:Refresh() }, ;
-                       { || ordSetFocus( "code" ), oBrowse:Refresh() }, ;
-                       NIL, ;
-                       NIL, ;
-                       NIL, ;
-                       NIL, ;
-                       NIL } ;
+         { || ordSetFocus( "code" ), oBrowse:Refresh() }, ;
+         NIL, ;
+         NIL, ;
+         NIL, ;
+         NIL, ;
+         NIL } ;
          EDIT INPLACE ;
          APPEND ;
          DELETE ;
          HEADERS { 'RecNo', ;
-                   'Code', ;
-                   'First Name', ;
-                   'Last Name', ;
-                   'Birth Date', ;
-                   'Married', ;
-                   'Biography' } ;
+         'Code', ;
+         'First Name', ;
+         'Last Name', ;
+         'Birth Date', ;
+         'Married', ;
+         'Biography' } ;
          WIDTHS { 60, 150, 150, 150, 150, 150, 150 } ;
          WORKAREA Test ;
          FIELDS { { || Test->(RECNO()) }, ;
-                  'Test->Code', ;
-                  'Test->First', ;
-                  'Test->Last', ;
-                  'Test->Birth', ;
-                  'Test->Married', ;
-                  'Test->Bio' } ;
+         'Test->Code', ;
+         'Test->First', ;
+         'Test->Last', ;
+         'Test->Birth', ;
+         'Test->Married', ;
+         'Test->Bio' } ;
          COLUMNCONTROLS { NIL, ;
-                          {'COMBOBOX',{'1','2','3'},{1,2,3},"NUMERIC"}, ;
-                          NIL, ;
-                          NIL, ;
-                          NIL, ;
-                          NIL, ;
-                          {'MEMO', "Biography", , 600, 600, .T., .T. } } ;
+         {'COMBOBOX',{'1','2','3'},{1,2,3},"NUMERIC"}, ;
+         NIL, ;
+         NIL, ;
+         NIL, ;
+         NIL, ;
+         {'MEMO', "Biography", , 600, 600, .T., .T. } } ;
          READONLY { { || FillRecNo( oBrowse ) }, ;
-                    .F., ;
-                    .F., ;
-                    .F., ;
-                    .F., ;
-                    .F., ;
-                    .F. } ;
+         .F., ;
+         .F., ;
+         .F., ;
+         .F., ;
+         .F., ;
+         .F. } ;
          FONT "Courier New" SIZE 10 ;
          JUSTIFY { BROWSE_JTFY_RIGHT, ;
-                   BROWSE_JTFY_RIGHT, ;
-                   BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER }
+         BROWSE_JTFY_RIGHT, ;
+         BROWSE_JTFY_CENTER, ;
+         BROWSE_JTFY_CENTER, ;
+         BROWSE_JTFY_CENTER, ;
+         BROWSE_JTFY_CENTER, ;
+         BROWSE_JTFY_CENTER }
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -96,9 +96,8 @@ FUNCTION Main
    oForm:Center()
    oForm:Activate()
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION FillRecNo( oBrw )
 
    // Set the underlying grid's cell with the not yet added record number
@@ -109,21 +108,21 @@ FUNCTION FillRecNo( oBrw )
    oBrw:RefreshRow( oBrw:ItemCount )
 
    // Do not edit cell
-RETURN .T.
 
-//--------------------------------------------------------------------------//
+   RETURN .T.
+
 FUNCTION OpenTables( oBrw )
 
    LOCAL i
 
    DBCREATE( "Test", ;
-             { { "Code",    "Numeric",   10, 0 }, ;
-               { "First",   "Character", 25, 0 }, ;
-               { "Last",    "Character", 25, 0 }, ;
-               { "Married", "Logical",    1, 0 }, ;
-               { "Birth",   "Date",       8, 0 }, ;
-               { "Bio",     "Memo",      10, 0 } }, ;
-             "DBFCDX" )
+      { { "Code",    "Numeric",   10, 0 }, ;
+      { "First",   "Character", 25, 0 }, ;
+      { "Last",    "Character", 25, 0 }, ;
+      { "Married", "Logical",    1, 0 }, ;
+      { "Birth",   "Date",       8, 0 }, ;
+      { "Bio",     "Memo",      10, 0 } }, ;
+      "DBFCDX" )
 
    USE test VIA "DBFCDX"
    ZAP
@@ -141,21 +140,16 @@ FUNCTION OpenTables( oBrw )
    INDEX ON RECNO() TAG recno TO code
 
    GO BOTTOM
-	oBrw:SetValue( RECNO(), oBrw:CountPerPage )
+   oBrw:SetValue( RECNO(), oBrw:CountPerPage )
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  dbCloseAll()
+   dbCloseAll()
 
-  ERASE Test.dbf
-  ERASE Test.fpt
-  ERASE Code.cdx
+   ERASE Test.dbf
+   ERASE Test.fpt
+   ERASE Code.cdx
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

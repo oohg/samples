@@ -9,7 +9,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 
@@ -18,13 +18,13 @@ FUNCTION Main
    LOCAL oForm, oBrw, myDbf := "Test1"
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Browse: dynamically change properties' ;
-      MAIN ;
-      ON INIT OpenTables() ;
-      ON RELEASE CloseTables()
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Browse: dynamically change properties' ;
+         MAIN ;
+         ON INIT OpenTables() ;
+         ON RELEASE CloseTables()
 
       @ 13, 10 LABEL Lbl_1 ;
          WIDTH 60 ;
@@ -56,17 +56,16 @@ FUNCTION Main
    oForm:Center()
    oForm:Activate()
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION OpenTables()
 
    LOCAL i
 
    DBCREATE( "Test3", ;
-             { {"Code3", "N", 10, 0}, ;
-               {"Name3", "C", 25, 0}, ;
-               {"Data3", "D",  8, 0} } )
+      { {"Code3", "N", 10, 0}, ;
+      {"Name3", "C", 25, 0}, ;
+      {"Data3", "D",  8, 0} } )
 
    USE Test3 NEW
    ZAP
@@ -81,8 +80,8 @@ FUNCTION OpenTables()
    GO TOP
 
    DBCREATE( "Test2", ;
-             { {"Code2", "N", 10, 0}, ;
-               {"Name2", "C", 25, 0} } )
+      { {"Code2", "N", 10, 0}, ;
+      {"Name2", "C", 25, 0} } )
 
    USE Test2 NEW
    ZAP
@@ -96,8 +95,8 @@ FUNCTION OpenTables()
    GO TOP
 
    DBCREATE( "Test1", ;
-             { {"Code1", "N", 10, 0}, ;
-               {"Name1", "C", 25, 0} } )
+      { {"Code1", "N", 10, 0}, ;
+      {"Name1", "C", 25, 0} } )
 
    USE Test1 NEW
    ZAP
@@ -110,48 +109,46 @@ FUNCTION OpenTables()
 
    GO TOP
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION CloseTables()
 
-  CLOSE DATABASES
+   CLOSE DATABASES
 
-  IF MsgYesNo( "Erase tables ?", "" )
-     ERASE Test1.dbf
-     ERASE Test2.dbf
-     ERASE Test3.dbf
-  ENDIF
+   IF MsgYesNo( "Erase tables ?", "" )
+      ERASE Test1.dbf
+      ERASE Test2.dbf
+      ERASE Test3.dbf
+   ENDIF
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION ChangeDbf( oDbf, oBrw, oForm )
 
    LOCAL aDbfData := ;
-         { { "Test1", ;
-           { "Article Code", "Article Name"}, ;
-           { "Code1", "Name1" }, ;
-           { 100, 150 }, ;
-           { BROWSE_JTFY_RIGHT, BROWSE_JTFY_LEFT } }, ;
-           { "Test2", ;
-           { "Supplier Code", "Supplier Name" }, ;
-           { "Code2", "Name2" }, ;
-           { 120, 170 }, ;
-           { BROWSE_JTFY_CENTER, BROWSE_JTFY_RIGHT } }, ;
-           { "Test3", ;
-           { "Client Code", "Client Name", "Last Contact" }, ;
-           { "Code3", "Name3", "Data3" }, ;
-           { 120, 170, 90 }, ;
-           { BROWSE_JTFY_CENTER, BROWSE_JTFY_RIGHT, BROWSE_JTFY_CENTER } } }
+      { { "Test1", ;
+      { "Article Code", "Article Name"}, ;
+      { "Code1", "Name1" }, ;
+      { 100, 150 }, ;
+      { BROWSE_JTFY_RIGHT, BROWSE_JTFY_LEFT } }, ;
+      { "Test2", ;
+      { "Supplier Code", "Supplier Name" }, ;
+      { "Code2", "Name2" }, ;
+      { 120, 170 }, ;
+      { BROWSE_JTFY_CENTER, BROWSE_JTFY_RIGHT } }, ;
+      { "Test3", ;
+      { "Client Code", "Client Name", "Last Contact" }, ;
+      { "Code3", "Name3", "Data3" }, ;
+      { 120, 170, 90 }, ;
+      { BROWSE_JTFY_CENTER, BROWSE_JTFY_RIGHT, BROWSE_JTFY_CENTER } } }
 
-   Do While oBrw:ColumnCount() < LEN( aDbfData[ oDbf:Value ] [ 3 ] )
+   DO WHILE oBrw:ColumnCount() < LEN( aDbfData[ oDbf:Value ] [ 3 ] )
       // The second parameter must not be NIL
       oBrw:AddColumn( NIL, "" )
-   EndDo
-   Do While oBrw:ColumnCount() > LEN( aDbfData[ oDbf:Value ] [ 3 ] )
+   ENDDO
+   DO WHILE oBrw:ColumnCount() > LEN( aDbfData[ oDbf:Value ] [ 3 ] )
       oBrw:DeleteColumn()
-   EndDo
+   ENDDO
 
    oBrw:WorkArea := aDbfData[ oDbf:Value ] [ 1 ]
    oBrw:aHeaders := aDbfData[ oDbf:Value ] [ 2 ]
@@ -162,8 +159,4 @@ FUNCTION ChangeDbf( oDbf, oBrw, oForm )
    oBrw:Value := 1
    oBrw:Refresh()
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

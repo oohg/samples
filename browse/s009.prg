@@ -12,7 +12,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "dbstruct.ch"
@@ -28,15 +28,15 @@ FUNCTION Main
    SET BROWSESYNC ON
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0,0 ;
-      CLIENTAREA ;
-      WIDTH 500 HEIGHT 380 ;
-      MINWIDTH 500 MINHEIGHT 380 ;
-      TITLE 'ooHG Demo - Alternate Painting of an "Indexed" Browse' ;
-      MAIN ;
-      NOMAXIMIZE ;
-      ON INIT OpenTables() ;
-      ON RELEASE CleanUp()
+         AT 0,0 ;
+         CLIENTAREA ;
+         WIDTH 500 HEIGHT 380 ;
+         MINWIDTH 500 MINHEIGHT 380 ;
+         TITLE 'ooHG Demo - Alternate Painting of an "Indexed" Browse' ;
+         MAIN ;
+         NOMAXIMIZE ;
+         ON INIT OpenTables() ;
+         ON RELEASE CleanUp()
 
       @ 10,10 BROWSE Browse_1 OBJ oBrowse ;
          WIDTH oForm:ClientWidth - 20 ;
@@ -62,9 +62,8 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
    LOCAL aDbf[2][4]
@@ -96,18 +95,13 @@ FUNCTION OpenTables()
 
    Form_1.Browse_1.Value := RECNO()
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  dbCloseAll()
+   dbCloseAll()
 
-  ERASE Test.dbf
-  ERASE Code.cdx
+   ERASE Test.dbf
+   ERASE Code.cdx
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

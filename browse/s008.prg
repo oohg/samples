@@ -8,25 +8,25 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main
 
    LOCAL oForm, ;
-         oBrw, ;
-         myDbf := "Test1", ;
-         myFields := { "Code1", "Name1"}
+      oBrw, ;
+      myDbf := "Test1", ;
+      myFields := { "Code1", "Name1"}
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Browse: handle unknown fields' ;
-      MAIN ;
-      ON INIT OpenTables() ;
-      ON RELEASE CloseTables()
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Browse: handle unknown fields' ;
+         MAIN ;
+         ON INIT OpenTables() ;
+         ON RELEASE CloseTables()
 
       @ 10,10 BROWSE Browse_1 OBJ oBrw ;
          WIDTH oForm:ClientWidth - 20 ;
@@ -39,10 +39,10 @@ FUNCTION Main
          FIELDS myFields ;
          VALID { {|| &( "memvar" + myDbf + myFields[1] ) > 0 }, {|| ! empty( &( "memvar" + myDbf + myFields[2]) ) } }
 
-    /* When the valid is executed, the class creates a variable called
-     * MemVarBaseField, where Base is the alias of the workarea and the Field
-     * is the name of the just edited field. f.e.: MemVarTest1Code1
-     */
+      /* When the valid is executed, the class creates a variable called
+      * MemVarBaseField, where Base is the alias of the workarea and the Field
+      * is the name of the just edited field. f.e.: MemVarTest1Code1
+      */
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -50,16 +50,15 @@ FUNCTION Main
    oForm:Center()
    oForm:Activate()
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION OpenTables()
 
    LOCAL i
 
    DBCREATE( "Test1", ;
-             { {"Code1", "N", 10, 0}, ;
-               {"Name1", "C", 25, 0} } )
+      { {"Code1", "N", 10, 0}, ;
+      {"Name1", "C", 25, 0} } )
 
    USE Test1 NEW
    ZAP
@@ -72,19 +71,14 @@ FUNCTION OpenTables()
 
    GO TOP
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION CloseTables()
 
-  CLOSE DATABASES
+   CLOSE DATABASES
 
-  IF MsgYesNo( "Erase table ?", "" )
-     ERASE Test1.dbf
-  ENDIF
+   IF MsgYesNo( "Erase table ?", "" )
+      ERASE Test1.dbf
+   ENDIF
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

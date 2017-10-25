@@ -14,12 +14,12 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "dbstruct.ch"
 
-Function Main
+FUNCTION Main
 
    LOCAL Form_1, Browse_1
 
@@ -30,69 +30,69 @@ Function Main
    SET BROWSESYNC ON
 
    DEFINE WINDOW Form_1 OBJ Form_1 ;
-      AT 0,0 ;
-      CLIENTAREA ;
-      WIDTH 500 HEIGHT 380 ;
-      MINWIDTH 500 MINHEIGHT 380 ;
-      TITLE 'ooHG Demo - DELETEWHEN, DELETEMSG and ON DELETE clauses' ;
-      MAIN NOMAXIMIZE ;
-      ON INIT {|| OnPaint(Form_1), OpenTables()} ;
-      ON RELEASE CleanUp() ;
-      ON SIZE OnPaint(Form_1)
+         AT 0,0 ;
+         CLIENTAREA ;
+         WIDTH 500 HEIGHT 380 ;
+         MINWIDTH 500 MINHEIGHT 380 ;
+         TITLE 'ooHG Demo - DELETEWHEN, DELETEMSG and ON DELETE clauses' ;
+         MAIN NOMAXIMIZE ;
+         ON INIT {|| OnPaint(Form_1), OpenTables()} ;
+         ON RELEASE CleanUp() ;
+         ON SIZE OnPaint(Form_1)
 
       @ 10,10 BROWSE Browse_1 OBJ Browse_1 ;
          WIDTH 610 ;
          HEIGHT 390 ;
          HEADERS { 'Code', 'First Name', 'Last Name', ;
-                   'Birth Date', 'Married' , 'Biography' } ;
+         'Birth Date', 'Married' , 'Biography' } ;
          WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } ;
          WORKAREA test ;
          FIELDS { 'Test->Code', 'Test->First', 'Test->Last', ;
-                  'Test->Birth', 'Test->Married', 'Test->Bio' } ;
+         'Test->Birth', 'Test->Married', 'Test->Bio' } ;
          FONT "Courier New" SIZE 10 ;
          JUSTIFY { BROWSE_JTFY_RIGHT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
+         BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
          DELETE ;
          DELETEWHEN {|| test->(recno()) % 2 == 0} ;
          DELETEMSG "Odd records can't be deleted !!!" ;
          ON DELETE {|| automsgbox("Record " + ;
-                       ltrim(str(test->(recno()))) + ;
-                       " deleted !!!")} ;
+         ltrim(str(test->(recno()))) + ;
+         " deleted !!!")} ;
          LOCK ;
          EDIT INPLACE ;
          APPEND
 
-/*
- * This is the same browse but in alternative syntax
- */
-/*
+      /*
+      * This is the same browse but in alternative syntax
+      */
+      /*
       DEFINE BROWSE Browse_1
-         ROW 10
-         COL 10
-         WIDTH 610
-         HEIGHT 390
-         HEADERS { 'Code', 'First Name', 'Last Name', ;
-                   'Birth Date', 'Married' , 'Biography' }
-         WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 }
-         WORKAREA test
-         FIELDS { 'Test->Code', 'Test->First', 'Test->Last', ;
-                  'Test->Birth', 'Test->Married', 'Test->Bio' }
-         FONTNAME "Courier New"
-         FONTSIZE 10
-         JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER}
-         ALLOWDELETE .T.
-         DELETEWHEN {|| test->(recno()) % 2 == 0}
-         DELETEMSG "Odd records can't be deleted !!!"
-         ON DELETE {|| automsgbox("Record " + ;
-                       ltrim(str(test->(recno()))) + ;
-                       " deleted !!!")}
-         LOCK .T.
-         ALLOWEDIT .T.
-         INPLACEEDIT .T.
-         ALLOWAPPEND .T.
+      ROW 10
+      COL 10
+      WIDTH 610
+      HEIGHT 390
+      HEADERS { 'Code', 'First Name', 'Last Name', ;
+      'Birth Date', 'Married' , 'Biography' }
+      WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 }
+      WORKAREA test
+      FIELDS { 'Test->Code', 'Test->First', 'Test->Last', ;
+      'Test->Birth', 'Test->Married', 'Test->Bio' }
+      FONTNAME "Courier New"
+      FONTSIZE 10
+      JUSTIFY { BROWSE_JTFY_LEFT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, ;
+      BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER}
+      ALLOWDELETE .T.
+      DELETEWHEN {|| test->(recno()) % 2 == 0}
+      DELETEMSG "Odd records can't be deleted !!!"
+      ON DELETE {|| automsgbox("Record " + ;
+      ltrim(str(test->(recno()))) + ;
+      " deleted !!!")}
+      LOCK .T.
+      ALLOWEDIT .T.
+      INPLACEEDIT .T.
+      ALLOWAPPEND .T.
       END BROWSE
-*/
+      */
 
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
@@ -101,9 +101,8 @@ Function Main
 
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
    LOCAL aDbf[6][4]
@@ -158,31 +157,25 @@ FUNCTION OpenTables()
 
    Form_1.Browse_1.Value := RECNO()
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OnPaint (Ventana)
 
-  WITH OBJECT Ventana
-    :Browse_1:Row      := ;
-    :Browse_1:Col      := 20
-    :Browse_1:Width    := :ClientWidth - :Browse_1:Col * 2
-    :Browse_1:Height   := :ClientHeight - :Browse_1:Row * 2
-  END WITH
+   WITH OBJECT Ventana
+      :Browse_1:Row      := ;
+         :Browse_1:Col      := 20
+      :Browse_1:Width    := :ClientWidth - :Browse_1:Col * 2
+      :Browse_1:Height   := :ClientHeight - :Browse_1:Row * 2
+   END WITH
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  dbCloseAll()
+   dbCloseAll()
 
-  ERASE Test.dbf
-  ERASE Test.fpt
-  ERASE Code.cdx
+   ERASE Test.dbf
+   ERASE Test.fpt
+   ERASE Code.cdx
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

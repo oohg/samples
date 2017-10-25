@@ -13,12 +13,13 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "dbstruct.ch"
 
 FUNCTION Main
+
    LOCAL oForm1, oBrw1
 
    REQUEST DBFCDX, DBFFPT
@@ -31,31 +32,31 @@ FUNCTION Main
    OpenTables()
 
    DEFINE WINDOW Form_1 OBJ oForm1 ;
-      AT 0,0 ;
-      CLIENTAREA ;
-      WIDTH 618 HEIGHT 380 ;
-      TITLE 'Controls linked to a Browse' ;
-      MAIN ;
-      ON INIT oBrw1:value := Test->(recno()) ;
-      ON INTERACTIVECLOSE ExitCheck() ;
-      ON RELEASE CleanUp()
+         AT 0,0 ;
+         CLIENTAREA ;
+         WIDTH 618 HEIGHT 380 ;
+         TITLE 'Controls linked to a Browse' ;
+         MAIN ;
+         ON INIT oBrw1:value := Test->(recno()) ;
+         ON INTERACTIVECLOSE ExitCheck() ;
+         ON RELEASE CleanUp()
 
       @ 10,10 BROWSE Browse_1 OBJ oBrw1 ;
          WIDTH 410 ;
          HEIGHT 340 ;
          HEADERS { 'Code', 'First Name', 'Last Name', ;
-                   'Birth Date', 'Married' , 'Biography' } ;
+         'Birth Date', 'Married' , 'Biography' } ;
          WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } ;
          WORKAREA test ;
          FIELDS { 'Test->Code', 'Test->First', 'Test->Last', ;
-                  'Test->Birth', 'Test->Married', 'Test->Bio' } ;
+         'Test->Birth', 'Test->Married', 'Test->Bio' } ;
          FONT "Courier New" SIZE 10 ;
          JUSTIFY { BROWSE_JTFY_RIGHT,BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, ;
-                   BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
+         BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER,BROWSE_JTFY_CENTER} ;
          COLUMNCONTROLS {NIL, NIL, NIL, NIL, {'LCOMBOBOX','Yes','No'}, NIL} ;
          ON CHANGE (oTxtName:value := Test->First, ;
-                    oCmbType:value := Test->Code, ;
-                    oDtpDate:value := Test->Birth)
+         oCmbType:value := Test->Code, ;
+         oDtpDate:value := Test->Birth)
 
       @ 10,430 COMBOBOX cmb_Type OBJ oCmbType ;
          WIDTH 180 ;
@@ -63,18 +64,18 @@ FUNCTION Main
          VALUESOURCE Codes->Code
 
       @ 50,430 TEXTBOX txt_Name OBJ oTxtName ;
-        WIDTH 180 ;
-        HEIGHT 24 ;
-        MAXLENGTH 25
+         WIDTH 180 ;
+         HEIGHT 24 ;
+         MAXLENGTH 25
 
       @ 90,430 DATEPICKER dtp_Date OBJ oDtpDate ;
-        WIDTH 180
+         WIDTH 180
 
       @ 210,430 LABEL lbl_Note ;
-        WIDTH 180 ;
-        HEIGHT 40 ;
-        VALUE "See what happens when you change browse's selected item." ;
-        FONTCOLOR RED
+         WIDTH 180 ;
+         HEIGHT 40 ;
+         VALUE "See what happens when you change browse's selected item." ;
+         FONTCOLOR RED
 
       ON KEY ESCAPE ACTION IF(ExitCheck(), oForm1:Release(), NIL)
    END WINDOW
@@ -82,9 +83,8 @@ FUNCTION Main
    oForm1:Center()
    oForm1:Activate()
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
    LOCAL i, aDbf1[2][4], aDbf2[6][4]
@@ -164,25 +164,19 @@ FUNCTION OpenTables()
 
    GO TOP
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION ExitCheck()
 
-RETURN MsgYesNo("¿ Are you sure you want to quit ?") ;
+   RETURN MsgYesNo("¿ Are you sure you want to quit ?") ;
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  dbCloseAll()
+   dbCloseAll()
 
-  ERASE Test.dbf
-  ERASE Test.fpt
-  ERASE Codes.dbf
-  ERASE Codes.cdx
+   ERASE Test.dbf
+   ERASE Test.fpt
+   ERASE Codes.dbf
+   ERASE Codes.cdx
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

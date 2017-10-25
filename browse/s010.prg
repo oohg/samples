@@ -8,12 +8,13 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "dbstruct.ch"
 
 FUNCTION Main
+
    LOCAL oForm1, oBrw1
 
    REQUEST DBFCDX
@@ -24,14 +25,14 @@ FUNCTION Main
    OpenTables()
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm1 ;
-      AT 0, 0 ;
-      CLIENTAREA ;
-      WIDTH 420 HEIGHT 420 ;
-      TITLE 'Browse linked to a Browse' ;
-      MAIN ;
-      ON INIT oBrw1:value := Code->(recno()) ;
-      ON RELEASE CleanUp()
+         OBJ oForm1 ;
+         AT 0, 0 ;
+         CLIENTAREA ;
+         WIDTH 420 HEIGHT 420 ;
+         TITLE 'Browse linked to a Browse' ;
+         MAIN ;
+         ON INIT oBrw1:value := Code->(recno()) ;
+         ON RELEASE CleanUp()
 
       @ 10, 10 BROWSE Browse_1 OBJ oBrw1 ;
          WIDTH 400 ;
@@ -62,9 +63,8 @@ FUNCTION Main
    oForm1:Center()
    oForm1:Activate()
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
    LOCAL aDbf1[ 2 ][ 4 ], aDbf2[ 3 ][ 4 ]
@@ -170,18 +170,13 @@ FUNCTION OpenTables()
 
    GO TOP
 
-RETURN NIL
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  DBCLOSEALL()
+   DBCLOSEALL()
 
-  ERASE Code.dbf
-  ERASE Data.dbf
+   ERASE Code.dbf
+   ERASE Data.dbf
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL

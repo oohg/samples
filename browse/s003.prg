@@ -12,7 +12,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "dbstruct.ch"
@@ -28,30 +28,30 @@ FUNCTION Main
    SET BROWSESYNC ON
 
    DEFINE WINDOW Form_1 OBJ oForm1 ;
-      AT 0,0 ;
-      WIDTH 508 HEIGHT 380 ;
-      TITLE 'ooHG Demo - Hot Keys in Edit Mode' ;
-      MAIN ;
-      ON INIT OpenTables() ;
-      ON RELEASE CleanUp()
+         AT 0,0 ;
+         WIDTH 508 HEIGHT 380 ;
+         TITLE 'ooHG Demo - Hot Keys in Edit Mode' ;
+         MAIN ;
+         ON INIT OpenTables() ;
+         ON RELEASE CleanUp()
 
       @ 10,10 BROWSE Browse_1 OBJ oBrowse1 ;
          WIDTH 480 ;
          HEIGHT 300 ;
          HEADERS { 'Code', ;
-                   'First Name', ;
-                   'Last Name', ;
-                   'Birth Date', ;
-                   'Married', ;
-                   'Biography' } ;
+         'First Name', ;
+         'Last Name', ;
+         'Birth Date', ;
+         'Married', ;
+         'Biography' } ;
          WIDTHS { 150 , 150 , 150 , 150 , 150 , 150 } ;
          WORKAREA test ;
          FIELDS { 'Test->Code', ;
-                  'Test->First', ;
-                  'Test->Last', ;
-                  'Test->Birth', ;
-                  'Test->Married', ;
-                  'Test->Bio' } ;
+         'Test->First', ;
+         'Test->Last', ;
+         'Test->Birth', ;
+         'Test->Married', ;
+         'Test->Bio' } ;
          FONT "Courier New" SIZE 10 ;
          DELETE ;
          LOCK ;
@@ -65,9 +65,8 @@ FUNCTION Main
 
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+   RETURN NIL
 
-//----------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
    LOCAL aDbf[6][4]
@@ -122,45 +121,39 @@ FUNCTION OpenTables()
 
    Form_1.Browse_1.Value := RECNO()
 
-RETURN Nil
+   RETURN NIL
 
-//----------------------------------------------------------------------------//
 FUNCTION SetCellValue
 
-  LOCAL oCtrl
+   LOCAL oCtrl
 
-  oCtrl := GetControlObjectByHandle( GetFocus() )
+   oCtrl := GetControlObjectByHandle( GetFocus() )
 
-  DO CASE
-  CASE This.CellColIndex == 1
-    oCtrl:Value := 12345
-  CASE This.CellColIndex == 2
-    oCtrl:Value := "FIRST NAME"
-  CASE This.CellColIndex == 3
-    oCtrl:Value := "LAST NAME"
-  CASE This.CellColIndex == 4
-    oCtrl:Value := date()
-  CASE This.CellColIndex == 5
-    oCtrl:Value := 2
-  CASE This.CellColIndex == 6
-    oCtrl:Value := ""
-  ENDCASE
+   DO CASE
+   CASE This.CellColIndex == 1
+      oCtrl:Value := 12345
+   CASE This.CellColIndex == 2
+      oCtrl:Value := "FIRST NAME"
+   CASE This.CellColIndex == 3
+      oCtrl:Value := "LAST NAME"
+   CASE This.CellColIndex == 4
+      oCtrl:Value := date()
+   CASE This.CellColIndex == 5
+      oCtrl:Value := 2
+   CASE This.CellColIndex == 6
+      oCtrl:Value := ""
+   ENDCASE
 
-  oCtrl:Setfocus()
+   oCtrl:Setfocus()
 
-RETURN Nil
+   RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  dbCloseAll()
+   dbCloseAll()
 
-  ERASE Test.dbf
-  ERASE Test.fpt
-  ERASE Code.cdx
+   ERASE Test.dbf
+   ERASE Test.fpt
+   ERASE Code.cdx
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL
