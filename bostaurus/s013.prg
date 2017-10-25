@@ -11,7 +11,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
@@ -23,12 +23,12 @@ PROCEDURE Main
    SET FONT TO GetDefaultFontName(), GetDefaultFontSize()
 
    DEFINE WINDOW WinGraph ;
-      AT 0, 0 ;
-      WIDTH 700 ;
-      HEIGHT 700 ;
-      CLIENTAREA ;
-      TITLE 'Bos Taurus: Graph' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 700 ;
+         HEIGHT 700 ;
+         CLIENTAREA ;
+         TITLE 'Bos Taurus: Graph' ;
+         MAIN
 
       DEFINE LABEL SelectType
          ROW 13
@@ -69,18 +69,19 @@ PROCEDURE Main
    WinGraph.GraphType.Value := 1
    WinGraph.Center
    WinGraph.Activate
-RETURN
 
+   RETURN
 
 PROCEDURE DrawGraph
+
    LOCAL cImage := GetTempFolder() + '\graph.bmp'
    LOCAL nImageWidth := WinGraph.GraphArea.Width
    LOCAL nImageHeight := WinGraph.GraphArea.Height
    LOCAL cTitle := 'Sample Graph'
    LOCAL aYValues := { "Jan", "Feb", "Mar", "Apr", "May" }
    LOCAL aData := { { 14280, 20420, 12870, 25347, 7640 }, ;
-                    { 8350, 10315, 15870, 5347, 12340 }, ;
-                    { 12345, -8945, 10560, 15600, 17610 } }
+      { 8350, 10315, 15870, 5347, 12340 }, ;
+      { 12345, -8945, 10560, 15600, 17610 } }
    LOCAL nBarDepth := 15
    LOCAL nBarWidth := 15
    LOCAL nHValues := 5
@@ -106,10 +107,11 @@ PROCEDURE DrawGraph
    ENDIF
    WinGraph.GraphArea.Picture := cImage
    FErase( cImage )
-RETURN
 
+   RETURN
 
 PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBarD, nWideB, nSep, nXRanges, l3D, lGrid, lXGrid, lYGrid, lXVal, lYVal, lLegends, aSeries, aColors, nType, lViewVal, cPicture, nLegendWindth, lNoBorder )
+
    LOCAL nI, nJ, nPos, nMax, nMin, nMaxBar, nDeep
    LOCAL nRange, nResH, nResV,  nWide, aPoint, cName
    LOCAL nXMax, nXMin, nHigh, nRel, nZero, nRPos, nRNeg
@@ -310,11 +312,11 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
    nMin := nMax / nMaxBar
 
    // First point
-   nPos := nLeft + ( ( nWide + nSep ) / 2 )            
+   nPos := nLeft + ( ( nWide + nSep ) / 2 )
    nRange := ( ( nWide + nSep ) * Len( aSeries ) ) / 2
 
    // Show Y labels
-   IF lYVal .AND. Len( aYVals ) > 0                
+   IF lYVal .AND. Len( aYVals ) > 0
       nWideB  := ( nRight - nLeft ) / ( nMax( aData ) + 1 )
       nI := nLeft + nWideB
       FOR nJ := 1 TO nMax( aData )
@@ -366,14 +368,14 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
             FOR nJ := 1 TO Len( aSeries )
                IF l3D
                   DrawPolygonInBitmap( hDC, ;
-                                       { { aPoint[ nJ, nI, 1 ], aPoint[ nJ, nI, 2 ] }, ;
-                                         { aPoint[ nJ, nI + 1, 1 ], aPoint[ nJ, nI + 1, 2 ] }, ;
-                                         { aPoint[ nJ, nI + 1, 1 ] - nDeep, aPoint[ nJ, nI + 1, 2 ] + nDeep }, ;
-                                         { aPoint[ nJ, nI, 1 ] - nDeep, aPoint[ nJ, nI, 2 ] + nDeep }, ;
-                                         { aPoint[ nJ, nI, 1 ], aPoint[ nJ, nI, 2 ] } }, ;
-                                       NIL, ;
-                                       NIL, ;
-                                       aColors[ nJ ] )
+                     { { aPoint[ nJ, nI, 1 ], aPoint[ nJ, nI, 2 ] }, ;
+                     { aPoint[ nJ, nI + 1, 1 ], aPoint[ nJ, nI + 1, 2 ] }, ;
+                     { aPoint[ nJ, nI + 1, 1 ] - nDeep, aPoint[ nJ, nI + 1, 2 ] + nDeep }, ;
+                     { aPoint[ nJ, nI, 1 ] - nDeep, aPoint[ nJ, nI, 2 ] + nDeep }, ;
+                     { aPoint[ nJ, nI, 1 ], aPoint[ nJ, nI, 2 ] } }, ;
+                     NIL, ;
+                     NIL, ;
+                     aColors[ nJ ] )
                ELSE
                   DrawLineInBitmap( hDC, aPoint[ nJ, nI, 1 ], aPoint[ nJ, nI, 2 ], aPoint[ nJ, nI + 1, 1 ], aPoint[ nJ, nI + 1, 2 ], aColors[ nJ ] )
                ENDIF
@@ -428,25 +430,29 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
    BT_BitmapSaveFile( hBitmap, cImageFileName )
    BT_DeleteDC( BTstruct )
    BT_BitmapRelease( hBitmap )
-RETURN
 
+   RETURN
 
 PROCEDURE DrawWindowBoxInBitmap( hDC, row, col, rowr, colr )
-   BT_DrawRectangle( hDC, Row, Col, Colr - col, rowr - row, { 0, 0, 0 }, nPenWidth )
-RETURN
 
+   BT_DrawRectangle( hDC, Row, Col, Colr - col, rowr - row, { 0, 0, 0 }, nPenWidth )
+
+   RETURN
 
 PROCEDURE DrawRectInBitmap( hDC, row, col, row1, col1, aColor )
-   BT_DrawFillRectangle( hDC, Row, Col, col1 - col, row1 - row, aColor, aColor, nPenWidth )
-RETURN
 
+   BT_DrawFillRectangle( hDC, Row, Col, col1 - col, row1 - row, aColor, aColor, nPenWidth )
+
+   RETURN
 
 PROCEDURE DrawLineInBitmap( hDC, Row1, Col1, Row2, Col2, aColor )
-   BT_DrawLine ( hDC, Row1, Col1, Row2, Col2, aColor, nPenWidth )
-RETURN
 
+   BT_DrawLine ( hDC, Row1, Col1, Row2, Col2, aColor, nPenWidth )
+
+   RETURN
 
 FUNCTION DrawTextInBitmap( hDC, Row, Col, cText, cFontName, nFontSize, aColor, nAlign )
+
    DEFAULT nAlign := 0
    DO CASE
    CASE nAlign == 0
@@ -456,10 +462,11 @@ FUNCTION DrawTextInBitmap( hDC, Row, Col, cText, cFontName, nFontSize, aColor, n
    CASE nAlign == 2
       BT_DrawText( hDC, Row, Col, cText, cFontName, nFontSize, aColor, , , BT_TEXT_CENTER + BT_TEXT_TOP )
    ENDCASE
-RETURN NIL
 
+   RETURN NIL
 
 PROCEDURE DrawBarInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep, aColor )
+
    LOCAL nI, nColTop, nShadow, nH := nHigh
 
    nColTop := ClrShadow( RGB( aColor[ 1 ], aColor[ 2 ], aColor[ 3 ] ), 20 )
@@ -474,50 +481,53 @@ PROCEDURE DrawBarInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep, aColor )
    IF l3D
       // Lateral
       DrawPolygonInBitmap( hDC, ;
-                           { { nX - 1, nY + nWidth + 1 }, ;
-                             { nX + nDeep - nHigh, nY + nWidth + 1 }, ;
-                             { nX - nHigh + 1, nY + nWidth + nDeep }, ;
-                             { nX - nDeep, nY + nWidth + nDeep }, ;
-                             { nX - 1, nY + nWidth + 1 } }, ;
-                             nShadow, ;
-                             NIL, ;
-                             nShadow )
+         { { nX - 1, nY + nWidth + 1 }, ;
+         { nX + nDeep - nHigh, nY + nWidth + 1 }, ;
+         { nX - nHigh + 1, nY + nWidth + nDeep }, ;
+         { nX - nDeep, nY + nWidth + nDeep }, ;
+         { nX - 1, nY + nWidth + 1 } }, ;
+         nShadow, ;
+         NIL, ;
+         nShadow )
       // Superior
       nHigh   := Max( nHigh, nDeep )
       DrawPolygonInBitmap( hDC, ;
-                           { { nX - nHigh + nDeep, nY + 1 }, ;
-                           { nX - nHigh + nDeep, nY + nWidth + 1 }, ;
-                           { nX - nHigh + 1, nY + nWidth + nDeep }, ;
-                           { nX - nHigh + 1, nY + nDeep }, ;
-                           { nX - nHigh + nDeep, nY + 1 } }, ;
-                           nColTop, ;
-                           NIL, ;
-                           nColTop )
+         { { nX - nHigh + nDeep, nY + 1 }, ;
+         { nX - nHigh + nDeep, nY + nWidth + 1 }, ;
+         { nX - nHigh + 1, nY + nWidth + nDeep }, ;
+         { nX - nHigh + 1, nY + nDeep }, ;
+         { nX - nHigh + nDeep, nY + 1 } }, ;
+         nColTop, ;
+         NIL, ;
+         nColTop )
       // Border
       DrawBoxInBitmap( hDC, nY, nX, nH, nWidth, l3D, nDeep )
    ENDIF
-RETURN
 
+   RETURN
 
 FUNCTION ClrShadow( nColor, nFactor )
+
    LOCAL aHSL, aRGB
 
    aHSL := RGB2HSL( GetRed( nColor ), GetGreen( nColor ), GetBlue( nColor ) )
    aHSL[ 3 ] -= nFactor
    aRGB := HSL2RGB( aHSL[ 1 ], aHSL[ 2 ], aHSL[ 3 ] )
-RETURN RGB( aRGB[ 1 ], aRGB[ 2 ], aRGB[ 3 ] )
 
+   RETURN RGB( aRGB[ 1 ], aRGB[ 2 ], aRGB[ 3 ] )
 
 FUNCTION nMax( aData )
+
    LOCAL nI, nMax := 0
 
    FOR nI := 1 TO Len( aData )
       nMax := Max( Len( aData[ nI ] ), nMax )
    NEXT nI
-RETURN nMax
 
+   RETURN nMax
 
 FUNCTION DetMaxVal( nNum )
+
    LOCAL nE, nMax, nMan, nVal, nOffset
 
    nE := 9
@@ -540,24 +550,27 @@ FUNCTION DetMaxVal( nNum )
 
       nE --
    ENDDO
-RETURN nVal
 
+   RETURN nVal
 
 PROCEDURE DrawPointInBitmap( hDC, nType, nY, nX, nHigh, aColor )
+
    IF nType == 3         // POINTS
       DrawCircleInBitmap( hDC, nX - nHigh - 3, nY - 3, 8, aColor )
    ELSEIF nType == 2     // LINES
       DrawCircleInBitmap( hDC, nX - nHigh - 2, nY - 2, 6, aColor )
    ENDIF
-RETURN
 
+   RETURN
 
 PROCEDURE DrawCircleInBitmap( hDC, nCol, nRow, nWidth, aColor )
-   BT_DrawFillEllipse( hDC, nCol, nRow, nWidth, nWidth, aColor, aColor, nPenWidth )
-RETURN
 
+   BT_DrawFillEllipse( hDC, nCol, nRow, nWidth, nWidth, aColor, aColor, nPenWidth )
+
+   RETURN
 
 PROCEDURE DrawPieGraphInBitmap( cImageFileName, nWidth, nHeight, aSeries, aName, aColors, cTitle, nDepth, l3D, lXVal, lSLeg, lNoBorder )
+
    LOCAL fromrow := 0
    LOCAL fromcol := 0
    LOCAL torow := nHeight
@@ -642,22 +655,22 @@ PROCEDURE DrawPieGraphInBitmap( cImageFileName, nWidth, nHeight, aSeries, aName,
    tocol := tocol + 1
 
    FOR i := 1 TO Len( aSeries )
-      sum := sum + aSeries[ i ]
+      SUM := sum + aSeries[ i ]
    NEXT i
    FOR i := 1 TO Len( aSeries )
       AAdd( degrees, Round( aSeries[ i ] / sum * 360, 0 ) )
    NEXT i
-   sum := 0
+   SUM := 0
    FOR i := 1 TO Len( degrees )
-      sum := sum + degrees[ i ]
+      SUM := sum + degrees[ i ]
    NEXT i
    IF sum <> 360
       degrees[ Len( degrees ) ] := degrees[ Len( degrees ) ] + ( 360 - sum )
    ENDIF
 
-   sum := 0
+   SUM := 0
    FOR i := 1 TO Len( degrees )
-      sum := sum + degrees[ i ]
+      SUM := sum + degrees[ i ]
       AAdd( cumulative, sum )
    NEXT i
 
@@ -763,10 +776,11 @@ PROCEDURE DrawPieGraphInBitmap( cImageFileName, nWidth, nHeight, aSeries, aName,
    BT_BitmapSaveFile( hBitmap, cImageFileName )
    BT_DeleteDC( BTstruct )
    BT_BitmapRelease( hBitmap )
-RETURN
 
+   RETURN
 
 PROCEDURE DrawArcInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth )
+
    IF ValType( penrgb ) == "U"
       penrgb = { 0, 0, 0 }
    ENDIF
@@ -775,10 +789,11 @@ PROCEDURE DrawArcInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, 
    ENDIF
 
    ArcDrawBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth )
-RETURN
 
+   RETURN
 
 PROCEDURE DrawPieInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth, fillrgb )
+
    LOCAL fill
 
    IF ValType( penrgb ) == "U"
@@ -795,10 +810,11 @@ PROCEDURE DrawPieInBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, 
    ENDIF
 
    PieDrawBitmap( hDC, row, col, row1, col1, rowr, colr, rowr1, colr1, penrgb, penwidth, fillrgb, fill )
-RETURN
 
+   RETURN
 
 PROCEDURE DrawPolygonInBitmap( hDC, apoints, penrgb, penwidth, fillrgb )
+
    LOCAL xarr := {}
    LOCAL yarr := {}
    LOCAL x := 0
@@ -822,10 +838,11 @@ PROCEDURE DrawPolygonInBitmap( hDC, apoints, penrgb, penwidth, fillrgb )
    NEXT x
 
    PolygonDrawBitmap( hDC, xarr, yarr, penrgb, penwidth, fillrgb, fill )
-RETURN
 
+   RETURN
 
 FUNCTION RGB2HSL( nR, nG, nB )
+
    LOCAL nMax, nMin
    LOCAL nH, nS, nL
 
@@ -869,10 +886,11 @@ FUNCTION RGB2HSL( nR, nG, nB )
    ENDIF
    nS := Int( nS * 239 )
    nL := Int( nL * 239 )
-RETURN { nH, nS, nL }
 
+   RETURN { nH, nS, nL }
 
 FUNCTION HSL2RGB( nH, nS, nL )
+
    LOCAL nFor
    LOCAL nR, nG, nB
    LOCAL nTmp1, nTmp2, aTmp3 := { 0, 0, 0 }
@@ -919,10 +937,11 @@ FUNCTION HSL2RGB( nH, nS, nL )
       nG := aTmp3[ 2 ]
       nB := aTmp3[ 3 ]
    ENDIF
-RETURN { Int( nR * 255 ), Int( nG * 255 ), Int( nB * 255 ) }
 
+   RETURN { Int( nR * 255 ), Int( nG * 255 ), Int( nB * 255 ) }
 
 PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
+
    // Set border
    DrawLineInBitmap( hDC, nX, nY, nX - nHigh + nDeep, nY, BLACK )                           // Left
    DrawLineInBitmap( hDC, nX, nY + nWidth, nX - nHigh + nDeep, nY + nWidth, BLACK )         // Right
@@ -942,8 +961,8 @@ PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
          DrawLineInBitmap( hDC, nX, nY, nX - nDeep, nY + nDeep, BLACK )
       ENDIF
    ENDIF
-RETURN
 
+   RETURN
 
 #pragma BEGINDUMP
 
@@ -1063,7 +1082,3 @@ HB_FUNC( POLYBEZIERDRAWBITMAP )
 
 #pragma ENDDUMP
 
-
-/*
- * EOF
- */

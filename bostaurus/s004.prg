@@ -16,12 +16,13 @@
  *
  * You can download cowbook.bmp, sami.jpg and img1.bmp from:
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
 
 PROCEDURE MAIN
+
    LOCAL Flag_Erase, hBitmap, hBitmap1, hBitmap2, nMode
 
    Flag_Erase := .F.
@@ -30,23 +31,23 @@ PROCEDURE MAIN
    nMode      := BT_STRETCH
 
    /*
-    * Because OOHG executes ON PAINT before executing ON INIT
-    * the image must be loaded before the window's activation.
-    *
-    * All loaded bitmaps must be released to avoid memory leaks.
-    */
+   * Because OOHG executes ON PAINT before executing ON INIT
+   * the image must be loaded before the window's activation.
+   *
+   * All loaded bitmaps must be released to avoid memory leaks.
+   */
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 800 ;
-      HEIGHT 630 ;
-      TITLE "Bos Taurus: Wallpaper" ;
-      MAIN ;
-      ON PAINT Proc_ON_PAINT( nMode, Flag_Erase, hBitmap ) ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
-      ON RELEASE Proc_ON_RELEASE( hBitmap1, hBitmap2 ) ;
-      VIRTUAL WIDTH 1100 ;
-      VIRTUAL HEIGHT 1100
+         AT 0, 0 ;
+         WIDTH 800 ;
+         HEIGHT 630 ;
+         TITLE "Bos Taurus: Wallpaper" ;
+         MAIN ;
+         ON PAINT Proc_ON_PAINT( nMode, Flag_Erase, hBitmap ) ;
+         ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
+         ON RELEASE Proc_ON_RELEASE( hBitmap1, hBitmap2 ) ;
+         VIRTUAL WIDTH 1100 ;
+         VIRTUAL HEIGHT 1100
 
       DEFINE MAIN MENU
          DEFINE POPUP "Automatic"
@@ -59,11 +60,11 @@ PROCEDURE MAIN
       Win1.Flag_Automatic.Checked := .F.
 
       DEFINE TAB Tab_1 ;
-         AT 30, 10 ;
-         WIDTH 400 ;
-         HEIGHT 300 ;
-         VALUE 1 ;
-         FONT "ARIAL" SIZE 10
+            AT 30, 10 ;
+            WIDTH 400 ;
+            HEIGHT 300 ;
+            VALUE 1 ;
+            FONT "ARIAL" SIZE 10
 
          PAGE "Page1"
             @  55, 90 LABEL Label_1 ;
@@ -146,10 +147,11 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
 
+   RETURN
 
 PROCEDURE Background_Change( hBitmap, hBitmap1, hBitmap2, nMode, Flag_Erase )
+
    STATIC Flag_Image := .T.
 
    IF Flag_Image
@@ -164,39 +166,42 @@ PROCEDURE Background_Change( hBitmap, hBitmap1, hBitmap2, nMode, Flag_Erase )
 
    Flag_Erase := .F.
    BT_ClientAreaInvalidateAll( "Win1", .T. )
-RETURN
 
+   RETURN
 
 PROCEDURE Background_Erase( Flag_Erase )
+
    Flag_Erase := .T.
    BT_ClientAreaInvalidateAll( "Win1", .T. )
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_RELEASE( hBitmap1, hBitmap2 )
+
    BT_BitmapRelease( hBitmap1 )
    BT_BitmapRelease( hBitmap2 )
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_PAINT( nMode, Flag_Erase, hBitmap )
+
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
    LOCAL Row, Col, Width1, Height1
    LOCAL hDC, BTstruct
 
    /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
+   * Since OOHG executes the default window procedure at the start of
+   * the function that process WM_PAINT message, thus validating the
+   * update region before calling the ON PAINT codeblock, we need to
+   * invalidate the whole client area to force the correct painting
+   * of all the controls.
+   */
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
-  
+
    IF nMode == BT_COPY
       Row := - Win1.VscrollBar.value
       Col := - Win1.HscrollBar.value
@@ -216,8 +221,5 @@ PROCEDURE Proc_ON_PAINT( nMode, Flag_Erase, hBitmap )
 
    BTstruct[ 1 ] := BT_HDC_ALLCLIENTAREA
    BT_DeleteDC( BTstruct )
-RETURN
 
-/*
- * EOF
- */
+   RETURN

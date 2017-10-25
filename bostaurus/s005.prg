@@ -13,7 +13,7 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
@@ -27,16 +27,16 @@ PROCEDURE MAIN
    PRIVATE Flag_AlphaBlend_Effect := .T.
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 800 ;
-      HEIGHT 600 ;
-      VIRTUAL WIDTH  BT_DesktopWidth() + 100 ;
-      VIRTUAL HEIGHT BT_DesktopHeight() + 150 ;
-      TITLE "Bos Taurus: CaptureDesktop, AlphaBlend, Grayness and Brightness" ;
-      MAIN ;
-      ON RELEASE BT_BitmapRelease( hBitmap ) ;
-      ON PAINT Proc_ON_PAINT() ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
+         AT 0, 0 ;
+         WIDTH 800 ;
+         HEIGHT 600 ;
+         VIRTUAL WIDTH  BT_DesktopWidth() + 100 ;
+         VIRTUAL HEIGHT BT_DesktopHeight() + 150 ;
+         TITLE "Bos Taurus: CaptureDesktop, AlphaBlend, Grayness and Brightness" ;
+         MAIN ;
+         ON RELEASE BT_BitmapRelease( hBitmap ) ;
+         ON PAINT Proc_ON_PAINT() ;
+         ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
 
       DEFINE MAIN MENU
          DEFINE POPUP "Alpha Blend"
@@ -73,10 +73,11 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_PAINT
+
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
    LOCAL Col := - Win1.HscrollBar.value
@@ -84,12 +85,12 @@ PROCEDURE Proc_ON_PAINT
    LOCAL hDC, BTstruct, nTypeText, nAlignText
 
    /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
+   * Since OOHG executes the default window procedure at the start of
+   * the function that process WM_PAINT message, thus validating the
+   * update region before calling the ON PAINT codeblock, we need to
+   * invalidate the whole client area to force the correct painting
+   * of all the controls.
+   */
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
@@ -97,7 +98,7 @@ PROCEDURE Proc_ON_PAINT
 
    IF Flag_AlphaBlend_Effect
       BT_DrawGradientFillVertical( hDC, 0, 0, Width, Height, RED, BLACK )
-       
+
       BT_DrawBitmapAlphaBlend( hDC, Row + 10, Col + 10, Nil, Nil, Alpha, BT_COPY, hBitmap )
 
       nTypeText  := BT_TEXT_TRANSPARENT + BT_TEXT_BOLD + BT_TEXT_ITALIC + BT_TEXT_UNDERLINE
@@ -108,52 +109,56 @@ PROCEDURE Proc_ON_PAINT
    ENDIF
 
    BT_DeleteDC( BTstruct )
-RETURN
 
+   RETURN
 
 PROCEDURE AlphaChange( new_value )
+
    IF hBitmap == 0
       BT_DELAY_EXECUTION( 100 )    // Allow the system time to repaint the window after hiding the popup menu
       Grayness_effect_start()      // Capture and Grayness Client Area
       MsgInfo( "Error: No desktop capture" )
       Grayness_effect_end()        // Restore Client Area
-   ELSE         
+   ELSE
       Alpha := new_value
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
-RETURN
 
+   RETURN
 
 PROCEDURE CaptureDesktop
+
    Win1.Hide
    BT_DELAY_EXECUTION( 300 )       // Allow the system time to repaint the desktop after hiding the window
 
    /*
-    * All created bitmaps must be released to avoid memory leaks.
-    */
+   * All created bitmaps must be released to avoid memory leaks.
+   */
 
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapCaptureDesktop()
-   Win1.Show     
+   Win1.Show
    BT_ClientAreaInvalidateAll( "Win1" )
-RETURN 
 
+   RETURN
 
 PROCEDURE SaveDesktop
+
    IF hBitmap == 0
       Grayness_effect_start()
       MsgInfo( "Error: No desktop capture" )
       Grayness_effect_end()
-   ELSE         
+   ELSE
       BT_BitmapSaveFile( hBitmap, "DESKTOP.BMP" )
       MsgInfo( "Capture save as file DESKTOP.BMP" )
       Alpha := 255
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
-RETURN
 
+   RETURN
 
 PROCEDURE EraseCapture
+
    IF hBitmap == 0
       Grayness_effect_start()      // Capture, Grayness and Brightness Client Area
       MsgInfo( "Error: No desktop capture" )
@@ -164,26 +169,25 @@ PROCEDURE EraseCapture
       Alpha := 150
       BT_ClientAreaInvalidateAll( "Win1" )
    ENDIF
-RETURN
 
+   RETURN
 
 PROCEDURE Grayness_effect_start
+
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapCaptureClientArea( "Win1" )
    BT_BitmapGrayness( hBitmap, 100 )
    BT_BitmapBrightness( hBitmap, 50 )
    Flag_AlphaBlend_Effect := .F.
    BT_ClientAreaInvalidateAll( "Win1" )
-RETURN
 
+   RETURN
 
 PROCEDURE Grayness_effect_end
+
    BT_BitmapRelease( hBitmap )
-   hBitmap := 0   
+   hBitmap := 0
    Flag_AlphaBlend_Effect := .T.
    BT_ClientAreaInvalidateAll( "Win1" )
-RETURN
 
-/*
- * EOF
- */
+   RETURN

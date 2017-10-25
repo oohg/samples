@@ -16,30 +16,31 @@
  *
  * You can download bostaurus_logo.jpg from:
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
 
 PROCEDURE MAIN
+
    LOCAL hBitmap := BT_BitmapLoadFile( "bostaurus_logo.jpg" )
 
    /*
-    * Because OOHG executes ON PAINT before executing ON INIT
-    * the image must be loaded before the window's activation.
-    *
-    * All loaded bitmaps must be released to avoid memory leaks.
-    */
+   * Because OOHG executes ON PAINT before executing ON INIT
+   * the image must be loaded before the window's activation.
+   *
+   * All loaded bitmaps must be released to avoid memory leaks.
+   */
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 700 ;
-      HEIGHT 600 ;
-      TITLE "Bos Taurus: Prototype Demo";
-      MAIN;
-      ON RELEASE BT_BitmapRelease( hBitmap ) ;
-      ON PAINT Proc_ON_PAINT( hBitmap ) ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
+         AT 0, 0 ;
+         WIDTH 700 ;
+         HEIGHT 600 ;
+         TITLE "Bos Taurus: Prototype Demo";
+         MAIN;
+         ON RELEASE BT_BitmapRelease( hBitmap ) ;
+         ON PAINT Proc_ON_PAINT( hBitmap ) ;
+         ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
 
       @ 500, 280 BUTTON Button_1 ;
          CAPTION "Credits" ;
@@ -50,19 +51,20 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_PAINT( hBitmap )
+
    LOCAL hDC, BTstruct
 
    /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
+   * Since OOHG executes the default window procedure at the start of
+   * the function that process WM_PAINT message, thus validating the
+   * update region before calling the ON PAINT codeblock, we need to
+   * invalidate the whole client area to force the correct painting
+   * of all the controls.
+   */
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
@@ -70,8 +72,5 @@ PROCEDURE Proc_ON_PAINT( hBitmap )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeight( "Win1" ), WHITE, BLACK )
    BT_DrawBitmap( hDC, 30, 150, 400, 400, BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
-RETURN
 
-/*
- * EOF
- */
+   RETURN

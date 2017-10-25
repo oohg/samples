@@ -16,7 +16,7 @@
  *
  * You can download sami.jpg from:
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BosTaurus
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
@@ -26,26 +26,26 @@ MEMVAR hBitmap_Source, hBitmap
 PROCEDURE MAIN
 
    /*
-    * Because OOHG executes ON PAINT before executing ON INIT
-    * the image must be loaded before the window's activation.
-    *
-    * All loaded bitmaps must be released to avoid memory leaks.
-    */
+   * Because OOHG executes ON PAINT before executing ON INIT
+   * the image must be loaded before the window's activation.
+   *
+   * All loaded bitmaps must be released to avoid memory leaks.
+   */
 
    PRIVATE hBitmap_Source := BT_BitmapLoadFile( "sami.jpg" )
    PRIVATE hBitmap := BT_BitmapClone( hBitmap_Source )
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 700 ;
-      HEIGHT 600 ;
-      VIRTUAL WIDTH 1000 ;
-      VIRTUAL HEIGHT 1000 ;
-      TITLE "Bos Taurus: Digital Image Processing" ;
-      MAIN ;
-      ON RELEASE BT_BitmapRelease( hBitmap ) ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
-      ON PAINT Proc_ON_PAINT()
+         AT 0, 0 ;
+         WIDTH 700 ;
+         HEIGHT 600 ;
+         VIRTUAL WIDTH 1000 ;
+         VIRTUAL HEIGHT 1000 ;
+         TITLE "Bos Taurus: Digital Image Processing" ;
+         MAIN ;
+         ON RELEASE BT_BitmapRelease( hBitmap ) ;
+         ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
+         ON PAINT Proc_ON_PAINT()
 
       DEFINE MAIN MENU
          DEFINE POPUP "EFFECTS"
@@ -112,10 +112,11 @@ PROCEDURE MAIN
 
    MAXIMIZE WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_PAINT
+
    LOCAL Col := - Win1.HscrollBar.value
    LOCAL Row := - Win1.VscrollBar.value
    LOCAL hDC, BTstruct
@@ -126,15 +127,16 @@ PROCEDURE Proc_ON_PAINT
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeighT( "Win1" ), { 100, 0, 33 }, BLACK )
    BT_DrawBitmap( hDC, Row + 10, Col + 10, BT_BitmapWidth( hBitmap ), BT_BitmapHeight( hBitmap ), BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_EFFECT( nEffect, nIndex )
+
    BT_BitmapRelease( hBitmap )
    hBitmap := BT_BitmapClone( hBitmap_Source )
 
    DO CASE
-   CASE nEffect == 1 
+   CASE nEffect == 1
       BT_BitmapInvert( hBitmap )
    CASE nEffect == 2
       BT_BitmapGrayness( hBitmap, 100 )
@@ -173,8 +175,8 @@ PROCEDURE Proc_EFFECT( nEffect, nIndex )
    ENDCASE
 
    BT_ClientAreaInvalidateAll( "Win1" )
-RETURN
 
+   RETURN
 
 /*
  *
@@ -203,10 +205,10 @@ RETURN
  *
  * To reduce the effect of a filter (Blur, Sharpen, Edges, etc.) you must increase the value of the center cell (k5)
  *
- */
-
+*/
 
 FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -216,19 +218,20 @@ FUNCTION BT_aFILTER_BLUR( index, value, weight, add, bias )
    DEFAULT bias   := 0
 
    /* For a Blur filter, use a positive center value and surround
-    * it with a symmetrical pattern of other positive values.
-    */
+   * it with a symmetrical pattern of other positive values.
+   */
 
    aFILTER := ;
       { { 0, v, 0, 0, weight, 0, 0,  v, 0, weight + add + v * 2, bias}, ; // VERTICAL
-        { 0, 0, 0, v, weight, v, 0,  0, 0, weight + add + v * 2, bias}, ; // HORIZONTAL
-        { 0, 0, v, 0, weight, 0, v,  0, 0, weight + add + v * 2, bias}, ; // ANGLE45
-        { v, 0, 0, 0, weight, 0, 0,  0, v, weight + add + v * 2, bias}, ; // ANGLE135
-        { v, v, v, v, weight, v, v,  v, v, weight + add + v * 8, bias} }  // ALLDIRECTIONS
-Return aFILTER[ index ]
+   { 0, 0, 0, v, weight, v, 0,  0, 0, weight + add + v * 2, bias}, ; // HORIZONTAL
+   { 0, 0, v, 0, weight, 0, v,  0, 0, weight + add + v * 2, bias}, ; // ANGLE45
+   { v, 0, 0, 0, weight, 0, 0,  0, v, weight + add + v * 2, bias}, ; // ANGLE135
+   { v, v, v, v, weight, v, v,  v, v, weight + add + v * 8, bias} }  // ALLDIRECTIONS
 
+   RETURN aFILTER[ index ]
 
 FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -238,19 +241,20 @@ FUNCTION BT_aFILTER_SHARPEN( index, value, weight, add, bias )
    DEFAULT bias   := 0
 
    /* For a Sharpen filter, use a positive center value and surround
-    * it with a symmetrical pattern of negative values.
-    */
+   * it with a symmetrical pattern of negative values.
+   */
 
    aFILTER := ;
       { {  0, -v,  0,  0, weight,  0,  0, -v,  0, weight + add - v * 2, bias}, ; // VERTICAL
-        {  0,  0,  0, -v, weight, -v,  0,  0,  0, weight + add - v * 2, bias}, ; // HORIZONTAL
-        {  0,  0, -v,  0, weight,  0, -v,  0,  0, weight + add - v * 2, bias}, ; // ANGLE45
-        { -v,  0,  0,  0, weight,  0,  0,  0, -v, weight + add - v * 2, bias}, ; // ANGLE135
-        { -v, -v, -v, -v, weight, -v, -v, -v, -v, weight + add - v * 8, bias} }  // ALLDIRECTIONS
-Return aFILTER[ index ]
+   {  0,  0,  0, -v, weight, -v,  0,  0,  0, weight + add - v * 2, bias}, ; // HORIZONTAL
+   {  0,  0, -v,  0, weight,  0, -v,  0,  0, weight + add - v * 2, bias}, ; // ANGLE45
+   { -v,  0,  0,  0, weight,  0,  0,  0, -v, weight + add - v * 2, bias}, ; // ANGLE135
+   { -v, -v, -v, -v, weight, -v, -v, -v, -v, weight + add - v * 8, bias} }  // ALLDIRECTIONS
 
+   RETURN aFILTER[ index ]
 
 FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
    v := value
@@ -260,22 +264,23 @@ FUNCTION BT_aFILTER_EDGE( index, value, weight, add, bias )
    DEFAULT bias   := 0
 
    /* For an edge filter, use a negative center value and surround
-    * it with a symmetrical pattern of positive values.
-    */
+   * it with a symmetrical pattern of positive values.
+   */
 
    aFILTER := ;
       { { 0, v, 0, 0, -weight, 0, 0, v, 0, -weight + add + v * 2, bias}, ; // VERTICAL
-        { 0, 0, 0, v, -weight, v, 0, 0, 0, -weight + add + v * 2, bias}, ; // HORIZONTAL
-        { 0, 0, v, 0, -weight, 0, v, 0, 0, -weight + add + v * 2, bias}, ; // ANGLE45
-        { v, 0, 0, 0, -weight, 0, 0, 0, v, -weight + add + v * 2, bias}, ; // ANGLE135
-        { v, v, v, v, -weight, v, v, v, v, -weight + add + v * 8, bias} }  // ALLDIRECTIONS
-Return aFILTER[ index ]
+   { 0, 0, 0, v, -weight, v, 0, 0, 0, -weight + add + v * 2, bias}, ; // HORIZONTAL
+   { 0, 0, v, 0, -weight, 0, v, 0, 0, -weight + add + v * 2, bias}, ; // ANGLE45
+   { v, 0, 0, 0, -weight, 0, 0, 0, v, -weight + add + v * 2, bias}, ; // ANGLE135
+   { v, v, v, v, -weight, v, v, v, v, -weight + add + v * 8, bias} }  // ALLDIRECTIONS
 
+   RETURN aFILTER[ index ]
 
 FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
+
    LOCAL aFILTER, v
 
-                 // Gray   Color
+   // Gray   Color
    v := value
    DEFAULT v      := 1     // 3
    DEFAULT weight := 0     // 1
@@ -283,25 +288,25 @@ FUNCTION BT_aFILTER_EMBOSS( index, value, weight, add, bias )
    DEFAULT bias   := 128   // 0
 
    /* For an Embossing filter, use a positive center value and surround
-    * it in a symmetrical pattern of negative values on one side and
-    * positive values on the other.
-    */
+   * it in a symmetrical pattern of negative values on one side and
+   * positive values on the other.
+   */
 
    aFILTER := ;
       { { -v,  0,  v, -v, weight,  v, -v,  0,  v, weight + add, bias }, ; // Right          EAST
-        {  v,  v,  v,  0, weight,  0, -v, -v, -v, weight + add, bias }, ; // Top            NORTH
-        {  0,  v,  v, -v, weight,  v, -v, -v,  0, weight + add, bias }, ; // Top_Right      NORTH_EAST
-        {  v,  v,  0,  v, weight, -v,  0, -v, -v, weight + add, bias }, ; // Top_Left       NORTH_WEST
-        { -v, -v, -v,  0, weight,  0,  v,  v,  v, weight + add, bias }, ; // Bottom         SOUTH
-        { -v, -v,  0, -v, weight,  v,  0,  v,  v, weight + add, bias }, ; // Bottom_Right   SOUTH_EAST
-        {  0, -v, -v,  v, weight, -v,  v,  v,  0, weight + add, bias }, ; // Bottom_Left    SOUTH_WEST
-        {  v,  0, -v,  v, weight, -v,  v,  0, -v, weight + add, bias } }  // Left           WEST
-Return aFILTER[ index ]
+   {  v,  v,  v,  0, weight,  0, -v, -v, -v, weight + add, bias }, ; // Top            NORTH
+   {  0,  v,  v, -v, weight,  v, -v, -v,  0, weight + add, bias }, ; // Top_Right      NORTH_EAST
+   {  v,  v,  0,  v, weight, -v,  0, -v, -v, weight + add, bias }, ; // Top_Left       NORTH_WEST
+   { -v, -v, -v,  0, weight,  0,  v,  v,  v, weight + add, bias }, ; // Bottom         SOUTH
+   { -v, -v,  0, -v, weight,  v,  0,  v,  v, weight + add, bias }, ; // Bottom_Right   SOUTH_EAST
+   {  0, -v, -v,  v, weight, -v,  v,  v,  0, weight + add, bias }, ; // Bottom_Left    SOUTH_WEST
+   {  v,  0, -v,  v, weight, -v,  v,  0, -v, weight + add, bias } }  // Left           WEST
 
+   RETURN aFILTER[ index ]
 
 /*
  * aFILTER :=                                        { k1, k2, k3, k4,       k5, k6, k7, k8, k9,     Divisor, Bias }
- */
+*/
 /*
 #define BT_Kernel3x3Filter_Blur( nWeight )           {  0,  2,  0,  2,  nWeight,  2,  0,  2,  0, nWeight  +8,   0 } // Blur (Borrado)
 #define BT_Kernel3x3Filter_GaussianBlur( nWeight )   {  1,  2,  1,  2,  nWeight,  2,  1,  2,  1, nWeight +12,   0 } // Gaussian Blur (Borrado Gaussiano)
@@ -343,7 +348,7 @@ Return aFILTER[ index ]
 #define BT_Kernel3x3Filter_26                        { -1, -1,  0, -1,        0,  1,  0,  1,  1,           0, 128 } // SOUTH_EAST
 #define BT_Kernel3x3Filter_27                        {  0, -1, -1,  1,        0, -1,  1,  1,  0,           0, 128 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_28                        {  1,  0, -1,  1,        0, -1,  1,  0, -1,           0, 128 } // WEST
- 
+
 // BLUR
 #define BT_Kernel3x3Filter_29                        {  0,  1,  0,  0,        1,  0,  0,  1,  0,           3,   0 } // VERTICAL
 #define BT_Kernel3x3Filter_30                        {  0,  0,  0,  1,        1,  1,  0,  0,  0,           3,   0 } // HORIZONTAL
@@ -362,8 +367,3 @@ Return aFILTER[ index ]
 #define BT_Kernel3x3Filter_41                        {  0, -2, -2,  2,        1, -2,  2,  2,  0,           1,   0 } // SOUTH_WEST
 #define BT_Kernel3x3Filter_42                        {  2,  0, -2,  2,        1, -2,  2,  0, -2,           1,   0 } // WEST
 */
-
-
-/*
- * EOF
- */

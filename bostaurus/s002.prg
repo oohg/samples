@@ -14,24 +14,25 @@
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+*/
 
 #include "oohg.ch"
 #include "bostaurus.ch"
 
 PROCEDURE MAIN
+
    LOCAL cont := 1
 
    DEFINE WINDOW Win1 ;
-      AT 0, 0 ;
-      WIDTH 600 ;
-      HEIGHT 600 ;
-      TITLE "Bos Taurus: DrawGradientFill and DrawText" ;
-      MAIN ;
-      ON PAINT Proc_ON_PAINT( cont ) ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
-      VIRTUAL WIDTH 700 ;
-      VIRTUAL HEIGHT 700
+         AT 0, 0 ;
+         WIDTH 600 ;
+         HEIGHT 600 ;
+         TITLE "Bos Taurus: DrawGradientFill and DrawText" ;
+         MAIN ;
+         ON PAINT Proc_ON_PAINT( cont ) ;
+         ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
+         VIRTUAL WIDTH 700 ;
+         VIRTUAL HEIGHT 700
 
       DEFINE MAIN MENU
          DEFINE POPUP "File"
@@ -66,27 +67,28 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
 
+   RETURN
 
 PROCEDURE Proc_ON_PAINT( cont )
+
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
    LOCAL hDC, BTstruct
    LOCAL nTypeText, nAlignText
 
    /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
+   * Since OOHG executes the default window procedure at the start of
+   * the function that process WM_PAINT message, thus validating the
+   * update region before calling the ON PAINT codeblock, we need to
+   * invalidate the whole client area to force the correct painting
+   * of all the controls.
+   */
 
    BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC = BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
-  
+
    IF cont > 6
       cont = 1
    ENDIF
@@ -109,15 +111,12 @@ PROCEDURE Proc_ON_PAINT( cont )
    CASE cont == 6
       BT_DrawGradientFillHorizontal( hDC, 0, 0, Width, Height, { 100, 0,123 }, BLACK )
    END CASE
-    
+
    nTypeText  := BT_TEXT_TRANSPARENT + BT_TEXT_BOLD + BT_TEXT_ITALIC + BT_TEXT_UNDERLINE
    nAlignText := BT_TEXT_CENTER + BT_TEXT_BASELINE
    BT_DrawText( hDC, Height / 2 - 3, Width / 2 + 3, "The Power of OOHG", "Comic Sans MS", 42, GRAY, BLACK, nTypeText, nAlignText )  // Shadow effect
    BT_DrawText( hDC, Height / 2, Width / 2, "The Power of OOHG", "Comic Sans MS", 42, YELLOW, BLACK, nTypeText, nAlignText )
-   
-   BT_DeleteDC( BTstruct )
-RETURN
 
-/*
- * EOF
- */
+   BT_DeleteDC( BTstruct )
+
+   RETURN
