@@ -12,7 +12,7 @@
  *
  * You can download Input.ico from
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BlobFiles
- */
+*/
 
 #include "oohg.ch"
 #include "blob.ch"
@@ -20,9 +20,13 @@
 FUNCTION Main
 
    LOCAL aStruct := { {"CODE", "N", 3, 0}, {"IMAGE", "M", 10, 0} }
+
    LOCAL cInput  := "Input.ico"
+
    LOCAL cOutput := "Output.ico"
+
    LOCAL oForm
+
    LOCAL oImage
 
    REQUEST DBFCDX, DBFFPT
@@ -37,6 +41,7 @@ FUNCTION Main
    // Import
    IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
       ? "Error importing !!!"
+
       RETURN NIL
    ENDIF
 
@@ -48,13 +53,13 @@ FUNCTION Main
 
    // Show
    DEFINE WINDOW Form_1 ;
-      OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 588 ;
-      HEIGHT 480 ;
-      TITLE 'Show image from BLOB file' ;
-      MAIN ;
-      ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
+         OBJ oForm ;
+         AT 0,0 ;
+         WIDTH 588 ;
+         HEIGHT 480 ;
+         TITLE 'Show image from BLOB file' ;
+         MAIN ;
+         ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
@@ -69,8 +74,9 @@ FUNCTION Main
 
    CLOSE DATABASES
 
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF
- */
+*/
+

@@ -12,7 +12,7 @@
  *
  * You can download Input.ico from
  * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BlobFiles
- */
+*/
 
 #include "oohg.ch"
 #include "blob.ch"
@@ -37,18 +37,19 @@ FUNCTION Main
    // Import
    IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
       ? "Error importing !!!"
+
       RETURN NIL
    ENDIF
 
    // Show
    DEFINE WINDOW Form_1 ;
-      OBJ oForm ;
-      AT 0,0 ;
-      WIDTH 588 ;
-      HEIGHT 480 ;
-      TITLE 'Show image from BLOB file' ;
-      MAIN ;
-      ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
+         OBJ oForm ;
+         AT 0,0 ;
+         WIDTH 588 ;
+         HEIGHT 480 ;
+         TITLE 'Show image from BLOB file' ;
+         MAIN ;
+         ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
@@ -67,8 +68,4 @@ FUNCTION Main
 
    CLOSE DATABASES
 
-RETURN NIL
-
-/*
- * EOF
- */
+   RETURN NIL
