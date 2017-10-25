@@ -1,6 +1,5 @@
 /*
 TEST ONLY !!!!!!!!!!!!!!!
-
 Testing over OOHG samples.
 */
 #include "directry.ch"
@@ -52,7 +51,7 @@ STATIC FUNCTION FormatFile( cFile, nContYes, nContNo )
    cTxt := cTxtAnt
    FormatBasic( @cTxt )
    FormatSource( @cTxt )
-   FormatBlankLine( @cTxt, cFile )
+   FormatBlankLine( @cTxt )
    // save if changed
    IF ! cTxt == cTxtAnt
       nContYes += 1
@@ -198,40 +197,40 @@ STATIC FUNCTION FormatIndent( cTxt, oConfig )
 
 STATIC FUNCTION FormatBlankLine( cTxt )
 
-   LOCAL cTxtLine, nCont := 1, oConfig := FormatClass():New()
+   LOCAL cTxtLower, nCont := 1, oConfig := FormatClass():New()
 
    aTxtList := hb_RegExSplit( hb_Eol(), cTxt )
    cTxt  := ""
    DO WHILE nCont < Len( aTxtList )
-      cTxtLine := Lower( AllTrim( aTxtList[ nCont ] ) )
+      cTxtLower := Lower( AllTrim( aTxtList[ nCont ] ) )
       DO CASE
-      CASE "#pragma" $ cTxtLine .AND. "begindump" $ cTxtLine  ; oConfig:lCCode   := .T.
-      CASE "%pragma" $ cTxtLine .AND. "enddump" $ cTxtLine    .AND. oConfig:lCCode ; oConfig:lCCode   := .F.
-      CASE Left( cTxtLine, 2 ) == "/*" .AND. "*/" $ cTxtLine
-      CASE Left( cTxtLine, 2 ) == "/*"                        ; oConfig:lComment := .T.
-      CASE "*/" $ cTxtLine .AND. oConfig:lComment; oConfig:lComment := .F.
-      CASE Left( cTxtLine, 2 ) == "//" .OR. Left( cTxtLine, 1 ) == "*"
-      CASE Empty( cTxtLine ) ; nCont += 1; LOOP
-      CASE Left( cTxtLine, 11 ) == "static proc"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 11 ) == "static func"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 4 ) == "proc"; cTxt  += hb_Eol()
-      CASE Left( cTxtLine, 4 ) == "func"; cTxt  += hb_Eol()
-      CASE Left( cTxtLine, 5 ) == "class"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 12 ) == "create class"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 8 ) == "endclass"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 6 ) == "method"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 6 ) == "return"; cTxt += hb_Eol()
+      CASE "#pragma" $ cTxtLower .AND. "begindump" $ cTxtLower  ; oConfig:lCCode   := .T.
+      CASE "%pragma" $ cTxtLower .AND. "enddump" $ cTxtLower    .AND. oConfig:lCCode ; oConfig:lCCode   := .F.
+      CASE Left( cTxtLower, 2 ) == "/*" .AND. "*/" $ cTxtLower
+      CASE Left( cTxtLower, 2 ) == "/*"                        ; oConfig:lComment := .T.
+      CASE "*/" $ cTxtLower .AND. oConfig:lComment; oConfig:lComment := .F.
+      CASE Left( cTxtLower, 2 ) == "//" .OR. Left( cTxtLower, 1 ) == "*"
+      CASE Empty( cTxtLower ) ; nCont += 1; LOOP
+      CASE Left( cTxtLower, 11 ) == "static proc"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 11 ) == "static func"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 4 ) == "proc"; cTxt  += hb_Eol()
+      CASE Left( cTxtLower, 4 ) == "func"; cTxt  += hb_Eol()
+      CASE Left( cTxtLower, 5 ) == "class"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 12 ) == "create class"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 8 ) == "endclass"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 6 ) == "method"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 6 ) == "return"; cTxt += hb_Eol()
       ENDCASE
       cTxt += aTxtList[ nCont ] + hb_Eol()
       DO CASE
-      CASE Right( cTxtLine, 1 ) == ";"
-      CASE Left( cTxtLine, 11 ) == "static proc"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 11 ) == "static func"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 4 ) == "proc"; cTxt  += hb_Eol()
-      CASE Left( cTxtLine, 4 ) == "func"; cTxt  += hb_Eol()
-      CASE Left( cTxtLine, 5 ) == "class"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 12 ) == "create class"; cTxt += hb_Eol()
-      CASE Left( cTxtLine, 5 ) == "local" ; cTxt += hb_Eol()
+      CASE Right( cTxtLower, 1 ) == ";"
+      CASE Left( cTxtLower, 11 ) == "static proc"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 11 ) == "static func"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 4 ) == "proc"; cTxt  += hb_Eol()
+      CASE Left( cTxtLower, 4 ) == "func"; cTxt  += hb_Eol()
+      CASE Left( cTxtLower, 5 ) == "class"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 12 ) == "create class"; cTxt += hb_Eol()
+      CASE Left( cTxtLower, 5 ) == "local" ; cTxt += hb_Eol()
       ENDCASE
       nCont += 1
    ENDDO
