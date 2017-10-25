@@ -1,19 +1,17 @@
-
 #include "oohg.ch"
 
 FUNCTION Main
+
    LOCAL aRows [40] [4]
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 450 ;
-      HEIGHT 500 ;
-      TITLE 'Hello World!' ;
-      MAIN
-
+         AT 0, 0 ;
+         WIDTH 450 ;
+         HEIGHT 500 ;
+         TITLE 'Hello World!' ;
+         MAIN
       DEFINE STATUSBAR
       END STATUSBAR
-
       aRows[ 01 ] := { 'Simpson',   'Homer',     '555-5555', 'The Simpsons' }
       aRows[ 02 ] := { 'Mulder',    'Fox',       '324-6432', 'The X Files' }
       aRows[ 03 ] := { 'Smart',     'Max',       '432-5892', 'Get Smart' }
@@ -37,7 +35,6 @@ FUNCTION Main
       FOR i := 1 TO 20
          aRows[ i + 20 ] := aClone( aRows[ i ] )
       NEXT i
-
       @ 10,10 GRID Grid_2 OBJ oGrid;
          WIDTH 350 ;
          HEIGHT 330 ;
@@ -54,32 +51,28 @@ FUNCTION Main
          NAVIGATEBYCELL ;
          ON DBLCLICK Form_1.StatusBar.Item( 1, "DblClick on " + AutoType( oGrid:Value ) ) ;
          ON HEADCLICK { { || MsgInfo( 'Click 1' ) }, ;
-                        { || MsgInfo( 'Click 2' ) }, ;
-                        { || MsgInfo( 'Click 3' ) }, ;
-                        { || MsgInfo( 'Click 4' ) } } ;
+         { || MsgInfo( 'Click 2' ) }, ;
+         { || MsgInfo( 'Click 3' ) }, ;
+         { || MsgInfo( 'Click 4' ) } } ;
          JUSTIFY { BROWSE_JTFY_LEFT, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_LEFT } ;
-
-//         ON CHANGE Form_1.StatusBar.Item( 1, AutoType( oGrid:Value ) )
-
+      //         ON CHANGE Form_1.StatusBar.Item( 1, AutoType( oGrid:Value ) )
       @ 350, 010 BUTTON But_1 CAPTION "Append" ACTION oGrid:Append := ! oGrid:Append
-//      @ 390, 010 BUTTON But_2 CAPTION "Show Column" ACTION { || oGrid:ColumnShow( 2 ) }
-
+      //      @ 390, 010 BUTTON But_2 CAPTION "Show Column" ACTION { || oGrid:ColumnShow( 2 ) }
       @ 350, 140 BUTTON But_3 CAPTION "Value" ACTION ( oGrid:Value := {3,4}, oGrid:SetFocus() )
-
       ON KEY F1 ACTION Cambia( oGrid )
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN
+   RETURN
 
 FUNCTION Cambia
+
    oGrid:Header( 1, "Apellido" )
    SetProperty('Form_1', 'Grid_1', 'HEADER', 3, 'Teléfono' )
-RETURN NIL
 
+   RETURN NIL
 /*
- * EOF
- */
+* EOF
+*/

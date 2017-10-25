@@ -23,11 +23,11 @@ FUNCTION Main
    PUBLIC aRows[ 20, 3 ]
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0, 0 ;
-      WIDTH 500 ;
-      HEIGHT 420 ;
-      TITLE 'Process keys in a Grid using a subclass' ;
-      MAIN
+         AT 0, 0 ;
+         WIDTH 500 ;
+         HEIGHT 420 ;
+         TITLE 'Process keys in a Grid using a subclass' ;
+         MAIN
 
       aRows[ 01 ] := {'Simpson',   'Homer',     '555-5555'}
       aRows[ 02 ] := {'Mulder',    'Fox',       '324-6432'}
@@ -50,7 +50,6 @@ FUNCTION Main
       aRows[ 19 ] := {'Pradon',    'Alejandra', '???-????'}
       aRows[ 20 ] := {'Reyes',     'Monica',    '432-5836'}
 
-
       @ 10, 10 GRID Grid_2 OBJ ogrid ;
          SUBCLASS MyGrid ;
          WIDTH oForm:ClientWidth - 20 ;
@@ -69,7 +68,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 CLASS MyGrid FROM TGrid
 
@@ -82,24 +81,24 @@ METHOD Events_Notify( wParam, lParam ) CLASS MyGrid
    Local nvkey, c, i
 
    If nNotify == LVN_KEYDOWN
-      // Get virtual key code, see i_keybd.ch
-      nvKey := GetGridvKey( lParam )
+   // Get virtual key code, see i_keybd.ch
+   nvKey := GetGridvKey( lParam )
 
-      If nvkey >= VK_A .AND. nvkey <= VK_Z
-         // Get character
-         c := Upper( Chr( GetGridvKeyAsChar( lParam ) ) )
+   If nvkey >= VK_A .AND. nvkey <= VK_Z
+      // Get character
+      c := Upper( Chr( GetGridvKeyAsChar( lParam ) ) )
 
-         // Search for the first row with character in it
-         i := ASCAN( aRows, { |aItem| c $ Upper( aItem[1] ) } )
+      // Search for the first row with character in it
+      i := ASCAN( aRows, { |aItem| c $ Upper( aItem[1] ) } )
 
-         If i > 0
-            // Select item
-            ::Value := i
-         EndIf
-
-         // Skip default action
-         Return 1
+      If i > 0
+         // Select item
+         ::Value := i
       EndIf
+
+      // Skip default action
+      Return 1
+   EndIf
    EndIf
 
    // Do TGrid's default action
@@ -108,3 +107,4 @@ Return ::Super:Events_Notify( wParam, lParam )
 /*
  * EOF
  */
+

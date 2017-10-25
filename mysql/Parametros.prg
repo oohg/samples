@@ -12,7 +12,7 @@ Declare Window Parametros
 Function Parametros
 If IsWindowActive('Parametros')
   Restore Window Parametros ; Parametros.SetFocus ; Return Nil
-EndIf  
+EndIf
 Private lMaxi:=.t.             //Maximizar Pantalla principal del Sistema
 Private cHost:='127.0.0.1'     //Host de MySql local
 Private cUser:='root'          //Nombre de Usuario
@@ -40,7 +40,7 @@ set printer to Parametros.Ini
 
 set console on
 set printer off
-set printer to 
+set printer to
 Return
 
 *------------------------------------------------------------------------------*
@@ -72,3 +72,4 @@ BEGIN INI FILE "Parametros.Ini"
 END INI
 Parametros.Release
 Return Nil
+

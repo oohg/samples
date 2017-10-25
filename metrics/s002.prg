@@ -22,22 +22,22 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 640 ;
-      HEIGHT 520 ;
-      NOSIZE ;
-      NOMAXIMIZE ;
-      FONT "Arial" ;
-      SIZE 12 ;
-      TITLE "System Fonts and Metrics"
+         AT 0, 0 ;
+         WIDTH 640 ;
+         HEIGHT 520 ;
+         NOSIZE ;
+         NOMAXIMIZE ;
+         FONT "Arial" ;
+         SIZE 12 ;
+         TITLE "System Fonts and Metrics"
 
       @ 10, 10 LABEL label_01 ;
          VALUE "Default Font: " + GetDefaultFontName() + ;
-               LTrim( Str( GetDefaultFontSize() ) ) + ;
-               " (Height: " + LTrim( Str( GetDefaultFontHeight() ) ) + ")"  + ;
-               " - " + Str( GetScreenDPIX() ) ;
+         LTrim( Str( GetDefaultFontSize() ) ) + ;
+         " (Height: " + LTrim( Str( GetDefaultFontHeight() ) ) + ")"  + ;
+         " - " + Str( GetScreenDPIX() ) ;
          AUTOSIZE
-  
+
       // See https://technet.microsoft.com/en-us/library/cc951790.aspx
       aCaptionFont   := GetSystemFont( CAPTION_FONT )
       aSmCaptionFont := GetSystemFont( SMCAPTION_FONT )
@@ -85,17 +85,17 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION FontData( aFont )
-   
-RETURN ( aFont[1] + " " + ;
-         Alltrim(str(aFont[2])) + " " + ;
-         IF( aFont[3], "Bold ", "" ) + ;
-         IF( aFont[4], "Italic ", "" ) + ;
-         IF( aFont[5], "Underline ", "" ) + ;
-         IF( aFont[6], "StrikeOut ", "" ) + ;
-         "Charset: " + AllTrim( Str( aFont[7] ) ) )
+
+   RETURN ( aFont[1] + " " + ;
+   Alltrim(str(aFont[2])) + " " + ;
+   IF( aFont[3], "Bold ", "" ) + ;
+   IF( aFont[4], "Italic ", "" ) + ;
+   IF( aFont[5], "Underline ", "" ) + ;
+   IF( aFont[6], "StrikeOut ", "" ) + ;
+   "Charset: " + AllTrim( Str( aFont[7] ) ) )
 
 //--------------------------------------------------------------------------
 #pragma BEGINDUMP
@@ -107,17 +107,17 @@ RETURN ( aFont[1] + " " + ;
 
 HB_FUNC( GETSCREENDPIX )
 {
-	HDC  hDC;
-	int cyp;
+   HDC  hDC;
+   int cyp;
 
-	memset ( &cyp, 0, sizeof ( cyp ) ) ;
-	memset ( &hDC, 0, sizeof ( hDC ) ) ;
+   memset ( &cyp, 0, sizeof ( cyp ) ) ;
+   memset ( &hDC, 0, sizeof ( hDC ) ) ;
 
-	hDC = GetDC ( HWND_DESKTOP ) ;
+   hDC = GetDC ( HWND_DESKTOP ) ;
 
-	cyp = GetDeviceCaps ( hDC, LOGPIXELSY ) ;
+   cyp = GetDeviceCaps ( hDC, LOGPIXELSY ) ;
 
-	ReleaseDC ( HWND_DESKTOP, hDC ) ;
+   ReleaseDC ( HWND_DESKTOP, hDC ) ;
 
   hb_retni( cyp);
 }
@@ -148,24 +148,24 @@ hb_retnl( PointSize );
 HB_FUNC( GETSYSTEMFONT )
 {
   NONCLIENTMETRICS ncm = {0};
-	LONG PointSize;
-	INT isBold;
+   LONG PointSize;
+   INT isBold;
   LOGFONT lf;
-  
+
   ncm.cbSize = sizeof(ncm);
 
-	if ( ! SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0) )
-	{
-		hb_reta( 7 );
-		HB_STORC( "" , -1, 1 );
-		HB_STORNL( (LONG) 0 , -1, 2 );
-		HB_STORL( 0 , -1, 3 );
-		HB_STORL( 0 , -1, 4 );
-		HB_STORNL( 0 , -1, 5 );
-		HB_STORL( 0 , -1, 6 );
-		HB_STORL( 0 , -1, 7 );
-		return;
-	}
+   if ( ! SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0) )
+   {
+      hb_reta( 7 );
+      HB_STORC( "" , -1, 1 );
+      HB_STORNL( (LONG) 0 , -1, 2 );
+      HB_STORL( 0 , -1, 3 );
+      HB_STORL( 0 , -1, 4 );
+      HB_STORNL( 0 , -1, 5 );
+      HB_STORL( 0 , -1, 6 );
+      HB_STORL( 0 , -1, 7 );
+      return;
+   }
 
   switch( hb_parni(1) )
   {
@@ -185,65 +185,66 @@ HB_FUNC( GETSYSTEMFONT )
       lf = ncm.lfStatusFont;
       break;
    }
-  
+
   PointSize  = - MulDiv ( lf.lfHeight , 72 , GetDeviceCaps(GetDC(GetActiveWindow()), LOGPIXELSY) );
-  
+
   if (lf.lfWeight == 700)
-	{
-		isBold = 1;
-	}
-	else
-	{
-		isBold = 0;
-	}
-	
+   {
+      isBold = 1;
+   }
+   else
+   {
+      isBold = 0;
+   }
+
   hb_reta( 7 );
-	HB_STORC( lf.lfFaceName , -1, 1 );
-	HB_STORNL( (LONG) PointSize , -1, 2 );
-	HB_STORL( isBold , -1, 3 );
-	HB_STORL( lf.lfItalic , -1, 4 );
-	HB_STORL( lf.lfUnderline , -1, 5 );
-	HB_STORL( lf.lfStrikeOut , -1, 6 );
-	HB_STORNI( lf.lfCharSet , -1, 7 );
+   HB_STORC( lf.lfFaceName , -1, 1 );
+   HB_STORNL( (LONG) PointSize , -1, 2 );
+   HB_STORL( isBold , -1, 3 );
+   HB_STORL( lf.lfItalic , -1, 4 );
+   HB_STORL( lf.lfUnderline , -1, 5 );
+   HB_STORL( lf.lfStrikeOut , -1, 6 );
+   HB_STORNI( lf.lfCharSet , -1, 7 );
 
 }
 
 HB_FUNC( GETOTHERMETRICS )
 {
   NONCLIENTMETRICS ncm = {0};
-  
+
   ncm.cbSize = sizeof(ncm);
 
-	if ( ! SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0) )
-	{
-		hb_reta( 9 );
-		HB_STORNI( 0 , -1, 1 );
-		HB_STORNI( 0 , -1, 2 );
-		HB_STORNI( 0 , -1, 3 );
-		HB_STORNI( 0 , -1, 4 );
-		HB_STORNI( 0 , -1, 5 );
-		HB_STORNI( 0 , -1, 6 );
-		HB_STORNI( 0 , -1, 7 );
-		HB_STORNI( 0 , -1, 8 );
-		HB_STORNI( 0 , -1, 9 );
-		return;
-	}
+   if ( ! SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0) )
+   {
+      hb_reta( 9 );
+      HB_STORNI( 0 , -1, 1 );
+      HB_STORNI( 0 , -1, 2 );
+      HB_STORNI( 0 , -1, 3 );
+      HB_STORNI( 0 , -1, 4 );
+      HB_STORNI( 0 , -1, 5 );
+      HB_STORNI( 0 , -1, 6 );
+      HB_STORNI( 0 , -1, 7 );
+      HB_STORNI( 0 , -1, 8 );
+      HB_STORNI( 0 , -1, 9 );
+      return;
+   }
 
   hb_reta( 9 );
-	HB_STORNI( ncm.iBorderWidth , -1, 1 );
-	HB_STORNI( ncm.iScrollWidth , -1, 2 );
-	HB_STORNI( ncm.iScrollHeight , -1, 3 );
-	HB_STORNI( ncm.iCaptionWidth , -1, 4 );
-	HB_STORNI( ncm.iCaptionHeight , -1, 5 );
-	HB_STORNI( ncm.iSmCaptionWidth , -1, 6 );
-	HB_STORNI( ncm.iSmCaptionHeight , -1, 7 );
-	HB_STORNI( ncm.iMenuWidth , -1, 8 );
-	HB_STORNI( ncm.iMenuHeight , -1, 9 );
+   HB_STORNI( ncm.iBorderWidth , -1, 1 );
+   HB_STORNI( ncm.iScrollWidth , -1, 2 );
+   HB_STORNI( ncm.iScrollHeight , -1, 3 );
+   HB_STORNI( ncm.iCaptionWidth , -1, 4 );
+   HB_STORNI( ncm.iCaptionHeight , -1, 5 );
+   HB_STORNI( ncm.iSmCaptionWidth , -1, 6 );
+   HB_STORNI( ncm.iSmCaptionHeight , -1, 7 );
+   HB_STORNI( ncm.iMenuWidth , -1, 8 );
+   HB_STORNI( ncm.iMenuHeight , -1, 9 );
 
 }
- 
+
 #pragma ENDDUMP
 
 /*
  * EOF
  */
+

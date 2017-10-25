@@ -646,3 +646,4 @@ HB_FUNC( STREAMFILE_READ )   // ( pBuffer, nHdl, nStart, nCount )
 }
 
 #pragma ENDDUMP
+

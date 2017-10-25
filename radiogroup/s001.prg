@@ -1,15 +1,15 @@
 /*
- * RadioGroup Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how display different tooltips for
- * each option of a RadioGroup control.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* RadioGroup Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how display different tooltips for
+* each option of a RadioGroup control.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
@@ -18,12 +18,12 @@ FUNCTION Main
    LOCAL oForm1
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm1 ;
-      AT 0,0 ;
-      WIDTH 588 ;
-      HEIGHT 480 ;
-      TITLE 'RadioGroup - Tooltips' ;
-      MAIN
+         OBJ oForm1 ;
+         AT 0,0 ;
+         WIDTH 588 ;
+         HEIGHT 480 ;
+         TITLE 'RadioGroup - Tooltips' ;
+         MAIN
 
       @ 20,20 RADIOGROUP rdg_1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
@@ -47,8 +47,9 @@ FUNCTION Main
    oForm1:Center()
    oForm1:Activate()
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
+

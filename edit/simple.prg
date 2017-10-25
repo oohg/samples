@@ -10,12 +10,12 @@
 FUNCTION Main()
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE "Abrir Menu" ;
-      MAIN ;
-      ON INIT INSERTAR_ALT_F()
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE "Abrir Menu" ;
+         MAIN ;
+         ON INIT INSERTAR_ALT_F()
 
       DEFINE MAIN MENU OF Win_1
          POPUP "&File"
@@ -43,7 +43,7 @@ FUNCTION Main()
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
-RETURN NIL
+   RETURN NIL
 
 #pragma BEGINDUMP
 
@@ -66,3 +66,4 @@ HB_FUNC( INSERTAR_ALT_F )
 /*
  * EOF
  */
+

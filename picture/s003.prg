@@ -1,14 +1,14 @@
 /*
- * Picture Sample n° 3
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how STRETCH clause works.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Picture Sample n° 3
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how STRETCH clause works.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include 'oohg.ch'
 
@@ -18,12 +18,12 @@ FUNCTION Main
    SetOneArrayItemPerLine( .T. )
 
    DEFINE WINDOW frm_Main OBJ oWin ;
-      AT 86,94 ;
-      CLIENTAREA ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE 'Picture with STRETCH clause' ;
-      MAIN
+         AT 86,94 ;
+         CLIENTAREA ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE 'Picture with STRETCH clause' ;
+         MAIN
 
       @ 20,20 PICTURE pct_Image1 OBJ oPict1 ;
          WIDTH 240 ;
@@ -47,47 +47,48 @@ FUNCTION Main
          TO 450, 420 ;
          FILLCOLOR YELLOW
 
-/*
-   STRETCH   = The image´s dimensions are increased or
-               decreased (both in the same proportion)
-               until the width and/or the height equals
-               the controls' width and/or height.
+      /*
+      STRETCH   = The image´s dimensions are increased or
+      decreased (both in the same proportion)
+      until the width and/or the height equals
+      the controls' width and/or height.
 
-   IMAGESIZE = The control is resized to fit the image's
-               dimensions.
+      IMAGESIZE = The control is resized to fit the image's
+      dimensions.
 
-   NORESIZE  = The image is shown with its dimensions,
-               even if they surpass the control's ones.
-               Control's dimensions are not changed.
+      NORESIZE  = The image is shown with its dimensions,
+      even if they surpass the control's ones.
+      Control's dimensions are not changed.
 
-   NEITHER   = image is scaled to control's dimensions
-               (image's proportion may be changed).
-*/
+      NEITHER   = image is scaled to control's dimensions
+      (image's proportion may be changed).
+      */
 
       ON KEY ESCAPE ACTION oWin:Release()
       ON KEY F9 ACTION AutoMsgBox( { "Control 1", ;
-                                     "Width and Height", ;
-                                     oPict1:Width, ;
-                                     oPict1:Height, ;
-                                     "Original Image Width and Heigth", ;
-                                     oPict1:OriginalSize(), ;
-                                     "Current Image Width and Heigth", ;
-                                     oPict1:CurrentSize(), ;
-                                     "Control 2", ;
-                                     "Width and Height", ;
-                                     oPict2:Width, ;
-                                     oPict2:Height, ;
-                                     "Original Image Width and Heigth", ;
-                                     oPict2:OriginalSize(), ;
-                                     "Current Image Width and Heigth", ;
-                                     oPict2:CurrentSize() } )
+         "Width and Height", ;
+         oPict1:Width, ;
+         oPict1:Height, ;
+         "Original Image Width and Heigth", ;
+         oPict1:OriginalSize(), ;
+         "Current Image Width and Heigth", ;
+         oPict1:CurrentSize(), ;
+         "Control 2", ;
+         "Width and Height", ;
+         oPict2:Width, ;
+         oPict2:Height, ;
+         "Original Image Width and Heigth", ;
+         oPict2:OriginalSize(), ;
+         "Current Image Width and Heigth", ;
+         oPict2:CurrentSize() } )
    END WINDOW
 
    oWin:Center()
    oWin:Activate()
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
+

@@ -3,28 +3,27 @@
 
 Function Main
 
-	SET DATE GERMAN
+   SET DATE GERMAN
 
-	DEFINE WINDOW Form_1 ;
-		AT 0,0 ;
-		WIDTH 640 ;
-		HEIGHT 400 ;
-		TITLE 'Statusbar Keyboard Demo' ;
-		MAIN 
+   DEFINE WINDOW Form_1 ;
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 400 ;
+         TITLE 'Statusbar Keyboard Demo' ;
+         MAIN
 
-		DEFINE STATUSBAR FONT 'Arial' SIZE 9
-			STATUSITEM "Statusbar Demo"
-			KEYBOARD
-			DATE 
-			CLOCK 
-		END STATUSBAR
- 
-	END WINDOW
+      DEFINE STATUSBAR FONT 'Arial' SIZE 9
+         STATUSITEM "Statusbar Demo"
+         KEYBOARD
+         DATE
+         CLOCK
+      END STATUSBAR
 
-	CENTER WINDOW Form_1
+   END WINDOW
 
-	ACTIVATE WINDOW Form_1
+   CENTER WINDOW Form_1
 
-Return
+   ACTIVATE WINDOW Form_1
 
+   Return
 

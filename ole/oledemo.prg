@@ -14,34 +14,34 @@
 
 *-------------------------
 Function main()
-*-------------------------
+   *-------------------------
 
-DEFINE WINDOW main_form ;
-   AT 114,218 ;
-   WIDTH 334 ;
-   HEIGHT 276 ;
-   TITLE 'OLE TEST' ;
-   MAIN
+   DEFINE WINDOW main_form ;
+         AT 114,218 ;
+         WIDTH 334 ;
+         HEIGHT 276 ;
+         TITLE 'OLE TEST' ;
+         MAIN
 
-   DEFINE MAIN MENU
+      DEFINE MAIN MENU
 
-      DEFINE POPUP "Test"
-      MENUITEM 'Word Test' ACTION MSWORD()
-      MENUITEM 'IE Test' ACTION IEXPLORER()
-      MENUITEM 'OutLook Test' ACTION OUTLOOK()
-      MENUITEM 'Excel Test' ACTION EXCEL()
-      MENUITEM  'Open Office Calc' action Exm_OOCalc()
-      MENUITEM  'Open Office Writer' Action Exm_OOWriter()
-   END POPUP
+         DEFINE POPUP "Test"
+            MENUITEM 'Word Test' ACTION MSWORD()
+            MENUITEM 'IE Test' ACTION IEXPLORER()
+            MENUITEM 'OutLook Test' ACTION OUTLOOK()
+            MENUITEM 'Excel Test' ACTION EXCEL()
+            MENUITEM  'Open Office Calc' action Exm_OOCalc()
+            MENUITEM  'Open Office Writer' Action Exm_OOWriter()
+         END POPUP
 
-END MENU
+      END MENU
 
-END WINDOW
+   END WINDOW
 
-Main_form.center
-Main_form.activate
+   Main_form.center
+   Main_form.activate
 
-Return NIL
+   Return NIL
     STATIC PROCEDURE MSWord()
    LOCAL oWord, oText
 
@@ -64,19 +64,18 @@ Return NIL
 
    RETURN
 
-
 STATIC PROCEDURE IEXPLORER()
 
-LOCAL oIE
+   LOCAL oIE
 
-IF ( oIE := win_oleCreateObject( "InternetExplorer.Application" ) ) != NIL
-   oIE:Visible := .T.
-   oIE:Navigate( "http://www.oohg.org" )
-ELSE
-   msgstop("Error. IExplorer not available.", win_oleErrorText())
-ENDIF
+   IF ( oIE := win_oleCreateObject( "InternetExplorer.Application" ) ) != NIL
+      oIE:Visible := .T.
+      oIE:Navigate( "http://www.oohg.org" )
+   ELSE
+      msgstop("Error. IExplorer not available.", win_oleErrorText())
+   ENDIF
 
-/*
+   /*
    oIE:Visible := .T.   // Show browser
    oIE:ToolBar := .F.   // Hide toolbar
    oIE:StatusBar := .F. // Hide statusbar
@@ -84,13 +83,12 @@ ENDIF
 
    oIE:Navigate("http://www.sunat.gob.pe/cl-ti-itmrconsruc/captcha?accion=image")
    WHILE oIE:ReadyState != 4
-         hb_idleSleep( 0 )
+   hb_idleSleep( 0 )
    ENDDO
-*/
-RETURN
+   */
+   RETURN
 
 oLe := NIL
-
 
 RETURN
 
@@ -98,107 +96,104 @@ RETURN
 
 STATIC PROCEDURE OUTLOOK()
 
-LOCAL oOL, oList
+   LOCAL oOL, oList
 
-IF ( oOL := win_oleCreateObject( "Outlook.Application" ) ) != NIL
-   oList := oOL:CreateItem( 7 /* olDistributionListItem */ )
-   oList:DLName := "Distribution List"
-   oList:Display( .F. )
-ELSE
-   msgbox( "Error. MS Outlook not available.", win_oleErrorText())
-ENDIF
+   IF ( oOL := win_oleCreateObject( "Outlook.Application" ) ) != NIL
+      oList := oOL:CreateItem( 7 /* olDistributionListItem */ )
+      oList:DLName := "Distribution List"
+      oList:Display( .F. )
+   ELSE
+      msgbox( "Error. MS Outlook not available.", win_oleErrorText())
+   ENDIF
 
+   oLista := NIL
+   oOL := NIL
 
-
-oLista := NIL
-oOL := NIL
-
-
-RETURN
+   RETURN
 
 //--------------------------------------------------------------------
 
 STATIC PROCEDURE EXCEL()
 
-LOCAL oExcel, oWorkBook, oWorkSheet, oAS
-LOCAL nI, nCount
+   LOCAL oExcel, oWorkBook, oWorkSheet, oAS
+   LOCAL nI, nCount
 
-IF ( oExcel := win_oleCreateObject( "Excel.Application" ) ) != NIL
+   IF ( oExcel := win_oleCreateObject( "Excel.Application" ) ) != NIL
 
-   oWorkBook := oExcel:WorkBooks:Add()
+      oWorkBook := oExcel:WorkBooks:Add()
 
-// Enumerator test
-FOR EACH oWorkSheet IN oWorkBook:WorkSheets
-    ? oWorkSheet:Name
-NEXT
+      // Enumerator test
+      FOR EACH oWorkSheet IN oWorkBook:WorkSheets
+         ? oWorkSheet:Name
+      NEXT
 
-// oWorkBook:WorkSheets is a collection
-nCount := oWorkBook:WorkSheets:Count()
+      // oWorkBook:WorkSheets is a collection
+      nCount := oWorkBook:WorkSheets:Count()
 
-// Elements of collection can be accessed using :Item() method
-FOR nI := 1 TO nCount
-    ? oWorkBook:WorkSheets:Item(nI):Name
-NEXT
+      // Elements of collection can be accessed using :Item() method
+      FOR nI := 1 TO nCount
+         ? oWorkBook:WorkSheets:Item(nI):Name
+      NEXT
 
-// OLE also allows to access collection elements by passing
-// indices to :Worksheets property
-FOR nI := 1 TO nCount
-    ? oWorkBook:WorkSheets(nI):Name
-NEXT
+      // OLE also allows to access collection elements by passing
+      // indices to :Worksheets property
+      FOR nI := 1 TO nCount
+         ? oWorkBook:WorkSheets(nI):Name
+      NEXT
 
-oAS := oExcel:ActiveSheet()
+      oAS := oExcel:ActiveSheet()
 
-// Set font for all cells
-oAS:Cells:Font:Name := "Arial"
-oAS:Cells:Font:Size := 12
+      // Set font for all cells
+      oAS:Cells:Font:Name := "Arial"
+      oAS:Cells:Font:Size := 12
 
-oAS:Cells( 1, 1 ):Value := "OLE from ooHG"
-oAS:Cells( 1, 1 ):Font:Size := 16
+      oAS:Cells( 1, 1 ):Value := "OLE from ooHG"
+      oAS:Cells( 1, 1 ):Font:Size := 16
 
-// oAS:Cells( 1, 1 ) is object, but oAS:Cells( 1, 1 ):Value has value of the cell
-? "Object valtype:", VALTYPE(oAS:Cells( 1, 1 )), "Value:", oAS:Cells( 1, 1 ):Value
+      // oAS:Cells( 1, 1 ) is object, but oAS:Cells( 1, 1 ):Value has value of the cell
+      ? "Object valtype:", VALTYPE(oAS:Cells( 1, 1 )), "Value:", oAS:Cells( 1, 1 ):Value
 
-oAS:Cells( 3, 1 ):Value := "String:"
-oAS:Cells( 3, 2 ):Value := "Hello, World!"
+      oAS:Cells( 3, 1 ):Value := "String:"
+      oAS:Cells( 3, 2 ):Value := "Hello, World!"
 
-oAS:Cells( 4, 1 ):Value := "Numeric:"
-oAS:Cells( 4, 2 ):Value := 1234.56
-oAS:Cells( 4, 3 ):Value := oAS:Cells( 4, 2 ):Value
-oAS:Cells( 4, 4 ):Value := oAS:Cells( 4, 2 ):Value
-oAS:Cells( 4, 3 ):Value *= 2
-oAS:Cells( 4, 2 ):Value++
+      oAS:Cells( 4, 1 ):Value := "Numeric:"
+      oAS:Cells( 4, 2 ):Value := 1234.56
+      oAS:Cells( 4, 3 ):Value := oAS:Cells( 4, 2 ):Value
+      oAS:Cells( 4, 4 ):Value := oAS:Cells( 4, 2 ):Value
+      oAS:Cells( 4, 3 ):Value *= 2
+      oAS:Cells( 4, 2 ):Value++
 
-oAS:Cells( 5, 1 ):Value := "Logical:"
-oAS:Cells( 5, 2 ):Value := .T.
+      oAS:Cells( 5, 1 ):Value := "Logical:"
+      oAS:Cells( 5, 2 ):Value := .T.
 
-oAS:Cells( 6, 1 ):Value := "Date:"
-oAS:Cells( 6, 2 ):Value := DATE()
+      oAS:Cells( 6, 1 ):Value := "Date:"
+      oAS:Cells( 6, 2 ):Value := DATE()
 
-oAS:Cells( 7, 1 ):Value := "Timestamp:"
-oAS:Cells( 7, 2 ):Value := HB_DATETIME()
+      oAS:Cells( 7, 1 ):Value := "Timestamp:"
+      oAS:Cells( 7, 2 ):Value := HB_DATETIME()
 
-// Some formatting
-oAS:Columns( 1 ):Font:Bold := .T.
-oAS:Columns( 2 ):HorizontalAlignment := -4152  // xlRight
+      // Some formatting
+      oAS:Columns( 1 ):Font:Bold := .T.
+      oAS:Columns( 2 ):HorizontalAlignment := -4152  // xlRight
 
-oAS:Columns( 1 ):AutoFit()
-oAS:Columns( 2 ):AutoFit()
-oAS:Columns( 3 ):AutoFit()
-oAS:Columns( 4 ):AutoFit()
+      oAS:Columns( 1 ):AutoFit()
+      oAS:Columns( 2 ):AutoFit()
+      oAS:Columns( 3 ):AutoFit()
+      oAS:Columns( 4 ):AutoFit()
 
-oAS:Cells( 3, 2 ):Font:ColorIndex := 3  // red
+      oAS:Cells( 3, 2 ):Font:ColorIndex := 3  // red
 
-oAS:Range( "A1:B1" ):HorizontalAlignment := 7
-oAS:Range( "A3:A7" ):Select()
+      oAS:Range( "A1:B1" ):HorizontalAlignment := 7
+      oAS:Range( "A3:A7" ):Select()
 
-oExcel:Visible := .T.
+      oExcel:Visible := .T.
 
-oExcel:Quit()
-ELSE
-   msgstop( "Error: MS Excel not available. [" + win_oleErrorText()+ "]" )
-ENDIF
+      oExcel:Quit()
+   ELSE
+      msgstop( "Error: MS Excel not available. [" + win_oleErrorText()+ "]" )
+   ENDIF
 
-RETURN
+   RETURN
 
 STATIC PROCEDURE Exm_OOCalc()
    LOCAL oServiceManager, oDesktop, oDoc, oSheet
@@ -236,7 +231,6 @@ STATIC PROCEDURE Exm_OOCalc()
    ENDIF
 
    RETURN
-
 
 STATIC PROCEDURE Exm_OOWriter()
    LOCAL oServiceManager, oDesktop, oDoc, oText, oCursor, oTable, oRow, oCell, oCellCursor, oRows
@@ -285,17 +279,8 @@ STATIC PROCEDURE Exm_OOWriter()
       oCursor:setPropertyValue( "CharColor", 255 )
       oText:insertString( oCursor, "Good bye!", .F. )
    ELSE
-     msgbox( "Error. OpenOffice not available.", win_oleErrorText())
+      msgbox( "Error. OpenOffice not available.", win_oleErrorText())
    ENDIF
 
    RETURN
-
-
-
-
-
-
-
-
-
 

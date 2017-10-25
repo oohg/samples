@@ -1128,3 +1128,4 @@ RETURN hAttach
 
 METHOD Encode64( cData, nLineLength ) CLASS TEmail
 RETURN TSmtp():Encode64( cData, nLineLength )
+

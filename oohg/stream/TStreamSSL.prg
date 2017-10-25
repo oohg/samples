@@ -254,3 +254,4 @@ HB_FUNC( STREAMSSL_WRITE )   // ( pSsl, cBuffer )
 }
 
 #pragma ENDDUMP
+

@@ -1,7 +1,6 @@
 /*
  * $Id: netiomt1.prg 16111 2011-01-25 22:33:36Z vszakats $
  */
-
 /*
  * Harbour Project source code:
  *    demonstration/test code for NETIOSRV remote management
@@ -10,11 +9,9 @@
  * www - http://harbour-project.org
  *
  */
-
 #define NETSERVER  "127.0.0.1"
 #define NETPORT    2940
 #define NETPASSWD  "toptopsecret"
-
 
 proc main()
 
@@ -26,8 +23,7 @@ proc main()
    ? "Number of connected clients:", Len( netio_funcexec( "netio_conninfo" ) )
    ? "SHUTDOWN server:", netio_funcexec( "netio_shutdown" )
    ?
-
    /* close the connection to the server */
    ? "NETIO_DISCONNECT():", netio_disconnect( NETSERVER, NETPORT )
 
-return
+   return

@@ -1,18 +1,18 @@
 /*
- * RadioGroup Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample is a test case for OOHGDRAW, WINDRAW, BACKGROUND,
- * BACKCOLOR and TRANSPARENT clauses of a RadioGroup control.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download fondo.bmp from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RadioGroup
- */
+* RadioGroup Sample n° 2
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample is a test case for OOHGDRAW, WINDRAW, BACKGROUND,
+* BACKCOLOR and TRANSPARENT clauses of a RadioGroup control.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download fondo.bmp from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RadioGroup
+*/
 
 #include "oohg.ch"
 
@@ -21,14 +21,14 @@ FUNCTION Main
    LOCAL oForm1, nBack := 1
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm1 ;
-      AT 0,0 ;
-      WIDTH 900 ;
-      HEIGHT 600 ;
-      CLIENTAREA ;
-      TITLE 'RadioGroup - Test Case' ;
-      MAIN ;
-      BACKCOLOR PINK
+         OBJ oForm1 ;
+         AT 0,0 ;
+         WIDTH 900 ;
+         HEIGHT 600 ;
+         CLIENTAREA ;
+         TITLE 'RadioGroup - Test Case' ;
+         MAIN ;
+         BACKCOLOR PINK
 
       @ 10, 10 LABEL lbl_111 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 25, 10 LABEL lbl_112 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -289,20 +289,20 @@ FUNCTION Main
 
       @ 410, 10 LABEL lbl_Notes WIDTH 500 HEIGHT 200 TRANSPARENT ;
          VALUE "BACKGROUND tries to force OOHGDRAW, on failure the control will be painted black." + hb_OsNewLine() + ;
-               "TRANSPARENT and BACKCOLOR are ignored when BACKGROUND is present." + hb_OsNewLine() + ;
-               "BACKCOLOR is ignored when TRANSPARENT is present." + hb_OsNewLine() + ;
-               "TRANSPARENT paints de control's background using a NULL BRUSH." + hb_OsNewLine() + ;
-               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not uses Windows' default routine." + hb_OsNewLine() + ;
-               "WINDRAW paints using Windows' default routine." + hb_OsNewLine() + ;
-               "If neither OOHGDRAW nor WINDRAW are present then OOHGDRAW is assumed if app is OOHGDRAW or WINDRAW otherwise." + hb_OsNewLine() + ;
-               "BACKGROUND paint the control's background using a brush derived from another control's client area."
+         "TRANSPARENT and BACKCOLOR are ignored when BACKGROUND is present." + hb_OsNewLine() + ;
+         "BACKCOLOR is ignored when TRANSPARENT is present." + hb_OsNewLine() + ;
+         "TRANSPARENT paints de control's background using a NULL BRUSH." + hb_OsNewLine() + ;
+         "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not uses Windows' default routine." + hb_OsNewLine() + ;
+         "WINDRAW paints using Windows' default routine." + hb_OsNewLine() + ;
+         "If neither OOHGDRAW nor WINDRAW are present then OOHGDRAW is assumed if app is OOHGDRAW or WINDRAW otherwise." + hb_OsNewLine() + ;
+         "BACKGROUND paint the control's background using a brush derived from another control's client area."
 
       @ 500, 700 BUTTON btn_Change OBJ oBut CAPTION "Use BackImage" WIDTH 170 ;
          ACTION { || Eval( If( nBack == 1, ;
-                               { || oForm1:BackColor := NIL, oForm1:BackImage := "fondo.bmp", oBut:Caption := "No BackColor nor BackImage", nBack := 2 }, ;
-                               If( nBack == 2, ;
-                                   { || oForm1:BackColor := NIL, oForm1:BackImage := NIL, oBut:Caption := "Use BackColor", nBack := 3 }, ;
-                                   { || oForm1:BackColor := PINK, oForm1:BackImage := NIL, oBut:Caption := "Use BackImage", nBack := 1 } ) ) ) }
+         { || oForm1:BackColor := NIL, oForm1:BackImage := "fondo.bmp", oBut:Caption := "No BackColor nor BackImage", nBack := 2 }, ;
+         If( nBack == 2, ;
+         { || oForm1:BackColor := NIL, oForm1:BackImage := NIL, oBut:Caption := "Use BackColor", nBack := 3 }, ;
+         { || oForm1:BackColor := PINK, oForm1:BackImage := NIL, oBut:Caption := "Use BackImage", nBack := 1 } ) ) ) }
 
       ON KEY ESCAPE ACTION oForm1:Release()
    END WINDOW
@@ -310,8 +310,9 @@ FUNCTION Main
    oForm1:Center()
    oForm1:Activate()
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
+

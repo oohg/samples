@@ -11,11 +11,12 @@
 #include "hbclass.ch"
 
 PROCEDURE MAIN
-Local oMain
-Local aControls, aGroups, aReplaceField
 
-set date british
-set navigation extended
+   Local oMain
+   Local aControls, aGroups, aReplaceField
+
+   set date british
+   set navigation extended
 
    aGroups := { "Computing", "Accounting", "Sales" }
 
@@ -60,45 +61,49 @@ set navigation extended
    CENTER WINDOW Main
    ACTIVATE WINDOW Main
 
-RETURN
+   RETURN
 
 FUNCTION SaveFullName( aName )
+
    If ValType( aName ) == "A"
       REPLACE First WITH aName[ 1 ]
       REPLACE Last  WITH aName[ 2 ]
    EndIf
-RETURN { FIRST, LAST }
+
+   RETURN { FIRST, LAST }
 
 FUNCTION SaveIPAddress( aIPAddress )
+
    If ValType( aIPAddress ) == "A"
       REPLACE IP1 WITH aIPAddress[ 1 ]
       REPLACE IP2 WITH aIPAddress[ 2 ]
       REPLACE IP3 WITH aIPAddress[ 3 ]
       REPLACE IP4 WITH aIPAddress[ 4 ]
    EndIf
-RETURN { IP1, IP2, IP3, IP4 }
 
+   RETURN { IP1, IP2, IP3, IP4 }
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS MyIpAddress FROM TGridControl // CLASS TGridControlIpAddress
-*-----------------------------------------------------------------------------*
+
    METHOD CreateControl
    METHOD Str2Val
    METHOD GridValue(uValue) BLOCK { |Self,uValue| Empty( Self ), LTrim(Str(uValue[1]))+"."+LTrim(Str(uValue[2]))+"."+LTrim(Str(uValue[3]))+"."+LTrim(Str(uValue[4])) }
-ENDCLASS
+
+   ENDCLASS
 
 METHOD CreateControl( uValue, cWindow, nRow, nCol, nWidth, nHeight ) CLASS MyIpAddress
+
    If Valtype( uValue ) == "C"
       uValue := ::Str2Val( uValue )
    EndIf
    @ nRow,nCol IPADDRESS 0 OBJ ::oControl PARENT &cWindow WIDTH nWidth HEIGHT nHeight VALUE uValue
-Return ::oControl
+
+   RETURN ::oControl
 
 METHOD Str2Val( uValue ) CLASS MyIpAddress
-Local aValue, nPos, nCount
+
+   Local aValue, nPos, nCount
+
    aValue := { 0, 0, 0, 0 }
    nCount := 1
    Do While nCount <= 4 .AND. ! Empty( uValue )
@@ -112,15 +117,11 @@ Local aValue, nPos, nCount
       EndIf
       nCount++
    EndDo
-Return aValue
 
+   Return aValue
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS MyRadioGroup FROM TGridControl // CLASS TGridControlRadioGroup
-*-----------------------------------------------------------------------------*
+
    DATA aItems   INIT {}
    DATA nSpacing INIT 20
 
@@ -131,38 +132,40 @@ CLASS MyRadioGroup FROM TGridControl // CLASS TGridControlRadioGroup
    METHOD CreateControl
    METHOD Str2Val
    METHOD GridValue(uValue) BLOCK { |Self,uValue| if( ( uValue >= 1 .AND. uValue <= Len( ::aItems ) ), ::aItems[ uValue ], "" ) }
-ENDCLASS
+
+   ENDCLASS
 
 METHOD New( aItems, nSpacing ) CLASS MyRadioGroup
+
    If ValType( aItems ) == "A"
       ::aItems := aItems
    EndIf
    If ValType( nSpacing ) == "N"
       ::nSpacing := nSpacing
    EndIf
-Return Self
+
+   Return Self
 
 METHOD CreateWindow( uValue, nRow, nCol, nWidth, nHeight, cFontName, nFontSize ) CLASS MyRadioGroup
-Return ::Super:CreateWindow( uValue, nRow, nCol, nWidth, ::nDefHeight, cFontName, nFontSize )
+
+   Return ::Super:CreateWindow( uValue, nRow, nCol, nWidth, ::nDefHeight, cFontName, nFontSize )
 
 METHOD CreateControl( uValue, cWindow, nRow, nCol, nWidth, nHeight ) CLASS MyRadioGroup
+
    Empty( nHeight )
    If ValType( uValue ) == "C"
       uValue := aScan( ::aItems, { |c| c == uValue } )
    EndIf
    @ nRow,nCol RADIOGROUP 0 OBJ ::oControl PARENT &cWindow OPTIONS ::aItems WIDTH nWidth VALUE uValue SPACING ::nSpacing
-Return ::oControl
+
+   Return ::oControl
 
 METHOD Str2Val( uValue ) CLASS MyRadioGroup
-Return ASCAN( ::aItems, { |c| c == uValue } )
 
+   Return ASCAN( ::aItems, { |c| c == uValue } )
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS MyFullName FROM TGridControl
-*-----------------------------------------------------------------------------*
+
    DATA oControl2     INIT nil
    DATA nDefHeight    INIT 54
 
@@ -173,10 +176,13 @@ CLASS MyFullName FROM TGridControl
    METHOD ControlValue      BLOCK { |Self| { ::oControl:Value, ::oControl2:Value } }
    METHOD Enabled           SETGET
    METHOD OnLostFocus       SETGET
-ENDCLASS
+
+   ENDCLASS
 
 METHOD CreateWindow( uValue, nRow, nCol, nWidth, nHeight, cFontName, nFontSize ) CLASS MyFullName
-Local lRet := .F.
+
+   Local lRet := .F.
+
    Empty( nWidth )
    Empty( nHeight )
    Empty( cFontName )
@@ -197,34 +203,45 @@ Local lRet := .F.
    ::oWindow:Center()
    ::oControl:SetFocus()
    ::oWindow:Activate()
-Return lRet
+
+   Return lRet
 
 METHOD CreateControl( uValue, cWindow, nRow, nCol, nWidth, nHeight ) CLASS MyFullName
+
    Empty( nHeight )
    If ValType( uValue ) == "C"
       uValue := ::Str2Val( uValue )
    EndIf
    @ nRow,nCol TEXTBOX 0 OBJ ::oControl PARENT &cWindow WIDTH nWidth HEIGHT 24 VALUE uValue[ 1 ]
    @ nRow + 30,nCol TEXTBOX 0 OBJ ::oControl2 PARENT &cWindow WIDTH nWidth HEIGHT 24 VALUE uValue[ 2 ]
-Return ::oControl
+
+   Return ::oControl
 
 METHOD Str2Val( uValue ) CLASS MyFullName
-Local aValue, nPos
+
+   Local aValue, nPos
+
    nPos := At( ",", uValue )
    If nPos != 0
       aValue := { AllTrim( SubStr( uValue, nPos + 1 ) ), AllTrim( Left( uValue, nPos - 1 ) ) }
    Else
       aValue := { "", AllTrim( Left( uValue, nPos - 1 ) ) }
    EndIf
-Return aValue
+
+   Return aValue
 
 METHOD Enabled( uValue ) CLASS MyFullName
+
    ::oControl2:Enabled := uValue
-Return ( ::oControl:Enabled := uValue )
+
+   Return ( ::oControl:Enabled := uValue )
 
 METHOD OnLostFocus( uValue ) CLASS MyFullName
+
    If PCOUNT() >= 1
       ::oControl:OnLostFocus  := uValue
       ::oControl2:OnLostFocus := uValue
    EndIf
-Return ::oControl:OnLostFocus
+
+   Return ::oControl:OnLostFocus
+

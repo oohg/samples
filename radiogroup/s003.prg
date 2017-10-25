@@ -1,27 +1,27 @@
 /*
- * RadioGroup Sample n° 3
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how use a RadioGroup control with
- * AUTOSIZE clause.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* RadioGroup Sample n° 3
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how use a RadioGroup control with
+* AUTOSIZE clause.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      AT 0,0 ;
-      WIDTH 588 ;
-      HEIGHT 480 ;
-      TITLE 'RadioGroup - Autosize' ;
-      MAIN ;
-      ON INIT ShowWidths()
+         AT 0,0 ;
+         WIDTH 588 ;
+         HEIGHT 480 ;
+         TITLE 'RadioGroup - Autosize' ;
+         MAIN ;
+         ON INIT ShowWidths()
 
       @ 10,20 LABEL lbl_1 VALUE "OOHGDRAW"
 
@@ -84,7 +84,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION ChangeItem()
    STATIC lLong := .F.
@@ -105,48 +105,49 @@ FUNCTION ChangeItem()
 
    ShowWidths()
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION ShowWidths()
 
    oLbl2:Value := "widths: " + ;
-                  LTRIM( STR( oRdg1:aOptions[1]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg1:aOptions[2]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg1:aOptions[3]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg1:aOptions[4]:Width ) )
+      LTRIM( STR( oRdg1:aOptions[1]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg1:aOptions[2]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg1:aOptions[3]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg1:aOptions[4]:Width ) )
 
    oLbl4:Value := "widths: " + ;
-                  LTRIM( STR( oRdg2:aOptions[1]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg2:aOptions[2]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg2:aOptions[3]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg2:aOptions[4]:Width ) )
+      LTRIM( STR( oRdg2:aOptions[1]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg2:aOptions[2]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg2:aOptions[3]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg2:aOptions[4]:Width ) )
 
    oLbl6:Value := "widths: " + ;
-                  LTRIM( STR( oRdg3:aOptions[1]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg3:aOptions[2]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg3:aOptions[3]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg3:aOptions[4]:Width ) )
+      LTRIM( STR( oRdg3:aOptions[1]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg3:aOptions[2]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg3:aOptions[3]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg3:aOptions[4]:Width ) )
 
    oLbl8:Value := "widths: " + ;
-                  LTRIM( STR( oRdg4:aOptions[1]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg4:aOptions[2]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg4:aOptions[3]:Width ) ) + ;
-                  " " + ;
-                  LTRIM( STR( oRdg4:aOptions[4]:Width ) )
+      LTRIM( STR( oRdg4:aOptions[1]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg4:aOptions[2]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg4:aOptions[3]:Width ) ) + ;
+      " " + ;
+      LTRIM( STR( oRdg4:aOptions[4]:Width ) )
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
+

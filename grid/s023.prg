@@ -50,7 +50,6 @@ FUNCTION Main
       aRows[ 19 ] := {'Pradon',    'Alejandra', '???-????'}
       aRows[ 20 ] := {'Reyes',     'Monica',    '432-5836'}
 
-
       @ 10, 10 GRID Grid_2 OBJ ogrid ;
          SUBCLASS MyGrid ;
          WIDTH oForm:ClientWidth - 20 ;
@@ -108,3 +107,4 @@ Return ::Super:Events_Notify( wParam, lParam )
 /*
  * EOF
  */
+

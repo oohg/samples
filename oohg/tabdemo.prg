@@ -5,6 +5,7 @@
 #include "oohg.ch"
 
 PROCEDURE MAIN
+
    DEFINE WINDOW Main WIDTH 680 HEIGHT 600 CLIENTAREA ;
           NOSIZE NOMAXIMIZE ;
           TITLE "Dynamic TABs demo"
@@ -28,11 +29,14 @@ PROCEDURE MAIN
    END WINDOW
    CENTER WINDOW Main
    ACTIVATE WINDOW Main
-RETURN
+
+   RETURN
 
 PROCEDURE CreateTabPage( cOption, cSubClass, lVertical, lCheckbox, cTitle )
-STATIC nName := 0, nValue := 0
-LOCAL cName
+
+   STATIC nName := 0, nValue := 0
+   LOCAL cName
+
    nValue++
    If nValue > 4
       nValue := 1
@@ -63,21 +67,19 @@ LOCAL cName
          EndIf
       END TAB
    END PAGE
-RETURN
 
-
-
-
+   RETURN
 
 #include "hbclass.ch"
 
-*-----------------------------------------------------------------------------*
 CLASS TTabList FROM TMultiPage
+
    DATA Type                INIT "TAB" READONLY
    DATA lInternals          INIT .F.
 
    METHOD Define
-ENDCLASS
+
+   ENDCLASS
 
 METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
                value, fontname, fontsize, tooltip, change, Buttons, Flat, ;
@@ -109,14 +111,11 @@ METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
    ::CreatePages( aCaptions, Images, aPageMap, aMnemonic )
 
    ::oContainerBase:OnChange := { || ::Refresh() , ::DoChange() }
-Return Self
 
+   Return Self
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS TTabCheck FROM TMultiPage
+
    DATA Type                INIT "TAB" READONLY
    DATA lInternals          INIT .F.
 
@@ -129,7 +128,8 @@ CLASS TTabCheck FROM TMultiPage
 
    DATA   aCaptions                  INIT { NIL, NIL }
    METHOD VerifyCaption
-ENDCLASS
+
+   ENDCLASS
 
 METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
                value, fontname, fontsize, tooltip, change, Buttons, Flat, ;
@@ -161,24 +161,31 @@ METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
    ::CreatePages( aCaptions, Images, aPageMap, aMnemonic )
 
    ::oContainerBase:OnChange := { || ::Refresh() , ::VerifyCaption() , ::DoChange() }
-Return Self
+
+   Return Self
 
 METHOD ContainerValue( nValue ) CLASS TTabCheck
+
    If HB_IsNumeric( nValue )
       ::oContainerBase:Value := ( nValue > 1 )
    EndIf
-RETURN IF( ::oContainerBase == NIL, 0, IF( ::oContainerBase:Value, 2, 1 ) )
+
+   RETURN IF( ::oContainerBase == NIL, 0, IF( ::oContainerBase:Value, 2, 1 ) )
 
 METHOD ContainerCaption( nPosition, xValue ) CLASS TTabCheck
-LOCAL cCaption
+
+   LOCAL cCaption
+
    If VALTYPE( xValue ) $ "CM"
       ::aCaptions[ nPosition ] := xValue
       ::VerifyCaption()
    EndIf
    cCaption := ::aCaptions[ nPosition ]
-RETURN IF( cCaption == NIL, "", cCaption )
+
+   RETURN IF( cCaption == NIL, "", cCaption )
 
 METHOD InsertItem( nPosition, cCaption ) CLASS TTabCheck
+
    If ! HB_IsString( cCaption )
       cCaption := ""
    EndIf
@@ -187,25 +194,27 @@ METHOD InsertItem( nPosition, cCaption ) CLASS TTabCheck
    EndIf
    AINS( ::aCaptions, nPosition )
    ::ContainerCaption( nPosition, cCaption )
-Return nil
+
+   Return nil
 
 METHOD DeleteItem( nPosition ) CLASS TTabCheck
+
    ADEL( ::aCaptions, nPosition )
    ::VerifyCaption()
-Return nil
+
+   Return nil
 
 METHOD VerifyCaption() CLASS TTabCheck
-LOCAL cCaption
+
+   LOCAL cCaption
+
    cCaption := ::aCaptions[ ::ContainerValue ]
    ::oContainerBase:Caption := IF( cCaption == NIL, "", cCaption )
-RETURN nil
 
+   RETURN nil
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS TTabSpinner FROM TMultiPage
+
    DATA Type                INIT "TAB" READONLY
    DATA lInternals          INIT .F.
 
@@ -214,7 +223,8 @@ CLASS TTabSpinner FROM TMultiPage
    METHOD ContainerItemCount         BLOCK { |Self| ::oContainerBase:RangeMax }
    METHOD InsertItem
    METHOD DeleteItem
-ENDCLASS
+
+   ENDCLASS
 
 METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
                value, fontname, fontsize, tooltip, change, Buttons, Flat, ;
@@ -246,30 +256,31 @@ METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
    ::CreatePages( aCaptions, Images, aPageMap, aMnemonic )
 
    ::oContainerBase:OnChange := { || ::Refresh() , ::DoChange() }
-Return Self
+
+   Return Self
 
 METHOD InsertItem( nPosition, cCaption ) CLASS TTabSpinner
+
    ::oContainerBase:RangeMax++
    If ::oContainerBase:RangeMin == 0
       ::oContainerBase:RangeMin := 1
    EndIf
-Return nil
+
+   Return nil
 
 METHOD DeleteItem( nPosition ) CLASS TTabSpinner
+
    If ::oContainerBase:RangeMax >= nPosition
       If ::oContainerBase:RangeMax == 1
          ::oContainerBase:RangeMin := 0
       EndIf
       ::oContainerBase:RangeMax--
    EndIf
-Return nil
 
+   Return nil
 
-
-
-
-*-----------------------------------------------------------------------------*
 CLASS TTabSlider FROM TMultiPage
+
    DATA Type                INIT "TAB" READONLY
    DATA lInternals          INIT .F.
 
@@ -278,7 +289,8 @@ CLASS TTabSlider FROM TMultiPage
    METHOD ContainerItemCount         BLOCK { |Self| ::oContainerBase:RangeMax }
    METHOD InsertItem
    METHOD DeleteItem
-ENDCLASS
+
+   ENDCLASS
 
 METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
                value, fontname, fontsize, tooltip, change, Buttons, Flat, ;
@@ -310,20 +322,26 @@ METHOD Define( ControlName, ParentForm, x, y, w, h, aCaptions, aPageMap, ;
    ::CreatePages( aCaptions, Images, aPageMap, aMnemonic )
 
    ::oContainerBase:OnChange := { || ::Refresh() , ::DoChange() }
-Return Self
+
+   Return Self
 
 METHOD InsertItem( nPosition, cCaption ) CLASS TTabSlider
+
    ::oContainerBase:RangeMax++
    If ::oContainerBase:RangeMin == 0
       ::oContainerBase:RangeMin := 1
    EndIf
-Return nil
+
+   Return nil
 
 METHOD DeleteItem( nPosition ) CLASS TTabSlider
+
    If ::oContainerBase:RangeMax >= nPosition
       If ::oContainerBase:RangeMax == 1
          ::oContainerBase:RangeMin := 0
       EndIf
       ::oContainerBase:RangeMax--
    EndIf
-Return nil
+
+   Return nil
+

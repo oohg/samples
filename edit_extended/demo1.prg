@@ -6,4 +6,3 @@ edit extended workarea test1
 quit
 
 return nil
-

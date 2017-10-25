@@ -1,22 +1,21 @@
 /*
- * MonthCalendar Sample # 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample is a test case for the MonthCalendar control.
- *
- * Note that changing the current view in a MULTISELECT control,
- * from MCMV_MONTH to another view, generates a change in the
- * control's value. The previous value is lost and a new range
- * is set: for MCMV_YEAR the last days of the month are set,
- * for MCMV_DECADE the last days of the year are set and for
- * MCMV_CENTURY the last days of the decade are set.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
-
+* MonthCalendar Sample # 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample is a test case for the MonthCalendar control.
+*
+* Note that changing the current view in a MULTISELECT control,
+* from MCMV_MONTH to another view, generates a change in the
+* control's value. The previous value is lost and a new range
+* is set: for MCMV_YEAR the last days of the month are set,
+* for MCMV_DECADE the last days of the year are set and for
+* MCMV_CENTURY the last days of the decade are set.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 #include "oohg.ch"
 #include "i_windefs.ch"
 
@@ -25,15 +24,13 @@ PROCEDURE Main
    LOCAL i := 0, v
 
    SET DATE BRITISH
-
    DEFINE WINDOW Win_1 OBJ oWin ;
-      AT 0, 0 ;
-      WIDTH 1000 ;
-      HEIGHT 500 ;
-      TITLE "MonthCalendar Control" ;
-      MAIN ;
-      ON INIT Resize()
-
+         AT 0, 0 ;
+         WIDTH 1000 ;
+         HEIGHT 500 ;
+         TITLE "MonthCalendar Control" ;
+         MAIN ;
+         ON INIT Resize()
       DEFINE MAIN MENU
          POPUP "Actions"
             ITEM "Set Selection Count" ACTION SetMSC()
@@ -61,54 +58,52 @@ PROCEDURE Main
             ITEM "Remove bold says" ACTION ( oMC1:DelBoldDay( oMC1:Value - 1 ), oMC1:DelBoldDay( oMC1:Value + 1 ) )
          END POPUP
       END MENU
-
       DEFINE STATUSBAR
          STATUSITEM "OOHG Power - Press Esc to Exit"
       END STATUSBAR
-
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Click" ;
          TOOLTIP "Click me to test LostFocus event" ;
          ACTION AutoMsgBox( "MaxSelCount = " + LTrim( Str( oMC2:MaxSelCount() ) ) )
-
       @ 50, 10 MONTHCALENDAR mcl_1 OBJ oMC1 ;
          TOOLTIP "Click me to test GotFocus event" ;
          ON GOTFOCUS oLst:AddItem( "GotFocus MC1" ) ;
          ON LOSTFOCUS oLst:AddItem( "LostFocus MC1" ) ;
          ON CHANGE ( oLst:AddItem( "Value MC1 " + DToC( oMC1:Value ) ), oLst:Value := oLst:ItemCount )
-
       @ 240, 10 MONTHCALENDAR mcl_2 OBJ oMC2 ;
          MULTISELECT ;
          TOOLTIP "Click me to test GotFocus event" ;
          ON GOTFOCUS oLst:AddItem( "GotFocus MC2" ) ;
          ON LOSTFOCUS oLst:AddItem( "LostFocus MC2" ) ;
          ON CHANGE ( v := oMC2:Value, oLst:AddItem( "Value MC2 { " + DToC( v[1] ) + ", " + DToC( v[2] ) + " }" ), oLst:Value := oLst:ItemCount )
-
       @ 10, 720 LISTBOX lst_3 OBJ oLst ;
          WIDTH 250 ;
          HEIGHT 400
-
       ON KEY ESCAPE ACTION Win_1.Release()
    END WINDOW
-
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
-RETURN
+   RETURN
 
 PROCEDURE SetMSC
+
    AutoMsgBox( "MaxSelCount = " + LTrim( Str( oMC2:MaxSelCount( Val( InputBox( 'New MaxSelCount' ) ) ) ) ) )
-RETURN
+
+   RETURN
 
 PROCEDURE GetMSC
+
    AutoMsgBox( "MaxSelCount = " + LTrim( Str( oMC2:MaxSelCount() ) ) )
-RETURN
+
+   RETURN
 
 PROCEDURE Resize
+
    oWin:ClientWidth := Max( oMC1:Col + oMC1:Width, oMC2:Col + oMC2:Width ) + 20 + oLst:Width + 20
    oLst:Col := oWin:ClientWidth - 20 - oLst:Width
-RETURN
 
+   RETURN
 /*
- * EOF
- */
+* EOF
+*/

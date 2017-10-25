@@ -19,12 +19,12 @@ FUNCTION Main()
    cShortcut := SUBSTR( cMenuItem, AT( "&", cMenuItem ) + 1, 1 )
 
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE "Open Menu" ;
-      MAIN ;
-      ON INIT INSERT_ALT_KEY( ASC( cShortcut ) )
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE "Open Menu" ;
+         MAIN ;
+         ON INIT INSERT_ALT_KEY( ASC( cShortcut ) )
 
       DEFINE MAIN MENU OF Win_1
          POPUP cMenuItem
@@ -52,7 +52,7 @@ FUNCTION Main()
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
-RETURN NIL
+   RETURN NIL
 
 #pragma BEGINDUMP
 
@@ -71,3 +71,4 @@ HB_FUNC( INSERT_ALT_KEY )
 /*
  * EOF
  */
+

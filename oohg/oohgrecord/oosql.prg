@@ -7,9 +7,8 @@
 
 #include "hbclass.ch"
 
-*-----------------------------------------------------------------------------*
 CLASS ooMySql
-*-----------------------------------------------------------------------------*
+
    // Methods always used by XBrowse
    METHOD Skipper
    DELEGATE GoTop            TO oQuery
@@ -47,12 +46,13 @@ CLASS ooMySql
    METHOD FieldBlock
 
    ERROR HANDLER FieldAssign
-ENDCLASS
 
-*-----------------------------------------------------------------------------*
+   ENDCLASS
+
 METHOD Skipper( nSkip ) CLASS ooMySql
-*-----------------------------------------------------------------------------*
-LOCAL nCount := 0
+
+   LOCAL nCount := 0
+
    nSkip := INT( nSkip )
    IF nSkip > 0
       DO WHILE nSkip > 0
@@ -74,17 +74,17 @@ LOCAL nCount := 0
          nSkip++
       ENDDO
    ENDIF
-RETURN nCount
 
-*-----------------------------------------------------------------------------*
+   RETURN nCount
+
 METHOD FieldBlock( nPos ) CLASS ooMySql
-*-----------------------------------------------------------------------------*
-RETURN { | _x_ | IF( PCOUNT() > 0 , ::oQuery:FieldPut( nPos, _x_ ) , ::oQuery:FieldGet( nPos ) ) }
 
-*-----------------------------------------------------------------------------*
+   RETURN { | _x_ | IF( PCOUNT() > 0 , ::oQuery:FieldPut( nPos, _x_ ) , ::oQuery:FieldGet( nPos ) ) }
+
 METHOD FieldAssign( xValue ) CLASS ooMySql
-*-----------------------------------------------------------------------------*
-LOCAL nPos, cMessage, uRet, lError
+
+   LOCAL nPos, cMessage, uRet, lError
+
    cMessage := ALLTRIM( UPPER( __GetMessage() ) )
    lError := .T.
    IF PCOUNT() == 0
@@ -104,7 +104,8 @@ LOCAL nPos, cMessage, uRet, lError
       uRet := NIL
       ::MsgNotFound( cMessage )
    ENDIF
-RETURN uRet
+
+   RETURN uRet
 
 // Database methods not implemented (not used by XBrowse)
 *   METHOD OrdScope
@@ -121,3 +122,4 @@ RETURN uRet
 *   METHOD SetIndex   BLOCK { | Self, cFile, lAdditive |       IF( EMPTY( lAdditive ), ( ::cAlias__ )->( ordListClear() ), ) , ( ::cAlias__ )->( ordListAdd( cFile ) ) }
 *   METHOD Append     BLOCK { | Self |                         ( ::cAlias__ )->( DbAppend() ) }
 *   METHOD Lock       BLOCK { | Self |                         ( ::cAlias__ )->( RLock() ) }
+

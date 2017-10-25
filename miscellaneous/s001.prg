@@ -1,28 +1,26 @@
 /*
- * Miscellaneous Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to remove the visual style from a
- * form or control at runtime.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
-
+* Miscellaneous Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to remove the visual style from a
+* form or control at runtime.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 #include "oohg.ch"
 
 FUNCTION MAIN
 
    DEFINE WINDOW Win_1 ;
-      OBJ oWin1 ;
-      AT 0,0 ;
-      WIDTH 640 ;
-      HEIGHT 480 ;
-      TITLE "Remove Visual Style" ;
-      MAIN
-
+         OBJ oWin1 ;
+         AT 0,0 ;
+         WIDTH 640 ;
+         HEIGHT 480 ;
+         TITLE "Remove Visual Style" ;
+         MAIN
       DEFINE SPLITBOX
          DEFINE TOOLBAR tbr_1 OBJ oTool1 BUTTONSIZE 70,20 BORDER
             BUTTON But11 CAPTION "&Exit" ACTION oWin:Release()
@@ -35,22 +33,19 @@ FUNCTION MAIN
             BUTTON But23 CAPTION "&Two" WHOLEDROPDOWN
          END TOOLBAR
       END SPLITBOX
-
       @ 140, 10 BUTTON btn_1 OBJ oBut1 ;
-      WIDTH 200 ;
-      CAPTION "Remove Theme" ;
-      ACTION { oTool1:DisableVisualStyle(), ;
-               oTool2:DisableVisualStyle(), ;
-               oBut1:DisableVisualStyle(), ;
-               oWin1:DisableVisualStyle(), ;
-               oWin1:Redraw() }
+         WIDTH 200 ;
+         CAPTION "Remove Theme" ;
+         ACTION { oTool1:DisableVisualStyle(), ;
+         oTool2:DisableVisualStyle(), ;
+         oBut1:DisableVisualStyle(), ;
+         oWin1:DisableVisualStyle(), ;
+         oWin1:Redraw() }
    END WINDOW
-
    oWin1:Center()
    oWin1:Activate()
 
-RETURN NIL
-
+   RETURN NIL
 /*
- * EOF
- */
+* EOF
+*/

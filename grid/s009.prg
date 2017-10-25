@@ -1,19 +1,18 @@
 /*
- * Grid Sample n° 09
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * Based on a sample from OOHG distribution build by
- * Ciro Vargas C. <cvc@oohg.org>
- *
- * This sample shows how to use the automatic search by
- * column content feature in a Grid.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
-
+* Grid Sample n° 09
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* Based on a sample from OOHG distribution build by
+* Ciro Vargas C. <cvc@oohg.org>
+*
+* This sample shows how to use the automatic search by
+* column content feature in a Grid.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 #include "oohg.ch"
 
 FUNCTION Main
@@ -21,12 +20,11 @@ FUNCTION Main
    LOCAL aRows[ 20, 3 ]
 
    DEFINE WINDOW Form_1 OBJ oForm ;
-      AT 0, 0 ;
-      WIDTH 450 ;
-      HEIGHT 420 ;
-      TITLE 'Automatic Search By Column Content' ;
-      MAIN
-
+         AT 0, 0 ;
+         WIDTH 450 ;
+         HEIGHT 420 ;
+         TITLE 'Automatic Search By Column Content' ;
+         MAIN
       aRows[ 01 ] := {'Simpson',   'Homer',     '555-5555'}
       aRows[ 02 ] := {'Mulder',    'Fox',       '324-6432'}
       aRows[ 03 ] := {'Smart',     'Max',       '432-5892'}
@@ -47,8 +45,6 @@ FUNCTION Main
       aRows[ 18 ] := {'Samarbide', 'Armando',   '854-7873'}
       aRows[ 19 ] := {'Pradon',    'Alejandra', '???-????'}
       aRows[ 20 ] := {'Reyes',     'Monica',    '432-5836'}
-
-
       @ 10, 10 GRID Grid_2 OBJ ogrid ;
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT 230 ;
@@ -56,74 +52,65 @@ FUNCTION Main
          WIDTHS {130, 130, 130} ;
          ITEMS aRows ;
          VALUE 1
-
       @ 270, 10 LABEL Lbl_1 OBJ oLbl1 ;
          AUTOSIZE ;
          VALUE "Search by Col " + ;
-               LTRIM( STR( oGrid:SearchCol ) ) + ;
-               " - Wrap " + ;
-               IF( oGrid:SearchWrap, "ON", "OFF" )
-
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" )
       @ 300, 10 BUTTON But_1 ;
          CAPTION "Search by Col 1" ;
          WIDTH 120 ;
          ACTION {|| ( oGrid:SearchCol := 1, ;
-                      oLbl1:Value := "Search by Col " + ;
-                                     LTRIM( STR( oGrid:SearchCol ) ) + ;
-                                     " - Wrap " + ;
-                                     IF( oGrid:SearchWrap, "ON", "OFF" ), ;
-                      oGrid:SetFocus() ) }
-
+         oLbl1:Value := "Search by Col " + ;
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" ), ;
+         oGrid:SetFocus() ) }
       @ 300, 150 BUTTON But_2 ;
          CAPTION "Search by Col 2" ;
          WIDTH 120 ;
          ACTION {|| ( oGrid:SearchCol := 2, ;
-                      oLbl1:Value := "Search by Col " + ;
-                                     LTRIM( STR( oGrid:SearchCol ) ) + ;
-                                     " - Wrap " + ;
-                                     IF( oGrid:SearchWrap, "ON", "OFF" ), ;
-                      oGrid:SetFocus() ) }
-
+         oLbl1:Value := "Search by Col " + ;
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" ), ;
+         oGrid:SetFocus() ) }
       @ 300, 290 BUTTON But_3 OBJ oBut3 ;
          CAPTION "Wrap " + IF( oGrid:SearchWrap, "OFF", "ON" ) ;
          WIDTH 120 ;
          ACTION {|| ( oGrid:SearchWrap := ! oGrid:SearchWrap, ;
-                      oBut3:Caption := "Wrap " + ;
-                                       IF( oGrid:SearchWrap, "OFF", "ON" ), ;
-                      oLbl1:Value := "Search by Col " + ;
-                                     LTRIM( STR( oGrid:SearchCol ) ) + ;
-                                     " - Wrap " + ;
-                                     IF( oGrid:SearchWrap, "ON", "OFF" ), ;
-                      oGrid:SetFocus() ) }
-
+         oBut3:Caption := "Wrap " + ;
+         IF( oGrid:SearchWrap, "OFF", "ON" ), ;
+         oLbl1:Value := "Search by Col " + ;
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" ), ;
+         oGrid:SetFocus() ) }
       @ 340, 10 BUTTON But_4 ;
          CAPTION "Use Grid Default" ;
          WIDTH 120 ;
          ACTION {|| ( oGrid:SearchCol := 0, ;
-                      oLbl1:Value := "Search by Col " + ;
-                                     LTRIM( STR( oGrid:SearchCol ) ) + ;
-                                     " - Wrap " + ;
-                                     IF( oGrid:SearchWrap, "ON", "OFF" ), ;
-                      oGrid:SetFocus() ) }
-
+         oLbl1:Value := "Search by Col " + ;
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" ), ;
+         oGrid:SetFocus() ) }
       @ 340, 150 BUTTON But_5 ;
          CAPTION "Disable Search" ;
          WIDTH 120 ;
          ACTION {|| ( oGrid:SearchCol := oGrid:ColumnCount + 1, ;
-                      oLbl1:Value := "Search by Col " + ;
-                                     LTRIM( STR( oGrid:SearchCol ) ) + ;
-                                     " - Wrap " + ;
-                                     IF( oGrid:SearchWrap, "ON", "OFF" ), ;
-                      oGrid:SetFocus() ) }
-
+         oLbl1:Value := "Search by Col " + ;
+         LTRIM( STR( oGrid:SearchCol ) ) + ;
+         " - Wrap " + ;
+         IF( oGrid:SearchWrap, "ON", "OFF" ), ;
+         oGrid:SetFocus() ) }
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
-
+   RETURN NIL
 /*
- * EOF
- */
+* EOF
+*/

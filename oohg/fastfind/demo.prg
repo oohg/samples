@@ -1,15 +1,15 @@
 /*
- * $Id: demo.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
- */
+* $Id: demo.prg,v 1.4 2017-08-25 19:28:45 fyurisich Exp $
+*/
 /*
- * This demo shows how to use GRID.
- * Copyright (c)2007-2017 MigSoft <migsoft/at/oohg.org>
- *
- */
+* This demo shows how to use GRID.
+* Copyright (c)2007-2017 MigSoft <migsoft/at/oohg.org>
+*
+*/
 
 #include "oohg.ch"
 
- Procedure Main()
+Procedure Main()
 
    Set Multiple Off Warning
 
@@ -21,10 +21,10 @@
    Win_1.Text_1.Setfocus
    Activate window Win_1
 
-Return
-*--------------------------------------------------------------*
+   Return
+
 Function Captura()
-*--------------------------------------------------------------*
+
    Local cCapt       := Upper(AllTrim(win_1.Text_1.value))
    Local nTaman      := Len(cCapt)
    Local nRegProc    := 0
@@ -45,31 +45,36 @@ Function Captura()
             EXIT
          Endif
          ADD ITEM { TRANSF(Cuentas->Imputacion,"9999999") , ;
-                           Cuentas->Nombre } TO Grid_1 of Win_1
+            Cuentas->Nombre } TO Grid_1 of Win_1
       ElseIf Substr(FIELD->&cCampo,1,nTaman) > cCapt
          EXIT
       Endif
       DBSkip()
    Enddo
    win_1.Grid_1.EnableUpdate
-Return NIL
-*--------------------------------------------------------------*
+
+   Return NIL
+
 Procedure VerItem()
-*--------------------------------------------------------------*
+
    MsgInfo( 'Col 1: ' + GetColValue( "Grid_1", "Win_1", 1 )+'  ';
-          + 'Col 2: ' + GetColValue( "Grid_1", "Win_1", 2 ) )
-Return
-*--------------------------------------------------------------*
+      + 'Col 2: ' + GetColValue( "Grid_1", "Win_1", 2 ) )
+
+   Return
+
 Function GetColValue( xObj, xForm, nCol )
-*--------------------------------------------------------------*
-  Local nPos:= GetProperty(xForm, xObj, 'Value')
-  Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
-Return aRet[nCol]
-*--------------------------------------------------------------*
+
+   Local nPos:= GetProperty(xForm, xObj, 'Value')
+   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
+
+   Return aRet[nCol]
+
 Function SetColValue( xObj, xForm, nCol, xValue )
-*--------------------------------------------------------------*
-  Local nPos:= GetProperty(xForm, xObj, 'Value')
-  Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
-      aRet[nCol] := xValue
-      SetProperty(xForm, xObj, 'Item', nPos, aRet)
-Return NIL
+
+   Local nPos:= GetProperty(xForm, xObj, 'Value')
+   Local aRet:= GetProperty(xForm, xObj, 'Item', nPos)
+   aRet[nCol] := xValue
+   SetProperty(xForm, xObj, 'Item', nPos, aRet)
+
+   Return NIL
+

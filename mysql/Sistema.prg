@@ -32,7 +32,7 @@ Public cNomSistema:="ooSQL - Clase para xBrowse..."
 Public cDataBase:= "ooSQL"
 Public cUsuario:=''
 Public cUsuId:=''
-	
+
 Load Window Sistema
 Private lMaxi:=.t.     //Maximizar Pantalla principal del Sistema
 If !File('Parametros.Ini') ; CrearIniPar() ; EndIf
@@ -50,7 +50,7 @@ Return
 Static Function Arranco
 Sistema.Label_1.Value:='SDC Soluciones Informáticas' ; Sistema.Label_1.Enabled:=.f.
 ImagenSDC()
-Sistema.Title:=Sistema.Title+' - '+cNomSistema                 
+Sistema.Title:=Sistema.Title+' - '+cNomSistema
 ConectoMySql()
 Return
 
@@ -67,7 +67,7 @@ BEGIN INI FILE "Parametros.Ini"
    GET cPassWord      SECTION "Acceso"     ENTRY 'Pass'
 END INI
 If !Conexion(cHostName, cUser, cPassWord, cDataBase )
-	MsgStop('No se pudo conectar con Mysql','Sistema ooSQL')
+   MsgStop('No se pudo conectar con Mysql','Sistema ooSQL')
 EndIf
 Return
 
@@ -78,55 +78,55 @@ Static Function Conexion(cHostName, cUser, cPassWord, cDataBase )
 Local lBnd:=.f.
 Sistema.Statusbar.Item(1):="Conectando a "+cHostName
 If oServer != Nil                                                               //Verifico si Ya esta conectado
-	Sistema.StatusBar.Item(1):="Conectado a Base De Datos" ; Return .t.
+   Sistema.StatusBar.Item(1):="Conectado a Base De Datos" ; Return .t.
 EndIf
 oServer:=TMySQLServer():New(cHostName, cUser, cPassWord )                       //Abro la conexión con MySQL
 Sistema.statusBar.item(1):="Conectando a MySql"
-If oServer:NetErr()                                                             //Verifica si ocurrió algún error en la Conexión 
+If oServer:NetErr()                                                             //Verifica si ocurrió algún error en la Conexión
   MsgInfo("Error de Conexión con Servidor " +chr(13)+ oServer:Error(),'Sistema ooSQL')
-	oServer:=Nil ; Return .f.
-EndIf 
+   oServer:=Nil ; Return .f.
+EndIf
 cBaseDeDatos:=Lower(cDataBase)                                                  //Conectado con la Base de Datos
 Sistema.Statusbar.Item(1):="Conectando a Base De datos"
-If oServer == Nil                                                               //Verifica si se Conectó realmente                       
-	MsgInfo("Conexión con MySQL NO fue Iniciada!!",'Sistema ooSQL') 
-	Sistema.StatusBar.Item(1):="No Conectado" ; Return Nil 
+If oServer == Nil                                                               //Verifica si se Conectó realmente
+   MsgInfo("Conexión con MySQL NO fue Iniciada!!",'Sistema ooSQL')
+   Sistema.StatusBar.Item(1):="No Conectado" ; Return Nil
 EndIf
 aBaseDeDatosExistentes:=oServer:ListDBs()                                       //Antes de Conectar Verifica si la Base de Datos ya existe
-If oServer:NetErr()                                                             //Verifica si ocurrio algun error en Conexión 
+If oServer:NetErr()                                                             //Verifica si ocurrio algun error en Conexión
   MsgInfo("Error de Conexión con Servidor / <TMySQLServer> " + oServer:Error(),'Sistema ooSQL' )
-	Sistema.StatusBar.Item(1):="No Conectado a MySQL" ; oServer:=Nil ; Return .F.
-EndIf 
+   Sistema.StatusBar.Item(1):="No Conectado a MySQL" ; oServer:=Nil ; Return .F.
+EndIf
 If AScan( aBaseDeDatosExistentes, Lower( cBaseDeDatos ) ) == 0                  //Verifica si en el Array aBaseDeDadosExistentes tiene la Base de Datos
   MsgInfo("Base de Datos "+cBaseDeDatos+" No Existe!!",'Sistema ooSQL')
   If MsgYesNo('Desea Crear la Base MySQL [ooSQL] ???','Atención!!!. Crear Base...')
     If !CreoBase()
       oServer:=Nil ; Return .f.
     Else
-      lBnd:=.t.   //Como la Base No existia...la creo...y luego debo crear la Tabla Clientes...    
-    EndIf  
+      lBnd:=.t.   //Como la Base No existia...la creo...y luego debo crear la Tabla Clientes...
+    EndIf
   Else
-	  oServer:=Nil ; Return .F.
-	EndIf
-EndIf 
+     oServer:=Nil ; Return .F.
+   EndIf
+EndIf
 oServer:SelectDB( cBaseDeDatos )
-If oServer:NetErr()                                                             //Verifica si ocurrio algun error en Conexión 
+If oServer:NetErr()                                                             //Verifica si ocurrio algun error en Conexión
   MsgInfo("Error de Conexión con Servidor / <TMySQLServer> " + oServer:Error(),'Sistema ooSQL' )
-	oServer:=Nil ; Return .F.
+   oServer:=Nil ; Return .F.
 Else
   If lBnd == .t.
     If !CreoTabla()
       oServer:=Nil ; Return .f.
     EndIf
   EndIf
-Endif 
+Endif
 Sistema.StatusBar.Item(1):='Conectado como: '+oServer:cUser + "@" + cHostName
 Return .T.
 
 *------------------------------------------------------------------------------*
 * ImagenSDC() Controla la visualización del logo de SDC Soluciones!            *
 *------------------------------------------------------------------------------*
-Static Function ImagenSDC 
+Static Function ImagenSDC
 Local nAlto,nAncho,nAjusAl,nAjusAn,nAltura, nAnchura
 nAlto  :=110             //Altura de la Imagen
 nAncho :=172             //Anchura de la Imagen
@@ -135,10 +135,10 @@ nAjusAn:=30
 IF Sistema.Height-nAlto-nAjusAl<nAlto
   Sistema.Image_1.Visible:=.f.
   Return nil
-Else 
+Else
   Sistema.Image_1.Visible:=.t.
   nAltura:=Sistema.Height-nAlto-nAjusAl
-Endif  
+Endif
 IF Sistema.Width-nAncho-nAjusAn<nAncho
   Sistema.Image_1.Visible:=.f.
   Return nil
@@ -167,7 +167,7 @@ oQuery:=oServer:Query("CREATE DATABASE ooSQL")
 If oQuery:NetErr()
   MsgExclamation('Error'+chr(13)+oQuery:Error(),'Creando Base...') ; Return .f.
 EndIf
-Return .t.  
+Return .t.
 
 *------------------------------------------------------------------------------*
 * CreoTabla() Creo la Tabla Clientes                                           *
@@ -195,3 +195,4 @@ If oQuery1:NetErr()
   MsgExclamation('Error'+chr(13)+oQuery1:Error(),'Creando Tabla...') ; Return .f.
 EndIf
 Return .t.
+

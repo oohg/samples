@@ -2,49 +2,51 @@
 
 PROCEDURE MAIN
 
-    DEFINE WINDOW MainWindow AT 0,0 ;
-           WIDTH 200 HEIGHT 100 ;
-           MAIN ;
-           TITLE "Non-stop window test"
+   DEFINE WINDOW MainWindow AT 0,0 ;
+         WIDTH 200 HEIGHT 100 ;
+         MAIN ;
+         TITLE "Non-stop window test"
 
-        @ 10,10 BUTTON Start CAPTION "Start!" ACTION NonStop()
+      @ 10,10 BUTTON Start CAPTION "Start!" ACTION NonStop()
 
-    END WINDOW
-    CENTER WINDOW MainWindow
-    ACTIVATE WINDOW MainWindow
+   END WINDOW
+   CENTER WINDOW MainWindow
+   ACTIVATE WINDOW MainWindow
 
-RETURN
+   RETURN
 
 PROCEDURE NonStop()
-LOCAL oWnd, nSeconds, nCount, lLoop
 
-    DEFINE WINDOW NonStop OBJ oWnd AT 0,0 ;
-           WIDTH 100 HEIGHT 70 TITLE "Working..." MODAL NOSYSMENU NOSIZE ;
-           ON RELEASE ( IF( lLoop, ( lLoop := .F., MsgInfo( "Aborted by user request!" ) ), ) )
+   LOCAL oWnd, nSeconds, nCount, lLoop
 
-        @ 10,10 LABEL Progress VALUE "" WIDTH 80 HEIGHT 20
+   DEFINE WINDOW NonStop OBJ oWnd AT 0,0 ;
+         WIDTH 100 HEIGHT 70 TITLE "Working..." MODAL NOSYSMENU NOSIZE ;
+         ON RELEASE ( IF( lLoop, ( lLoop := .F., MsgInfo( "Aborted by user request!" ) ), ) )
 
-    END WINDOW
-    CENTER WINDOW NonStop
-    // ACTIVATE WINDOW NonStop
-    oWnd:Activate( .T. )
+      @ 10,10 LABEL Progress VALUE "" WIDTH 80 HEIGHT 20
 
-    nCount := 11
-    nSeconds := 0
-    lLoop := .T.
-    DO WHILE nCount > 0 .AND. lLoop
-        IF ABS( SECONDS() - nSeconds ) >= 1
-            nCount--
-            oWnd:Progress:Value := LTRIM( STR( nCount ) )
-            nSeconds := SECONDS()
-        ENDIF
-        DO EVENTS
-    ENDDO
+   END WINDOW
+   CENTER WINDOW NonStop
+   // ACTIVATE WINDOW NonStop
+   oWnd:Activate( .T. )
 
-    IF lLoop
-        MsgInfo( "Done!" )
-        lLoop := .F.
-        oWnd:Release()
-    ENDIF
+   nCount := 11
+   nSeconds := 0
+   lLoop := .T.
+   DO WHILE nCount > 0 .AND. lLoop
+      IF ABS( SECONDS() - nSeconds ) >= 1
+         nCount--
+         oWnd:Progress:Value := LTRIM( STR( nCount ) )
+         nSeconds := SECONDS()
+      ENDIF
+      DO EVENTS
+   ENDDO
 
-RETURN
+   IF lLoop
+      MsgInfo( "Done!" )
+      lLoop := .F.
+      oWnd:Release()
+   ENDIF
+
+   RETURN
+

@@ -1,16 +1,15 @@
-
 #include "oohg.ch"
 
 FUNCTION Main
+
    LOCAL aRows [20] [3]
 
    DEFINE WINDOW Form_1 ;
-      AT 0, 0 ;
-      WIDTH 450 ;
-      HEIGHT 500 ;
-      TITLE 'Hello World!' ;
-      MAIN
-
+         AT 0, 0 ;
+         WIDTH 450 ;
+         HEIGHT 500 ;
+         TITLE 'Hello World!' ;
+         MAIN
       aRows[ 01 ] := { 'Simpson',   'Homer',     '555-5555' }
       aRows[ 02 ] := { 'Mulder',    'Fox',       '324-6432' }
       aRows[ 03 ] := { 'Smart',     'Max',       '432-5892' }
@@ -31,7 +30,6 @@ FUNCTION Main
       aRows[ 18 ] := { 'Samarbide', 'Armando',   '854-7873' }
       aRows[ 19 ] := { 'Pradon',    'Alejandra', '???-????' }
       aRows[ 20 ] := { 'Reyes',     'Monica',    '432-5836' }
-
       @ 10,10 GRID Grid_2 OBJ oGrid;
          WIDTH 350 ;
          HEIGHT 330 ;
@@ -45,29 +43,26 @@ FUNCTION Main
          DELETE ;
          ENABLEALTA ;
          ON HEADCLICK { { || MsgInfo( 'Click 1' ) }, ;
-                        { || MsgInfo( 'Click 2' ) }, ;
-                        { || MsgInfo( 'Click 3' ) } } ;
+         { || MsgInfo( 'Click 2' ) }, ;
+         { || MsgInfo( 'Click 3' ) } } ;
          JUSTIFY { BROWSE_JTFY_LEFT, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER }
-
       @ 350, 010 BUTTON But_1 CAPTION "Hide Column" ACTION { || oGrid:ColumnHide( 2 ) }
       @ 390, 010 BUTTON But_2 CAPTION "Show Column" ACTION { || oGrid:ColumnShow( 2 ) }
-
       @ 350, 140 BUTTON But_3 CAPTION "Better Auto Fit" ACTION { || oGrid:ColumnsBetterAutoFit() }
-
       ON KEY F1 ACTION Cambia( oGrid )
       ON KEY ESCAPE ACTION Form_1:Release()
    END WINDOW
-
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN
+   RETURN
 
 FUNCTION Cambia
+
    oGrid:Header( 1, "Apellido" )
    SetProperty('Form_1', 'Grid_1', 'HEADER', 3, 'Teléfono' )
-RETURN NIL
 
+   RETURN NIL
 /*
- * EOF
- */
+* EOF
+*/

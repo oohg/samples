@@ -1,24 +1,24 @@
 /*
- * Windows Registry Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to save the position and size of a
- * form and how to restore them when the form is initialized.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- */
+* Windows Registry Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to save the position and size of a
+* form and how to restore them when the form is initialized.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*/
 
 #include "oohg.ch"
 
 FUNCTION Main
 
    DEFINE WINDOW FormMain ;
-      OBJ oForm ;
-      TITLE 'Registry Operations' ;
-      ON INIT LoadReg()
+         OBJ oForm ;
+         TITLE 'Registry Operations' ;
+         ON INIT LoadReg()
 
       @ 20, 20 BUTTON btn_Save ;
          CAPTION 'Save' ;
@@ -34,12 +34,10 @@ FUNCTION Main
    CENTER WINDOW FormMain
    ACTIVATE WINDOW FormMain
 
-RETURN NIL
-
+   RETURN NIL
 
 #define hKey HKEY_CURRENT_USER
 #define cKey 'Software\OOHG\RegistrySample\FormMain'
-
 
 FUNCTION LoadReg
    LOCAL col, row, width, height
@@ -63,8 +61,7 @@ FUNCTION LoadReg
       ENDIF
    ENDIF
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION SaveReg
 
@@ -81,8 +78,7 @@ FUNCTION SaveReg
       SetRegistryValue( hKey, cKey, 'height', oForm:Height )
    ENDIF
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION DeleteReg
 
@@ -94,8 +90,9 @@ FUNCTION DeleteReg
    DeleteRegistryKey( hKey, 'Software\OOHG', 'RegistrySample' )
    DeleteRegistryKey( hKey, 'Software', 'OOHG' )
 
-RETURN NIL
+   RETURN NIL
 
 /*
- * EOF
- */
+* EOF
+*/
+

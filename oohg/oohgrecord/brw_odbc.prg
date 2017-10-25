@@ -12,7 +12,8 @@
 #include "oohg.ch"
 
 PROCEDURE Main
-Local oODBC, oBrw, I
+
+   Local oODBC, oBrw, I
 
    oODBC := TODBC():New( ;
             "DBQ=bd1.mdb;" + ;
@@ -47,7 +48,7 @@ Local oODBC, oBrw, I
 
    oODBC:Destroy()
 
-RETURN
+   RETURN
 
 #endif   // #ifndef NO_SAMPLE
 
@@ -61,9 +62,8 @@ RETURN
  *  your own class, you must define them for your own requirements.
  */
 
-*-----------------------------------------------------------------------------*
 CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
+
    // Methods always used by XBrowse
    METHOD Skipper
    METHOD GoTop              BLOCK { | Self | ::oODBC:First() }
@@ -105,12 +105,13 @@ CLASS XBrowse_ODBC
    METHOD Destroy            BLOCK { | Self | ::oODBC:Destroy() }
 
    ERROR HANDLER FieldAssign
-ENDCLASS
 
-*-----------------------------------------------------------------------------*
+   ENDCLASS
+
 METHOD Skipper( nSkip ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
-LOCAL nCount
+
+   LOCAL nCount
+
    nCount := 0
    IF nSkip > 0
       DO WHILE nSkip > 0
@@ -132,17 +133,17 @@ LOCAL nCount
          nCount--
       ENDDO
    ENDIF
-RETURN nCount
 
-*-----------------------------------------------------------------------------*
+   RETURN nCount
+
 METHOD FieldPos( cField ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
-   cField := UPPER( ALLTRIM( cField ) )
-RETURN ASCAN( ::oODBC:Fields, { |h| UPPER( h:FieldName ) == cField } )
 
-*-----------------------------------------------------------------------------*
+   cField := UPPER( ALLTRIM( cField ) )
+
+   RETURN ASCAN( ::oODBC:Fields, { |h| UPPER( h:FieldName ) == cField } )
+
 METHOD Skip( nSkip ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
+
    IF nSkip == NIL
       nSkip := 1
    ENDIF
@@ -163,28 +164,29 @@ METHOD Skip( nSkip ) CLASS XBrowse_ODBC
          ENDIF
       ENDDO
    ENDIF
-RETURN NIL
 
-*-----------------------------------------------------------------------------*
+   RETURN NIL
+
 METHOD FieldBlock( nPos ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
-RETURN { | uValue | IF( PCOUNT() > 0, ::oODBC:Fields[ nPos ]:Value := uValue, ::oODBC:Fields[ nPos ]:Value ) }
 
-*-----------------------------------------------------------------------------*
+   RETURN { | uValue | IF( PCOUNT() > 0, ::oODBC:Fields[ nPos ]:Value := uValue, ::oODBC:Fields[ nPos ]:Value ) }
+
 METHOD Query( cQuery ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
-LOCAL lRet
+
+   LOCAL lRet
+
    ::oODBC:SetSQL( cQuery )
    lRet := ::oODBC:Open()
    IF lRet
       ::GoTop()
    ENDIF
-RETURN lRet
 
-*-----------------------------------------------------------------------------*
+   RETURN lRet
+
 METHOD FieldAssign( xValue ) CLASS XBrowse_ODBC
-*-----------------------------------------------------------------------------*
-LOCAL nPos, cMessage, uRet, lError
+
+   LOCAL nPos, cMessage, uRet, lError
+
    cMessage := ALLTRIM( UPPER( __GetMessage() ) )
    lError := .T.
    IF PCOUNT() == 0
@@ -204,7 +206,8 @@ LOCAL nPos, cMessage, uRet, lError
       uRet := NIL
       ::MsgNotFound( cMessage )
    ENDIF
-RETURN uRet
+
+   RETURN uRet
 
 // Database methods not implemented (not used by XBrowse)
 *   METHOD OrdScope
@@ -220,3 +223,4 @@ RETURN uRet
 *   METHOD Append     BLOCK { | Self |                         ( ::cAlias__ )->( DbAppend() ) }
 *   METHOD Lock       BLOCK { | Self |                         ( ::cAlias__ )->( RLock() ) }
 *   METHOD DbStruct   BLOCK { | Self |                         ( ::cAlias__ )->( DbStruct() ) }
+

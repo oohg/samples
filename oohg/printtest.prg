@@ -1,21 +1,22 @@
 /*
- * $Id: printtest.prg,v 1.12 2016-12-30 16:36:23 fyurisich Exp $
- */
+* $Id: printtest.prg,v 1.12 2016-12-30 16:36:23 fyurisich Exp $
+*/
 
 #include 'oohg.ch'
 
 PROCEDURE Test()
+
    PUBLIC _OOHG_PRINTLIBRARY
 
    SET CENTURY ON
    SET DATE ANSI
 
-	DEFINE WINDOW pr_form ;
-		AT 0, 0 ;
-      WIDTH 300 ;
-      HEIGHT 300 ;
-		TITLE 'Print Test' ;
-      MODAL
+   DEFINE WINDOW pr_form ;
+         AT 0, 0 ;
+         WIDTH 300 ;
+         HEIGHT 300 ;
+         TITLE 'Print Test' ;
+         MODAL
 
       ON KEY ESCAPE OF pr_form ACTION pr_form.Release
 
@@ -23,8 +24,8 @@ PROCEDURE Test()
 
       DEFINE MAIN MENU
          POPUP 'File 1'
-   			ITEM 'hbprinter'   ACTION PrintTest( "HBPRINTER" )
-   			ITEM 'miniprint'   ACTION PrintTest( "MINIPRINT" )
+            ITEM 'hbprinter'   ACTION PrintTest( "HBPRINTER" )
+            ITEM 'miniprint'   ACTION PrintTest( "MINIPRINT" )
             ITEM 'dos'         ACTION PrintTest( "DOSPRINT" )
             ITEM 'raw'         ACTION PrintTest( "RAWPRINT" )
             ITEM 'excel'       ACTION PrintTest( "EXCELPRINT" )
@@ -37,8 +38,8 @@ PROCEDURE Test()
          END POPUP
 
          POPUP "File 2"
-           	ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
-   			ITEM 'miniprint A' ACTION Eje_Imprimir( "MINIPRINT" )
+            ITEM 'hbprinter A' ACTION Eje_Imprimir( "HBPRINTER" )
+            ITEM 'miniprint A' ACTION Eje_Imprimir( "MINIPRINT" )
             ITEM 'dos A'       ACTION Eje_Imprimir( "DOSPRINT" )
             ITEM 'raw A'       ACTION Eje_Imprimir( "RAWPRINT" )
             ITEM 'excel A'     ACTION Eje_Imprimir( "EXCELPRINT" )
@@ -51,7 +52,7 @@ PROCEDURE Test()
          END POPUP
 
          POPUP "File 3"
-   			ITEM 'report form hbprinter'  ACTION repof( "HBPRINTER" )
+            ITEM 'report form hbprinter'  ACTION repof( "HBPRINTER" )
             ITEM 'report form MINIPRINT'  ACTION repof( "MINIPRINT" )
             ITEM 'report form DOS'        ACTION repof( "DOSPRINT" )
             ITEM 'report form RAW'        ACTION repof( "RAWPRINT" )
@@ -80,15 +81,15 @@ PROCEDURE Test()
          END POPUP
       END MENU
 
-	END WINDOW
+   END WINDOW
 
    CENTER WINDOW pr_form
    ACTIVATE WINDOW pr_form
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION PrintTest( ctlibrary )
+
    LOCAL oPrint
 
    SET DATE ANSI
@@ -142,8 +143,7 @@ FUNCTION PrintTest( ctlibrary )
    oPrint:EndDoc()
    oPrint:Release()
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION repof( cLibrary )
 
@@ -152,8 +152,7 @@ FUNCTION repof( cLibrary )
    USE test
    DO REPORT FORM report1 HEADING "PRINT DEMO"
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION editp( cLibrary )
 
@@ -162,8 +161,7 @@ FUNCTION editp( cLibrary )
    USE test
    EDIT WORKAREA test
 
-RETURN Nil
-
+   RETURN Nil
 
 FUNCTION editpx( cLibrary )
 
@@ -173,8 +171,7 @@ FUNCTION editpx( cLibrary )
    INDEX ON code TO lista
    EDIT EXTENDED WORKAREA test
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION Eje_Imprimir( cLibrary )
 
@@ -210,4 +207,5 @@ FUNCTION Eje_Imprimir( cLibrary )
    oPrint:EndDoc()
    oPrint:Release()
 
-RETURN .T.
+   RETURN .T.
+

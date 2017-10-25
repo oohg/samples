@@ -1,31 +1,31 @@
 /*
- * RC File Sample n° 1
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
- * Licensed under The Code Project Open License (CPOL) 1.02
- * See <http://www.codeproject.com/info/cpol10.aspx>
- *
- * This sample shows how to include images in a resource file, so
- * they are embeded into the executable when your programm is compiled.
- *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download the resource file and the images from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RCFiles
- */
+* RC File Sample n° 1
+* Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+* Licensed under The Code Project Open License (CPOL) 1.02
+* See <http://www.codeproject.com/info/cpol10.aspx>
+*
+* This sample shows how to include images in a resource file, so
+* they are embeded into the executable when your programm is compiled.
+*
+* Visit us at https://github.com/fyurisich/OOHG_Samples or at
+* http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+*
+* You can download the resource file and the images from:
+* https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RCFiles
+*/
 
 #include "oohg.ch"
 
 PROCEDURE Main()
 
    DEFINE WINDOW Form_Main ;
-      AT 0,0 ;
-      CLIENTAREA ;
-      WIDTH 364 ;
-      HEIGHT 243 ;
-      TITLE 'Test case for loading images from RC file' ;
-      MAIN ;
-      ICON "APPICON"
+         AT 0,0 ;
+         CLIENTAREA ;
+         WIDTH 364 ;
+         HEIGHT 243 ;
+         TITLE 'Test case for loading images from RC file' ;
+         MAIN ;
+         ICON "APPICON"
 
       @ 1, 1 IMAGE Image_1 ;
          PICTURE "DEMO1" ;
@@ -62,8 +62,9 @@ PROCEDURE Main()
 
    CENTER WINDOW Form_Main
    ACTIVATE WINDOW Form_Main
-RETURN
+   RETURN
 
 /*
- * EOF
- */
+* EOF
+*/
+

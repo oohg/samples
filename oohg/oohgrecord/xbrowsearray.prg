@@ -12,7 +12,8 @@
 #include "oohg.ch"
 
 PROCEDURE Main
-Local aArray, oArray, I
+
+   Local aArray, oArray, I
 
    aArray := ARRAY( 50 )
    FOR I := 1 TO LEN( aArray )
@@ -43,7 +44,7 @@ Local aArray, oArray, I
    END WINDOW
    ACTIVATE WINDOW Main
 
-RETURN
+   RETURN
 
 #endif    // #ifndef NO_SAMPLE
 
@@ -57,9 +58,8 @@ RETURN
  *  your own class, you must define them for your own requirements.
  */
 
-*-----------------------------------------------------------------------------*
 CLASS XBrowse_Array
-*-----------------------------------------------------------------------------*
+
    // Methods always used by XBrowse
    METHOD Skipper
    METHOD GoTop              BLOCK { | Self | ::GoTo( 1 ) }
@@ -104,35 +104,35 @@ CLASS XBrowse_Array
    METHOD Skip
    METHOD Bof                BLOCK { | Self | ::lBof }
    METHOD FieldBlock
-ENDCLASS
 
-*-----------------------------------------------------------------------------*
+   ENDCLASS
+
 METHOD Skipper( nSkip ) CLASS XBrowse_Array
-*-----------------------------------------------------------------------------*
-LOCAL nRecNo
+
+   LOCAL nRecNo
+
    nRecNo := ::nRecNo
    ::nRecNo := MAX( MIN( nRecNo + nSkip, LEN( ::aArray ) ), 1 )
-RETURN ( ::nRecNo - nRecNo )
 
-*-----------------------------------------------------------------------------*
+   RETURN ( ::nRecNo - nRecNo )
+
 METHOD GoTo( nRecno ) CLASS XBrowse_Array
-*-----------------------------------------------------------------------------*
+
    IF nRecno < 1 .OR. nRecno > LEN( ::aArray )
       ::nRecno := LEN( ::aArray ) + 1
    ELSE
       ::nRecno := INT( nRecno )
    ENDIF
    ::lBof := ( ::RecCount == 0 )
-RETURN ::nRecno
 
-*-----------------------------------------------------------------------------*
+   RETURN ::nRecno
+
 METHOD FieldBlock( nPos ) CLASS XBrowse_Array
-*-----------------------------------------------------------------------------*
-RETURN { | uValue | IF( PCOUNT() > 0, ::aArray[ ::nRecNo ][ nPos ] := uValue, ::aArray[ ::nRecNo ][ nPos ] ) }
 
-*-----------------------------------------------------------------------------*
+   RETURN { | uValue | IF( PCOUNT() > 0, ::aArray[ ::nRecNo ][ nPos ] := uValue, ::aArray[ ::nRecNo ][ nPos ] ) }
+
 METHOD Skip( nRecno ) CLASS XBrowse_Array
-*-----------------------------------------------------------------------------*
+
    IF ! HB_IsNumeric( nRecno )
       nRecno := 1
    ENDIF
@@ -144,7 +144,8 @@ METHOD Skip( nRecno ) CLASS XBrowse_Array
    ELSEIF ::nRecNo > ::RecCount()
       ::nRecNo := ::RecCount() + 1
    ENDIF
-RETURN nil
+
+   RETURN nil
 
 // Database methods not implemented (not used by XBrowse)
 *   METHOD OrdScope
@@ -162,3 +163,4 @@ RETURN nil
 *   METHOD SetIndex   BLOCK { | Self, cFile, lAdditive |       IF( EMPTY( lAdditive ), ( ::cAlias__ )->( ordListClear() ), ) , ( ::cAlias__ )->( ordListAdd( cFile ) ) }
 
 *   ERROR HANDLER FieldAssign
+
