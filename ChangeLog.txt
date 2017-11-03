@@ -8,13 +8,26 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2017-11-03 17:33 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   * samples\dbview\fmgs\hbcompat.prg
+   * samples\harupdf\HaruPDF.prg
+   * samples\http\getip\s001.prg
+   * samples\http\getpage\h_http.prg
+   * samples\http\getpage\httpdemo.prg
+   * samples\http\getpage\i_socket.ch
+   * samples\odbc\sql.ch
+     * Change in license text.
+     - Unneeded code.
+
 2017-10-17 18:41 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   - readme.txt
+   - samples\readme.txt
    + README.md
 
 2017-10-15 21:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   + core/.gitattributes
-   + core/.gitignore
+   + samples\.gitattributes
+   + samples\.gitignore
 
 2017-10-13 23:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + Samples from oohg distros.
@@ -24,90 +37,90 @@
    + Samples from http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki site.
 
 2017-10-12 21:45 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   + samples/ChangeLog.txt
+   + samples\ChangeLog.txt
 
 2017-10-12 20:45:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * ./samples/*.*
+   * .\samples\*.*
      ; Moved to a separated repository.
 
 2017-08-25 23:53 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/stream/TStream.prg
+   * samples\oohg\stream\TStream.prg
      * Format.
 
 2017-08-25 16:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/dbview/prgs/dbview.prg
-   * samples/http/h_http.prg
-   * samples/http/i_socket.ch
-   * samples/mpm/Readme.txt
-   * samples/mpm/fmgs/mpm.ch
-   * samples/oohg/browsecolumncontrols.prg
-   * samples/oohg/gridcolumncontrols.prg
-   * samples/oohg/hello.prg
-   * samples/oohg/maindemooop.prg
-   * samples/oohg/rtl.prg
-   * samples/oohg/autoadjust/demo.prg
-   * samples/oohg/basegraph/demo.prg
-   * samples/oohg/fastfind/demo.prg
-   * samples/oohg/histogram/demo.prg
-   * samples/oohg/mybrowse/mybrowse.prg
-   * samples/oohg/oohgrecord/brw_odbc.prg
-   * samples/oohg/oohgrecord/recordmerge.prg
-   * samples/oohg/oohgrecord/textfile.prg
-   * samples/oohg/oohgrecord/xbrowsearray.prg
+   * samples\dbview\prgs\dbview.prg
+   * samples\http\h_http.prg
+   * samples\http\i_socket.ch
+   * samples\mpm\Readme.txt
+   * samples\mpm\fmgs\mpm.ch
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\gridcolumncontrols.prg
+   * samples\oohg\hello.prg
+   * samples\oohg\maindemooop.prg
+   * samples\oohg\rtl.prg
+   * samples\oohg\autoadjust\demo.prg
+   * samples\oohg\basegraph\demo.prg
+   * samples\oohg\fastfind\demo.prg
+   * samples\oohg\histogram\demo.prg
+   * samples\oohg\mybrowse\mybrowse.prg
+   * samples\oohg\oohgrecord\brw_odbc.prg
+   * samples\oohg\oohgrecord\recordmerge.prg
+   * samples\oohg\oohgrecord\textfile.prg
+   * samples\oohg\oohgrecord\xbrowsearray.prg
      * Updated copyright info.
 
 2017-07-20 21:35 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/mpm/prgs/Mpm.prg
+   * samples\mpm\prgs\Mpm.prg
      + library hb_zebra.a
 
 2017-07-09 15:12 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/stream/TStreamSSL.prg
+  * samples\oohg\stream\TStreamSSL.prg
     ! Fixed double BIO_free() call.
 
 2017-07-09 14:58 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   + samples/oohg/clocks.prg
+   + samples\oohg\clocks.prg
      + Multiple notify icons sample.
 
 2016-12-30 13:35 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/printtest.prg
+   * samples\oohg\printtest.prg
      * Format.
      + Sample about printing text using proportional font.
 
 2016-12-16 22:42 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/mpm/fmgs/main.Fmg
+   * samples\mpm\fmgs\main.Fmg
      * Removed unneeded clause.
 
 2016-10-16 22:54 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/dbview
-   * samples/http
+   * samples\dbview
+   * samples\http
      * Updated copyright info.
 
 2016-06-26 11:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/hello.prg
+   * samples\oohg\hello.prg
      * Position of some controls to avoid overlapping.
 
 2016-05-22 20:50 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/dbview/fmgs/dbuvar.ch
-   * samples/dbview/fmgs/oWndBase.fmg
-   * samples/dbview/prgs/dbview.prg
-   * samples/http/h_http.prg
-   * samples/http/i_socket.ch
-   * samples/mpm/Readme.txt
-   * samples/mpm/fmgs/mpm.ch
-   * samples/oohg/browsecolumncontrols.prg
-   * samples/oohg/gridcolumncontrols.prg
-   * samples/oohg/hello.prg
-   * samples/oohg/maindemooop.prg
-   * samples/oohg/rtl.prg
-   * samples/oohg/autoadjust/demo.prg
-   * samples/oohg/basegraph/demo.prg
-   * samples/oohg/fastfind/demo.prg
-   * samples/oohg/histogram/demo.prg
-   * samples/oohg/mybrowse/mybrowse.prg
-   * samples/oohg/oohgrecord/brw_odbc.prg
-   * samples/oohg/oohgrecord/recordmerge.prg
-   * samples/oohg/oohgrecord/textfile.prg
-   * samples/oohg/oohgrecord/xbrowsearray.prg
+   * samples\dbview\fmgs\dbuvar.ch
+   * samples\dbview\fmgs\oWndBase.fmg
+   * samples\dbview\prgs\dbview.prg
+   * samples\http\h_http.prg
+   * samples\http\i_socket.ch
+   * samples\mpm\Readme.txt
+   * samples\mpm\fmgs\mpm.ch
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\gridcolumncontrols.prg
+   * samples\oohg\hello.prg
+   * samples\oohg\maindemooop.prg
+   * samples\oohg\rtl.prg
+   * samples\oohg\autoadjust\demo.prg
+   * samples\oohg\basegraph\demo.prg
+   * samples\oohg\fastfind\demo.prg
+   * samples\oohg\histogram\demo.prg
+   * samples\oohg\mybrowse\mybrowse.prg
+   * samples\oohg\oohgrecord\brw_odbc.prg
+   * samples\oohg\oohgrecord\recordmerge.prg
+   * samples\oohg\oohgrecord\textfile.prg
+   * samples\oohg\oohgrecord\xbrowsearray.prg
      * Updated copyright info.
 
 2015-12-13 00:53 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
@@ -141,305 +154,305 @@
    * samples\oohg\stream\TStreamZip.prg
      ! Compiler error over z_stream data type caused by missing
        zlib.h include. In case Harbour doesn't include this file
-       you must install zlib library from http://www.zlib.net/
+       you must install zlib library from http:\\www.zlib.net\
      ! Harbour error over BitAnd operator.
 
 2015-09-22 23:00 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   + samples/oohg/stream/TSmtpClient.prg
+   + samples\oohg\stream\TSmtpClient.prg
      + Simple SMTP client sample using TStreamSocket() class.
 
 2015-05-02 01:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   + samples/oohg/TVirtual/TVirtualField.prg
+   + samples\oohg\TVirtual\TVirtualField.prg
      * Shows how to use TVirtualField class.
 
 2015-03-08 23:46 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/dbview/prgs/dbview.prg
-   * samples/dbview/fmgs/dbuvar.ch
-   * samples/dbview/fmgs/oWndBase.fmg
-   * samples/http/i_socket.ch
-   * samples/http/h_http.ch
-   * samples/mpm/fmgs/mpm.ch
-   * samples/mpm/Readme.txt
-   * samples/oohg/gridcolumncontrols.prg
-   * samples/oohg/hello.prg
-   * samples/oohg/maindemooop.prg
-   * samples/oohg/rtl.prg
-   * samples/oohg/browsecolumncontrols.prg
-   * samples/oohg/autoadjust/demo.prg
-   * samples/oohg/basegraph/demo.prg
-   * samples/oohg/fastfind/demo.prg
-   * samples/oohg/histogram/demo.prg
-   * samples/oohg/mybrowse/mybrowse.prg
-   * samples/oohg/oohgrecord/demo.prg
-   * samples/oohg/oohgrecord/demo.prg
-   * samples/oohg/oohgrecord/demo.prg
-   * samples/oohg/oohgrecord/demo.prg
+   * samples\dbview\prgs\dbview.prg
+   * samples\dbview\fmgs\dbuvar.ch
+   * samples\dbview\fmgs\oWndBase.fmg
+   * samples\http\i_socket.ch
+   * samples\http\h_http.ch
+   * samples\mpm\fmgs\mpm.ch
+   * samples\mpm\Readme.txt
+   * samples\oohg\gridcolumncontrols.prg
+   * samples\oohg\hello.prg
+   * samples\oohg\maindemooop.prg
+   * samples\oohg\rtl.prg
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\autoadjust\demo.prg
+   * samples\oohg\basegraph\demo.prg
+   * samples\oohg\fastfind\demo.prg
+   * samples\oohg\histogram\demo.prg
+   * samples\oohg\mybrowse\mybrowse.prg
+   * samples\oohg\oohgrecord\demo.prg
+   * samples\oohg\oohgrecord\demo.prg
+   * samples\oohg\oohgrecord\demo.prg
+   * samples\oohg\oohgrecord\demo.prg
      * Copyright updated.
 
 2014-11-04 13:21 UTC-0400 Miguel Juárez <migsoft@oohg.org>
-   * samples/dbview/prgs/dbview.prg
-   * samples/dbview/prgs/import.prg
-   * samples/dbview/prgs/indadmin.prg
-   * samples/dbview/prgs/Showprop.prg
-   * samples/dbview/dbview.rc
-   + samples/dbview/res/arriba.bmp
-   + samples/dbview/res/abajo.bmp
-   + samples/dbview/res/ultimoend.bmp
-   + samples/dbview/res/primerotop.bmp
-   * samples/dbview/fmgs/dbuvar.ch
-   * samples/dbview/fmgs/oWndBase.fmg
+   * samples\dbview\prgs\dbview.prg
+   * samples\dbview\prgs\import.prg
+   * samples\dbview\prgs\indadmin.prg
+   * samples\dbview\prgs\Showprop.prg
+   * samples\dbview\dbview.rc
+   + samples\dbview\res\arriba.bmp
+   + samples\dbview\res\abajo.bmp
+   + samples\dbview\res\ultimoend.bmp
+   + samples\dbview\res\primerotop.bmp
+   * samples\dbview\fmgs\dbuvar.ch
+   * samples\dbview\fmgs\oWndBase.fmg
      ! Adapted for support NAVIGATEBYCELL
 
 2014-11-03 23:56 UTC-0200 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/dbview/dbview.hbp
+   * samples\dbview\dbview.hbp
      ! Compiling using buildapp.bat
 
 2014-07-11 15:37 UTC-0400 MigSoft <migsoft@oohg.org>
-   * samples/mpm/Readme.txt
+   * samples\mpm\Readme.txt
      * Updated.
-   * samples/mpm/fmg/main.fmg
-   * samples/mpm/fmg/mpm.ch
-   * samples/mpm/prgs/ExeCommon.prg
-   * samples/mpm/prgs/ExeGcc.prg
-   * samples/mpm/prgs/Mpm.prg
-   * samples/mpm/prgs/MpmAso.prg
-   * samples/mpm/prgs/MpmCommon.prg
+   * samples\mpm\fmg\main.fmg
+   * samples\mpm\fmg\mpm.ch
+   * samples\mpm\prgs\ExeCommon.prg
+   * samples\mpm\prgs\ExeGcc.prg
+   * samples\mpm\prgs\Mpm.prg
+   * samples\mpm\prgs\MpmAso.prg
+   * samples\mpm\prgs\MpmCommon.prg
      * Added option x64 compile only for MinGW.
 
 2014-06-23 19:17 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/printtest.prg
+   * samples\oohg\printtest.prg
      * Updated.
 
 2014-06-16 21:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/maindemo.prg
+   * samples\oohg\maindemo.prg
      + ON KEY ESCAPE.
-   * samples/oohg/printtest.prg
+   * samples\oohg\printtest.prg
      + ON KEY ESCAPE.
      * Some lines to show new characteristics.
 
 2014-06-12 10:05 UTC-0400 MigSoft <migsoft@oohg.org>
-   * samples/dbview/prgs/dbview.prg
+   * samples\dbview\prgs\dbview.prg
      ! Fixed Save As ... option.
 
 2014-05-30 19:11 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/http/h_http.prg
-   * samples/http/httpdemo.prg
+   * samples\http\h_http.prg
+   * samples\http\httpdemo.prg
      * Address.
      + Checks.
 
 2014-02-04 15:19 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed (again!) sign change on WriteBigEndian() function.
      - Removed hack for change double-quotation marks on
        string fields (BDE doesn't works so).
      ! Fixed ::Seek(,.T.) when key is lower than first record.
      ! Corrected DateTime processing.
-   * samples/oohg/stream/TStream.prg
+   * samples\oohg\stream\TStream.prg
      ! Added autofill functionality to ::Len(), ::Left(), ::Right(),
        ::Substr() and ::Skip() methods.
 
 2014-01-06 16:35 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed (again) ::Skip() method search current key when table
        is indexed and block's buffer has changed.
 
 2014-01-03 19:26 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed sign operator on WriteBigEndian() function.
      ! ::Skip() method search current key when table is indexed
        and block's buffer has changed.
 
 2013-12-10 12:34 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed Harbour compatibility. Thanks to MigSoft.
 
 2013-11-29 22:09 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed block number sign (unsigned) on .PX files.
      ! Fixed fast skip functionality when SCOPE is active.
 
 2013-11-20 23:00 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed SCOPE functionality.
      + Added ::IsTableEmpty() function for NOSHOWEMPTYROW support.
 
 2013-11-19 16:09 UTC-0400 MigSoft <migsoft@oohg.org>
-   + samples/dbview/dbview.hbp
-   + samples/dbview/dbview.rc
-   + samples/dbview/prgs/dbview.prg
-   + samples/dbview/prgs/Admindbf.Prg
-   + samples/dbview/prgs/Showprop.prg
-   + samples/dbview/prgs/creanew1.prg
-   + samples/dbview/prgs/dbquery1.prg
-   + samples/dbview/prgs/AboutWin.prg
-   + samples/dbview/prgs/modistru.prg
-   + samples/dbview/prgs/Indadmin.Prg
-   + samples/dbview/prgs/Import.prg
-   + samples/dbview/fmgs/dbuvar.ch
-   + samples/dbview/fmgs/import.fmg
-   + samples/dbview/fmgs/owndbase.fmg
-   + samples/dbview/fmgs/hbcompat.ch
-   + samples/dbview/res/Zoom.ico
-   + samples/dbview/res/Zoom.ico
-   + samples/dbview/res/dbview.jpg
-   + samples/dbview/res/guardar.bmp
-   + samples/dbview/res/salir.bmp
-   + samples/dbview/res/open.bmp
-   + samples/dbview/res/new.bmp
-   + samples/dbview/res/saveas.bmp
-   + samples/dbview/res/erase.bmp
-   + samples/dbview/res/print.bmp
-   + samples/dbview/res/index.bmp
-   + samples/dbview/res/insert.bmp
-   + samples/dbview/res/select3.bmp
-   + samples/dbview/res/reindex.bmp
-   + samples/dbview/res/modifyindex.bmp
-   + samples/dbview/res/addtag.bmp
-   + samples/dbview/res/droptag.bmp
-   + samples/dbview/res/closeindex.bmp
-   + samples/dbview/res/findnext.bmp
-   + samples/dbview/res/replace.bmp
-   + samples/dbview/res/paste.bmp
-   + samples/dbview/res/copy.bmp
-   + samples/dbview/res/info.bmp
-   + samples/dbview/res/filter.bmp
-   + samples/dbview/res/filter2.bmp
-   + samples/dbview/res/record.bmp
-   + samples/dbview/res/find.bmp
-   + samples/dbview/res/format.bmp
-   + samples/dbview/res/primero.bmp
-   + samples/dbview/res/anterior.bmp
-   + samples/dbview/res/siguiente.bmp
-   + samples/dbview/res/ultimo.bmp
-   + samples/dbview/res/paint.bmp
-   + samples/dbview/res/back.bmp
-   + samples/dbview/res/font.bmp
-   + samples/dbview/res/br_ok.bmp
-   + samples/dbview/res/br_no.bmp
-   + samples/dbview/res/logic.bmp
-   + samples/dbview/res/fech.bmp
-   + samples/dbview/res/num.bmp
-   + samples/dbview/res/num1.bmp
-   + samples/dbview/res/char.bmp
-   + samples/dbview/res/dele.bmp
-   + samples/dbview/res/memo.bmp
-   + samples/dbview/res/down.bmp
-   + samples/dbview/res/migsoft.bmp
+   + samples\dbview\dbview.hbp
+   + samples\dbview\dbview.rc
+   + samples\dbview\prgs\dbview.prg
+   + samples\dbview\prgs\Admindbf.Prg
+   + samples\dbview\prgs\Showprop.prg
+   + samples\dbview\prgs\creanew1.prg
+   + samples\dbview\prgs\dbquery1.prg
+   + samples\dbview\prgs\AboutWin.prg
+   + samples\dbview\prgs\modistru.prg
+   + samples\dbview\prgs\Indadmin.Prg
+   + samples\dbview\prgs\Import.prg
+   + samples\dbview\fmgs\dbuvar.ch
+   + samples\dbview\fmgs\import.fmg
+   + samples\dbview\fmgs\owndbase.fmg
+   + samples\dbview\fmgs\hbcompat.ch
+   + samples\dbview\res\Zoom.ico
+   + samples\dbview\res\Zoom.ico
+   + samples\dbview\res\dbview.jpg
+   + samples\dbview\res\guardar.bmp
+   + samples\dbview\res\salir.bmp
+   + samples\dbview\res\open.bmp
+   + samples\dbview\res\new.bmp
+   + samples\dbview\res\saveas.bmp
+   + samples\dbview\res\erase.bmp
+   + samples\dbview\res\print.bmp
+   + samples\dbview\res\index.bmp
+   + samples\dbview\res\insert.bmp
+   + samples\dbview\res\select3.bmp
+   + samples\dbview\res\reindex.bmp
+   + samples\dbview\res\modifyindex.bmp
+   + samples\dbview\res\addtag.bmp
+   + samples\dbview\res\droptag.bmp
+   + samples\dbview\res\closeindex.bmp
+   + samples\dbview\res\findnext.bmp
+   + samples\dbview\res\replace.bmp
+   + samples\dbview\res\paste.bmp
+   + samples\dbview\res\copy.bmp
+   + samples\dbview\res\info.bmp
+   + samples\dbview\res\filter.bmp
+   + samples\dbview\res\filter2.bmp
+   + samples\dbview\res\record.bmp
+   + samples\dbview\res\find.bmp
+   + samples\dbview\res\format.bmp
+   + samples\dbview\res\primero.bmp
+   + samples\dbview\res\anterior.bmp
+   + samples\dbview\res\siguiente.bmp
+   + samples\dbview\res\ultimo.bmp
+   + samples\dbview\res\paint.bmp
+   + samples\dbview\res\back.bmp
+   + samples\dbview\res\font.bmp
+   + samples\dbview\res\br_ok.bmp
+   + samples\dbview\res\br_no.bmp
+   + samples\dbview\res\logic.bmp
+   + samples\dbview\res\fech.bmp
+   + samples\dbview\res\num.bmp
+   + samples\dbview\res\num1.bmp
+   + samples\dbview\res\char.bmp
+   + samples\dbview\res\dele.bmp
+   + samples\dbview\res\memo.bmp
+   + samples\dbview\res\down.bmp
+   + samples\dbview\res\migsoft.bmp
      + Added as a samples.
 
 2013-11-18 17:13 UTC-0400 MigSoft <migsoft@oohg.org>
-   + samples/mpm/mpm.hbp
-   + samples/mpm/mpm.rc
-   + samples/mpm/readme.txt
-   + samples/mpm/prgs/mpm.prg
-   + samples/mpm/prgs/exegcc.prg
-   + samples/mpm/prgs/libgcc.prg
-   + samples/mpm/prgs/fmgfilesadd.prg
-   + samples/mpm/prgs/rcfilesadd.prg
-   + samples/mpm/prgs/prgfilesadd.prg
-   + samples/mpm/prgs/mpmcommon.prg
-   + samples/mpm/prgs/exemsvc.prg
-   + samples/mpm/prgs/libmsvc.prg
-   + samples/mpm/prgs/libbcc.prg
-   + samples/mpm/prgs/libpocc.prg
-   + samples/mpm/prgs/aboutwin.prg
-   + samples/mpm/prgs/libfilesadd.prg
-   + samples/mpm/prgs/cfilesadd.prg
-   + samples/mpm/prgs/exebcc.prg
-   + samples/mpm/prgs/execommon.prg
-   + samples/mpm/prgs/exepocc.prg
-   + samples/mpm/prgs/mpmaso.prg
-   + samples/mpm/fmgs/main.fmg
-   + samples/mpm/fmgs/mpm.ch
-   + samples/mpm/res/Migproj.ico
-   + samples/mpm/res/Migproj.ico
-   + samples/mpm/res/Process.ico
-   + samples/mpm/res/Build.ico
-   + samples/mpm/res/ologop.jpg
-   + samples/mpm/res/new.bmp
-   + samples/mpm/res/open.bmp
-   + samples/mpm/res/save.bmp
-   + samples/mpm/res/run.bmp
-   + samples/mpm/res/exit.bmp
-   + samples/mpm/res/mpm.bmp
-   + samples/mpm/res/build2.bmp
-   + samples/mpm/res/folder.bmp
-   + samples/mpm/res/prg.bmp
-   + samples/mpm/res/c.bmp
-   + samples/mpm/res/rc.bmp
-   + samples/mpm/res/add.bmp
-   + samples/mpm/res/remove.bmp
-   + samples/mpm/res/down.bmp
-   + samples/mpm/res/up.bmp
-   + samples/mpm/res/edit.bmp
-   + samples/mpm/res/editfmg.bmp
-   + samples/mpm/res/harbour.bmp
-   + samples/mpm/res/xharbour.bmp
-   + samples/mpm/res/migsoft.bmp
-   + samples/mpm/res/t_project.bmp
-   + samples/mpm/res/t_files.bmp
-   + samples/mpm/res/t_harbour.bmp
-   + samples/mpm/res/t_compiler.bmp
-   + samples/mpm/res/t_gui.bmp
-   + samples/mpm/res/t_libraries.bmp
-   + samples/mpm/res/t_result.bmp
+   + samples\mpm\mpm.hbp
+   + samples\mpm\mpm.rc
+   + samples\mpm\readme.txt
+   + samples\mpm\prgs\mpm.prg
+   + samples\mpm\prgs\exegcc.prg
+   + samples\mpm\prgs\libgcc.prg
+   + samples\mpm\prgs\fmgfilesadd.prg
+   + samples\mpm\prgs\rcfilesadd.prg
+   + samples\mpm\prgs\prgfilesadd.prg
+   + samples\mpm\prgs\mpmcommon.prg
+   + samples\mpm\prgs\exemsvc.prg
+   + samples\mpm\prgs\libmsvc.prg
+   + samples\mpm\prgs\libbcc.prg
+   + samples\mpm\prgs\libpocc.prg
+   + samples\mpm\prgs\aboutwin.prg
+   + samples\mpm\prgs\libfilesadd.prg
+   + samples\mpm\prgs\cfilesadd.prg
+   + samples\mpm\prgs\exebcc.prg
+   + samples\mpm\prgs\execommon.prg
+   + samples\mpm\prgs\exepocc.prg
+   + samples\mpm\prgs\mpmaso.prg
+   + samples\mpm\fmgs\main.fmg
+   + samples\mpm\fmgs\mpm.ch
+   + samples\mpm\res\Migproj.ico
+   + samples\mpm\res\Migproj.ico
+   + samples\mpm\res\Process.ico
+   + samples\mpm\res\Build.ico
+   + samples\mpm\res\ologop.jpg
+   + samples\mpm\res\new.bmp
+   + samples\mpm\res\open.bmp
+   + samples\mpm\res\save.bmp
+   + samples\mpm\res\run.bmp
+   + samples\mpm\res\exit.bmp
+   + samples\mpm\res\mpm.bmp
+   + samples\mpm\res\build2.bmp
+   + samples\mpm\res\folder.bmp
+   + samples\mpm\res\prg.bmp
+   + samples\mpm\res\c.bmp
+   + samples\mpm\res\rc.bmp
+   + samples\mpm\res\add.bmp
+   + samples\mpm\res\remove.bmp
+   + samples\mpm\res\down.bmp
+   + samples\mpm\res\up.bmp
+   + samples\mpm\res\edit.bmp
+   + samples\mpm\res\editfmg.bmp
+   + samples\mpm\res\harbour.bmp
+   + samples\mpm\res\xharbour.bmp
+   + samples\mpm\res\migsoft.bmp
+   + samples\mpm\res\t_project.bmp
+   + samples\mpm\res\t_files.bmp
+   + samples\mpm\res\t_harbour.bmp
+   + samples\mpm\res\t_compiler.bmp
+   + samples\mpm\res\t_gui.bmp
+   + samples\mpm\res\t_libraries.bmp
+   + samples\mpm\res\t_result.bmp
      + Added as a samples.
 
 2013-11-13 14:49 UTC-0400 MigSoft <migsoft@oohg.org>
-   * samples/oohg/build.bat
+   * samples\oohg\build.bat
      * 2buildapp.bat used now to establish the path and then compile.
 
 2013-10-04 18:09 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/stream/TStream.prg
+   * samples\oohg\stream\TStream.prg
      ! Fixed TStreamFile:Skip() method.
      + ::nMinToFill property added. Autofills when buffer is lower
        than this value.
 
 2013-07-30 15:35 UTC-0400 MigSoft <migsoft@oohg.org>
-   + samples/autoadjust/demo.prg
-   + samples/basegraph/demo.prg
-   + samples/basegraph/saldomes.dbf
-   + samples/basegraph/graph.ico
-   + samples/fastfind/demo.prg
-   + samples/fastfind/win_1.fmg
-   + samples/fastfind/demo.rc
-   + samples/fastfind/cuentas.dbf
-   + samples/fastfind/find.ico
-   + samples/histogram/demo.prg
-   + samples/histogram/veamos.fmg
-   + samples/histogram/veamos2.fmg
-   + samples/histogram/grafico.fmg
-   + samples/histogram/demo.rc
-   + samples/histogram/graph.ico
-   + samples/mybrowse/mybrowse.prg
-   + samples/mybrowse/test.dbf
-   + samples/mybrowse/mybrowse.rc
-   + samples/mybrowse/agenda.ico
-   + samples/mybrowse/br_ok.bmp
-   + samples/mybrowse/br_no.bmp
-   + samples/mybrowse/images/memo.bmp
-   + samples/mybrowse/images/fech.bmp
-   + samples/mybrowse/images/char.bmp
-   + samples/mybrowse/images/num.bmp
-   + samples/mybrowse/images/logic.bmp
-   + samples/mybrowse/images/dele.bmp
+   + samples\autoadjust\demo.prg
+   + samples\basegraph\demo.prg
+   + samples\basegraph\saldomes.dbf
+   + samples\basegraph\graph.ico
+   + samples\fastfind\demo.prg
+   + samples\fastfind\win_1.fmg
+   + samples\fastfind\demo.rc
+   + samples\fastfind\cuentas.dbf
+   + samples\fastfind\find.ico
+   + samples\histogram\demo.prg
+   + samples\histogram\veamos.fmg
+   + samples\histogram\veamos2.fmg
+   + samples\histogram\grafico.fmg
+   + samples\histogram\demo.rc
+   + samples\histogram\graph.ico
+   + samples\mybrowse\mybrowse.prg
+   + samples\mybrowse\test.dbf
+   + samples\mybrowse\mybrowse.rc
+   + samples\mybrowse\agenda.ico
+   + samples\mybrowse\br_ok.bmp
+   + samples\mybrowse\br_no.bmp
+   + samples\mybrowse\images\memo.bmp
+   + samples\mybrowse\images\fech.bmp
+   + samples\mybrowse\images\char.bmp
+   + samples\mybrowse\images\num.bmp
+   + samples\mybrowse\images\logic.bmp
+   + samples\mybrowse\images\dele.bmp
      + Added as samples.
 
 2013-07-01 14:53 UTC-0400 MigSoft <migsoft@oohg.org>
-   * samples/oohg/build.bat
+   * samples\oohg\build.bat
      * Some comments added.
      * Paths and environment variables changed to match OOHG defaults.
-       To use a different version of Harbour and/or MinGW compilers,
-       edit BuildApp.bat and change HBPATH and/or MINGWPATH variables.
+       To use a different version of Harbour and\or MinGW compilers,
+       edit BuildApp.bat and change HBPATH and\or MINGWPATH variables.
 
 2013-06-26 12:18 UTC-0400 MigSoft <migsoft@oohg.org>
-   + samples/oohg/build.bat
+   + samples\oohg\build.bat
      + Added batch for building exe files
      ; You must tweak the environment variables to match
        your Harbour and MinGW installations.
 
 2013-04-16 10:29 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      * Fixed ::Found() flag when table is not indexed.
      * Optimized record jump.
      * Doesn't get record buffer twice when found on SEEK.
@@ -447,9 +460,9 @@
      * Field de-code function splitted.
 
 2013-03-04 17:37 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/stream/TStreamSerial.prg
+   * samples\oohg\stream\TStreamSerial.prg
      ! Must read after write.
-   * samples/oohg/oohgrecord/brw_odbc.prg
+   * samples\oohg\oohgrecord\brw_odbc.prg
      + Access fields as object's properties.
      + ::Field(), ::FieldName(), ::FieldPos(), ::Close() methods added
        (ooHGRecord methods).
@@ -459,87 +472,87 @@
        interfase).
 
 2013-03-01 12:18 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Added ::Write() method to file object.
 
 2013-02-20 23:25 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed false ! FOUND().
      ! Fixed last seek.
 
 2013-02-17 00:29 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed SEEK procedure on PX files.
      * Moved field's reading to C level.
 
 2012-09-18 22:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   + samples/http/i_socket.prg
-   + samples/http/h_http.prg
-   + samples/http/demo.prg
+   + samples\http\i_socket.prg
+   + samples\http\h_http.prg
+   + samples\http\demo.prg
      + Added as a sample.
 
 2012-06-24 13:47 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   + samples/oohg/maindemooop.prg
+   + samples\oohg\maindemooop.prg
      + Shows how to program using oop syntax.
        Taken from samples distributed in OOHG distro by Ciro Vargas.
 
 2012-06-24 13:35 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/chat.prg
+   * samples\oohg\chat.prg
      ! Fixed path to include files.
-   * samples/oohg/printtest.prg
+   * samples\oohg\printtest.prg
      + Added CVS Id.
      * Updated with last changes made by Ciro Vargas for distro.
 
 2012-06-24 12:41 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/oohgrecord/oohgrecord.prg
-   * samples/oohg/oohgrecord/textfile.prg
+   * samples\oohg\oohgrecord\oohgrecord.prg
+   * samples\oohg\oohgrecord\textfile.prg
      ! Fixed RTEs under harbour.
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      + Added cast to pacify C compiler.
-   * samples/oohg/oohgrecord/brw_odbc.prg
+   * samples\oohg\oohgrecord\brw_odbc.prg
      + Added check to avoid RTE when no database is open.
 
 2012-05-18 21:10 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed silly typo when header size is not 2048.
      + Added partial TIMESTAMP (as DATE type) functionality.
 
 2012-05-06 15:00 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/stream/TStreamSocket.prg
+   * samples\oohg\stream\TStreamSocket.prg
      ! Added missing fcntl() call.
 
 2012-02-20 18:32 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/oohgrecord/px.prg
+   * samples\oohg\oohgrecord\px.prg
      ! Fixed .PX's key count for numbers grather than 32,767.
      + "Fast skip" functionality added (don't re-locate record
        for small SKIPs).
      ! Small optimization for ReadBigEndian() calls.
 
 2011-12-15 18:28 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-   + samples/oohg/tabdemo.prg
+   + samples\oohg\tabdemo.prg
      + tabdemo.prg sample added.
        Shows TMultiPage() capabilities.
 
 2011-09-05 12:29 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/stream/TStreamSocket.prg
+  * samples\oohg\stream\TStreamSocket.prg
     ! Fixed Harbour compilation.
 
 2011-09-02 17:42 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-   * samples/oohg/stream/TStream.prg
+   * samples\oohg\stream\TStream.prg
      ! Fixed Harbour compilation.
 
 2011-08-30 22:25 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples/oohg/oohgrecord/xbrowsearray.prg
+   * samples\oohg\oohgrecord\xbrowsearray.prg
      + Added APPEND method to XBrowse_Array class.
      * Changed comments about methods used and not used by TXBROWSE class.
 
 2011-07-17 09:39 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/chat.prg
-  + samples/oohg/stream/TStream.prg
-  + samples/oohg/stream/TStreamSerial.prg
-  + samples/oohg/stream/TStreamSocket.prg
-  + samples/oohg/stream/TStreamSSL.prg
-  + samples/oohg/stream/TStreamZip.prg
+  + samples\oohg\chat.prg
+  + samples\oohg\stream\TStream.prg
+  + samples\oohg\stream\TStreamSerial.prg
+  + samples\oohg\stream\TStreamSocket.prg
+  + samples\oohg\stream\TStreamSSL.prg
+  + samples\oohg\stream\TStreamZip.prg
     + TStream class added.
 
 2011-07-02 16:26:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
@@ -549,27 +562,27 @@
       TGridControlDatePicker class.
 
 2011-01-24 13:39 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/oohgrecord/xbrowsearray.prg
+  * samples\oohg\oohgrecord\xbrowsearray.prg
     ! Fixed wrong ::Skip() movement.
 
 2010-12-01 12:57 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/oohgrecord/brw_odbc.prg
+  * samples\oohg\oohgrecord\brw_odbc.prg
     * Prevents "sample PRG code" compilation when NO_SAMPLE
       macro is defined. Useful for #include .PRG file without
       sample code.
-  * samples/oohg/oohgrecord/textfile.prg
+  * samples\oohg\oohgrecord\textfile.prg
     ! Fixed field reading for fixed-width columns.
-  * samples/oohg/oohgrecord/xbrowsearray.prg
+  * samples\oohg\oohgrecord\xbrowsearray.prg
     * Added ::EOF() functionality.
 
 2010-11-29 20:21 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/oohgrecord/px.prg
-  * samples/oohg/oohgrecord/recordmerge.prg
-  * samples/oohg/oohgrecord/xbrowsearray.prg
+  * samples\oohg\oohgrecord\px.prg
+  * samples\oohg\oohgrecord\recordmerge.prg
+  * samples\oohg\oohgrecord\xbrowsearray.prg
     * Prevents "sample PRG code" compilation when NO_SAMPLE
       macro is defined. Useful for #include .PRG file without
       sample code.
-  + samples/oohg/oohgrecord/textfile.prg
+  + samples\oohg\oohgrecord\textfile.prg
     + Textfile-as-database class.
       NOTE: This class can't be used on XBROWSE control.
       This allows to read a sequentual text file (delimited or
@@ -578,110 +591,110 @@
       ::GoTop(), too), but it's an easy way to read these files.
 
 2009-12-23 18:05 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/incremental.prg
+  + samples\incremental.prg
     + Incremental search sample.
 
 2008-12-10 22:51 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/recordmerge.prg
+  + samples\oohg\recordmerge.prg
     + Multiple databases on a single XBROWSE sample.
 
 2008-07-11 23:57 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/DropFiles.prg
+  + samples\oohg\DropFiles.prg
     + Drag and drop files sample.
 
 2008-01-12 14:16 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/xbrowsearray.prg
+  + samples\oohg\xbrowsearray.prg
     + XBROWSE displays an array.
 
 2007-05-09 17:58 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples/oohg/hello.prg
-  * samples/oohg/printtest.prg
+  * samples\oohg\hello.prg
+  * samples\oohg\printtest.prg
 
 2007-03-25 16:37 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/activexdemo.prg
+  + samples\oohg\activexdemo.prg
     + ActiveX control added.
 
 2006-08-21 14:36 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples/oohg/printtest.prg
+  * samples\oohg\printtest.prg
      * update samples
 
 2006-03-26 07:14 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples/oohg/hello.prg
-  * samples/oohg/prnttest.prg
+  * samples\oohg\hello.prg
+  * samples\oohg\prnttest.prg
     *  little change in sample in order to last tprint changes
 
 2006-02-27 20:26 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples/oohg/hello.prg
-  * samples/oohg/printtest.prg
+  * samples\oohg\hello.prg
+  * samples\oohg\printtest.prg
      * updated print samples
 
 2006-02-05 18:19 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  - samples/oohg/pirntest.prg
+  - samples\oohg\pirntest.prg
     * Removed unnecesary file.
 
 2006-01-19 13:06 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  + samples/oohg/printtest.prg
-  + samples/oohg/test.dbf
-  + samples/oohg/test.dbt
-  + samples/oohg/report1.rpt
+  + samples\oohg\printtest.prg
+  + samples\oohg\test.dbf
+  + samples\oohg\test.dbt
+  + samples\oohg\report1.rpt
     + New TPRINT class , now can change print library without modify source code
 
 2005-11-30 21:27 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/browsecolumncontrols.prg
-  * samples/oohg/gridcolumncontrols.prg
+  * samples\oohg\browsecolumncontrols.prg
+  * samples\oohg\gridcolumncontrols.prg
     ! Fixed TRadio:aItems[] to TRadio:aControls[]
 
 2005-11-12 18:07 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     * Cosmetic changes.
 
 2005-11-12 15:26 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-    * samples/oohg/hello.prg
+    * samples\oohg\hello.prg
 
 2005-11-09 22:28 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     * XDEFINE WINDOW command changed to DEFINE WINDOW. "Old"
       DEFINE WINDOW commands are commented.
 
 2005-11-09 00:00 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     * Samples for NOBORDER and ::SetKey() added.
 
 2005-10-27 23:41 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/browsecolumncontrols.prg
-  * samples/oohg/gridcolumncontrols.prg
+  * samples\oohg\browsecolumncontrols.prg
+  * samples\oohg\gridcolumncontrols.prg
 
 2005-10-23 12:51 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/gridcolumncontrols.prg
-  * samples/oohg/browsecolumncontrols.prg
+  * samples\oohg\gridcolumncontrols.prg
+  * samples\oohg\browsecolumncontrols.prg
     + Added ::nSpacing property to MyRadioGroup (TGridControlRadioGroup)
       class.
 
 2005-10-22 01:11 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/gridcolumncontrols.prg
+  + samples\oohg\gridcolumncontrols.prg
     + Demo program for demostrate how to create "new" COLUMNCONTROLS
       objects on grid.
-  + samples/oohg/browsecolumncontrols.dbf
-  + samples/oohg/browsecolumncontrols.prg
+  + samples\oohg\browsecolumncontrols.dbf
+  + samples\oohg\browsecolumncontrols.prg
     + Demo program for demostrate how to create "new" COLUMNCONTROLS
       objects, and REPLACEFIELD clause, on browse.
 
 2005-10-12 17:37 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-    * samples/oohg/hello.prg
+    * samples\oohg\hello.prg
       added bar graph print example.
 
 2005-10-11 00:43 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples/oohg/rtl.prg
+  + samples\oohg\rtl.prg
     + RTL functionality demo.
 
 2005-10-09 22:30 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     * Small adjustments.
 
 2005-10-08 09:00 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     | added example for new method print and other fixes.
 
 2005-10-03 00:24 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples/oohg/hello.prg
+  * samples\oohg\hello.prg
     * Changed sample's LABEL definition method.
