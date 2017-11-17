@@ -71,7 +71,7 @@ LOCAL oIE
 
 IF ( oIE := win_oleCreateObject( "InternetExplorer.Application" ) ) != NIL
    oIE:Visible := .T.
-   oIE:Navigate( "http://www.oohg.org" )
+   oIE:Navigate( "https://oohg.github.io/" )
 ELSE
    msgstop("Error. IExplorer not available.", win_oleErrorText())
 ENDIF

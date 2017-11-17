@@ -1,8 +1,3 @@
-/*
- * $Id: import.fmg $
- */
-*HMGS-MINIGUI-IDE Two-Way Form Designer Generated Code
-*OPEN SOURCE PROJECT 2005-2011 Walter Formigoni http://sourceforge.net/projects/hmgs-minigui/
 
 DEFINE WINDOW TEMPLATE AT 186 , 398 WIDTH 390 HEIGHT 322 TITLE PROGRAM+"- Import a File" ICON "MAIN1" MODAL NOSIZE NOMINIMIZE NOMAXIMIZE
 

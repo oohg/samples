@@ -9,7 +9,7 @@
  *
  * Based on a sample from Bos Taurus library for HMG
  * created by Dr. CLAUDIO SOTO (from Uruguay) <srvet@adinet.com.uy>
- * <http://srvet.blogspot.com>
+ * <http://srvet.blogspot.com.uy/>
  *
  * Visit us at https://github.com/fyurisich/OOHG_Samples or at
  * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki

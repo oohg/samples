@@ -8,6 +8,12 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2017-11-17 20:52 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   * samples\*.*
+     * References to sourceforge changed to github.
+
 2017-11-17 19:50 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.

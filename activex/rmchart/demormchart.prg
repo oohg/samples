@@ -28,7 +28,7 @@ FUNCTION Main()
 
    WITH OBJECT oChart:Region( 1 )
 
-        :Footer = "http://www.oohg.org"
+        :Footer = "https://oohg.github.io/"
         :AddCaption()
 
          WITH OBJECT :Caption()

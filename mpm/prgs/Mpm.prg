@@ -9,7 +9,7 @@
  */
 /*
  * ooHG - Object Oriented Harbour GUI library
- * http://www.oohg.org - http://sourceforge.net/projects/oohg - http://mig2soft.com
+ * https://oohg.github.io/ - http://mig2soft.com
  * "mpm.prg" MigSoft Project Manager
  * Copyright 2008-2012 MigSoft <fugaz_cl/at/yahoo.es> <mig2soft/at/yahoo.com>
  */

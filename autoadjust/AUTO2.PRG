@@ -1,6 +1,6 @@
 /*
  * ooHG - Object Oriented Harbour GUI library
- * http://www.oohg.org - http://sourceforge.net/projects/oohg
+ * https://oohg.github.io/
  * "Auto.prg v.1.0" Ejemplo de AutoAdjust
  * Copyright 2007 MigSoft <fugaz_cl/at/yahoo.es>
  */

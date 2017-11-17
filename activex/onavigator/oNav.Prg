@@ -1,6 +1,6 @@
 /*
  * ooHG - Object Oriented Harbour GUI library
- * http://www.oohg.org - http://sourceforge.net/projects/oohg
+ * https://oohg.github.io/
  * "oNav.prg" Ejemplo de algunos eventos del control ActiveX
  * Copyright 2007 MigSoft <fugaz_cl/at/yahoo.es>
  * Soporte de Eventos una fina cortesía de Oscar Joel Lira Lira
@@ -80,7 +80,7 @@ DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
 
 
         @ 30,0 COMBOBOX directo obj ocombo ;
-        font "Arial" size 9 width 720 items {"http://www.oohg.org","http://www.google.com","http://www.yahoo.com"} ;
+        font "Arial" size 9 width 720 items {"https://oohg.github.io/","http://www.google.com","http://www.yahoo.com"} ;
         value 1  on enter navegar() displayedit ///////// on change navegar()
 
 
@@ -249,7 +249,7 @@ Procedure home1()
 *------------------------------------------------------*
 local i:= otab:value
    xoActivex := "oActiveX_" + StrZero( i, 4 )
-   &xoactivex:navigate("http://www.oohg.org")
+   &xoactivex:navigate("https://oohg.github.io/")
 Return
 
 *------------------------------------------------------*

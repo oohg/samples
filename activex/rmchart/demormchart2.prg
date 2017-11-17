@@ -38,7 +38,7 @@ FUNCTION Main()
          :Top    := 10
          :Width  := -5
          :Height := -5
-         :Footer := "http://www.oohg.org"
+         :Footer := "https://oohg.github.io/"
 
          // Add caption to region 1
          :AddCaption()
