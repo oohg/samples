@@ -1,5 +1,5 @@
 /*
- * $Id: activexdemo.prg,v 1.1 2007-03-25 22:41:42 guerra000 Exp $
+ * $Id: activexdemo.prg $
  */
 /*
    Marcelo Torres, Noviembre de 2006.

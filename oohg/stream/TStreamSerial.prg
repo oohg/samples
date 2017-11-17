@@ -1,10 +1,12 @@
 /*
- * $Id: TStreamSerial.prg,v 1.6 2015-12-13 06:56:10 guerra000 Exp $
+ * $Id: TStreamSerial.prg $
  */
 /*
  * TStreamSerial
  *
  * Data stream from serial port management class.
+ *
+ * Posted by Vicente Guerra on 2013/03/04.
  */
 
 #include "hbclass.ch"

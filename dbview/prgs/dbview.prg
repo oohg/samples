@@ -1,7 +1,6 @@
 /*
- * $Id: dbview.prg,v 1.7 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: dbview.prg $
  */
-
 /*
  *
  * Program to view DBF files using standard Browse control

@@ -1,5 +1,5 @@
 /*
- * $Id: printtest.prg,v 1.12 2016-12-30 16:36:23 fyurisich Exp $
+ * $Id: printtest.prg $
  */
 
 #include 'oohg.ch'

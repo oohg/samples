@@ -1,5 +1,5 @@
 /*
- * $Id: httpdemo.prg,v 1.2 2014-05-30 22:11:15 fyurisich Exp $
+ * $Id: httpdemo.prg $
  */
 /*
  * Http Sample n° 1

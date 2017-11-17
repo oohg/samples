@@ -1,14 +1,12 @@
 /*
- * $Id: Mpm.prg,v 1.3 2017-07-21 00:35:20 fyurisich Exp $
+ * $Id: Mpm.prg
  */
-
 /*
  * HARBOUR MINIGUI PROJECT MANAGER - Harbour MiniGUI library Demo
  *
  * Copyright 2002-2012 Roberto Lopez <harbourminigui@gmail.com>
  * http://harbourminigui.googlepages.com
  */
-
 /*
  * ooHG - Object Oriented Harbour GUI library
  * http://www.oohg.org - http://sourceforge.net/projects/oohg - http://mig2soft.com

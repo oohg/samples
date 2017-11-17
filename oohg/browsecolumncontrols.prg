@@ -1,5 +1,5 @@
 /*
- * $Id: browsecolumncontrols.prg,v 1.9 2017-08-25 19:28:45 fyurisich Exp $
+ * $Id: browsecolumncontrols.prg $
  */
 /*
  * ooHG Browse COLUMNCONTROLS demo. (c) 2005-2017 Vic

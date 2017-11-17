@@ -1,6 +1,6 @@
 @echo off
 rem
-rem $Id: build.bat,v 1.3 2013-11-13 18:06:43 migsoft Exp $
+rem $Id: build.bat $
 rem
 
 SET DISCO=%~d1

@@ -1,11 +1,13 @@
 /*
- * $Id: TStreamZip.prg,v 1.1 2011/07/17 14:57:50 guerra000 Exp $
+ * $Id: TStreamZip.prg $
  */
 /*
  * Data stream from (((compress/)))uncompress management class.
  * It uses zlib library.
  *
  * TStreamUnZip. Reads compressed data and returns uncompressed.
+ *
+ * Posted by Vicente Guerra on 2011/07/17.
  */
 /* zlib.h -- interface of the 'zlib' general purpose compression library
   version 1.2.3, July 18th, 2005
@@ -131,6 +133,7 @@ RETURN ::Super:Disconnect()
 
 #include <hbapi.h>
 #include <hbzlib.h>
+#include <zlib.h>
 
 struct Stream_z_stream {
    z_stream z_stream;
@@ -370,9 +373,15 @@ LOCAL cBuffer, nAux
       hHeader:CompressedSize := ASC( cBuffer[ 19 ] ) + ( ASC( cBuffer[ 20 ] ) * 256 ) + ( ASC( cBuffer[ 21 ] ) * 65536 ) + ( ASC( cBuffer[ 22 ] ) * 16777216 )
       //
       nAux := ASC( cBuffer[ 7 ] ) + ( ASC( cBuffer[ 8 ] ) * 256 )
+#ifndef __XHARBOUR__
+      hHeader:Encrypted  := ( hb_bitAnd( nAux, 0x0001 ) != 0 )
+      hHeader:Descriptor := ( hb_bitAnd( nAux, 0x0008 ) != 0 )
+      hHeader:Patched    := ( hb_bitAnd( nAux, 0x0020 ) != 0 )
+#else
       hHeader:Encrypted  := ( ( nAux & 0x0001 ) != 0 )
       hHeader:Descriptor := ( ( nAux & 0x0008 ) != 0 )
       hHeader:Patched    := ( ( nAux & 0x0020 ) != 0 )
+#endif
       hHeader:VersionHi  := ASC( cBuffer[ 5 ] )
       hHeader:VersionLo  := ASC( cBuffer[ 6 ] )
       hHeader:CRC32      := ASC( cBuffer[ 15 ] ) + ( ASC( cBuffer[ 16 ] ) * 256 ) + ( ASC( cBuffer[ 17 ] ) * 65536 ) + ( ASC( cBuffer[ 18 ] ) * 16777216 )
@@ -410,9 +419,15 @@ LOCAL cBuffer, nAux
       hHeader:CompressedSize := ASC( cBuffer[ 21 ] ) + ( ASC( cBuffer[ 22 ] ) * 256 ) + ( ASC( cBuffer[ 23 ] ) * 65536 ) + ( ASC( cBuffer[ 24 ] ) * 16777216 )
       //
       nAux := ASC( cBuffer[ 9 ] ) + ( ASC( cBuffer[ 10 ] ) * 256 )
+#ifndef __XHARBOUR__
+      hHeader:Encrypted  := ( hb_bitAnd( nAux, 0x0001 ) != 0 )
+      hHeader:Descriptor := ( hb_bitAnd( nAux, 0x0008 ) != 0 )
+      hHeader:Patched    := ( hb_bitAnd( nAux, 0x0020 ) != 0 )
+#else
       hHeader:Encrypted  := ( ( nAux & 0x0001 ) != 0 )
       hHeader:Descriptor := ( ( nAux & 0x0008 ) != 0 )
       hHeader:Patched    := ( ( nAux & 0x0020 ) != 0 )
+#endif
       hHeader:VersionHi  := ASC( cBuffer[ 7 ] )
       hHeader:VersionLo  := ASC( cBuffer[ 8 ] )
       hHeader:CRC32      := ASC( cBuffer[ 17 ] ) + ( ASC( cBuffer[ 18 ] ) * 256 ) + ( ASC( cBuffer[ 19 ] ) * 65536 ) + ( ASC( cBuffer[ 20 ] ) * 16777216 )

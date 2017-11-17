@@ -1,5 +1,7 @@
 /*
- * $Id: tabdemo.prg,v 1.1 2011-12-16 00:17:21 guerra000 Exp $
+ * $Id: tabdemo.prg $
+ *
+ * Posted by Vicente Guerra on 2011/12/16.
  */
 
 #include "oohg.ch"

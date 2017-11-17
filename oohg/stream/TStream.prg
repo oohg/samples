@@ -1,5 +1,5 @@
 /*
- * $Id: TStream.prg,v 1.7 2017-08-26 02:54:27 fyurisich Exp $
+ * $Id: TStream.prg $
  */
 /*
  * Data stream management class.
@@ -8,6 +8,8 @@
  *              It's also "core" base class.
  * TStreamFile. Reads data from a file.
  *              For read from STDIN, you must use "handle" 1.
+ *
+ * Posted by Vicente Guerra on 2014/02/04.
  */
 
 #include "hbclass.ch"

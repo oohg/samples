@@ -1,5 +1,5 @@
 /*
- * $Id: Readme.txt,v 1.5 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: Readme.txt $
  */
 
 (c)2011-2017 MigSoft Project Manager based upon

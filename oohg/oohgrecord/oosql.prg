@@ -1,8 +1,9 @@
 /*
- * $Id: oosql.prg,v 1.1 2010-10-03 01:28:09 guerra000 Exp $
+ * $Id: oosql.prg $
  */
 /*
  *  TMySqlServer's layer for use with XBROWSE control.
+ * (c) Victor Guerra 2010/10/03
  */
 
 #include "hbclass.ch"

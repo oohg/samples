@@ -1,5 +1,6 @@
 /*
- * $Id: mpm.ch,v 1.5 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: mpm.ch
+ * (c) migsoft 2017-08-25
  */
 
 #define cAppName      '(c)2008-2017 MigSoft Project Manager'

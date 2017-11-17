@@ -1,5 +1,6 @@
 /*
- * $Id: ExeGcc.prg,v 1.2 2014-07-11 19:38:40 migsoft Exp $
+ * $Id: ExeGcc.prg
+ * (c) migsoft 2014-07-11
  */
 
 #include "oohg.ch"

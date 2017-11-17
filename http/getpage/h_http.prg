@@ -1,5 +1,5 @@
 /*
- * $Id: h_http.prg,v 1.6 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: h_http.prg $
  */
 /*
  * ooHG source code:

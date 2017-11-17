@@ -1,5 +1,7 @@
 /*
- * $Id: TVirtualField.prg,v 1.1 2015-05-02 04:20:46 fyurisich Exp $
+ * $Id: TVirtualField.prg $
+ *
+ * Sample posted by Fernando Yurisich at 2015/05/02.
  */
 
 #include "oohg.ch"

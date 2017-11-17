@@ -1,8 +1,8 @@
 /*
- * $Id: xbrowsearray.prg,v 1.8 2017-08-25 19:28:46 fyurisich Exp $
+ * $Id: xbrowsearray.prg $
  */
 /*
- * ooHG XBrowse array-as-database demo. (c) 2008-2017 Vic
+ * ooHG XBrowse array-as-database demo. (c) 2008-2017 Victor Guerra
  * This demo shows how to use XBrowse for show an array.
  * It includes an "array-as-database" object.
  */

@@ -1,5 +1,5 @@
 /*
- * $Id: TStream.prg,v 1.4 2014/02/04 21:23:02 guerra000 Exp $
+ * $Id: TStream.prg $
  */
 /*
  * Data stream management class.
@@ -8,6 +8,8 @@
  *              It's also "core" base class.
  * TStreamFile. Reads data from a file.
  *              For read from STDIN, you must use "handle" 1.
+ *
+ * Posted by Vicente Guerra on 2014/02/04.
  */
 
 #include "hbclass.ch"
@@ -33,6 +35,7 @@ CLASS TStreamBase
    METHOD ReSize        // Resize buffer
    METHOD Close         // Close buffer
    METHOD IsActive      // Check if stream is still active
+   METHOD Append        // Appends data to buffer
    DESTRUCTOR Destroy
 
    // Text-line functionality
@@ -119,6 +122,7 @@ METHOD Remove( nCount, nPosition ) CLASS TStreamBase
 RETURN nil
 
 METHOD Fill() CLASS TStreamBase
+LOCAL nRead
    IF ! EMPTY( ::pBuffer ) .AND. ::IsConnected()
       IF ::nLen < ::nMax
          nRead = ::RealFill( ::pBuffer, ::nLen + 1, ::nMax - ::nLen )
@@ -250,6 +254,19 @@ RETURN ( ! EMPTY( ::pBuffer ) .AND. ( ::nLen > 0 .OR. ::IsConnected() ) )
 METHOD IsConnected() CLASS TStreamBase
 RETURN .F.
 
+METHOD Append( cBuffer ) CLASS TStreamBase
+LOCAL nBytes := 0
+   IF HB_IsString( cBuffer ) .AND. LEN( cBuffer ) > 0
+      IF ! EMPTY( ::pBuffer ) .AND. ::IsConnected()
+         IF ::nLen < ::nMax
+            nBytes := MIN( LEN( cBuffer ), ::nMax - ::nLen )
+            Stream_Insert( ::pBuffer, cBuffer, ::nLen + 1, nBytes )
+            ::nLen += nBytes
+         ENDIF
+      ENDIF
+   ENDIF
+RETURN nBytes
+
 PROCEDURE Destroy() CLASS TStreamBase
    ::Close()
 RETURN
@@ -370,6 +387,7 @@ RETURN ::lCloseAtEnd
 #pragma BEGINDUMP
 
 #include <hbapi.h>
+#include <windows.h>
 
 HB_FUNC( STREAM_INSERT )   // ( pBuffer, cBuffer, nPos, nLen )
 {

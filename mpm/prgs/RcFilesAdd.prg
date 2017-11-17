@@ -1,5 +1,6 @@
 /*
- * $Id: RcFilesAdd.prg,v 1.1 2013-11-18 20:40:25 migsoft Exp $
+ * $Id: RcFilesAdd.prg $
+ * (c) migsoft 2013-11-18
  */
 
 #include "oohg.ch"

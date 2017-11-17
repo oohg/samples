@@ -1,5 +1,5 @@
 /*
- * $Id: mybrowse.prg,v 1.4 2017-08-25 19:28:46 fyurisich Exp $
+ * $Id: mybrowse.prg $
  */
 /*
  * This demo shows how to use BROWSE.

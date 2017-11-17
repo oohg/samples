@@ -1,7 +1,6 @@
 /*
- * $Id: dbquery1.prg,v 1.2 2016-10-17 01:55:33 fyurisich Exp $
+ * $Id: dbquery1.prg $
  */
-
 /*
  *
  * MINIGUI - Harbour Win32 GUI library

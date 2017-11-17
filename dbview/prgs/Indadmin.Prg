@@ -1,7 +1,6 @@
 /*
- * $Id: Indadmin.Prg,v 1.2 2014-11-04 16:46:42 migsoft Exp $
+ * $Id: Indadmin.Prg $
  */
-
 /*
  *
  * MINIGUI - Harbour Win32 GUI library

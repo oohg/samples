@@ -1,5 +1,5 @@
 /*
- * $Id: dbuvar.ch,v 1.5 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: dbuvar.ch $
  */
 
 #define PROGRAM        'DBF Viewer 2020 '

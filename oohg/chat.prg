@@ -1,11 +1,13 @@
 /*
- * $Id: chat.prg,v 1.2 2012-06-24 16:35:16 fyurisich Exp $
+ * $Id: chat.prg $
  */
 /*
  *  Simple chat program, using TStreamWSocket class.
  *
  *  For compile, be sure TStream.prg and TStreamSocket.prg
  *  files are in the include path (or in current path).
+ *
+ *  (c) Victor Guerra
  */
 
 #include "oohg.ch"

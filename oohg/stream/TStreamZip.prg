@@ -1,11 +1,13 @@
 /*
- * $Id: TStreamZip.prg,v 1.3 2015-10-31 17:07:44 fyurisich Exp $
+ * $Id: TStreamZip.prg $
  */
 /*
  * Data stream from (((compress/)))uncompress management class.
  * It uses zlib library.
  *
  * TStreamUnZip. Reads compressed data and returns uncompressed.
+ *
+ * Posted by Vicente Guerra on 2011/07/17.
  */
 /* zlib.h -- interface of the 'zlib' general purpose compression library
   version 1.2.3, July 18th, 2005

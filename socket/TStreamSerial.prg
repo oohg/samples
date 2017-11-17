@@ -1,10 +1,12 @@
 /*
- * $Id: TStreamSerial.prg,v 1.3 2013/03/04 23:38:21 guerra000 Exp $
+ * $Id: TStreamSerial.prg $
  */
 /*
  * TStreamSerial
  *
  * Data stream from serial port management class.
+ *
+ * Posted by Vicente Guerra on 2013/03/04.
  */
 
 #include "hbclass.ch"
@@ -28,6 +30,11 @@
 
 #include <hbapi.h>
 #include <hbapifs.h>
+
+#ifndef __XHARBOUR__
+   #define ISCHAR( n )           HB_ISCHAR( n )
+   #define ISNUM( n )            HB_ISNUM( n )
+#endif
 
 #pragma ENDDUMP
 
@@ -69,7 +76,10 @@ METHOD New( cPort, nSpeed, nDataBits, cParity, nStop ) CLASS TStreamSerial
          else
          {
             memset( &to, 0, sizeof( to ) );
-            to.ReadIntervalTimeout = MAXDWORD;
+            // to.ReadIntervalTimeout = MAXDWORD;
+            to.ReadIntervalTimeout = 1;
+            // to.ReadTotalTimeoutMultiplier = 1;
+            to.ReadTotalTimeoutConstant = 1;
             SetCommTimeouts( iPort, &to );
          }
       #else
@@ -88,7 +98,7 @@ METHOD New( cPort, nSpeed, nDataBits, cParity, nStop ) CLASS TStreamSerial
             sTerm.c_cc[ VMIN ] = 0;
             tcflush( iPort, TCIFLUSH );
             tcsetattr( iPort, TCSANOW, &sTerm );
-            fcntl( iPort, F_SETFL, FNDELAY );
+            fcntl( iPort, F_SETFL, FNDELAY | O_SYNC );
          }
       #endif
 //

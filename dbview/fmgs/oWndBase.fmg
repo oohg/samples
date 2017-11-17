@@ -1,7 +1,6 @@
 /*
- * $Id: oWndBase.fmg,v 1.6 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: oWndBase.fmg $
  */
-
 /*
  *
  * Program to view DBF files using standard Browse control

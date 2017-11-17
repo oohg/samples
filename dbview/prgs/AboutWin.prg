@@ -1,7 +1,6 @@
 /*
- * $Id: AboutWin.prg,v 1.1 2013-11-19 19:15:41 migsoft Exp $
+ * $Id: AboutWin.prg $
  */
-
 /*
  *
  * MINIGUI - Harbour Win32 GUI library

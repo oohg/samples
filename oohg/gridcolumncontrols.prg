@@ -1,8 +1,8 @@
 /*
- * $Id: gridcolumncontrols.prg,v 1.8 2017-08-25 19:28:45 fyurisich Exp $
+ * $Id: gridcolumncontrols.prg $
  */
 /*
- * ooHG Grid COLUMNCONTROLS demo. (c) 2005-2017 Vic
+ * ooHG Grid COLUMNCONTROLS demo. (c) 2005-2017 Victor Guerra
  * This demo shows how to create custom COLUMNCONTROLS objects.
  */
 

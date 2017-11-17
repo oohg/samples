@@ -1,8 +1,10 @@
 /*
- * $Id: TSmtpClient.prg,v 1.1 2015/09/23 04:08:27 guerra000 Exp $
+ * $Id: TSmtpClient.prg $
  */
 /*
  * Simple SMTP client using TStreamSocket() class.
+ *
+ * Posted by Vicente Guerra on 2015/09/23.
  */
 
 #ifndef NO_SAMPLE

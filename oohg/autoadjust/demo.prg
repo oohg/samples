@@ -1,5 +1,5 @@
 /*
- * $Id: demo.prg,v 1.4 2017-08-25 19:28:44 fyurisich Exp $
+ * $Id: demo.prg $
  */
 /*
  * This demo shows how to use Autoadjust.

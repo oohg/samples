@@ -1,7 +1,6 @@
 /*
- * $Id: Showprop.prg,v 1.3 2016-10-17 01:55:33 fyurisich Exp $
+ * $Id: Showprop.prg $
  */
-
 /*
  *
  * MINIGUI - Harbour Win32 GUI library

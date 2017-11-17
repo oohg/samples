@@ -1,5 +1,5 @@
 /*
- * $Id: TStreamSocket.prg,v 1.3 2015-12-08 06:01:18 guerra000 Exp $
+ * $Id: TStreamSocket.prg $
  */
 /*
  * Data stream from network socket management class.
@@ -8,6 +8,8 @@
  * TStreamWSocket. Reads/writes data from a network socket,
  *                 approaching Windows' events for reduce
  *                 CPU usage.
+ *
+ * Posted by Vicente Guerra on 2011/09/05.
  */
 
 #include "hbclass.ch"

@@ -1,8 +1,9 @@
 /*
- * $Id: clocks.prg,v 1.1 2017-07-09 20:08:04 guerra000 Exp $
+ * $Id: clocks.prg $
  */
 /*
  *  Simple multi-notifyicon sample.
+ * (c) 2017-07-09 Victor Guerra
  */
 
 #include "oohg.ch"

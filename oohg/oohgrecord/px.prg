@@ -1,10 +1,11 @@
 /*
- * $Id: px.prg,v 1.15 2014-02-04 21:23:02 guerra000 Exp $
+ * $Id: px.prg $
  */
 /*
  * This is a ooHGRecord's subclasses (database class used
  * by ooHG's XBrowse) for direct Paradox file access.
  * NOTE: It's a READ ONLY access!!
+ *(c) Victor Guerra, 2014/02/04
  */
 
 #ifndef NO_SAMPLE

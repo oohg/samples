@@ -1,5 +1,6 @@
 //
-// $Id: Mpm.rc,v 1.1 2013-11-18 20:40:23 migsoft Exp $
+// $Id: Mpm.rc
+// (c) 2013-11-18
 //
 
 ampm        ICON     res\Migproj.ico
