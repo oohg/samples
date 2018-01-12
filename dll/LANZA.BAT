@@ -1,6 +1,8 @@
 @ECHO OFF
-SET _PATH2=%PATH%
-SET PATH=c:\oohg\harbour\bin;c:\oohg\mingw\bin;
+if "%HG_ROOT%"="" set HG_ROOT=c:\oohg
+
+SET TPATH=%PATH%
+SET PATH=%HG_ROOT%\hb32\bin;%HG_ROOT%\hb32\comp\mingw\bin
 
 DEL %1.EXE
 
@@ -11,10 +13,9 @@ GOTO fin
 :CONDEBUG
 ECHO con debug
 pause
-hbmk2 %1.hbp -lc:\oohg\harbour\lib\win\mingw -prgflag=-b
+hbmk2 %1.hbp -l%HG_ROOT%\hb32\lib\win\mingw -prgflag=-b
 GOTO fin
 
 :FIN
-rem SET PATH=%_PATH2%
-rem \upx\upx %1.exe -9
-SET _PATH2=
+SET PATH=%TPATH%
+SET TPATH=

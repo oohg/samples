@@ -8,6 +8,28 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-01-12 20:40 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   * samples\bostaurus\s001.bat
+   * samples\bostaurus\s014.bat
+   * samples\dll\LANZA.BAT
+   * samples\mysql\demobuild.bat
+   * samples\zebra\s001.bat
+     * Honor HG_ROOT if it's set.
+
+   * samples\harupdf\build.bat
+   * samples\netio\build_netiodemo.bat
+     * Use standard buildapp.bat to build.
+
+   - samples\http\getpage\build.bat
+   + samples\http\getpage\httpdemo.bat
+   - samples\mixmode\compile.bat
+   + samples\mixmode\mixmode.bat
+   - samples\netio\hbmknetio.bat
+   - samples\oohg\build.bat
+   + samples\oohg\stream\Stream.md
+
 2017-11-17 20:52 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.

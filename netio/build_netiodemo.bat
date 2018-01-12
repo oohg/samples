@@ -1,6 +1,5 @@
-call hbmknetio servergu -rebuild
+@echo off
+call BUILDAPP servergu -rebuild
 start servergu
-call hbmknetio netiotst -rebuild
+call BUILDAPP netiotst -rebuild
 netiotst
-
-

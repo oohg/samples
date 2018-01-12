@@ -1,9 +1,11 @@
 @echo off
 
-Rem If you want to use hbmk2 to build the exe, uncomment the following line and comment all others:
-Rem BUILDAPP s014 -ic:\oohg\hb32\contrib\hbzebra
+if "%HG_ROOT%"="" set HG_ROOT=c:\oohg
 
-Rem If you want to use harbour and gcc to build the exe, uncomment the following line and comment all others:
-Rem COMPILE s014 -ic:\oohg\hb32\contrib\hbzebra
+REM If you want to use hbmk2 to build the exe, uncomment the following line and comment all others:
+REM BuildApp s014 -i%HG_ROOT%\hb32\contrib\hbzebra
 
-COMPILE s014 -ic:\oohg\hb32\contrib\hbzebra
+REM If you want to use harbour and gcc to build the exe, uncomment the following line and comment all others:
+REM COMPILE s014 -i%HG_ROOT%\hb32\contrib\hbzebra
+
+COMPILE s014 -i%HG_ROOT%\hb32\contrib\hbzebra
