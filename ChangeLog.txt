@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-01-24 17:10 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\printtest.prg
+     + TTXTPRINT usage sample.
+
 2018-01-12 20:40 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.
