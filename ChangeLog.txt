@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-02-28 18:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\richeditbox\s003.prg
+     * Sample's number.
+
 2018-02-28 18:17 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\richeditbox\s001.prg
      ! It wasn't working properly.
