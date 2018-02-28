@@ -4,7 +4,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how highlight a line of a RichEdit
+ * This sample shows how to highlight a line of a RichEdit
  * control, using GetCurrentLine, GetSelection, SetSelection,
  * SetSelectionTextColor, SetSelectionBackColor, GetLineIndex
  * and GetLineLength methods, and OnSelChange event.
@@ -39,49 +39,47 @@ FUNCTION Main
    ownd:Center()
    ownd:Activate()
 
-RETURN Nil
+RETURN NIL
 
 FUNCTION Highlight( oRch )
 
    LOCAL aPos, aColor, nCurrent
    STATIC nPrevious := -1
 
-   // Prevents changing default format
-   IF EMPTY( oRch:Value )
-      RETURN Nil
+   IF Empty( oRch:Value )
+      RETURN NIL
    ENDIF
 
-   // If you change the color a second time
-   // the line will be painted with the default color
    nCurrent := oRch:GetCurrentLine()
    IF nCurrent == nPrevious
-      RETURN Nil
+      RETURN NIL
    ENDIF
-   nPrevious := nCurrent
 
-   // Save previous selection
+   // Save current selection: [ index of starting char, number of chars ]
    aPos := oRch:GetSelection()
 
-   // Select all
-   oRch:SetSelection( 0, -1 )
+   IF nPrevious # -1
+      // Select all text of the previously selected line
+      oRch:SetSelection( oRch:GetLineIndex( nPrevious ), oRch:GetLineIndex( nPrevious ) + oRch:GetLineLength( nPrevious ) )
 
-   // Restore defaults colors
-   // If FontColor is Nil defaults to COLOR_WINDOWTEXT
-   // If BackColor is Nil defaults to COLOR_WINDOW
-    oRch:SetSelectionTextColor( oRch:FontColor )
-    oRch:SetSelectionBackColor( oRch:BackColor )
+      // Restore colors
+      oRch:SetSelectionTextColor( oRch:FontColor )
+      oRch:SetSelectionBackColor( oRch:BackColor )
+   ENDIF
 
-   // Select current line
+   // Select all text in the first line of the current selection (the line where the caret rests)
    oRch:SetSelection( oRch:GetLineIndex( nCurrent ), oRch:GetLineIndex( nCurrent ) + oRch:GetLineLength( nCurrent ) )
 
    // Change colors
    oRch:SetSelectionTextColor( RGB( RED[ 1 ], RED[ 2 ], RED[ 3 ] ) )
    oRch:SetSelectionBackColor( RGB( GREEN[ 1 ], GREEN[ 2 ], GREEN[ 3 ] ) )
 
-   // Restore previous selection
+   // Restore selection
    oRch:SetSelection( aPos[ 1 ], aPos[ 2 ] )
 
-RETURN Nil
+   nPrevious := nCurrent
+
+RETURN NIL
 
 /*
  * EOF

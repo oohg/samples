@@ -8,6 +8,14 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-02-28 18:17 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\richeditbox\s001.prg
+     ! It wasn't working properly.
+
+2018-02-28 17:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\richeditbox\s003.prg
+     * How to change the colors of the selected text.
+
 2018-01-24 17:10 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\oohg\printtest.prg
      + TTXTPRINT usage sample.
