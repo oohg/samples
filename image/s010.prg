@@ -7,11 +7,11 @@
  * This sample shows how to use an IMAGE control to
  * print an image loaded from a resource.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download oohg.jpg and s010.rc from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Image
+ * https://github.com/oohg/samples/tree/master/Image
  */
 
 #include "oohg.ch"

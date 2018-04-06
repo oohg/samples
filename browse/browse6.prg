@@ -74,19 +74,60 @@ Function Main
 
 	ACTIVATE WINDOW Form_1
 
-Return Nil
+RETURN NIL
 
-Procedure OpenTables()
-	Use MuchFields
-Return Nil
+PROCEDURE OpenTables()
+   LOCAL aDbf[ 32, 4 ], i
 
-Procedure CloseTables()
-	Use
-Return Nil
+   FOR i := 1 to 32
+      aDbf[i] := { "c" + LTrim(Str(i)), "C", 10, 0 }
+   NEXT
 
+   dbCreate( "MuchFields", aDbf )
 
+	USE MuchFields
 
+   FOR i := 1 TO 100
+      APPEND BLANK
+      REPLACE c1  WITH "c1-"  + LTrim(Str(i))
+      REPLACE c2  WITH "c2-"  + LTrim(Str(i))
+      REPLACE c3  WITH "c3-"  + LTrim(Str(i))
+      REPLACE c4  WITH "c4-"  + LTrim(Str(i))
+      REPLACE c5  WITH "c5-"  + LTrim(Str(i))
+      REPLACE c6  WITH "c6-"  + LTrim(Str(i))
+      REPLACE c7  WITH "c7-"  + LTrim(Str(i))
+      REPLACE c8  WITH "c8-"  + LTrim(Str(i))
+      REPLACE c9  WITH "c9-"  + LTrim(Str(i))
+      REPLACE c10 WITH "c10-" + LTrim(Str(i))
+      REPLACE c11 WITH "c11-" + LTrim(Str(i))
+      REPLACE c12 WITH "c12-" + LTrim(Str(i))
+      REPLACE c13 WITH "c13-" + LTrim(Str(i))
+      REPLACE c14 WITH "c14-" + LTrim(Str(i))
+      REPLACE c15 WITH "c15-" + LTrim(Str(i))
+      REPLACE c16 WITH "c16-" + LTrim(Str(i))
+      REPLACE c17 WITH "c17-" + LTrim(Str(i))
+      REPLACE c18 WITH "c18-" + LTrim(Str(i))
+      REPLACE c19 WITH "c19-" + LTrim(Str(i))
+      REPLACE c20 WITH "c20-" + LTrim(Str(i))
+      REPLACE c21 WITH "c21-" + LTrim(Str(i))
+      REPLACE c22 WITH "c22-" + LTrim(Str(i))
+      REPLACE c23 WITH "c23-" + LTrim(Str(i))
+      REPLACE c24 WITH "c24-" + LTrim(Str(i))
+      REPLACE c25 WITH "c25-" + LTrim(Str(i))
+      REPLACE c26 WITH "c26-" + LTrim(Str(i))
+      REPLACE c27 WITH "c27-" + LTrim(Str(i))
+      REPLACE c28 WITH "c28-" + LTrim(Str(i))
+      REPLACE c29 WITH "c29-" + LTrim(Str(i))
+      REPLACE c30 WITH "c30-" + LTrim(Str(i))
+      REPLACE c31 WITH "c31-" + LTrim(Str(i))
+      REPLACE c32 WITH "c32-" + LTrim(Str(i))
+   NEXT
 
+   GO TOP
 
+RETURN NIL
 
-
+PROCEDURE CloseTables()
+  CLOSE DATABASES
+  ERASE MuchFields.dbf
+RETURN NIL

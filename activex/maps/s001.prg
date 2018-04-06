@@ -7,11 +7,7 @@
  * This sample shows how to display a map using an ACTIVEX
  * object to load Google's API.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download gmap1.html and gmap2.html from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ActiveX
+ * Visit us at https://github.com/oohg/samples
  */
 
 

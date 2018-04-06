@@ -6,11 +6,7 @@
  *
  * This sample shows how to use an ANIGIF control.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download the resource and gif files from
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/AniGif
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include "oohg.ch"

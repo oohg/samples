@@ -7,11 +7,11 @@
  * This sample is a test case for OOHGDRAW, WINDRAW, BACKGROUND,
  * BACKCOLOR and TRANSPARENT clauses of a RadioGroup control.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download fondo.bmp from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RadioGroup
+ * https://github.com/oohg/samples/tree/master/RadioGroup
  */
 
 #include "oohg.ch"

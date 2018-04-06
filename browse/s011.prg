@@ -8,8 +8,8 @@
  * BEFORECOLSIZE, AFTERCOLSIZE and BEFOREAUTOFIT clauses, and
  * ColumnOrder method of Grid, Browse and XBrowse controls.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 #include "oohg.ch"

@@ -11,11 +11,11 @@
  * "https" address was unsuccessfull.
  * Please send me a mail if you succeed.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download MyApp.prg from
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Http
+ * https://github.com/oohg/samples/tree/master/Http
  */
 
 #include "oohg.ch"

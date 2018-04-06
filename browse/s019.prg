@@ -1,20 +1,25 @@
 /*
- * Browse Sample n° 10
+ * Browse Sample n° 19
  * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to link one browse to another.
+ * This sample shows how to link one browse to another
+ * and how to avoid the execution of the on change event
+ * for a certain time period.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
 #include "dbstruct.ch"
+#include "ord.ch"
 
 FUNCTION Main
-   LOCAL oForm1, oBrw1
+
+   PUBLIC oForm1, oBrw1, oBrw2, aRecs := {}
+
+   PUBLIC uLastTime := hb_MilliSeconds()
 
    REQUEST DBFCDX
 
@@ -30,7 +35,7 @@ FUNCTION Main
       WIDTH 420 HEIGHT 420 ;
       TITLE 'Browse linked to a Browse' ;
       MAIN ;
-      ON INIT oBrw1:value := Code->(recno()) ;
+      ON INIT oBrw1:value := Code->(RecNo()) ;
       ON RELEASE CleanUp()
 
       @ 10, 10 BROWSE Browse_1 OBJ oBrw1 ;
@@ -40,7 +45,7 @@ FUNCTION Main
          WIDTHS { 150, 150 } ;
          WORKAREA Code ;
          FIELDS { 'Code->code', 'Code->name' } ;
-         ON CHANGE oBrw2:GoTop()
+         ON CHANGE ProcessOnChange()
 
       @ 200, 10 BROWSE Browse_2 OBJ oBrw2 ;
          WIDTH 400 ;
@@ -65,9 +70,22 @@ FUNCTION Main
 RETURN NIL
 
 //--------------------------------------------------------------------------//
+FUNCTION ProcessOnChange()
+
+   IF hb_MilliSeconds() > uLastTime + 150
+      uLastTime := hb_MilliSeconds()
+      Data->( OrdScope( TOPSCOPE, Code->Code ) )
+      Data->( OrdScope( BOTTOMSCOPE, Code->Code ) )
+      aAdd( aRecs, Code->Code )
+      oBrw2:GoTop()
+   ENDIF
+
+RETURN NIL
+
+//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
-   LOCAL aDbf1[ 2 ][ 4 ], aDbf2[ 3 ][ 4 ]
+   LOCAL aDbf1[ 2 ][ 4 ], aDbf2[ 3 ][ 4 ], i, j
 
    // Create "Code" database
 
@@ -81,25 +99,17 @@ FUNCTION OpenTables()
    aDbf1[ 2 ][ DBS_LEN ]  := 25
    aDbf1[ 2 ][ DBS_DEC ]  := 0
 
-   DBCREATE( "Code", aDbf1, "DBFCDX" )
+   dbCreate( "Code", aDbf1, "DBFCDX" )
 
    SELECT 0
    USE Code VIA "DBFCDX"
    ZAP
 
-   APPEND BLANK
-   REPLACE code WITH 123
-   REPLACE Name WITH 'Homer'
-   APPEND BLANK
-   REPLACE code WITH 355
-   REPLACE Name WITH 'Tom'
-   APPEND BLANK
-   REPLACE code WITH 76
-   REPLACE Name WITH 'Mike'
-   APPEND BLANK
-   REPLACE code WITH 7
-   REPLACE Name WITH 'Martha'
-
+   FOR i := 0 TO 999
+      APPEND BLANK
+      REPLACE Code WITH i
+      REPLACE Name WITH 'Record ' + StrZero( i, 4, 0)
+   NEXT
    GO TOP
 
    // Create "Data" database
@@ -119,66 +129,36 @@ FUNCTION OpenTables()
    aDbf2[ 3 ][ DBS_LEN ]  := 8
    aDbf2[ 3 ][ DBS_DEC ]  := 0
 
-   DBCREATE( "Data", aDbf2, "DBFCDX" )
+   dbCreate( "Data", aDbf2, "DBFCDX" )
 
    SELECT 0
    USE Data VIA "DBFCDX"
+   INDEX ON Code TO Data
    ZAP
 
-   APPEND BLANK
-   REPLACE code   WITH 355
-   REPLACE number WITH 9334
-   REPLACE issued WITH CTOD( "09/12/1967" )
-   APPEND BLANK
-   REPLACE code   WITH 123
-   REPLACE number WITH 8765
-   REPLACE issued WITH CTOD( "14/03/1961" )
-   APPEND BLANK
-   REPLACE code   WITH 7
-   REPLACE number WITH 565
-   REPLACE issued WITH CTOD( "27/08/1968" )
-   APPEND BLANK
-   REPLACE code   WITH 123
-   REPLACE number WITH 5433
-   REPLACE issued WITH CTOD( "05/02/1963" )
-   APPEND BLANK
-   REPLACE code   WITH 7
-   REPLACE number WITH 54322
-   REPLACE issued WITH CTOD( "31/10/1969" )
-   APPEND BLANK
-   REPLACE code   WITH 355
-   REPLACE number WITH 76865
-   REPLACE issued WITH CTOD( "19/09/1966" )
-   APPEND BLANK
-   REPLACE code   WITH 76
-   REPLACE number WITH 53377
-   REPLACE issued WITH CTOD( "05/02/1963" )
-   APPEND BLANK
-   REPLACE code   WITH 7
-   REPLACE number WITH 5654
-   REPLACE issued WITH CTOD( "07/04/1965" )
-   APPEND BLANK
-   REPLACE code   WITH 123
-   REPLACE number WITH 7687
-   REPLACE issued WITH CTOD( "22/06/1962" )
-   APPEND BLANK
-   REPLACE code   WITH 76
-   REPLACE number WITH 53377
-   REPLACE issued WITH CTOD( "05/02/1963" )
+   FOR i := 0 TO 999
+      FOR j := 0 TO 999
+         APPEND BLANK
+         REPLACE Code   WITH i
+         REPLACE Number WITH i * 1000 + j
+         REPLACE Issued WITH CToD( "09/12/1967" ) + j
+      NEXT
+   NEXT
 
-   SET FILTER TO Data->code == Code->code
-
-   GO TOP
+   SET SCOPE TO Code->Code
 
 RETURN NIL
 
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  DBCLOSEALL()
+  dbCloseAll()
 
   ERASE Code.dbf
   ERASE Data.dbf
+  ERASE Data.cdx
+
+  AutoMsgBox( aRecs )
 
 RETURN NIL
 

@@ -24,11 +24,11 @@
  * JPG/JPEG/GIF images:
  * a. whatever transparency is defined.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download the resource file and the images from
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Button
+ * https://github.com/oohg/samples/tree/master/Button
  */
 
 #include "oohg.ch"

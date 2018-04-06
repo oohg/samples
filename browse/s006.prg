@@ -13,8 +13,7 @@
  * row of the control and how to use Anchor property to keep
  * the control centered in the form's client area.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include "oohg.ch"

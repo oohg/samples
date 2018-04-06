@@ -7,11 +7,11 @@
  * This sample shows how to drag an item of a Tree control
  * to an internal window.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download the resource file and the images from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Tree
+ * https://github.com/oohg/samples/tree/master/Tree
  */
 
 #include "oohg.ch"

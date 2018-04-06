@@ -7,8 +7,8 @@
  * This sample shows the use of SET AUTOADJUST ON to automatically
  * resize the controls of a form whenever the form is resized.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 #include 'oohg.ch'

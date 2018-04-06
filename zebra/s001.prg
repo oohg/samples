@@ -15,11 +15,11 @@
  * or:
  *    BUILD.BAT
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download demo.ico and build.bat from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Zebra
+ * https://github.com/oohg/samples/tree/master/Zebra
  */
 
 #include "oohg.ch"

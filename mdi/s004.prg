@@ -7,11 +7,11 @@
  * This sample shows how to set a backimage into the client
  * area of a MDI application's main window.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download fondo.jpg from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Mdi
+ * https://github.com/oohg/samples/tree/master/Mdi
  */
 
 #include "oohg.ch"

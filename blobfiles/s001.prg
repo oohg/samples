@@ -7,11 +7,7 @@
  * This sample shows how to store/retrieve an image into/from
  * a BLOB field and how to show it using an IMAGE control.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
- *
- * You can download Input.ico from
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/BlobFiles
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include "oohg.ch"

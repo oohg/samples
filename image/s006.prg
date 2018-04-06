@@ -9,11 +9,11 @@
  * a specific area of the control. It also shows how to
  * dynamicaly set the exclude area using DATA aExcludeArea.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download img1.bmp from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/Image
+ * https://github.com/oohg/samples/tree/master/Image
  */
 
 #include 'oohg.ch'

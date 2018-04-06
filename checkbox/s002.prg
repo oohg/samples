@@ -7,8 +7,8 @@
  * This sample shows how to define, set and check the state
  * of a leftaligned and a threestate checkboxes.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 

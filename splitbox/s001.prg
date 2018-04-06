@@ -9,8 +9,8 @@
  * so the bands can't be resized. It also shows how to find
  * out if a band is visible and if it has a gripper.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 #include 'oohg.ch'
@@ -39,9 +39,9 @@ Function Main()
          COMBOBOX cmb_Address ;
             FONT "Arial" SIZE 9 ;
             ITEMS {"http://www.oohg.org", ;
-                   "http://oohg.wikia.com", ;
+                   "https://harbour.github.io/", ;
                    "https://oohg.github.io/"} ;
-            VALUE 1 ;
+            VALUE 3 ;
             ON ENTER Action() ;
             DISPLAYEDIT
 

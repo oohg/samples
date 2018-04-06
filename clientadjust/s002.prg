@@ -11,8 +11,8 @@
  * This sample show how to place a Toolbar at the bottom
  * of a window which has, also, a Statusbar at the bottom.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 #include 'oohg.ch'

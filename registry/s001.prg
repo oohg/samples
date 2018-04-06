@@ -7,8 +7,8 @@
  * This sample shows how to save the position and size of a
  * form and how to restore them when the form is initialized.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  */
 
 #include "oohg.ch"

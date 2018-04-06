@@ -7,11 +7,11 @@
  * This sample shows how to include images in a resource file, so
  * they are embeded into the executable when your programm is compiled.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download the resource file and the images from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/RCFiles
+ * https://github.com/oohg/samples/tree/master/RCFiles
  */
 
 #include "oohg.ch"

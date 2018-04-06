@@ -10,8 +10,7 @@
  * This sample shows how to enable F1 and F2 keys while the
  * control is in edit mode, using the EDITKEYS clause.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include "oohg.ch"

@@ -6,11 +6,11 @@
  *
  * This sample shows how to display images in a listbox.
  *
- * Visit us at https://github.com/fyurisich/OOHG_Samples or at
- * http://oohg.wikia.com/wiki/Object_Oriented_Harbour_GUI_Wiki
+ * Visit us at https://github.com/oohg/samples
+ *
  *
  * You can download the images used in this sample from:
- * https://github.com/fyurisich/OOHG_Samples/tree/master/English/Samples/ListBox
+ * https://github.com/oohg/samples/tree/master/ListBox
  */
 
 #include "oohg.ch"
