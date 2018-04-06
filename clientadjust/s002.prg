@@ -6,7 +6,6 @@
  *
  * Based on an original contribution by
  * Cayetano Gómez <cayetano.gomez@gmail.com>
- * first published at <oohg@yahoogroups.com>
  *
  * This sample show how to place a Toolbar at the bottom
  * of a window which has, also, a Statusbar at the bottom.

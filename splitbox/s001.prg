@@ -40,7 +40,7 @@ Function Main()
             FONT "Arial" SIZE 9 ;
             ITEMS {"http://www.oohg.org", ;
                    "https://harbour.github.io/", ;
-                   "https://oohg.github.io/"} ;
+                   "https://groups.google.com/d/forum/oohg"} ;
             VALUE 3 ;
             ON ENTER Action() ;
             DISPLAYEDIT

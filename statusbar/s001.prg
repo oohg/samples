@@ -6,7 +6,6 @@
  *
  * Based on an original contribution by
  * Cayetano Gómez <cayetano.gomez@gmail.com>
- * first published at <oohg@yahoogroups.com>
  *
  * This sample shows how place a ToolBar at the bottom
  * of a form that also has a Statusbar.

@@ -80,7 +80,7 @@ DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
 
 
         @ 30,0 COMBOBOX directo obj ocombo ;
-        font "Arial" size 9 width 720 items {"https://oohg.github.io/","http://www.google.com","http://www.yahoo.com"} ;
+        font "Arial" size 9 width 720 items {"https://oohg.github.io/","http://www.google.com","https://groups.google.com/d/forum/oohg"} ;
         value 1  on enter navegar() displayedit ///////// on change navegar()
 
 

@@ -6,7 +6,6 @@
  *
  * Based on an original contribution by
  * Cayetano Gómez <cayetano.gomez@gmail.com>
- * first published at <oohg@yahoogroups.com>
  *
  * This sample show how to use ClientAdjust property to create
  * a window with controls that automatically adjust their
