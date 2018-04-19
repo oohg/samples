@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-04-19 20:19 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   + samples\grid\s027.prg
+   * statusbar\demo1.prg
+     * Format.
+
 2018-04-06 20:18 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.
