@@ -6,7 +6,9 @@
  *
  * This sample shows how to set default values for newly
  * added records and how to show computed, read only cells
- * while the row's edition is ongoing.
+ * while the row's edition is ongoing. It also shows how
+ * to use _OOHG_InitTGridControlDatas to alter the default
+ * behaviour of TGridControlTextBox editcontrols.
  *
  * Visit us at https://github.com/oohg/samples
  *
@@ -23,6 +25,12 @@ FUNCTION Main
    SET CENTURY ON
    SET DELETED ON
    SET BROWSESYNC ON
+
+   /*
+    * This changes the default behaviour of TGridControlTextBox
+    * editcontrols from -2 to -3
+    */
+   _OOHG_InitTGridControlDatas := { |oCtrl| oCtrl:nOnFocusPos := -3 }
 
    DEFINE WINDOW Form_1 OBJ oForm ;
       AT 0,0 ;
@@ -60,7 +68,7 @@ FUNCTION Main
                    'Biography' } ;
          WIDTHS { 60, 150, 150, 150, 150, 150, 150 } ;
          WORKAREA Test ;
-         FIELDS { { || Test->(RECNO()) }, ;
+         FIELDS { { || Test->(RecNo()) }, ;
                   'Test->Code', ;
                   'Test->First', ;
                   'Test->Last', ;
@@ -68,9 +76,9 @@ FUNCTION Main
                   'Test->Married', ;
                   'Test->Bio' } ;
          COLUMNCONTROLS { NIL, ;
-                          {'COMBOBOX',{'1','2','3'},{1,2,3},"NUMERIC"}, ;
-                          NIL, ;
-                          NIL, ;
+                          {'COMBOBOX', {'1','2','3'}, {1,2,3}, "NUMERIC"}, ;
+                          {'TEXTBOX',  'CHARACTER', Replicate("X", 25), , -2}, ;
+                          {'TEXTBOX',  'CHARACTER', Replicate("X", 25)}, ;                 // default to -2
                           NIL, ;
                           NIL, ;
                           {'MEMO', "Biography", , 600, 600, .T., .T. } } ;
@@ -116,7 +124,7 @@ FUNCTION OpenTables( oBrw )
 
    LOCAL i
 
-   DBCREATE( "Test", ;
+   dbCreate( "Test", ;
              { { "Code",    "Numeric",   10, 0 }, ;
                { "First",   "Character", 25, 0 }, ;
                { "Last",    "Character", 25, 0 }, ;
@@ -131,17 +139,17 @@ FUNCTION OpenTables( oBrw )
    FOR i := 1 TO 100
       APPEND BLANK
       REPLACE Code    WITH ( i % 3 ) + 1
-      REPLACE First   WITH 'First Name '+ STR( i )
+      REPLACE First   WITH PadR( 'First Name '+ STR( i ), 25 )
       REPLACE Last    WITH 'Last Name '+ STR( i )
       REPLACE Married WITH .t.
       REPLACE Birth   WITH DATE() + i - 10000
    NEXT i
 
    INDEX ON code TAG code TO code
-   INDEX ON RECNO() TAG recno TO code
+   INDEX ON RecNo() TAG recno TO code
 
    GO BOTTOM
-	oBrw:SetValue( RECNO(), oBrw:CountPerPage )
+	oBrw:SetValue( RecNo(), oBrw:CountPerPage )
 
 RETURN Nil
 

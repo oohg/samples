@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-04-30 13:39 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   + samples\grid\s015.prg
+     * How to use _OOHG_InitTGridControlDatas to alter the default
+       behaviour of TGridControlTextBox editcontrols.
+
 2018-04-19 20:19 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.
