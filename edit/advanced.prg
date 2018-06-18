@@ -24,7 +24,9 @@ function Main()
         REQUEST HB_LANG_HE862
         REQUEST HB_LANG_HEWIN
         REQUEST HB_LANG_HU852
+#ifdef __XHARBOUR__
         REQUEST HB_LANG_HUCWI
+#endif
         REQUEST HB_LANG_HUWIN
         REQUEST HB_LANG_IT
         REQUEST HB_LANG_PL852
