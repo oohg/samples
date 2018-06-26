@@ -7,7 +7,8 @@
  * Based on a sample published in OOHG list by
  * Vicente Guerra <vic@guerra.com.mx>
  *
- * This sample shows how to use VALUESOURCE clause.
+ * This sample shows how to use VALUESOURCE clause and how
+ * to get the value of a given item.
  *
  * Visit us at https://github.com/oohg/samples
  *
@@ -38,6 +39,10 @@ FUNCTION Main
       @ 60,10 LABEL Label ;
          VALUE "Select an item in the combo to see it's value !!!" ;
          AUTOSIZE
+
+     @ 90,10 BUTTON Button ;
+         CAPTION "Get 'eee' value" ;
+         ACTION AutoMsgBox( oWnd:Combo:ItemValue( "eee" ) )      
 
       ON KEY ESCAPE ACTION oWnd:Release()
    END WINDOW

@@ -6,11 +6,11 @@
  *
  * This sample shows how to load items and images using
  * data from a database (ITEMSOURCE, ITEMIMAGENUMBER and
- * IMAGESOURCE clauses), and how to change the images
- * after control creation.
+ * IMAGESOURCE clauses), how to change the images after
+ * control's creation and how to get the value of a given
+ * item.
  *
  * Visit us at https://github.com/oohg/samples
- *
  *
  * You can download all the images from
  * https://github.com/oohg/samples/tree/master/ComboBox
@@ -26,7 +26,7 @@ FUNCTION Main()
    CreateDatabase()
 
    DEFINE WINDOW Form1 ;
-      AT 0,0 ;
+      AT 0, 0 ;
       WIDTH 428 ;
       HEIGHT 300 ;
       TITLE "ooHG - COMBOBOX with Images" ;
@@ -37,7 +37,7 @@ FUNCTION Main()
          HEIGHT 200 ;
          WIDTH 185 ;
          ITEMSOURCE "test->item" ;
-         ITEMIMAGENUMBER {|| test->(RECNO()) - 1} ;
+         ITEMIMAGENUMBER {|| test->(RecNo()) - 1} ;
          IMAGESOURCE {|| test->image} ;
          FIT ;
          TEXTHEIGHT 40 ;
@@ -47,8 +47,14 @@ FUNCTION Main()
          CAPTION "Change Images" ;
          WIDTH 100 ;
          HEIGHT 28 ;
-         ACTION {|| oCmb_1:ImageSource := {|| test->image2}, ;
+         ACTION {|| oCmb_1:ImageSource := {|| test->image2 }, ;
                     oCmb_1:Refresh() }
+
+      @ 70,260 BUTTON btn_2 ;
+         CAPTION "Get Item 2 position" ;
+         WIDTH 140 ;
+         HEIGHT 28 ;
+         ACTION AutoMsgBox( oCmb_1:ItemValue( PadR( "Item 2", Len( test->item ) ) ) )        // Exact match
 
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
@@ -88,19 +94,19 @@ FUNCTION CreateDatabase()
    ZAP
 
    APPEND BLANK
-   REPLACE Item   WITH "Item 1"
-   REPLACE Image  WITH "globe.png"
-   REPLACE Image2 WITH "albaran.png"
+   REPLACE Item   WITH "Item 21"
+   REPLACE Image  WITH "globe.bmp"
+   REPLACE Image2 WITH "albaran.bmp"
 
    APPEND BLANK
    REPLACE Item   WITH "Item 2"
-   REPLACE Image  WITH "albaran.png"
-   REPLACE Image2 WITH "info.png"
+   REPLACE Image  WITH "albaran.bmp"
+   REPLACE Image2 WITH "info.bmp"
 
    APPEND BLANK
    REPLACE Item   WITH "Item 3"
-   REPLACE Image  WITH "info.png"
-   REPLACE Image2 WITH "globe.png"
+   REPLACE Image  WITH "info.bmp"
+   REPLACE Image2 WITH "globe.bmp"
 
 RETURN NIL
 
