@@ -62,10 +62,8 @@
          #define HB_ISNUM( n )          ISNUM( n )
       #endif
       //
-      #define HB_STORNI2( n, x )        hb_storni( n, x )
       #define HB_STORCLEN( n, x, y )    hb_storclen( n, x, y )
    #else
-      #define HB_STORNI2( n, x )        hb_storvni( n, x )
       #define HB_STORCLEN( n, x, y )    hb_storvclen( n, x, y )
    #endif
 
@@ -332,8 +330,8 @@ LOCAL nPos, cBtAddr, nDigit
             #endif
             int iLen;
             //
-            HB_STORNI2( AF_IRDA, 1 );
-            HB_STORNI2( 0, 2 );
+            hb_storni( AF_IRDA, 1 );
+            hb_storni( 0, 2 );
             memset( &sin, 0, sizeof( sin ) );
             sin.sir_family = AF_IRDA;
             //
@@ -396,8 +394,8 @@ LOCAL nPos, cBtAddr, nDigit
             #endif
             int iLen;
             //
-            HB_STORNI2( AF_BTH, 1 );
-            HB_STORNI2( BTHPROTO_RFCOMM, 2 );
+            hb_storni( AF_BTH, 1 );
+            hb_storni( BTHPROTO_RFCOMM, 2 );
             memset( &sin, 0, sizeof( sin ) );
             sin.rc_family = AF_BTH;
             //
@@ -428,8 +426,8 @@ LOCAL nPos, cBtAddr, nDigit
             SOCKADDR_IN sin;
             LPHOSTENT lpHost;
             //
-            HB_STORNI2( AF_INET, 1 );
-            HB_STORNI2( 0, 2 );
+            hb_storni( AF_INET, 1 );
+            hb_storni( 0, 2 );
             memset( &sin, 0, sizeof( sin ) );
             sin.sin_family = AF_INET;
             //

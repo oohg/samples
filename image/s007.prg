@@ -10,7 +10,6 @@
  * See notes in Changelog.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -56,6 +55,7 @@ FUNCTION Main
 RETURN NIL
 
 FUNCTION MoveImage
+
    LOCAL hAux
    STATIC lX := .T., lY := .T., x := 0, y := 0
 

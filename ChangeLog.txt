@@ -8,6 +8,41 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-06-28 19:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   * samples\combobox\s001.prg
+   * samples\combobox\s006.prg
+     * Erase aux table on close.
+   * samples\eztwain\twerp.prg
+     * HB_OS_WIN_32_USED changeby HB_OS_WIN_USED
+   * samples\form\s008.prg
+   * samples\mpm\prgs\MpmCommon.prg
+   * samples\mysql\FuncionesSql.prg
+   * samples\transparent\demo.prg
+     * HB_OS_WIN_32_USED changeby HB_OS_WIN_USED
+     * Enable 64 bits build.
+   * samples\oohg\stream\TStreamSocket.prg
+   * samples\socket\TStreamSocket.prg
+     * Enable 64 bits build.
+   - samples\image\demo.prg
+   - samples\image\img1.bmp
+   * samples\image\s001.prg
+   * samples\image\s002.prg
+   * samples\image\s003.prg
+   * samples\image\s004.prg
+   * samples\image\s005.prg
+   * samples\image\s006.prg
+   * samples\image\s007.prg
+   * samples\image\s010.prg
+     * Format.
+   * samples\image\s006.bmp
+   * samples\image\s008.prg
+   * samples\image\s009.prg
+     + Additional info.
+   + samples\image\s011.prg
+   + samples\image\s012.prg
+
 2018-06-26 19:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.

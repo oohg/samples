@@ -9,12 +9,12 @@
  * methods OriginalSize and CurrentSize.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
 
 FUNCTION Main
+
    LOCAL oWin
 
    SetOneArrayItemPerLine( .T. )

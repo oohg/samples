@@ -170,8 +170,8 @@ Return
    #define _WIN32_IE 0x0500
 #endif
 
-#ifndef HB_OS_WIN_32_USED
-   #define HB_OS_WIN_32_USED
+#ifndef HB_OS_WIN_USED
+   #define HB_OS_WIN_USED
 #endif
 
 #ifndef _WIN32_WINNT
@@ -205,7 +205,7 @@ HB_FUNC( SETTRANSPARENT )
 
 	if (pfnSetLayeredWindowAttributes)
 	{
-		SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
+		SetWindowLongPtr((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLongPtr((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
 		pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
 	}
 

@@ -38,7 +38,7 @@ RETURN NIL
 #pragma BEGINDUMP
 
 #define _WIN32_IE 0x0500
-#define HB_OS_WIN_32_USED
+#define HB_OS_WIN_USED
 #define _WIN32_WINNT 0x0400
 
 #define WS_EX_LAYERED 0x80000
@@ -63,7 +63,7 @@ HB_FUNC( SETTRANSPARENT )
 
 	if (pfnSetLayeredWindowAttributes)
 	{
-		SetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLong((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
+		SetWindowLongPtr((HWND) hb_parnl (1), GWL_EXSTYLE, GetWindowLongPtr((HWND) hb_parnl (1), GWL_EXSTYLE) | WS_EX_LAYERED);
 		pfnSetLayeredWindowAttributes((HWND) hb_parnl (1), 0, hb_parni (2), LWA_ALPHA);
 	}
 

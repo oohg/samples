@@ -8,7 +8,6 @@
  * IMAGE control.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -38,33 +37,42 @@ FUNCTION Main
                                   {'png Files','*.pif'} } , ;
                                 'Select Image' )
             SEPARATOR
-            ITEM 'Save Resized to Win Size as JPG 75%' ;
+            ITEM "Save Resized to Form's Size as JPG 75%" ;
                ACTION ( oImage:Width := oForm:ClientWidth, ;
                         oImage:Height := oForm:ClientHeight, ;
                         oImage:SaveAs( "New_" + LTrim( Str( nImg ) ) + ".jpg", .F., "JPG", 75, 24 ), ;
                         AutoMsgBox( "New_" + LTrim( Str( nImg ) ) + ".jpg saved !!!" ), ;
                         nImg ++ )
 
-            ITEM 'Save Resized to Win Size as JPG 100%' ;
+            ITEM "Save Resized to Form's Size as JPG 100%" ;
                ACTION ( oImage:Width := oForm:ClientWidth, ;
                         oImage:Height := oForm:ClientHeight, ;
                         oImage:SaveAs( "New_" + LTrim( Str( nImg ) ) + ".jpg", .F., "JPG", 100, 24 ), ;
                         AutoMsgBox( "New_" + LTrim( Str( nImg ) ) + ".jpg saved !!!" ), ;
                         nImg ++ )
             SEPARATOR
-            ITEM 'Save Resized to Win Half Size as JPG 75%' ;
+            ITEM "Save Resized to Form's Half Size as JPG 75%" ;
                ACTION ( oImage:Width := oForm:ClientWidth / 2, ;
                         oImage:Height := oForm:ClientHeight / 2, ;
                         oImage:SaveAs( "New_" + LTrim( Str( nImg ) ) + ".jpg", .F., "JPG", 75, 24 ), ;
                         AutoMsgBox( "New_" + LTrim( Str( nImg ) ) + ".jpg saved !!!" ), ;
                         nImg ++ )
 
-            ITEM 'Save Resized to Win Half Size as JPG 100%' ;
+            ITEM "Save Resized to Form's Half Size as JPG 100%" ;
                ACTION ( oImage:Width := oForm:ClientWidth / 2, ;
                         oImage:Height := oForm:ClientHeight / 2, ;
                         oImage:SaveAs( "New_" + LTrim( Str( nImg ) ) + ".jpg", .F., "JPG", 100, 24 ), ;
                         AutoMsgBox( "New_" + LTrim( Str( nImg ) ) + ".jpg saved !!!" ), ;
                         nImg ++ )
+            SEPARATOR
+            ITEM "Hide control" ACTION oImage:Hide()
+            /*
+            If you call method SaveAs when the control is hidden
+            you'll get an image of the form's empty background.
+            To save images with a hidden control use method Save.
+            See Image Sample n° 11
+            */
+            ITEM "Show control" ACTION oImage:Show()
          END POPUP
       END MENU
 

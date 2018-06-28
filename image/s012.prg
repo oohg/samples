@@ -1,3 +1,14 @@
+/*
+ * Image Sample n° 12
+ * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows how to use the ON CHANGE event of an
+ * image control.
+ *
+ * Visit us at https://github.com/oohg/samples
+ */
 
 #include "oohg.ch"
 
@@ -23,6 +34,7 @@ Function Main
 		        WIDTH	635
 			PICTURE	'HMGLogo.gif'
 			STRETCH	.F.
+         ON CHANGE AutoMsgBox("Image changed!")
 		END IMAGE
 
 	END WINDOW
@@ -31,5 +43,8 @@ Function Main
 
 	ACTIVATE WINDOW Form_1 
 
-Return
+RETURN
 
+/*
+ * EOF
+ */

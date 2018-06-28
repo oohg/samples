@@ -164,7 +164,7 @@ RETURN NIL
 
 #pragma BEGINDUMP
 
-#define HB_OS_WIN_32_USED
+#define HB_OS_WIN_USED
 #define _WIN32_WINNT 0x0500
 
 #include <windows.h>
@@ -201,7 +201,7 @@ HB_FUNC( SETTRANSPARENCY )
 
       if( pfnSetLayeredWindowAttributes != NULL )
       {
-         SetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
+         SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
 
          bRet = (BOOL) pfnSetLayeredWindowAttributes( HWNDparam( 1 ), 0, hb_parni( 2 ), LWA_ALPHA );
 
@@ -224,7 +224,7 @@ HB_FUNC( SETBACKGROUNDINVISIBLE )
 
       if( pfnSetLayeredWindowAttributes != NULL )
       {
-         SetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
+         SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
 
          bRet = (BOOL) pfnSetLayeredWindowAttributes( HWNDparam( 1 ), hb_parni( 2 ), 0, LWA_COLORKEY );
 
@@ -237,7 +237,7 @@ HB_FUNC( SETBACKGROUNDINVISIBLE )
 
 HB_FUNC( REMOVETRANSPARENCY )
 {
-   SetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLong( HWNDparam( 1 ), GWL_EXSTYLE ) & ~WS_EX_LAYERED ) ;
+   SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) & ~WS_EX_LAYERED ) ;
 
    RedrawWindow( HWNDparam( 1 ), NULL, NULL, RDW_ERASE | RDW_INVALIDATE | RDW_ALLCHILDREN | RDW_ERASENOW | RDW_UPDATENOW );
 }

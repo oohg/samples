@@ -12,7 +12,6 @@
  *
  * Visit us at https://github.com/oohg/samples
  *
- *
  * You can download oohg.gif from
  * https://github.com/oohg/samples/tree/master/Image
  */
@@ -44,6 +43,7 @@ FUNCTION Main
       /*
        * Note that IMAGE uses IMAGESIZE by default and
        * PICTURE uses STRETCH by default.
+       * oohg.gif is 95x95
        */
 
       ON KEY ESCAPE ACTION Form_1.Release()

@@ -11,7 +11,6 @@
  * an image using an IMAGE control.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"

@@ -30,7 +30,8 @@ FUNCTION Main()
       WIDTH 428 ;
       HEIGHT 300 ;
       TITLE "ooHG - COMBOBOX with Images" ;
-      MAIN
+      MAIN ;
+      ON RELEASE CloseTables()
 
       @ 20,20 COMBOBOX cmb_1 ;
          OBJ oCmb_1 ;
@@ -61,9 +62,6 @@ FUNCTION Main()
 
    CENTER WINDOW Form1
    ACTIVATE WINDOW Form1
-
-   CLOSE DATABASES
-   ERASE Test.dbf
 
 RETURN NIL
 
@@ -107,6 +105,16 @@ FUNCTION CreateDatabase()
    REPLACE Item   WITH "Item 3"
    REPLACE Image  WITH "info.bmp"
    REPLACE Image2 WITH "globe.bmp"
+
+RETURN NIL
+
+//--------------------------------------------------------------------------//
+FUNCTION CloseTables()
+   LOCAL cIndexExt := INDEXEXT()
+
+   CLOSE DATABASES
+   ERASE ("Test" + cIndexExt)
+   ERASE Test.dbf
 
 RETURN NIL
 

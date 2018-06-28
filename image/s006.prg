@@ -11,7 +11,6 @@
  *
  * Visit us at https://github.com/oohg/samples
  *
- *
  * You can download img1.bmp from:
  * https://github.com/oohg/samples/tree/master/Image
  */
@@ -19,6 +18,7 @@
 #include 'oohg.ch'
 
 FUNCTION Main
+
    LOCAL oImage1
 
    DEFINE WINDOW frm_Main OBJ oWin ;
@@ -35,7 +35,7 @@ FUNCTION Main
          COL 20
          WIDTH 120
          HEIGHT 120
-         PICTURE "img1.bmp"
+         PICTURE "s006.bmp"
          TOOLTIP "Visible only over green area."
          ONCLICK AutoMsgBox( "Click on green area !!!" )
          EXCLUDEAREA { { 30, 30, 90, 90 } }  // left, top, right, bottom
@@ -57,6 +57,7 @@ FUNCTION Main
 RETURN NIL
 
 FUNCTION SwapArea( oImage1 )
+
    STATIC lSwap := .T.
 /*
    Pixel at (right, bottom) is not part of the exclude area.
@@ -76,6 +77,7 @@ FUNCTION SwapArea( oImage1 )
    ENDIF
 
    lSwap := ! lSwap
+
 RETURN NIL
 
 /*

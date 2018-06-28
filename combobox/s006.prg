@@ -25,7 +25,8 @@ FUNCTION Main
    DEFINE WINDOW MAIN OBJ oWnd ;
       TITLE "Combobox from a DBF" ;
       WIDTH 350 ;
-      HEIGHT 200
+      HEIGHT 200 ;
+      ON RELEASE CloseTables()
 
       @ 10,10 COMBOBOX Combo ;
          WIDTH 200 ;
@@ -44,8 +45,6 @@ FUNCTION Main
 
    CENTER WINDOW MAIN
    ACTIVATE WINDOW MAIN
-
-   CloseTables()
 
 RETURN NIL
 

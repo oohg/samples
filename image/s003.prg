@@ -8,7 +8,6 @@
  * over an image control.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -25,7 +24,7 @@ FUNCTION Main()
       TITLE "Checkbox with transparent background"
 
       @ 00, 00 IMAGE img_1 ;
-         PICTURE "fondo.jpg" ;
+         PICTURE "logo.jpg" ;
          WIDTH 450 HEIGHT 400 ;
          OBJ oImg
 

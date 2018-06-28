@@ -8,12 +8,12 @@
  * another, each one with its own ON CLICK and TOOLTIP.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
 
 FUNCTION Main
+
    LOCAL oImage1
    // This declaration is needed for OBJECT clause
 

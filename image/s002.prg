@@ -8,11 +8,12 @@
  * a BLOB field and how to show it using an IMAGE control.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
 #include "blob.ch"
+
+REQUEST DBFCDX, DBFFPT
 
 FUNCTION Main
 
@@ -22,24 +23,23 @@ FUNCTION Main
    LOCAL oForm
    LOCAL oImage
 
-   REQUEST DBFCDX, DBFFPT
-   RDDSETDEFAULT( "DBFCDX")
+   rddSetDefault( "DBFCDX")
 
-   DBCREATE( "IMAGES", aStruct )
+   dbCreate( "IMAGES", aStruct )
 
    USE IMAGES NEW
    APPEND BLANK
-   REPLACE code with 1
+   REPLACE code WITH 1
 
    // Import
-   IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
+   IF ! BLOBImport( FieldPos( "IMAGE" ), cInput )
       ? "Error importing !!!"
       RETURN NIL
    ENDIF
 
    // Export
-   FERASE( cOutput )
-   IF ! BLOBEXPORT( FIELDPOS( "IMAGE" ), cOutput, BLOB_EXPORT_OVERWRITE )
+   FErase( cOutput )
+   IF ! BLOBExport( FIELDPOS( "IMAGE" ), cOutput, BLOB_EXPORT_OVERWRITE )
       ? "Error exporting !!!"
    ENDIF
 
@@ -51,14 +51,14 @@ FUNCTION Main
       HEIGHT 480 ;
       TITLE 'Show image from BLOB file' ;
       MAIN ;
-      ON RELEASE IIF( MsgYesNo( "Clean auxiliary files?" ), ;
+      ON RELEASE iif( MsgYesNo( "Clean auxiliary files?" ), ;
                       Clean( cOutput ), ;
                       NIL )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
          IMAGESIZE ;
-         BUFFER BLOBGET( FIELDPOS( "IMAGE" ) )
+         BUFFER BLOBGet( FieldPos( "IMAGE" ) )
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -72,9 +72,9 @@ RETURN NIL
 
 PROCEDURE Clean( cOutput )
    CLOSE DATABASES
-   FERASE( "IMAGES.DBF" )
-   FERASE( "IMAGES.FPT" )
-   FERASE( cOutput )
+   FErase( "IMAGES.DBF" )
+   FErase( "IMAGES.FPT" )
+   FErase( cOutput )
 RETURN
 
 /*
