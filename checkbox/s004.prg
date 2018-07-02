@@ -1,12 +1,12 @@
 /*
- * Checkbox Sample n° 1
+ * Checkbox Sample n° 4
  * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to define various checkboxes
  * with transparent background inside a Tab control
- * defined with BUTTONS style.
+ * defined without BUTTONS style.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -21,15 +21,14 @@ FUNCTION Main
       AT 0,0 ;
       WIDTH 640 ;
       HEIGHT 480 ;
-      TITLE 'ooHg - Transparent CheckBox inside Tab with BUTTONS style' ;
+      TITLE 'ooHg - Transparent CheckBox inside Tab without BUTTONS style' ;
       MAIN
 
       DEFINE TAB Tab_1 ;
          AT 10,10 ;
          WIDTH 600 ;
          HEIGHT 400 ;
-         VALUE 1 ;
-         BUTTONS
+         VALUE 1
 
          PAGE 'Page &1'
 

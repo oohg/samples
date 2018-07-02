@@ -1,5 +1,5 @@
 /*
- * Checkbox Sample n° 2
+ * Checkbox Sample n° 6
  * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -20,7 +20,7 @@ FUNCTION Main
       AT 0, 0 ;
       WIDTH 448 ;
       HEIGHT 176 ;
-      TITLE 'oohg - CheckBox demo - OOHGDRAW' ;
+      TITLE 'oohg - CheckBox demo - WINDRAW' ;
       MAIN ;
       NOSIZE ;
       BACKCOLOR {255,255,204}
@@ -44,7 +44,7 @@ FUNCTION Main
          WIDTH 120 ;                         // at the top and 2 at the bottom.
          HEIGHT 28 ;
          LEFTALIGN ;
-         OOHGDRAW                            // Unneeded, it's the default value
+         WINDRAW
 
       @ 22,199 FRAME frm_2 ;
          WIDTH 122 ;
@@ -56,7 +56,7 @@ FUNCTION Main
          WIDTH 120 ;
          HEIGHT 28 ;
          THREESTATE ;
-         OOHGDRAW
+         WINDRAW
 
       @ 54,29 FRAME frm_3 ;
          WIDTH 122 ;
@@ -64,13 +64,13 @@ FUNCTION Main
 
       DEFINE CHECKBOX Chk3
          ROW 62
-         COL 30
+         COL 30                              
          WIDTH 120
          HEIGHT 28
          CAPTION 'Chk3 AltSyntax'
          VALUE .T.
          LEFTALIGN .T.
-         OOHGDRAW .T.
+         WINDRAW .T.
        END CHECKBOX
 
       @ 54,199 FRAME frm_4 ;
@@ -87,7 +87,7 @@ FUNCTION Main
          TOOLTIP 'Chk4 AltSyntax'
          ONCHANGE ShowState()
          THREESTATE .T.
-         OOHGDRAW .T.
+         WINDRAW .T.
       END CHECKBOX
 
       ON KEY ESCAPE ACTION Form1.Release()
@@ -110,7 +110,7 @@ FUNCTION SetChkState( nState )
       Form1.Chk2.Value := NIL
    ENDCASE
 
-RETURN Nil
+RETURN NIL
 
 
 FUNCTION ShowState()
