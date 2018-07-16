@@ -1,6 +1,6 @@
 /*
  * Grid Sample n° 05
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
@@ -81,6 +81,10 @@ FUNCTION Main
             MENUITEM 'Show Column 2' ACTION oGrid:ColumnShow( 2 )
             MENUITEM 'Better Auto Fit' ACTION oGrid:ColumnsBetterAutoFit()
             MENUITEM 'Change Header 1' ACTION ChangeHeader(oGrid)
+            SEPARATOR
+            MENUITEM 'Get Justify' ACTION AutoMsgBox( oGrid:Justify() )
+            MENUITEM 'Set Justify 1' ACTION AutoMsgBox( oGrid:Justify(1, GRID_JTFY_LEFT) )
+            MENUITEM 'Set Justify All' ACTION AutoMsgBox( oGrid:Justify({GRID_JTFY_CENTER, GRID_JTFY_CENTER, GRID_JTFY_CENTER, GRID_JTFY_CENTER, GRID_JTFY_CENTER}, .T.) )
          END POPUP
       END MENU
 
