@@ -1,6 +1,6 @@
 /*
  * Ejemplo Browse n° 7
- * Autor: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Autor: Fernando Yurisich <fyurisich@oohg.org>
  * Licenciado bajo The Code Project Open License (CPOL) 1.02
  * Vea <http://www.codeproject.com/info/cpol10.aspx>
  */

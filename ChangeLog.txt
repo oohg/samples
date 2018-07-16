@@ -8,6 +8,12 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-07-16 19:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ChangeLog.txt
+     * Updated.
+   * samples\*.*
+     * Private mail changed by public one.
+
 2018-07-01 21:59 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ChangeLog.txt
      * Updated.

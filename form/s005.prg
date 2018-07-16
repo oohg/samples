@@ -1,6 +1,6 @@
 /*
  * Form Sample n° 5
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
