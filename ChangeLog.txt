@@ -8,22 +8,19 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-07-21 18:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\label\s004.prg
+
 2018-07-16 19:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    + samples\browse\s020.prg
    * samples\grid\s005.prg
      + Justify.
 
 2018-07-16 19:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\*.*
      * Private mail changed by public one.
 
 2018-07-01 21:59 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\checkbox\s001.prg
    * samples\checkbox\s002.prg
    * samples\checkbox\s003.prg
@@ -36,8 +33,6 @@
    - samples\checkbox\DEMO.PRG
 
 2018-06-28 19:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\combobox\s001.prg
    * samples\combobox\s006.prg
      * Erase aux table on close.
@@ -71,41 +66,29 @@
    + samples\image\s012.prg
 
 2018-06-26 19:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\combobox\s001.prg
    * samples\combobox\s005.prg
      + How to use method ItemValue.
 
 2018-06-18 12:12 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\edit\advanced.prg
      ! Codepage is no longer present in Harbour.
 
 2018-04-30 13:39 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    + samples\grid\s015.prg
      * How to use _OOHG_InitTGridControlDatas to alter the default
        behaviour of TGridControlTextBox editcontrols.
 
 2018-04-19 20:19 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    + samples\grid\s027.prg
    * statusbar\demo1.prg
      * Format.
 
 2018-04-06 20:18 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * Some files.
      * Changed reference to user's group.
 
 2018-04-06 19:35 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * Almost all files
      - References to wiki.
      - References to private repository.
@@ -131,8 +114,6 @@
      + TTXTPRINT usage sample.
 
 2018-01-12 20:40 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\bostaurus\s001.bat
    * samples\bostaurus\s014.bat
    * samples\dll\LANZA.BAT
@@ -153,20 +134,14 @@
    + samples\oohg\stream\Stream.md
 
 2017-11-17 20:52 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\*.*
      * References to sourceforge changed to github.
 
 2017-11-17 19:50 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\*.*
      * Id.
 
 2017-11-03 17:33 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-   * samples\ChangeLog.txt
-     * Updated.
    * samples\dbview\fmgs\hbcompat.prg
    * samples\harupdf\HaruPDF.prg
    * samples\http\getip\s001.prg
