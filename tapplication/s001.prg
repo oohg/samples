@@ -17,7 +17,7 @@ MEMVAR oApp, oBtn2, oBtn3, oLbl12, oLbl13
 FUNCTION Main( ... )
    PUBLIC oApp, oBtn2, oBtn3, oLbl12, oLbl13
 
-   oApp := TApplication()
+   oApp := TApplication():Define()
 
    DEFINE WINDOW Form_1 ;
       AT 0,0 ;
@@ -40,11 +40,11 @@ FUNCTION Main( ... )
 
       @ 100, 10 LABEL lbl_4 ;
          AUTOSIZE ;
-         VALUE "Name: " + oApp:Name
+         VALUE "Filename: " + oApp:FileName
 
       @ 130, 10 LABEL lbl_5 ;
          AUTOSIZE ;
-         VALUE "Argument Count: " + LTRIM( STR( oApp:ArgC ) )
+         VALUE "Argument Count: " + LTrim( Str( oApp:ArgC ) )
 
       @ 160, 10 LABEL lbl_6 ;
          AUTOSIZE ;
@@ -60,11 +60,11 @@ FUNCTION Main( ... )
 
       @ 250, 10 LABEL lbl_9 ;
          AUTOSIZE ;
-         VALUE "Row, Col: " + LTRIM( STR( oApp:Row ) ) + ", " + LTRIM( STR( oApp:Col ) )
+         VALUE "Row, Col: " + LTrim( Str( oApp:Row ) ) + ", " + LTrim( Str( oApp:Col ) )
 
       @ 280, 10 LABEL lbl_10 ;
          AUTOSIZE ;
-         VALUE "Width, Height: " + LTRIM( STR( oApp:Width ) ) + ", " + LTRIM( STR( oApp:Height ) )
+         VALUE "Width, Height: " + LTrim( Str( oApp:Width ) ) + ", " + LTrim( Str( oApp:Height ) )
 
       @ 310, 10 LABEL lbl_11 ;
          AUTOSIZE ;
@@ -105,15 +105,15 @@ RETURN NIL
 STATIC FUNCTION ColorToStr( nColor )
   LOCAL cRet
 
-  IF HB_IsNil( nColor )
+  IF HB_ISNIL( nColor )
      cRet := "NIL (COLOR_BTNFACE)"
   ELSE
      cRet := "{ " + ;
-             LTRIM( STR( GetRed( nColor ) ) ) + ;
+             LTrim( Str( GetRed( nColor ) ) ) + ;
              ", " + ;
-             LTRIM( STR( GetGreen( nColor ) ) ) + ;
+             LTrim( Str( GetGreen( nColor ) ) ) + ;
              ", " + ;
-             LTRIM( STR( GetBlue( nColor ) ) ) + ;
+             LTrim( Str( GetBlue( nColor ) ) ) + ;
              " }"
   ENDIF
 
