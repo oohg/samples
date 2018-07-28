@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-07-8 19:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s028.prg
+
+2018-07-22 12:08 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\tapplication\s001.prg
+     ! Wrong instantiation of TApplication object.
+
 2018-07-21 18:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\label\s004.prg
 
