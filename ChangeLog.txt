@@ -8,7 +8,11 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
-2018-07-8 19:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+2018-08-03 18:11 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\form\s012.prg
+   + samples\form\fondo.jpg
+
+2018-07-28 19:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s028.prg
 
 2018-07-22 12:08 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
