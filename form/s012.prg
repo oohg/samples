@@ -4,8 +4,8 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows the use of SET AUTOADJUST ON to automatically
- * resize the controls of a form whenever the form is resized.
+ * This sample shows the use of SET AUTOADJUST ON with
+ * a form that has a backimage.
  *
  * Visit us at https://github.com/oohg/samples
  *

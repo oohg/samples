@@ -8,12 +8,18 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-08-04 09:32 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\form\s013.prg
+     ; Programatically scroll am internal form.
+
 2018-08-03 18:11 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\form\s012.prg
    + samples\form\fondo.jpg
+     ; Form with SET AUTOADJUST ON and a backimage.
 
 2018-07-28 19:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s028.prg
+     ; How to hide/show the scrollbars of a GRID control.
 
 2018-07-22 12:08 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\tapplication\s001.prg
@@ -21,6 +27,7 @@
 
 2018-07-21 18:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\label\s004.prg
+     ; How to set and clear the clientedge extended style on a label.
 
 2018-07-16 19:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\browse\s020.prg
