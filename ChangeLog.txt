@@ -8,7 +8,11 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
-2018-08-04 09:32 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+2018-08-10 20:56 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\richeditbox\s005.prg
+     ; On scroll detect if the last line is visible.
+
+2018-08-04 09:33 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\form\s013.prg
      ; Programatically scroll am internal form.
 
