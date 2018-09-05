@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-09-05 20:55 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\label\demo.prg
+   - samples\label\prueba.prg
+   + samples\label\s005.prg
+   + samples\label\s006.prg
+   + samples\label\s007.prg
+
 2018-08-10 20:56 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\richeditbox\s005.prg
      ; On scroll detect if the last line is visible.

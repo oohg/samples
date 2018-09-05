@@ -1,3 +1,13 @@
+/*
+ * Label Sample n° 6
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows some features of LABEL controls.
+ *
+ * Visit us at https://github.com/oohg/samples
+ */
 
 #include "oohg.ch"
 
@@ -5,8 +15,8 @@ FUNCTION Main
 
 	DEFINE WINDOW Form_1 ;
 		AT 0,0 ;
-		WIDTH 240 HEIGHT 400 ;
-		TITLE "oohg label Demo" ;
+		WIDTH 300 HEIGHT 400 ;
+		TITLE "Label Demo" ;
 		MAIN ;
 		FONT "Arial" SIZE 10 ;
       BACKCOLOR YELLOW
@@ -87,4 +97,9 @@ FUNCTION Main
 	CENTER WINDOW Form_1
 	ACTIVATE WINDOW Form_1
 
-RETURN Nil
+RETURN NIL
+
+/*
+ * EOF
+ */
+
