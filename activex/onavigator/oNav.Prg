@@ -1,297 +1,344 @@
 /*
- * ooHG - Object Oriented Harbour GUI library
- * https://oohg.github.io/
- * "oNav.prg" Ejemplo de algunos eventos del control ActiveX
- * Copyright 2007 MigSoft <fugaz_cl/at/yahoo.es>
- * Soporte de Eventos una fina cortesía de Oscar Joel Lira Lira
+ * ActiveX Sample n° 1
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows how to build an Internet browse
+ * using "Shell.Explorer.2".
+ *
+ * Based on a sample by MigSoft <fugaz_cl/at/yahoo.es>
+ * and Ciro Vargas C. <cvc@oohg.org>
+ *
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include 'oohg.ch'
+#include 'i_windefs.ch'
+
 #ifndef __XHARBOUR__
 #xcommand TRY => BEGIN SEQUENCE WITH s_bBreak
 #xcommand CATCH [<!oErr!>] => RECOVER [USING <oErr>] <-oErr->
 #xcommand FINALLY => ALWAYS
 #endif
-static s_bBreak := { |oErr| break( oErr ) }
 
+STATIC s_bBreak := { |oErr| break( oErr ) }
 
-#define AX_SE2_STATUSTEXTCHANGE           102
-#define AX_SE2_PROGRESSCHANGE             108
-#define AX_SE2_COMMANDSTATECHANGE         105
-#define AX_SE2_DOWNLOADBEGIN              106
-#define AX_SE2_DOWNLOADCOMPLETE           104
-#define AX_SE2_TITLECHANGE                113
-#define AX_SE2_PROPERTYCHANGE             112
-#define AX_SE2_BEFORENAVIGATE2            250
-#define AX_SE2_NEWWINDOW2                 251
-#define AX_SE2_NAVIGATECOMPLETE2          252
-#define AX_SE2_DOCUMENTCOMPLETE           259
-#define AX_SE2_ONQUIT                     253
-#define AX_SE2_ONVISIBLE                  254
-#define AX_SE2_ONTOOLBAR                  255
-#define AX_SE2_ONMENUBAR                  256
-#define AX_SE2_ONSTATUSBAR                257
-#define AX_SE2_ONFULLSCREEN               258
-#define AX_SE2_ONTHEATERMODE              260
-#define AX_SE2_WINDOWSETRESIZABLE         262
-#define AX_SE2_WINDOWSETLEFT              264
-#define AX_SE2_WINDOWSETTOP               265
-#define AX_SE2_WINDOWSETWIDTH             266
-#define AX_SE2_WINDOWSETHEIGHT            267
-#define AX_SE2_WINDOWCLOSING              263
-#define AX_SE2_CLIENTTOHOSTWINDOW         268
-#define AX_SE2_SETSECURELOCKICON          269
-#define AX_SE2_FILEDOWNLOAD               270
-#define AX_SE2_NAVIGATEERROR              271
-#define AX_SE2_PRINTTEMPLATEINSTANTIATION 225
-#define AX_SE2_PRINTTEMPLATETEARDOWN      226
-#define AX_SE2_UPDATEPAGESTATUS           227
-#define AX_SE2_PRIVACYIMPACTEDSTATECHANGE 272
-#define AX_SE2_NEWWINDOW3                 273
-#define AX_SE2_SETPHISHINGFILTERSTATUS    282
-#define AX_SE2_WINDOWSTATECHANGED         283
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Main
 
+   // The compatibility key must be set before creating the ActiveX object
+   CreateCompatibilityKey()
 
-*------------------------------------------------------*
-Function Main()
-*------------------------------------------------------*
-public x:=1,otab,oprog,ocombo,sw:=0,z:=0, atitle:={""}, aobj:={}
+   PUBLIC nTabsCount := 1, oTab, oProg, oCombo, aTitle := {""}, aObj := {}
 
+   DEFINE WINDOW st1 OBJ st1 ;
+      AT 0, 0 ;
+      WIDTH 800 ;
+      HEIGHT 600 ;
+      CLIENTAREA ;
+      TITLE "" ;
+      ICON "ONE" ;
+      MAIN ;
+      ON INIT { || Adjust(), Navegar() } ;
+      ON SIZE Adjust() ;
+      ON RELEASE DeleteCompatibilityKey()
 
-DEFINE WINDOW st1 obj st1 AT 0 , 0 WIDTH 800 HEIGHT 588 TITLE "" ;
-       ICON "ONE" MAIN ON INIT {|| navegar(),  adjust() }  ON SIZE adjust()
+      DEFINE STATUSBAR OBJ oStat FONT "Arial" SIZE 9
+         @ 4, 2 PROGRESSBAR pgb_Status OBJ oProg ;
+           RANGE 0, 10 ;
+           WIDTH oStat:ClientWidth - 4 ;
+           HEIGHT oStat:ClientHeight - 6 ;
+           SMOOTH
+      END STATUSBAR
 
-    DEFINE STATUSBAR FONT "Arial" SIZE 9
-        STATUSITEM "Listo"
-        STATUSITEM ""
-    END STATUSBAR
+      DEFINE SPLITBOX
+         DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 20, 20 FONT "Arial" SIZE 9 FLAT BOTTOM
+            BUTTON AddP    TOOLTIP "Nueva Pagina"     PICTURE "siete"           ACTION NuevoTab() AUTOSIZE
+            BUTTON Retro   TOOLTIP "Retrocede"        PICTURE "uno"             ACTION Retro1()   AUTOSIZE
+            BUTTON avanza  TOOLTIP "Avanzar"          PICTURE "dos"             ACTION Avanza1()  AUTOSIZE
+            BUTTON Recarga TOOLTIP "Recargar"         PICTURE "cuatro"          ACTION Navegar()  AUTOSIZE
+            BUTTON Detiene TOOLTIP "Detener"          PICTURE "tres"            ACTION Detiene1() AUTOSIZE
+            BUTTON home    TOOLTIP "Pagina principal" PICTURE "cinco"           ACTION Home1()    AUTOSIZE
+            BUTTON Acerca  Tooltip "Acerca"           PICTURE "MINIGUI_EDIT_OK" ACTION Acerca()   AUTOSIZE
+         END TOOLBAR
 
-   DEFINE SPLITBOX
+         @ 30, 0 COMBOBOX directo OBJ oCombo ;
+            FONT "Arial" SIZE 9 ;
+            WIDTH 720 ;
+            ITEMS {"https://oohg.github.io/", "http://www.google.com", "https://groups.google.com/d/forum/oohg"} ;
+            VALUE 1 ;
+            ON ENTER Navegar() ;
+            ON CHANGE Navegar() ;
+            DISPLAYEDIT
 
-        DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 20,20 FONT "Arial" SIZE 9 FLAT BOTTOM
-            BUTTON AddP    TOOLTIP "Nueva Pagina"  PICTURE "siete"   ACTION NUevotab()   AUTOSIZE
-            BUTTON Retro   TOOLTIP "Retrocede" PICTURE "uno"    ACTION retro1()   AUTOSIZE
-            BUTTON avanza  TOOLTIP "Avanzar"   PICTURE "dos"    ACTION avanza1()  AUTOSIZE
-            BUTTON Recarga TOOLTIP "Recargar"  PICTURE "cuatro" ACTION recarga1() AUTOSIZE
-            BUTTON Detiene TOOLTIP "Detener"   PICTURE "tres"   ACTION detiene1() AUTOSIZE
-            BUTTON home    TOOLTIP "Pagina principal"      PICTURE "cinco"  ACTION home1()    AUTOSIZE
-            BUTTON Acerca  Tooltip "Acerca"  Picture "MINIGUI_EDIT_OK" ACTION acerca() AUTOSIZE
-        END TOOLBAR
-
-
-        @ 30,0 COMBOBOX directo obj ocombo ;
-        font "Arial" size 9 width 720 items {"https://oohg.github.io/","http://www.google.com","https://groups.google.com/d/forum/oohg"} ;
-        value 1  on enter navegar() displayedit ///////// on change navegar()
-
-
-        DEFINE TOOLBAR ir BUTTONSIZE 20,20 FONT "Arial" SIZE 9 FLAT BOTTOM
+         DEFINE TOOLBAR ir BUTTONSIZE 20, 20 FONT "Arial" SIZE 9 FLAT BOTTOM
             BUTTON ir_Btn1 PICTURE "seis" ACTION Navegar() TOOLTIP "Ir" AUTOSIZE
-        END TOOLBAR
+         END TOOLBAR
+      END SPLITBOX
 
-  END SPLITBOX
+      DEFINE TAB Tab_1 OBJ oTab ;
+         AT 70, 2 ;
+         WIDTH st1:ClientWidth - 4 ;
+         HEIGHT st1:ClientHeight - 70 + oStat:ClientHeightUsed() - 2 ;
+         VALUE 1 ;
+         FONT "Arial" SIZE 9 ;
+         ON CHANGE st1:Title := aTitle[ oTab:Value ]
 
-    DEFINE TAB Tab_1 AT 70 , 0 WIDTH St1.width HEIGHT St1.height - 42 VALUE 1 ;
-       FONT "Arial" SIZE 9 TOOLTIP "" ON CHANGE refresca()
-        PAGE "ooHG"
-             @ 24, 0 ACTIVEX ActiveX WIDTH St1.width - 8 HEIGHT St1.height - 144 PROGID "Shell.Explorer.2" OBJ oActiveX_0001
-        END PAGE
-    END TAB
+         PAGE "ooHG"
+            @ 24, 2 ACTIVEX ActiveX ;
+               WIDTH oTab:ClientWidth - 6 ;
+               HEIGHT oTab:ClientHeight - oTab:oContainerBase:TabsAreaHeight() - 7 ;
+               PROGID "Shell.Explorer.2" ;
+               OBJ oActiveX_0001
 
-    aadd(aobj,oActiveX_0001)
+            AAdd( aObj, oActiveX_0001 )
+         END PAGE
+      END TAB
 
-    otab:=getcontrolobject("tab_1","st1")
-    otab:lfixfont:=.T.
+     oTab:lFixFont := .T.
+   END WINDOW
 
-    @   st1.height - 44,  st1.width - 206 PROGRESSBAR ProgressBar_1 width 100 height 18 range 0,10
+   CENTER WINDOW st1
+   ACTIVATE WINDOW st1
 
+   RETURN
 
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Acerca
 
-    oprog:=getcontrolobject("progressbar_1","st1")
+   MsgInfo( 'Mybrowser Nav (c)2009 CVC' + CRLF + 'ooHG Navigator (c)2007 MigSoft', 'Información' )
 
-END WINDOW
+   RETURN
 
-Activate window st1
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Navegar
 
-Return
+   oStat:Item( 1, "Cargando" )
 
-function acerca()
-msginfo('  | Mybrowser Nav (c)2009 CvC | ooHG Navigator','Informacion')
-return nil
-*------------------------------------------------------*
-Procedure Navegar()
-*------------------------------------------------------*
-local i:=otab:value
+   IF oCombo:ItemValue( oCombo:DisplayValue ) == 0
+      oCombo:AddItem( oCombo:DisplayValue )
+   ENDIF
 
-   xoActivex := "oActiveX_" + StrZero( i , 4 )
+   xoActiveX := "oActiveX_" + StrZero( oTab:Value, 4 )
    &xoActiveX:EventMap( AX_SE2_PROGRESSCHANGE, "OnProgressChange" )
+   &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| CambiaTitulo( cTitle ) } )
+   &xoActiveX:EventMap( AX_SE2_DOCUMENTCOMPLETE, { || oProg:Visible := .F., oStat:Item( 1, "Listo" ) }  )
+   &xoActiveX:Navigate( oCombo:ItemBySource( oCombo:Value ) )
 
-      &xoActivex:Navigate(ocombo:caption)
+   RETURN
 
-   if sw = 1
-      ocombo:additem(ocombo:displayvalue)
-   endif
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE OnProgressChange( nAct, nTot )
 
+   oProg:RangeMin := 0
+   oProg:RangeMax := nTot
+   oProg:Value    := nAct
+   IF nAct == 0
+      oProg:Visible := .F.
+      oStat:Item( 1, "Listo" )
+   ELSE
+      oStat:Item( 1, "" )
+      oProg:Visible := .T.
+   ENDIF
 
+   RETURN
 
-     &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| cambiatitulo(ctitle)  } )
-///         &xoActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle|  refresca() }    )
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE NuevoTab
 
-///      &xoActiveX:EventMap( AX_SE2_STATUSTEXTCHANGE,{  |w| sicambiaono(w )  }  )
+   LOCAL xoActiveX
 
-////       ocombo:displayvalue := &xoActiveX:LocationUrL()
-      &xoActiveX:EventMap( AX_SE2_DOCUMENTCOMPLETE,{|| refresca()  }  )
+   // Increase tab count
+   nTabsCount ++
 
-   sw := 0
-Return
+   xoActiveX := "oActiveX_" + StrZero( nTabsCount, 4 )
+   PUBLIC &xoActiveX
 
-function refresca()
-local i:=otab:value(),oobj
-if i=0
-  return
-endif
-  xoActivex := "oActiveX_" + StrZero( i, 4 )
+   @ 24, 2 ACTIVEX &xoActiveX ;
+      OF st1 ;
+      OBJ &xoActiveX ;
+      WIDTH oTab:ClientWidth - 6 ;
+      HEIGHT oTab:ClientHeight - oTab:oContainerBase:TabsAreaHeight() - 7 ;
+      PROGID "Shell.Explorer.2"
 
-///oobj:=aobj[i]
-do while len(atitle)<i
-  aadd(atitle,"")
-enddo
-st1:title:= atitle[i]
-///ocombo:displayvalue:=aobj[i]
-st1:tab_1:caption(i,substr(atitle[i],1,20))
-  //if &xoActiveX <> NIL
-  if hb_isobject(oobj)
-    ocombo:displayvalue := oobj:LocationUrL()
-  endif
-  ///endif
-return
+   AAdd( aObj, &xoActiveX )
 
-*------------------------------------------------------*
-Procedure OnProgressChange( nAct, nTot )
-*------------------------------------------------------*
-   oprog:RangeMin := 0
-   oprog:RangeMax := nTot
-   oprog:value    := nAct
-   oprog:visible  := iif( nAct = 0,.f.,.t. )
+   AAdd( aTitle, "Nueva Pagina " + LTrim( Str( nTabsCount ) ) )
 
-Return( Nil )
+   oTab:AddPage( nTabsCount, ATail( aTitle ) )
+   oTab:AddControl( xoActiveX, nTabsCount, 24, 2 )
+   oTab:Value := nTabsCount
 
-*------------------------------------------------------*
-Procedure NuevoTab()
-*------------------------------------------------------*
-local xoActivex
-x++
-otab:AddPage ( x, 'Nueva Pagina '+ltrim(str( x)) )
-otab:Value := x
-xoActivex := "oActiveX_" + StrZero( x, 4 )
+   oCombo:SetFocus()
 
-Public &xoactivex
+   RETURN
 
-@ 24, 2 ACTIVEX &xoActivex ;
-OF st1 ;
-OBJ &xoActivex ;
-WIDTH st1.Tab_1.width - 7 ;
-HEIGHT st1.Tab_1.height - 28 ;
-PROGID "Shell.Explorer.2"
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Retro1
 
-otab:AddControl( xoActivex, x, 24, 2 )
-ocombo:setfocus()
-aadd(atitle,"Nueva Pagina")
-aadd(aobj,&xoactivex)
-sw:=1
+   LOCAL i := oTab:Value
 
-z:=0
-Return
+   xoActiveX := "oActiveX_" + StrZero( i, 4 )
+   IF HB_ISOBJECT( &xoActiveX )
+      TRY
+         &xoActiveX:GoBack()
+      CATCH e
+      END
+   ENDIF
 
-*------------------------------------------------------*
-Procedure retro1()
-*------------------------------------------------------*
-  local i:= otab:value
-  xoActivex := "oActiveX_" + StrZero( i, 4 )
+   RETURN
 
-  If HB_IsObject(&xoActiveX)
-     Try
-       &xoActiveX:GoBack()
-     Catch e
-     End
-  endif
-Return nil
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Avanza1
 
-*------------------------------------------------------*
-Procedure avanza1()
-*------------------------------------------------------*
-   local i:= otab:value
-   xoActivex := "oActiveX_" + StrZero( i, 4 )
-   If HB_IsObject(&xoActiveX)
-      Try
+   LOCAL i := oTab:Value
+
+   xoActiveX := "oActiveX_" + StrZero( i, 4 )
+   IF HB_ISOBJECT( &xoActiveX )
+      TRY
          &xoActiveX:GoForward()
-      Catch e
-      End
- endif
- Return nil
+      CATCH e
+      END
+   ENDIF
 
-*------------------------------------------------------*
-Procedure recarga1()
-*------------------------------------------------------*
-   Navegar()
-Return
-*------------------------------------------------------*
-Procedure detiene1()
-*------------------------------------------------------*
-   local i:= otab:value
-   xoActivex := "oActiveX_" + StrZero( i, 4 )
-   If HB_IsObject(&xoActiveX)
-     &xoActiveX:Stop()
-   Endif
-Return
+   RETURN
 
-*------------------------------------------------------*
-Procedure home1()
-*------------------------------------------------------*
-local i:= otab:value
-   xoActivex := "oActiveX_" + StrZero( i, 4 )
-   &xoactivex:navigate("https://oohg.github.io/")
-Return
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Detiene1
 
-*------------------------------------------------------*
-Procedure Adjust()
-*------------------------------------------------------*
-local i:= otab:value
+   LOCAL i := oTab:Value
 
-   if hb_IsNumeric ( i )
+   xoActiveX := "oActiveX_" + StrZero( i, 4 )
+   IF HB_ISOBJECT( &xoActiveX )
+      &xoActiveX:Stop()
+      oProg:Visible := .F.
+      oStat:Item( 1, "Listo" )
+   ENDIF
 
-   if i> 0
+   RETURN
 
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Home1
 
-      xoActivex := "oActiveX_" + StrZero( i, 4 )
+   LOCAL i := oTab:Value
 
+   xoActiveX := "oActiveX_" + StrZero( i, 4 )
+   &xoActiveX:Navigate( "https://oohg.github.io/" )
 
+   RETURN
 
-         &xoActiveX:width        := st1:width - 8
-         &xoActiveX:height       := st1:height - 154
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE Adjust
 
-         otab:width       := st1:width
-         otab:height      := st1:height - 32
+   LOCAL i := oTab:Value
 
-         oprog:row := st1:height - 64
-         oprog:col := st1:width - 206
+   IF HB_ISNUMERIC( i )
+      IF i > 0
+         oTab:Width  := st1:ClientWidth - 4
+         oTab:Height := st1:ClientHeight - 70 + oStat:ClientHeightUsed() - 2
 
-     ///    ocombo:displayvalue := &xoActiveX:LocationUrL()
-     ///    aobj[i]:=  &xoActiveX:LocationUrL()
-      endif
-   endif
+         xoActiveX := "oActiveX_" + StrZero( i, 4 )
 
-Return
+         &xoActiveX:Width  := oTab:ClientWidth - 6
+         &xoActiveX:Height := oTab:ClientHeight - oTab:oContainerBase:TabsAreaHeight() - 7
+      ENDIF
+   ENDIF
 
-*------------------------------
-function cambiatitulo(ctitle)
-*------------------------------
-local i:= otab:value(), cCaption
-if hb_isnumeric( i ) .and. valtype(ctitle) == "C"
-   if i>0
-      atitle[i]:=ctitle
+   RETURN
 
-   endif
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE CambiaTitulo( cTitle )
 
-   adjust()
-endif
-return nil
+   LOCAL i := oTab:Value, cCaption
+
+   IF HB_ISNUMERIC( i ) .AND. ValType( cTitle ) == "C"
+      IF i > 0
+         st1:Title := ;
+         aTitle[i] := cTitle
+         IF At( "http://" , cTitle ) == 1
+            cTitle := SubStr( cTitle, 8 )
+         ELSEIF At( "https://" , cTitle ) == 1
+            cTitle := SubStr( cTitle, 9 )
+         ENDIF
+         IF Len( cTitle ) > 20
+            cTitle := Left( cTitle, 17 ) + "..."
+         ENDIF
+         oTab:Caption( i, cTitle )
+      ENDIF
+      Adjust()
+   ENDIF
+
+   RETURN
+
+#define cKey "Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE CreateCompatibilityKey( lEnableMsgs )
+
+   LOCAL nVal
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF IsRegistryKey( HKEY_CURRENT_USER, cKey )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " already exists !" )
+      ENDIF
+   ELSE
+      IF CreateRegistryKey( HKEY_CURRENT_USER, cKey )
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was created !" )
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be created !" )
+         ENDIF
+      ENDIF
+   ENDIF
+
+   nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+   IF HB_ISNIL( nVal )
+      IF SetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 11001, REG_DWORD )
+         nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+         IF HB_ISNIL( nVal )
+            IF lEnableMsgs
+               AutoMsgBox( "Unable to read just created registry value !" )
+            ENDIF
+         ELSE
+            IF lEnableMsgs
+               AutoMsgBox( "Registry value was created !" + CRLF + "Value is: " + hb_ntos( nVal ) )
+            ENDIF
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( "Can't create registry value !" )
+         ENDIF
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( "Registry value is: " + hb_ntos( nVal ) )
+      ENDIF
+   ENDIF
+
+   RETURN
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE DeleteCompatibilityKey( lEnableMsgs )
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF DeleteRegistryVar( HKEY_CURRENT_USER, cKey, App.FileName )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was deleted !" )
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be deleted !" )
+      ENDIF
+   ENDIF
+
+   RETURN
+
+/*
+ * EOF
+ */
