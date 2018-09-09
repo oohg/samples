@@ -14,4 +14,4 @@ prgs\modistru.prg
 prgs\Indadmin.Prg
 prgs\Import.prg
 
--ldflag=-L${HG_ROOT}\lib
+${HG_ROOT}\oohg.hbc
