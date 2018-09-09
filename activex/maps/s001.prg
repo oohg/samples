@@ -10,9 +10,7 @@
  * Visit us at https://github.com/oohg/samples
  */
 
-
 #include "oohg.ch"
-
 
 #ifndef __XHARBOUR__
 
@@ -22,80 +20,84 @@
 
 #endif
 
-
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION Main()
 
    LOCAL oForm, oActiveX, oLat, oLng, oAddr, oCity, oCntr
 
+   // The compatibility key must be set before creating the ActiveX object
+   CreateCompatibilityKey()
+
    DEFINE WINDOW Form OBJ oForm ;
       AT 0, 0 ;
-      WIDTH 650 ;
-      HEIGHT 608 ;
+      WIDTH 800 ;
+      HEIGHT 600 ;
+      CLIENTAREA ;
       TITLE "Show a Google Map" ;
       MAIN ;
       NOMAXIMIZE ;
       NOSIZE ;
+      BACKCOLOR WHITE ;
       ON INIT ShowLocationByCoords( oActiveX, oLat:Value, oLng:Value ) ;
-      ON RELEASE FErase( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' )
+      ON RELEASE ( FErase( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' ), DeleteCompatibilityKey() )
 
       @ 0, 0 ACTIVEX ActiveX OBJ oActiveX ;
-         WIDTH 640 ;
-         HEIGHT 458 ;
+         WIDTH 800 ;
+         HEIGHT 490 ;
          PROGID "Shell.Explorer.2"
 
-      @ 470, 10 LABEL lbl_Lat ;
+      @ 500, 10 LABEL lbl_Lat ;
          WIDTH 80 ;
          VALUE "Latitude:"
 
-      @ 470, 90 TEXTBOX txt_Lat OBJ oLat ;
+      @ 500, 90 TEXTBOX txt_Lat OBJ oLat ;
          WIDTH 100 ;
          INPUTMASK "9999.999999" ;
          NUMERIC ;
          VALUE -34.855202
 
-      @ 470, 210 LABEL lbl_Lng ;
+      @ 500, 210 LABEL lbl_Lng ;
          WIDTH 80 ;
          VALUE "Longitude:"
 
-      @ 470, 290 TEXTBOX txt_Lng OBJ oLng ;
+      @ 500, 290 TEXTBOX txt_Lng OBJ oLng ;
          WIDTH 100 ;
          NUMERIC ;
          INPUTMASK "9999.999999" ;
          VALUE -56.194813
 
-      @ 470, 480 BUTTON btn_SearchCoord ;
+      @ 500, 640 BUTTON btn_SearchCoord ;
          WIDTH 150 ;
          ACTION ShowLocationByCoords( oActiveX, oLat:Value, oLng:Value ) ;
          CAPTION "Search By Coordinates"
 
-      @ 500, 10 LABEL lbl_Address ;
+      @ 530, 10 LABEL lbl_Address ;
          WIDTH 120 ;
          VALUE "Street and number:"
 
-      @ 500, 130 TEXTBOX txt_Address OBJ oAddr ;
+      @ 530, 130 TEXTBOX txt_Address OBJ oAddr ;
          WIDTH 300
 
-      @ 500, 480 BUTTON btn_SearchAddr ;
+      @ 530, 640 BUTTON btn_SearchAddr ;
          WIDTH 150 ;
          ACTION ShowLocationByAddress( oActiveX, oAddr:Value, oCity:Value, oCntr:Value ) ;
          CAPTION "Search By Address"
 
-      @ 530, 10 LABEL lbl_City ;
+      @ 560, 10 LABEL lbl_City ;
          WIDTH 50 ;
          VALUE "City:"
 
-      @ 530, 60 TEXTBOX txt_City OBJ oCity ;
+      @ 560, 60 TEXTBOX txt_City OBJ oCity ;
          WIDTH 160
 
-      @ 530, 240 LABEL lbl_Country ;
+      @ 560, 240 LABEL lbl_Country ;
          WIDTH 70 ;
          VALUE "Country:"
 
-      @ 530, 310 TEXTBOX txt_Country OBJ oCntr ;
+      @ 560, 310 TEXTBOX txt_Country OBJ oCntr ;
          WIDTH 120
 
-      @ 530, 480 BUTTON btn_Exit ;
+      @ 560, 640 BUTTON btn_Exit ;
          WIDTH 150 ;
          ACTION oForm:Release() ;
          CAPTION "Exit"
@@ -111,10 +113,13 @@ FUNCTION Main()
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
+
    LOCAL cHtml := MemoRead( "gmap2.html" )
 
    cHtml := StrTran( cHtml, "<<LAT>>", LTrim( Str( nLat ) ) )
    cHtml := StrTran( cHtml, "<<LNG>>", LTrim( Str( nLng ) ) )
+   cHtml := StrTran( cHtml, "604px", LTrim( Str( oActiveX:Width - GETBORDERWIDTH() * 2 ) ) + "px" )
+   cHtml := StrTran( cHtml, "408px", LTrim( Str( oActiveX:Height - 34 ) ) + "px" )
 
    MemoWrit( "temp.html", cHtml )
 
@@ -125,17 +130,90 @@ FUNCTION ShowLocationByCoords( oActiveX, nLat, nLng )
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION ShowLocationByAddress( oActiveX, cAddress, cCity, cCountry )
+
    LOCAL cHtml := MemoRead( "gmap1.html" )
 
-   cHtml = StrTran( cHtml, "<<STREET>>", AllTrim( cAddress ) )
-   cHtml = StrTran( cHtml, "<<CITY>>", AllTrim( cCity ) )
-   cHtml = StrTran( cHtml, "<<COUNTRY>>", AllTrim( cCountry ) )
+   cHtml := StrTran( cHtml, "<<STREET>>", AllTrim( cAddress ) )
+   cHtml := StrTran( cHtml, "<<CITY>>", AllTrim( cCity ) )
+   cHtml := StrTran( cHtml, "<<COUNTRY>>", AllTrim( cCountry ) )
+   cHtml := StrTran( cHtml, "604px", LTrim( Str( oActiveX:Width ) ) + "px" )
+   cHtml := StrTran( cHtml, "408px", LTrim( Str( oActiveX:Height ) ) + "px" )
 
    MemoWrit( "temp.html", cHtml )
 
    oActiveX:Navigate( CurDrive() + ':\' + CurDir() + '\' + 'temp.html' )
 
    RETURN NIL
+
+
+#define cKey "Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE CreateCompatibilityKey( lEnableMsgs )
+
+   LOCAL nVal
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF IsRegistryKey( HKEY_CURRENT_USER, cKey )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " already exists !" )
+      ENDIF
+   ELSE
+      IF CreateRegistryKey( HKEY_CURRENT_USER, cKey )
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was created !" )
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be created !" )
+         ENDIF
+      ENDIF
+   ENDIF
+
+   nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+   IF HB_ISNIL( nVal )
+      IF SetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 11001, REG_DWORD )
+         nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+         IF HB_ISNIL( nVal )
+            IF lEnableMsgs
+               AutoMsgBox( "Unable to read just created registry value !" )
+            ENDIF
+         ELSE
+            IF lEnableMsgs
+               AutoMsgBox( "Registry value was created !" + CRLF + "Value is: " + hb_ntos( nVal ) )
+            ENDIF
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( "Can't create registry value !" )
+         ENDIF
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( "Registry value is: " + hb_ntos( nVal ) )
+      ENDIF
+   ENDIF
+
+   RETURN
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE DeleteCompatibilityKey( lEnableMsgs )
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF DeleteRegistryVar( HKEY_CURRENT_USER, cKey, App.FileName )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was deleted !" )
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be deleted !" )
+      ENDIF
+   ENDIF
+
+   RETURN
 
 /*
  * EOF

@@ -1,145 +1,181 @@
 /*
- * $Id: activexdemo.prg $
+ * ActiveX Sample n° 2
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows how to instantiate an internet browser
+ * using Shell.Explorer.2 ActiveX control.
+ *
+ * This sample is based on the works of Marcelo Torres
+ * and Okcar Lira
+ *
+ * Visit us at https://github.com/oohg/samples
  */
-/*
-   Marcelo Torres, Noviembre de 2006.
-   TActivex para [x]Harbour Minigui.
-   Adaptacion del trabajo de:
-   ---------------------------------------------
-   Lira Lira Oscar Joel [oSkAr]
-   Clase TAxtiveX_FreeWin para Fivewin
-   Noviembre 8 del 2006
-   email: oscarlira78@hotmail.com
-   http://freewin.sytes.net
-   @CopyRight 2006 Todos los Derechos Reservados
-   ---------------------------------------------
-*/
 
 #include "oohg.ch"
-#include "hbclass.ch"
-
-///////////////////// internet explorer events BEGIN
-
-#define AX_SE2_STATUSTEXTCHANGE           102
-#define AX_SE2_PROGRESSCHANGE             108
-#define AX_SE2_COMMANDSTATECHANGE         105
-#define AX_SE2_DOWNLOADBEGIN              106
-#define AX_SE2_DOWNLOADCOMPLETE           104
-#define AX_SE2_TITLECHANGE                113
-#define AX_SE2_PROPERTYCHANGE             112
-#define AX_SE2_BEFORENAVIGATE2            250
-#define AX_SE2_NEWWINDOW2                 251
-#define AX_SE2_NAVIGATECOMPLETE2          252
-#define AX_SE2_DOCUMENTCOMPLETE           259
-#define AX_SE2_ONQUIT                     253
-#define AX_SE2_ONVISIBLE                  254
-#define AX_SE2_ONTOOLBAR                  255
-#define AX_SE2_ONMENUBAR                  256
-#define AX_SE2_ONSTATUSBAR                257
-#define AX_SE2_ONFULLSCREEN               258
-#define AX_SE2_ONTHEATERMODE              260
-#define AX_SE2_WINDOWSETRESIZABLE         262
-#define AX_SE2_WINDOWSETLEFT              264
-#define AX_SE2_WINDOWSETTOP               265
-#define AX_SE2_WINDOWSETWIDTH             266
-#define AX_SE2_WINDOWSETHEIGHT            267
-#define AX_SE2_WINDOWCLOSING              263
-#define AX_SE2_CLIENTTOHOSTWINDOW         268
-#define AX_SE2_SETSECURELOCKICON          269
-#define AX_SE2_FILEDOWNLOAD               270
-#define AX_SE2_NAVIGATEERROR              271
-#define AX_SE2_PRINTTEMPLATEINSTANTIATION 225
-#define AX_SE2_PRINTTEMPLATETEARDOWN      226
-#define AX_SE2_UPDATEPAGESTATUS           227
-#define AX_SE2_PRIVACYIMPACTEDSTATECHANGE 272
-#define AX_SE2_NEWWINDOW3                 273
-#define AX_SE2_SETPHISHINGFILTERSTATUS    282
-#define AX_SE2_WINDOWSTATECHANGED         283
-
-///////////////////// internet explorer events END
-
-Static oActiveX, bVerde, WinDemo
+#include "i_windefs.ch"
 
 FUNCTION Main()
-   DEFINE WINDOW WinDemo obj Windemo ;
+
+   PRIVATE WinDemo, oActiveX, lGreenLight := .F.
+
+   // The compatibility key must be set before creating the ActiveX object
+   CreateCompatibilityKey()
+
+   DEFINE WINDOW WinDemo OBJ WinDemo ;
       AT 118,73 ;
-      WIDTH 808 ;
-      HEIGHT 534 ;
-      TITLE 'ooHG ActiveX Support Sample' ;
+      WIDTH 800 ;
+      HEIGHT 600 ;
+      CLIENTAREA ;
+      TITLE 'ooHG - ActiveX Support Sample' ;
       MAIN ;
-      ON SIZE Ajust() ;
-      ON MAXIMIZE Ajust() ;
-      BACKCOLOR {236 , 233 , 216 } ;
+      ON SIZE Adjust() ;
+      ON MAXIMIZE Adjust() ;
+      BACKCOLOR { 236, 233, 216 } ;
       FONT 'Verdana' ;
-      SIZE 10
+      SIZE 10 ;
+      ON INIT ( Adjust(), oActiveX:navigate( WinDemo:txt_URL:value ) ) ;
+      ON RELEASE DeleteCompatibilityKey()
 
-      @ Windemo:height - 60 , 10 LABEL LSemaforo ;
+      @ 560, 10 LABEL lbl_Semaphore ;
          VALUE " " ;
-         WIDTH 27 ;
-         HEIGHT 27 ;
-         FONTCOLOR {255,0,0} ;
-         BACKCOLOR {255,0,0}
+         WIDTH 25 ;
+         HEIGHT 25 ;
+         FONTCOLOR RED ;
+         BACKCOLOR RED
 
-      @ windemo:height - 57 , 43 TEXTBOX URL_ToNavigate  ;
-         HEIGHT 23 ;
-         WIDTH windemo:width - 165 ;
-         Font 'Verdana' ;
-         ON ENTER Navegar() ;
-
-      @ windemo:height - 60 , windemo:width - 115 BUTTON BNavigate ;
-         CAPTION 'Navigate' ;
-         ACTION ( oActiveX:visible := .F., Navegar() ) ;
-         WIDTH 100 ;
-         HEIGHT 28 ;
+      @ 560, 45 TEXTBOX txt_URL  ;
+         HEIGHT 25 ;
+         WIDTH 435 ;
          FONT 'Verdana' ;
+         VALUE "https://oohg.github.io/" ;
+         ON ENTER oActiveX:navigate( WinDemo:txt_URL:value )
 
+      @ 560, 490 BUTTON btn_Navigate ;
+         CAPTION 'Navigate' ;
+         ACTION oActiveX:navigate( WinDemo:txt_URL:value ) ;
+         WIDTH 100 ;
+         HEIGHT 25 ;
+         FONT 'Verdana'
 
-      @  0, 0 ACTIVEX ActiveX WIDTH WinDemo:width - 7 HEIGHT WinDemo:height - 72 PROGID "Shell.Explorer.2" OBJ oActiveX INVISIBLE
+      @  0, 0 ACTIVEX ActiveX WIDTH 800 HEIGHT 545 PROGID "Shell.Explorer.2" OBJ oActiveX
+      oActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| WinDemo:Title := cTitle } )
 
-     oActiveX:EventMap( AX_SE2_TITLECHANGE, { |cTitle| WinDemo:Title := cTitle } )
+      DEFINE TIMER tmr_Semaphore INTERVAL 1000 ACTION SwitchSemaphore()
 
-      bVerde := .F.
-      oActiveX:Navigate( "www.oohg.org" )
-
-      DEFINE TIMER TSemaforo ;
-         INTERVAL    1000 ;
-         ACTION SwitchSemaforo() ;
-
+      ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
 
-   Center window WinDemo
-
-   Activate window WinDemo
+   CENTER WINDOW WinDemo
+   ACTIVATE WINDOW WinDemo
 
 RETURN NIL
 
-Procedure SwitchSemaforo()
-   if oActiveX:Busy()
-      if bVerde
-         bVerde := .F.
-         WinDemo:LSemaforo:BackColor := {255,0,0}
-      endif
-   else
-      if !bVerde
-         bVerde := .T.
-         WinDemo:LSemaforo:BackColor := {0,255,0}
-         windemo:URL_tonavigate:value := oActiveX:LocationURL()
-      endif
-   endif
-Return
+PROCEDURE SwitchSemaphore()
 
-Procedure Navegar()
-   oActivex:Navigate(windemo:URL_tonavigate:value)
-   AutoMsgBox("here")
-   oActiveX:visible := .T.
-Return
+   IF oActiveX:Busy()
+      IF lGreenLight
+         WinDemo:cursor := IDC_WAIT
+         lGreenLight := .F.
+         WinDemo:lbl_Semaphore:backcolor := RED
+      ENDIF
+   ELSE
+      IF ! lGreenLight
+         WinDemo:cursor := IDC_ARROW
+         lGreenLight := .T.
+         WinDemo:lbl_Semaphore:backcolor := GREEN
+         WinDemo:txt_URL:value := oActiveX:LocationURL()
+      ENDIF
+   ENDIF
 
-Procedure Ajust()
-   windemo:lsemaforo:row := WinDemo:height - 60
-   windemo:URL_tonavigate:row := WinDemo:height - 57
-   windemo:URL_tonavigate:width :=  WinDemo:width- 165
-   windemo:Bnavigate:row := WinDemo:height- 60
-   windemo:bnavigate:col := WinDemo:width- 115
-   oActiveX:width := WinDemo:width - 7
-   oActiveX:height := WinDemo:height - 72
-Return
+   RETURN
+
+PROCEDURE Adjust()
+
+   LOCAL nClientHeight := WinDemo:ClientHeight
+   LOCAL nClientWidth  := WinDemo:ClientWidth
+
+   WinDemo:lbl_Semaphore:row := ;
+   WinDemo:txt_URL:row       := ;
+   WinDemo:btn_Navigate:row  := nClientHeight - 40
+   oActiveX:height           := nClientHeight - 55
+
+   WinDemo:txt_URL:width     := nClientWidth - 165
+   WinDemo:btn_Navigate:col  := nClientWidth - 110
+   oActiveX:width            := nClientWidth
+
+   RETURN
+
+#define cKey "Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE CreateCompatibilityKey( lEnableMsgs )
+
+   LOCAL nVal
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF IsRegistryKey( HKEY_CURRENT_USER, cKey )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " already exists !" )
+      ENDIF
+   ELSE
+      IF CreateRegistryKey( HKEY_CURRENT_USER, cKey )
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was created !" )
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be created !" )
+         ENDIF
+      ENDIF
+   ENDIF
+
+   nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+   IF HB_ISNIL( nVal )
+      IF SetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 11001, REG_DWORD )
+         nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
+         IF HB_ISNIL( nVal )
+            IF lEnableMsgs
+               AutoMsgBox( "Unable to read just created registry value !" )
+            ENDIF
+         ELSE
+            IF lEnableMsgs
+               AutoMsgBox( "Registry value was created !" + CRLF + "Value is: " + hb_ntos( nVal ) )
+            ENDIF
+         ENDIF
+      ELSE
+         IF lEnableMsgs
+            AutoMsgBox( "Can't create registry value !" )
+         ENDIF
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( "Registry value is: " + hb_ntos( nVal ) )
+      ENDIF
+   ENDIF
+
+   RETURN
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+PROCEDURE DeleteCompatibilityKey( lEnableMsgs )
+
+   ASSIGN lEnableMsgs VALUE lEnableMsgs TYPE "L" DEFAULT .F.
+
+   IF DeleteRegistryVar( HKEY_CURRENT_USER, cKey, App.FileName )
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " was deleted !" )
+      ENDIF
+   ELSE
+      IF lEnableMsgs
+         AutoMsgBox( 'HKEY_CURRENT_USER\' + cKey + " can't be deleted !" )
+      ENDIF
+   ENDIF
+
+   RETURN
+
+/*
+ * EOF
+ */
