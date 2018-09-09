@@ -8,7 +8,6 @@
  * OnMouseMove event and the form's OnMouseMouse event.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
@@ -23,7 +22,7 @@ FUNCTION Main()
       AT 0, 0 ;
       WIDTH 600 ;
       HEIGHT 200 ;
-      TITLE "ooHG Demo - OnMouseMove Control and Form Event" ;
+      TITLE "ooHG - OnMouseMove Control and Form Event" ;
       MAIN ;
       ON MOUSEMOVE {|| OnMouseMoveWindow()}
 

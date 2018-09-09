@@ -1,6 +1,6 @@
 /*
  * Image Sample n° 3
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
@@ -21,17 +21,26 @@ FUNCTION Main()
       HEIGHT 400 ;
       CLIENTAREA ;
       MAIN ;
-      TITLE "Checkbox with transparent background"
+      TITLE "Controls with transparent background"
 
       @ 00, 00 IMAGE img_1 ;
          PICTURE "logo.jpg" ;
          WIDTH 450 HEIGHT 400 ;
          OBJ oImg
 
-      @ 20,20 RADIOGROUP rdg_1 ;
+      @ 220,300 RADIOGROUP rdg_1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          WIDTH 80 ;
          SPACING 24 ;
+         FONTCOLOR RED BOLD ;
+         BACKGROUND oImg
+
+      @ 100,160 CHECKBOX chk_1 ;
+         WIDTH 130 ;
+         VALUE .F. ;
+         CAPTION 'CheckBox ' ;
+         FONTCOLOR BLUE BOLD UNDERLINE SIZE 12 ;
+         LEFTALIGN ;
          BACKGROUND oImg
 
       ON KEY ESCAPE ACTION Form_1.Release

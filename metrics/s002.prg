@@ -147,23 +147,23 @@ hb_retnl( PointSize );
 
 HB_FUNC( GETSYSTEMFONT )
 {
-  NONCLIENTMETRICS ncm = {0};
+   NONCLIENTMETRICS ncm = {0};
 	LONG PointSize;
 	INT isBold;
-  LOGFONT lf;
+   LOGFONT lf;
   
-  ncm.cbSize = sizeof(ncm);
+   ncm.cbSize = sizeof(ncm);
 
 	if ( ! SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, 0) )
 	{
 		hb_reta( 7 );
-		HB_STORC( "" , -1, 1 );
-		HB_STORNL( (LONG) 0 , -1, 2 );
-		HB_STORL( 0 , -1, 3 );
-		HB_STORL( 0 , -1, 4 );
-		HB_STORNL( 0 , -1, 5 );
-		HB_STORL( 0 , -1, 6 );
-		HB_STORL( 0 , -1, 7 );
+		HB_STORC( "", -1, 1 );
+		HB_STORNL3( 0, -1, 2 );
+		HB_STORL( 0, -1, 3 );
+		HB_STORL( 0, -1, 4 );
+		HB_STORNL3( 0, -1, 5 );
+		HB_STORL( 0, -1, 6 );
+		HB_STORL( 0, -1, 7 );
 		return;
 	}
 
@@ -186,9 +186,9 @@ HB_FUNC( GETSYSTEMFONT )
       break;
    }
   
-  PointSize  = - MulDiv ( lf.lfHeight , 72 , GetDeviceCaps(GetDC(GetActiveWindow()), LOGPIXELSY) );
+   PointSize  = - MulDiv ( lf.lfHeight , 72 , GetDeviceCaps(GetDC(GetActiveWindow()), LOGPIXELSY) );
   
-  if (lf.lfWeight == 700)
+   if (lf.lfWeight == 700)
 	{
 		isBold = 1;
 	}
@@ -197,14 +197,14 @@ HB_FUNC( GETSYSTEMFONT )
 		isBold = 0;
 	}
 	
-  hb_reta( 7 );
-	HB_STORC( lf.lfFaceName , -1, 1 );
-	HB_STORNL( (LONG) PointSize , -1, 2 );
-	HB_STORL( isBold , -1, 3 );
-	HB_STORL( lf.lfItalic , -1, 4 );
-	HB_STORL( lf.lfUnderline , -1, 5 );
-	HB_STORL( lf.lfStrikeOut , -1, 6 );
-	HB_STORNI( lf.lfCharSet , -1, 7 );
+   hb_reta( 7 );
+	HB_STORC( lf.lfFaceName, -1, 1 );
+	HB_STORNL3( PointSize, -1, 2 );
+	HB_STORL( isBold, -1, 3 );
+	HB_STORL( lf.lfItalic, -1, 4 );
+	HB_STORL( lf.lfUnderline, -1, 5 );
+	HB_STORL( lf.lfStrikeOut, -1, 6 );
+	HB_STORNI( lf.lfCharSet, -1, 7 );
 
 }
 

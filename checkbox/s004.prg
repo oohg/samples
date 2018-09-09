@@ -1,6 +1,6 @@
 /*
  * Checkbox Sample n° 4
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
@@ -37,7 +37,7 @@ FUNCTION Main
                COL 10
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by Windows (WINDRAW)'
+               CAPTION 'Drawn by Windows (WINDRAW)'
                FONTCOLOR BLUE
                THREESTATE .T.
                WINDRAW .T.
@@ -50,7 +50,7 @@ FUNCTION Main
                COL 260
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by OOHG (OOHGDRAW)'
+               CAPTION 'Drawn by OOHG (OOHGDRAW)'
                FONTCOLOR BLUE
                THREESTATE .T.
                OOHGDRAW .T.
@@ -62,7 +62,7 @@ FUNCTION Main
                COL 10
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by Windows (WINDRAW)'
+               CAPTION 'Drawn by Windows (WINDRAW)'
                FONTCOLOR BLUE
                LEFTALIGN .T.
                WINDRAW .T.
@@ -73,7 +73,7 @@ FUNCTION Main
                COL 260
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by OOHG (OOHGDRAW)'
+               CAPTION 'Drawn by OOHG (OOHGDRAW)'
                FONTCOLOR BLUE
                LEFTALIGN .T.
                OOHGDRAW .T.
@@ -84,7 +84,7 @@ FUNCTION Main
                COL 10
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by Windows (WINDRAW)'
+               CAPTION 'Drawn by Windows (WINDRAW)'
                FONTCOLOR BLUE
                LEFTALIGN .T.
                WINDRAW .T.
@@ -96,7 +96,7 @@ FUNCTION Main
                COL 260
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by OOHG (OOHGDRAW)'
+               CAPTION 'Drawn by OOHG (OOHGDRAW)'
                FONTCOLOR BLUE
                LEFTALIGN .T.
                OOHGDRAW .T.
@@ -108,7 +108,7 @@ FUNCTION Main
                COL 10
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by Windows (WINDRAW)'
+               CAPTION 'Drawn by Windows (WINDRAW)'
                NOFOCUSRECT .T.
                WINDRAW .T.
             END CHECKBOX
@@ -119,7 +119,7 @@ FUNCTION Main
                COL 260
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by OOHG (OOHGDRAW)'
+               CAPTION 'Drawn by OOHG (OOHGDRAW)'
                NOFOCUSRECT .T.
                OOHGDRAW .T.
             END CHECKBOX
@@ -138,7 +138,7 @@ FUNCTION Main
                COL 20
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by Windows (WINDRAW)'
+               CAPTION 'Drawn by Windows (WINDRAW)'
                BACKGROUND oImage
                WINDRAW .T.
             END CHECKBOX
@@ -148,7 +148,7 @@ FUNCTION Main
                COL 20
                WIDTH 200
                VALUE .F.
-               CAPTION 'Drew by OOHG (OOHGDRAW)'
+               CAPTION 'Drawn by OOHG (OOHGDRAW)'
                BACKGROUND oImage
                OOHGDRAW .T.
             END CHECKBOX

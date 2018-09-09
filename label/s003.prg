@@ -25,7 +25,8 @@ FUNCTION Main
                "label." + HB_OSNewLine() + ;
                "I am the third line !!!" ;
          WIDTH 200 ;
-         HEIGHT 50
+         HEIGHT 50 ;
+         BORDER  OnDblClick AutoMsgBox("DblClick")
 
       ON KEY ESCAPE ACTION Form.Release
    END WINDOW

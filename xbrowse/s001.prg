@@ -8,13 +8,12 @@
  * the XBrowse's headers.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
 #include "dbstruct.ch"
 
-FUNCTION Main
+FUNCTION Main()
 
    PUBLIC oForm, oXBr
 
@@ -25,39 +24,40 @@ FUNCTION Main
 
    OpenTable()
 
-   DEFINE WINDOW Form_1 OBJ oForm ;
+   DEFINE WINDOW frm_1 OBJ oForm ;
       AT 0, 0 ;
       CLIENTAREA ;
-      WIDTH 420 HEIGHT 420 ;
-      TITLE 'XBrowse Headers' ;
+      WIDTH 420 ;
+      HEIGHT 420 ;
+      TITLE 'oohg - XBrowse Headers' ;
       MAIN ;
       ON RELEASE CleanUp()
 
-      @ 10, 10 XBROWSE XBrowse_1 OBJ oXBr ;
+      @ 10, 10 XBROWSE xbr_1 OBJ oXBr ;
          WIDTH 400 ;
          HEIGHT 180 ;
-         HEADERS {'Col.1', 'Col.2', 'Col.3'} ;
-         WIDTHS {50, 150, 150} ;
+         HEADERS { 'Col.1', 'Col.2', 'Col.3' } ;
+         WIDTHS { 50, 150, 150 } ;
          WORKAREA Data ;
-         FIELDS {'code', 'number', 'issued'} ;
-         BEFORECOLMOVE {|nCol| BeforeColMove( nCol )} ;
-         AFTERCOLMOVE {|nCol, nPos| AfterColMove( nCol, nPos )} ;
-         BEFORECOLSIZE {|nCol| BeforeColSize( nCol )} ;
-         AFTERCOLSIZE {|nCol, nSize| AfterColSize( nCol, nSize )} ;
-         BEFOREAUTOFIT {|nCol| BeforeAutoFit( nCol )}
+         FIELDS { 'code', 'number', 'issued' } ;
+         BEFORECOLMOVE { |nCol| BeforeColMove( nCol ) } ;
+         AFTERCOLMOVE { |nCol, nPos| AfterColMove( nCol, nPos ) } ;
+         BEFORECOLSIZE { |nCol| BeforeColSize( nCol ) } ;
+         AFTERCOLSIZE { |nCol, nSize| AfterColSize( nCol, nSize ) } ;
+         BEFOREAUTOFIT { |nCol| BeforeAutoFit( nCol ) }
 
       @ 220, 10 BUTTON btn_GetOrder OBJ oBtn1 ;
          WIDTH 190 ;
          CAPTION "Show columns order" ;
          ACTION oLbl:Value := "Columns order: " + ;
-                              AUTOTYPE( oXBr:ColumnOrder )
+                              AutoType( oXBr:ColumnOrder )
 
       @ 220, 220 BUTTON btn_SetOrder OBJ oBtn2 ;
          WIDTH 190 ;
          CAPTION "Change columns order" ;
-         ACTION ( oXBr:ColumnOrder := {3, 1, 2}, ;
+         ACTION ( oXBr:ColumnOrder := { 3, 1, 2 }, ;
                   oLbl:Value := "Columns order: " + ;
-                                AUTOTYPE( oXBr:ColumnOrder ) )
+                                AutoType( oXBr:ColumnOrder ) )
 
       @ 260, 10 LABEL lbl_Order OBJ oLbl ;
          WIDTH 400 ;
@@ -100,7 +100,7 @@ FUNCTION OpenTable()
    aDbf1[ 3 ][ DBS_LEN ]  := 8
    aDbf1[ 3 ][ DBS_DEC ]  := 0
 
-   DBCREATE( "Data", aDbf1, "DBFCDX" )
+   dbCreate( "Data", aDbf1, "DBFCDX" )
 
    SELECT 0
    USE Data VIA "DBFCDX"
@@ -154,7 +154,7 @@ RETURN NIL
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  DBCLOSEALL()
+  dbCloseAll()
 
   ERASE Data.dbf
 
@@ -164,7 +164,7 @@ RETURN NIL
 FUNCTION BeforeColMove( nCol )
 
    IF nCol == 1
-      MSGBOX("Column 1 can't be moved !!!")
+      AutoMsgBox( "Column 1 can't be moved !!!" )
       RETURN .F.
    ENDIF
 
@@ -173,10 +173,10 @@ RETURN .T.
 //--------------------------------------------------------------------------//
 FUNCTION AfterColMove( nCol, nPosicion )
 
-   AUTOMSGBOX( "Column " + LTRIM(STR(nCol)) + ;
-               " will be moved to position " + LTRIM(STR(nPosicion)) )
+   AutoMsgBox( "Column " + LTrim( Str( nCol ) ) + ;
+               " will be moved to position " + LTrim( Str( nPosicion ) ) )
 
-   oLbl:Value := "Clic on the button to see the columns order."
+   oLbl:Value := "Click the button to see the columns order."
 
 RETURN .T.
 
@@ -194,7 +194,7 @@ RETURN .T.
 FUNCTION AfterColSize( nCol, nSize )
 
    IF nSize < 50
-      // Minimun column' width is 50.
+      // Minimun column width is 50.
       RETURN 50
    ENDIF
 

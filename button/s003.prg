@@ -8,7 +8,7 @@
  * It also serves as a test case for the TButton class.
  *
  * Buttons can show ICO and BMP images of any size (they are shown in
- * their actual size).
+ * their actual size) unless STRETCH or AUTOSIZE clause is added.
  *
  * Transparency:
  *
@@ -18,17 +18,19 @@
  *
  * BMP images:
  * a. color depth not greater than 8 bpp, and
- * b. the color of the top-left pixel will be transparent
- * c. if this color it at index 0 in the image's palette.
+ *    the color of the top-left pixel will be transparent
+ *    if this color it at index 0 in the image's palette.
+ * b. for 32 bpp images, the BLACK color will be transparent.
+ *    the color of the top-left pixel will be transparent
+ *    if this color it at index 0 in the image's palette.
  *
  * JPG/JPEG/GIF images:
  * a. whatever transparency is defined.
  *
  * Visit us at https://github.com/oohg/samples
  *
- *
  * You can download the resource file and the images from
- * https://github.com/oohg/samples/tree/master/Button
+ * https://github.com/oohg/samples/tree/master/button
  */
 
 #include "oohg.ch"

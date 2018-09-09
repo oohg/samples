@@ -1,6 +1,6 @@
 /*
  * Checkbox Sample n° 5
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
@@ -23,7 +23,7 @@ FUNCTION Main
       HEIGHT 310 ;
       CLIENTAREA ;
       MAIN ;
-      TITLE "Transparent checkbox over a form with backimage" ;
+      TITLE "oohg - Transparent checkbox over a form with backimage" ;
       BACKIMAGE "logo.jpg" STRETCH
 
       @ 60,120 CHECKBOX chk_1 ;
@@ -32,7 +32,6 @@ FUNCTION Main
          AUTOSIZE ;
          FONTCOLOR RED SIZE 20 BOLD ;
          HEIGHT 50 ;
-         TRANSPARENT ;
          NOFOCUSRECT ;
          BACKGROUND oForm
 
