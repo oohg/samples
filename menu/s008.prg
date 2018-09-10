@@ -1,3 +1,15 @@
+/*
+ * Menu Sample n° 8
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows how to define nested menus and a
+ * context menu.
+ *
+ * Visit us at https://github.com/oohg/samples
+ */
+
 #include "oohg.ch"
 
 Function main()
@@ -25,7 +37,7 @@ Function main()
 
 			POPUP 'Test' 
 
-				ITEM 'Item 1' 		ACTION MsgInfo ('Item 1')  name xxx
+				ITEM 'Item 1' 		ACTION MsgInfo ('Item 1')  NAME xxx
 				ITEM 'Item 2' 		ACTION MsgInfo ('Item 2')
 
 				POPUP 'Item 3' name test
@@ -78,6 +90,4 @@ Function main()
 
 	ACTIVATE WINDOW Form_1
 
-Return
-
-
+Return NIL
