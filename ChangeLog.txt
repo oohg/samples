@@ -8,6 +8,47 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-09-09 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\menu\albaran.bmp
+   + samples\menu\check.ico
+   + samples\menu\exit.ico
+   + samples\menu\free.ico
+   + samples\menu\globe.ico
+   + samples\menu\info.ico
+   + samples\menu\info1.ico
+   + samples\menu\info2.ico
+   + samples\menu\intl_no.ico
+   - samples\menu\menudemo.prg
+   + samples\menu\ooHg.gif
+   + samples\menu\ooHg.jpg
+   + samples\menu\s007.prg
+   + samples\menu\s007.rc
+   + samples\menu\s008.prg
+   + samples\menu\s009.prg
+
+2018-09-09 20:54 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\dbview\dbview.hbp
+     * Use oohg.hbc
+
+2018-09-09 20:53 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\codepage\test.prg
+   + samples\console\console.prg
+   + samples\console\console.qpm
+   + samples\console\hello.prg
+   + samples\console\hello.qpm
+   - samples\dbview\hmi.ini
+   + samples\grid_mySQL\MyGrid_2008.prg
+   + samples\grid_mySQL\MyGrid_2016.prg
+   + samples\grid_mySQL\Readme.doc
+   + samples\grid_mySQL\TestMyGrid.prg
+
+2018-09-09 20:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\autoadjust\frame.prg
+
+2018-09-09 19:47 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\activex\onavigator\onav.prg
+     * Added compatibility with Win10.
+
 2018-09-09 11:35 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\browse\s021.prg
    + samples\msgbox\s002.prg
