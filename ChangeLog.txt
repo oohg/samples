@@ -8,6 +8,31 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-09-16 11:41 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\maindemooop.prg
+    * Updated.
+
+2018-09-16 10:24 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\oohgrecord\textfile.prg
+    + Comment.
+
+2018-09-16 10:21 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\combobox\s009.prg
+   - samples\combobox\demo.prg
+
+2018-09-16 09:54 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\activex\rmchart\funciones.prg
+   + samples\activex\rmchart\Graficos1.prg
+   + samples\activex\rmchart\Graficos2.prg
+   + samples\activex\rmchart\Graficos3.prg
+   + samples\activex\rmchart\RMChart_SDC.prg
+   + samples\classes\s002.prg
+
+2018-09-16 09:51 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\s001.bat
+   * samples\bostaurus\s014.bat
+     ! Fixed RTE: ="" not expected at this time.
+
 2018-09-09 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\menu\albaran.bmp
    + samples\menu\check.ico
