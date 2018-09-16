@@ -66,6 +66,13 @@ RETURN
  *  It's only a "looks-alike" class.
  */
 
+/*
+ *  This class reads a text file, line by line, like ooHGRecord class.
+ *  Unlike TStream class that uses a buffer to read a block from the file and returning one line at a time,
+ *  ooTextFile() reads a data block of fixed length from the file and, when the line is shorter than the block length,
+ *  it adjusts the file pointer so the next read starts at the begining of the next line.
+ */
+
 *-----------------------------------------------------------------------------*
 CLASS ooTextFile
 *-----------------------------------------------------------------------------*
