@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-09-22 22:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\textbox\s002.prg
+   - samples\textbox\demo.prg
+
 2018-09-16 23:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\button\demo.prg
    - samples\button\s004.prg
