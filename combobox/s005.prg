@@ -18,7 +18,7 @@
 
 FUNCTION Main
 
-   LOCAL oWnd, aItems, aValues
+   i := 1
 
    aItems := { "qqq", "www", "eee" }
    aValues := { "QQ", "WW", "EE" }
@@ -32,7 +32,7 @@ FUNCTION Main
          WIDTH 100 ;
          HEIGHT 100 ;
          ITEMS aItems ;
-         VALUESOURCE (aValues) ;     // The parentheses are needed !!!
+         VALUESOURCE ( aValues ) ;     // The parentheses are needed !!!
          ON CHANGE oWnd:Label:Value := ;
                       "The combo's value is: " + oWnd:Combo:Value
 
@@ -42,7 +42,15 @@ FUNCTION Main
 
      @ 90,10 BUTTON Button ;
          CAPTION "Get 'eee' value" ;
-         ACTION AutoMsgBox( oWnd:Combo:ItemValue( "eee" ) )      
+         ACTION AutoMsgBox( oWnd:Combo:ItemValue( "eee" ) )
+
+     @ 90,120 BUTTON Button2 ;
+         CAPTION "Add item" ;
+         ACTION ( oWnd:Combo:AddItem( "xx" + hb_ntos( i ), "XX" + hb_ntos( i ) ), MsgInfo( "Item XX" + hb_ntos( i ++ ) + " added!" ) )
+
+     @ 90,230 BUTTON Button3 ;
+         CAPTION "Delete item" ;
+         ACTION MsgInfo( iif( oWnd:Combo:DeleteItem( 2 ), "Item 2 deleted!", "Can't delete item 2!" ) )
 
       ON KEY ESCAPE ACTION oWnd:Release()
    END WINDOW
