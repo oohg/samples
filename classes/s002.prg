@@ -1,139 +1,145 @@
-#include "minigui.ch"
+/*
+ * Classes Sample 2
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * Based on the original works of Pompeo (Guaratingueta)
+ * and William De Brito Adami.
+ *
+ * This class detects when the application was inactive
+ * for a given number of seconds and then calls a
+ * predetermined function.
+ *
+ * Visit us at https://github.com/oohg/samples
+ */
 
-*************
+#include "oohg.ch"
+
 FUNCTION Main
-*************
-Local nTempo_espera := 10        //Tempo a ser esperado ate chamar a funcao
 
-Local cNome_funcao := "LOGOFF()" //nome da funcao a ser chamada quando
-                                //chegar no tempo de espera
+   DEFINE WINDOW Sample ;
+      AT 0,0 ;
+      WIDTH 640 ;
+      HEIGHT 480 ;
+      TITLE "Timeout" ;
+      MAIN ;
+      ON INIT oTO := TTimeOut():Define( NIL, 5000, "LogOff()", .F. )
 
-Local lTimerContinua := .f.      //se apos executar a funcao , continua monitorando
-                                //a inatividade do mouse e teclado.
+      DEFINE STATUSBAR
+         STATUSITEM ""
+         CLOCK
+      END STATUSBAR
 
-define window sample at 0,0 width 640 height 480 ;
-  title "Teste de teclado e mouse" ;
-  main ;
-  on init tinativo():new(thiswindow.name, nTempo_espera, cNome_funcao, lTimerContinua)
+      @ 12, 10 LABEL Label_1 ;
+         VALUE "Text_1" ;
+         WIDTH 80 ;
+         RIGHTALIGN
 
- @12, 10 LABEL Label_1 VALUE "Text_1" width 80 RIGHTALIGN
+      @ 10, 95 TEXTBOX Text_1 ;
+         VALUE 10 ;
+         NUMERIC
 
- @10, 95 TEXTBOX Text_1 ;
-   VALUE 10 ;
-   NUMERIC
+      @ 42, 10 LABEL Label_2 ;
+         VALUE "Text_2" ;
+         WIDTH 80 ;
+         RIGHTALIGN
 
- @42, 10 LABEL Label_2 VALUE "Text_2" width 80 RIGHTALIGN
+      @ 40, 95 TEXTBOX Text_2 ;
+         VALUE 20 ;
+         NUMERIC
 
- @40, 95 TEXTBOX Text_2 ;
-   VALUE 20 ;
-   NUMERIC
+      @ 72, 10 LABEL Label_3 ;
+         VALUE "Text_3" ;
+         WIDTH 80 ;
+         RIGHTALIGN
 
- @72, 10 LABEL Label_3 VALUE "Text_3" width 80 RIGHTALIGN
+      @ 70, 95 TEXTBOX Text_3 ;
+         VALUE 30 ;
+         NUMERIC
 
- @70, 95 TEXTBOX Text_3 ;
-   VALUE 30 ;
-   NUMERIC
+   END WINDOW
 
-end window
-sample.Text_1.setfocus
-center window sample
-activate window sample
+   Sample.Text_1.SetFocus
 
-RETURN Nil
+   CENTER WINDOW Sample
+   ACTIVATE WINDOW Sample
 
-
-FUNCTION logoff
-
-MsgExclamation("AQUI ENTRA SUA FUNCAO DE LOGOFF !","AVISO")
-
-sample.release
-
-RETURN Nil
+RETURN NIL
 
 
-*****TINATIVO.PRG
-*****************************************
-* CLASSE PARA DETECTAR SE O SISTEMA ESTA
-* INATIVO POR (N) SEGUNDOS, E SE ESTIVER,
-* CHAMA UMA FUNCAO (PODE SER UMA FUNCAO
-* DE LOGOFF , DESCANSO DE TELA , ETC..)
-*****************************************
-* AUTOR DA FUNÈCO ORIGINAL :
-* POMPEO (GUARATINGUETA)
-* MIGRAÈCO DA FUNÈCO PARA CLASSE:
-* WILLIAM DE BRITO ADAMI
-*****************************************
+FUNCTION LogOff
+
+   MsgExclamation( "Timeout exceeded. App will be ended.", "Notice" )
+   Sample.Release
+
+RETURN NIL
+
+
 #include "hbclass.ch"
 
-CLASS TINATIVO
+CLASS TTimeOut FROM TControl
 
-DATA nTimeInpAntes
-DATA nTimeInpDepois
-DATA cTimeAtu
-DATA nTempo
-DATA cParentForm
-DATA cTimerTime
-DATA cFunc
-DATA lContinuar
+   DATA nTimeOut       INIT 60000
+   DATA cFunction      INIT NIL
+   DATA lResume        INIT .F.
+   DATA oTimer         INIT NIL PROTECTED
+   DATA cLastCheck     INIT NIL PROTECTED
+   DATA nPreviousInput INIT NIL PROTECTED
 
-METHOD New( cForm, nTime, cFuncao, lContinua ) CONSTRUCTOR
-
-METHOD ver_tempo()
+   METHOD Define
+   METHOD Check
+   METHOD Release      BLOCK { |Self| ::oTimer:Release() }
+   METHOD Restart      BLOCK { |Self| ::cLastCheck := hb_MilliSeconds(), ::oTimer:Enabled := .T. }
 
 ENDCLASS
 
 
-*****************************************
-METHOD New(cForm, ntime, cFuncao, lContinua) CLASS TINATIVO
-*****************************************
-::cfunc:=cfuncao
-::ntempo:=ntime
-::lContinuar:=lContinua
-::cParentForm:=cForm
-::cTimerTime := 'InactiveTimer'
-TTimer():Define( ::cTimerTime , ::cParentForm , 1000 , {|| ::VER_TEMPO() } )
-::cTimeAtu := TIME()
-::nTimeInpAntes := getInputState() // 0 = erro
+METHOD Define( cForm, nTimeOut, cFunction, lResume ) CLASS TTimeOut
 
-return self
+   ASSIGN cForm       VALUE cForm     TYPE "CM" DEFAULT _OOHG_Main
+   ASSIGN ::nTimeOut  VALUE nTimeOut  TYPE "N"
+   ASSIGN ::cFunction VALUE cFunction TYPE "CM"
+   ASSIGN ::lResume   VALUE lResume   TYPE "L"
 
+   ::nPreviousInput := GetInputState()
+   ::cLastCheck := hb_MilliSeconds()
+   ::oTimer := TTimer():Define( NIL, cForm, 1000, {|| ::Check() } )
+   ::oTimer:Enabled := .T.
 
-*****************************************
-METHOD VER_TEMPO CLASS TINATIVO
-*****************************************
-LOCAL aux
-::nTimeInpDepois := getInputState()
-if ::nTimeInpDepois - ::nTimeInpAntes > 0
-  ::nTimeInpAntes := getInputState()
-  ::cTimeAtu := TIME()
-endif
+   RETURN Self
 
 
-if CONVTIME(TIME()) - CONVTIME(::cTimeAtu) > ::ntempo
+METHOD Check() CLASS TTimeOut
 
-  setproperty( ::cParentForm , ::cTimerTime , 'Enabled', .f. )
-  aux := ::cfunc
+   IF GetInputState() > ::nPreviousInput
+     ::nPreviousInput := GetInputState()
+     ::cLastCheck := hb_MilliSeconds()
+   ELSEIF hb_MilliSeconds() > ( ::cLastCheck + ::nTimeOut )
+      ::oTimer:Enabled := .F.
+      &( ::cFunction )
+      IF ::lResume
+         ::Restart()
+      ENDIF
+   ENDIF
 
-  // aqui executa a funcao
-  &aux
-
-  if ::lContinuar
-     setproperty( ::cParentForm , ::cTimerTime , 'Enabled', .t. )
-     ::cTimeAtu := TIME()
-  endif
-
-endif
-
-return NIL
+   RETURN NIL
 
 
-*****************************************
-STATIC FUNCTION CONVTIME(ZZ)
-*****************************************
-RETURN (VAL(LEFT(ZZ,2))*360)+(VAL(SUBSTR(ZZ,4,2))*60)+VAL(RIGHT(ZZ,2))
+METHOD Release() CLASS TTimeOut
+
+   ::oTimer:Release()
+
+   RETURN ::Super:Release()
 
 
-//----------------------------------------------------------------------
+METHOD Restart() CLASS TTimeOut
+
+   ::cLastCheck := hb_MilliSeconds()
+   ::oTimer:Enabled := .T.
+
+   RETURN NIL
+
 
 #pragma BEGINDUMP
 
@@ -144,40 +150,35 @@ typedef BOOL ( WINAPI * GETLASTINPUTINFO ) ( PLASTINPUTINFO );
 
 HB_FUNC( GETINPUTSTATE )
 {
-  HINSTANCE handle = LoadLibrary("user32.dll");
+   GETLASTINPUTINFO pFunc;
+   LASTINPUTINFO lpi;
+   HINSTANCE handle = LoadLibrary( "user32.dll" );
 
-  if( handle )
-  {
-     GETLASTINPUTINFO pFunc;
-
-     pFunc = (GETLASTINPUTINFO) GetProcAddress( handle, "GetLastInputInfo" );
-
-     if( pFunc )
-     {
-        LASTINPUTINFO lpi;
-
-        lpi.cbSize = sizeof( LASTINPUTINFO );
-
-        if( pFunc( &lpi ) )
-        {
-           hb_retni( lpi.dwTime );
-        }
-        else
-        {
-           hb_retni( 0 );
-        }
-     }
-     else
-     {
-        hb_retni( 0 );
-     }
-
-     FreeLibrary( handle);
-  }
-  else
-  {
-     hb_retni( 0 );
-  }
+   if( handle )
+   {
+      pFunc = (GETLASTINPUTINFO) GetProcAddress( handle, "GetLastInputInfo" );
+      if( pFunc )
+      {
+         lpi.cbSize = sizeof( LASTINPUTINFO );
+         if( pFunc( &lpi ) )
+         {
+            hb_retni( lpi.dwTime );
+         }
+         else
+         {
+            hb_retni( 0 );
+         }
+      }
+      else
+      {
+         hb_retni( 0 );
+      }
+      FreeLibrary( handle );
+   }
+   else
+   {
+      hb_retni( 0 );
+   }
 }
 
 #pragma ENDDUMP
