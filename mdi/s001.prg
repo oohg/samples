@@ -20,7 +20,7 @@ PROCEDURE MAIN()
       WIDTH  800 ;
       HEIGHT 600 ;
       TITLE "MDI" ;
-      MDI
+      MDI MAIN
 
       DEFINE STATUSBAR
         STATUSITEM "OOHG Power !!!"

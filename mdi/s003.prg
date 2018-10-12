@@ -23,7 +23,7 @@ PROCEDURE MAIN()
       WIDTH  800 ;
       HEIGHT 600 ;
       TITLE "MDI" ;
-      MDI ;
+      MDI MAIN ;
       BACKCOLOR MDI_BACKCOLOR
 
       DEFINE STATUSBAR
