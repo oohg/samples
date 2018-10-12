@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-10-11 21:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\mdi\s001.prg
+   * samples\mdi\s002.prg
+   * samples\mdi\s003.prg
+   * samples\mdi\s004.prg
+     ! Exe remains in memory after main window is closed.
+
 2018-10-07 20:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\classes\s001.prg
    * samples\classes\s002.prg
