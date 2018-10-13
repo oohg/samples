@@ -8,6 +8,19 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-10-12 21:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\report_form\oohg.bmp
+   + samples\report_form\s001.prg
+   - samples\report_form\test.prg
+   * samples\report_form\test.dbf
+   * samples\report_form\test.dbt
+   * samples\report_form\test.ntx
+     * Updated.
+
+2018-10-12 17:21 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\textbox\s003.prg
+     ; Shows how to use FIELD clause.
+
 2018-10-11 21:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\mdi\s001.prg
    * samples\mdi\s002.prg
