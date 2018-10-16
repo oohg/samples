@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-10-16 17:16 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\combobox\s010.prg
+     ; EDITHEIGHT and OPTIONSHEIGHT.
+
 2018-10-12 21:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\report_form\oohg.bmp
    + samples\report_form\s001.prg
