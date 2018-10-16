@@ -41,7 +41,7 @@ FUNCTION Main()
          NAVIGATEBYCELL
 
 /*
-      HeaderSetFont( cFontName, nFontSize, lBold, lItalic, lUnderline, lStrikeout, lFontAngle, lFontwidth )
+      HeaderSetFont( cFontName, nFontSize, lBold, lItalic, lUnderline, lStrikeout, nFontAngle, nCharSet, nFontWidth, nOrientation, lAdvanced )
 */
       oGrid:HeaderSetFont( "VERDANA", 14, .T., .T. )
 
