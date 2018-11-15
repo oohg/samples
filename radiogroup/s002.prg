@@ -1,6 +1,6 @@
 /*
  * RadioGroup Sample n° 2
- * Author: Fernando Yurisich <fernando.yurisich@gmail.com>
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
@@ -45,9 +45,11 @@ FUNCTION Main
          OOHGDRAW ;
          BACKGROUND oForm1 ;
          BACKCOLOR RED ;
-         TRANSPARENT
+         TRANSPARENT ;
+         NOFOCUSRECT
       oR11:aOptions[ 1 ]:FontColor := GREEN
       oR11:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT
 
       @ 10, 120 LABEL lbl_121 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 25, 120 LABEL lbl_122 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -66,6 +68,7 @@ FUNCTION Main
          LEFTJUSTIFY
       oR12:aOptions[ 1 ]:FontColor := GREEN
       oR12:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR 
 
       @ 10, 230 LABEL lbl_131 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 25, 230 LABEL lbl_132 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -83,6 +86,7 @@ FUNCTION Main
          TRANSPARENT
       oR13:aOptions[ 1 ]:FontColor := GREEN
       oR13:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT
 
       @ 10, 340 LABEL lbl_141 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 40, 340 LABEL lbl_143 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -130,6 +134,7 @@ FUNCTION Main
          BACKGROUND oForm1
       oR16:aOptions[ 1 ]:FontColor := GREEN
       oR16:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR 
 
       @ 10, 670 LABEL lbl_171 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 40, 670 LABEL lbl_173 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -174,9 +179,12 @@ FUNCTION Main
          BACKGROUND oForm1 ;
          BACKCOLOR RED ;
          TRANSPARENT ;
-         WINDRAW
+         WINDRAW ;
+         NOFOCUSRECT
       oR21:aOptions[ 1 ]:FontColor := GREEN
       oR21:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT
+      // WINDRAW ignores NOFOCUSRECT
 
       @ 210, 120 LABEL lbl_221 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 225, 120 LABEL lbl_222 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -191,9 +199,11 @@ FUNCTION Main
          SPACING 24 ;
          BACKGROUND oForm1 ;
          BACKCOLOR RED ;
-         WINDRAW
+         WINDRAW ;
+         LEFTJUSTIFY
       oR22:aOptions[ 1 ]:FontColor := GREEN
       oR22:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR 
 
       @ 210, 230 LABEL lbl_231 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 225, 230 LABEL lbl_232 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -211,6 +221,7 @@ FUNCTION Main
          WINDRAW
       oR23:aOptions[ 1 ]:FontColor := GREEN
       oR23:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over TRANSPARENT
 
       @ 210, 340 LABEL lbl_241 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 240, 340 LABEL lbl_243 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -259,6 +270,7 @@ FUNCTION Main
          WINDRAW
       oR26:aOptions[ 1 ]:FontColor := GREEN
       oR26:aOptions[ 2 ]:BackColor := BLUE
+      // BACKGROUND takes precedence over BACKCOLOR 
 
       @ 210, 670 LABEL lbl_271 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 240, 670 LABEL lbl_273 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -288,14 +300,13 @@ FUNCTION Main
       oR28:aOptions[ 2 ]:BackColor := BLUE
 
       @ 410, 10 LABEL lbl_Notes WIDTH 500 HEIGHT 200 TRANSPARENT ;
-         VALUE "BACKGROUND tries to force OOHGDRAW, on failure the control will be painted black." + hb_OsNewLine() + ;
-               "TRANSPARENT and BACKCOLOR are ignored when BACKGROUND is present." + hb_OsNewLine() + ;
-               "BACKCOLOR is ignored when TRANSPARENT is present." + hb_OsNewLine() + ;
-               "TRANSPARENT paints de control's background using a NULL BRUSH." + hb_OsNewLine() + ;
-               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not uses Windows' default routine." + hb_OsNewLine() + ;
+         VALUE "BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT." + hb_OsNewLine() + ;
+               "TRANSPARENT takes precedence over BACKCOLOR." + hb_OsNewLine() + ;
+               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not defaults to WINDRAW." + hb_OsNewLine() + ;
                "WINDRAW paints using Windows' default routine." + hb_OsNewLine() + ;
-               "If neither OOHGDRAW nor WINDRAW are present then OOHGDRAW is assumed if app is OOHGDRAW or WINDRAW otherwise." + hb_OsNewLine() + ;
-               "BACKGROUND paint the control's background using a brush derived from another control's client area."
+               "If neither OOHGDRAW nor WINDRAW are present then WINDRAW is assumed unless NOFOCUSRECT is present." + hb_OsNewLine() + ;
+               "BACKGROUND paints the control's background using a brush derived from another control's client area." + hb_OsNewLine() + ;
+               "FONTCOLOR is not supported under themed XP nor by WINDRAW under Win10."
 
       @ 500, 700 BUTTON btn_Change OBJ oBut CAPTION "Use BackImage" WIDTH 170 ;
          ACTION { || Eval( If( nBack == 1, ;
