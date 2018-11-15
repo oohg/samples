@@ -27,16 +27,29 @@ FUNCTION Main
       BACKIMAGE "logo.jpg" STRETCH
 
       @ 60,120 CHECKBOX chk_1 ;
-         OBJ oCheck ;
-         CAPTION "CheckBox" ;
+         OBJ oCheck1 ;
+         CAPTION "OOHGDRAW CheckBox" ;
          AUTOSIZE ;
-         FONTCOLOR RED SIZE 20 BOLD ;
+         FONTCOLOR RED ;
+         SIZE 20 BOLD ;
          HEIGHT 50 ;
-         NOFOCUSRECT ;
+         OOHGDRAW ;
          BACKGROUND oForm
+      // XP ignores FONTCOLOR except for "Windows Classic" theme
 
-      @ 50,400 BUTTON btn_1 OBJ oButton ;
-         CAPTION 'Hide/Show' ACTION oCheck:Visible := ! oCheck:Visible
+      @ 160,120 CHECKBOX chk_2 ;
+         OBJ oCheck2 ;
+         CAPTION "WINDRAW CheckBox" ;
+         AUTOSIZE ;
+         FONTCOLOR RED ;
+         SIZE 20 BOLD ;
+         HEIGHT 50 ;
+         WINDRAW ;
+         BACKGROUND oForm
+      // XP ignores FONTCOLOR except for "Windows Classic" theme
+
+      @ 110,500 BUTTON btn_1 OBJ oButton ;
+         CAPTION 'Hide/Show' ACTION ( oCheck1:Visible := ! oCheck1:Visible, oCheck2:Visible := ! oCheck2:Visible )
 
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
