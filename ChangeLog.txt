@@ -8,6 +8,26 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-10-18 22:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\radiogroup\s002.prg
+   * samples\radiogroup\s003.prg
+   - samples\radiogroup\s004.prg
+   - samples\radiogroup\s005.prg
+     ; Updated.
+
+2018-10-18 22:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\checkbox\s001.prg
+   * samples\checkbox\s002.prg
+   * samples\checkbox\s004.prg
+   * samples\checkbox\s005.prg
+   - samples\checkbox\s006.prg
+   - samples\checkbox\s007.prg
+     ; Updated.
+
+2018-10-18 20:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\mdi\s005.prg
+     ; Internal window inside MDICLIENT.
+
 2018-10-16 17:16 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\combobox\s010.prg
      ; EDITHEIGHT and OPTIONSHEIGHT.
