@@ -13,8 +13,6 @@ Function Main()
 
 
 
-msginfo("Test de autoajuste, se ajusta posicion, ancho pero no font")
-
 SET AUTOADJUST ON
 SET ADJUSTWIDTH ON  /// por defecto si
 SET ADJUSTFONT OFF  /// por defecto si

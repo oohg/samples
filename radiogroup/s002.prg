@@ -9,7 +9,6 @@
  *
  * Visit us at https://github.com/oohg/samples
  *
- *
  * You can download fondo.bmp from:
  * https://github.com/oohg/samples/tree/master/RadioGroup
  */

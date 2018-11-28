@@ -572,13 +572,13 @@ PROCEDURE Main
       oFrame:ToolTip      := oFrame:Type
       oFrame:aExcludeArea := { {10,25,140,45} }      // { {left,top,right,bottom} }
 
-      oTip := TIpAddress():Define()
-      oTip:Row     := 75
-      oTip:Col     := 710
-      oTip:Width   := 130
-      oTip:Height  := 20
-      oTip:Value   := { 1, 2, 3, 4 }
-      oTip:ToolTip := oTip:Type
+      oIp := TIpAddress():Define()
+      oIp:Row     := 75
+      oIp:Col     := 710
+      oIp:Width   := 130
+      oIp:Height  := 20
+      oIp:Value   := { 1, 2, 3, 4 }
+      oIp:ToolTip := oIp:Type                        // By design the tooltip only appears when the mouse is over the edge
 
       oProg := TProgressBar():Define()
       oProg:Row      := 130
@@ -633,6 +633,8 @@ PROCEDURE Main
       oTmr := TTimer():Define()
       oTmr:OnClick := { || oTimeP:Value := Time() }
       oTmr:Value := 1000
+
+      oBtn2:SetFocus()
 
    oWnd:EndWindow()
    oWnd:Center()

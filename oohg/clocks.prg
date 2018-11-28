@@ -346,7 +346,7 @@ HB_FUNC( CREATEICON )   // ( hWnd, nTiempo )
    int iColor1 = 0xc0c0c0;   // Minutos
    int iColor2 = 0x00ff00;   // Cantidad de bloques
 
-   hWnd = ( HWND ) hb_parnl( 1 );
+   hWnd = HWNDparam( 1 );
 
    if( ! hNumeros1 )
    {

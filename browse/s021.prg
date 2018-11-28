@@ -5,7 +5,7 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to configure a Browse
- * without statusbars.
+ * without scrollbars.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -29,7 +29,7 @@ FUNCTION Main()
       CLIENTAREA ;
       WIDTH 420 ;
       HEIGHT 420 ;
-      TITLE 'oohg - Browse without statusbar' ;
+      TITLE 'oohg - Browse without scrollbars' ;
       MAIN ;
       ON RELEASE CleanUp()
 

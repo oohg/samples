@@ -8,75 +8,98 @@
  * AUTOSIZE clause.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
 
 FUNCTION Main
 
-   DEFINE WINDOW Form_1 ;
+   PUBLIC lDefault := .T., aFonts := { _OOHG_DefaultFontName, "Courier New" }
+
+   DEFINE WINDOW Form_1 OBJ oForm ;
       AT 0,0 ;
       WIDTH 588 ;
       HEIGHT 480 ;
       TITLE 'RadioGroup - Autosize' ;
       MAIN ;
-      ON INIT ShowWidths()
+      ON INIT ShowWidths() ;
+      BACKIMAGE "fondo.bmp" STRETCH
 
-      @ 10,20 LABEL lbl_1 VALUE "OOHGDRAW"
+      @ 10,20 LABEL lbl_1 VALUE "OOHGDRAW" TRANSPARENT
 
       @ 40,20 RADIOGROUP rdg_1 OBJ oRdg1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
-         SPACING 24
+         SPACING 24 ;
+         TRANSPARENT ;
+         OOHGDRAW ;
+         BACKGROUND oForm
 
       @ 140,20 LABEL lbl_2 OBJ oLbl2 ;
          VALUE "widths: " ;
-         AUTOSIZE
+         AUTOSIZE ;
+         TRANSPARENT
 
-      @ 10,300 LABEL lbl_3 VALUE "WINDRAW"
+      @ 10,300 LABEL lbl_3 VALUE "WINDRAW" TRANSPARENT
 
       @ 40,300 RADIOGROUP rdg_2 OBJ oRdg2 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
          SPACING 24 ;
-         WINDRAW
+         WINDRAW ;
+         BACKGROUND oForm
 
       @ 140,300 LABEL lbl_4 OBJ oLbl4 ;
          VALUE "widths: " ;
-         AUTOSIZE
+         AUTOSIZE ;
+         TRANSPARENT
 
       DRAW LINE IN WINDOW Form_1 AT 180,20 TO 180,( Form_1.ClientWidth - 20 ) ;
          PENCOLOR RED PENWIDTH 3
 
-      @ 210,20 LABEL lbl_5 VALUE "OOHGDRAW"
+      @ 210,20 LABEL lbl_5 VALUE "OOHGDRAW - LEFTALIGN" AUTOSIZE TRANSPARENT
+
+      // To get all the button at the same column
+      // use WIDTH instead of AUTOSIZE clause.
 
       @ 240,20 RADIOGROUP rdg_3 OBJ oRdg3 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
          SPACING 24 ;
-         LEFTALIGN
+         LEFTALIGN ;
+         OOHGDRAW ;
+         BACKGROUND oForm
 
       @ 340,20 LABEL lbl_6 OBJ oLbl6 ;
          VALUE "widths: " ;
-         AUTOSIZE
+         AUTOSIZE ;
+         TRANSPARENT
 
-      @ 210,300 LABEL lbl_7 VALUE "WINDRAW"
+      @ 210,300 LABEL lbl_7 VALUE "WINDRAW - LEFTALIGN" AUTOSIZE TRANSPARENT
 
       @ 240,300 RADIOGROUP rdg_4 OBJ oRdg4 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
+         WIDTH 80 ;
          SPACING 24 ;
          WINDRAW ;
-         LEFTALIGN            // not supported by Windows
+         LEFTALIGN ;
+         BACKGROUND oForm
 
       @ 340,300 LABEL lbl_8 OBJ oLbl8 ;
          VALUE "widths: " ;
-         AUTOSIZE
+         AUTOSIZE ;
+         TRANSPARENT
 
       @ 400,20 BUTTON btn_1 ;
          CAPTION "Change item" ;
          ACTION ChangeItem()
+
+      @ 400,120 BUTTON btn_2 ;
+         CAPTION "Change font" ;
+         ACTION ChangeFont()
+
+      DEFINE TIMER tmr_1 INTERVAL 1000 ACTION ShowWidths()
 
       ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
@@ -110,40 +133,53 @@ RETURN NIL
 FUNCTION ShowWidths()
 
    oLbl2:Value := "widths: " + ;
-                  LTRIM( STR( oRdg1:aOptions[1]:Width ) ) + ;
+                  LTrim( Str( oRdg1:aOptions[1]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg1:aOptions[2]:Width ) ) + ;
+                  LTrim( Str( oRdg1:aOptions[2]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg1:aOptions[3]:Width ) ) + ;
+                  LTrim( Str( oRdg1:aOptions[3]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg1:aOptions[4]:Width ) )
+                  LTrim( Str( oRdg1:aOptions[4]:Width ) )
 
    oLbl4:Value := "widths: " + ;
-                  LTRIM( STR( oRdg2:aOptions[1]:Width ) ) + ;
+                  LTrim( Str( oRdg2:aOptions[1]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg2:aOptions[2]:Width ) ) + ;
+                  LTrim( Str( oRdg2:aOptions[2]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg2:aOptions[3]:Width ) ) + ;
+                  LTrim( Str( oRdg2:aOptions[3]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg2:aOptions[4]:Width ) )
+                  LTrim( Str( oRdg2:aOptions[4]:Width ) )
 
    oLbl6:Value := "widths: " + ;
-                  LTRIM( STR( oRdg3:aOptions[1]:Width ) ) + ;
+                  LTrim( Str( oRdg3:aOptions[1]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg3:aOptions[2]:Width ) ) + ;
+                  LTrim( Str( oRdg3:aOptions[2]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg3:aOptions[3]:Width ) ) + ;
+                  LTrim( Str( oRdg3:aOptions[3]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg3:aOptions[4]:Width ) )
+                  LTrim( Str( oRdg3:aOptions[4]:Width ) )
 
    oLbl8:Value := "widths: " + ;
-                  LTRIM( STR( oRdg4:aOptions[1]:Width ) ) + ;
+                  LTrim( Str( oRdg4:aOptions[1]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg4:aOptions[2]:Width ) ) + ;
+                  LTrim( Str( oRdg4:aOptions[2]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg4:aOptions[3]:Width ) ) + ;
+                  LTrim( Str( oRdg4:aOptions[3]:Width ) ) + ;
                   " " + ;
-                  LTRIM( STR( oRdg4:aOptions[4]:Width ) )
+                  LTrim( Str( oRdg4:aOptions[4]:Width ) )
+
+RETURN NIL
+
+FUNCTION ChangeFont
+
+   IF lDefault
+      oRdg3:FontName := ;
+      oRdg4:FontName := aFonts[2]
+   ELSE
+      oRdg3:FontName := ;
+      oRdg4:FontName := aFonts[1]
+   ENDIF
+   lDefault := ! lDefault
 
 RETURN NIL
 

@@ -562,7 +562,7 @@ ENDCLASS
 METHOD Async( hWnd ) CLASS TStreamWSocket
    IF ::nSocket != 0
       HB_INLINE( ::nSocket, hWnd, WM_USER+256, FD_READ + FD_WRITE + FD_OOB + FD_CONNECT + FD_ACCEPT + FD_CLOSE ){
-         WSAAsyncSelect( hb_parni( 1 ), ( HWND ) hb_parni( 2 ), hb_parni( 3 ), hb_parnl( 4 ) );
+         WSAAsyncSelect( HB_PARNL( 1 ), HWNDparam( 2 ), hb_parni( 3 ), hb_parnl( 4 ) );
       }
       StoreSocket( Self )
    ENDIF
@@ -573,10 +573,10 @@ RETURN .T.
 METHOD Events( lParam ) CLASS TStreamWSocket
 LOCAL nEvent, nPos, nError
    nEvent := HB_INLINE( lParam ){
-                hb_retni( WSAGETSELECTEVENT( hb_parnl( 1 ) ) );
+                hb_retni( WSAGETSELECTEVENT( HB_PARNL( 1 ) ) );
              }
    nError := HB_INLINE( lParam ){
-                hb_retni( WSAGETSELECTERROR( hb_parnl( 1 ) ) );
+                hb_retni( WSAGETSELECTERROR( HB_PARNL( 1 ) ) );
              }
    DO CASE
       CASE nEvent == FD_CLOSE

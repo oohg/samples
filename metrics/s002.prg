@@ -39,11 +39,11 @@ FUNCTION Main
          AUTOSIZE
   
       // See https://technet.microsoft.com/en-us/library/cc951790.aspx
-      aCaptionFont   := GetSystemFont( CAPTION_FONT )
-      aSmCaptionFont := GetSystemFont( SMCAPTION_FONT )
-      aMenuFont      := GetSystemFont( MENU_FONT )
-      aStatusFont    := GetSystemFont( STATUS_FONT )
-      aMessageFont   := GetSystemFont( MESSAGE_FONT )
+      aCaptionFont   := xGetSystemFont( CAPTION_FONT )
+      aSmCaptionFont := xGetSystemFont( SMCAPTION_FONT )
+      aMenuFont      := xGetSystemFont( MENU_FONT )
+      aStatusFont    := xGetSystemFont( STATUS_FONT )
+      aMessageFont   := xGetSystemFont( MESSAGE_FONT )
 
       @ 40,  10 LABEL label_04 ;
          VALUE "NonClientMetrics" BOLD AUTOSIZE
@@ -145,7 +145,7 @@ PointSize = -MulDiv ( lf.lfHeight , 72 , GetDeviceCaps(GetDC(GetActiveWindow()),
 hb_retnl( PointSize );
 }
 
-HB_FUNC( GETSYSTEMFONT )
+HB_FUNC( XGETSYSTEMFONT )
 {
    NONCLIENTMETRICS ncm = {0};
 	LONG PointSize;

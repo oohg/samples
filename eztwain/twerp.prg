@@ -100,7 +100,7 @@ Function Acquire()
 	TWAIN_SetHideUI(fHideUI)
 
 //	if TWAIN_OpenDefaultSource() > 0
-		hdib = TWAIN_AcquireNative(hWnd, wPixTypes)
+		hdib = TWAIN_AcquireNative( hWnd, wPixTypes )
 		if !EMPTY(hdib)
 			// compute or guess a palette to use for display
 			hpal = TWAIN_CreateDibPalette(hdib)
@@ -171,7 +171,7 @@ Local pps, hDC, w, h
 *	InvalidateRect( _HMG_MainHandle, 1 )
 
 	pps := DefinePaintStru()
-	hDC := BeginPaint(hWnd, pps )
+	hDC := BeginPaint( hWnd, pps )
 
 if valtype(hpal) == 'N'
 	SetPalette(hDC, hpal)
@@ -293,8 +293,8 @@ Local w := GetDesktopRectWidth(), h := GetDesktopRectHeight()
 
 	Win_1.Hide
 
-	Win_1.Width := Max( Min( w, TWAIN_DibWidth(hdib) + 2 * GetBorderWidth() ), GetMinWidth(hWnd) )
-	Win_1.Height := Min( h, TWAIN_DibHeight(hdib) + GetTitleHeight() + 2 * GetBorderHeight() + GetMenuBarHeight() )
+	Win_1.Width := Max( Min( w, TWAIN_DibWidth( hdib ) + 2 * GetBorderWidth() ), GetMinWidth( hWnd ) )
+	Win_1.Height := Min( h, TWAIN_DibHeight( hdib ) + GetTitleHeight() + 2 * GetBorderHeight() + GetMenuBarHeight() )
 
 	if GetProperty( "Win_1", "Width" ) >= w .OR. GetProperty( "Win_1", "Height" ) >= h
 		Win_1.Row := 0
@@ -373,7 +373,6 @@ declare DLL_TYPE_VOID TWAIN_SetHideUI( DLL_TYPE_INT fHide ) in EZTW32.DLL
 
 #pragma BEGINDUMP
 
-#define HB_OS_WIN_USED
 #define _WIN32_WINNT   0x0400
 #include <windows.h>
 #include "hbapi.h"
@@ -383,58 +382,59 @@ HB_FUNC( GETDESKTOPRECTWIDTH )
 {
 	RECT rect;
 	SystemParametersInfo( SPI_GETWORKAREA, 0, &rect, 0 );
-	hb_retni(rect.right - rect.left);
+	hb_retni( rect.right - rect.left );
 }
 
 HB_FUNC( GETDESKTOPRECTHEIGHT )
 {
 	RECT rect;
 	SystemParametersInfo( SPI_GETWORKAREA, 0, &rect, 0 );
-	hb_retni(rect.bottom - rect.top);
+	hb_retni( rect.bottom - rect.top );
 }
 
 
 HB_FUNC( SETPALETTE )
 {
-	HDC hDC = (HDC) hb_parnl(1);
-	HPALETTE hPal = (HPALETTE) hb_parnl(2);
+	HDC hDC = ( HDC ) HB_PARNL( 1 );
+	HPALETTE hPal = ( HPALETTE ) HB_PARNL( 2 );
 
-	SelectPalette (hDC, hPal, FALSE);
-	RealizePalette (hDC);
+	SelectPalette( hDC, hPal, FALSE );
+	RealizePalette( hDC );
 }
 
 
 HB_FUNC( DEFINEPAINTSTRU )
 {
-   PAINTSTRUCT *pps = (PAINTSTRUCT*) hb_xgrab( sizeof( PAINTSTRUCT ) );
-   hb_retnl( (LONG) pps );
+   PAINTSTRUCT * pps = ( PAINTSTRUCT * ) hb_xgrab( sizeof( PAINTSTRUCT ) );
+   HB_RETNL( ( LONG_PTR ) pps );
 }
 
 HB_FUNC( BEGINPAINT )
 {
-   PAINTSTRUCT *pps = (PAINTSTRUCT*) hb_parnl( 2 );
-   HDC hDC = BeginPaint( (HWND) hb_parnl( 1 ), pps );
-   hb_retnl( (LONG) hDC );
+   PAINTSTRUCT * pps = ( PAINTSTRUCT * ) HB_PARNL( 2 );
+   HDC hDC = BeginPaint( HWNDparam( 1 ), pps );
+   HB_RETNL( ( LONG_PTR ) hDC );
 }
 
 HB_FUNC( ENDPAINT )
 {
-   PAINTSTRUCT *pps = (PAINTSTRUCT*) hb_parnl( 2 );
-   EndPaint( (HWND) hb_parnl( 1 ), pps );
+   PAINTSTRUCT * pps = ( PAINTSTRUCT * ) HB_PARNL( 2 );
+   EndPaint( HWNDparam( 1 ), pps );
    hb_xfree( pps );
 }
 
 HB_FUNC( GETMINWIDTH )
 {
-	HWND  hwnd = (HWND) hb_parnl(1);
-	HDC	hDC = GetDC(hwnd);
+	HWND  hwnd = HWNDparam(1);
+	HDC	hDC = GetDC( hwnd );
 	int	xMin;
-	if (hDC) {
-		xMin = LOWORD(GetTabbedTextExtent(hDC, "Twerp - EZTwain sample app by Spike", 36, 0, NULL));
-		ReleaseDC(hwnd, hDC);
-		hb_retni(xMin);
+
+	if( hDC )
+   {
+		xMin = LOWORD( GetTabbedTextExtent( hDC, "Twerp - EZTwain sample app by Spike", 36, 0, NULL ) );
+		ReleaseDC( hwnd, hDC );
+		hb_retni( xMin );
     }
 }
-
 
 #pragma ENDDUMP

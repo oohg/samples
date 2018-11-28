@@ -164,7 +164,6 @@ RETURN NIL
 
 #pragma BEGINDUMP
 
-#define HB_OS_WIN_USED
 #define _WIN32_WINNT 0x0500
 
 #include <windows.h>

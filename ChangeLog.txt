@@ -8,6 +8,62 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-11-27 22:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\autoadjust\Auto1.prg
+     * Use GetDesktopRealHeight instead of GetDesktopHeight function.
+   * samples\autoadjust\AUTO3.prg
+     - Removed duplicated message.
+   * samples\autoadjust\auto4.prg
+     * Some format.
+   * samples\browse\s021.prg
+     ! Title.
+   * samples\checkbox\s002.prg
+     * Comments.
+   * samples\excel\s001.prg
+   * samples\excel\s004.prg
+     ! Typo.
+   * samples\eztwain\twerp.prg
+     - Unneeded define.
+     * 64 bits support.
+     * Some format.
+   * samples\form\s008.prg
+     - Unneeded define.
+   * samples\grid\s001.prg
+     ! Typo.
+   + samples\grid\s029.prg
+     ; Shows how to use a synchronized grid to display the sum of
+       a column of another grid.
+   * samples\metrics\s002.prg
+     ! Warning on already defined function.
+   * samples\mysql\FuncionesSql.prg
+     - Unneeded define.
+     * 64 bits support.
+   * samples\mysql\Parametros.Fmg
+     * Some format.
+   * samples\oohg\clocks.prg
+     * 64 bits support.
+   + samples\oohg\maindemoalt.prg
+     ; Like maindemooop.prg but using alternate syntax.
+   * samples\oohg\maindemooop.prg
+     * Some format.
+   * samples\oohg\stream\TStreamSocket.prg
+     * 64 bits support.
+   * samples\radiogroup\s002.prg
+     * Some format.
+   * samples\radiogroup\s003.prg
+     * Updated to show more properties.
+   + samples\radiogroup\s006.prg
+   + samples\radiogroup\logo.jpg
+     ; Transparent radiogroup over an image control.
+   * samples\socket\TStreamSocket.prg
+     * 64 bits support.
+   + samples\statusbar\s006.prg
+     ; How to change statusbar's font.
+   * samples\transparent\demo.prg
+     * Some format.
+   * samples\x_browse\s003.prg
+     ! Title.
+
 2018-10-18 22:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\radiogroup\s002.prg
    * samples\radiogroup\s003.prg

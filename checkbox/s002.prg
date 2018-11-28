@@ -47,6 +47,10 @@ FUNCTION Main
          HEIGHT 28 ;
          LEFTALIGN ;
          OOHGDRAW
+      // Control has no BACKGROUND so it inherits from Form1.
+      // At start time control appears "transparent" because it's background matches the form's.
+      // When the form's backcolor changes the transparency dissapears.
+      // When TRANSPARENT is set to .T. the control appears "transparent" regardless its backcolor.
 
       @ 52,199 FRAME frm_2 ;
          WIDTH 122 ;
@@ -60,6 +64,7 @@ FUNCTION Main
          THREESTATE ;
          FONTCOLOR RED ;
          OOHGDRAW
+      // Same as Chk1, except FONTCOLOR is honored.
 
       @ 60, 350 BUTTON But_1 ;
          CAPTION "Chg Ctrl BkClr" ;
@@ -79,6 +84,7 @@ FUNCTION Main
          LEFTALIGN .T.
          OOHGDRAW .T.
        END CHECKBOX
+      // Same as Chk1
 
       @ 84,199 FRAME frm_4 ;
          WIDTH 122 ;
@@ -94,9 +100,10 @@ FUNCTION Main
          TOOLTIP 'Chk4 AltSyntax'
          ONCHANGE ShowState()
          THREESTATE .T.
+         FONTCOLOR RED
          OOHGDRAW .T.
       END CHECKBOX
-
+      // Same as Chk2
 
       @ 130, 30 LABEL Lbl_2 ;
          VALUE "WINDRAW" ;
@@ -112,6 +119,7 @@ FUNCTION Main
          HEIGHT 28 ;
          LEFTALIGN ;
          WINDRAW
+      // Same as Chk1
 
       @ 152,199 FRAME frm_6 ;
          WIDTH 122 ;
@@ -125,6 +133,7 @@ FUNCTION Main
          THREESTATE ;
          FONTCOLOR RED ;
          WINDRAW
+      // Same as Chk1, except FONTCOLOR is not honored.
 
       @ 160, 350 BUTTON But_2 ;
          CAPTION "Chg Form BkClr" ;
@@ -144,6 +153,7 @@ FUNCTION Main
          LEFTALIGN .T.
          WINDRAW .T.
        END CHECKBOX
+      // Same as Chk3
 
       @ 184,199 FRAME frm_8 ;
          WIDTH 122 ;
@@ -159,9 +169,10 @@ FUNCTION Main
          TOOLTIP 'Chk4 AltSyntax'
          ONCHANGE ShowState()
          THREESTATE .T.
+         FONTCOLOR RED
          WINDRAW .T.
       END CHECKBOX
-
+      // Same as Chk4, except FONTCOLOR is not honored.
 
       @ 240, 30 BUTTON But_3 ;
          CAPTION "Toggle Frames" ;
@@ -240,6 +251,7 @@ FUNCTION ChangeCtrlBkClr
    ELSE
       Form1.Chk1.BackColor := Form1.BackColor
       Form1.Chk5.BackColor := Form1.BackColor
+      // Both OOHGDRAW and WINDRAW honor the backcolor when TRANSPARENT is .F.
    ENDIF
    lSwitch := ! lSwitch
 
