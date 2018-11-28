@@ -8,7 +8,7 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
-2018-11-27 22:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+2018-11-27 22:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\autoadjust\Auto1.prg
      * Use GetDesktopRealHeight instead of GetDesktopHeight function.
    * samples\autoadjust\AUTO3.prg
