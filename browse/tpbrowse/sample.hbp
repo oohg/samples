@@ -1,0 +1,8 @@
+#
+# $Id: sample.hbp $
+#
+
+sample.prg
+h_pbrowse.prg
+
+${HG_ROOT}\oohg.hbc

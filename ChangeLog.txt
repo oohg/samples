@@ -8,6 +8,23 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-12-01 21:13 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\browse\tpbrowse\h_pbrowse.prg
+   + samples\browse\tpbrowse\howtobuild.md
+   + samples\browse\tpbrowse\i_pbrowse.ch
+   + samples\browse\tpbrowse\sample.hbp
+   + samples\browse\tpbrowse\sample.prg
+   + samples\browse\tpbrowse\screen1.png
+   + samples\browse\tpbrowse\screen2.png
+   + samples\browse\tpbrowse\screen3.png
+   + samples\browse\tpbrowse\screen4.png
+   + samples\browse\tpbrowse\tpbrowse.pdf
+     ; This sample shows how to create a subclass of TOBROWSE
+       that searchs and restricts the list of items to a
+       given matching pattern. It also shows how to accept
+       a barcode scanning and search for it.
+     ; Contributed by Jacek Pospischil.
+
 2018-11-27 22:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\autoadjust\Auto1.prg
      * Use GetDesktopRealHeight instead of GetDesktopHeight function.
