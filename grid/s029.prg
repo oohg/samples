@@ -103,8 +103,6 @@ PROCEDURE Sync( aData )
       LISTVIEW_SCROLL( oGrid2:hWnd, GetScrollPos( oGrid1:hWnd, SB_HORZ ) - GetScrollPos( oGrid2:hWnd, SB_HORZ ), 0 )
    ENDIF
 
-   RETURN 
-
 RETURN
 
 FUNCTION Size( nCol, nSize )
