@@ -8,6 +8,41 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-12-03 20:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\menu\s003.prg
+     ! Typo.
+
+2018-12-03 20:21 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\oohgrecord\px.prg
+     * UINT instead of unsigned int.
+
+2018-12-03 20:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\ole\classes.bmp
+   - samples\ole\classes.jpg
+   - samples\ole\hp_thumbnail.ico
+   - samples\ole\oledemo.prg
+   - samples\ole\Thumbs.db
+   + samples\ole\s001.prg
+
+2018-12-03 20:17 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\mpm\prgs\MpmCommon.prg
+     * 64 bits support.
+
+2018-12-03 19:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\button\s005.prg
+   + samples\button\s006.prg
+   + samples\button\s007.prg
+
+2018-12-03 19:57 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\button\s002.prg
+   * samples\button\s003.prg
+   * samples\button\s004.prg
+     * Improved.
+
+2018-12-03 19:56 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\browse\tpbrowse\sample.prg
+     * Improved by Jacek Pospischil.
+
 2018-12-01 21:13 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\browse\tpbrowse\h_pbrowse.prg
    + samples\browse\tpbrowse\howtobuild.md
