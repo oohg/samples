@@ -1468,7 +1468,7 @@ LOCAL nLevel
          ::oPxFile:Read( @cBuffer, ::nPxBlockSize )
          HB_INLINE( cBuffer, ::nPxKeyLen, @nBlock, @nCant1 ){
             unsigned char *cBuffer;
-            unsigned int iLen, iKeyLen, iPos, iBlock, iRecords, iKeys, iCount;
+            UINT iLen, iKeyLen, iPos, iBlock, iRecords, iKeys, iCount;
 
             iLen = hb_parclen( 1 );
             iKeyLen = hb_parni( 2 );
@@ -1478,7 +1478,7 @@ LOCAL nLevel
             }
             cBuffer = ( unsigned char * ) hb_parc( 1 );
 
-            iKeys = ( ( ( ( unsigned int ) cBuffer[ 5 ] ) << 8 ) | ( ( unsigned int ) cBuffer[ 4 ] ) ) & 0x7FFF;
+            iKeys = ( ( ( ( UINT ) cBuffer[ 5 ] ) << 8 ) | ( ( UINT ) cBuffer[ 4 ] ) ) & 0x7FFF;
             iKeys = ( iKeys / iKeyLen ) + 1;
 
             iBlock = hb_parni( 3 );
@@ -1486,11 +1486,11 @@ LOCAL nLevel
             iPos = 6;
             while( iKeys )
             {
-               iBlock = ( ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 6 ] ) << 8 ) | ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 5 ] ) ) ^ 0x8000;
-               iCount = ( ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 2 ] ) & 0x7F ) << 24 ) |
-                          ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 1 ] )          << 16 ) |
-                        ( ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 4 ] ) ^ 0x80 ) <<  8 ) |
-                            ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 3 ] );
+               iBlock = ( ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 6 ] ) << 8 ) | ( ( UINT ) cBuffer[ iPos + iKeyLen - 5 ] ) ) ^ 0x8000;
+               iCount = ( ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 2 ] ) & 0x7F ) << 24 ) |
+                          ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 1 ] )          << 16 ) |
+                        ( ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 4 ] ) ^ 0x80 ) <<  8 ) |
+                            ( ( UINT ) cBuffer[ iPos + iKeyLen - 3 ] );
                if( iCount >= iRecords )
                {
                   iKeys = 0;
@@ -1624,7 +1624,7 @@ LOCAL nPos, nRecNoFound
       ELSE
          nRecno := nRecno + HB_INLINE( cBuffer, ::nPxKeyLen, nBlock - 1, @nCant ){
             unsigned char *cBuffer;
-            unsigned int iLen, iKeyLen, iPos, iKeys, iCount, iCant;
+            UINT iLen, iKeyLen, iPos, iKeys, iCount, iCant;
             int iSkip;
 
             iLen = hb_parclen( 1 );
@@ -1638,7 +1638,7 @@ LOCAL nPos, nRecNoFound
             }
             cBuffer = ( unsigned char * ) hb_parc( 1 );
 
-            iKeys = ( ( ( ( unsigned int ) cBuffer[ 5 ] ) << 8 ) | ( ( unsigned int ) cBuffer[ 4 ] ) ) & 0x7FFF;
+            iKeys = ( ( ( ( UINT ) cBuffer[ 5 ] ) << 8 ) | ( ( UINT ) cBuffer[ 4 ] ) ) & 0x7FFF;
             iKeys = ( iKeys / iKeyLen ) + 1;
 
             iPos = 6;
@@ -1648,10 +1648,10 @@ LOCAL nPos, nRecNoFound
             {
                iSkip--;
                iKeys--;
-               iCant = ( ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 2 ] ) & 0x7F ) << 24 ) |
-                         ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 1 ] )          << 16 ) |
-                       ( ( ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 4 ] ) ^ 0x80 ) <<  8 ) |
-                           ( ( unsigned int ) cBuffer[ iPos + iKeyLen - 3 ] );
+               iCant = ( ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 2 ] ) & 0x7F ) << 24 ) |
+                         ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 1 ] )          << 16 ) |
+                       ( ( ( ( UINT ) cBuffer[ iPos + iKeyLen - 4 ] ) ^ 0x80 ) <<  8 ) |
+                           ( ( UINT ) cBuffer[ iPos + iKeyLen - 3 ] );
                iCount += iCant;
                iPos += iKeyLen;
             }
