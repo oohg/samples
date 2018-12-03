@@ -1,5 +1,5 @@
 /*
- * sample.prg,v 1.1 2018/11/26 11:28 Jacek Pospischil
+ * sample.prg,v 1.2 2018/12/03 11:09 Jacek Pospischil
  */
 
 #include 'oohg.ch'
@@ -104,21 +104,35 @@ func iniprog
 sele DBSAMPLE
 set order to 1
 go top
-//_brw:AddDbCon := 'DBSAMPLE->comment="*"'  //set _brw:ActiveBarCode := .f.
+*
+* example for set filter
+*
+*_brw:AddDbCon := 'DBSAMPLE->comment="*"'
+
 _brw:ActiveBarCode:=.t.
-_brw:Home()
 _brw:allowmovecolumn=.f.
 _brw:allowchangesize=.f.
 _brw:BarCodeFunc := 'search_ean'
+*
+* all records
+*
 _brw:DbCondition:='.t.'
 _brw:Seek_db:=''
 _brw:Seek1_db:=''
-_brw:DYNAMICFORECOLOR := { nil, {255,255,255} } 
+*
+* example for a limited list of records
+*
+* _brw:DbCondition:='DBSAMPLE->index1+DBSAMPLE->index2="A0010"'
+* _brw:Seek_db:='A0010'
+* _brw:Seek1_db:='A0011'
+*
+_brw:DYNAMICFORECOLOR := { nil, {255,255,255} }
 _brw:DYNAMICBACKCOLOR := { nil, {150,150,150} }
 _brw:SetSelectedColors({{0,0,0},{168,203,219},{0,0,0},{208,243,249}},.t.)
 _brw:DbFunc := ''
 _brw:SetKey(VK_F1,0,{||_brw:DbSearch()} )
 _brw:SetKey(VK_F2,0,{||MsgInfo(_brw:GetBarCode())} )
+_brw:Home()
 _brw:setfocus()
 retu nil
 ***********************************************************************************************************
