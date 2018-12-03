@@ -9,9 +9,6 @@
  * It also serves as a test case for the TButton class.
  *
  * Visit us at https://github.com/oohg/samples
- *
- * You can download the resource file and the images from
- * https://github.com/oohg/samples/tree/master/button
  */
 
 #include "oohg.ch"
@@ -23,7 +20,7 @@ PROCEDURE Main
       WIDTH 640 ;
       HEIGHT 600 ;
       MAIN ;
-      TITLE "Mix Button Demo" ;
+      TITLE "oohg - Button Demo" ;
       ON INIT Form_1.btn_Nothing.SetFocus()
 
       @ 10, 80 LABEL 0 ;
@@ -32,56 +29,57 @@ PROCEDURE Main
       @ 60, 80 BUTTON Button_11 OBJ oBut11 ;
          CAPTION "&Toggle HotLight" ;
          PICTURE "hbprint_print" ;
-         ACTION ( oBut11:lNoHotLight := ! oBut11:lNoHotLight, oBut11:Redraw() ) ;          // Not supported by Windows
+         ACTION ( oBut11:lNoHotLight := ! oBut11:lNoHotLight, oBut11:Redraw() ) ;   // Not supported by Windows
          LEFT ;
          WIDTH 140 ;
          HEIGHT 70 ;
          WINDRAW
-      oBut11:FontColor := RED
+      oBut11:FontColor := RED   // Not supported by Win 10
 
       @ 160, 80 BUTTON Button_12 ;
-         CAPTION "Cambio &Texto" ;
+         CAPTION "Change &Text" ;
          PICTURE "hbprint_save" ;
-         ACTION Cambia( 11 ) ;
+         ACTION Change( 11 ) ;
          RIGHT ;
          WIDTH 140 ;
-         BACKCOLOR RED SOLID ;                                                                       // Not supported by Windows
          HEIGHT 70 ;
-         NOHOTLIGHT ;                                                                      // Not supported by Windows
+         BACKCOLOR RED ;   // Applies to the border only
+         SOLID ;           // Not supported by Windows
+         NOHOTLIGHT ;      // Not supported by Windows
          WINDRAW
 
       @ 260, 80 BUTTON Button_13 ;
-         CAPTION "Cambio &Imagen" ;
+         CAPTION "Change &Image" ;
          PICTURE "hbprint_print" ;
-         ACTION Cambia( 15 ) ;
+         ACTION Change( 15 ) ;
          TOP ;
          WIDTH 140 ;
          HEIGHT 70 ;
          WINDRAW
 
       @ 360, 80 BUTTON Button_14 OBJ oBut14 ;
-         CAPTION "&Deshabilita" ;
+         CAPTION "&Disable 1st btn" ;
          PICTURE "hbprint_save" ;
-         ACTION Cambia( 13 ) ;
+         ACTION Change( 13 ) ;
          BOTTOM ;
-         BACKCOLOR RED ;
+         BACKCOLOR RED ;   // Applies to the border only
          WIDTH 140 ;
          HEIGHT 70 ;
          WINDRAW
 
       @ 450, 80 BUTTON Button_15 OBJ oBut15 ;
-         CAPTION "&Habilita"  ;
-         ACTION Cambia( 14 ) ;
-         TOOLTIP "boton de texto" ;
+         CAPTION "&Enable 1st btn"  ;
+         ACTION Change( 14 ) ;
+         TOOLTIP "Text-only button" ;
          WIDTH 140 ;
          BOLD ;
          WINDRAW
 
       @ 500, 80 BUTTON Button_16 OBJ oBut16 ;
          PICTURE "Button5.bmp"  ;
-         ACTION Msgbox( "action" ) ;
-         TOOLTIP "boton de imagen" ;
-         BACKCOLOR RED ;
+         ACTION Msgbox( "Action!" ) ;
+         TOOLTIP "Image-only button" ;
+         BACKCOLOR RED ;   // Applies to the border only
          WIDTH 140 ;
          WINDRAW
 
@@ -99,29 +97,30 @@ PROCEDURE Main
       oBut21:FontColor := RED
 
       @ 160, 400 BUTTON Button_22 ;
-         CAPTION "Cambio &Texto" ;
+         CAPTION "Change &Text" ;
          PICTURE "hbprint_save" ;
-         ACTION Cambia( 21 ) ;
+         ACTION Change( 21 ) ;
          RIGHT ;
          WIDTH 140 ;
-         BACKCOLOR RED SOLID ;
          HEIGHT 70 ;
+         BACKCOLOR RED ;                      // Applies to the whole button resulting into a colored flat rectangle
+         SOLID ;                              // Omit this clause to mimic Button_12
          NOHOTLIGHT ;
          OOHGDRAW
 
       @ 260, 400 BUTTON Button_23 ;
-         CAPTION "Cambio &Imagen" ;
+         CAPTION "Change &Image" ;
          PICTURE "hbprint_print" ;
-         ACTION Cambia( 25 ) ;
+         ACTION Change( 25 ) ;
          TOP ;
          WIDTH 140 ;
          HEIGHT 70 ;
          OOHGDRAW
 
       @ 360, 400 BUTTON Button_24 OBJ oBut24 ;
-         CAPTION "&Deshabilita" ;
+         CAPTION "&Disable 1st btn" ;
          PICTURE "hbprint_save" ;
-         ACTION Cambia( 23 ) ;
+         ACTION Change( 23 ) ;
          BOTTOM ;
          BACKCOLOR RED ;
          WIDTH 140 ;
@@ -129,17 +128,17 @@ PROCEDURE Main
          OOHGDRAW
 
       @ 450, 400 BUTTON Button_25 OBJ oBut25 ;
-         CAPTION "&Habilita"  ;
-         ACTION Cambia( 24 ) ;
-         TOOLTIP "boton de texto" ;
+         CAPTION "&Enable 1st btn"  ;
+         ACTION Change( 24 ) ;
+         TOOLTIP "Text-only button" ;
          WIDTH 140 ;
          BOLD ;
          OOHGDRAW
 
       @ 500, 400 BUTTON Button_26 OBJ oBut26 ;
          PICTURE "Button5.bmp"  ;
-         ACTION Msgbox( "action" ) ;
-         TOOLTIP "boton de imagen" ;
+         ACTION Msgbox( "Action!" ) ;
+         TOOLTIP "Image-only button" ;
          BACKCOLOR RED ;
          WIDTH 140 ;
          OOHGDRAW
@@ -154,10 +153,10 @@ PROCEDURE Main
    ACTIVATE WINDOW Form_1
 RETURN
 
-PROCEDURE Cambia( nPar )
+PROCEDURE Change( nPar )
 
    IF nPar == 11
-      Form_1.Button_11.Caption := "Nuevo Texto"
+      Form_1.Button_11.Caption := "New Text"
    ELSEIF nPar == 13
       Form_1.Button_11.Enabled := .F.
    ELSEIF nPar == 14
@@ -165,7 +164,7 @@ PROCEDURE Cambia( nPar )
    ELSEIF nPar == 15
       Form_1.Button_14.Picture := "button5.bmp"
    ELSEIF nPar == 21
-      Form_1.Button_21.Caption := "Nuevo Texto"
+      Form_1.Button_21.Caption := "New Text"
    ELSEIF nPar == 23
       Form_1.Button_21.Enabled := .F.
    ELSEIF nPar == 24

@@ -18,14 +18,20 @@
  *
  * BMP images:
  * a. color depth not greater than 8 bpp, and
- *    the color of the top-left pixel will be transparent
+ *    the color of the bottom-left pixel will be transparent
  *    if this color it at index 0 in the image's palette.
  * b. for 32 bpp images, the BLACK color will be transparent.
- *    the color of the top-left pixel will be transparent
+ *    the color of the bottom-left pixel will be transparent
  *    if this color it at index 0 in the image's palette.
+ * c. for 4 bpp images you must set the bottom-left pixel and
+ *    the adjacent one too.
  *
  * JPG/JPEG/GIF images:
  * a. whatever transparency is defined.
+ *
+ * Also to achieve transparency you can use the functions of
+ * c_image.c and directly assign the resulting handle to the
+ * button's HBitmap property.
  *
  * Visit us at https://github.com/oohg/samples
  *
