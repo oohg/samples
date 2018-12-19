@@ -401,7 +401,7 @@ return nRetVal
 #include "hbapiitm.h"
 #include "commctrl.h"
 
-HB_FUNC ( ZAPDIRECTORY )
+HB_FUNC( ZAPDIRECTORY )
 {
 	SHFILEOPSTRUCT sh;
 

@@ -114,7 +114,7 @@ LOCALE_SABBREVMONTHNAME12     abbreviated name for December
 LOCALE_SABBREVMONTHNAME13     Native abbreviated name for 13th month, if it exists.
 */
 
-HB_FUNC ( GETDECIMALSEPARATOR )
+HB_FUNC( GETDECIMALSEPARATOR )
 {
    LPTSTR cText;
 
