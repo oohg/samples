@@ -47,8 +47,8 @@ Return Nil
 
 Function CreaBrowse( cBase, aNomb, aLong, aJust )
 
-    Local nAltoPantalla  := GetDesktopHeight() + GetTitleHeight() + GetBorderHeight()
-    Local nAnchoPantalla := GetDesktopWidth()
+    Local nAltoPantalla  := GetDesktopRealHeight() + GetTitleHeight() + GetBorderHeight()
+    Local nAnchoPantalla := GetDesktopRealWidth()
     Local nRow           := nAltoPantalla  * 0.10
     Local nCol           := nAnchoPantalla * 0.10
     Local nWidth         := nAnchoPantalla * 0.95

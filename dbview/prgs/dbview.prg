@@ -49,8 +49,8 @@ Return Nil
 Procedure Publicar()
 *------------------------------------------------------------------------------*
 
-    Public nAltoPantalla  := GetDesktopHeight() + GetTitleHeight() + GetBorderHeight()
-    Public nAnchoPantalla := GetDesktopWidth()
+    Public nAltoPantalla  := GetDesktopRealHeight() + GetTitleHeight() + GetBorderHeight()
+    Public nAnchoPantalla := GetDesktopRealWidth()
     Public nRow           := nAltoPantalla  * 0.10
     Public nCol           := nAnchoPantalla * 0.10
     Public nWidth         := nAnchoPantalla * 0.95

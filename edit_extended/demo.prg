@@ -41,16 +41,16 @@ function Main()
         HB_LANGSELECT( "EN" )
 
         // Define the main window.
-        DEFINE WINDOW Win_1                  ;
-           AT         0,0                    ;
-           WIDTH      getdesktopWidth()      ;
-           HEIGHT     getDeskTopHeight()-27  ;
-           TITLE      "EDIT EXTENDED Demo"   ;
-           MAIN                              ;
-           NOMAXIMIZE                        ;
-           NOSIZE                            ;
-           ON INIT    OpenTable()            ;
-           ON RELEASE CloseTable()           ;
+        DEFINE WINDOW Win_1                     ;
+           AT         0,0                       ;
+           WIDTH      GetdesktopRealWidth()     ;
+           HEIGHT     GetDeskTopRealHeight()-27 ;
+           TITLE      "EDIT EXTENDED Demo"      ;
+           MAIN                                 ;
+           NOMAXIMIZE                           ;
+           NOSIZE                               ;
+           ON INIT    OpenTable()               ;
+           ON RELEASE CloseTable()              ;
            BACKCOLOR  GRAY
 
            DEFINE MAIN MENU OF Win_1

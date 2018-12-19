@@ -18,7 +18,7 @@ Function Main()
    DEFINE WINDOW  Principal OBJ oWin AT 126,66 WIDTH 648 HEIGHT 404 ;
    TITLE 'AutoAdjust (c)2007 MigSoft ' ;
    ON INIT ( oWin:Height := GetDesktopRealHeight(), ;
-             oWin:Width := GetDesktopWidth(), ;
+             oWin:Width := GetDesktopRealWidth(), ;
              oWin:Row := 0, oWin:Col := 0, ;
              oWin:AdjustWindowSize() ) ;
    ON SIZE AdjustGridColumns(oGrid)
