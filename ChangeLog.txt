@@ -8,6 +8,52 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-12-19 21:30 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\menu\ownerdraw\demo.bmp
+   + samples\menu\ownerdraw\demo.ico
+   + samples\menu\ownerdraw\demo2.ico
+   + samples\menu\ownerdraw\menu.prg
+   + samples\menu\ownerdraw\menu.rc
+   + samples\menu\ownerdraw\res
+   + samples\menu\ownerdraw\res\bug.bmp
+   + samples\menu\ownerdraw\res\cancel.bmp
+   + samples\menu\ownerdraw\res\cart_add.bmp
+   + samples\menu\ownerdraw\res\check.bmp
+   + samples\menu\ownerdraw\res\door.bmp
+   + samples\menu\ownerdraw\res\help.bmp
+   + samples\menu\ownerdraw\res\mark.bmp
+   + samples\menu\ownerdraw\res\new.bmp
+   + samples\menu\ownerdraw\res\printer.bmp
+   + samples\menu\ownerdraw\res\save.bmp
+   + samples\menu\ownerdraw\res\save_as.bmp
+   + samples\menu\ownerdraw\res\shading.bmp
+   + samples\menu\ownerdraw\res\tick.bmp
+   + samples\menu\ownerdraw\res\uncheck.bmp
+   + samples\menu\ownerdraw\res\world.bmp
+     ; OWNERDRAW clause sample.
+
+2018-12-19 21:26 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\menu\s011.prg
+     ; MESSAGE clause sample.
+
+2018-12-19 21:26 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\menu\s010.prg
+     ; MRU item sample.
+
+2018-12-19 17:54 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\s013.prg
+   * samples\metrics\s001.prg
+   * samples\mpm\prgs\MpmCommon.prg
+     * Format.
+
+2018-12-19 17:53 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\autoadjust\Auto1.prg
+   * samples\dbview\prgs\dbview.prg
+   * samples\edit_extended\demo.prg
+   * samples\oohg\mybrowse\mybrowse.prg
+     * Use GetDesktopRealWidth instead of GetDesktopWidth.
+     * Use GetDesktopRealHeight instead of GetDesktopHeight.
+
 2018-12-03 20:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\menu\s003.prg
      ! Typo.
