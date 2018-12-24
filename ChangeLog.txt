@@ -9,6 +9,26 @@
  */
 
 2018-12-19 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\browse\browse8.prg
+   * samples\combobox\s004.prg
+   * samples\listbox\s002.prg
+     ! Typo.
+   + samples\menu\s012.prg
+   * samples\menu\s010.prg
+   * samples\menu\ownerdraw\menu.prg
+     * Improved.
+   * samples\menu\s001.prg
+   * samples\menu\s002.prg
+   * samples\menu\s003.prg
+   * samples\menu\s004.prg
+   * samples\menu\s005.prg
+   * samples\menu\s006.prg
+   * samples\menu\s007.prg
+   * samples\menu\s008.prg
+   * samples\menu\s011.prg
+     * Updated
+
+2018-12-19 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    - samples\menu\ownerdraw\lista.txt
 
 2018-12-19 21:30 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
