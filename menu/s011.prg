@@ -17,7 +17,7 @@ FUNCTION Main()
       AT 0,0 ;
       WIDTH 400 ;
       HEIGHT 200 ;
-      TITLE 'Create and Delete Menu Items' ;
+      TITLE "Create and Delete Menu Items" ;
       MAIN
 
       _OOHG_DefaultStatusBarMsg := "App-wide default message"
@@ -27,24 +27,24 @@ FUNCTION Main()
       END STATUSBAR
 
       DEFINE MAIN MENU OBJ mnu_Main
-         POPUP 'Actions'  OBJ mnu_Actions MESSAGE "First menu"
-            ITEM 'Action 1' ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1 MESSAGE "Action 1"
+         POPUP "Actions"  OBJ mnu_Actions MESSAGE "First menu"
+            ITEM "MsgInfo" ACTION MsgInfo( "Action 1" ) NAME mnu_Action1 MESSAGE "Shows an informative message!"
             SEPARATOR
-            ITEM 'Action 2' ACTION _oohg_calldump() NAME mnu_Action2 MESSAGE "Action 2"
-            ITEM 'Action 3' ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3 MESSAGE "Action 3"
+            ITEM "Dump" ACTION _oohg_calldump() NAME mnu_Action2 MESSAGE "Dumps the stack of function calls!"
+            ITEM "New Form" ACTION NewForm() NAME mnu_Action3 MESSAGE "Opens a new form!"
          END POPUP
 
-         POPUP 'Test' MESSAGE "Second menu"
-            ITEM 'Delete Action 2' ;
-               ACTION ( oForm:mnu_Action2:Release(), ;
-                        MsgInfo( 'Menu "Action 2" has been deleted !!!' ), ;
+         POPUP "Test" MESSAGE "Second menu"
+            ITEM "Delete item Inserted of menu Actions" ;
+               ACTION ( oForm:mnu_Action4:Release(), ;
+                        MsgInfo( 'Item Inserted of menu Actions has been deleted !!!' ), ;
                         oForm:mnu_Create:Enabled( .T. ), ;
                         oForm:mnu_Delete:Enabled( .F. ) ) ;
-               NAME mnu_Delete MESSAGE 4
-            ITEM 'Create Action 2' ;
-               ACTION ( TMenuItem():InsertItem( "Action 2" , ;
-                                                { || MsgInfo("Action 2") }, ;
-                                                "mnu_Action2", ;
+               NAME mnu_Delete
+            ITEM "Create item Inserted of menu Actions" ;
+               ACTION ( TMenuItem():InsertItem( "Inserted" , ;
+                                                { || MsgInfo( "Item Inserted of Actions menu!" ) }, ;
+                                                "mnu_Action4", ;
                                                 NIL, ;
                                                 .F., ;
                                                 .F., ;
@@ -53,8 +53,8 @@ FUNCTION Main()
                                                 .F., ;
                                                 .F., ;
                                                 NIL, ;
-                                                2 ), ;
-                        MsgInfo( 'Menu "Action 2" has been created !!!'), ;
+                                                4 ), ;
+                        MsgInfo( 'Item Inserted of menu Actions has been created !!!'), ;
                         oForm:mnu_Create:Enabled( .F. ) , ;
                         oForm:mnu_Delete:Enabled( .T. ) ) ;
                NAME mnu_Create ;
@@ -62,24 +62,52 @@ FUNCTION Main()
          END POPUP
       END MENU
 
-      INSERT ITEM 'Action 4' ;
-         AT -1 ACTION MsgInfo( 'Action 4' ) FROM mnu_Actions
+      INSERT ITEM "Inserted" NAME mnu_Action4 FROM mnu_Actions ;
+         AT -1 ACTION MsgInfo( 'Item Inserted of menu Actions has been deleted !!!' )
 
       INSERT SEPARATOR AT 3 FROM mnu_Actions
 
-      INSERT POPUP 'About' OBJ mnu_About FROM mnu_Main MESSAGE "New Popup"
+      INSERT POPUP "About" OBJ mnu_About FROM mnu_Main MESSAGE "New Popup"
       END POPUP
 
-      INSERT ITEM 'OOHG Power !!!' ;
-         AT -1 ACTION MsgInfo( 'Enjoy !!!' ) FROM mnu_About MESSAGE "New Item"
+      INSERT ITEM "OOHG Power !!!" ;
+         AT -1 ACTION MsgInfo( "Enjoy !!!" ) FROM mnu_About MESSAGE "New Item"
 
-      ON KEY ESCAPE ACTION Form.Release
+      ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
 
    CENTER WINDOW Form
    ACTIVATE WINDOW Form
 
-RETURN NIL
+   RETURN NIL
+
+FUNCTION NewForm
+
+   DEFINE WINDOW Form2 ;
+      AT Form.Row + 50, Form.Col + 50 ;
+      WIDTH 400 ;
+      HEIGHT 200 ;
+      TITLE "New Form"
+
+      DEFINE STATUSBAR
+         STATUSITEM ""
+      END STATUSBAR
+
+      DEFINE MAIN MENU
+         ITEM "Close" ACTION ThisWindow.Release()
+      END MENU
+
+      @ 20, 20 LABEL lbl_1 ;
+         AUTOSIZE ;
+         VALUE "The statusbar should show the app-wide default message!" + CRLF + ;
+               "when the mouse hovers the menu's item."
+
+      ON KEY ESCAPE ACTION ThisWindow.Release
+   END WINDOW
+
+   ACTIVATE WINDOW Form2
+
+   RETURN NIL
 
 /*
  * EOF

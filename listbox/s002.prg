@@ -42,7 +42,7 @@ FUNCTION Main
       - Images are numbered from zero.
       - TEXTHEIGHT sets the height of the items.
       - The height can't be changed after control's creations.
-      - When TEXTHEIGHT is ommited, a default value is computed from the control's font.
+      - When TEXTHEIGHT is omited, a default value is computed from the control's font.
       - Images are not clipped unless FIT is added.
       - Images are painted vertically centered if there's enough room.
       - Images are clipped at the right and bottom sides.

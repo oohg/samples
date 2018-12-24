@@ -88,12 +88,12 @@ FUNCTION ChangeStyle( oProg, nValue, oBut )
 
    /*
     * SetStyleNormal() sets the progressbar to normal style.
-    * If it's parameter is ommited or is not numeric or is
+    * If it's parameter is omited or is not numeric or is
     * negative, zero is assumed. This paramater sets the
     * control's value.
     *
     * SetStyleMarquee() sets the progressbar to marquee style.
-    * If it's parameter is ommited or is not numeric or is
+    * If it's parameter is omited or is not numeric or is
     * negative, the style is changed but the animation doesn't
     * starts. This parameter is the time, in milliseconds,
     * between marquee animation updates.

@@ -15,7 +15,7 @@
  * clause. The hotkey to add records is Alt+A.
  * Append clause can't be used with fields not belonging to browse work area.
  * DELETE clause allows to mark selected record for deletion pressing <Del> key.
- * Deletion only takes place if DELETEWHEN clause is ommited or if the block
+ * Deletion only takes place if DELETEWHEN clause is omited or if the block
  * evaluates to .T. for the record. If the block evaluates to .F., deletion
  * does not take place and DELETEMSG message is displayed.
  * ON DELETE block is executed after de record is deleted but before is unlocked

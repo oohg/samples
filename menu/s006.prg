@@ -7,7 +7,6 @@
  * This sample shows how to enable/disable a POPUP at runtime.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -17,7 +16,7 @@ FUNCTION Main()
    DEFINE WINDOW Form_1 ;
       OBJ oForm_1 ;
       AT 0,0 ;
-      WIDTH 400 ;
+      WIDTH 450 ;
       HEIGHT 200 ;
       TITLE 'ooHG Demo - enable/disable a POPUP at runtime' ;
       MAIN ;

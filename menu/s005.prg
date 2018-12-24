@@ -8,7 +8,6 @@
  * defined) using it's shortcut key.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -22,7 +21,7 @@ FUNCTION Main()
       AT 0,0 ;
       WIDTH 640 ;
       HEIGHT 480 ;
-      TITLE "Open Menu" ;
+      TITLE "ooHG Demo - Open Menu" ;
       MAIN ;
       ON INIT INSERT_ALT_KEY( ASC( cShortcut ) )
 

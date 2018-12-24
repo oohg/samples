@@ -7,6 +7,9 @@ PROCEDURE Main
    PUBLIC oMainMenu := NIL, oMenuSetOnOff, oMenuSetAuto
    PUBLIC Font0, Font1, Font2, Font3, Font4
 
+   // These area app-wide fonts.
+   // If you don't release them explicitly using RELEASE FONT <name>
+   // the will be released on app exit.
    DEFINE FONT font_0 FONTNAME GetDefaultFontName() SIZE 10
    DEFINE FONT font_1 FONTNAME 'Times New Roman' SIZE 10 BOLD
    DEFINE FONT font_2 FONTNAME 'Arial'   SIZE 12 ITALIC
@@ -161,11 +164,13 @@ STATIC PROCEDURE LoadMenu( nSet )
          ITEM "E&xit " + space(16) + "Alt+F4" ACTION Form_1.Release IMAGE "DOOR"
       END POPUP
 
+      // App-wide fonts may be used by handle
       POPUP "F&onts" FONT Font0
-         ITEM "10- Bold"      FONT Font1
-         ITEM "12- Italic"    FONT Font2
-         ITEM "14- UnderLine" FONT Font3
-         ITEM "16- StrikeOut" FONT Font4
+         // Or by name
+         ITEM "10- Bold"      FONT "font_1"
+         ITEM "12- Italic"    FONT "font_2"
+         ITEM "14- UnderLine" FONT "font_3"
+         ITEM "16- StrikeOut" FONT "font_4"
       END POPUP
 
       POPUP "&Test" FONT Font0

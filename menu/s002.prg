@@ -8,7 +8,6 @@
  * InsertItem and InsertSeparator methods.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -17,9 +16,9 @@ FUNCTION Main()
 
    DEFINE WINDOW Form OBJ oForm ;
       AT 0,0 ;
-      WIDTH 400 ;
+      WIDTH 450 ;
       HEIGHT 200 ;
-      TITLE 'Create and Delete Menu Items' ;
+      TITLE 'ooHG Demo - Create and Delete Menu Items' ;
       MAIN
 
       DEFINE MAIN MENU OBJ mnu_Main

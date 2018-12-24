@@ -14,6 +14,8 @@
 
 FUNCTION Main()
 
+   LOCAL lOwnerDraw := MsgYesNo( "Define MAIN MENU as OWNERDRAW?", 'ooHG Demo - MRU Sample' )
+
    DEFINE WINDOW Form_1 ;
       OBJ oForm ;
       AT 0,0 ;
@@ -28,9 +30,13 @@ FUNCTION Main()
         DATE
       END STATUSBAR
 
-      DEFINE MAIN MENU
+   IF lOwnerDraw
+      DEFINE MAIN MENU  MESSAGE "Try the menu options!" TIMEOUT 0 OWNERDRAW
+   ELSE
+      DEFINE MAIN MENU MESSAGE "Try the menu options!" TIMEOUT 0
+   ENDIF
          POPUP "&File" MESSAGE "Click me!"
-            MRU "&New" OBJ oMRU ACTION OpenDoc MESSAGE "Select a file!", "Click to execute!"
+            MRU "&New" OBJ oMRU ACTION OpenDoc MESSAGE "Select a file!", "Click to execute!" TIMEOUT 5000
             /*
              * The function name can also be "OpenDoc" or ( "OpenDoc" ).
              * Also you can use a variable:
@@ -39,13 +45,15 @@ FUNCTION Main()
              * Also you can use a codeblock using the following form:
              *    ... ACTION ( { |item| OpenDoc( item ) } ) ...
              *
-             * MESSAGE: when the mouse hovers the menu item "New" the first string
-             *          will be showed at the first item of the form's statusbar.
-             *          The seconde string will be shown when the mouse hovers
-             *          the items of the MRU list.
-             * If you don't want to display a message when hovering and item
-             * then add MESSAGE "". If you ommit MESSAGE clause then the previously
-             * displayed message is not erased.
+             * MESSAGE: When you move the mouse pointer over the "New" menu item,
+             * the first string will be displayed in the first element of the
+             * form's status bar. The second string will be displayed when the mouse
+             * pointer passes over the items in the MRU list. If you do not want to
+             * display a message when you move the mouse over an item, add MESSAGE "".
+             * The MESSAGE is automatically erased after 5 seconds.
+             * Set TIMEOUT to 0 to prevent the message from being erased.
+             * When an item's TIMEOUT is omited the parent's is assumed.
+             * When the menu's TIMEOUT is omited a default value is assigned.
              */
             SEPARATOR
             ITEM "Clear" ACTION oMRU:Clear() MESSAGE "Clear the list of recently used file."
@@ -56,9 +64,8 @@ FUNCTION Main()
 
       @ 150, 10 LABEL lbl_1 HEIGHT 200 WIDTH 600 VALUE ;
          "Open 'File' menu, click 'New' and select a file." + CRLF + ;
-         "The file is added to the MRU menu and the associated app is opened." + CRLF + ;
+         "The file is added to the top of the MRU menu and the associated app is opened." + CRLF + ;
          "Repeat several times. Note that the list only holds the last 7 filenames (configurable)." + CRLF + ;
-         "Note also that the most recently opened file is at the top of the list." + CRLF + ;
          "Use 'Clear' to remove all entries." + CRLF + ;
          "All entries are save to file 'MRU.INI' on control's release and read from it at control's creation."
 

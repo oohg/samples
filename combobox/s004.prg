@@ -37,13 +37,13 @@
  *       lResizeBox = .T. to resize dropdown list and combobox
  *                    .F. to resize dropdown list only (default action)
  *       nMinWidth  = minimum width
- *                    If ommited or less than 0
+ *                    If omited or less than 0
  *                       If lResizeBox == .T.
  *                          defaults to 0
  *                       else
  *                          defaults to combobox width
  *       nMaxWidth  = maximum width
- *                    If ommited defaults to longest item's width
+ *                    If omited defaults to longest item's width
  *                    If less than minimun defaults to longest item's
  *                    width or minimun, whichever is bigger.
  *

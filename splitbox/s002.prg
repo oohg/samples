@@ -35,7 +35,7 @@ Function Main()
          END TOOLBAR NOBREAK
 
          /*
-          * If the NOBREAK clause is ommited, the toolbars
+          * If the NOBREAK clause is omited, the toolbars
           * are shown in different rows
           */
 

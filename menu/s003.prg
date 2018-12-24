@@ -13,9 +13,8 @@
  *
  * Visit us at https://github.com/oohg/samples
  *
- *
- * You can download check.bmp, free.bmp and info.bmp from
- * https://github.com/oohg/samples/tree/master/Menu
+ * You can download the images from
+ * https://github.com/oohg/samples/tree/master/menu
  */
 
 #include "oohg.ch"
@@ -26,7 +25,7 @@ FUNCTION Main
       AT 0,0 ;
       WIDTH 400 ;
       HEIGHT 200 ;
-      TITLE 'Menu Colors' ;
+      TITLE 'ooHG Demo - Menu Colors' ;
       MAIN
 
       DEFINE MAIN MENU OBJ oMain
@@ -76,7 +75,7 @@ FUNCTION Main
 
       /* This doesn't works in Win Vista or 7 when themes are enabled.
          It doesn't works in Win 10 because themes are _always_ enabled.
-         To change to color of the main menu you must disable the themes
+         To change the color of the main menu you must disable the themes
          for the whole form. See Context Menu
          Note that after disabling the themes you can't reenable them.
       */
