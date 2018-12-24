@@ -8,10 +8,12 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
-2018-12-19 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+2018-12-24 20:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\browse\browse8.prg
    * samples\combobox\s004.prg
    * samples\listbox\s002.prg
+   * samples\progressbar\s001.prg
+   * samples\splitbox\s002.prg
      ! Typo.
    + samples\menu\s012.prg
    * samples\menu\s010.prg
@@ -26,7 +28,7 @@
    * samples\menu\s007.prg
    * samples\menu\s008.prg
    * samples\menu\s011.prg
-     * Updated
+     * Updated.
 
 2018-12-19 21:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    - samples\menu\ownerdraw\lista.txt
