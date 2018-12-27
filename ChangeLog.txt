@@ -8,6 +8,11 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2018-12-27 19:42 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\encrypt\s001.prg
+   + samples\encrypt\s002.prg
+   + samples\encrypt\s003.prg
+
 2018-12-24 20:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\browse\browse8.prg
    * samples\combobox\s004.prg
