@@ -1,5 +1,5 @@
 /*
- * ComboBox Sample n° 9
+ * ComboBox Sample #9
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -27,9 +27,9 @@ FUNCTION Main
       DEFINE MAIN MENU
          DEFINE POPUP 'Test'
             MENUITEM 'Get Value'        ACTION autoMsgInfo(oCombo:Value)
-            MENUITEM 'Set Value'        ACTION Ocombo:Value := 1
-            MENUITEM 'Get DisplayValue' ACTION MsgInfo( Ocombo:DisplayValue )
-            MENUITEM 'Set DisplayValue' ACTION Ocombo:DisplayValue := 'New Text'
+            MENUITEM 'Set Value to 1'   ACTION oCombo:Value := 1
+            MENUITEM 'Get DisplayValue' ACTION MsgInfo( oCombo:DisplayValue )
+            MENUITEM 'Set DisplayValue' ACTION oCombo:DisplayValue := 'New Text'
          END POPUP
       END MENU
 

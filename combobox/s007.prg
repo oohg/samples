@@ -1,5 +1,5 @@
 /*
- * ComboBox Sample n° 7
+ * ComboBox Sample #7
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -13,7 +13,6 @@
  * uppercase on DisplayEdit value.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -24,14 +23,14 @@ FUNCTION Main
       AT 0,0 ;
       WIDTH 400 ;
       HEIGHT 200 ;
-      TITLE 'CaretPos in ComboBox with DisplaEdit Clause' ;
+      TITLE 'CaretPos in ComboBox with DisplayEdit Clause' ;
       MAIN
 
       DEFINE MAIN MENU
          DEFINE POPUP 'Test'
             MENUITEM 'Get Value' ;
-               ACTION autoMsgInfo( oCombo:Value )
-            MENUITEM 'Set Value' ;
+               ACTION AutoMsgInfo( oCombo:Value )
+            MENUITEM 'Set Value to 1' ;
                ACTION oCombo:Value := 1
             MENUITEM 'Get DisplayValue' ;
                ACTION MsgInfo( oCombo:DisplayValue )

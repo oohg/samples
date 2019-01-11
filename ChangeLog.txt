@@ -8,6 +8,16 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2019-01-11 16:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\combobox\s001.prg
+   * samples\combobox\s005.prg
+   * samples\combobox\s007.prg
+   * samples\combobox\s009.prg
+     * Updated.
+   + samples\eztwain\readme.txt
+   * samples\eztwain\twerp.prg
+     ! Was not compiling.
+
 2018-12-27 19:42 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\encrypt\s001.prg
    + samples\encrypt\s002.prg

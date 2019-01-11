@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 1
+ * Combobox Sample #1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -41,8 +41,8 @@ FUNCTION Main()
          ITEMIMAGENUMBER {|| test->(RecNo()) - 1} ;
          IMAGESOURCE {|| test->image} ;
          FIT ;
-         TEXTHEIGHT 40 ;
-         VALUE 1
+         VALUE 1 ;
+         TEXTHEIGHT 40     // Use EDITHEIGHT 40 to set the edit part only and/or OPTIONSHEIGHT 40 to set the list part only
 
       @ 20,300 BUTTON btn_1 ;
          CAPTION "Change Images" ;

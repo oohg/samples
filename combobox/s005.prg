@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 5
+ * Combobox Sample #5
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -7,11 +7,13 @@
  * Based on a sample published in OOHG list by
  * Vicente Guerra <vic@guerra.com.mx>
  *
- * This sample shows how to use VALUESOURCE clause and how
- * to get the value of a given item.
+ * This sample shows how to:
+ * - Use VALUESOURCE clause.
+ * - Get the value of a given item.
+ * - Add items at runtime.
+ * - Delete items.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -26,39 +28,53 @@ FUNCTION Main
    DEFINE WINDOW MAIN OBJ oWnd ;
       TITLE "Combobox's ValueSource Clause" ;
       WIDTH 350 ;
-      HEIGHT 200
+      HEIGHT 300
 
       @ 10,10 COMBOBOX Combo ;
          WIDTH 100 ;
          HEIGHT 100 ;
          ITEMS aItems ;
          VALUESOURCE ( aValues ) ;     // The parentheses are needed !!!
-         ON CHANGE oWnd:Label:Value := ;
-                      "The combo's value is: " + oWnd:Combo:Value
+         ON CHANGE ChangeLabel()
 
-      @ 60,10 LABEL Label ;
+      @ 50,10 LABEL Label ;
          VALUE "Select an item in the combo to see it's value !!!" ;
          AUTOSIZE
 
-     @ 90,10 BUTTON Button ;
+     @ 60 + oWnd:Label:Height,10 BUTTON Button1 ;
          CAPTION "Get 'eee' value" ;
          ACTION AutoMsgBox( oWnd:Combo:ItemValue( "eee" ) )
 
-     @ 90,120 BUTTON Button2 ;
+     @ 60 + oWnd:Label:Height,120 BUTTON Button2 ;
          CAPTION "Add item" ;
          ACTION ( oWnd:Combo:AddItem( "xx" + hb_ntos( i ), "XX" + hb_ntos( i ) ), MsgInfo( "Item XX" + hb_ntos( i ++ ) + " added!" ) )
 
-     @ 90,230 BUTTON Button3 ;
+     @ 60 + oWnd:Label:Height,230 BUTTON Button3 ;
          CAPTION "Delete item" ;
          ACTION MsgInfo( iif( oWnd:Combo:DeleteItem( 2 ), "Item 2 deleted!", "Can't delete item 2!" ) )
 
       ON KEY ESCAPE ACTION oWnd:Release()
    END WINDOW
 
+   oWnd:ClientHeight := 70 + oWnd:Label:Height + oWnd:Button3:Height
+
    CENTER WINDOW MAIN
    ACTIVATE WINDOW MAIN
 
-RETURN NIL
+   RETURN NIL
+
+FUNCTION ChangeLabel
+
+   nOldH := oWnd:Label:Height
+   oWnd:Label:Value := "The combo's value is: " + CRLF + oWnd:Combo:Value
+   IF nOldH # oWnd:Label:Height
+      oWnd:Button3:Row := ;
+      oWnd:Button2:Row := ;
+      oWnd:Button1:Row := oWnd:Button1:Row - nOldH + oWnd:Label:Height
+      oWnd:ClientHeight := oWnd:Button1:Row + oWnd:Button3:Height + 10
+   ENDIF
+
+   RETURN NIL
 
 /*
  * EOF
