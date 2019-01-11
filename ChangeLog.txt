@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2019-01-11 20:47 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\datepicker\s003.prg
+     ; ON CHANGE event.
+
 2019-01-11 16:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\combobox\s001.prg
    * samples\combobox\s005.prg
