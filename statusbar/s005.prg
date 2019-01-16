@@ -9,7 +9,6 @@
  * width is changed.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
@@ -19,7 +18,7 @@ PROCEDURE MAIN
   PUBLIC oStat
 
    DEFINE WINDOW Main ;
-      TITLE "Progressbar inside a Statusbar" ;
+      TITLE "oohg - Label inside a Statusbar" ;
       WIDTH 640 ;
       HEIGHT 480 ;
       ON INIT ResizeStatusbar() ;
