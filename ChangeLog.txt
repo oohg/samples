@@ -8,6 +8,13 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2019-01-17 21:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\browse\sample.prg
+   * samples\browse\s022.prg
+   * samples\grid\s030.prg
+   * samples\grid\s031.prg
+     + Simulated button sample.
+
 2019-01-16 19:49 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\statusbar\s005.prg
      ! Title.
