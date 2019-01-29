@@ -8,6 +8,10 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2019-01-29 09:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\combobox\s011.prg
+     * How to set ITEMSOURCE using an array.
+
 2019-01-18 19:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\printing\s003.prg
      ; How to build and show two TPRINT reports.
