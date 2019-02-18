@@ -8,6 +8,25 @@
  * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
  */
 
+2019-02-18 15:08 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\harupdf\harupdf.prg
+   - samples\harupdf\harupdf.ch
+   * samples\harupdf\build.prg
+     % Improved.
+
+2019-02-18 15:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\datepicker\demo.prg
+     ; Duplicated.
+
+2019-02-18 15:05 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\browse\browse1.prg
+     * Table creation code uncommented.
+     + Cleanup code.
+
+2019-02-18 15:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\*.prg
+     - Wrong code.
+
 2019-01-29 09:48 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\combobox\s011.prg
      * How to set ITEMSOURCE using an array.
