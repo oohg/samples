@@ -88,7 +88,7 @@ Return Nil
 
 Procedure OpenTables()
 
-	*CreateTable()
+	CreateTable()
 
 	Use Test Via "DBFCDX"
 	Go Top
@@ -99,6 +99,9 @@ Return Nil
 
 Procedure CloseTables()
 	Use
+   ERASE TEST.DBF
+   ERASE TEST.FPT
+   ERASE CODE.CDX
 Return Nil
 
 Procedure ChangeTest()
