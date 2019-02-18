@@ -61,11 +61,12 @@
 
 ANNOUNCE RDDSYS
 
-#require "hbzebra"
-#require "hbhpdf"
+#if ! ( __HARBOUR__ - 0 < 0x030200 )       
+   #require "hbzebra"
+   #require "hbhpdf"
+#endif
 
 #include "hbzebra.ch"
-
 #include 'harupdf.ch'
 #include "minigui.ch"
 
@@ -1671,7 +1672,7 @@ Static function print_grid( pdf, page )
     End
 
 
-    /* Draw virtical text */
+    /* Draw vertical text */
 
     x := 0
     while (x < width)
@@ -2175,22 +2176,45 @@ PROCEDURE DrawBarcode( page, nY, nLineWidth, cType, cCode, nFlags )
 
    nY := HPDF_Page_GetHeight( page ) - nY
 
-   SWITCH cType
-   CASE "EAN13"      ; hZebra := hb_zebra_create_ean13( cCode, nFlags )   ; EXIT
-   CASE "EAN8"       ; hZebra := hb_zebra_create_ean8( cCode, nFlags )    ; EXIT
-   CASE "UPCA"       ; hZebra := hb_zebra_create_upca( cCode, nFlags )    ; EXIT
-   CASE "UPCE"       ; hZebra := hb_zebra_create_upce( cCode, nFlags )    ; EXIT
-   CASE "CODE39"     ; hZebra := hb_zebra_create_code39( cCode, nFlags )  ; EXIT
-   CASE "ITF"        ; hZebra := hb_zebra_create_itf( cCode, nFlags )     ; EXIT
-   CASE "MSI"        ; hZebra := hb_zebra_create_msi( cCode, nFlags )     ; EXIT
-   CASE "CODABAR"    ; hZebra := hb_zebra_create_codabar( cCode, nFlags ) ; EXIT
-   CASE "CODE93"     ; hZebra := hb_zebra_create_code93( cCode, nFlags )  ; EXIT
-   CASE "CODE11"     ; hZebra := hb_zebra_create_code11( cCode, nFlags )  ; EXIT
-   CASE "CODE128"    ; hZebra := hb_zebra_create_code128( cCode, nFlags ) ; EXIT
-   CASE "PDF417"     ; hZebra := hb_zebra_create_pdf417( cCode, nFlags ); nLineHeight := nLineWidth * 3 ; EXIT
-   CASE "DATAMATRIX" ; hZebra := hb_zebra_create_datamatrix( cCode, nFlags ); nLineHeight := nLineWidth ; EXIT
-   CASE "QRCODE"     ; hZebra := hb_zebra_create_qrcode( cCode, nFlags ); nLineHeight := nLineWidth ; EXIT
-   ENDSWITCH
+   DO CASE
+   CASE cType == "EAN13"
+      hZebra := hb_zebra_create_ean13( cCode, nFlags )
+   CASE cType == "EAN8"
+      hZebra := hb_zebra_create_ean8( cCode, nFlags )
+   CASE cType == "UPCA"
+      hZebra := hb_zebra_create_upca( cCode, nFlags )
+   CASE cType == "UPCE"
+      hZebra := hb_zebra_create_upce( cCode, nFlags )
+   CASE cType == "CODE39"
+      hZebra := hb_zebra_create_code39( cCode, nFlags )
+   CASE cType == "ITF"
+      hZebra := hb_zebra_create_itf( cCode, nFlags )
+   CASE cType == "MSI"
+      hZebra := hb_zebra_create_msi( cCode, nFlags )
+   CASE cType == "CODABAR"
+      hZebra := hb_zebra_create_codabar( cCode, nFlags )
+   CASE cType == "CODE93"
+      hZebra := hb_zebra_create_code93( cCode, nFlags )
+   CASE cType == "CODE11"
+      hZebra := hb_zebra_create_code11( cCode, nFlags )
+   CASE cType == "CODE128"
+      hZebra := hb_zebra_create_code128( cCode, nFlags )
+   CASE cType == "PDF417"
+      hZebra := hb_zebra_create_pdf417( cCode, nFlags )
+      nLineHeight := nLineWidth * 3
+   CASE cType == "DATAMATRIX"
+      hZebra := hb_zebra_create_datamatrix( cCode, nFlags )
+      nLineHeight := nLineWidth
+#if ( __HARBOUR__ - 0 < 0x030200 )   
+   CASE cType == "QRCODE"
+      MsgInfo( "HARBOUR 3.0 has no support for QRCODE" )
+      RETURN
+#else
+   CASE cType == "QRCODE"
+      hZebra := hb_zebra_create_qrcode( cCode, nFlags )
+      nLineHeight := nLineWidth
+#endif
+   ENDCASE
 
    IF hZebra != NIL
       IF hb_zebra_geterror( hZebra ) == 0
@@ -2216,15 +2240,15 @@ PROCEDURE DrawBarcode( page, nY, nLineWidth, cType, cCode, nFlags )
 RETURN
 
 *------------------------------------------------------------------------*
-STATIC FUNCTION hb_zebra_draw_hpdf( hZebra, page, ... )
+STATIC FUNCTION hb_zebra_draw_hpdf( hZebra, page, v3, v4, v5, v6 )
 *------------------------------------------------------------------------*
 
    IF hb_zebra_GetError( hZebra ) != 0
       RETURN HB_ZEBRA_ERROR_INVALIDZEBRA
    ENDIF
 
-   hb_zebra_draw( hZebra, {| x, y, w, h | HPDF_Page_Rectangle( page, x, y, w, h ) }, ... )
+   hb_zebra_draw( hZebra, {| x, y, w, h | HPDF_Page_Rectangle( page, x, y, w, h ) } , v3, v4, v5, v6 )
 
    HPDF_Page_Fill( page )
 
-RETURN 0
+   RETURN 0

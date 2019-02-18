@@ -1,1 +1,1 @@
-BUILDAPP HaruPDF HaruPDF.hbc
+BUILDAPP HaruPDF.hbp
