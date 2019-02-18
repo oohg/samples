@@ -74,20 +74,10 @@ PROCEDURE Proc_ON_PAINT( cont )
    LOCAL hDC, BTstruct
    LOCAL nTypeText, nAlignText
 
-   /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
-
-   BT_ClientAreaInvalidateAll( "Win1", .F. )
-
-   hDC = BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
+   hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
   
    IF cont > 6
-      cont = 1
+      cont := 1
    ENDIF
 
    DO CASE

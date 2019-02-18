@@ -71,8 +71,6 @@ RETURN
 PROCEDURE Proc_ON_PAINT
    LOCAL hDC, BTstruct
 
-   BT_ClientAreaInvalidateAll( "Win1", .F. )
-
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawBitmap( hDC, 30, 180, 300, 200, BT_COPY, hBitmap )
    BT_DeleteDC( BTstruct )

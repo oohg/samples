@@ -74,7 +74,8 @@ PROCEDURE MAIN
    END WINDOW
 
    ACTIVATE WINDOW Win1, Win2
-RETURN
+
+   RETURN
 
 
 PROCEDURE Proc_ON_PAINT    
@@ -85,7 +86,8 @@ PROCEDURE Proc_ON_PAINT
    hDC = BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, Width, Height, WHITE, BLACK )
    BT_DeleteDC( BTstruct )
-RETURN
+
+   RETURN
 
 
 PROCEDURE Proc_Mirror
@@ -122,7 +124,8 @@ PROCEDURE Proc_Mirror
    BT_ClientAreaInvalidateAll( "Win2" )
 
    flag := .F.
-RETURN
+
+   RETURN
 
 /*
  * EOF

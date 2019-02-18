@@ -66,7 +66,7 @@ FUNCTION Main
       AT 0, 0 ;
       WIDTH 450 HEIGHT 270 ;
       MAIN ;
-      TITLE 'BarCode Generator' ;
+      TITLE 'OOHG - BarCode Generator' ;
       NOMAXIMIZE NOSIZE
 
       DEFINE LABEL lbl_barcodetype

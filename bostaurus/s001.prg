@@ -52,16 +52,6 @@ RETURN
 PROCEDURE Proc_ON_PAINT( hBitmap )
    LOCAL hDC, BTstruct
 
-   /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
-
-   BT_ClientAreaInvalidateAll( "Win1", .F. )
-
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeight( "Win1" ), WHITE, BLACK )
    BT_DrawBitmap( hDC, 30, 150, 400, 400, BT_COPY, hBitmap )

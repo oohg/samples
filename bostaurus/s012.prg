@@ -49,13 +49,16 @@ PROCEDURE MAIN
 
    CENTER WINDOW Win1
    ACTIVATE WINDOW Win1
-RETURN
+
+   RETURN
 
 
 PROCEDURE Proc_ON_RELEASE
+
    BT_BitmapRelease( hBitmap1 )
    BT_BitmapRelease( hBitmap2 )
-RETURN
+
+   RETURN
 
 PROCEDURE Proc_ON_INIT
    LOCAL hBitmap3, hBitmap4
@@ -71,7 +74,8 @@ PROCEDURE Proc_ON_INIT
    Win1.Image2.HBitMap := hBitmap2
 
    MsgInfo( "Click on the images" )
-RETURN
+
+   RETURN
 
 
 PROCEDURE Proc_Image( cControlName, cText, aColor )
@@ -96,7 +100,8 @@ PROCEDURE Proc_Image( cControlName, cText, aColor )
    BT_BitmapRelease( hUY )
 
    GetControlObject( cControlName, "Win1" ):RePaint()
-RETURN
+
+   RETURN
 
 /*
  * EOF

@@ -73,10 +73,11 @@ PROCEDURE MAIN
    BT_BitmapPaste( hBitmap, 20, 500, 132, 132, BT_SCALE, hBitmap_aux )
    BT_BitmapRelease( hBitmap_aux )
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 0, 0 ;
-      WIDTH 700 ;
+      WIDTH 800 ;
       HEIGHT 600 ;
+      CLIENTAREA ;
       TITLE "Bos Taurus: Draw in BITMAP" ;
       NOSIZE ;
       NOMAXIMIZE ;
@@ -132,6 +133,12 @@ PROCEDURE MAIN
          END PAGE
       END TAB
 
+      @ 470, 60 CHECKBOX Checkbox_1 ;
+         CAPTION "Check" ;
+         FONTCOLOR WHITE BOLD ;
+         OOHGDRAW ;
+         BACKGROUND oWin
+
       @ 450, 200 BUTTON Button_1 ;
          CAPTION "On/Off" ;
          ACTION OnOff( oAct )
@@ -140,10 +147,12 @@ PROCEDURE MAIN
          CAPTION "Credits" ;
          ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
 
-      @ 230, 500 RADIOGROUP RadioGroup_1 ;
+      @ 230, 500 RADIOGROUP RadioGroup_1 OBJ oRad ;
          OPTIONS { "Image", "Grid", "EditBox", "ActiveX" } ;
          VALUE 1 ;
-         TRANSPARENT ;
+         FONTCOLOR WHITE BOLD ;
+         OOHGDRAW ;
+         BACKGROUND oWin ;
          ON CHANGE Win1.Tab_1.Value := Win1.RadioGroup_1.Value
 
       ON KEY ESCAPE ACTION ThisWindow.Release
@@ -163,16 +172,6 @@ RETURN
 
 PROCEDURE Proc_ON_PAINT( hBitmap )
    LOCAL hDC, BTstruct
-
-   /*
-    * Since OOHG executes the default window procedure at the start of
-    * the function that process WM_PAINT message, thus validating the
-    * update region before calling the ON PAINT codeblock, we need to
-    * invalidate the whole client area to force the correct painting
-    * of all the controls.
-    */
-
-   BT_ClientAreaInvalidateAll( "Win1", .F. )
 
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawBitmap( hDC, 0, 0, 800, 600, BT_COPY, hBitmap )

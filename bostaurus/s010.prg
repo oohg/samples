@@ -116,8 +116,6 @@ PROCEDURE Proc_ON_PAINT
    LOCAL Row := - Win1.VscrollBar.value
    LOCAL hDC, BTstruct
 
-   BT_ClientAreaInvalidateAll( "Win1", .F. )
-
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
    BT_DrawGradientFillVertical( hDC, 0, 0, BT_ClientAreaWidth( "Win1" ), BT_ClientAreaHeighT( "Win1" ), { 100, 0, 33 }, BLACK )
    BT_DrawBitmap( hDC, Row + 10, Col + 10, BT_BitmapWidth( hBitmap ), BT_BitmapHeight( hBitmap ), BT_COPY, hBitmap )
