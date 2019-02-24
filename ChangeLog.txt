@@ -1,12 +1,20 @@
 /*
- * $Id$
+ * $Id: ChangeLog.txt $
+ */
+/*
+ * Use this format for the entry headers:
+ *    YYYY-MM-DD HH:MM UTC[-|+]hhmm Name/Username <your_email@address>
+ * Use this marks for file entries:
+ *   '*', '+' or '-' to mean the file was modified, added or deleted.
+ * Use this marks for detail entries:
+ *    '*' Changed: ...           '!' Fixed: ....
+ *    '+' Added: ...             '%' Optimized: ...
+ *    '-' Removed: ...           ';' Comment
  */
 
-/* Use this format for the entry headers:
- * YYYY-MM-DD HH:MM UTC[-|+]hhmm Your Name or Username and/or <your_email@address>
- * For example:
- * 2002-12-01 23:12 UTC+0100 Foo Bar <foo.bar@foobar.org>
- */
+2019-02-23 22:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\harupdf\build.prg
+     * No longer needed.
 
 2019-02-18 15:08 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\harupdf\harupdf.prg
