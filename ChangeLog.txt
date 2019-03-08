@@ -12,6 +12,12 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-03-07 22:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\mixmode\hbgtwvg\*.*
+     ; How to use TPRINTPDF from a Harbour's gtwvg-based prg.
+   + samples\grid\s032.prg
+     ; Conditional readonly column.
+
 2019-02-24 01:11 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\harupdf\harupdf.rc
      * Quotes removed.
