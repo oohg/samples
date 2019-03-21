@@ -80,7 +80,13 @@ PROCEDURE Main
    SETCURSOR(2)
 
    oPrint := TPrint( "PDFPRINT" )
-   oPrint:Init( hb_gtInfo( HB_GTI_SPEC, HB_GTS_WINDOWHANDLE ) )
+
+   oPrint:Init()
+// oPrint:Init( hb_gtInfo( HB_GTI_SPEC, HB_GTS_WINDOWHANDLE ) )
+// Since March 20, 2019 it's not needed to send the handle
+// because OOHG creates a hidden modal window as MAIN.
+// If sended then it's used.
+
    oPrint:SelPrinter( .F., .F., .F., 9 )
    oPrint:SetFont( "times new roman", 8 )
    IF oPrint:lPrError
