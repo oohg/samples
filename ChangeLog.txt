@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-01 13:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s033.prg
+     * How to handle the grid's dblclick event.
+
 2019-07-01 12:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\combobox\s012.prg
      * How to display the options list when getting the focus.
