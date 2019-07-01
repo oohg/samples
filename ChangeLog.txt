@@ -12,6 +12,12 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-01 12:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\combobox\s012.prg
+     * How to display the options list when getting the focus.
+   * samples\combobox\s004.prg
+     ! Typo.
+
 2019-03-20 22:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\mixmode\hbgtwvg\*.*
      * Updated.

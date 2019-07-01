@@ -4,7 +4,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to useg methods GetDropDownWidth,
+ * This sample shows how to use methods GetDropDownWidth,
  * SetDropDownWidth, AutosizeDropDown and Autosize to size
  * a combobox control during runtime
  *
