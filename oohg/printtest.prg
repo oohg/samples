@@ -67,7 +67,7 @@ PROCEDURE Test()
             ITEM "SpreadSheet"            ACTION repof( "SPREADSHEETPRINT" )
          END POPUP
 
-         POPUP "FIle 4"
+         POPUP "File 4"
             ITEM 'edit demo hbprinter'   ACTION editp( "HBPRINTER" )
             ITEM 'edit demo miniprint'   ACTION editp( "MINIPRINT" )
             ITEM 'edit demo TXT'         ACTION editp( "TXTPRINT" )
