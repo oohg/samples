@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 13
+ * Bos Taurus Sample # 13
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -21,13 +21,14 @@ PROCEDURE Main
 
    SET FONT TO GetDefaultFontName(), GetDefaultFontSize()
 
-   DEFINE WINDOW WinGraph ;
+   DEFINE WINDOW WinGraph OBJ oWin ;
       AT 0, 0 ;
       WIDTH 700 ;
       HEIGHT 700 ;
       CLIENTAREA ;
       TITLE 'Bos Taurus: Graph' ;
-      MAIN
+      MAIN ;
+      NODWP
 
       DEFINE LABEL SelectType
          ROW 13

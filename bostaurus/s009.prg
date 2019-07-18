@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 9
+ * Bos Taurus Sample # 9
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -23,7 +23,7 @@ PROCEDURE MAIN
 
    PRIVATE flag := .F.
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 200, 600 ;
       WIDTH 500 ;
       HEIGHT 400 ;
@@ -32,7 +32,8 @@ PROCEDURE MAIN
       ON SIZE {|| flag := .F., BT_ClientAreaInvalidateAll( "Win2", .T. ) } ;
       ON MAXIMIZE {|| flag := .F., BT_ClientAreaInvalidateAll( "Win2", .T. ) } ;
       MAIN ;
-      ON PAINT Proc_ON_PAINT()
+      ON PAINT Proc_ON_PAINT() ;
+      NODWP
 
       DEFINE TAB Tab_1 ;
          AT 50, 50 ;

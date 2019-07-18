@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 6
+ * Bos Taurus Sample # 6
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -45,7 +45,7 @@ PROCEDURE MAIN
     * that handles image pasting.
     */
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 0, 0 ;
       WIDTH 700 ;
       HEIGHT 600 ;
@@ -53,7 +53,8 @@ PROCEDURE MAIN
       MAIN ;
       ON RELEASE BT_BitmapRelease( hBitmap ) ;
       ON PAINT Proc_ON_PAINT() ;
-      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. )
+      ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
+      NODWP
 
       @ 200, 200 EDITBOX EditBox_1 ;
          WIDTH 250 ;

@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 7
+ * Bos Taurus Sample # 7
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -30,7 +30,8 @@ PROCEDURE MAIN
       TITLE "Bos Taurus: Draw Functions" ;
       MAIN ;
       ON PAINT Proc_ON_PAINT() ;
-      ON SIZE  Proc_ON_SIZE()
+      ON SIZE  Proc_ON_SIZE() ;
+      NODWP
 
       DEFINE MAIN MENU
          DEFINE POPUP "File"

@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 2
+ * Bos Taurus Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -21,7 +21,7 @@
 PROCEDURE MAIN
    LOCAL cont := 1
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 0, 0 ;
       WIDTH 600 ;
       HEIGHT 600 ;
@@ -30,7 +30,8 @@ PROCEDURE MAIN
       ON PAINT Proc_ON_PAINT( cont ) ;
       ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
       VIRTUAL WIDTH 700 ;
-      VIRTUAL HEIGHT 700
+      VIRTUAL HEIGHT 700 ;
+      NODWP
 
       DEFINE MAIN MENU
          DEFINE POPUP "File"

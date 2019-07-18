@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 4
+ * Bos Taurus Sample # 4
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -32,7 +32,7 @@ PROCEDURE MAIN
     * All loaded bitmaps must be released to avoid memory leaks.
     */
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 0, 0 ;
       WIDTH 800 ;
       HEIGHT 630 ;
@@ -42,7 +42,8 @@ PROCEDURE MAIN
       ON SIZE BT_ClientAreaInvalidateAll( "Win1", .F. ) ;
       ON RELEASE Proc_ON_RELEASE( hBitmap1, hBitmap2 ) ;
       VIRTUAL WIDTH 1100 ;
-      VIRTUAL HEIGHT 1100
+      VIRTUAL HEIGHT 1100 ;
+      NODWP
 
       DEFINE MAIN MENU
          DEFINE POPUP "Automatic"

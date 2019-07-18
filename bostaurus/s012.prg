@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 12
+ * Bos Taurus Sample # 12
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -23,7 +23,7 @@ PROCEDURE MAIN
 
    PRIVATE hBitmap1, hBitmap2
 
-   DEFINE WINDOW Win1 ;
+   DEFINE WINDOW Win1 OBJ oWin ;
       AT 0, 0 ;
       WIDTH 600 ;
       HEIGHT 650 ;
@@ -32,8 +32,9 @@ PROCEDURE MAIN
       NOMAXIMIZE ;
       NOSIZE ;
       ON INIT Proc_ON_INIT() ;
-      ON RELEASE Proc_ON_RELEASE()
-      
+      ON RELEASE Proc_ON_RELEASE() ;
+      NODWP
+
       @ 005, 50 IMAGE Image1 ;
          PICTURE "" ;
          IMAGESIZE ;

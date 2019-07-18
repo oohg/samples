@@ -1,5 +1,5 @@
 /*
- * Bos Taurus Sample n° 3
+ * Bos Taurus Sample # 3
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -42,7 +42,8 @@ PROCEDURE MAIN
       MAIN ;
       ON PAINT Proc_ON_PAINT( hBitmap1, hBitmap2 ) ;
       ON SIZE Proc_ON_SIZE() ;
-      ON RELEASE Proc_ON_RELEASE( hBitmap1, hBitmap2 )
+      ON RELEASE Proc_ON_RELEASE( hBitmap1, hBitmap2 ) ;
+      NODWP
 
       @ 30, 333 LABEL Label_1 ;
          VALUE "Client Area WIDTH " + STR( oWin:ClientWidth ) ;

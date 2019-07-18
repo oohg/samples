@@ -62,12 +62,13 @@ FUNCTION Main
 
    SET DEFAULT ICON TO 'demo.ico'
 
-   DEFINE WINDOW frm_barcode ;
+   DEFINE WINDOW frm_barcode OBJ oWin ;
       AT 0, 0 ;
       WIDTH 450 HEIGHT 270 ;
       MAIN ;
       TITLE 'OOHG - BarCode Generator' ;
-      NOMAXIMIZE NOSIZE
+      NOMAXIMIZE NOSIZE ;
+      NODWP
 
       DEFINE LABEL lbl_barcodetype
          ROW 10
