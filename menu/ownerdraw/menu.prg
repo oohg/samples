@@ -9,7 +9,7 @@ PROCEDURE Main
 
    // These area app-wide fonts.
    // If you don't release them explicitly using RELEASE FONT <name>
-   // the will be released on app exit.
+   // they will be released on app exit.
    DEFINE FONT font_0 FONTNAME GetDefaultFontName() SIZE 10
    DEFINE FONT font_1 FONTNAME 'Times New Roman' SIZE 10 BOLD
    DEFINE FONT font_2 FONTNAME 'Arial'   SIZE 12 ITALIC
