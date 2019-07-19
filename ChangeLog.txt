@@ -12,6 +12,17 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-19 19:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\menu\left.bmp
+   + samples\menu\new.bmp
+   + samples\menu\open.bmp
+   + samples\menu\s013.prg
+     * Ownerdraw menu in a toolbar's dropdown button.
+
+2019-07-19 19:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\menu\ownerdraw\menu.prg
+     ! Typo.
+
 2019-07-18 21:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\printing\s002.prg
    * samples\printing\s003.prg
