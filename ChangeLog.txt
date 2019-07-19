@@ -12,6 +12,20 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-18 21:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\printing\s002.prg
+   * samples\printing\s003.prg
+     * Improved.
+
+2019-07-18 20:59 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\printtest.prg
+     ! Typo.
+
+2019-07-18 20:57 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\*.prg
+     ! Not working after changes on h_form.prg made by commit
+       2019-07-18 20:13 UTC-0300, hash b2a59c8.
+
 2019-07-01 13:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s033.prg
      * How to handle the grid's dblclick event.
