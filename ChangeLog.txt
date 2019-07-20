@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-20 00:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s034.prg
+     ; Toggle checkboxes using the spacebar in a multiselect grid.
+
 2019-07-19 22:52 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\do_report\repo.prg
      + Added comment explaining how to output to a pdf file.
