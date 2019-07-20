@@ -171,6 +171,26 @@ DEFINE WINDOW Win_1 OBJ oWnd ;
 
    @ 250,200 spinner spin range 0,100 width 150 height 20
 
+ @ 550, 305 SPINNER Spi_Cpbn1 ;
+        OBJ oSpi_Cpbn ;
+        RANGE 0, 999 ;
+        VALUE 0 ;
+        WIDTH 50 ;
+        HEIGHT 25 ;
+        FONT "Tahoma" SIZE 10 ;
+        BACKCOLOR GREEN ;
+        FONTCOLOR WHITE
+
+     @ 550, 410 SPINNER Spi_Cpbn2 ;
+        OBJ oSpi_Cpbn ;
+        VALUE 0 ;
+        RANGE 0, 999 ;
+        WIDTH 50 ;
+        HEIGHT 25 ;
+        FONT "Tahoma" SIZE 10 ;
+        BACKCOLOR GREEN ;
+        FONTCOLOR WHITE
+
    @ 280,200 combobox cmb items { "Uno", "Dos", "Tres" } width 150
 
    @ 310,270 datepicker DTP value date()
