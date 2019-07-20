@@ -20,6 +20,9 @@ function testrepo()
        use mtiempo 
        index on usuario to lista
        go top
+
+// uncomment the next line to generate a PDF
+// _OOHG_PrintLibrary := "PDFPRINT"
        DO REPORT FORM repdemo
 	use
 return
