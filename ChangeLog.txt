@@ -12,6 +12,13 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-07-31 14:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s010.prg
+     * Comment.
+   + samples\image\s013.prg
+   + samples\image\s013.rc
+     * How to print and image from memory using it's handle.
+
 2019-07-20 00:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s034.prg
      ; Toggle checkboxes using the spacebar in a multiselect grid.
