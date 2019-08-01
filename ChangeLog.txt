@@ -12,6 +12,11 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-01 20:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s013.prg
+   * samples\image\s013.rc
+     + How to print an image from the resource file.
+
 2019-07-31 20:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\image\s013.prg
      ! Typo.
