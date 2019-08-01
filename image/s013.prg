@@ -17,42 +17,38 @@
 FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
-      OBJ oForm ;
-      AT 0,0 ;
+      AT 0, 0 ;
       WIDTH 640 ;
       HEIGHT 480 ;
       CLIENTAREA ;
-      TITLE "Print an Image using it's handle" ;
+      TITLE "ooHG - Print an Image using it's handle or from resources" ;
       MAIN
 
-      @ 20,20 IMAGE Image_1 ;
+      @ 20, 20 IMAGE 0 ;
          OBJ oImage ;
          IMAGESIZE ;
-         PICTURE "OOHG"
+         PICTURE "oohg.jpg"
 
-      @ 200, 100 BUTTON button_1 ;
-         WIDTH 150 ;
-         CAPTION "Print HBPRINTER" ;
-         ACTION PrintImage( "HBPRINTER" )
+      @ 20, 220 IMAGE 0 ;
+         IMAGESIZE ;
+         PICTURE "HARBOUR"
 
-/*
-      @ 200, 260 BUTTON button_2 ;
+      @ 200, 20 BUTTON 0 ;
          WIDTH 150 ;
-         CAPTION "Print MINIPRINT" ;
-         ACTION PrintImage( "MINIPRINT" )
-*/
+         CAPTION "Print" ;
+         ACTION Print( "HBPRINTER" )
+
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
 
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
+PROCEDURE Print( cTPrintLib )
 
-PROCEDURE PrintImage( cTLibrary )
-
-   LOCAL oPrint := TPrint( cTLibrary )
+   LOCAL oPrint := TPrint( cTPrintLib )
 
    oPrint:Init()
 
@@ -62,16 +58,18 @@ PROCEDURE PrintImage( cTLibrary )
       RETURN
    ENDIF
 
-   oPrint:BeginDoc( "Sample" )
+   oPrint:BeginDoc()
    oPrint:BeginPage()
-   oPrint:PrintData( 20, 10, "Image from handle" )
-   oPrint:PrintBitmap( 21, 10, 30, 30, oImage:hBitmap )
+   oPrint:PrintData( 5, 10, "Image from handle" )
+   oPrint:PrintBitmap( 6, 10, 16, 30, oImage:hBitmap )
+   oPrint:PrintData( 20, 10, "Image from resource" )
+   oPrint:PrintResource( 21, 10, 31, 70, "HARBOUR" )
    oPrint:EndPage()
    oPrint:EndDoc()
 
    oPrint:Release()
 
-RETURN
+   RETURN
 
 /*
  * EOF
