@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-02 20:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s013.prg
+     * Improved.
+
 2019-08-01 20:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\image\s013.prg
    * samples\image\s013.rc
