@@ -38,6 +38,10 @@ FUNCTION Main
          CAPTION "Print" ;
          ACTION Print( "HBPRINTER" )
 
+      @ 250, 20 CHECKBOX 0 ;
+         OBJ oCheck ;
+         CAPTION "Image Size"
+
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
 
@@ -61,9 +65,9 @@ PROCEDURE Print( cTPrintLib )
    oPrint:BeginDoc()
    oPrint:BeginPage()
    oPrint:PrintData( 5, 10, "Image from handle" )
-   oPrint:PrintBitmap( 6, 10, 16, 30, oImage:hBitmap )
+   oPrint:PrintBitmap( 6, 10, 16, 30, oImage:hBitmap, , , , , oCheck:Value )
    oPrint:PrintData( 20, 10, "Image from resource" )
-   oPrint:PrintResource( 21, 10, 31, 70, "HARBOUR" )
+   oPrint:PrintResource( 21, 10, 31, 70, "HARBOUR", , , , , , , , , oCheck:Value )
    oPrint:EndPage()
    oPrint:EndDoc()
 
