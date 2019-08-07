@@ -12,6 +12,19 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-07 18:07 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\grid\s017.prg
+     ! Missing ITEMCOUNT clause.
+   + samples\grid\s035.prg
+     ; This sample shows how to add, modify and remove the rows
+       of a virtual grid.
+
+2019-08-07 18:05 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ado\Build.bat
+   * samples\dll\LANZA.BAT
+   * samples\mysql\demobuild.bat
+     ! Path is not properly restored if it contains & chars.
+
 2019-08-02 20:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\image\s013.prg
      * Improved.
