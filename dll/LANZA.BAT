@@ -1,8 +1,8 @@
 @ECHO OFF
 if "%HG_ROOT%"="" set HG_ROOT=c:\oohg
 
-SET TPATH=%PATH%
-SET PATH=%HG_ROOT%\hb32\bin;%HG_ROOT%\hb32\comp\mingw\bin
+SET "TPATH=%PATH%"
+SET "PATH=%HG_ROOT%\hb32\bin;%HG_ROOT%\hb32\comp\mingw\bin"
 
 DEL %1.EXE
 
@@ -17,5 +17,5 @@ hbmk2 %1.hbp -l%HG_ROOT%\hb32\lib\win\mingw -prgflag=-b
 GOTO fin
 
 :FIN
-SET PATH=%TPATH%
+SET "PATH=%TPATH%"
 SET TPATH=
