@@ -46,6 +46,7 @@ FUNCTION Main()
          HEADERS { 'CODE', 'REFERENCE' } ;
          WIDTHS { 60, 140 } ;
          ITEMS aRows ;
+         ITEMCOUNT 20 ;
          FONT 'COURIER NEW' SIZE 10 ;
          DYNAMICBACKCOLOR { bColor, bColor } ;
          VIRTUAL ;
