@@ -12,6 +12,12 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-09 19:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s036.prg
+     ; This sample shows how to set a virtual grid with
+       non-text columns and how to manage the addition,
+       removal and modification of its rows.
+
 2019-08-07 18:07 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\grid\s017.prg
      ! Missing ITEMCOUNT clause.
