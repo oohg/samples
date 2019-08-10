@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-10 17:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\oohg\gridcolumncontrols.prg
+     * TGridControlTextBoxAction sample.
+
 2019-08-10 10:18 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s036.prg
      * Removed debugging code.
