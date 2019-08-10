@@ -18,24 +18,25 @@ set navigation extended
 
    aGroups := { "Computing", "Accounting", "Sales" }
 
-   aControls := { , ; // TGridControlTextBox():New(), ;
+   aControls := { TGridControlTextBox():New( , , , , .T. ), ;
                   MyFullName():New(), ;
                   MyIpAddress():New(), ;
                   TGridControlLComboBox():New( "Yes", "No" ), ;
-                  MyRadioGroup():New( aGroups ) }
+                  MyRadioGroup():New( aGroups ), ;
+                  TGridControlTextBoxAction():New( , , , , {"MINIGUI_EDIT_ADD", "MINIGUI_EDIT_FIND"}, , , , , {|| MsgInfo("MINIGUI_EDIT_ADD")}, {|| MsgInfo("MINIGUI_EDIT_FIND")} ) }
 
-   aItems := { { "COMPUTER 1", {"First 1", "Last 1" }, { 10, 0, 0, 1 }, .F., 1 }, ;
-               { "COMPUTER 2", {"First 2", "Last 2" }, { 10, 0, 0, 2 }, .T., 2 }, ;
-               { "COMPUTER 3", {"First 3", "Last 3" }, { 10, 0, 0, 3 }, .T., 3 }, ;
-               { "COMPUTER 4", {"First 4", "Last 4" }, { 10, 0, 0, 4 }, .F., 1 }, ;
-               { "COMPUTER 5", {"First 5", "Last 5" }, { 10, 0, 0, 5 }, .T., 2 }  }
+   aItems := { { "COMPUTER 1", {"First 1", "Last 1" }, { 10, 0, 0, 1 }, .F., 1, "More data" }, ;
+               { "COMPUTER 2", {"First 2", "Last 2" }, { 10, 0, 0, 2 }, .T., 2, "More data" }, ;
+               { "COMPUTER 3", {"First 3", "Last 3" }, { 10, 0, 0, 3 }, .T., 3, "More data" }, ;
+               { "COMPUTER 4", {"First 4", "Last 4" }, { 10, 0, 0, 4 }, .F., 1, "More data" }, ;
+               { "COMPUTER 5", {"First 5", "Last 5" }, { 10, 0, 0, 5 }, .T., 2, "More data" }  }
 
-   DEFINE WINDOW Main OBJ oMain AT 0,0 WIDTH 500 HEIGHT 250 ;
+   DEFINE WINDOW Main OBJ oMain AT 0,0 WIDTH 640 HEIGHT 250 ;
           TITLE "Grid COLUMNCONTROLS demo." MAIN
 
-      @  10, 10 GRID Grid WIDTH 475 HEIGHT 150 EDIT INPLACE ;
-                HEADERS { "Computer", "User", "IP Address", "INET Access", "Group" } ;
-                WIDTHS { 90, 110, 100, 80, 85 } ;
+      @  10, 10 GRID Grid WIDTH 600 HEIGHT 150 EDIT INPLACE ;
+                HEADERS { "Computer", "User", "IP Address", "INET Access", "Group", "Comment" } ;
+                WIDTHS { 90, 110, 100, 80, 85, 100 } ;
                 FONT "MS Sans Serif" SIZE 9 ;
                 ITEMS aItems ;
                 COLUMNCONTROLS aControls
@@ -48,6 +49,7 @@ set navigation extended
       oMain:Radio:aControls[ 2 ]:Row := 180
       oMain:Radio:aControls[ 2 ]:Col := 180
 
+      ON KEY ESCAPE ACTION ThisWindow.Release()
    END WINDOW
    CENTER WINDOW Main
    ACTIVATE WINDOW Main
