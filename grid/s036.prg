@@ -81,14 +81,14 @@ FUNCTION SetData( oGrid, aRows )
 
    LOCAL aItem
 
-   oForm:StatusBar:Item( 1, "Row = " + LTrim( Str( _OOHG_ThisQueryRowIndex ) ) + "  Col = " + LTrim( Str( _OOHG_ThisQueryColIndex ) ) )
+//   oForm:StatusBar:Item( 1, "Row = " + LTrim( Str( _OOHG_ThisQueryRowIndex ) ) + "  Col = " + LTrim( Str( _OOHG_ThisQueryColIndex ) ) )
 
    aItem := TGrid_SetArray( oGrid, aRows[ _OOHG_ThisQueryRowIndex ] )
    _OOHG_ThisQueryData := aItem[ _OOHG_ThisQueryColIndex ]
 
 RETURN NIL
 
-FUNCTION SaveData( oGrid, aRows ) ;
+FUNCTION SaveData( oGrid, aRows )
 
    aRows[ _OOHG_ThisItemRowIndex, _OOHG_ThisItemColIndex ] := _OOHG_ThisItemCellValue
 
@@ -105,7 +105,6 @@ FUNCTION DeleteData( oGrid, aRows )
    ELSE
       ADel( aRows, _OOHG_ThisItemRowIndex )
       ASize( aRows, Len( aRows ) - 1 )
-   oForm:StatusBar:Item( 1, LTrim( Str( oGrid:ItemCount ) ) )
    ENDIF
 
 RETURN NIL
