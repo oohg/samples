@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-08-11 10:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\tree\s002.prg
+     + ON EXPAND and ON COLLAPSE events.
+
 2019-08-10 17:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\oohg\gridcolumncontrols.prg
      * TGridControlTextBoxAction sample.
