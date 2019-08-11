@@ -28,7 +28,9 @@ FUNCTION Main()
          AT 10,10 ;
          WIDTH 200 ;
          HEIGHT 400 ;
-         ON CHANGE ShowMyWindow( oForm, oTree )
+         ON CHANGE ShowMyWindow( oForm, oTree ) ;
+         ON EXPAND { |a, b| AutoMsgBox( {"Expand", a, b} ) } ;
+         ON COLLAPSE { |a, b| AutoMsgBox( {"Collapse", a, b} ) }
 
          NODE 'Item 1'
             TREEITEM 'Item 1.1'
