@@ -12,6 +12,56 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-09-10 20:39 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\tab\s002.prg
+     * Shows various options of the tab control.
+
+2019-09-10 20:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\tab\s004.prg
+     * How set and change the position of the tabs.
+
+2019-09-10 20:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\tab\s001.prg
+     * Improved.
+
+2019-09-10 20:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\tab\s005.prg
+   + samples\tab\s003.prg
+     How to dynamically add controls to a Tab.
+
+2019-09-10 20:04 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\textbox\s004.prg
+     How to handle password using a textbox.
+
+2019-09-10 20:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\gridcolumncontrols.prg
+     * Table parameter of function _OOHG_Messages replaced by
+       its corresponding define for readability.
+
+2019-09-10 19:59 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\menu\s013.prg
+     + How to enable/disable a menu.
+
+2019-09-10 19:55 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\form\s015.prg
+     How to prevent app exit on main form release.
+
+2019-09-10 19:55 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\form\s014.prg
+     How to reverse the default order in which forms are released.
+
+2019-09-10 19:49 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\button\s008.prg
+     How to set a button's image using a handle of an
+     already loaded bitmap.
+
+2019-09-10 19:47 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\browse\tpbrowse\sample.hbp
+   * samples\dbview\dbview.hbp
+   * samples\mpm\mpm.hbp
+     ! Missing gui parameter.
+
 2019-08-11 10:43 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\tree\s002.prg
      + ON EXPAND and ON COLLAPSE events.
