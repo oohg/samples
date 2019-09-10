@@ -191,8 +191,8 @@ Local lRet := .F.
           @ 43, 10 LABEL 0 PARENT &( ::oWindow:Name ) VALUE "Last Name:"  AUTOSIZE
           ::CreateControl( uValue, ::oWindow:Name, 10, 100, ::nDefWidth, ::nDefHeight )
           ::Value := ::ControlValue
-          @  77, 20 BUTTON 0 PARENT &( ::oWindow:Name ) CAPTION _OOHG_Messages( 1, 6 ) ACTION ( lRet := ::Valid() )
-          @  77,130 BUTTON 0 PARENT &( ::oWindow:Name ) CAPTION _OOHG_Messages( 1, 7 ) ACTION ( ::oWindow:Release() )
+          @  77, 20 BUTTON 0 PARENT &( ::oWindow:Name ) CAPTION _OOHG_Messages( MT_MISCELL, 6 ) ACTION ( lRet := ::Valid() )
+          @  77,130 BUTTON 0 PARENT &( ::oWindow:Name ) CAPTION _OOHG_Messages( MT_MISCELL, 7 ) ACTION ( ::oWindow:Release() )
    END WINDOW
    ::oWindow:Center()
    ::oControl:SetFocus()
