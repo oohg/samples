@@ -25,15 +25,16 @@ FUNCTION MAIN
       WIDTH 584 ;
       HEIGHT 308 ;
       TITLE "Ownerdraw menu" ;
-      MAIN
+      MAIN ON INIT oMenu:Enabled := .F.
 
       DEFINE MAIN MENU
          POPUP '&File'
             ITEM '&New'  ACTION AutoMsgBox( "New" )
             ITEM '&Open' ACTION AutoMsgBox( "Open" )
             SEPARATOR
-            ITEM '&Exit'         ACTION oForm:Release()
+            ITEM '&Exit' ACTION oForm:Release()
          END POPUP
+         ITEM "Toggle DropDown Menu" ACTION ToggleMenu()
       END MENU
 
       DEFINE SPLITBOX
@@ -43,7 +44,7 @@ FUNCTION MAIN
             BUTTON Button_4 PICTURE 'left.bmp' TOOLTIP 'Exit' ACTION oForm:Release()      AUTOSIZE
          END TOOLBAR
 
-         DEFINE DROPDOWN MENU BUTTON Button_1 OWNERDRAW FONT { "Comic Sans MS", 18, .F., .T. }
+         DEFINE DROPDOWN MENU BUTTON Button_1 OWNERDRAW FONT { "Comic Sans MS", 18, .F., .T. } OBJ oMenu
             ITEM 'FMG' ACTION AutoMsgBox( "FMG" )
             ITEM 'PRG' ACTION AutoMsgBox( "PRG" )
             ITEM 'CH'  ACTION AutoMsgBox( "CH" )
@@ -55,6 +56,13 @@ FUNCTION MAIN
 
    CENTER WINDOW Form
    ACTIVATE WINDOW Form
+
+RETURN NIL
+
+FUNCTION ToggleMenu
+
+   oMenu:Enabled := ! oMenu:Enabled
+   AutoMsgBox( "DropDown Menu is " + iif( oMenu:Enabled, "enabled.", "disabled." ) )
 
 RETURN NIL
 
