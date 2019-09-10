@@ -18,7 +18,7 @@ FUNCTION Main
    DEFINE WINDOW Form_1 ;
       AT 0,0 ;
       WIDTH 640 HEIGHT 480 ;
-      TITLE 'CheckBox and RadioGroup with transparent background inside Tab' ;
+      TITLE 'OOHG - Tab demo' ;
       MAIN
 
       DEFINE TAB Tab_1 ;
@@ -43,7 +43,40 @@ FUNCTION Main
                THREESTATE .T.
                LEFTALIGN .T.
                FONTCOLOR RED
+               OOHGDRAW .T.
             END CHECKBOX
+
+            DEFINE CHECKBOX chk_2
+               ROW 80
+               COL 140
+               WIDTH 160
+               VALUE .F.
+               CAPTION 'Red Caption Yellow Back'
+               THREESTATE .T.
+               FONTCOLOR RED
+               BACKCOLOR YELLOW
+            END CHECKBOX
+
+            @ 200, 30 FRAME frm_1 ;
+               WIDTH 160 ;
+               HEIGHT 60 ;
+               CAPTION "This is a frame"
+
+            @ 280, 30 FRAME frm_2 ;
+               WIDTH 200 ;
+               HEIGHT 60 ;
+               CAPTION "This is a TRANSPARENT frame" ;
+               TRANSPARENT
+
+            @ 280, 260 LABEL lbl_1 ;
+               VALUE "This is a label" ;
+               AUTOSIZE
+
+            @ 320, 260 LABEL lbl_2 ;
+               VALUE "This is a TRANSPARENT label" ;
+               AUTOSIZE ;
+               TRANSPARENT
+
          END PAGE
 
       END TAB
