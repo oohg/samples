@@ -3,6 +3,7 @@
 #
 
 -ifmgs
+-gui
 
 prgs\dbview.prg
 prgs\Admindbf.Prg

@@ -4,6 +4,7 @@
 #
 
 -ifmgs
+-gui
 
 prgs\Mpm.prg
 prgs\CFilesAdd.prg

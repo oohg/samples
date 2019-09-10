@@ -2,6 +2,8 @@
 # $Id: sample.hbp $
 #
 
+-gui
+
 sample.prg
 h_pbrowse.prg
 
