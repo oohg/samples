@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-09-11 16:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\xbrowse\s004.prg
+     * How to simulate a multiselect xbrowse.
+
 2019-09-10 20:39 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\tab\s002.prg
      * Shows various options of the tab control.
