@@ -12,6 +12,16 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-09-18 19:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s027.prg
+     ! Typo.
+
+2019-09-18 19:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\printing\s004.prg
+   + samples\printing\uruguay.ico
+   + samples\printing\s004.rc
+     * How to print images using TPrint class.
+
 2019-09-11 16:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\xbrowse\s004.prg
      * How to simulate a multiselect xbrowse.
