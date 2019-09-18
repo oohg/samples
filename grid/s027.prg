@@ -1,5 +1,5 @@
 /*
- * Tree Sample n° 27
+ * Grid Sample # 27
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -8,7 +8,6 @@
  * when its checkbox is toggled.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -46,7 +45,7 @@ FUNCTION Main
                                                    NIL, ;
                                                    iif( oGrid:CheckItem( nItem ), ;
                                                         {RED, RED, RED, RED}, ;
-                                                        iif( nItem % 2 == 0, M
+                                                        iif( nItem % 2 == 0, ;
                                                              {WHITE, WHITE, WHITE, WHITE}, ;
                                                              {AQUA, AQUA, AQUA, AQUA} ) ) ) }
       
