@@ -12,6 +12,29 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-10-13 11:04 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\graphical\demo.prg
+   + samples\graphical\s004.prg
+     ; Renamed.
+   + samples\graphical\s003.prg
+     ; Draw and print a graph.
+   + samples\grid\s001.prg
+     ; Added ON HEADDBLCLICK.
+   + samples\printing\s005.prg
+     ; Shows how to print images.
+   + samples\printing\s005.prg
+     ; Shows how to directly use HBPRINTER.
+   + samples\radiogroup\s007.prg
+     ; Shows how to create multiline radiogroups and
+       how to use some other clauses and methods.
+   * samples\richeditbox\s004.prg
+     ; Improved.
+   * samples\richeditbox\s006.prg
+     ; Shows how replace one key by another.
+   * samples\xbrowse\s005.prg
+     ; Shows how to check if a modifier key was pressed
+       when the mouse was clicked on an xbrowse.
+
 2019-09-18 19:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s027.prg
      ! Typo.
