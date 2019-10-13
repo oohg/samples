@@ -36,12 +36,14 @@ FUNCTION Main()
       END STATUSBAR
 
       FOR i := 1 TO 15
-          aRows[ i ] := { Str(HB_RandomInt( 99 ), 2), ;
-                          HB_RandomInt( 100 ), ;
-                          Date() + Random( HB_RandomInt() ), ;
-                          'Refer ' + Str( HB_RandomInt( 10 ), 2 ), ;
-                          HB_RandomInt( 10000 ) }
+          aRows[ i ] := { Str( hb_RandomInt( 99 ), 2 ), ;
+                          hb_RandomInt( 100 ), ;
+                          Date() + Random( hb_RandomInt() ), ;
+                          'Refer ' + Str( hb_RandomInt( 10 ), 2 ), ;
+                          hb_RandomInt( 10000 ) }
       NEXT i
+
+      block := { |nCol| AutoMsgBox( nCol ) }
 
       @ 20,20 GRID Grid_1 obj oGrid ;
          WIDTH 520 ;
@@ -54,7 +56,8 @@ FUNCTION Main()
                           { 'TEXTBOX', 'DATE' }, ;
                           { 'TEXTBOX', 'CHARACTER' }, ;
                           { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99' } } ;
-         FONT 'COURIER NEW' SIZE 10
+         FONT 'COURIER NEW' SIZE 10 ;
+         ON HEADDBLCLICK { block, block, block, block, block }
 
       @ 370,20 BUTTON btn_Export ;
          CAPTION 'Export to Excel' ;
