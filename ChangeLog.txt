@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-10-15 20:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\richeditbox\s004.prg
+     * Some format.
+
 2019-10-14 15:02 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\execute\s002.prg
      + How to run a .bat file (hidden and not).
