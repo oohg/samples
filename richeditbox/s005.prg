@@ -1,5 +1,5 @@
 /*
- * RichEditBox Sample n° 5
+ * RichEditBox Sample # 5
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -86,7 +86,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF

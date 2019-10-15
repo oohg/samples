@@ -4,7 +4,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how change the font of the selecte text.
+ * This sample shows how change the font of the selected text.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -58,8 +58,7 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
-
+   RETURN NIL
 
 FUNCTION ChangeFont( oRich )
 
@@ -88,7 +87,7 @@ FUNCTION ChangeFont( oRich )
       oRich:SetSelectionFont( .T., aNewFont[1], aNewFont[2], aNewFont[3], aNewFont[4], aNewFont[5], aNewFont[6], aNewFont[7] )
    ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF

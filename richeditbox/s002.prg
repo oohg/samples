@@ -1,5 +1,5 @@
 /*
- * RichEditBox Sample n° 2
+ * RichEditBox Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -8,7 +8,6 @@
  * in the lines of a Richeditbox control.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -30,17 +29,17 @@ FUNCTION Main
 
    oMain:Activate()
 
-RETURN Nil
+   RETURN NIL
 
 
 FUNCTION CheckLineMax( nLenght )
 
    IF oRich:GetLineLength( oRich:GetCurrentLine() ) >= nLenght
-     oRich:Value += CHR(13) + CHR(10)
+     oRich:Value += Chr( 13 ) + Chr( 10 )
      oRich:CaretPos( Len( oRich:Value ) )
    ENDIF
 
-RETURN Nil
+   RETURN NIL
 
 /*
  * EOF

@@ -30,9 +30,7 @@ FUNCTION Main
    oMain:Center()
    oMain:Activate()
 
-RETURN Nil
-
-
+   RETURN Nil
 
 #include "hbclass.ch"
 #include "i_windefs.ch"
@@ -41,7 +39,7 @@ CLASS MyRichEditBox FROM TEditRich
 
    METHOD Events
 
-ENDCLASS
+   ENDCLASS
 
 METHOD Events( hWnd, nMsg, wParam, lParam ) CLASS MyRichEditBox
 
