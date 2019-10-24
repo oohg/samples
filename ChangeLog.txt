@@ -12,6 +12,22 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-10-24 19:10 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\ado\ado.prg
+   * samples\ado\Build.bat
+   + samples\browse\s023.prg
+   + samples\browse\s024.prg
+   * samples\grid\s001.prg
+   * samples\grid\s002.prg
+   *
+   *
+   *
+   *
+   *
+
+2019-10-18 13:36 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\browse\s023.prg
+
 2019-10-15 20:00 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\richeditbox\s004.prg
      * Some format.
