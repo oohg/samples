@@ -12,6 +12,11 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-10-24 20:02 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\richeditbox\s006.prg
+     * The sample now shows how to replace the decimal dot from
+       the numeric pad with a comma.
+
 2019-10-24 19:21 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ado\ado.prg
      * Comment changed.
