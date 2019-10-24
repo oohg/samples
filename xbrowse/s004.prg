@@ -44,13 +44,18 @@ FUNCTION Main()
          UPDATECOLORS ;
          DYNAMICBACKCOLOR { {|| iif( AScan( aRecords, Data->number ) == 0, WHITE, ORANGE ) }, ;
                             {|| iif( AScan( aRecords, Data->number ) == 0, WHITE, ORANGE ) }, ;
-                            {|| iif( AScan( aRecords, Data->number ) == 0, WHITE, ORANGE ) } }
+                            {|| iif( AScan( aRecords, Data->number ) == 0, WHITE, ORANGE ) } } ;
+         DISABLED
 
       @ 300, 10 LABEL lbl_Note ;
-         WIDTH 400 ;
+         WIDTH 240 ;
          HEIGHT 100 ;
          VALUE "Use DblClick to select lines." ;
          FONTCOLOR RED
+
+      @ 300, 260 BUTTON btn_1 OBJ oButton ;
+         CAPTION "Enable" ;
+         ACTION ( oXbrowse:Enabled := ! oXbrowse:Enabled, oButton:Caption := iif( oXbrowse:Enabled, "Disable", "Enable" ) )
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW

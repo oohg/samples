@@ -1,7 +1,9 @@
 /*
  * To build, use:
- *  SET THR_LIB=-lrddleto
+ *  SET HG_ADDLIBS_TEMP=%HG_ADDLIBS%
+ *  SET HG_ADDLIBS=%HG_ADDLIBS% -lrddleto
  *  COMPILE demo
+ *  SET HG_ADDLIBS=%HG_ADDLIBS_TEMP%
  */
 
 #include "oohg.ch"

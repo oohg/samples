@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 01
+ * Grid Sample # 1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -11,14 +11,13 @@
  * without user's interaction.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
 
 FUNCTION Main()
 
-   LOCAL i, aRows[ 15, 5 ]
+   LOCAL i, aRows[ 150, 5 ]
 
    SET DATE BRITISH
    SET CENTURY ON
@@ -35,7 +34,7 @@ FUNCTION Main()
          STATUSITEM 'OOHG Power !!!'
       END STATUSBAR
 
-      FOR i := 1 TO 15
+      FOR i := 1 TO 150
           aRows[ i ] := { Str( hb_RandomInt( 99 ), 2 ), ;
                           hb_RandomInt( 100 ), ;
                           Date() + Random( hb_RandomInt() ), ;
@@ -45,7 +44,7 @@ FUNCTION Main()
 
       block := { |nCol| AutoMsgBox( nCol ) }
 
-      @ 20,20 GRID Grid_1 obj oGrid ;
+      @ 20,20 GRID Grid_1 OBJ oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
          HEADERS { 'CODE', 'NUMBER', 'DATE', 'REFERENCE', 'AMOUNT' } ;
@@ -57,12 +56,18 @@ FUNCTION Main()
                           { 'TEXTBOX', 'CHARACTER' }, ;
                           { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99' } } ;
          FONT 'COURIER NEW' SIZE 10 ;
-         ON HEADDBLCLICK { block, block, block, block, block }
+         ON HEADDBLCLICK { block, block, block, block, block } ;
+         DISABLED
 
       @ 370,20 BUTTON btn_Export ;
          CAPTION 'Export to Excel' ;
          WIDTH 140 ;
          ACTION ToExcel( oGrid )
+
+      @ 370,170 BUTTON btn_Toggle OBJ oButton ;
+         CAPTION 'Enable' ;
+         WIDTH 140 ;
+         ACTION ( oGrid:Enabled := ! oGrid:Enabled, oButton:Caption := iif( oGrid:Enabled, "Disable", "Enable" ) )
 
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW

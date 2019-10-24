@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 02
+ * Grid Sample # 0
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -24,7 +24,6 @@
  * xbrowse and browse controls.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
@@ -86,7 +85,7 @@ FUNCTION Main()
          DYNAMICBACKCOLOR { BLACK, NIL, NIL, NIL, NIL } ;
          ON CHANGE { || Form_1.StatusBar.Item( 1 ) := ;
                         'Value changed to ' + Autotype( oGrid:Value ) } ;
-         VALUE { 5, 4 }
+         VALUE { 5, 4 } DISABLED
 
       DEFINE CONTEXT MENU CONTROL Grid_1
          MENUITEM 'Go to row 4 col 2' ;
@@ -156,6 +155,10 @@ FUNCTION Main()
       @ 410, 220 LABEL lbl_Enter ;
          VALUE 'Use Enter or DoubleClick to start edition.' ;
          AUTOSIZE
+
+      @ 370, 420 CHECKBOX chk_EnDis ;
+         CAPTION 'Enable' ;
+         ON CHANGE ( oGrid:Enabled := ! oGrid:Enabled, Form_1.chk_EnDis.Caption := iif( oGrid:Enabled, "Disable", "Enable" ) )
 
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW

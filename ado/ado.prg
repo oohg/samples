@@ -1,17 +1,12 @@
 /*
- * Browse Sample n° 4
+ * Browse Sample # 4
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
- */
-/*
+ *
  * This sample shows how to browse an Access database using ADORDD.
- */
-/*
- * To compile this sample save it as "ado.prg" and create a .bat file with:
- *    @echo off
- *    set THR_LIB=-lrddado -lhbusrrdd
- *    compile ado
+ *
+ * Note that you must use use Build.bat in order to compile.
  */
 
 #include "oohg.ch"

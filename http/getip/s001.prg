@@ -1,5 +1,5 @@
 /*
- * HTTP Sample n° 1
+ * HTTP Sample # 1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -7,11 +7,7 @@
  * This sample shows how to obtain your public IP address.
  * Note: it does not work if you are behind a proxy.
  *
- * To build this sample you must
- * set THR_LIB=-liphlpapi
- *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
