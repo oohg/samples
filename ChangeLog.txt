@@ -12,18 +12,31 @@
  *    '-' Removed: ...           ';' Comment
  */
 
-2019-10-24 19:10 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+2019-10-24 19:21 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\ado\ado.prg
+     * Comment changed.
    * samples\ado\Build.bat
+     * Envvar changed.
    + samples\browse\s023.prg
+     ; How to use MEMIO with a browse.
    + samples\browse\s024.prg
+     ; How to enable/disable a browse.
    * samples\grid\s001.prg
+     ; How to enable/disable a grid.
    * samples\grid\s002.prg
-   *
-   *
-   *
-   *
-   *
+     ; How to enable/disable a grid by cell.
+   * samples\http\getip\s001.prg
+     * Envvar changed.
+   - samples\http\getpage\httpdemo.bat
+     ; No longer needed. Use compile.bat
+   + C:\GitHub\samples\letodb\build.bat
+     ; To facilitate sample building.
+   * C:\GitHub\samples\letodb\demo.prg
+     * Comment changed.
+   * C:\GitHub\samples\mysql\demobuild.bat
+     * Envvar changed.
+   * C:\GitHub\samples\xbrowse\s004.prg
+     ; How to enable/disable a browse.
 
 2019-10-18 13:36 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\browse\s023.prg
