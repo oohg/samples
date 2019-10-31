@@ -15,6 +15,8 @@
 
 PROCEDURE Main
 
+   PUBLIC hbprn
+
    SET AUTOADJUST ON
 
    DEFINE WINDOW Win_1 ;
@@ -37,21 +39,30 @@ PROCEDURE Main
    CENTER WINDOW Win_1
    ACTIVATE WINDOW Win_1
 
+   QUIT
+
    RETURN
 
 PROCEDURE Demo( nOption )
 
-   aColor := { YELLOW, PINK, RED, FUCHSIA, BROWN, ORANGE, GREEN, PURPLE, BLACK, BLUE }
+   a10colors := { YELLOW, PINK, RED, FUCHSIA, BROWN, ORANGE, GREEN, PURPLE, BLACK, BLUE }
 
-   INIT PRINTSYS                 // Initialize HBPrinter system
+   aColor := Array( 200 )
+   FOR i := 0 TO 19
+      FOR j := 1 TO 10
+         aColor[ i * 10 + j ] := a10colors[ j ]
+      NEXT j
+   NEXT i
+
+   INIT PRINTSYS FOLDER hb_DirBase()   // Initialize HBPrinter system
 
    IF nOption == 2
-      SELECT BY DIALOG           // Let the user select a printer via dialog
+      SELECT BY DIALOG                 // Let the user select a printer via dialog
    ELSE
-      SELECT DEFAULT             // Select the default printer
+      SELECT DEFAULT                   // Select the default printer
    ENDIF
 
-   IF HBPRNERROR != 0            // Test error code
+   IF HBPRNERROR != 0                  // Test error code
       MsgStop( 'Print cancelled!' )
       RETURN
    ENDIF
@@ -60,34 +71,36 @@ PROCEDURE Demo( nOption )
     * The best way to get the most similiar printout on various printers
     * is to use SET UNITS MM and set margins large enough for all of them.
     */
-   SET UNITS MM                  // Set @... units to milimeters
+   SET UNITS MM                        // Set @... units to milimeters
 
-   SET PAPERSIZE DMPAPER_A4      // Set paper's size to A4
+   SET PAPERSIZE DMPAPER_A4            // Set paper's size to A4
 
-   SET ORIENTATION PORTRAIT      // Set paper's orientation to portrait
+   SET ORIENTATION PORTRAIT            // Set paper's orientation to portrait
 
-   SET BIN DMBIN_FIRST           // Set paper's origin to the first bin
+   SET BIN DMBIN_FIRST                 // Set paper's origin to the first bin
 
-   SET QUALITY DMRES_HIGH        // Set printer's quality to high
+   SET QUALITY DMRES_HIGH              // Set printer's quality to high
 
-   SET COLORMODE DMCOLOR_COLOR   // Set printer's color mode to color
+   SET COLORMODE DMCOLOR_COLOR         // Set printer's color mode to color
 
-   SET COPIES TO 2               // Set printer's number of copies
+   SET COPIES TO 2                     // Set printer's number of copies
 
-   SET PREVIEW ON                // Enable preview
+   SET PREVIEW ON                      // Enable preview
 
-   SET PREVIEW RECT MAXIMIZED    // Maximize the preview window
+   SET PREVIEW RECT MAXIMIZED          // Maximize the preview window
 
-   DEFINE FONT "TitleFont" ;     // Creates a font to use with @...SAY command
+   ENABLE THUMBNAILS                   // Show page thumbnails
+
+   DEFINE FONT "TitleFont" ;           // Creates a font to use with @...SAY command
       NAME "Courier New" ;
       SIZE 24 ;
       BOLD
 
-   START DOC                     // Initialize the print job
+   START DOC                           // Initialize the print job
 
       FOR i := 1 TO Len( aColor )
 
-         START PAGE              // Create a page
+         START PAGE                    // Create a page
 
             @ 20,20,50,190 RECTANGLE
 
@@ -99,7 +112,7 @@ PROCEDURE Demo( nOption )
                COLOR RED ;
                TO PRINT
 
-            @ 140,60 SAY "Page Number: " + LTrim( Str( i, 2 ) ) ;
+            @ 140,60 SAY "Page Number: " + LTrim( Str( i ) ) ;
                FONT "TitleFont" ;
                COLOR aColor[ i ] ;
                TO PRINT
@@ -110,9 +123,9 @@ PROCEDURE Demo( nOption )
 
       NEXT
 
-   END DOC
+   END DOC SIZE
 
-   RELEASE PRINTSYS              // Release HBPrinter system
+   RELEASE PRINTSYS                    // Release HBPrinter system
 
    RETURN
 

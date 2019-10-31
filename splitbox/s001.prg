@@ -23,7 +23,8 @@ Function Main()
       WIDTH 600 ;
       HEIGHT 240 ;
       TITLE "ooHG Splitbox Demo" ;
-      MAIN
+      MAIN ;
+      ON INIT MainForm.cmb_Address.SetFocus()
 
       DEFINE SPLITBOX OBJ Split
          DEFINE TOOLBAR ToolBar_1 BUTTONSIZE 20,20 FLAT BOTTOM

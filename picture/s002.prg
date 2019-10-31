@@ -5,7 +5,7 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to store/retrieve and image into/from
- * a BLOB field and how to show it using an IMAGE control.
+ * a BLOB field and how to show it using a PICTURE control.
  *
  * Visit us at https://github.com/oohg/samples
  *
