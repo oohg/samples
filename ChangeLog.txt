@@ -12,6 +12,12 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-10-31 20:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\printing\s002.prg
+   * samples\printing\s006.prg
+   * samples\splitbox\s001.prg
+     * Improved.
+
 2019-10-24 20:02 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\richeditbox\s006.prg
      * The sample now shows how to replace the decimal dot from
