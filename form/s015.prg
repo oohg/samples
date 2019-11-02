@@ -16,7 +16,6 @@ PROCEDURE Main(...)
    LOCAL oMain
 
    _OOHG_ExitOnMainRelease := .F.
-   _OOHG_KeepAppOnMainRelease := .T.
 
    DEFINE WINDOW Win_1 OBJ oMain ;
       AT 0, 0 ;
@@ -33,7 +32,16 @@ PROCEDURE Main(...)
 
    oMain:Activate()
 
+   // This is executed. To exit here add RETURN or QUIT.
    MsgBox( "After MAIN 1 release !!!" )
+
+   // Here you can add App.Release to destroy the TApplication object.
+   // After that you can use any (x)Harbour function but any attempt
+   // to use an OOHG object will throw an RTE.
+   // Uncomment the next line and see what happens.
+   // App.Release
+
+   _OOHG_ExitOnMainRelease := .T.
 
    DEFINE WINDOW Win_1 OBJ oMain ;
       AT 0, 0 ;
@@ -50,8 +58,7 @@ PROCEDURE Main(...)
 
    oMain:Activate()
 
-   _OOHG_ExitOnMainRelease := .T.
-
+   // This is not executed.
    MsgBox( "After MAIN 2 release !!!" )
 
    RETURN
