@@ -1,7 +1,7 @@
 * Harbour MiniGUI IDE Two-Way Form Designer Generated Code
 * (c)2004-2005 Roberto Lopez <roblez@ciudad.com.ar>
 
-DEFINE WINDOW TEMPLATE AT 197, 332 WIDTH 352 HEIGHT 298 TITLE "Párametros Generales del Sistema" ICON "lapicera" CHILD NOMAXIMIZE NOSIZE CURSOR NIL ON INIT ( hWnd := GetFormHandle( 'Parametros' ), SetTransparent( hWnd, 230 ) ) ON RELEASE Nil BACKCOLOR Nil
+DEFINE WINDOW TEMPLATE AT 197, 332 WIDTH 352 HEIGHT 298 TITLE "Párametros Generales del Sistema" ICON "lapicera" CHILD NOMAXIMIZE NOSIZE CURSOR NIL ON INIT ( GetFormObject( 'Parametros' ):SetTransparency( 230 ) ) ON RELEASE Nil BACKCOLOR Nil
 
     DEFINE TAB Tab_1 AT 10 , 10 WIDTH 320 HEIGHT 200 VALUE 1 FONT "Arial" SIZE 9 TOOLTIP "" ON CHANGE Nil
 

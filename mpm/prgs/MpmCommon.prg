@@ -390,16 +390,7 @@ return nRetVal
 
 #pragma BEGINDUMP
 
-#define _WIN32_IE 0x0500
-#define _WIN32_WINNT 0x0400
-
-#define WS_EX_LAYERED 0x80000
-#define LWA_ALPHA 0x02
-
-#include <windows.h>
-#include "hbapi.h"
-#include "hbapiitm.h"
-#include "commctrl.h"
+#include "oohg.h"
 
 HB_FUNC( ZAPDIRECTORY )
 {
@@ -414,50 +405,6 @@ HB_FUNC( ZAPDIRECTORY )
 	sh.lpszProgressTitle = NULL;
 
 	SHFileOperation (&sh);
-}
-
-HB_FUNC( CURSORARROW2 )
-{
-   HB_RETNL( ( LONG_PTR ) SetCursor( LoadCursor( NULL, IDC_ARROW ) ) );
-}
-
-HB_FUNC( CURSORWAIT2 )
-{
-   HB_RETNL( ( LONG_PTR ) SetCursor( LoadCursor( NULL, IDC_WAIT ) ) );
-}
-
-HB_FUNC( GETEXEFILENAME )
-{
-   unsigned char pBuf[ 250 ];
-
-   GetModuleFileName( GetModuleHandle( NULL ), ( LPTSTR ) pBuf, 249 );
-
-   hb_retc( ( char * ) pBuf );
-}
-
-HB_FUNC( SETTRANSPARENT )
-{
-	typedef BOOL ( __stdcall * PFN_SETLAYEREDWINDOWATTRIBUTES ) ( HWND, COLORREF, BYTE, DWORD );
-
-	PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
-
-	HINSTANCE hLib = LoadLibrary( "user32.dll" );
-
-	if( hLib != NULL )
-	{
-		pfnSetLayeredWindowAttributes = ( PFN_SETLAYEREDWINDOWATTRIBUTES ) GetProcAddress( hLib, "SetLayeredWindowAttributes" );
-	}
-
-	if( pfnSetLayeredWindowAttributes )
-	{
-		SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
-		pfnSetLayeredWindowAttributes( HWNDparam( 1 ), 0, hb_parni( 2 ), LWA_ALPHA );
-	}
-
-	if( ! hLib )
-	{
-		FreeLibrary( hLib );
-	}
 }
 
 #pragma ENDDUMP

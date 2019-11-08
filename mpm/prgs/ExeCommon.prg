@@ -113,7 +113,7 @@ Procedure EndBuild()
 
       If File(PROJECTFOLDER+'\'+GetName(ExeName)+'.exe') .and. TxtSearch('error') == .F.
          if MsgYesNo('Execute File: ['+ GetName(ExeName)+'.exe] ?',"Project Build") == .T.
-            cursorwait2()
+            cursorwait()
             If main.Check_1.value == .T.
                If MsgYesNo('Compress File: ['+ GetName(ExeName)+'.exe] ?',"Compress Exe with UPX") == .T.
                   PonerEspera('Compress...')
@@ -122,7 +122,7 @@ Procedure EndBuild()
                Endif
             Endif
             EXECUTE FILE PROJECTFOLDER +'\'+GetName(ExeName)
-            cursorarrow2()
+            cursorarrow()
          Else
             main.RichEdit_1.Value := 'File: [' + GetName(ExeName) + '.exe] is OK'
             main.Tab_1.value := 7

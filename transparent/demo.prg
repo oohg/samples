@@ -9,66 +9,25 @@
 
 #include "oohg.ch"
 
-Function Main()
-Local nTra := 210, hWnd
+FUNCTION Main()
 
-	DEFINE WINDOW WinTr ;
+	DEFINE WINDOW WinTr OBJ oWinTR ;
 		AT 0,0 ;
 		WIDTH 300 ;
 		HEIGHT 300 ;
 		TITLE 'Transparent window' ;
 		MAIN ;
 		NOSIZE NOMAXIMIZE ;
-		ON INIT ( hWnd := GetFormHandle( 'WinTR' ), SetTransparent( hWnd, nTra ) )
+		ON INIT oWinTR:SetTransparency( 210 )
 
 		@ 200,100 BUTTON But1 ;
 			CAPTION "Click Me" ;
 			HEIGHT 35 WIDTH 100 ;
-			ACTION ( nTra := iif( nTra == 100, 255, 100 ), SetTransparent( hWnd, nTra ) )
+			ACTION oWinTR:SetTransparency( iif( nTra == 100, 255, 100 ) )
 
 	END WINDOW
 
 	CENTER WINDOW WinTR
-
 	ACTIVATE WINDOW WinTR
 
 RETURN NIL
-
-
-#pragma BEGINDUMP
-
-#define _WIN32_IE 0x0500
-#define _WIN32_WINNT 0x0400
-
-#define WS_EX_LAYERED 0x80000
-#define LWA_ALPHA 0x02
-
-#include <windows.h>
-#include "hbapi.h"
-
-HB_FUNC( SETTRANSPARENT )
-{ 
-	typedef BOOL ( __stdcall * PFN_SETLAYEREDWINDOWATTRIBUTES ) ( HWND, COLORREF, BYTE, DWORD );
-
-	PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
-
-	HINSTANCE hLib = LoadLibrary( "user32.dll" );
-
-	if( hLib != NULL )
-	{
-		pfnSetLayeredWindowAttributes = ( PFN_SETLAYEREDWINDOWATTRIBUTES ) GetProcAddress( hLib, "SetLayeredWindowAttributes" );
-	}
-
-	if( pfnSetLayeredWindowAttributes )
-	{
-		SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
-		pfnSetLayeredWindowAttributes( HWNDparam( 1 ), 0, hb_parni( 2 ), LWA_ALPHA );
-	}
-
-	if( ! hLib )
-	{
-		FreeLibrary( hLib );
-	}
-}
-
-#pragma ENDDUMP

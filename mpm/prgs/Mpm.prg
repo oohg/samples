@@ -707,7 +707,7 @@ Procedure StatusRefresh()
          main.RichEdit_1.Value := TranslateLog ( MemoRead ( PROJECTFOLDER + '\_Temp.Log' ) )
          Processing := .F.
          Procesando(2)
-         CursorArrow2()
+         CursorArrow()
          BorraTemporales()
       Endif
    Endif
@@ -784,7 +784,7 @@ FUNCTION PonerEspera( cMensaje)
    CENTER WINDOW MigMess
    ACTIVATE WINDOW MigMess NOWAIT
 
-   CURSORWAIT2()
+   CURSORWAIT()
 RETURN(NIL)
 
 *---------------------------------------------------------------------*
@@ -792,7 +792,7 @@ FUNCTION QuitarEspera( )
 *---------------------------------------------------------------------*
 
    if iswindowdefined("MigMess")
-      CURSORARROW2( )
+      CURSORARROW( )
       RELEASE WINDOW MigMess
       DO EVENTS
    Endif
@@ -995,7 +995,7 @@ Procedure BuildMode(nModo,nCChoice,nHChoice)
 *---------------------------------------------------------------------*
     Local x1 :="" , x3 := "" , cPrgFile :={}
 
-    CursorWait2()
+    CursorWait()
 
     // nHChoice = RadioGroup_5 - Harbour - xharbour
     // nCChoice = RadioGroup_6 - MingW - BCC - Pelles - Visual

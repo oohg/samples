@@ -111,7 +111,7 @@ Function Cria_frmPrincipal()
 */
 Function Btn_Sair_Sistema()
 	 if MsgYesNo("Deseja Sair do Sistema??",SISTEMA)
-	    RELEASE WINDOW ALL
+       Frm_Principal.Release()
 	 EndIf
 	 Return NIL
 /*

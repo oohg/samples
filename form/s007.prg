@@ -25,7 +25,7 @@ FUNCTION Main()
       MAIN ;
       TITLE "Form with transparent background" ;
       BACKCOLOR GRAY ;
-      ON INIT SetLayeredWindowAttributes( oForm1:hWnd, RGB_VALUE( oForm1:BackColor ), 0, LWA_COLORKEY )
+      ON INIT oForm1:SetBackgroundInvisible()
 
       @ 30,10 TEXTBOX txt_1 ;
          OBJ oTxt1 ;
@@ -44,11 +44,6 @@ FUNCTION Main()
    ACTIVATE WINDOW Form_1
 
 RETURN Nil
-
-
-FUNCTION RGB_VALUE( aColor )
-
-RETURN RGB( aColor[ 1 ], aColor[ 2 ], aColor[ 3 ] )
 
 /*
  * EOF

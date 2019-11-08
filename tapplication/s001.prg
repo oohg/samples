@@ -17,7 +17,7 @@ MEMVAR oApp, oBtn2, oBtn3, oLbl12, oLbl13
 FUNCTION Main( ... )
    PUBLIC oApp, oBtn2, oBtn3, oLbl12, oLbl13
 
-   oApp := TApplication():Define()
+   oApp := _OOHG_AppObject()
 
    DEFINE WINDOW Form_1 ;
       AT 0,0 ;

@@ -9,7 +9,7 @@
 Procedure About()
 *---------------------------------------------------------------------*
 
-   DEFINE WINDOW mAbout AT 203 , 307 WIDTH 418 HEIGHT 333 TITLE "About" ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255} // ON INIT ( hWnd := GetFormHandle('mAbout'), SetTransparent(hWnd, 250) )
+   DEFINE WINDOW mAbout AT 203 , 307 WIDTH 418 HEIGHT 333 TITLE "About" ICON "ampm" MODAL NOMINIMIZE NOMAXIMIZE NOSIZE BACKCOLOR {255,255,255}
      DEFINE IMAGE Image_1
             ROW    20
             COL    75

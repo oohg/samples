@@ -100,9 +100,6 @@ RETURN ( aFont[1] + " " + ;
 //--------------------------------------------------------------------------
 #pragma BEGINDUMP
 
-#include <windows.h>
-#include <commctrl.h>
-#include "hbapi.h"
 #include "oohg.h"
 
 HB_FUNC( GETSCREENDPIX )

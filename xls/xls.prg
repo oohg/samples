@@ -276,31 +276,14 @@ Function cValToChar(xValue)
 RETURN cValue
 
 
+#pragma BEGINDUMP
 
-/*
-#PRAGMA BEGINDUMP 
-#define _WIN32_IE      0x0500
-#define HB_OS_WIN_32_USED
-#define _WIN32_WINNT   0x0400
-#include <shlobj.h>
-#include <windows.h>
-#include <commctrl.h>
-#include "hbapi.h"
-#include "hbvm.h"
-#include "hbstack.h"
-#include "hbapiitm.h"
-#include "winreg.h"
-*/
-
-#PRAGMA BEGINDUMP
-#include <hbapi.h>
-#include <windows.h>
+#include "oohg.h"
 
 HB_FUNC( GETACP )
 {
    hb_retni( ( int ) GetACP() );
 }
-
 
 HB_FUNC( NOR )
 {
@@ -314,4 +297,5 @@ HB_FUNC( NOR )
 
    hb_retni( ret );
 }
-#PRAGMA ENDDUMP 
+
+#pragma ENDDUMP

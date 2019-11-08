@@ -68,10 +68,8 @@ PROCEDURE UpdateCounter( aAlarmInfo )
 RETURN
 
 #pragma BEGINDUMP
-#include <windows.h>
-#include <commctrl.h>
 
-#include <hbapi.h>
+#include <oohg.h>
 
 HBITMAP hNumeros1 = NULL;
 HBITMAP hNumeros2 = NULL;

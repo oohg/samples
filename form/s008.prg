@@ -75,10 +75,10 @@ FUNCTION Main
          OBJ oBut3 ;
          CAPTION "Invisible Background" ;
          WIDTH   140 ;
-         ACTION {|| SetBackgroundInvisible( oBut1:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oBut2:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oBut3:hWnd, oForm1:BackColorCode ), ;
-                    SetBackgroundInvisible( oForm1:hWnd, oForm1:BackColorCode ) }
+         ACTION {|| oBut1:SetBackgroundInvisible( oForm1:BackColorCode ), ;
+                    oBut2:SetBackgroundInvisible( oForm1:BackColorCode ), ;
+                    oBut3:SetBackgroundInvisible( oForm1:BackColorCode ), ;
+                    oForm1:SetBackgroundInvisible( oForm1:BackColorCode ) }
       oBut3:Transparent := .T.
 
       DEFINE SLIDER Slider_1
@@ -132,7 +132,7 @@ FUNCTION TextBox_Change (oWin)
   WITH OBJECT oWin
     :Slider_1:Value := :TextBox_1:Value
 
-     IF .not. SetTransparency( :hWnd, :Slider_1:Value )
+     IF .not. :SetTransparency( :Slider_1:Value )
         MsgStop( "Transparency is not supported by OS !!!", "Error" )
      ENDIF
   END WITH
@@ -144,7 +144,7 @@ FUNCTION Slider_Change (oWin)
   WITH OBJECT oWin
      :TextBox_1:Value := :Slider_1:Value
 
-     IF .not. SetTransparency( :hWnd, :Slider_1:Value )
+     IF .not. :SetTransparency( :Slider_1:Value )
         MsgStop( "Transparency is not supported by OS !!!", "Error" )
      ENDIF
   END WITH
@@ -156,92 +156,10 @@ FUNCTION MakeOpaque( oWin )
   WITH OBJECT oWin
     :Slider_1:Value := 255
     :TextBox_1:Value := 255
-
-    RemoveTransparency( :hWnd )
+    ::RemoveTransparency()
   END WITH
 
 RETURN NIL
-
-#pragma BEGINDUMP
-
-#define _WIN32_WINNT 0x0500
-
-#include <windows.h>
-#include <winuser.h>
-#include <commctrl.h>
-#include "hbapi.h"
-#include "oohg.h"
-
-/*
- * The SetLayeredWindowAttributes function sets the opacity and transparency
- * color key of a layered window.
- * Parameters:
- * - hwnd   Handle to the layered window.
- * - crKey   Pointer to a COLORREF value that specifies the transparency color
- *   key to be used.
- *    (When making a certain color transparent...).
- * - bAlpha   Alpha value used to describe the opacity of the layered window.
- *    0 = Invisible, 255 = Fully visible
- * - dwFlags   Specifies an action to take. This parameter can be LWA_COLORKEY
- *    (When making a certain color transparent...) or LWA_ALPHA.
- */
-
-typedef BOOL ( __stdcall *PFN_SETLAYEREDWINDOWATTRIBUTES ) ( HWND, COLORREF, BYTE, DWORD );
-
-HB_FUNC( SETTRANSPARENCY )
-{
-   BOOL bRet = FALSE;
-   PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
-   HINSTANCE hLib = LoadLibrary( "user32.dll" );
-
-   if( hLib != NULL )
-   {
-      pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress( hLib, "SetLayeredWindowAttributes" );
-
-      if( pfnSetLayeredWindowAttributes != NULL )
-      {
-         SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
-
-         bRet = (BOOL) pfnSetLayeredWindowAttributes( HWNDparam( 1 ), 0, hb_parni( 2 ), LWA_ALPHA );
-
-         FreeLibrary( hLib );
-      }
-   }
-
-   hb_retl( bRet );
-}
-
-HB_FUNC( SETBACKGROUNDINVISIBLE )
-{
-   BOOL bRet = FALSE;
-   PFN_SETLAYEREDWINDOWATTRIBUTES pfnSetLayeredWindowAttributes = NULL;
-   HINSTANCE hLib = LoadLibrary( "user32.dll" );
-
-   if( hLib != NULL )
-   {
-      pfnSetLayeredWindowAttributes = (PFN_SETLAYEREDWINDOWATTRIBUTES) GetProcAddress( hLib, "SetLayeredWindowAttributes" );
-
-      if( pfnSetLayeredWindowAttributes != NULL )
-      {
-         SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) | WS_EX_LAYERED );
-
-         bRet = (BOOL) pfnSetLayeredWindowAttributes( HWNDparam( 1 ), hb_parni( 2 ), 0, LWA_COLORKEY );
-
-         FreeLibrary( hLib );
-      }
-   }
-
-   hb_retl( bRet );
-}
-
-HB_FUNC( REMOVETRANSPARENCY )
-{
-   SetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE, GetWindowLongPtr( HWNDparam( 1 ), GWL_EXSTYLE ) & ~WS_EX_LAYERED ) ;
-
-   RedrawWindow( HWNDparam( 1 ), NULL, NULL, RDW_ERASE | RDW_INVALIDATE | RDW_ALLCHILDREN | RDW_ERASENOW | RDW_UPDATENOW );
-}
-
-#pragma ENDDUMP
 
 /*
 EOF
