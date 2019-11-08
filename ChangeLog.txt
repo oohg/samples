@@ -12,6 +12,26 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-11-08 15:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\apps\agenda\agenda.prg
+   * samples\combobox\s009.prg
+   * samples\eztwain\twerp.prg
+   * samples\form\s007.prg
+   * samples\form\s008.prg
+   * samples\metrics\s002.prg
+   * samples\mpm\prgs\AboutWin.prg
+   * samples\mpm\prgs\ExeCommon.prg
+   * samples\mpm\prgs\Mpm.prg
+   * samples\mpm\prgs\MpmAso.prg
+   * samples\mpm\prgs\MpmCommon.prg
+   * samples\mysql\FuncionesSql.prg
+   * samples\mysql\Parametros.Fmg
+   * samples\oohg\clocks.prg
+   * samples\tapplication\s001.prg
+   * samples\transparent\demo.prg
+   * samples\xls\xls.prg
+     * Updated.
+
 2019-11-01 21:15 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\form\s015.prg
      * Improved.
