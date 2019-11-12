@@ -20,7 +20,7 @@ FUNCTION Main
 
    DEFINE WINDOW MAIN OBJ oWnd ;
       TITLE "OOHG - set ITEMSOURCE using an array" ;
-      WIDTH 370 ;
+      WIDTH 400 ;
       HEIGHT 400 ;
       ON RELEASE CloseTables()
 

@@ -1,15 +1,12 @@
 /*
- * ComboBox Sample n° 8
+ * ComboBox Sample # 13
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to get the selected value and the
- * corresponding item of a ComboBox with ITEMSOURCE and
- * VALUESOURCE clauses.
+ * This sample shows how to use clause DELAYEDLOAD.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -21,15 +18,16 @@ FUNCTION Main
    OpenTables()
 
    DEFINE WINDOW MAIN OBJ oWnd ;
-      TITLE "Combobox's Selected Value and Item" ;
+      TITLE "OOHG - ComboBox with DELAYLOAD clause" ;
       WIDTH 400 ;
       HEIGHT 400 ;
+      ON INIT oWnd:lRefreshDataOnActivate := .F. ;
       ON RELEASE CloseTables()
 
       @ 10,10 COMBOBOX Combo1 OBJ oCombo1 ;
          WIDTH 200 ;
-         DISPLAYEDIT ;
-         ITEMSOURCE 'test->Name' ;
+         DELAYEDLOAD ;
+         ITEMSOURCE ( { 'Test', 'Name', 'tName' } ) ;
          VALUESOURCE 'test->Code' ;
          ON CHANGE ( oValue1:value := "Value (code) is: " + ;
                                       AutoType(oCombo1:Value), ;
@@ -50,10 +48,10 @@ FUNCTION Main
          VALUE "Select an item to see it's caption (name)" ;
          AUTOSIZE
 
-      @ 210,10 COMBOBOX Combo2 OBJ oCombo2 ;
+      @ 160,10 COMBOBOX Combo2 OBJ oCombo2 ;
          WIDTH 200 ;
-         DISPLAYEDIT ;
-         ITEMSOURCE 'test->Name' ;
+         DELAYEDLOAD ;
+         ITEMSOURCE ( { 'Test', 'Name', 'tCode' } ) ;
          ON CHANGE ( oValue2:value := "Value (recno) is: " + ;
                                       AutoType(oCombo2:Value), ;
                      oItem2:value := "Item (name) is: " + ;
@@ -85,28 +83,31 @@ FUNCTION OpenTables()
 
    LOCAL aDbf[ 2, 4 ], i
 
-   aDbf[1] := { "Code", "N", 3, 0 }
-   aDbf[2] := { "Name", "C", 25, 0 }
+   aDbf[1] := { "Code", "N", 5, 0 }
+   aDbf[2] := { "Name", "C", 50, 0 }
 
-   DBCREATE( "Test", aDbf )
+   REQUEST DBFCDX
 
-   USE test
+   dbCreate( "Test", aDbf )
 
-   FOR i := 1 TO 50
+   USE test VIA "DBFCDX"
+
+   FOR i := 1 TO 500
       APPEND BLANK
-      REPLACE Code WITH i * 3
-      REPLACE Name WITH 'Name '+ STR(i)
+      REPLACE Code WITH i
+      REPLACE Name WITH Upper( Replicate( Chr( hb_RandomInt( 97, 122 ) ), 5 ) ) + " code=" + LTrim( Str( Code ) ) + " rec=" + LTrim( Str( RecNo() ) )
    NEXT i
 
-   INDEX ON Code TO code
+   INDEX ON Name TAG tName TO Test
+   INDEX ON Code TAG tCode TO Test
 
 RETURN NIL
 
 FUNCTION CloseTables()
 
    CLOSE DATABASES
-   ERASE ("code" + INDEXEXT())
    ERASE Test.dbf
+   ERASE Test.cdx
 
 RETURN NIL
 

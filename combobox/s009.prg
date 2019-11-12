@@ -39,11 +39,10 @@ FUNCTION Main
          DISPLAYEDIT MAXLENGTH 5 ;
          ON DISPLAYCHANGE PlayBeep()
 
-      @ 210,10 COMBOBOX Combo_2 ;
+      @ 10,210 COMBOBOX Combo_2 ;
          ITEMS { 'A' , 'B' , 'C' } ;
          VALUE 1 ;
-         DISPLAYEDIT MAXLENGTH 20 HSCROLL ;
-         ON DISPLAYCHANGE PlayBeep()
+         DISPLAYEDIT MAXLENGTH 20 HSCROLL
 
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW

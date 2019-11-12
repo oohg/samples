@@ -21,7 +21,7 @@ FUNCTION Main
 
    DEFINE WINDOW Form_1 ;
       AT 0,0 ;
-      WIDTH 400 ;
+      WIDTH 500 ;
       HEIGHT 200 ;
       TITLE 'CaretPos in ComboBox with DisplayEdit Clause' ;
       MAIN

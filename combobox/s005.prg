@@ -27,7 +27,7 @@ FUNCTION Main
 
    DEFINE WINDOW MAIN OBJ oWnd ;
       TITLE "Combobox's ValueSource Clause" ;
-      WIDTH 350 ;
+      WIDTH 400 ;
       HEIGHT 300
 
       @ 10,10 COMBOBOX Combo ;
