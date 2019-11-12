@@ -12,6 +12,18 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-11-11 21:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\combobox\s002.prg
+   * samples\combobox\s005.prg
+   * samples\combobox\s007.prg
+   * samples\combobox\s008.prg
+   * samples\combobox\s011.prg
+     * Updated.
+   * samples\combobox\s009.prg
+     + HSCROLL clause.
+   * samples\combobox\s013.prg
+     ; Clause DELAYEDLOAD.
+
 2019-11-08 15:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\apps\agenda\agenda.prg
    * samples\combobox\s009.prg
