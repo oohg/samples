@@ -12,6 +12,32 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-11-20 21:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\miscellaneous\s002.prg
+     ; How to list processes, how to test if a process is
+       running and how to kill a process.
+
+2019-11-20 21:28 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\combobox\s009.prg
+     * Updated.
+
+2019-11-20 21:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   - samples\console\console.prg
+   - samples\console\console.qpm
+   - samples\console\hello.prg
+   - samples\console\hello.qpm
+   + samples\console\s001.prg
+   + samples\console\s002.prg
+   + samples\console\s003.prg
+
+2019-11-20 21:24 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\graphical\logo.jpg
+     ; For s005.prg sample.
+
+2019-11-20 21:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\graphical\s005.prg
+     ; How to draw a transparent round rectangle.
+
 2019-11-11 21:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\combobox\s002.prg
    * samples\combobox\s005.prg
