@@ -36,13 +36,13 @@ FUNCTION Main
       @ 10,10 COMBOBOX Combo_1 OBJ oCombo ;
          ITEMS { 'A' , 'B' , 'C' } ;
          VALUE 1 ;
-         DISPLAYEDIT MAXLENGTH 5 ;
+         DISPLAYEDIT MAXLENGTH 20 ;
          ON DISPLAYCHANGE PlayBeep()
 
       @ 10,210 COMBOBOX Combo_2 ;
          ITEMS { 'A' , 'B' , 'C' } ;
          VALUE 1 ;
-         DISPLAYEDIT MAXLENGTH 20 HSCROLL
+         DISPLAYEDIT MAXLENGTH 20 NOHSCROLL
 
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
