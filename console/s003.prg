@@ -41,7 +41,7 @@ FUNCTION Main()
       HEIGHT 480 ;
       CLIENTAREA ;
       TITLE 'OOHG - Mixed Mode Demo' ;
-      MAIN ON INIT oForm:BringToTop()
+      MAIN ON INIT ( oForm:BringToTop(), HideConsole( cTitle ) )
 
       @ 20, 20 LABEL lbl1 AUTOSIZE ;
          VALUE 'Click "Open 1" button to open the console and capture some data'
@@ -75,7 +75,6 @@ FUNCTION Main()
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW
 
-   HideConsole( cTitle )
    Form_1.Center()
    Form_1.Activate()
 
