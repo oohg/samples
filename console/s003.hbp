@@ -1,0 +1,16 @@
+#
+# s003.hbp
+# Author: Fernando Yurisich <fyurisich@oohg.org>
+# Licensed under The Code Project Open License (CPOL) 1.02
+# See <http://www.codeproject.com/info/cpol10.aspx>
+#
+# Visit us at https://oohg.github.io
+#
+# This equals "buildapp.bat s003.prg -gtwin"
+#
+
+s003.prg
+${HG_ROOT}\oohg.hbc
+-manifest=${HG_ROOT}\resources\Windows.Manifest
+-gtwin
+-D_OOHG_CONSOLEMODE_
