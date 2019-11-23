@@ -12,6 +12,13 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-11-22 21:07 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\console\s003.hbp
+
+2019-11-22 19:01 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\console\s003.prg
+     ! Form is behind other windows at init.
+
 2019-11-20 21:29 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\miscellaneous\s002.prg
      ; How to list processes, how to test if a process is
