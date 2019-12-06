@@ -21,8 +21,9 @@ FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;
       AT 0,0 ;
-      WIDTH 558 ;
+      WIDTH 700 ;
       HEIGHT 460 ;
+      CLIENTAREA ;
       TITLE 'Grid with IMAGEDATA ColumnControl' ;
       MAIN
 
@@ -39,7 +40,7 @@ FUNCTION Main()
       NEXT k
 
       @ 10,10 GRID Grid_1 OBJ oGrid ;
-         WIDTH 520 ;
+         WIDTH 680 ;
          HEIGHT 330 ;
          HEADERS { 'CODE', 'NUMBER', 'DATE', 'REFERENCE', 'AMOUNT' } ;
          WIDTHS { 100, 80, 100, 120, 140 } ;
@@ -51,9 +52,11 @@ FUNCTION Main()
                           { 'TEXTBOX', 'NUMERIC', '999999'} , ;
                           { 'TEXTBOX', 'DATE'}, ;
                           { 'TEXTBOX', 'CHARACTER'}, ;
-                          { 'TEXTBOX', 'NUMERIC', '999,999,999.99' } } ;
+                          { 'TEXTBOX', 'NUMERIC', '999,999,999.99',,,,,,,, .T. } } ;
          FONT 'COURIER NEW' SIZE 10 ;
          EDIT INPLACE
+
+//     {'TEXTBOX', cType, cPicture, cFunction, nOnFocusPos, lButtons, aImages, lLikeExcel, cEditKey, lNoModal, lAutoSkip}
 
       @ 360,10 LABEL lbl_1 ;
          VALUE 'Try the context menu.' ;
