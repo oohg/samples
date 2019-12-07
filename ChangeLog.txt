@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2019-12-06 23:32 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\tree\s001.prg
+     ! Label edition is not working.
+
 2019-12-05 22:45 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\grid\s007.prg
      + AUTOSKIP sample.
