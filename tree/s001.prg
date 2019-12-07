@@ -41,12 +41,13 @@ FUNCTION Main()
          HEIGHT 202 ;
          ENABLEDRAG ;
          ENABLEDROP ;
+         EDITLABELS ;
          TARGET { {|| oTree1 }, {|| oTree2 } } ;
          NODEIMAGES {"WINDOW", "WATCH"} ;
          ITEMIMAGES {"LED_OFF", "LED_ON"} ;
          SELBOLD ;
          INDENT 25 ;
-         VALUE 1
+         VALUE 1 
 
          ON KEY F2 OF (oTree1) ACTION {|| Form_1.Tree_1.EditLabel }
 
@@ -84,6 +85,7 @@ FUNCTION Main()
          HEIGHT 200 ;
          ENABLEDRAG ;
          ENABLEDROP ;
+         EDITLABELS ;
          TARGET { {|| oTree1 }, {|| oTree2 } } ;
          NODEIMAGES {"WATCH", "WINDOW"} ;
          ITEMIMAGES {"LED_OFF", "LED_ON"} ;
