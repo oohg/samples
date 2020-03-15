@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-03-15 15:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s010.prg
+     + PDFPRINT printing.
+
 2019-12-06 23:32 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\tree\s001.prg
      ! Label edition is not working.
