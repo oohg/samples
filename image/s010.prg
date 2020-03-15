@@ -31,15 +31,20 @@ FUNCTION Main
          IMAGESIZE ;
          PICTURE "OOHG"
 
-      @ 200, 100 BUTTON button_1 ;
+      @ 200, 010 BUTTON button_1 ;
          WIDTH 150 ;
          CAPTION "Print HBPRINTER" ;
          ACTION PrintImage( "HBPRINTER" )
 
-      @ 200, 260 BUTTON button_2 ;
+      @ 200, 170 BUTTON button_2 ;
          WIDTH 150 ;
          CAPTION "Print MINIPRINT" ;
          ACTION PrintImage( "MINIPRINT" )
+
+      @ 200, 330 BUTTON button_3 ;
+         WIDTH 150 ;
+         CAPTION "Print PDFPRINT" ;
+         ACTION PrintImage( "PDFPRINT" )
 
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
