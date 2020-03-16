@@ -15,6 +15,7 @@
 PROCEDURE Main(...)
    LOCAL oMain
 
+   // This can be ommited because it's the default value
    _OOHG_ExitOnMainRelease := .F.
 
    DEFINE WINDOW Win_1 OBJ oMain ;

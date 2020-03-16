@@ -12,6 +12,12 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-03-16 19:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\form\s015.prg
+     + Comment.
+   * samples\zip\s001.prg
+     * Typos.
+
 2020-03-15 15:03 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\image\s010.prg
      + PDFPRINT printing.
