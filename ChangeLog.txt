@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-03-20 08:12 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\grid\s037.prg
+     ; How to calculate an item's total.
+
 2020-03-16 19:20 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\form\s015.prg
      + Comment.
