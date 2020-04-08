@@ -13,7 +13,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download oohg.gif from
- * https://github.com/oohg/samples/tree/master/Image
+ * https://github.com/oohg/samples/tree/master/image
  */
 
 #include "oohg.ch"
