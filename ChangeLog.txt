@@ -12,6 +12,38 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-04-08 23:05 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s013.prg
+   * samples\image\s013.rc
+     * Improved.
+
+2020-04-08 22:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\printing\hbprinter\s007.prg
+   + samples\printing\hbprinter\s007.rc
+   + samples\printing\hbprinter\gfx\bar.bmp
+   + samples\printing\hbprinter\gfx\flags.bmp
+   + samples\printing\hbprinter\gfx\picture.gif
+   + samples\printing\hbprinter\gfx\picture.jpg
+   + samples\printing\hbprinter\gfx\print.ico
+   + samples\printing\hbprinter\gfx\sand.gif
+
+2020-04-08 19:42 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\mysql\demobuild.bat
+     ! RTE.
+
+2020-04-08 19:40 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s006.prg
+   * samples\image\s008.prg
+   * samples\image\s010.prg
+     * Link updated.
+
+2020-04-08 19:30 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\image\s014.prg
+     ; How to load an EMF image to an Image control.
+
+2020-04-08 19:24 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\image\s014.emf
+
 2020-04-01 19:04 UTC-0300 José M. C. Quintas
    * samples\tab\demo.prg
      * Improved.
