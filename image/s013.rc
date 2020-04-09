@@ -9,7 +9,8 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download oohg.jpg and s013.rc from:
- * https://github.com/oohg/samples/tree/master/Image
+ * https://github.com/oohg/samples/tree/master/image
  */
 
-HARBOUR GIF "demo.gif"
+HARBOUR  GIF   "demo.gif"
+OOHG     JPEG  "oohg.jpg"

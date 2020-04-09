@@ -9,7 +9,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download oohg.jpg and s013.rc from:
- * https://github.com/oohg/samples/tree/master/Image
+ * https://github.com/oohg/samples/tree/master/image
  */
 
 #include "oohg.ch"
@@ -24,23 +24,25 @@ FUNCTION Main
       TITLE "ooHG - Print an Image using it's handle or from resources" ;
       MAIN
 
-      @ 20, 20 IMAGE 0 ;
-         OBJ oImage ;
-         IMAGESIZE ;
-         PICTURE "oohg.jpg"
+      @ 10, 020 LABEL 0 VALUE "From resources" SIZE 8
 
-      @ 20, 220 IMAGE 0 ;
-         IMAGESIZE ;
-         PICTURE "HARBOUR"
+      @ 25, 020 IMAGE 0 OBJ oImage1 IMAGESIZE PICTURE "OOHG"
 
-      @ 200, 20 BUTTON 0 ;
-         WIDTH 150 ;
-         CAPTION "Print" ;
+      @ 25, 220 IMAGE 0 OBJ oImage2 IMAGESIZE PICTURE "HARBOUR"
+
+      @ 200, 020 BUTTON 0 CAPTION "MiniPrint" WIDTH 150 ;
+         ACTION Print( "MINIPRINT" )
+
+      @ 200, 200 BUTTON 0 CAPTION "HBPrinter" WIDTH 150 ;
          ACTION Print( "HBPRINTER" )
 
-      @ 250, 20 CHECKBOX 0 ;
-         OBJ oCheck ;
-         CAPTION "Image Size"
+      @ 200, 380 CHECKBOX 0 OBJ oCheck CAPTION "Image Size"
+
+      @ 250, 020 LABEL 0 VALUE "From file" SIZE 8
+
+      @ 265, 020 IMAGE 0 OBJ oImage3 IMAGESIZE PICTURE "oohg.jpg"
+
+      @ 265, 220 IMAGE 0 OBJ oImage4 IMAGESIZE PICTURE "demo.gif"
 
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
@@ -56,20 +58,32 @@ PROCEDURE Print( cTPrintLib )
 
    oPrint:Init()
 
-   oPrint:SelPrinter( .T., .T. )
-   IF oPrint:lPrError
-      oPrint:Release()
-      RETURN
-   ENDIF
+      oPrint:SelPrinter( .T., .T. )
+      IF oPrint:lPrError
+         oPrint:Release()
+         RETURN
+      ENDIF
 
-   oPrint:BeginDoc()
-   oPrint:BeginPage()
-   oPrint:PrintData( 5, 10, "Image from handle" )
-   oPrint:PrintBitmap( 6, 10, 16, 30, oImage:hBitmap, , , , , oCheck:Value )
-   oPrint:PrintData( 20, 10, "Image from resource" )
-   oPrint:PrintResource( 21, 10, 31, 70, "HARBOUR", , , , , , , , , oCheck:Value )
-   oPrint:EndPage()
-   oPrint:EndDoc()
+      oPrint:BeginDoc()
+         oPrint:BeginPage()
+
+            oPrint:PrintData( 00, 00, "Image from resource", , , , RED )
+                // PrintResource( nLin, nCol, nLinF, nColF, cResource, aResol, aSize, ...
+            oPrint:PrintResource( 02,   00,   12,    10,    "OOHG",    NIL,    oCheck:Value )
+            oPrint:PrintResource( 02,   20,   12,    40,    "HARBOUR", NIL,    oCheck:Value )
+
+            oPrint:PrintData( 20, 00, "Image from file", , , , GREEN )
+                // PrintImage( nLin, nCol, nLinF, nColF, cImage,     aResol, aSize, ...
+            oPrint:PrintImage( 22,   00,   32,    10,    "oohg.jpg", NIL,    oCheck:Value )
+            oPrint:PrintImage( 22,   20,   32,    40,    "HARBOUR",  NIL,    oCheck:Value )
+
+            oPrint:PrintData( 40, 00, "Image from bitmap", , , , BLUE )
+                // PrintBitmap( nLin, nCol, nLinF, nColF, hBitmap,         aResol, aSize, ...
+            oPrint:PrintBitmap( 42,   00,   52,    10,    oImage1:hBitmap, NIL,    oCheck:Value )
+            oPrint:PrintBitmap( 42,   20,   52,    40,    oImage2:hBitmap, NIL,    oCheck:Value )
+
+         oPrint:EndPage()
+      oPrint:EndDoc()
 
    oPrint:Release()
 
