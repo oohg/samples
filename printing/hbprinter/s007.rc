@@ -1,0 +1,21 @@
+/*
+ * Printing Sample # 7
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
+ * Licensed under The Code Project Open License (CPOL) 1.02
+ * See <http://www.codeproject.com/info/cpol10.aspx>
+ *
+ * This sample shows how to use HBPRINTER printing lib.
+ *
+ * Adapted from MINIGUI's advanced printing sample.
+ *
+ * Visit us at https://github.com/oohg/samples
+ *
+ * You can download the related files from
+ * https://github.com/oohg/samples/tree/master/printing/hbprinter
+ */
+
+printicon      ICON       gfx/print.ico
+flags          BITMAP     gfx/flags.bmp
+mytoolbar      BITMAP     gfx/bar.bmp
+picturegif     GIF        gfx/picture.gif
+picturejpg     JPEG       gfx/picture.jpg
