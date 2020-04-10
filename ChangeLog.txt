@@ -12,6 +12,14 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-04-10 20:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s013.prg
+     * Improved.
+
+2020-04-10 20:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\printing\hbprinter\s007.prg
+     * Improved.
+
 2020-04-08 23:05 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\image\s013.prg
    * samples\image\s013.rc
