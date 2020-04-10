@@ -73,9 +73,9 @@ PROCEDURE Print( cTPrintLib )
             oPrint:PrintResource( 02,   20,   12,    40,    "HARBOUR", NIL,    oCheck:Value )
 
             oPrint:PrintData( 20, 00, "Image from file", , , , GREEN )
-                // PrintImage( nLin, nCol, nLinF, nColF, cImage,     aResol, aSize, ...
-            oPrint:PrintImage( 22,   00,   32,    10,    "oohg.jpg", NIL,    oCheck:Value )
-            oPrint:PrintImage( 22,   20,   32,    40,    "HARBOUR",  NIL,    oCheck:Value )
+                // PrintImage( nLin, nCol, nLinF, nColF, cImage,     aResol, aSize,        aExt )
+            oPrint:PrintImage( 22,   00,   32,    10,    "oohg.jpg", NIL,    oCheck:Value, NIL )
+            oPrint:PrintImage( 22,   20,   32,    40,    "demo.gif", NIL,    oCheck:Value, NIL )
 
             oPrint:PrintData( 40, 00, "Image from bitmap", , , , BLUE )
                 // PrintBitmap( nLin, nCol, nLinF, nColF, hBitmap,         aResol, aSize, ...
