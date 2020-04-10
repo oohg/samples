@@ -66,7 +66,7 @@ FUNCTION Print()
    LOCAL cprn, lprev, lr, lck, i, aStar, aPoly1, aPoly2
 
    aStar  := {{20, 32}, {44, 26}, {32, 44}, {32, 20}, {44, 38}}
-   aPoly1 := {{50, 18}, {98, 36}, {80, 60}, {56, 50}}
+   aPoly1 := {{20, 08}, {68, 26}, {50, 60}, {26, 50}}
    aPoly2 := {{20, 70}, {40, 55}, {30, 45}}
 
    lr := Form1.rdg_1.Value
@@ -116,8 +116,6 @@ FUNCTION Print()
       SET PREVIEW RECT 20, 20, GetDesktopHeight()-20, GetDesktopWidth()-20
    ENDIF
 
-   SET PAGE ORIENTATION DMORIENT_PORTRAIT PAPERSIZE DMPAPER_A4 FONT "f0"
-
    DEFINE IMAGELIST "ILIST1" PICTURE "flags"
    DEFINE IMAGELIST "ILIST2" PICTURE "mytoolbar" ICONCOUNT 11
 
@@ -140,18 +138,22 @@ FUNCTION Print()
    COMBINE REGIONS "r0", "r1" TO "r4" STYLE WINDING
    COMBINE REGIONS "r4", "r2" TO "r5" STYLE WINDING
 
-   SELECT FONT "f0"
-   SELECT PEN "p0"
+   SET PAGE ORIENTATION DMORIENT_PORTRAIT PAPERSIZE DMPAPER_A4 FONT "f0"
 
    START DOC NAME Form1.Title
 
+      SELECT FONT "f0"
+      SELECT PEN "p0"
+
       START PAGE
-         @ 00, 00, HBPrnMaxRow + 1, HBPrnMaxCol + 1 RECTANGLE PEN "p1" BRUSH "b1"
+         @ 01, 01, HBPrnMaxRow + 1, HBPrnMaxCol RECTANGLE PEN "p1" // BRUSH "b1"
          @ 10, 10 PICTURE "gfx/sand.gif" SIZE 5, 5 EXTEND HBPrnMaxRow - 20, HBPrnMaxCol - 20
          POLYGON aStar PEN "p0" BRUSH "b1"
          POLYBEZIER aPoly1 PEN "p0"
-         @ 60, 30, 35, 70 LINE PEN "p0"
+         @ 50, 30, 35, 70 LINE PEN "p0"
+         MOVE TO 25, 75
          POLYBEZIERTO aPoly2 PEN "p0"
+         MOVE TO 0, 0
          @ 05, 01 SAY "FONT F1 BOLD ITALIC UNDERLINE STRIKEOUT 30%WIDTH" FONT "f1" TO PRINT
          @ 08, 01 SAY "FONT F2 BOLD" FONT "f2" TO PRINT
       END PAGE
@@ -164,9 +166,11 @@ FUNCTION Print()
          DELETE CLIP REGION
       END PAGE
 
+      SET PAGE ORIENTATION DMORIENT_PORTRAIT
+
       START PAGE
-         SELECT PEN "P1"
-         SELECT BRUSH "B0"
+         SELECT PEN "p1"
+         SELECT BRUSH "b0"
 
          @ 01, 01, 05, 031 RECTANGLE
          @ 03, 02 SAY "RECTANGLE" TO PRINT
@@ -187,8 +191,6 @@ FUNCTION Print()
          @ 13, 32 SAY "ELLIPSE" TO PRINT
       END PAGE
 
-      SET PAGE ORIENTATION DMORIENT_PORTRAIT PAPERSIZE DMPAPER_A4 FONT "f0"
-
       START PAGE
          @ 10, 10 PICTURE "gfx/sand.gif" SIZE 15, 15 EXTEND 35, 35
          SET TEXTCOLOR 0xff0000
@@ -198,14 +200,14 @@ FUNCTION Print()
          @ 12, 12, HBPrnMaxRow - 10, HBPrnMaxCol - 10 INVERTRECT
       END PAGE
 
-      SET PAGE ORIENTATION DMORIENT_LANDSCAPE PAPERSIZE DMPAPER_A4 FONT "f0"
+      SET PAGE ORIENTATION DMORIENT_LANDSCAPE
       CHANGE PEN "p2" STYLE PS_SOLID
       SELECT PEN "p2"
       SELECT FONT "f2"
 
       START PAGE
          CHANGE BRUSH "b0" COLOR 0xCCFFAA
-         CHANGE PEN "P2" COLOR 0xff0000 WIDTH 5
+         CHANGE PEN "p2" COLOR 0xff0000 WIDTH 5
          @ 00, 00, HBPrnMaxRow, HBPrnMaxCol RECTANGLE PEN "p2" BRUSH "b0"
          SET TEXTCOLOR 0xFF0000
          FOR i := 1 TO 8
@@ -221,7 +223,7 @@ FUNCTION Print()
       SET PAGE ORIENTATION DMORIENT_PORTRAIT
 
       START PAGE
-         SELECT FONT "F0"
+         SELECT FONT "f0"
          SELECT PEN "P0"
          SELECT BRUSH "B2"
 
@@ -252,6 +254,7 @@ FUNCTION Print()
          @ 39, 24 SAY "GIF from resource" TO PRINT
          @ 40, 24 PICTURE "picturegif" SIZE 15, 30
       END PAGE
+
 
    END DOC
 
