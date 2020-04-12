@@ -146,7 +146,7 @@ FUNCTION Print()
       SELECT PEN "p0"
 
       START PAGE
-         @ 01, 01, HBPrnMaxRow + 1, HBPrnMaxCol RECTANGLE PEN "p1" // BRUSH "b1"
+         @ 01, 01, HBPrnMaxRow + 1, HBPrnMaxCol RECTANGLE PEN "p1" BRUSH "b1"
          @ 10, 10 PICTURE "gfx/sand.gif" SIZE 5, 5 EXTEND HBPrnMaxRow - 20, HBPrnMaxCol - 20
          POLYGON aStar PEN "p0" BRUSH "b1"
          POLYBEZIER aPoly1 PEN "p0"
