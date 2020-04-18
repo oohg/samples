@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 4
+ * Combobox Sample # 4
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -48,7 +48,6 @@
  *                    width or minimun, whichever is bigger.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -76,8 +75,15 @@ FUNCTION Main
    @ 40,10 COMBOBOX cmb_1 ;
       OBJ oCmb1 ;
       WIDTH 30 ;
-      ITEMS {'Item A','Item B','Item C - a very big one'} ;
-      VALUE 1
+      ITEMS { 'Item A', 'Item B', 'Item C - a very big one' } ;
+      VALUE 1 ;
+      ON CHANGE AutoMsgBox( oCmb1:Value )
+
+   @ 40, 310 BUTTON 0 ;
+      WIDTH 100 ;
+      HEIGHT 24 ;
+      CAPTION "Select None" ;
+      ACTION oCmb1:Value := NIL   // This clears the selection, you can use 0 instead of NIL
 
    @ 80, 10 BUTTON btn_1 ;
       WIDTH 150 ;
@@ -121,7 +127,7 @@ FUNCTION Main
       WIDTH 150 ;
       HEIGHT 24 ;
       CAPTION "AutosizeDropDown List" ;
-      ACTION oCmb1:AutosizeDropDown( .F., oTxt1:value, oTxt2:value )
+      ACTION oCmb1:AutosizeDropDown( .F., oTxt1:Value, oTxt2:Value )
 
    @ 190, 170 TEXTBOX txt_1 ;
       OBJ oTxt1 ;
@@ -146,7 +152,7 @@ FUNCTION Main
       WIDTH 150 ;
       HEIGHT 24 ;
       CAPTION "AutosizeDropDown Both" ;
-      ACTION oCmb1:AutosizeDropDown( .T., oTxt3:value, oTxt4:value )
+      ACTION oCmb1:AutosizeDropDown( .T., oTxt3:Value, oTxt4:Value )
 
    @ 220, 170 TEXTBOX txt_3 ;
       OBJ oTxt3 ;
@@ -174,9 +180,9 @@ FUNCTION Main
 
    @ 260,200 COMBOBOX cmb_2 ;
       WIDTH 30 ;
-      ITEMS {'Item One', ;
-             'Item Two, Two', ;
-             'Item Three, Three, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, Three, Three'} ;
+      ITEMS { 'Item One', ;
+              'Item Two, Two', ;
+              'Item Three, Three, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, Three, Three' } ;
       VALUE 1
 
    @ 300,10 LABEL lbl_10 ;
@@ -187,13 +193,13 @@ FUNCTION Main
    @ 300,200 COMBOBOX cmb_3 ;
       OBJ oCmb3 ;
       WIDTH 30 ;
-      ITEMS {'First item', ;
-             'B', ;
-             'Third and final item'} ;
-      VALUE 2
-   oCmb3:Autosize( .T. )
+      ITEMS { 'First item', ;
+              'B', ;
+              'Third and final item' } ;
+      VALUE 2 ;
+      AUTOSIZE
 
-    ON KEY ESCAPE ACTION THISWINDOW.RELEASE
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
 
    CENTER WINDOW Form_1
@@ -204,9 +210,7 @@ RETURN NIL
 FUNCTION AdjustSize( oWin )
 
    WITH OBJECT oWin
-      :cmb_2:AutoSizeDropDown( .T., ;
-                         30, ;
-                         :ClientWidth - :lbl_9:Col - :lbl_9:Width - 20 )
+      :cmb_2:AutoSizeDropDown( .T., 30, :ClientWidth - :lbl_9:Col - :lbl_9:Width - 20 )
    END WITH
 
 RETURN NIL

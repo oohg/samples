@@ -1,5 +1,5 @@
 /*
- * ComboBox Sample #9
+ * ComboBox Sample # 9
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -34,17 +34,17 @@ FUNCTION Main
       END MENU
 
       @ 10,10 COMBOBOX Combo_1 OBJ oCombo ;
-         ITEMS { 'A' , 'B' , 'C' } ;
+         ITEMS { 'A', 'B', 'C' } ;
          VALUE 1 ;
          DISPLAYEDIT MAXLENGTH 20 ;
          ON DISPLAYCHANGE PlayBeep()
 
       @ 10,210 COMBOBOX Combo_2 ;
-         ITEMS { 'A' , 'B' , 'C' } ;
+         ITEMS { 'A', 'B', 'C' } ;
          VALUE 1 ;
          DISPLAYEDIT MAXLENGTH 20 NOHSCROLL
 
-      ON KEY ESCAPE ACTION ThisWindow.Release
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
 
    CENTER WINDOW Form_1

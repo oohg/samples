@@ -27,12 +27,12 @@ FUNCTION Main
       @ 10,10 COMBOBOX Combo1 OBJ oCombo1 ;
          WIDTH 200 ;
          DELAYEDLOAD ;
-         ITEMSOURCE ( { 'Test', 'Name', 'tName' } ) ;
-         VALUESOURCE 'test->Code' ;
-         ON CHANGE ( oValue1:value := "Value (code) is: " + ;
-                                      AutoType(oCombo1:Value), ;
-                     oItem1:value := "Item (name) is: " + ;
-                                     oCombo1:ItemBySource(oCombo1:Value) )
+         ITEMSOURCE ( { 's013', 'Data', 'tData' } ) ;
+         VALUESOURCE 's013->Code' ;
+         ON CHANGE ( oValue1:Value := "Value (code) is: " + ;
+                                      AutoType( oCombo1:Value ), ;
+                     oItem1:Value := "Item (data) is: " + ;
+                                     oCombo1:ItemBySource( oCombo1:Value ) )
 /*
  * You can replace ItemBySource(oCombo1:Value) with
  * Item(ASCAN(oCombo1:aValues, oCombo1:Value)).
@@ -45,17 +45,17 @@ FUNCTION Main
          AUTOSIZE
 
       @ 80,10 LABEL Label12 OBJ oItem1 ;
-         VALUE "Select an item to see it's caption (name)" ;
+         VALUE "Select an item to see it's caption (data)" ;
          AUTOSIZE
 
       @ 160,10 COMBOBOX Combo2 OBJ oCombo2 ;
          WIDTH 200 ;
          DELAYEDLOAD ;
-         ITEMSOURCE ( { 'Test', 'Name', 'tCode' } ) ;
-         ON CHANGE ( oValue2:value := "Value (recno) is: " + ;
-                                      AutoType(oCombo2:Value), ;
-                     oItem2:value := "Item (name) is: " + ;
-                                     oCombo2:ItemBySource(oCombo2:Value) )
+         ITEMSOURCE ( { 's013', 'Data', 'tCode' } ) ;
+         ON CHANGE ( oValue2:Value := "Value (recno) is: " + ;
+                                      AutoType( oCombo2:Value ), ;
+                     oItem2:Value := "Item (data) is: " + ;
+                                     oCombo2:ItemBySource( oCombo2:Value ) )
 /*
  * You can replace ItemBySource(oCombo2:Value) with
  * Item(oCombo2:Value).
@@ -68,7 +68,7 @@ FUNCTION Main
          AUTOSIZE
 
       @ 280,10 LABEL Label22 OBJ oItem2 ;
-         VALUE "Select an item to see it's caption (name)" ;
+         VALUE "Select an item to see it's caption (data)" ;
          AUTOSIZE
 
       ON KEY ESCAPE ACTION oWnd:Release()
@@ -83,31 +83,38 @@ FUNCTION OpenTables()
 
    LOCAL aDbf[ 2, 4 ], i
 
-   aDbf[1] := { "Code", "N", 5, 0 }
-   aDbf[2] := { "Name", "C", 50, 0 }
+   IF File( "s013.dbf" ) .AND. File( "s013.cdx ")
+      USE s013 SHARED VIA "DBFCDX"
+   ELSE
+      aDbf[1] := { "code", "N", 5, 0 }
+      aDbf[2] := { "data", "C", 25, 0 }
 
-   REQUEST DBFCDX
+      REQUEST DBFCDX
 
-   dbCreate( "Test", aDbf )
+      dbCreate( "s013", aDbf, "DBFCDX" )
 
-   USE test VIA "DBFCDX"
+      USE s013 SHARED VIA "DBFCDX"
 
-   FOR i := 1 TO 500
-      APPEND BLANK
-      REPLACE Code WITH i
-      REPLACE Name WITH Upper( Replicate( Chr( hb_RandomInt( 97, 122 ) ), 5 ) ) + " code=" + LTrim( Str( Code ) ) + " rec=" + LTrim( Str( RecNo() ) )
-   NEXT i
+      FOR i := 1 TO 500
+         APPEND BLANK
+         REPLACE code WITH i * 3
+         REPLACE data WITH {"1", "2", "3", "4", "5"} [ i % 5 + 1 ] + " Recno " + StrZero( i, 4, 0 ) + " Code " + LTrim( Str( Code ) )
+      NEXT i
 
-   INDEX ON Name TAG tName TO Test
-   INDEX ON Code TAG tCode TO Test
+      INDEX ON code TAG tCode TO s013
+      INDEX ON data TAG tData TO s013
+   ENDIF
 
 RETURN NIL
 
 FUNCTION CloseTables()
 
    CLOSE DATABASES
-   ERASE Test.dbf
-   ERASE Test.cdx
+
+   IF MsgYesNo( "Delete auxiliary files?" )
+      ERASE s013.dbf
+      ERASE s013.cdx
+   ENDIF
 
 RETURN NIL
 

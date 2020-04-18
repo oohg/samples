@@ -1,5 +1,5 @@
 /*
- * Combobox Sample #5
+ * Combobox Sample # 5
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -19,6 +19,16 @@
 #include "oohg.ch"
 
 FUNCTION Main
+
+   IF _OOHG_ComboIndexIsValue
+      IF MsgYesNo( "Set COMBOINDEXISVALUE to OFF?" )
+         SET COMBOINDEXISVALUE OFF
+      ENDIF
+   ELSE
+      IF MsgYesNo( "Set COMBOINDEXISVALUE to ON?" )
+         SET COMBOINDEXISVALUE ON
+      ENDIF
+   ENDIF
 
    i := 1
 
@@ -47,11 +57,14 @@ FUNCTION Main
 
      @ 60 + oWnd:Label:Height,120 BUTTON Button2 ;
          CAPTION "Add item" ;
-         ACTION ( oWnd:Combo:AddItem( "xx" + hb_ntos( i ), "XX" + hb_ntos( i ) ), MsgInfo( "Item XX" + hb_ntos( i ++ ) + " added!" ) )
+         ACTION ( oWnd:Combo:AddItem( "xx" + hb_ntos( i ), "XX" + hb_ntos( i ) ), ;
+                  MsgInfo( "Item XX" + hb_ntos( i ++ ) + " added!" ) )
 
      @ 60 + oWnd:Label:Height,230 BUTTON Button3 ;
          CAPTION "Delete item" ;
-         ACTION MsgInfo( iif( oWnd:Combo:DeleteItem( 2 ), "Item 2 deleted!", "Can't delete item 2!" ) )
+         ACTION MsgInfo( iif( oWnd:Combo:DeleteItem( 2 ), ;
+                              "Second item deleted!", ;
+                              "Can't delete second item!" ) )
 
       ON KEY ESCAPE ACTION oWnd:Release()
    END WINDOW
@@ -66,7 +79,10 @@ FUNCTION Main
 FUNCTION ChangeLabel
 
    nOldH := oWnd:Label:Height
-   oWnd:Label:Value := "The combo's value is: " + CRLF + oWnd:Combo:Value
+   oWnd:Label:Value := "The combo's value is: " + CRLF + ;
+                       iif( ValType( oWnd:Combo:Value ) == "N", ;
+                            LTrim( Str( oWnd:Combo:Value ) ), ;
+                            oWnd:Combo:Value )
    IF nOldH # oWnd:Label:Height
       oWnd:Button3:Row := ;
       oWnd:Button2:Row := ;

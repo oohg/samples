@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 10
+ * Combobox Sample # 10
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -94,7 +94,7 @@ FUNCTION Main
                "Note that the item displayed in the editbox is always placed at the top-left corner by Windows."
 
 
-      ON KEY ESCAPE ACTION ThisWindow.Release()
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
 
    CENTER WINDOW Form_1

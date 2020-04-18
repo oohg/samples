@@ -1,43 +1,75 @@
 /*
- * Combobox Sample n° 6
+ * Combobox Sample # 6
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to populate a combobox from a dbf
- * using ITEMSOURCE and VALUESOURCE clauses.
+ * using specific fields and the current index order.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
 #include "dbstruct.ch"
 
+REQUEST DBFCDX, DBFFPT
+
 FUNCTION Main
 
-   LOCAL oWnd
-
-   REQUEST DBFCDX, DBFFPT
+   IF _OOHG_ComboIndexIsValue
+      IF MsgYesNo( "Set COMBOINDEXISVALUE to OFF?" )
+         SET COMBOINDEXISVALUE OFF
+      ENDIF
+   ELSE
+      IF MsgYesNo( "Set COMBOINDEXISVALUE to ON?" )
+         SET COMBOINDEXISVALUE ON
+      ENDIF
+   ENDIF
 
    OpenTables()
+   cIndexKey := IndexKey()
 
    DEFINE WINDOW MAIN OBJ oWnd ;
       TITLE "Combobox from a DBF" ;
-      WIDTH 350 ;
-      HEIGHT 200 ;
+      WIDTH 500 ;
+      HEIGHT 300 ;
       ON RELEASE CloseTables()
 
       @ 10,10 COMBOBOX Combo ;
          WIDTH 200 ;
-         ITEMSOURCE 'test->last' ;
-         VALUESOURCE 'test->code' ;
-         VALUE 3 ;
+         ITEMSOURCE "s006->data" ;
+         VALUESOURCE "s006->code" ;
+         VALUE 9 ;
+         HEIGHT 250 ;
          ON CHANGE oWnd:Label:Value := ;
-                      "The combo's value is: " + autotype(oWnd:Combo:Value)
+                      "The combo's value is: " + Autotype( oWnd:Combo:Value )
+/*
+ * If you set combo's value to 9 when COMBOINDEXISVALUE is OFF then
+ *    The item selected is the one with recno() == 3 and s006->code == 9 whatever the index order is.
+ * Else
+ *    The item selected is the nineth record acording to the index order.
+ *    For tCode index: recno() ==  9 and s006->code == 27
+ *    For tData index: recno() == 45 and s006->code == 135
+ *
+ * Note that changing the controlling index after creating the comobo has no effect on the control.
+ */
+      ordSetFocus( iif( cIndexKey == "code", "tData", "tCode" ) )
 
-      @ 60,10 LABEL Label ;
-         VALUE "Select an item in the combo to see it's value !!!" ;
+      @ 10,230 LABEL Label ;
+         VALUE "The combo's value is: " + Autotype( oWnd:Combo:Value ) ;
+         AUTOSIZE
+
+      @ 40,230 LABEL 0 ;
+         VALUE "COMBOINDEXISVALUE is: " + iif( _OOHG_ComboIndexIsValue, "ON", "OFF" ) ;
+         AUTOSIZE
+
+      @ 70,230 LABEL 0 ;
+         VALUE "Combo's index key is: " + cIndexKey ;
+         AUTOSIZE
+
+      @ 100,230 LABEL 0 ;
+         VALUE "Controlling index key is: " + IndexKey() ;
          AUTOSIZE
 
       ON KEY ESCAPE ACTION oWnd:Release()
@@ -48,43 +80,43 @@ FUNCTION Main
 
 RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION OpenTables()
 
-   LOCAL aDbf[ 2, 4 ]
+   LOCAL aDbf[ 2, 4 ], i
 
-   aDbf[1][ DBS_NAME ] := "Code"
-   aDbf[1][ DBS_TYPE ] := "Numeric"
-   aDbf[1][ DBS_LEN ]  := 3
-   aDbf[1][ DBS_DEC ]  := 0
+   IF File( "s006.dbf" ) .AND. File( "s006.cdx ")
+      USE s006 SHARED VIA "DBFCDX"
+   ELSE
+      aDbf[1] := { "code", "N", 3, 0 }
+      aDbf[2] := { "data", "C", 25, 0 }
 
-   aDbf[2][ DBS_NAME ] := "Last"
-   aDbf[2][ DBS_TYPE ] := "Character"
-   aDbf[2][ DBS_LEN ]  := 25
-   aDbf[2][ DBS_DEC ]  := 0
+      REQUEST DBFCDX
 
-   DBCREATE("Test", aDbf, "DBFCDX")
+      dbCreate( "s006", aDbf, "DBFCDX" )
 
-   USE test VIA "DBFCDX"
-   ZAP
+      USE s006 SHARED VIA "DBFCDX"
 
-   FOR i := 1 TO 50
-      APPEND BLANK
-      REPLACE Code WITH i * 3
-      REPLACE Last WITH 'Last Name '+ STR(i)
-   NEXT i
+      FOR i := 1 TO 50
+         APPEND BLANK
+         REPLACE code WITH i * 3
+         REPLACE data WITH {"1", "2", "3", "4", "5"} [ i % 5 + 1 ] + " Recno " + StrZero( i, 2, 0 ) + " Code " + LTrim( Str( Code ) )
+      NEXT i
 
-   INDEX ON Code TAG Code TO Test
+      INDEX ON code TAG tCode TO s006
+      INDEX ON data TAG tData TO s006
+   ENDIF
+   ordSetFocus( iif( MsgYesNo( "Use 'tCode' order?" ), "tCode", "tData" ) )
 
 RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CloseTables()
-   LOCAL cIndexExt := INDEXEXT()
 
    CLOSE DATABASES
-   ERASE ("Test" + cIndexExt)
-   ERASE Test.dbf
+
+   IF MsgYesNo( "Delete auxiliary files?" )
+      ERASE s006.dbf
+      ERASE s006.cdx
+   ENDIF
 
 RETURN NIL
 

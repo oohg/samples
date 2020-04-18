@@ -1,5 +1,5 @@
 /*
- * ComboBox Sample #7
+ * ComboBox Sample # 7
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -53,25 +53,23 @@ FUNCTION Main
 
       @ 50, 10 TEXTBOX Text_1 OBJ oText
 
+      ON KEY ESCAPE ACTION ThisWindow:Release
    END WINDOW
 
    CENTER WINDOW Form_1
-
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 STATIC FUNCTION ForceUpperCase( oCombo, oText )
 
-  LOCAL nPos := oCombo:CaretPos
+   LOCAL nPos := oCombo:CaretPos
 
-  oText:value := oCombo:DisplayValue
+   oText:value := oCombo:DisplayValue
+   oCombo:DisplayValue := Upper( oCombo:DisplayValue )
+   oCombo:CaretPos := nPos
 
-  oCombo:DisplayValue := Upper( oCombo:DisplayValue )
-
-  oCombo:CaretPos := nPos
-
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF

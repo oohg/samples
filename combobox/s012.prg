@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 12
+ * Combobox Sample # 12
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -24,11 +24,11 @@ FUNCTION Main
 
       @ 10, 10 BUTTON btn_1 ;
          CAPTION "Exit" ;
-         ACTION ThisWindow.Release()
+         ACTION ThisWindow:Release()
 
       @ 50,10 COMBOBOX cmb_1 ;
          OBJ oCombo ;
-         ITEMS { "B" , "A" , "C"  } ;
+         ITEMS { "B", "A", "C"  } ;
          ON GOTFOCUS oCombo:ShowDropDown( .T. )
 
       @ 100, 10 LABEL lbl_1 ;

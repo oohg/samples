@@ -1,5 +1,5 @@
 /*
- * Combobox Sample #1
+ * Combobox Sample # 1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -13,7 +13,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download all the images from
- * https://github.com/oohg/samples/tree/master/ComboBox
+ * https://github.com/oohg/samples/tree/master/combobox
  */
 
 #include "oohg.ch"
@@ -37,9 +37,9 @@ FUNCTION Main()
          OBJ oCmb_1 ;
          HEIGHT 200 ;
          WIDTH 185 ;
-         ITEMSOURCE "test->item" ;
-         ITEMIMAGENUMBER {|| test->(RecNo()) - 1} ;
-         IMAGESOURCE {|| test->image} ;
+         ITEMSOURCE "s001->item" ;
+         ITEMIMAGENUMBER { || s001->( RecNo() ) - 1 } ;
+         IMAGESOURCE { || s001->image} ;
          FIT ;
          VALUE 1 ;
          TEXTHEIGHT 40     // Use EDITHEIGHT 40 to set the edit part only and/or OPTIONSHEIGHT 40 to set the list part only
@@ -48,16 +48,16 @@ FUNCTION Main()
          CAPTION "Change Images" ;
          WIDTH 100 ;
          HEIGHT 28 ;
-         ACTION {|| oCmb_1:ImageSource := {|| test->image2 }, ;
+         ACTION {|| oCmb_1:ImageSource := { || s001->image2 }, ;
                     oCmb_1:Refresh() }
 
       @ 70,260 BUTTON btn_2 ;
          CAPTION "Get Item 2 position" ;
          WIDTH 140 ;
          HEIGHT 28 ;
-         ACTION AutoMsgBox( oCmb_1:ItemValue( PadR( "Item 2", Len( test->item ) ) ) )        // Exact match
+         ACTION AutoMsgBox( oCmb_1:ItemValue( PadR( "Item 2", Len( s001->item ) ) ) )        // Exact match
 
-      ON KEY ESCAPE ACTION ThisWindow.Release()
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
 
    CENTER WINDOW Form1
@@ -67,28 +67,28 @@ RETURN NIL
 
 FUNCTION CreateDatabase()
 
-   LOCAL aDbf[3][4]
+   LOCAL aDbf[3,4]
 
-   aDbf[1][ DBS_NAME ] := "Item"
-   aDbf[1][ DBS_TYPE ] := "Character"
-   aDbf[1][ DBS_LEN ]  := 20
-   aDbf[1][ DBS_DEC ]  := 0
+   aDbf[1, DBS_NAME ] := "Item"
+   aDbf[1, DBS_TYPE ] := "Character"
+   aDbf[1, DBS_LEN ]  := 20
+   aDbf[1, DBS_DEC ]  := 0
 
-   aDbf[2][ DBS_NAME ] := "Image"
-   aDbf[2][ DBS_TYPE ] := "Character"
-   aDbf[2][ DBS_LEN ]  := 12
-   aDbf[2][ DBS_DEC ]  := 0
+   aDbf[2, DBS_NAME ] := "Image"
+   aDbf[2, DBS_TYPE ] := "Character"
+   aDbf[2, DBS_LEN ]  := 12
+   aDbf[2, DBS_DEC ]  := 0
 
-   aDbf[3][ DBS_NAME ] := "Image2"
-   aDbf[3][ DBS_TYPE ] := "Character"
-   aDbf[3][ DBS_LEN ]  := 12
-   aDbf[3][ DBS_DEC ]  := 0
+   aDbf[3, DBS_NAME ] := "Image2"
+   aDbf[3, DBS_TYPE ] := "Character"
+   aDbf[3, DBS_LEN ]  := 12
+   aDbf[3, DBS_DEC ]  := 0
 
    REQUEST DBFCDX
 
-   DBCREATE("Test", aDbf, "DBFCDX")
+   dbCreate("s001", aDbf, "DBFCDX")
 
-   USE test Via "DBFCDX"
+   USE s001 Via "DBFCDX"
    ZAP
 
    APPEND BLANK
@@ -108,13 +108,11 @@ FUNCTION CreateDatabase()
 
 RETURN NIL
 
-//--------------------------------------------------------------------------//
 FUNCTION CloseTables()
-   LOCAL cIndexExt := INDEXEXT()
 
    CLOSE DATABASES
-   ERASE ("Test" + cIndexExt)
-   ERASE Test.dbf
+   ERASE ( "s001" + IndexExt() )
+   ERASE s001.dbf
 
 RETURN NIL
 

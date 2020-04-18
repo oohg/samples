@@ -1,5 +1,5 @@
 /*
- * Combobox Sample n° 3
+ * Combobox Sample # 3
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -8,7 +8,6 @@
  * sorted combobox.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -30,11 +29,11 @@ FUNCTION Main
 
       @ 50, 10 BUTTON boton ;
          CAPTION "Change" ;
-         ACTION {|| AutoMsgBox(oCombo:value), ;
-                    oCombo:Item(2, "Z"), ;
-                    AutoMsgBox(oCombo:value) }
+         ACTION {|| AutoMsgBox( oCombo:Value ), ;
+                    oCombo:Item( 2, "Z" ), ;
+                    AutoMsgBox( oCombo:Value ) }
 
-      ON KEY ESCAPE ACTION ThisWindow.Release()
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
 
    CENTER WINDOW Form_1

@@ -1,5 +1,5 @@
 /*
- * ComboBox Sample n° 11
+ * ComboBox Sample # 11
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -27,8 +27,8 @@ FUNCTION Main
       @ 10,10 COMBOBOX Combo1 OBJ oCombo1 ;
          WIDTH 200 ;
          DISPLAYEDIT ;
-         ITEMSOURCE ( { 'Test', 'Name', 'tName' } ) ;
-         VALUESOURCE 'test->Code' ;
+         ITEMSOURCE ( { 's011', 'Name', 'tName' } ) ;
+         VALUESOURCE 's011->Code' ;
          ON CHANGE ( oValue1:value := "Value (code) is: " + ;
                                       AutoType(oCombo1:Value), ;
                      oItem1:value := "Item (name) is: " + ;
@@ -51,7 +51,7 @@ FUNCTION Main
       @ 210,10 COMBOBOX Combo2 OBJ oCombo2 ;
          WIDTH 200 ;
          DISPLAYEDIT ;
-         ITEMSOURCE ( { 'Test', 'Name', 'tName' } ) ;
+         ITEMSOURCE ( { 's011', 'Name', 'tName' } ) ;
          ON CHANGE ( oValue2:value := "Value (recno) is: " + ;
                                       AutoType(oCombo2:Value), ;
                      oItem2:value := "Item (name) is: " + ;
@@ -83,31 +83,38 @@ FUNCTION OpenTables()
 
    LOCAL aDbf[ 2, 4 ], i
 
-   aDbf[1] := { "Code", "N", 3, 0 }
-   aDbf[2] := { "Name", "C", 25, 0 }
+   IF File( "s011.dbf" ) .AND. File( "s011.cdx ")
+      USE s011 SHARED VIA "DBFCDX"
+   ELSE
+      aDbf[1] := { "code", "N", 3, 0 }
+      aDbf[2] := { "data", "C", 25, 0 }
 
-   REQUEST DBFCDX
+      REQUEST DBFCDX
 
-   dbCreate( "Test", aDbf )
+      dbCreate( "s011", aDbf, "DBFCDX" )
 
-   USE test VIA "DBFCDX"
+      USE s011 SHARED VIA "DBFCDX"
 
-   FOR i := 1 TO 50
-      APPEND BLANK
-      REPLACE Code WITH i * 3
-      REPLACE Name WITH Replicate( Chr( hb_RandomInt( 97, 122  ) ), 9 ) + " code=" + Str( Code, 3, 0 ) + " rec=" + Str( RecNo(), 2, 0 )
-   NEXT i
+      FOR i := 1 TO 50
+         APPEND BLANK
+         REPLACE code WITH i * 3
+         REPLACE data WITH {"1", "2", "3", "4", "5"} [ i % 5 + 1 ] + " Recno " + StrZero( i, 2, 0 ) + " Code " + LTrim( Str( Code ) )
+      NEXT i
 
-   INDEX ON Name TAG tName TO Test
-   INDEX ON Code TAG tCode TO Test
+      INDEX ON code TAG tCode TO s011
+      INDEX ON data TAG tData TO s011
+   ENDIF
 
 RETURN NIL
 
 FUNCTION CloseTables()
 
    CLOSE DATABASES
-   ERASE Test.dbf
-   ERASE Test.cdx
+
+   IF MsgYesNo( "Delete auxiliary files?" )
+      ERASE s011.dbf
+      ERASE s011.cdx
+   ENDIF
 
 RETURN NIL
 
