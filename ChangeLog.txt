@@ -1528,154 +1528,154 @@
      * Changed comments about methods used and not used by TXBROWSE class.
 
 2011-07-17 09:39 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\chat.prg
-  + samples\oohg\stream\TStream.prg
-  + samples\oohg\stream\TStreamSerial.prg
-  + samples\oohg\stream\TStreamSocket.prg
-  + samples\oohg\stream\TStreamSSL.prg
-  + samples\oohg\stream\TStreamZip.prg
-    + TStream class added.
+   + samples\oohg\chat.prg
+   + samples\oohg\stream\TStream.prg
+   + samples\oohg\stream\TStreamSerial.prg
+   + samples\oohg\stream\TStreamSocket.prg
+   + samples\oohg\stream\TStreamSSL.prg
+   + samples\oohg\stream\TStreamZip.prg
+     + TStream class added.
 
 2011-07-02 16:26 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
-  * samples\oohg\browsecolumncontrols.dbf
-  * samples\oohg\browsecolumncontrols.prg
-    * Modified to show how to edit date fields in a browse using
-      TGridControlDatePicker class.
+   * samples\oohg\browsecolumncontrols.dbf
+   * samples\oohg\browsecolumncontrols.prg
+     * Modified to show how to edit date fields in a browse using
+       TGridControlDatePicker class.
 
 2011-01-24 13:39 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\oohgrecord\xbrowsearray.prg
-    ! Fixed wrong ::Skip() movement.
+   * samples\oohg\oohgrecord\xbrowsearray.prg
+     ! Fixed wrong ::Skip() movement.
 
 2010-12-01 12:57 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\oohgrecord\brw_odbc.prg
-    * Prevents "sample PRG code" compilation when NO_SAMPLE
-      macro is defined. Useful for #include .PRG file without
-      sample code.
-  * samples\oohg\oohgrecord\textfile.prg
-    ! Fixed field reading for fixed-width columns.
-  * samples\oohg\oohgrecord\xbrowsearray.prg
-    * Added ::EOF() functionality.
+   * samples\oohg\oohgrecord\brw_odbc.prg
+     * Prevents "sample PRG code" compilation when NO_SAMPLE
+       macro is defined. Useful for #include .PRG file without
+       sample code.
+   * samples\oohg\oohgrecord\textfile.prg
+     ! Fixed field reading for fixed-width columns.
+   * samples\oohg\oohgrecord\xbrowsearray.prg
+     * Added ::EOF() functionality.
 
 2010-11-29 20:21 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\oohgrecord\px.prg
-  * samples\oohg\oohgrecord\recordmerge.prg
-  * samples\oohg\oohgrecord\xbrowsearray.prg
-    * Prevents "sample PRG code" compilation when NO_SAMPLE
-      macro is defined. Useful for #include .PRG file without
-      sample code.
-  + samples\oohg\oohgrecord\textfile.prg
-    + Textfile-as-database class.
-      NOTE: This class can't be used on XBROWSE control.
-      This allows to read a sequentual text file (delimited or
-      fixed width) as a ooHGRecord class. Since it doesn't have
-      random access, it only supports forward SKIPs (and
-      ::GoTop(), too), but it's an easy way to read these files.
+   * samples\oohg\oohgrecord\px.prg
+   * samples\oohg\oohgrecord\recordmerge.prg
+   * samples\oohg\oohgrecord\xbrowsearray.prg
+     * Prevents "sample PRG code" compilation when NO_SAMPLE
+       macro is defined. Useful for #include .PRG file without
+       sample code.
+   + samples\oohg\oohgrecord\textfile.prg
+     + Textfile-as-database class.
+       NOTE: This class can't be used on XBROWSE control.
+       This allows to read a sequentual text file (delimited or
+       fixed width) as a ooHGRecord class. Since it doesn't have
+       random access, it only supports forward SKIPs (and
+       ::GoTop(), too), but it's an easy way to read these files.
 
 2009-12-23 18:05 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\incremental.prg
-    + Incremental search sample.
+   + samples\incremental.prg
+     + Incremental search sample.
 
 2008-12-10 22:51 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\recordmerge.prg
-    + Multiple databases on a single XBROWSE sample.
+   + samples\oohg\recordmerge.prg
+     + Multiple databases on a single XBROWSE sample.
 
 2008-07-11 23:57 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\DropFiles.prg
-    + Drag and drop files sample.
+   + samples\oohg\DropFiles.prg
+     + Drag and drop files sample.
 
 2008-01-12 14:16 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\xbrowsearray.prg
-    + XBROWSE displays an array.
+   + samples\oohg\xbrowsearray.prg
+     + XBROWSE displays an array.
 
 2007-05-09 17:58 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples\oohg\hello.prg
-  * samples\oohg\printtest.prg
+   * samples\oohg\hello.prg
+   * samples\oohg\printtest.prg
 
 2007-03-25 16:37 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\activexdemo.prg
-    + ActiveX control added.
+   + samples\oohg\activexdemo.prg
+     + ActiveX control added.
 
 2006-08-21 14:36 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples\oohg\printtest.prg
-     * update samples
+   * samples\oohg\printtest.prg
+      * update samples
 
 2006-03-26 07:14 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples\oohg\hello.prg
-  * samples\oohg\prnttest.prg
-    *  little change in sample in order to last tprint changes
+   * samples\oohg\hello.prg
+   * samples\oohg\prnttest.prg
+     *  little change in sample in order to last tprint changes
 
 2006-02-27 20:26 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  * samples\oohg\hello.prg
-  * samples\oohg\printtest.prg
-     * updated print samples
+   * samples\oohg\hello.prg
+   * samples\oohg\printtest.prg
+      * updated print samples
 
 2006-02-05 18:19 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  - samples\oohg\pirntest.prg
-    * Removed unnecesary file.
+   - samples\oohg\pirntest.prg
+     * Removed unnecesary file.
 
 2006-01-19 13:06 UTC-0500 Ciro Vargas C. <pcman2010@yahoo.com>
-  + samples\oohg\printtest.prg
-  + samples\oohg\test.dbf
-  + samples\oohg\test.dbt
-  + samples\oohg\report1.rpt
-    + New TPRINT class , now can change print library without modify source code
+   + samples\oohg\printtest.prg
+   + samples\oohg\test.dbf
+   + samples\oohg\test.dbt
+   + samples\oohg\report1.rpt
+     + New TPRINT class , now can change print library without modify source code
 
 2005-11-30 21:27 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\browsecolumncontrols.prg
-  * samples\oohg\gridcolumncontrols.prg
-    ! Fixed TRadio:aItems[] to TRadio:aControls[]
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\gridcolumncontrols.prg
+     ! Fixed TRadio:aItems[] to TRadio:aControls[]
 
 2005-11-12 18:07 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\hello.prg
-    * Cosmetic changes.
+   * samples\oohg\hello.prg
+     * Cosmetic changes.
 
 2005-11-12 15:26 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-    * samples\oohg\hello.prg
+   * samples\oohg\hello.prg
 
 2005-11-09 22:28 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\hello.prg
-    * XDEFINE WINDOW command changed to DEFINE WINDOW. "Old"
-      DEFINE WINDOW commands are commented.
+   * samples\oohg\hello.prg
+     * XDEFINE WINDOW command changed to DEFINE WINDOW. "Old"
+       DEFINE WINDOW commands are commented.
 
 2005-11-09 00:00 UTC-0600 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\hello.prg
-    * Samples for NOBORDER and ::SetKey() added.
+   * samples\oohg\hello.prg
+     * Samples for NOBORDER and ::SetKey() added.
 
 2005-10-27 23:41 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\browsecolumncontrols.prg
-  * samples\oohg\gridcolumncontrols.prg
+   * samples\oohg\browsecolumncontrols.prg
+   * samples\oohg\gridcolumncontrols.prg
 
 2005-10-23 12:51 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\gridcolumncontrols.prg
-  * samples\oohg\browsecolumncontrols.prg
-    + Added ::nSpacing property to MyRadioGroup (TGridControlRadioGroup)
-      class.
+   * samples\oohg\gridcolumncontrols.prg
+   * samples\oohg\browsecolumncontrols.prg
+     + Added ::nSpacing property to MyRadioGroup (TGridControlRadioGroup)
+       class.
 
 2005-10-22 01:11 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\gridcolumncontrols.prg
-    + Demo program for demostrate how to create "new" COLUMNCONTROLS
-      objects on grid.
-  + samples\oohg\browsecolumncontrols.dbf
-  + samples\oohg\browsecolumncontrols.prg
-    + Demo program for demostrate how to create "new" COLUMNCONTROLS
-      objects, and REPLACEFIELD clause, on browse.
+   + samples\oohg\gridcolumncontrols.prg
+     + Demo program for demostrate how to create "new" COLUMNCONTROLS
+       objects on grid.
+   + samples\oohg\browsecolumncontrols.dbf
+   + samples\oohg\browsecolumncontrols.prg
+     + Demo program for demostrate how to create "new" COLUMNCONTROLS
+       objects, and REPLACEFIELD clause, on browse.
 
 2005-10-12 17:37 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-    * samples\oohg\hello.prg
-      added bar graph print example.
+   * samples\oohg\hello.prg
+     ; Bar graph print example.
 
 2005-10-11 00:43 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  + samples\oohg\rtl.prg
-    + RTL functionality demo.
+   + samples\oohg\rtl.prg
+     + RTL functionality demo.
 
 2005-10-09 22:30 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\hello.prg
-    * Small adjustments.
+   * samples\oohg\hello.prg
+     * Small adjustments.
 
 2005-10-08 09:00 UTC-0500 Ciro Vargas C. <sistemascvc@softhome.net>
-  * samples\oohg\hello.prg
-    | added example for new method print and other fixes.
+   * samples\oohg\hello.prg
+     * added example for new method print and other fixes.
 
 2005-10-03 00:24 UTC-0500 Vicente Guerra <vicente@guerra.com.mx>
-  * samples\oohg\hello.prg
-    * Changed sample's LABEL definition method.
+   * samples\oohg\hello.prg
+     * Changed sample's LABEL definition method.
