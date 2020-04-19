@@ -17,13 +17,20 @@ REQUEST DBFCDX, DBFFPT
 
 FUNCTION Main
 
-   IF _OOHG_ComboIndexIsValue
-      IF MsgYesNo( "Set COMBOINDEXISVALUE to OFF?" )
-         SET COMBOINDEXISVALUE OFF
+/*
+ * SET COMBOINDEXISVALUEDBF OFF is the default behaviour.
+ * Set to ON to change the behaviour of all the combos in the app.
+ * To set the behaviour of one particular combo use clauses INDEXISVALUE or SOURCEISVALUE.
+ * To get the current setting use var _OOHG_ComboDbfIndexIsValue, default value is .F.
+ */
+
+   IF _OOHG_ComboIndexIsValueDbf
+      IF MsgYesNo( "Set COMBOINDEXISVALUEDBF to OFF?" )
+         SET COMBOINDEXISVALUEDBF OFF
       ENDIF
    ELSE
-      IF MsgYesNo( "Set COMBOINDEXISVALUE to ON?" )
-         SET COMBOINDEXISVALUE ON
+      IF MsgYesNo( "Set COMBOINDEXISVALUEDBF to ON?" )
+         SET COMBOINDEXISVALUEDBF ON
       ENDIF
    ENDIF
 
@@ -42,17 +49,20 @@ FUNCTION Main
          VALUESOURCE "s006->code" ;
          VALUE 9 ;
          HEIGHT 250 ;
-         ON CHANGE oWnd:Label:Value := ;
-                      "The combo's value is: " + Autotype( oWnd:Combo:Value )
+         NOREFRESH ;
+         ON CHANGE oWnd:Label:Value := "The combo's value is: " + Autotype( oWnd:Combo:Value )
 /*
- * If you set combo's value to 9 when COMBOINDEXISVALUE is OFF then
+ * If you set combo's value to 9 when COMBOINDEXISVALUEDBF is OFF then
  *    The item selected is the one with recno() == 3 and s006->code == 9 whatever the index order is.
  * Else
  *    The item selected is the nineth record acording to the index order.
  *    For tCode index: recno() ==  9 and s006->code == 27
  *    For tData index: recno() == 45 and s006->code == 135
  *
- * Note that changing the controlling index after creating the comobo has no effect on the control.
+ * Note that changing the controlling index between the combo´s creation and the end of the form's
+ * INIT procedure will change the order of the items unless, inbetween, combo's NOREFRESH clause
+ * is set or combo´s LREFRESH data is set to .F. or SET COMBOREFRESH is OFF. See method RefreshData.
+ * So the next sentence has no effect on the combo.
  */
       ordSetFocus( iif( cIndexKey == "code", "tData", "tCode" ) )
 
@@ -61,11 +71,11 @@ FUNCTION Main
          AUTOSIZE
 
       @ 40,230 LABEL 0 ;
-         VALUE "COMBOINDEXISVALUE is: " + iif( _OOHG_ComboIndexIsValue, "ON", "OFF" ) ;
+         VALUE "COMBOINDEXISVALUEDBF is: " + iif( _OOHG_ComboIndexIsValueDbf, "ON", "OFF" ) ;
          AUTOSIZE
 
       @ 70,230 LABEL 0 ;
-         VALUE "Combo's index key is: " + cIndexKey ;
+         VALUE "Items were loaded by key: " + cIndexKey ;
          AUTOSIZE
 
       @ 100,230 LABEL 0 ;

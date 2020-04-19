@@ -17,10 +17,10 @@
 FUNCTION Main
 
 /*
- * SET COMBOINDEXISVALUE OFF is the default behaviour.
+ * SET COMBOINDEXISVALUEDBF OFF is the default behaviour.
  * Set to ON to change the behaviour of all the combos in the app.
  * To set the behaviour of one particular combo use clauses INDEXISVALUE or SOURCEISVALUE.
- * To get the current setting use var _OOHG_ComboIndexIsValue, default value is .F.
+ * To get the current setting use var _OOHG_ComboDbfIndexIsValue, default value is .F.
  */
 
    OpenTables()
@@ -40,7 +40,7 @@ FUNCTION Main
          DISPLAYEDIT ;
          ITEMSOURCE ( { 's008', 'Data', 'tData' } ) ;   // If the index name is ommited then the current one is used
          VALUESOURCE s008->Code ;
-         SOURCEISVALUE ;                                // You can ommit this clause if the default set wan't changed
+         SOURCEISVALUE ;                                // You can ommit this clause if the default set wasn't changed
          ON CHANGE ( oValue11:Value := "Value (code) is: " + ;
                                        AutoType( oCombo11:Value ), ;
                      oItem11:Value := "Item (Data) is: " + ;
