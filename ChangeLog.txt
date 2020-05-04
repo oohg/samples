@@ -13,6 +13,10 @@
  */
 
 
+2020-05-03 21:37 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\datainput\s002.prg
+     * Improved.
+
 2020-04-19 16:31 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\combobox\s005.prg
    * samples\combobox\s006.prg
