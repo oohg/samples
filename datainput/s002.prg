@@ -68,7 +68,7 @@ FUNCTION DataInput()
          OBJ oTxt2 ;
          NUMERIC ;
          INPUTMASK "999.9" ;
-         VALID {|| oTxt2:value > 0} ;
+         VALID {|| iif( oTxt2:value > 0, .T., ( Tone( 1500, 2 ), .F. ) ) } ;
          WIDTH 60 ;
          HEIGHT 24 ;
          VALUE 3
