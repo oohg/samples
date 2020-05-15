@@ -50,6 +50,7 @@ Local aRows [20] [3]
 		WIDTH 620 ;
 		HEIGHT 330 ;
 		HEADERS {'Column 1','Column 2','Column 3','Column 4','Column 5'} ;
+      HEADERCOLORS { RED, GREEN, BLUE, YELLOW, PINK } ;
 		WIDTHS {140,140,140,140,140} ;
 		ITEMS aRows ;
 		EDIT ;
