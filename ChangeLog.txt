@@ -13,6 +13,10 @@
  */
 
 
+2020-05-15 00:13 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\grid\demo1.prg
+     + HEADERCOLORS clause.
+
 2020-05-03 21:37 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\datainput\s002.prg
      * Improved.
