@@ -13,6 +13,10 @@
  */
 
 
+2020-05-22 19:45 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\checkbox\s003.prg
+     * Improved.
+
 2020-05-22 09:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    + samples\mixmode\s001.prg
 
