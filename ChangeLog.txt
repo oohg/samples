@@ -13,6 +13,9 @@
  */
 
 
+2020-05-22 09:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\mixmode\s001.prg
+
 2020-05-22 09:23 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\hello\hello.prg
      * Cleaned up.
