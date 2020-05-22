@@ -34,15 +34,18 @@ FUNCTION Main
          HEIGHT 400
 
       DEFINE CHECKBOX ChkBox
-         ROW 70
+         ROW 100
          COL 10
-         WIDTH 280
+         WIDTH 360
          VALUE .F.
          CAPTION 'CheckBox with Transparent Background'
          FONTCOLOR BLUE
+         FONTSIZE 12
+         FONTBOLD .T.
          THREESTATE .T.
          LEFTALIGN .T.
          BACKGROUND oImg
+         NOFOCUSRECT .T.
       END CHECKBOX
 
       ON KEY ESCAPE ACTION Form_1.Release
