@@ -12,6 +12,18 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-05-25 20:07 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\activex\README.md
+     ; Thanks to David Field.
+
+2020-05-25 20:06 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\odbc\sql.ch
+   * samples\http\getpage\i_socket.ch
+   * samples\http\getpage\h_http.prg
+   * samples\dbview\fmgs\hbcompat.ch
+   * samples\browse\tpbrowse\i_pbrowse.ch
+   * samples\browse\tpbrowse\h_pbrowse.prg
+     ! Typo.
 
 2020-05-22 19:45 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\checkbox\s003.prg
