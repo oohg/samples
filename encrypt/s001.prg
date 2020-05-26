@@ -4,10 +4,9 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to encrypt/decrypt a file.
- * Note that the file is encrypted over himself, so you
- * must consider copying it before encryption just in
- * case something goes wrong.
+ * This sample shows how to encrypt/decrypt the header of
+ * a file so it can't be opened by USE command.
+ * Note that the DBF records are not modified.
  *
  * Visit us at https://github.com/oohg/samples
  */

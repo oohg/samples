@@ -4,7 +4,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to encrypt/decrypt a file.
+ * This sample shows how to encrypt/decrypt a file (any kind).
  * Note that the encrypted file will start with this text
  * "ENCRYPTED FILE (C) ODESSA 2002" immediately followed
  * by the encryption password encrypted (10 chars).
