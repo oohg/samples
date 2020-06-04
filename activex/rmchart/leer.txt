@@ -2,3 +2,6 @@
    Los ejemplos que involucren rmchart.prg requiere que tengas instalado el
    ocx de RMChart. Puedes descargarlo de http://www.rmchart.com/
    Oscar Lira Lira |oSkAr| - adaptado para ooHG por MigSoft
+
+   Este OCX es de 32 bits por lo que si se llama desde un programa compilado
+   en 64 bits se producirá un error en tiempo de ejecución.
