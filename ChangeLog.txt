@@ -12,6 +12,28 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-05-06 00:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\browse\browse2.prg
+   * samples\browse\browse3.prg
+   * samples\browse\browse4.prg
+   * samples\browse\browse5.prg
+   * samples\browse\browse8.prg
+     ! Samples don't compile because of missing code.
+
+2020-05-06 00:56 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\s014.bat
+     * Use new compile.bat features.
+
+2020-05-06 00:55 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\bostaurus\s013.prg
+     + 64 bits support.
+
+2020-05-06 00:53 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\blobfiles\s001.prg
+   * samples\blobfiles\s002.prg
+     * Some format.
+     + Cleanup of aux files.
+
 2020-05-04 20:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\activex\rmchart\leer.txt
      + Warning: rmchart is a 32 bits OCX so it doesn't work from
