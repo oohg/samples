@@ -133,6 +133,9 @@ Return Nil
 
 Function CloseTables()
    Use
+   ERASE TEST.DBF
+   ERASE TEST.FPT
+   ERASE CODE.CDX
 Return Nil
 
 Function ChangeTest()

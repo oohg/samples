@@ -94,6 +94,9 @@ Return Nil
 
 Function CloseTables()
    Use
+   ERASE TEST.DBF
+   ERASE TEST.FPT
+   ERASE TEST.CDX
 Return Nil
 
 Procedure CreateTable

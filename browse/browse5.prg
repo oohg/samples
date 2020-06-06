@@ -22,8 +22,11 @@
 * Enjoy !
 
 #include "oohg.ch"
+#include "dbstruct.ch"
 
-Function Main
+REQUEST DBFCDX, DBFFPT
+
+FUNCTION Main
 
 	SET CENTURY ON
 
@@ -83,16 +86,73 @@ Function Main
 Return Nil
 
 Procedure OpenTables()
-	Use Test 
+
+	CreateTable()
+
+	Use Test Via "DBFCDX"
+	Go Top
+
+	Form_1.Browse_1.Value := RecNo()
+
 Return Nil
 
 Procedure CloseTables()
 	Use
+   ERASE TEST.DBF
+   ERASE TEST.FPT
+   ERASE CODE.CDX
 Return Nil
 
+Procedure CreateTable
+LOCAL aDbf[6][4]
 
+        aDbf[1][ DBS_NAME ] := "Code"
+        aDbf[1][ DBS_TYPE ] := "Numeric"
+        aDbf[1][ DBS_LEN ]  := 10
+        aDbf[1][ DBS_DEC ]  := 0
+        //
+        aDbf[2][ DBS_NAME ] := "First"
+        aDbf[2][ DBS_TYPE ] := "Character"
+        aDbf[2][ DBS_LEN ]  := 25
+        aDbf[2][ DBS_DEC ]  := 0
+        //
+        aDbf[3][ DBS_NAME ] := "Last"
+        aDbf[3][ DBS_TYPE ] := "Character"
+        aDbf[3][ DBS_LEN ]  := 25
+        aDbf[3][ DBS_DEC ]  := 0
+        //
+        aDbf[4][ DBS_NAME ] := "Married"
+        aDbf[4][ DBS_TYPE ] := "Logical"
+        aDbf[4][ DBS_LEN ]  := 1
+        aDbf[4][ DBS_DEC ]  := 0
+        //
+        aDbf[5][ DBS_NAME ] := "Birth"
+        aDbf[5][ DBS_TYPE ] := "Date"
+        aDbf[5][ DBS_LEN ]  := 8
+        aDbf[5][ DBS_DEC ]  := 0
+        //
+        aDbf[6][ DBS_NAME ] := "Bio"
+        aDbf[6][ DBS_TYPE ] := "Memo"
+        aDbf[6][ DBS_LEN ]  := 10
+        aDbf[6][ DBS_DEC ]  := 0
+        //
 
+        DBCREATE("Test", aDbf, "DBFCDX")
 
+	Use test Via "DBFCDX"
+	zap
 
+	For i:= 1 To 100
+		append blank
+		Replace code with i
+		Replace First With 'First Name '+ Str(i)
+		Replace Last With 'Last Name '+ Str(i)
+		Replace Married With .t.
+		replace birth with date()+i-10000
+	Next i
 
+	Index on code to code
 
+	Use
+
+Return
