@@ -977,7 +977,7 @@ PROCEDURE DrawBoxInBitmap( hDC, nY, nX, nHigh, nWidth, l3D, nDeep )
 
 #include <windows.h>
 #include "hbapi.h"
-
+#include "oohg.h"
 
 HB_FUNC( PIEDRAWBITMAP )
 {
@@ -986,7 +986,7 @@ HB_FUNC( PIEDRAWBITMAP )
    HPEN hpen;
    HBRUSH hbrush;
 
-   hdc1 = (HDC) hb_parnl (1);
+   hdc1 = HDCparam( 1 );
    hpen = CreatePen( (int) PS_SOLID, (int) hb_parni(11), (COLORREF) RGB( (int) hb_parvni(10,1), (int) hb_parvni(10,2), (int) hb_parvni(10,3) ) );
    hgdiobj1 = SelectObject( (HDC) hdc1, hpen );
    if( hb_parl(13) )
@@ -1019,7 +1019,7 @@ HB_FUNC( POLYGONDRAWBITMAP )
    int number = hb_parinfa( 2, 0 );
    int i;
 
-   hdc1 = (HDC) hb_parnl( 1 );
+   hdc1 = HDCparam( 1 );
    hpen = CreatePen( (int) PS_SOLID, (int) hb_parni( 5 ), (COLORREF) RGB( (int) hb_parvni( 4, 1 ), (int) hb_parvni( 4, 2 ), (int) hb_parvni( 4, 3 ) ) );
    hgdiobj1 = SelectObject( (HDC) hdc1, hpen );
    if( hb_parl( 7 ) )
@@ -1053,7 +1053,7 @@ HB_FUNC( ARCDRAWBITMAP )
    HGDIOBJ hgdiobj1;
    HPEN hpen;
 
-   hdc1 = (HDC) hb_parnl( 1 );
+   hdc1 = HDCparam( 1 );
    hpen = CreatePen( PS_SOLID, (int) hb_parni( 11 ), (COLORREF) RGB( (int) hb_parvni( 10, 1 ), (int) hb_parvni( 10, 2 ), (int) hb_parvni( 10, 3 ) ) );
    hgdiobj1 = SelectObject( hdc1, hpen );
 
@@ -1073,7 +1073,7 @@ HB_FUNC( POLYBEZIERDRAWBITMAP )
    DWORD number= (DWORD) hb_parinfa( 2, 0 );
    DWORD i;
 
-   hdc1 = (HDC) hb_parnl( 1 );
+   hdc1 = HDCparam( 1 );
    hpen = CreatePen( (int) PS_SOLID, (int) hb_parni( 5 ), (COLORREF) RGB( (int) hb_parvni( 4, 1 ), (int) hb_parvni( 4, 2 ), (int) hb_parvni( 4, 3 ) ) );
    hgdiobj1 = SelectObject( (HDC) hdc1, hpen );
    for( i = 0; i <= number - 1; i ++ )
