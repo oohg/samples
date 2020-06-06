@@ -22,23 +22,23 @@ FUNCTION Main
    LOCAL oImage
 
    REQUEST DBFCDX, DBFFPT
-   RDDSETDEFAULT( "DBFCDX")
+   rddSetDefault( "DBFCDX")
 
-   DBCREATE( "IMAGES", aStruct )
+   dbCreate( "IMAGES", aStruct )
 
    USE IMAGES NEW
    APPEND BLANK
-   REPLACE code with 1
+   REPLACE code WITH 1
 
    // Import
-   IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
+   IF ! BLOBImport( FieldPos( "IMAGE" ), cInput )
       ? "Error importing !!!"
       RETURN NIL
    ENDIF
 
    // Export
-   FERASE( cOutput )
-   IF ! BLOBEXPORT( FIELDPOS( "IMAGE" ), cOutput, BLOB_EXPORT_OVERWRITE )
+   FErase( cOutput )
+   IF ! BLOBExport( FieldPos( "IMAGE" ), cOutput, BLOB_EXPORT_OVERWRITE )
       ? "Error exporting !!!"
    ENDIF
 
@@ -50,12 +50,12 @@ FUNCTION Main
       HEIGHT 480 ;
       TITLE 'Show image from BLOB file' ;
       MAIN ;
-      ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
+      ON RELEASE ( dbCloseAll(), dbCommitAll() )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
          IMAGESIZE ;
-         BUFFER BLOBGET( FIELDPOS( "IMAGE" ) )
+         BUFFER BLOBGet( FieldPos( "IMAGE" ) )
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -64,6 +64,12 @@ FUNCTION Main
    oForm:Activate()
 
    CLOSE DATABASES
+
+   IF MsgYesNo( "Erase auxiliary file?" )
+      FErase( cOutput )
+      FErase( "IMAGES.FPT" )
+      FErase( "IMAGES.DBF" )
+   ENDIF
 
 RETURN NIL
 

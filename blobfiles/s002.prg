@@ -17,21 +17,20 @@ FUNCTION Main
 
    LOCAL aStruct := { {"CODE", "N", 3, 0}, {"IMAGE", "M", 10, 0} }
    LOCAL cInput  := "Input.ico"
-   LOCAL cOutput := "Output.ico"
    LOCAL oForm
    LOCAL oImage
 
    REQUEST DBFCDX, DBFFPT
-   RDDSETDEFAULT( "DBFCDX")
+   rddSetDefault( "DBFCDX")
 
-   DBCREATE( "IMAGES", aStruct )
+   dbCreate( "IMAGES", aStruct )
 
    USE IMAGES NEW
    APPEND BLANK
-   REPLACE code with 1
+   REPLACE code WITH 1
 
    // Import
-   IF ! BLOBIMPORT( FIELDPOS( "IMAGE" ), cInput )
+   IF ! BLOBImport( FieldPos( "IMAGE" ), cInput )
       ? "Error importing !!!"
       RETURN NIL
    ENDIF
@@ -44,7 +43,7 @@ FUNCTION Main
       HEIGHT 480 ;
       TITLE 'Show image from BLOB file' ;
       MAIN ;
-      ON RELEASE ( DBCLOSEALL(), DBCOMMITALL() )
+      ON RELEASE ( dbCloseAll(), dbCommitAll() )
 
       @ 10, 10 IMAGE Img_1 ;
          OBJ oImage ;
@@ -53,7 +52,7 @@ FUNCTION Main
 
       @ 80, 10 BUTTON Btn_1 ;
          CAPTION "Change image" ;
-         ACTION oImage:Buffer := BLOBGET( FIELDPOS( "IMAGE" ) )
+         ACTION oImage:Buffer := BLOBGet( FieldPos( "IMAGE" ) )
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -62,6 +61,11 @@ FUNCTION Main
    oForm:Activate()
 
    CLOSE DATABASES
+
+   IF MsgYesNo( "Erase auxiliary file?" )
+      FErase( "IMAGES.FPT" )
+      FErase( "IMAGES.DBF" )
+   ENDIF
 
 RETURN NIL
 
