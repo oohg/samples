@@ -12,6 +12,57 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-06-10 18:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\classes\s003.prg
+   * samples\combobox\s011.prg
+   * samples\dbview\dbview.hbp
+   - samples\dbview\fmgs\dbuvar.ch
+   * samples\dbview\prgs\dbuvar.ch
+   + samples\dbview\prgs\dbview.prg
+   - C:\GitOOHG\samples\dialogs\demo.prg
+   + C:\GitOOHG\samples\dialogs\s001.prg
+   + C:\GitOOHG\samples\dialogs\s002.prg
+   + C:\GitOOHG\samples\dll\build.bat
+   - C:\GitOOHG\samples\dll\dlluno.dll
+   - C:\GitOOHG\samples\dll\dlluno.hbp
+   - C:\GitOOHG\samples\dll\dlluno.prg
+   - C:\GitOOHG\samples\dll\gen_demo.bat
+   - C:\GitOOHG\samples\dll\LANZA.BAT
+   + C:\GitOOHG\samples\dll\somedll.hbp
+   + C:\GitOOHG\samples\dll\somedll.prg
+   + C:\GitOOHG\samples\dll\test.bat
+   * C:\GitOOHG\samples\dll\testdll.hbp
+   * C:\GitOOHG\samples\dll\testdll.prg
+   - C:\GitOOHG\samples\do_report\lista.ntx
+   * C:\GitOOHG\samples\do_report\repo.prg
+   * C:\GitOOHG\samples\dropfiles\DropFiles.prg
+   * C:\GitOOHG\samples\edit\advanced.prg
+   - C:\GitOOHG\samples\edit\simple.prg
+   - C:\GitOOHG\samples\edit_extended\demo.prg
+   - C:\GitOOHG\samples\edit_extended\demo1.prg
+   + C:\GitOOHG\samples\edit_extended\s001.prg
+   + C:\GitOOHG\samples\edit_extended\s002.prg
+   * C:\GitOOHG\samples\editbox\sample.prg
+   * C:\GitOOHG\samples\errorslog\s001.prg
+   * C:\GitOOHG\samples\eztwain\twerp.prg
+   * C:\GitOOHG\samples\form\s004.prg
+   * C:\GitOOHG\samples\form\s005.prg
+   * C:\GitOOHG\samples\form\s007.prg
+   * C:\GitOOHG\samples\form\s008.prg
+   * C:\GitOOHG\samples\form\s009.prg
+   - C:\GitOOHG\samples\getfile\demo.prg
+   - C:\GitOOHG\samples\getfont\demo.prg
+   * C:\GitOOHG\samples\graphical\s003.prg
+   * C:\GitOOHG\samples\grid\demo3.prg
+   * C:\GitOOHG\samples\grid\demo4.prg
+   * C:\GitOOHG\samples\grid\s003.prg
+   * C:\GitOOHG\samples\label\README.md
+   - C:\GitOOHG\samples\label\s005.prg
+   * C:\GitOOHG\samples\menu\simple.prg
+     + Added new samples.
+     - Deleted unuseful or repeated samples.
+     * Updated some samples
+
 2020-05-06 00:58 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\browse\browse2.prg
    * samples\browse\browse3.prg
