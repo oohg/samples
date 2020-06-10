@@ -33,9 +33,16 @@ FUNCTION Main()
          WIDTH 400
 
       @ 60,10 RADIOGROUP rdg_1 ;
-         OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
+         OPTIONS { 'O n e', 'T w o', 'T h r e e', 'F o u r' } ;
          WIDTH 80 ;
-         SPACING 24
+         SPACING 24 ;
+         SIZE 11 BOLD
+
+      @ 120, 160 LABEL lbl_1 ;
+         VALUE "Press ESC to exit!" ;
+         AUTOSIZE ;
+         SIZE 20 BOLD ;
+         FONTCOLOR RED
 
       ON KEY ESCAPE ACTION Form_1.Release
    END WINDOW

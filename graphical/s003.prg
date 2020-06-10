@@ -24,7 +24,7 @@ FUNCTION Main
       NOMAXIMIZE ;
       BACKCOLOR { 179, 217, 255 } ;
       MAIN ;
-      TITLE 'OOHG - Draw a graph and print it (use CTRL+P for print)'
+      TITLE 'OOHG - Draw a graph and print it (use CTRL+P to print)'
 
       DRAW GRAPH ;
          IN WINDOW Graph ;

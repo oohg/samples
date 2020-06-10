@@ -42,6 +42,7 @@ RETURN
 PROCEDURE Save( cType )
 
    oWin:SaveAs( "SnapShot." + cType, .T., cType )
+   MsgBox( "SnapShot." + cType + " saved to current folder!")
 
 RETURN
 

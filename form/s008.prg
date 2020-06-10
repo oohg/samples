@@ -17,113 +17,124 @@
 
 FUNCTION Main
 
-   LOCAL oForm1
-
    DEFINE WINDOW Form_1 ;
-      OBJ oForm1 ;
+      OBJ oForm ;
       AT 0,0 ;
       WIDTH 400 ;
-      HEIGHT 200 ;
+      HEIGHT 250 ;
+      CLIENTAREA ;
       MAIN ;
       TITLE "ooHG - Window with transparency" ;
       BACKCOLOR YELLOW ;
-      ON INIT ( oForm1:Slider_1:Enabled := .f., ;
-                MakeOpaque( oForm1 ), ;
-                oForm1:TextBox_1:Enabled := .f., ;
-                oForm1:Button_1:Enabled := .t., ;
-                oForm1:Button_2:Enabled := .f. )
+      ON INIT ( oForm:Slider_1:Enabled := .f., ;
+                MakeOpaque(), ;
+                oForm:TextBox_1:Enabled := .f., ;
+                oForm:Button_1:Enabled := .t., ;
+                oForm:Button_2:Enabled := .f. )
               
-      ON KEY ESCAPE ACTION oForm1:Release()
+      ON KEY ESCAPE ACTION oForm:Release()
+      ON KEY F1 ACTION ( oForm:Slider_1:Enabled := .f., ;
+                         MakeOpaque( oForm ), ;
+                         oForm:BackColor := YELLOW, ;
+                         oForm:TextBox_1:Enabled := .f., ;
+                         oForm:Button_1:Enabled := .t., ;
+                         oForm:Button_2:Enabled := .f., ;
+                         oBut3:Transparent := .F. )
 
       @ 10, 200 LABEL lbl_aviso ;
-         VALUE "CLICK HERE TO RESTORE INVISIBLE WINDOW" ;
-         WIDTH 190 ;
-         HEIGHT 40 ;
+         VALUE "Click Here or F1 to Restore Opacity" ;
+         WIDTH 180 ;
+         HEIGHT 37 ;
          BORDER ;
          BACKCOLOR GREEN ;
          FONTCOLOR BLUE ;
          CENTER ;
-         ON CLICK ( oForm1:Slider_1:Enabled := .f., ;
-                     MakeOpaque( oForm1 ), ;
-                     oForm1:TextBox_1:Enabled := .f., ;
-                     oForm1:Button_1:Enabled := .t., ;
-                     oForm1:Button_2:Enabled := .f. )
+         ON CLICK ( oForm:Slider_1:Enabled := .f., ;
+                     MakeOpaque( oForm ), ;
+                     oForm:TextBox_1:Enabled := .f., ;
+                     oForm:Button_1:Enabled := .t., ;
+                     oForm:Button_2:Enabled := .f. )
 
       @ 10, 10 BUTTON Button_1 ;
          OBJ oBut1 ;
          CAPTION 'Set Transparency ON' ;
          WIDTH   140 ;
-         ACTION ( oForm1:Slider_1:Enabled := .t., ;
-                  oForm1:TextBox_1:Enabled := .t., ;
-                  oForm1:Button_1:Enabled := .f., ;
-                  oForm1:Button_2:Enabled := .t., ;
-                  oForm1:Slider_1:Value := 180 )
+         ACTION ( oForm:Slider_1:Enabled := .t., ;
+                  oForm:TextBox_1:Enabled := .t., ;
+                  oForm:Button_1:Enabled := .f., ;
+                  oForm:Button_2:Enabled := .t., ;
+                  oForm:Slider_1:Value := 180 )
       oBut1:Transparent := .T.
 
       @ 40, 10 BUTTON Button_2 ;
          OBJ oBut2 ;
          CAPTION 'Set Transparency OFF' ;
          WIDTH   140 ;
-         ACTION ( oForm1:Slider_1:Enabled := .f., ;
-                  MakeOpaque( oForm1 ), ;
-                  oForm1:TextBox_1:Enabled := .f., ;
-                  oForm1:Button_1:Enabled := .t., ;
-                  oForm1:Button_2:Enabled := .f. )
+         ACTION ( oForm:Slider_1:Enabled := .f., ;
+                  MakeOpaque( oForm ), ;
+                  oForm:TextBox_1:Enabled := .f., ;
+                  oForm:Button_1:Enabled := .t., ;
+                  oForm:Button_2:Enabled := .f. )
       oBut2:Transparent := .T.
 
       @ 50, 200 BUTTON Button_3 ;
          OBJ oBut3 ;
          CAPTION "Invisible Background" ;
          WIDTH   140 ;
-         ACTION {|| oBut1:SetBackgroundInvisible( oForm1:BackColorCode ), ;
-                    oBut2:SetBackgroundInvisible( oForm1:BackColorCode ), ;
-                    oBut3:SetBackgroundInvisible( oForm1:BackColorCode ), ;
-                    oForm1:SetBackgroundInvisible( oForm1:BackColorCode ) }
-      oBut3:Transparent := .T.
+         ACTION {|| oBut1:SetBackgroundInvisible( oForm:BackColorCode ), ;
+                    oBut2:SetBackgroundInvisible( oForm:BackColorCode ), ;
+                    oBut3:SetBackgroundInvisible( oForm:BackColorCode ), ;
+                    oForm:SetBackgroundInvisible( oForm:BackColorCode ) }
+
+      @ 110, 10 LABEL lbl_Below ;
+         VALUE "THIS IS A LONG TEXT TO SHOW AT THE VERY BACKGROUND" ;
+         WIDTH 380 ;
+         HEIGHT 24 ;
+         CENTER
 
       DEFINE SLIDER Slider_1
-         ROW 80
+         ROW 140
          COL 10
          VALUE 255
          WIDTH 310
          HEIGHT 50
          RANGEMIN 0
          RANGEMAX 255
-         ON CHANGE Slider_Change( oForm1 )
+         ON CHANGE Slider_Change( oForm )
       END SLIDER
 
-      @ 140, 10 LABEL lbl_transparent ;
+      @ 190, 10 LABEL lbl_transparent ;
          VALUE "TRANSPARENT" ;
          WIDTH 100 ;
          HEIGHT 24 ;
          TRANSPARENT ;
          BORDER
 
-      @ 140, 10 LABEL lbl_Below ;
-         VALUE "THIS IS A LONG TEXT TO SHOW AT THE VERY BACKGROUND" ;
-         WIDTH 390 ;
-         HEIGHT 24 ;
-         CENTER
-
-      @ 140, 220 LABEL lbl_opaque ;
+      @ 190, 220 LABEL lbl_opaque ;
          VALUE "OPAQUE" ;
          WIDTH 100 ;
          HEIGHT 24 ;
          RIGHTALIGN ;
          BORDER
 
-      @ 85, 330 TEXTBOX TextBox_1 ;
+      @ 140, 330 TEXTBOX TextBox_1 ;
          VALUE 255 ;
          INPUTMASK "999" ;
          WIDTH 50 ;
          HEIGHT 24 ;
-         DISABLED ;
-         ON CHANGE TextBox_Change( oForm1 )
+         DISABLED
+
+      @ 170, 330 BUTTON Button_4 ;
+         OBJ oBut4 ;
+         CAPTION "set" ;
+         HEIGHT 20 ;
+         WIDTH  50 ;
+         ACTION TextBox_Change( oForm )
 
    END WINDOW
 
-   oForm1:Center()
-   oForm1:Activate()
+   oForm:Center()
+   oForm:Activate()
 
 RETURN NIL
 
@@ -151,16 +162,21 @@ FUNCTION Slider_Change (oWin)
 
 RETURN NIL
 
-FUNCTION MakeOpaque( oWin )
+FUNCTION MakeOpaque
 
-  WITH OBJECT oWin
-    :Slider_1:Value := 255
-    :TextBox_1:Value := 255
-    ::RemoveTransparency()
-  END WITH
+   oForm:Slider_1:Value := 255
+   oForm:Slider_1:Enabled := .F.
+   oForm:TextBox_1:Value := 255
+   oForm:TextBox_1:Enabled := .F.
+   oForm:Button_1:Enabled := .T.
+   oForm:Button_2:Enabled := .F.
+   oBut1:RemoveTransparency()
+   oBut2:RemoveTransparency()
+   oBut3:RemoveTransparency()
+   oForm:RemoveTransparency()
 
 RETURN NIL
 
 /*
-EOF
-*/
+ * EOF
+ */

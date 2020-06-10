@@ -1,288 +1,297 @@
 #include "oohg.ch"
 
-function Main()
+FUNCTION Main()
 
-        // Database driver.
-	REQUEST DBFCDX , DBFFPT
+   // Database driver.
+   REQUEST DBFCDX , DBFFPT
 
-        // [x]Harbour modifiers.
-	SET CENTURY ON
-	SET DELETED OFF
-        SET DATE TO BRITISH
+   // [x]Harbour modifiers.
+   SET CENTURY ON
+   SET DELETED OFF
+   SET DATE TO BRITISH
 
-        // Request all languages for test.
-        REQUEST HB_LANG_ES
-        REQUEST HB_LANG_EU
-        REQUEST HB_LANG_CS852
-        REQUEST HB_LANG_CSISO
-        REQUEST HB_LANG_CSKAM
-        REQUEST HB_LANG_CA
-        REQUEST HB_LANG_EN
-        REQUEST HB_LANG_FR
-        REQUEST HB_LANG_GL
-        REQUEST HB_LANG_DE
-        REQUEST HB_LANG_HE862
-        REQUEST HB_LANG_HEWIN
-        REQUEST HB_LANG_HU852
-#ifdef __XHARBOUR__
-        REQUEST HB_LANG_HUCWI
+   // Request all languages for test (see i_lang.ch)
+   REQUEST HB_LANG_EN
+   REQUEST HB_LANG_ES
+   REQUEST HB_LANG_FR
+   REQUEST HB_LANG_PT
+   REQUEST HB_LANG_IT
+   REQUEST HB_LANG_EU
+   REQUEST HB_LANG_NL
+#if ( __HARBOUR__ - 0 > 0x030200 )    // for Harbour 3.4 version
+   REQUEST HB_LANG_DE
+   REQUEST HB_LANG_EL
+   REQUEST HB_LANG_RU
+   REQUEST HB_LANG_UK
+   REQUEST HB_LANG_PL
+   REQUEST HB_LANG_HR
+   REQUEST HB_LANG_SL
+   REQUEST HB_LANG_CS
+   REQUEST HB_LANG_BG
+   REQUEST HB_LANG_HU
+   REQUEST HB_LANG_SK
+   REQUEST HB_LANG_TR
+#else
+   REQUEST HB_LANG_DEWIN
+   REQUEST HB_LANG_ELWIN
+   REQUEST HB_LANG_RUWIN
+   REQUEST HB_LANG_UAWIN
+   REQUEST HB_LANG_PLWIN
+   REQUEST HB_LANG_HR852
+   REQUEST HB_LANG_SLWIN
+   REQUEST HB_LANG_CSWIN
+   REQUEST HB_LANG_BGWIN
+   REQUEST HB_LANG_HUWIN
+   REQUEST HB_LANG_SKWIN
+   REQUEST HB_LANG_TRWIN
 #endif
-        REQUEST HB_LANG_HUWIN
-        REQUEST HB_LANG_IT
-        REQUEST HB_LANG_PL852
-        REQUEST HB_LANG_PLISO
-        REQUEST HB_LANG_PLMAZ
-        REQUEST HB_LANG_PT
-        REQUEST HB_LANG_RO
-        REQUEST HB_LANG_RUWIN
-        REQUEST HB_LANG_SRISO
-        REQUEST HB_LANG_SR852
-        REQUEST HB_LANG_ES
 
-        // Set default language to English.
-        HB_LANGSELECT( "EN" )
+   // Set default language to English.
+   InitMessages( "EN" )
 
-        // Define window.
-	DEFINE WINDOW Win_1			;
-	        AT        0,0 			;
-	        WIDTH     640 			;
-        	HEIGHT    480 			;
-	        TITLE     "EDIT Command Demo" 	;
-        	MAIN 				;
-		ON INIT OpenTable() 		;
-		ON RELEASE CloseTable() 	;
-		BACKCOLOR GRAY
+   // Define window.
+   DEFINE WINDOW Win_1 ;
+      AT 0,0 ;
+      WIDTH 640 ;
+      HEIGHT 480 ;
+      TITLE "EDIT Command Demo" 	;
+      MAIN ;
+      ON INIT OpenTable() ;
+      ON RELEASE CloseTable() ;
+      BACKCOLOR METRO_GRAY_LIGHTER
 
-		DEFINE MAIN MENU OF Win_1
-        		POPUP "&File"
-                		ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
-                                ITEM "&Advanced Edit test" ACTION AdvTest()
-				SEPARATOR
-                                ITEM "Language selection"  ACTION SelecLang()
-                                SEPARATOR
-                                ITEM "About"               ACTION About()
-                                SEPARATOR
-        	        	ITEM "E&xit"               ACTION Win_1.Release
-		        END POPUP
-		END MENU
+      DEFINE MAIN MENU OF Win_1
+         POPUP "&File"
+            ITEM "&Simple Edit test"   ACTION EDIT WORKAREA CLIENTES
+            ITEM "&Advanced Edit test" ACTION AdvTest()
+            SEPARATOR
+            ITEM "Language selection"  ACTION SelecLang()
+            SEPARATOR
+            ITEM "About"               ACTION About()
+            SEPARATOR
+            ITEM "E&xit"               ACTION Win_1.Release
+         END POPUP
+      END MENU
 
-	END WINDOW
+   END WINDOW
 
-        // Open window.
-	MAXIMIZE WINDOW Win_1
-	ACTIVATE WINDOW Win_1
+   // Open window.
+   MAXIMIZE WINDOW Win_1
+   ACTIVATE WINDOW Win_1
 
-Return Nil
-
-
+RETURN NIL
 
 /*------------------------------------------------------------------------------*/
-Procedure OpenTable()
+FUNCTION OpenTable()
 
-	USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
+   USE CLIENTES VIA "DBFCDX" INDEX CLIENTES NEW
 
-Return Nil
-
-
+RETURN NIL
 
 /*------------------------------------------------------------------------------*/
-Procedure CloseTable()
+FUNCTION CloseTable()
 
-        CLOSE CLIENTES
+   CLOSE CLIENTES
 
-Return Nil
-
-
+RETURN NIL
 
 /*------------------------------------------------------------------------------*/
-Procedure AdvTest()
+FUNCTION AdvTest()
 
-        LOCAL aFields   := { "Nombre", "Apellidos", "Dirección", "Población " ,;
-                             "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
-                             "Edad", "Salario", "Notas"    }
-        LOCAL aReadOnly := { .f., .f., .f., .f., .f., .f., .f., .f., .t., .f., .f. }
-        LOCAL bSave     := {|aContent, lEdit| AdvTestSave( aContent, lEdit ) }
+   LOCAL aFields   := { "Nombre", "Apellidos", "Dirección", "Población " ,;
+                        "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
+                        "Edad", "Salario", "Notas"    }
+   LOCAL aReadOnly := { .F., .F., .F., .F., .F., .F., .F., .F., .T., .F., .F. }
+   LOCAL bSave     := {|aContent, lEdit| AdvTestSave( aContent, lEdit ) }
 
-        // Advise.
-        MsgInfo( "This sample show advanced features of EDIT." + Chr(13) + Chr(13) +;
-                 "It's designed for Spanish language, so changing to" + Chr(13) + ;
-                 "Spanish language for better performance", "" )
-        HB_LANGSELECT( "ES" )
+   // Advise.
+   MsgInfo( "This sample shows the advanced features of EDIT." + CRLF + ;
+            CRLF +;
+            "It was designed for Spanish language, so we are" + CRLF + ;
+            "changing to such language for better performance.", "EDIT demo" )
+   InitMessages( "ES" )
 
-        // Advanced EDIT.
-        EDIT WORKAREA    CLIENTES ;
-                TITLE    "Clientes" ;
-                FIELDS   aFields ;
-                READONLY aReadOnly ;
-                SAVE     bSave
+   // Advanced EDIT.
+   EDIT WORKAREA CLIENTES ;
+      TITLE "Clientes" ;
+      FIELDS aFields ;
+      READONLY aReadOnly ;
+      SAVE bSave
 
-Return Nil
-
-
-
-/*------------------------------------------------------------------------------*/
-Procedure AdvTestSave( aContent, lEdit )
-
-        LOCAL i
-        LOCAL aFields  := { "Nombre", "Apellidos", "Dirección", "Población " ,;
-                            "Estado", "Codigo ZIP", "F. Nacimiento", "Casado",;
-                            "Edad", "Salario", "Notas"    }
-
-        // Chek content.
-        FOR i := 1 TO Len( aContent )-4
-                IF Empty( aContent[i] )
-                        MsgInfo( aFields[i] + " no puede estar vacio" )
-                        Return .f.
-                ENDIF
-        NEXT
-
-        // Calculate age.
-        aContent[9] := 0
-        FOR i := ( Year( aContent[7] ) + 1 ) to Year( Date() )
-                aContent[9] += 1
-        NEXT
-
-        // Save record.
-        IF .NOT. lEdit
-                CLIENTES->( dbAppend() )
-        ENDIF
-        FOR i := 1 TO Len( aContent )
-                CLIENTES->( FieldPut( i, aContent[i] ) )
-        NEXT
-
-Return .t.
-
-
+RETURN NIL
 
 /*------------------------------------------------------------------------------*/
-Procedure SelecLang()
+FUNCTION AdvTestSave( aContent, lEdit )
 
-        LOCAL aLangName := { "Basque"             ,;
-                             "Czech 852"          ,;
-                             "Czech ISO-8859-2"   ,;
-                             "Czech KAM"          ,;
-                             "Catalan"            ,;
-                             "English"            ,;
-                             "French"             ,;
-                             "Galician"           ,;
-                             "German"             ,;
-                             "Hebrew 862"         ,;
-                             "Hebrew 1255"        ,;
-                             "Hungarian 852"      ,;
-                             "Hungarian CWI-2"    ,;
-                             "Hungarian WINDOWS-1",;
-                             "Italian"            ,;
-                             "Polish 852"         ,;
-                             "Polish ISO-8859-1"  ,;
-                             "Polish Mozowia"     ,;
-                             "Portuguese"         ,;
-                             "Romanian"           ,;
-                             "Russian WINDOWS-1"  ,;
-                             "Serbian ISO-8859-2" ,;
-                             "Serbian 852"        ,;
-                             "Spanish"             }
+   LOCAL i
+   LOCAL aFields  := { "Nombre", "Apellidos", "Dirección", "Población " , ;
+                       "Estado", "Codigo ZIP", "F. Nacimiento", "Casado", ;
+                       "Edad", "Salario", "Notas" }
 
-        LOCAL aLangID   := { "EU"    ,;
-                             "CS852" ,;
-                             "CSISO" ,;
-                             "CSKAM" ,;
-                             "CA"    ,;
-                             "EN"    ,;
-                             "FR"    ,;
-                             "GL"    ,;
-                             "DE"    ,;
-                             "HE862" ,;
-                             "HEWIN" ,;
-                             "HU852" ,;
-                             "HUCWI" ,;
-                             "HUWIN" ,;
-                             "IT"    ,;
-                             "PL852" ,;
-                             "PLISO" ,;
-                             "PLMAZ" ,;
-                             "PT"    ,;
-                             "RO"    ,;
-                             "RUWIN" ,;
-                             "SRISO" ,;
-                             "SR852" ,;
-                             "ES"     }
+   // Chek content.
+   FOR i := 1 TO Len( aContent ) - 4
+      IF Empty( aContent[i] )
+         MsgInfo( aFields[i] + " no puede estar vacío.", "EDIT demo" )
+         RETURN .F.
+      ENDIF
+   NEXT
 
-        LOCAL nItem
+   // Calculate age.
+   aContent[9] := 0
+   FOR i := ( Year( aContent[7] ) + 1 ) TO Year( Date() )
+      aContent[9] ++
+   NEXT
 
-        // Language selection.
-        MsgInfo( "You can change EDIT interface language, by changing" + Chr(13) + ;
-                 "[x]Harbour default language with HB_LANGSELECT() fuction." + Chr( 13 ) + Chr( 13 ) +;
-                 "If your language is not supported and you want translate" + Chr( 13 ) + ;
-                 "the EDIT interface to it, please post a message to the" + Chr( 13 ) + ;
-                 "MiniGUI discussion group at Yahoo Groups." , "" )
-        nItem := SelItem( aLangName )
-        IF .NOT. nItem == 0
-                HB_LANGSELECT( aLangID[nItem] )
-        ENDIF
+   // Save record.
+   IF ! lEdit
+      CLIENTES->( dbAppend() )
+   ENDIF
+   FOR i := 1 TO Len( aContent )
+      CLIENTES->( FieldPut( i, aContent[i] ) )
+   NEXT
 
-return ( nil )
-
-
+RETURN .T.
 
 /*------------------------------------------------------------------------------*/
-Procedure SelItem( aItems )
+FUNCTION SelecLang()
 
-        LOCAL nItem := 0
+   LOCAL aLangName := { "Basque", ;
+                        "Bulgarian", ;
+                        "Croatian", ;
+                        "Czech", ;
+                        "Dutch", ;
+                        "English", ;
+                        "Finnish", ;
+                        "French", ;
+                        "German", ;
+                        "Greek", ;
+                        "Hungarian", ;
+                        "Italian", ;
+                        "Polish", ;
+                        "Portuguese", ;
+                        "Russian", ;
+                        "Slovak", ;
+                        "Slovenian", ;
+                        "Spanish", ;
+                        "Turkish", ;
+                        "Ukranian" }
 
-        DEFINE WINDOW wndSelItem ;
-                AT 0, 0 ;
-                WIDTH 265 ;
-                HEIGHT 160 ;
-                TITLE "" ;
-                MODAL ;
-                NOSIZE ;
-                NOSYSMENU
+#if ( __HARBOUR__ - 0 > 0x030200 )    // for Harbour 3.4 version
+   LOCAL aLangID   := { "EU", ;
+                        "BG", ;
+                        "HR", ;
+                        "CS", ;
+                        "NL", ;
+                        "EN", ;
+                        "FI", ;
+                        "FR", ;
+                        "DE", ;
+                        "EL", ;
+                        "HU", ;
+                        "IT", ;
+                        "PL", ;
+                        "PT", ;
+                        "RU", ;
+                        "SK", ;
+                        "SL", ;
+                        "ES", ;
+                        "TR", ;
+                        "UK" }
+#else
+   LOCAL aLangID   := { "EU", ;
+                        "BGWIN", ;
+                        "HR852", ;
+                        "CSWIN", ;
+                        "NL", ;
+                        "EN", ;
+                        "FI", ;
+                        "FR", ;
+                        "DEWIN", ;
+                        "ELWIN", ;
+                        "HUWIN", ;
+                        "IT", ;
+                        "PLWIN", ;
+                        "PT", ;
+                        "RUWIN", ;
+                        "SKWIN", ;
+                        "SLWIN", ;
+                        "ES", ;
+                        "TRWIN", ;
+                        "UKWIN" }
+#endif
 
-                @ 20, 20 LISTBOX lbxItems ;
-                        WIDTH 140 ;
-                        HEIGHT 100 ;
-                        ITEMS aItems ;
-                        VALUE 1 ;
-                        FONT "Arial" ;
-                        SIZE 9
+   LOCAL nItem
 
-                @ 20, 170 BUTTON btnSel ;
-                        CAPTION "&Select" ;
-                        ACTION {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release } ;
-                        WIDTH 70 ;
-                        HEIGHT 30 ;
-                        FONT "ms sans serif" ;
-                        SIZE 8
+   // Language selection.
+   MsgInfo( "The interface language of EDIT command is OOHG's default" + CRLF + ;
+            "language. You can change it using InitMessages() function." + CRLF + ;
+            CRLF +;
+            "If your language isn't supported but you are willing" + CRLF + ;
+            "to help with the translation, please send a message" + CRLF + ;
+            "to https://groups.google.com/forum/#!forum/oohg", "EDIT demo" )
+   nItem := SelItem( aLangName )
+   IF ! nItem == 0
+      InitMessages( aLangID[nItem] )
+      MsgInfo( "EDIT interface language was changed to" + CRLF + ;
+               aLangName[nItem] + CRLF + ;
+               'Goto "Simple Edit test" menu to see the effects.', "EDIT demo" )
+   ENDIF
 
-        END WINDOW
-
-        wndSelItem.lbxItems.SetFocus
-
-        CENTER WINDOW wndSelItem
-        ACTIVATE WINDOW wndSelItem
-
-return ( nItem )
-
+RETURN NIL
 
 /*------------------------------------------------------------------------------*/
-Procedure About()
+FUNCTION SelItem( aItems )
 
-        MsgInfo( Chr( 13 ) + ;
-                 "EDIT command for MiniGUI" + Chr( 13 ) + ;
-                 "(c) Roberto López" + Chr( 13 ) + Chr( 13 ) + ;
-                 "The EDIT command was developed by:" + Chr( 13 ) + ;
-                 " *  Roberto López" + Chr( 13 ) + ;
-                 " *  Grigory Filiatov" + Chr( 13 ) + ;
-                 " *  Cristóbal Mollá" + Chr( 13 ) + Chr( 13 ) + ;
-                 "Status of the language support:" + Chr( 13 ) + ;
-                 " *  English    - Ready" + Chr( 13 ) + ;
-                 " *  Spanish    - Ready" + Chr( 13 ) + ;
-                 " *  Russian    - Ready (Thanks to Grigory Filiatov)" + Chr( 13 ) + ;
-                 " *  Catalan    - Implemented but not tested (somebody can do it?)" + Chr( 13 ) + ;
-                 " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + Chr( 13 ) + ;
-                 " *  Polish     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + ;
-		 " *  French     - Ready (Thanks to C. Jouniauxdiv)" + Chr( 13 ) + ;
-		 " *  Italian    - Ready (Thanks to Lupano Piero)" + Chr( 13 ) + ;
-                 " *  German     - Ready (Thanks to Janusz Poura)" + Chr( 13 ) + Chr( 13 ) + ;
-		 "Please report bugs to MiniGUI discusion group at groups.yahoo.com" )
-return ( nil )
+   LOCAL nItem := 0
+
+   DEFINE WINDOW wndSelItem ;
+      AT 0, 0 ;
+      WIDTH 160 ;
+      HEIGHT 200 ;
+      CLIENTAREA ;
+      TITLE "Click to select or Esc to exit" ;
+      MODAL ;
+      NOSIZE ;
+      NOSYSMENU
+
+      @ 10, 20 LISTBOX lbxItems ;
+      WIDTH 120 ;
+      HEIGHT 180 ;
+      ITEMS aItems ;
+      VALUE 1 ;
+      FONT "Arial" ;
+      SIZE 9 ;
+      ON CHANGE {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release }
+
+      ON KEY ESCAPE ACTION ThisWindow:Release()
+   END WINDOW
+
+   CENTER WINDOW wndSelItem
+   ACTIVATE WINDOW wndSelItem
+
+RETURN nItem
+
+/*------------------------------------------------------------------------------*/
+PROCEDURE About()
+
+   MsgInfo( CRLF + ;
+            "EDIT command for OOHG adapted from the" + CRLF + ;
+            "original work developed for MINIGUI by:" + CRLF + ;
+            " *  Roberto López" + CRLF + ;
+            " *  Grigory Filatov" + CRLF + ;
+            " *  Cristóbal Mollá" + CRLF + ;
+            CRLF + ;
+            "Status of the language support:" + CRLF + ;
+            " *  English    - Ready" + CRLF + ;
+            " *  Spanish    - Ready" + CRLF + ;
+            " *  Russian    - Ready (Thanks to Grigory Filatov)" + CRLF + ;
+            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + CRLF + ;
+            " *  Polish     - Ready (Thanks to Janusz Poura)" + CRLF + ;
+		      " *  French     - Ready (Thanks to C. Jouniauxdiv)" + CRLF + ;
+		      " *  Italian    - Ready (Thanks to Lupano Piero)" + CRLF + ;
+            " *  German     - Ready (Thanks to Janusz Poura)" + CRLF + ;
+            CRLF + ;
+		      "Please report bugs to OOHG support group at https://groups.google.com/forum/#!forum/oohg", ;
+            "EDIT demo" )
+
+RETURN

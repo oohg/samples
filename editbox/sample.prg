@@ -6,7 +6,7 @@ FUNCTION Main
 	DEFINE WINDOW Form_1 ;
 		AT 0,0 ;
 		WIDTH 640 HEIGHT 480 ;
-		TITLE 'Editbox Demo' ;
+		TITLE 'OOHG - How to limit the row length of a EditBox' ;
 		MAIN ;
 		FONT 'Arial' SIZE 10
 
@@ -35,8 +35,8 @@ PROCEDURE LimitRowLength
 
    IF nLineLength > nLimit
       where := oEdit:CaretPos
-      oEdit:Value := Stuff( oEdit:Value, nLineStartIndex + nLimit + 1, 0, hb_OsNewLine() )
-      oEdit:CaretPos := where
+      oEdit:Value := Stuff( oEdit:Value, nLineStartIndex + nLimit + 1, 0, hb_osNewLine() )
+      oEdit:CaretPos := where + Len( hb_osNewLine() )
    ENDIF
 
 RETURN NIL

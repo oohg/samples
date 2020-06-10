@@ -59,12 +59,14 @@ FUNCTION Main
                         { || MsgInfo( 'Click 4' ) } } ;
          JUSTIFY { BROWSE_JTFY_LEFT, BROWSE_JTFY_CENTER, BROWSE_JTFY_CENTER, BROWSE_JTFY_LEFT } ;
 
-//         ON CHANGE Form_1.StatusBar.Item( 1, AutoType( oGrid:Value ) )
+      @ 350, 010 BUTTON But_1 OBJ oB1 ;
+         CAPTION "Append OFF" ;
+         ACTION ( oB1:Caption := iif( oGrid:Append := ! oGrid:Append, "Append OFF", "Append ON" ) )
+      @ 390, 010 BUTTON But_2 OBJ oB2 ;
+         CAPTION "Edit OFF" ;
+         ACTION ( oB2:Caption := iif( oGrid:AllowEdit := ! oGrid:AllowEdit, "Edit OFF", "Edit ON" ) )
 
-      @ 350, 010 BUTTON But_1 CAPTION "Append" ACTION oGrid:Append := ! oGrid:Append
-//      @ 390, 010 BUTTON But_2 CAPTION "Show Column" ACTION { || oGrid:ColumnShow( 2 ) }
-
-      @ 350, 140 BUTTON But_3 CAPTION "Value" ACTION ( oGrid:Value := {3,4}, oGrid:SetFocus() )
+      @ 350, 140 BUTTON But_3 CAPTION "Value := {3,4}" ACTION ( oGrid:Value := {3,4}, oGrid:SetFocus() )
 
       ON KEY F1 ACTION Cambia( oGrid )
       ON KEY ESCAPE ACTION Form_1.Release()

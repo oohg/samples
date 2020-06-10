@@ -55,7 +55,7 @@ FUNCTION Main
       @ 350, 140 BUTTON But_3 CAPTION "Better Auto Fit" ACTION { || oGrid:ColumnsBetterAutoFit() }
 
       ON KEY F1 ACTION Cambia( oGrid )
-      ON KEY ESCAPE ACTION Form_1:Release()
+      ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
 
    CENTER WINDOW Form_1

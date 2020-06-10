@@ -16,6 +16,11 @@
  * Visit us at https://github.com/oohg/samples
  */
 
+/*
+   If you compile this program with a 64 bits version of OOHG
+   it won't work because EZTW32.DLL is a 32 bits DLL.
+*/
+
 #include "oohg.ch"
 
 #define CLR_DARK_BLUE {0, 0, 128}
@@ -46,7 +51,7 @@ PROCEDURE Main
 
       DEFINE MAIN MENU
          DEFINE POPUP '&File'
-            MENUITEM '&Select Source...' action TWAIN_SelectImageSource( Win_1.hWnd )
+            MENUITEM '&Select Source...' action AutoMsgBox( TWAIN_SelectImageSource( Win_1.hWnd ) )
             MENUITEM '&Acquire...'  action Acquire()
             MENUITEM 'Acquire to &File...'  action AcquireToFilename()
             MENUITEM 'Acquire to &Clipboard...' action AcquireToClipboard()
@@ -295,11 +300,11 @@ return
 Function DiscardImage()
 
    // delete/free global palette, and dib, as necessary.
-   if hpal # NIL
+   if ! Empty( hpal )
       DeleteObject(hpal)
       hpal = NIL
    endif
-   if hdib # NIL
+   if ! Empty( hdib )
       TWAIN_FreeNative(hdib)
       hdib = NIL
       Win_1.TW_APP_SAVEAS.Enabled := .F.

@@ -4,6 +4,10 @@
 
 -ifmgs
 -gui
+-w0
+-es0
+-v
+-a
 
 prgs\dbview.prg
 prgs\Admindbf.Prg
@@ -15,4 +19,39 @@ prgs\modistru.prg
 prgs\Indadmin.Prg
 prgs\Import.prg
 
-${HG_ROOT}\oohg.hbc
+# oohg paths
+-i${HG_ROOT}\include
+
+# c compiler will search this folder for OOHG's libs
+-L${HG_ROOT}\${LIB_GUI}
+
+# libs must be statically linked to avoid "missing lib" runtime errors
+-fullstatic
+
+# add harbour contrib folder to search for additional include files
+-i${HG_HRB}\contrib\hbzebra
+-i${HG_HRB}\contrib\hbhpdf
+
+# add app folder to search for additional include files
+-i${hb_curdir}
+
+# Multithread support
+-mt
+
+# oohg libs
+-loohg
+-lhbprinter
+-lminiprint
+-lbostaurus
+
+hbct.hbc
+hbwin.hbc
+hbtip.hbc
+xhb.hbc
+hbmisc.hbc
+
+# harbour libs
+#libs=hbct hbmisc hbtip hbziparc hbmzip minizip hbzebra hbhpdf hbmemio rddsql hbodbc sddodbc hbwin png xhb
+#{HB30}libs=libhpdf
+#{HB32}libs=libhpdf
+#{HB34}libs=hpdf

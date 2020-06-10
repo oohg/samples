@@ -1,16 +1,34 @@
+
 #include "oohg.ch"
 
 PROCEDURE MAIN
-LOCAL oWnd
-   DEFINE WINDOW Main WIDTH 320 HEIGHT 320 CLIENTAREA ;
-          OBJ oWnd TITLE "Drop files here"
-      @ 10,10 EDIT Files READONLY WIDTH 300 HEIGHT 300
-      oWnd:Files:AcceptFiles := .T.
-      oWnd:Files:OnDropFiles := { |f| AddFiles( f, oWnd ) }
+
+   DEFINE WINDOW Main OBJ oWin ;
+      WIDTH 320 ;
+      HEIGHT 320 ;
+      CLIENTAREA ;
+      TITLE "Drop files here"
+
+      @ 10,10 EDITBOX edt_Files OBJ oEdit ;
+         WIDTH 300 ;
+         HEIGHT 300
+
+      oEdit:AcceptFiles := .T.
+      oEdit:OnDropFiles := { |f| AddFiles( f, oWin ) }
+
+      ON KEY ESCAPE ACTION ThisWindow:Release()
    END WINDOW
+
    ACTIVATE WINDOW Main
+
 RETURN
 
-PROCEDURE AddFiles( aFiles, oWnd )
-   AEVAL( aFiles, { |c| oWnd:Files:Value += c + CHR( 13 ) + CHR( 10 ) } )
+PROCEDURE AddFiles( aFiles, oWin )
+
+   AEval( aFiles, { |c| oEdit:Value += c + Chr( 13 ) + Chr( 10 ) } )
+
 RETURN
+
+/*
+ * EOF
+ */

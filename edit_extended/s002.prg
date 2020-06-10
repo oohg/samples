@@ -1,21 +1,19 @@
 #include "oohg.ch"
 
-#define CRLF    HB_OsNewLine()
-
-
-
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
+ * OOHG EDIT EXTENDED command demo
+ * Adapted from the HMG original demo
  * (c) Roberto López [roblez@ciudad.com.ar]
  *     Cristóbal Mollá [cemese@terra.es]
+ * for OOHG by Fernando Yurisich [fyurisich@oohg.org]
  *
  * Application: DEMO.EXE
  *    Function: Main()
  * Description: Main function of the demo. Create the main window.
  *  Parameters: None
  *      Return: NIL
-****************************************************************************************/
-function Main()
+ ***************************************************************************************/
+FUNCTION Main()
 
         // Database driver.
         REQUEST DBFNTX
@@ -26,19 +24,44 @@ function Main()
         SET DELETED OFF
         SET DATE TO BRITISH
 
-        // Request available languages for test.
-        REQUEST HB_LANG_PT      // Portuguese.
-        REQUEST HB_LANG_EU      // Basque.
-        REQUEST HB_LANG_EN      // English.
-        REQUEST HB_LANG_ES      // Spanish.
-        REQUEST HB_LANG_FR      // French.
-        REQUEST HB_LANG_IT      // Italian.
-//        REQUEST HB_LANG_NL      // Dutch.
-        REQUEST HB_LANG_PLWIN   // Polish Windows CP-1250
-        REQUEST HB_LANG_DE      // German.
+        // Request all languages for test (see i_lang.ch)
+        REQUEST HB_LANG_EN
+        REQUEST HB_LANG_ES
+        REQUEST HB_LANG_FR
+        REQUEST HB_LANG_PT
+        REQUEST HB_LANG_IT
+        REQUEST HB_LANG_EU
+        REQUEST HB_LANG_NL
+#if ( __HARBOUR__ - 0 > 0x030200 )    // for Harbour 3.4 version
+        REQUEST HB_LANG_DE
+        REQUEST HB_LANG_EL
+        REQUEST HB_LANG_RU
+        REQUEST HB_LANG_UK
+        REQUEST HB_LANG_PL
+        REQUEST HB_LANG_HR
+        REQUEST HB_LANG_SL
+        REQUEST HB_LANG_CS
+        REQUEST HB_LANG_BG
+        REQUEST HB_LANG_HU
+        REQUEST HB_LANG_SK
+        REQUEST HB_LANG_TR
+#else
+        REQUEST HB_LANG_DEWIN
+        REQUEST HB_LANG_ELWIN
+        REQUEST HB_LANG_RUWIN
+        REQUEST HB_LANG_UAWIN
+        REQUEST HB_LANG_PLWIN
+        REQUEST HB_LANG_HR852
+        REQUEST HB_LANG_SLWIN
+        REQUEST HB_LANG_CSWIN
+        REQUEST HB_LANG_BGWIN
+        REQUEST HB_LANG_HUWIN
+        REQUEST HB_LANG_SKWIN
+        REQUEST HB_LANG_TRWIN
+#endif
 
         // Set default language to English.
-        HB_LANGSELECT( "EN" )
+        InitMessages( "EN" )
 
         // Define the main window.
         DEFINE WINDOW Win_1                     ;
@@ -51,7 +74,7 @@ function Main()
            NOSIZE                               ;
            ON INIT    OpenTable()               ;
            ON RELEASE CloseTable()              ;
-           BACKCOLOR  GRAY
+           BACKCOLOR  METRO_GRAY_LIGHTER
 
            DEFINE MAIN MENU OF Win_1
               POPUP "DBF&NTX Demo"
@@ -80,7 +103,7 @@ function Main()
            END MENU
 
            DEFINE STATUSBAR FONT "ms sans serif" SIZE 9
-               STATUSITEM "HMG EDIT EXTENDED command demo"
+               STATUSITEM "OOHG EDIT EXTENDED command demo"
            END STATUSBAR
 
         END WINDOW
@@ -88,22 +111,16 @@ function Main()
         // Open window.
         ACTIVATE WINDOW Win_1
 
-return NIL
-
+RETURN NIL
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: OpenTable()
  * Description: Open the database files and check the index files.
  *  Parameters: None
  *      Return: NIL
-****************************************************************************************/
-procedure OpenTable()
+ ***************************************************************************************/
+PROCEDURE OpenTable()
 
         // Open the TEST1 database file with the DBFCDX Driver.----------------
         dbUseArea( .t., "DBFCDX", "TEST1.DBF", "TEST1" )
@@ -208,63 +225,44 @@ procedure OpenTable()
         TEST2->( ordListAdd( "TEST2MAR.NTX", "Married" ) )
         TEST2->( ordSetFocus( 1 ) )
 
-return
-
+RETURN
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: CloseTable()
  * Description: Closes the active databases.
  *  Parameters: None
  *      Return: NIL
-****************************************************************************************/
-procedure CloseTable()
+ ***************************************************************************************/
+PROCEDURE CloseTable()
 
         CLOSE TEST1
         CLOSE TEST2
 
-return
-
+RETURN
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: BasicDemo( cArea)
  * Description: Run a basic demo (without parameters) of EDIT command.
  *  Parameters: [cArea]         Character. Name of the workarea.
  *      Return: NIL
-****************************************************************************************/
-procedure BasicDemo( cArea )
+ ***************************************************************************************/
+PROCEDURE BasicDemo( cArea )
 
         // Basic demo of EDIT command.
         EDIT EXTENDED WORKAREA &cArea
 
-
-return
-
+RETURN
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: AdvancedDemo( cArea )
  * Description: Runs a advanced demo of EDIT command with all parameters.
  *  Parameters: [cArea]         Character. Name of the workarea.
  *      Return: NIL
-****************************************************************************************/
-procedure AdvancedDemo( cArea )
+ ***************************************************************************************/
+PROCEDURE AdvancedDemo( cArea )
 
         // Local variable declarations.----------------------------------------
         LOCAL aFieldName   := { "First Name", "Last Name", "Adress", "City",    ;
@@ -285,14 +283,14 @@ procedure AdvancedDemo( cArea )
         LOCAL aFieldEdit   := { .t., .t., .t., .t., .t., .t., .t., .t., .t., .f., .t. }
         LOCAL aOptions     := Array( 3, 2 )
         LOCAL bSave        := {|aValues, lNew| AdvancedSave( aValues, lNew, cArea ) }
-        LOCAL bSearch      := {|| MsgInfo( "Your own search function" ) }
-        LOCAL bPrint       := {|| MsgInfo( "Your own print function" ) }
+        LOCAL bSearch      := {|| MsgInfo( "Your own search function", "EDIT EXTENDED demo" ) }
+        LOCAL bPrint       := {|| MsgInfo( "Your own print function", "EDIT EXTENDED demo" ) }
         aOptions[1,1] := "Execute option 1"
-        aOptions[1,2] := {|| MsgInfo( "You can do something here 1" ) }
+        aOptions[1,2] := {|| MsgInfo( "You can do something here 1", "EDIT EXTENDED demo" ) }
         aOptions[2,1] := "Execute option 2"
-        aOptions[2,2] := { || MsgInfo( "You can do something here 2" ) }
+        aOptions[2,2] := { || MsgInfo( "You can do something here 2", "EDIT EXTENDED demo" ) }
         aOptions[3,1] := "Execute option 3"
-        aOptions[3,2] := { || MsgInfo( "You can do something here 3" ) }
+        aOptions[3,2] := { || MsgInfo( "You can do something here 3", "EDIT EXTENDED demo" ) }
 
         // Edit extended demo.-------------------------------------------------
         EDIT EXTENDED                           ;
@@ -307,29 +305,24 @@ procedure AdvancedDemo( cArea )
                 ON FIND bSearch                 ;
                 ON PRINT bPrint
 
+RETURN
 
-return
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: AdvancedSave( aValues, lNew )
  * Description: Checks and save the record.
  *  Parameters: [aValues]       Array. Values of the record.
  *              [lNew]          Logical. If .t. append mode, .f. edit mode.
  *      Return: lReturn         Logical. If .t. exit edit window, .f. stay in edit window.
-****************************************************************************************/
-function AdvancedSave( aValues, lNew, cArea )
+ ***************************************************************************************/
+FUNCTION AdvancedSave( aValues, lNew, cArea )
 
         // Variable declaration.-----------------------------------------------
         LOCAL i := 1
 
         // Check for empty values.
         IF Empty( aValues[1] )   // First name.
-                msgInfo( "First name can't be an empty value" )
+                msgInfo( "First name can't be an empty value", "EDIT EXTENDED demo" )
                 return ( .f. )
         ENDIF
 
@@ -344,166 +337,169 @@ function AdvancedSave( aValues, lNew, cArea )
                 (cArea)->( FieldPut( i, aValues[i] ) )
         NEXT
 
-return ( .t. )
-
+RETURN .T.
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: SelectLang()
  * Description: Select the [x]Harbour default language.
  *  Parameters: None
  *      Return: NIL
 ****************************************************************************************/
-procedure SelectLang()
+PROCEDURE SelectLang()
 
-        LOCAL cMessage  := ""
-        LOCAL nItem     := 0
-        LOCAL aLangName := { "Basque"             ,;
-                             "Dutch"              ,;
-                             "English"            ,;
-                             "French"             ,;
-                             "German"             ,;
-                             "Italian"            ,;
-                             "Polish"             ,;
-                             "Portuguese"         ,;
-                             "Spanish"             }
-        LOCAL aLangID   := { "EU"    ,;
-                             "NL"    ,;
-                             "EN"    ,;
-                             "FR"    ,;
-                             "DE"    ,;
-                             "IT"    ,;
-                             "PLWIN" ,;
-                             "PT"    ,;
-                             "ES"     }
+   LOCAL aLangName := { "Basque", ;
+                        "Bulgarian", ;
+                        "Croatian", ;
+                        "Czech", ;
+                        "Dutch", ;
+                        "English", ;
+                        "Finnish", ;
+                        "French", ;
+                        "German", ;
+                        "Greek", ;
+                        "Hungarian", ;
+                        "Italian", ;
+                        "Polish", ;
+                        "Portuguese", ;
+                        "Russian", ;
+                        "Slovak", ;
+                        "Slovenian", ;
+                        "Spanish", ;
+                        "Turkish", ;
+                        "Ukranian" }
 
-        // Language selection.
-        cMessage := CRLF
-        cMessage += "You can change EDIT EXTENDED interface default language, by changing   " + CRLF
-        cMessage += "[x]Harbour default language with HB_LANGSELECT() fuction.   " + CRLF
-        cMessage += CRLF
-        cMessage += "If your language is not supported and you want translate   " + CRLF
-        cMessage += "the EDIT EXTENDED interface to it, please post a message to the   " + CRLF
-        cMessage += "MiniGUI discussion group at Yahoo Groups.   " + CRLF
-        MsgInfo( cMessage , "EDIT EXTENDED demo" )
-        nItem := SelectItem( aLangName )
-        IF .NOT. nItem == 0
-                HB_LANGSELECT( aLangID[nItem] )
-        ENDIF
+#if ( __HARBOUR__ - 0 > 0x030200 )    // for Harbour 3.4 version
+   LOCAL aLangID   := { "EU", ;
+                        "BG", ;
+                        "HR", ;
+                        "CS", ;
+                        "NL", ;
+                        "EN", ;
+                        "FI", ;
+                        "FR", ;
+                        "DE", ;
+                        "EL", ;
+                        "HU", ;
+                        "IT", ;
+                        "PL", ;
+                        "PT", ;
+                        "RU", ;
+                        "SK", ;
+                        "SL", ;
+                        "ES", ;
+                        "TR", ;
+                        "UK" }
+#else
+   LOCAL aLangID   := { "EU", ;
+                        "BGWIN", ;
+                        "HR852", ;
+                        "CSWIN", ;
+                        "NL", ;
+                        "EN", ;
+                        "FI", ;
+                        "FR", ;
+                        "DEWIN", ;
+                        "ELWIN", ;
+                        "HUWIN", ;
+                        "IT", ;
+                        "PLWIN", ;
+                        "PT", ;
+                        "RUWIN", ;
+                        "SKWIN", ;
+                        "SLWIN", ;
+                        "ES", ;
+                        "TRWIN", ;
+                        "UKWIN" }
+#endif
 
-return
+   LOCAL nItem
 
+   // Language selection.
+   MsgInfo( "The interface language of EDIT EXTENDED command" + CRLF + ;
+            "is OOHG's default language and can changed using" + CRLF + ;
+            "function InitMessages()." + CRLF + CRLF + ;
+            "If your language isn't supported but you are willing" + CRLF + ;
+            "to help with the translation, please send a message" + CRLF + ;
+            "to https://groups.google.com/forum/#!forum/oohg", "EDIT EXTENDED demo" )
+   nItem := SelectItem( aLangName )
+   IF ! nItem == 0
+      InitMessages( aLangID[nItem] )
+      MsgInfo( "Interface language was changed to " + aLangName[nItem], "EDIT EXTENDED demo" )
+   ENDIF
+
+RETURN NIL
 
 
 /****************************************************************************************
- * HMG EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: SelectItem( acItems )
  * Description: Select an item from an array of character items.
  *  Parameters: [acItems]       Array of character items.
  *      Return: [nItem]         Number of selected item.
-****************************************************************************************/
-function SelectItem( acItems )
+ ***************************************************************************************/
+FUNCTION SelectItem( acItems )
 
         // Local variable declarations.----------------------------------------
         LOCAL nItem := 0
 
         // Create the selection window.----------------------------------------
         DEFINE WINDOW wndSelItem ;
-                AT 0, 0 ;
-                WIDTH 265 ;
-                HEIGHT 160 ;
-                TITLE "Select item" ;
-                MODAL ;
-                NOSIZE ;
-                NOSYSMENU
+           AT 0, 0 ;
+           WIDTH 160 ;
+           HEIGHT 200 ;
+           CLIENTAREA ;
+           TITLE "Click to select or Esc to exit" ;
+           MODAL ;
+           NOSIZE ;
+           NOSYSMENU
 
-                @ 20, 20 LISTBOX lbxItems ;
-                        WIDTH 140 ;
-                        HEIGHT 100 ;
-                        ITEMS acItems ;
-                        VALUE 1 ;
-                        FONT "Arial" ;
-                        SIZE 9
+           @ 10, 20 LISTBOX lbxItems ;
+           WIDTH 120 ;
+           HEIGHT 180 ;
+           ITEMS acItems ;
+           VALUE 1 ;
+           FONT "Arial" ;
+           SIZE 9 ;
+           ON CHANGE {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release }
 
-                @ 20, 170 BUTTON btnSel ;
-                        CAPTION "&Select" ;
-                        ACTION {|| nItem := wndSelItem.lbxItems.Value, wndSelItem.Release } ;
-                        WIDTH 70 ;
-                        HEIGHT 30 ;
-                        FONT "ms sans serif" ;
-                        SIZE 8
-
+           ON KEY ESCAPE ACTION ThisWindow:Release()
         END WINDOW
 
         // Activate the window.------------------------------------------------
-        wndSelItem.lbxItems.SetFocus
         CENTER WINDOW wndSelItem
         ACTIVATE WINDOW wndSelItem
 
-return ( nItem )
-
+RETURN nItem
 
 
 /****************************************************************************************
- * MiniGUI EDIT EXTENDED command demo
- * (c) Roberto López [roblez@ciudad.com.ar]
- *     Cristóbal Mollá [cemese@terra.es]
- *
- * Application: DEMO.EXE
  *    Function: About()
  * Description: Shows the about window.
  *  Parameters: None
  *      Return: NIL
 ****************************************************************************************/
-procedure About()
-
-        // Local variable declaration.-----------------------------------------
-        LOCAL cMessage := ""
+PROCEDURE About()
 
         // Shows the about window.---------------------------------------------
-        cMessage := CRLF
-        cMessage += "EDIT EXTENDED command for HMG   " + CRLF
-        cMessage += "Last Update: January 2004    " + CRLF
-        cMessage += CRLF
-        cMessage += "The EDIT EXTENDED command was developed by:  " + CRLF
-        cMessage += "---> Roberto López" + CRLF
-        cMessage += "---> Grigory Filiatov" + CRLF
-        cMessage += "---> Cristóbal Mollá" + CRLF
-        cMessage += CRLF
-        cMessage += "Status of the language support:   " + CRLF
-        cMessage += "---> English - Ready   " + CRLF
-        cMessage += "---> Spanish - Ready   " + CRLF
-        cMessage += "---> Basque - Ready (Thanks to Gerardo Fernández)    " + CRLF
-        cMessage += "---> Italian - Ready ( Thanks to Arcangelo Molinaro)    " + CRLF
-        cMessage += "---> French - Ready (Thanks to Chris Jouniauxdiv)    " + CRLF
-        cMessage += "---> Dutch - Not supported by Harbour, :-) yet (Thanks to René Koot)    " + CRLF
-        cMessage += "---> Polish - Ready (Thanks to Jacek Kubika)    " + CRLF
-        cMessage += "---> German - Ready (Thanks to Andreas Wiltfang)   " + CRLF
-        cMessage += CRLF
-        cMessage += "Please report bugs to HMG discusion group at groups.yahoo.com       " + CRLF
-        MsgInfo( cMessage, "About EDIT EXTENDED command demo" )
+   MsgInfo( CRLF + ;
+            "EDIT EXTENDED command for OOHG adapted from" + CRLF + ;
+            "the original work developed for HMG by:" + CRLF + ;
+            " *  Roberto López" + CRLF + ;
+            " *  Grigory Filatov" + CRLF + ;
+            " *  Cristóbal Mollá" + CRLF + ;
+            CRLF + ;
+            "Status of the language support:" + CRLF + ;
+            " *  English    - Ready" + CRLF + ;
+            " *  Spanish    - Ready" + CRLF + ;
+            " *  Basque     - Ready (Thanks to Gerardo Fernández)" + CRLF + ;
+            " *  Russian    - Ready (Thanks to Grigory Filatov)" + CRLF + ;
+            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + CRLF + ;
+            " *  Polish     - Ready (Thanks to Janusz Poura)" + CRLF + ;
+		      " *  French     - Ready (Thanks to Chris Jouniauxdiv)" + CRLF + ;
+		      " *  Italian    - Ready (Thanks to Lupano Piero)" + CRLF + ;
+            " *  German     - Ready (Thanks to Janusz Poura)" + CRLF + ;
+            CRLF + ;
+		      "Please report bugs to OOHG support group at https://groups.google.com/forum/#!forum/oohg", ;
+            "EDIT EXTENDED demo" )
 
-RETURN NIL
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+RETURN

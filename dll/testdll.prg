@@ -1,26 +1,19 @@
 
 
-function main() 
-local hLib := hb_LibLoad( "dlluno.dll" ) 
-local sym
+FUNCTION Main()
+   LOCAL hLib := hb_libLoad( "somedll.dll" )
+   LOCAL symbol
 
-SetMode(25,80)
-Scroll()
+   HB_SYMBOL_UNUSED( hLib )
 
-  //Estas son las formas de llamar a las funciones contenidas.
-  //1)
-  ? &("Prueba")( "hola desde la dll" ) 
-  
-  //2)
-  sym := &("@PRUEBA()")
-  ? sym:exec("hola desde la dll prueba 2")
-  inkey(0)
-  
-  //Eliminamos la referencia.
-  HB_SYMBOL_UNUSED(hLib)
-  
-return nil 
+   SetMode( 25, 80 )
+   Scroll()
 
+   // This is the first way to call the functions
+   ? &( "SomeFunc" )( "Hello from 'some.dll' #1" )
 
+   // This is the second way to call the functions
+   symbol := &( "@SOMEFUNC()" )
+   ? symbol:Exec( "Hello from 'some.dll' #2" )
 
-
+RETURN NIL

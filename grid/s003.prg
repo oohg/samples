@@ -49,46 +49,21 @@ FUNCTION Main()
          HEADERS { 'CODE', 'NUMBER', 'DATE', 'REFERENCE', 'AMOUNT' } ;
          WIDTHS { 60, 80, 100, 120, 140 } ;
          ITEMS aRows ;
-         COLUMNCONTROLS { { 'TEXTBOX', 'CHARACTER', '99' } , ;
-                          { 'TEXTBOX', 'NUMERIC', '999999' } , ;
-                          { 'TEXTBOX', 'DATE' }, ;
-                          { 'TEXTBOX', 'CHARACTER' }, ;
-                          { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99' } } ;
+         COLUMNCONTROLS { { 'TEXTBOX', 'CHARACTER', '99', NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL } , ;
+                          { 'TEXTBOX', 'NUMERIC', '999999', NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL } , ;
+                          { 'TEXTBOX', 'DATE', NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL }, ;
+                          { 'TEXTBOX', 'CHARACTER', NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL }, ;
+                          { 'TEXTBOX', 'NUMERIC', ' 999,999,999.99', NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL, NIL } } ;
          FONT 'COURIER NEW' SIZE 10 ;
          EDIT INPLACE ;
-         VALUE 4
-
-      DEFINE TIMER Timer1 INTERVAL 3000 ACTION CheckIdleTime()
+         VALUE 4 ;
+         TIMEOUT 5000
 
       ON KEY ESCAPE ACTION Form_1.Release()
    END WINDOW
 
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
-
-RETURN NIL
-
-FUNCTION CheckIdleTime
-
-   LOCAL obj, ctr
-   STATIC IdleTime := 0
-
-   ctr := GetControlObjectByHandle( GetFocus() )
-   obj := ctr:Parent
-
-   IF obj:Name == "_OOHG_GRIDWN"
-      IF EMPTY( ctr:Value ) .OR. ctr:Value == _OOHG_ThisItemCellValue
-         IdleTime += 3000
-         IF IdleTime > 6000
-            IdleTime := 0
-            obj:Release()
-         ENDIF
-      ELSE
-         IdleTime := 0
-      ENDIF
-   ELSE
-      IdleTime := 0
-   ENDIF
 
 RETURN NIL
 

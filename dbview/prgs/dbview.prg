@@ -2979,7 +2979,10 @@ FUNCTION GenXML( cDbf, cSaveFile )
   fWrite( nHandle, make_start_tag (cDbf) + crlf )
 
   nFields = FCOUNT()
-  DECLARE fldname [nfields], fldtype [nfields], fldsize [nfields], flddecs [nfields]
+  fldname := Array(nfields)
+  fldtype := Array(nfields)
+  fldsize := Array(nfields)
+  flddecs := Array(nfields)
   AFIELDS (fldname, fldtype, fldsize, flddecs)
 
   cBuffer = tab + make_comment ("DBF structure info") + crlf + ;

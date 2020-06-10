@@ -4,7 +4,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to anchor on form to another,
+ * This sample shows how to anchor one form to another,
  * using ON MOVE event.
  *
  * Visit us at https://github.com/oohg/samples

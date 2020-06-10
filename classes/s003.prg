@@ -35,6 +35,8 @@
  * Visit us at https://github.com/oohg/samples
  */
 
+#include "oohg.ch"
+REQUEST HB_GT_WIN_DEFAULT
 #include "hbclass.ch"
 #include "hboo.ch"
 

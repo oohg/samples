@@ -27,11 +27,11 @@ FUNCTION Main
       @ 10,10 COMBOBOX Combo1 OBJ oCombo1 ;
          WIDTH 200 ;
          DISPLAYEDIT ;
-         ITEMSOURCE ( { 's011', 'Name', 'tName' } ) ;
+         ITEMSOURCE ( { 's011', 'data', 'tData' } ) ;
          VALUESOURCE 's011->Code' ;
          ON CHANGE ( oValue1:value := "Value (code) is: " + ;
                                       AutoType(oCombo1:Value), ;
-                     oItem1:value := "Item (name) is: " + ;
+                     oItem1:value := "Item (data) is: " + ;
                                      oCombo1:ItemBySource(oCombo1:Value) )
 /*
  * You can replace ItemBySource(oCombo1:Value) with
@@ -45,16 +45,16 @@ FUNCTION Main
          AUTOSIZE
 
       @ 80,10 LABEL Label12 OBJ oItem1 ;
-         VALUE "Select an item to see it's caption (name)" ;
+         VALUE "Select an item to see it's caption (data)" ;
          AUTOSIZE
 
       @ 210,10 COMBOBOX Combo2 OBJ oCombo2 ;
          WIDTH 200 ;
          DISPLAYEDIT ;
-         ITEMSOURCE ( { 's011', 'Name', 'tName' } ) ;
+         ITEMSOURCE ( { 's011', 'data', 'tName' } ) ;
          ON CHANGE ( oValue2:value := "Value (recno) is: " + ;
                                       AutoType(oCombo2:Value), ;
-                     oItem2:value := "Item (name) is: " + ;
+                     oItem2:value := "Item (data) is: " + ;
                                      oCombo2:ItemBySource(oCombo2:Value) )
 /*
  * You can replace ItemBySource(oCombo2:Value) with
@@ -68,7 +68,7 @@ FUNCTION Main
          AUTOSIZE
 
       @ 280,10 LABEL Label22 OBJ oItem2 ;
-         VALUE "Select an item to see it's caption (name)" ;
+         VALUE "Select an item to see it's caption (data)" ;
          AUTOSIZE
 
       ON KEY ESCAPE ACTION oWnd:Release()

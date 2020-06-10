@@ -24,7 +24,7 @@ FUNCTION Main
       HEIGHT 500 ;
       TITLE "Change Name, Folder and Language of Errors Log" ;
       MAIN ;
-      ON INIT AUTOMSGBOX(INEXISTENT_VARIABLE)
+      ON INIT AutoMsgBox( INEXISTENT_VARIABLE )
       /*
        * INEXISTENT_VARIABLE raises an error
        * so the errors log is created
@@ -46,15 +46,15 @@ FUNCTION Main
    _OOHG_TxtError:FileName := "MyErrorLog.htm"
    _OOHG_TxtError:cBufferScreen := ;
       "Please, report this error to the programmer." + ;
-      hb_osnewline() + ;
+      CRLF + ;
       "Thank you." + ;
-      hb_osnewline() + ;
-      hb_osnewline()
+      CRLF + ;
+      CRLF
 
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN Nil
+RETURN NIL
 
 /*
  * EOF
