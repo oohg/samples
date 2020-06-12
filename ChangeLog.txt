@@ -12,6 +12,10 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-06-12 10:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\printing\s006.prg
+     * Improved.
+
 2020-06-10 18:34 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\classes\s003.prg
    * samples\combobox\s011.prg
