@@ -33,6 +33,10 @@ PROCEDURE Main
          MENUITEM 'Exit'         ACTION ThisWindow.Release
       END MENU
 
+      @ 50, 20 CHECKBOX chk_Preview ;
+         CAPTION "Preview" ;
+         VALUE .T.
+
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
 
@@ -85,7 +89,11 @@ PROCEDURE Demo( nOption )
 
    SET COPIES TO 2                     // Set printer's number of copies
 
-   SET PREVIEW ON                      // Enable preview
+   IF Win_1.chk_Preview.Value
+      SET PREVIEW ON                      // Enable preview
+   ELSE
+      SET PREVIEW OFF                      // Disable preview
+   ENDIF
 
    SET PREVIEW RECT MAXIMIZED          // Maximize the preview window
 
