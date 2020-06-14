@@ -13,4 +13,5 @@
 * s011.prg This sample shows how to use method SAVE of an IMAGE control to save its content to a file.
 * s012.prg This sample shows how to use the ON CHANGE event of an image control.
 * s013.prg This sample shows how to print an image using its handle.
-
+* s014.prg This sample shows how to load an Enhanced Metafile to an image control.
+* s015.prg This sample shows how to create "transparent" checkbox and radiogroup controls over an image control and how to change the background at run time.
