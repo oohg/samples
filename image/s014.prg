@@ -5,7 +5,9 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to load an Enhanced Metafile to
- * an image control. You can download a sample file from
+ * an image control.
+ *
+ * You can download a sample file from *
  * https://github.com/oohg/samples/blob/master/image/s014.emf
  *
  * Visit us at https://github.com/oohg/samples
