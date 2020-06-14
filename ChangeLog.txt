@@ -12,6 +12,20 @@
  *    '-' Removed: ...           ';' Comment
  */
 
+2020-06-14 19:14 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\README.md
+     * Updated.
+
+2020-06-14 19:13 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   * samples\image\s014.prg
+     * Comment.
+
+2020-06-14 19:12 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
+   + samples\image\s015.prg
+     Shows how to create "transparent" checkbox and radiogroup
+     controls over an image control and how to change the
+     background at run time.
+
 2020-06-12 10:27 UTC-0300 Fernando Yurisich <fyurisich@oohg.org>
    * samples\printing\s006.prg
      * Improved.
