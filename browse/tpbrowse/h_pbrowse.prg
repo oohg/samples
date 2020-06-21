@@ -507,165 +507,84 @@ METHOD Events( hWnd, nMsg, wParam, lParam ) CLASS TPBrowse
 *------------------------------------------------------------------------------*
 Local cWorkArea, _RecNo, nRow, uGridValue, aCellData, aPos, resc
 
-do case
-   case ::ActiveBarCode .and. (nMsg == WM_CHAR .or. nMsg == WM_GETDLGCODE .and. wParam=13 .and. !empty(::BarCodeBuff) .and. HB_MilliSeconds() <= ::TimeBarCode + ::MSBarCode)
-   ::BarCodeSearch(wParam)
-   return 0
-  *
-   case nMsg == WM_CHAR  
-   if wParam < 32
-     ::cText := ""
-     Return 0
-    elseif empty( ::cText )
-     ::uIniTime := HB_MilliSeconds()
-     ::cText := Upper( Chr( wParam ) )
-    elseif HB_MilliSeconds() > ::uIniTime + ::SearchLapse
-     ::uIniTime := HB_MilliSeconds()
-     ::cText := Upper( Chr( wParam ) )
-    else
-     ::uIniTime := HB_MilliSeconds()
-     ::cText += Upper( Chr( wParam ) )
-   endif
-   if ::SearchCol < 1 .OR. ::SearchCol > ::ColumnCount
-     Return 0
-   endif
-   cWorkArea := ::WorkArea
-   if Select( cWorkArea ) == 0
-     return 0
-   endIf
-   _RecNo := ( cWorkArea )->( RecNo() )
-   nRow := ::Value
-   if nRow == 0
-     if Len( ::aRecMap ) == 0
-       ::TopBottom( GO_TOP )
-      else
-       ::DbGoTo( ::aRecMap[ 1 ] )
-     endif
-     if ::Eof()
-       ::DbGoTo( _RecNo )
-       Return 0
-     endif
-     nRow := ( cWorkArea )->( RecNo() )
-   endif
-   ::DbGoTo( nRow )
-   ::DbSkip()
-   do while ! ::Eof()
-     if ::FixBlocks()
-       uGridValue := Eval( ::aColumnBlocks[ ::SearchCol ], cWorkArea )
-      else
-       uGridValue := Eval( ::ColumnBlock( ::SearchCol ), cWorkArea )
-     endif
-     if ValType( uGridValue ) == "A"      // TGridControlImageData
-       uGridValue := uGridValue[ 1 ]
-     endif
-     if upper( left( uGridValue, len( ::cText ) ) ) == ::cText
-       exit
-     endif
-     ::DbSkip()
-   enddo
-   if ::Eof() .AND. ::SearchWrap
-     ::TopBottom( GO_TOP )
-     do while ! ::Eof() .AND. ( cWorkArea )->( RecNo() ) != nRow
-       if ::FixBlocks()
-         uGridValue := Eval( ::aColumnBlocks[ ::SearchCol ], cWorkArea )
-        else
-         uGridValue := Eval( ::ColumnBlock( ::SearchCol ), cWorkArea )
-       endif
-       if ValType( uGridValue ) == "A"      // TGridControlImageData
-         uGridValue := uGridValue[ 1 ]
-       endIf
-       if upper( left( uGridValue, len( ::cText ) ) ) == ::cText
-         exit
-       endif
-       ::DbSkip()
-     enddo
-   endif
-   if ! ::Eof()
-     ::nRow := ( cWorkArea )->( RecNo() )
-   endif
-   ::DbGoTo( _RecNo )
-   Return 0
-  *
-   case nMsg == WM_KEYDOWN
    do case
-      case Select( ::WorkArea ) == 0
-         // No database open
-      case wParam == VK_HOME
-         ::Home()
+   case ::ActiveBarCode .and. (nMsg == WM_CHAR .or. nMsg == WM_GETDLGCODE .and. wParam=13 .and. !empty(::BarCodeBuff) .and. HB_MilliSeconds() <= ::TimeBarCode + ::MSBarCode)
+      ::BarCodeSearch(wParam)
+      return 0
+   case nMsg == WM_CHAR
+      if wParam < 32
+         ::cText := ""
          Return 0
-      case wParam == VK_END
-         ::End()
+       elseif empty( ::cText )
+         ::uIniTime := HB_MilliSeconds()
+         ::cText := Upper( Chr( wParam ) )
+       elseif HB_MilliSeconds() > ::uIniTime + ::SearchLapse
+         ::uIniTime := HB_MilliSeconds()
+         ::cText := Upper( Chr( wParam ) )
+       else
+         ::uIniTime := HB_MilliSeconds()
+         ::cText += Upper( Chr( wParam ) )
+      endif
+      if ::SearchCol < 1 .OR. ::SearchCol > ::ColumnCount
          Return 0
-      case wParam == VK_PRIOR
-         ::PageUp()
-         Return 0
-      case wParam == VK_NEXT
-         ::PageDown()
-         Return 0
-      case wParam == VK_UP
-         ::Up()
-         Return 0
-      case wParam == VK_DOWN
-         ::Down()
-         Return 0
+      endif
+      cWorkArea := ::WorkArea
+      if Select( cWorkArea ) == 0
+         return 0
+      endIf
+      _RecNo := ( cWorkArea )->( RecNo() )
+      nRow := ::Value
+      if nRow == 0
+         if Len( ::aRecMap ) == 0
+            ::TopBottom( GO_TOP )
+         else
+           ::DbGoTo( ::aRecMap[ 1 ] )
+         endif
+         if ::Eof()
+           ::DbGoTo( _RecNo )
+           Return 0
+         endif
+         nRow := ( cWorkArea )->( RecNo() )
+      endif
+      ::DbGoTo( nRow )
+      ::DbSkip()
+      do while ! ::Eof()
+         if ::FixBlocks()
+            uGridValue := Eval( ::aColumnBlocks[ ::SearchCol ], cWorkArea )
+         else
+            uGridValue := Eval( ::ColumnBlock( ::SearchCol ), cWorkArea )
+         endif
+         if ValType( uGridValue ) == "A"      // TGridControlImageData
+            uGridValue := uGridValue[ 1 ]
+         endif
+         if upper( left( uGridValue, len( ::cText ) ) ) == ::cText
+            exit
+         endif
+         ::DbSkip()
+      enddo
+      if ::Eof() .AND. ::SearchWrap
+         ::TopBottom( GO_TOP )
+         do while ! ::Eof() .AND. ( cWorkArea )->( RecNo() ) != nRow
+            if ::FixBlocks()
+               uGridValue := Eval( ::aColumnBlocks[ ::SearchCol ], cWorkArea )
+            else
+               uGridValue := Eval( ::ColumnBlock( ::SearchCol ), cWorkArea )
+            endif
+            if ValType( uGridValue ) == "A"      // TGridControlImageData
+               uGridValue := uGridValue[ 1 ]
+            endIf
+            if upper( left( uGridValue, len( ::cText ) ) ) == ::cText
+               exit
+            endif
+            ::DbSkip()
+         enddo
+      endif
+      if ! ::Eof()
+         ::nRow := ( cWorkArea )->( RecNo() )
+      endif
+      ::DbGoTo( _RecNo )
+      Return 0
    endcase
-  *
-   case nMsg == WM_LBUTTONDBLCLK
-      _PushEventInfo()
-      _OOHG_ThisForm := ::Parent
-      _OOHG_ThisType := 'C'
-      _OOHG_ThisControl := Self
-
-      // Identify item & subitem hitted
-      aPos := Get_XY_LPARAM( lParam )
-      aPos := ListView_HitTest( ::hWnd, aPos[ 1 ], aPos[ 2 ] )
-
-      aCellData := _GetGridCellData( Self, aPos )
-      _OOHG_ThisItemRowIndex   := aCellData[ 1 ]
-      _OOHG_ThisItemColIndex   := aCellData[ 2 ]
-      _OOHG_ThisItemCellRow    := aCellData[ 3 ]
-      _OOHG_ThisItemCellCol    := aCellData[ 4 ]
-      _OOHG_ThisItemCellWidth  := aCellData[ 5 ]
-      _OOHG_ThisItemCellHeight := aCellData[ 6 ]
-      _OOHG_ThisItemCellValue  := ::Cell( _OOHG_ThisItemRowIndex, _OOHG_ThisItemColIndex )
-
-      If ! ::AllowEdit .OR. _OOHG_ThisItemRowIndex < 1 .OR. _OOHG_ThisItemRowIndex > ::ItemCount .OR. _OOHG_ThisItemColIndex < 1 .OR. _OOHG_ThisItemColIndex > Len( ::aHeaders )
-         If HB_IsBlock( ::OnDblClick )
-            ::DoEventMouseCoords( ::OnDblClick, "DBLCLICK" )
-         EndIf
-      ElseIf ::IsColumnReadOnly( _OOHG_ThisItemColIndex, _OOHG_ThisItemRowIndex )
-         // Cell is readonly
-         If ::lExtendDblClick .and. HB_IsBlock( ::OnDblClick )
-            ::DoEventMouseCoords( ::OnDblClick, "DBLCLICK" )
-         EndIf
-      ElseIf ! ::IsColumnWhen( _OOHG_ThisItemColIndex, _OOHG_ThisItemRowIndex )
-         // Not a valid WHEN
-         If ::lExtendDblClick .and. HB_IsBlock( ::OnDblClick )
-            ::DoEventMouseCoords( ::OnDblClick, "DBLCLICK" )
-         EndIf
-      ElseIf aScan( ::aHiddenCols, _OOHG_ThisItemColIndex ) > 0
-         // Cell is in a hidden column
-         If ::lExtendDblClick .and. HB_IsBlock( ::OnDblClick )
-            ::DoEventMouseCoords( ::OnDblClick, "DBLCLICK" )
-         EndIf
-      ElseIf ::FullMove
-         ::EditGrid( _OOHG_ThisItemRowIndex, _OOHG_ThisItemColIndex )
-      Else
-         ::EditCell( _OOHG_ThisItemRowIndex, _OOHG_ThisItemColIndex, , , , , .F. )
-      EndIf
-
-      _ClearThisCellInfo()
-      _PopEventInfo()
-      Return 0
-  *
-   case nMsg == WM_MOUSEWHEEL
-      If GET_WHEEL_DELTA_WPARAM( wParam ) > 0
-         ::Up()
-      Else
-         ::Down()
-      EndIf
-      Return 0
-endcase
 
 Return ::Super:Events( hWnd, nMsg, wParam, lParam )
 
