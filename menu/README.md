@@ -1,17 +1,28 @@
 # MENU
 
-* s001.prg This sample shows how to use BREAKMENU [SEPARATOR].
-* s002.prg This sample shows how to create a menu using InsertPopup, InsertItem and InsertSeparator methods.
-* s003.prg This sample shows how to use SetMenuBarColor and SetItemsColor methods to change the colors of a window's menu.
-* s004.prg This sample shows how to programatically open a window's menu using its shortcut key.
-* s005.prg This sample shows how to open a menu item (dynamicaly defined) using it's shortcut key.
-* s006.prg This sample shows how to enable/disable a POPUP at runtime.
-* s007.prg This sample shows how to change menu images.
-* s008.prg This sample shows how to define nested menus and a context menu.
-* s009.prg This sample shows how to define nested popups.
-* s010.prg This sample shows how to create a menu of "most recently used" files.
-* s011.prg This sample shows how to use the menu's MESSAGE clause.
-* s012.prg This sample shows how to define a specific font for a menu instead of using an app-wide font.
-* s013.prg This sample shows an ownerdraw dropdown.
-
-
+* How to use BREAKMENU [SEPARATOR].<br>
+https://github.com/oohg/samples/blob/master/menu/s001.prg
+* How to create a menu using InsertPopup, InsertItem and InsertSeparator methods.<br>
+https://github.com/oohg/samples/blob/master/menu/s002.prg
+* How to use SetMenuBarColor and SetItemsColor methods to change the colors of a window's menu.<br>
+https://github.com/oohg/samples/blob/master/menu/s003.prg
+* How to programatically open a window's menu using its shortcut key.<br>
+https://github.com/oohg/samples/blob/master/menu/s004.prg
+* How to open a menu item (dynamicaly defined) using it's shortcut key.<br>
+https://github.com/oohg/samples/blob/master/menu/s005.prg
+* How to enable/disable a POPUP at runtime.<br>
+https://github.com/oohg/samples/blob/master/menu/s006.prg
+* How to change menu images.<br>
+https://github.com/oohg/samples/blob/master/menu/s007.prg
+* How to define nested menus and a context menu.<br>
+https://github.com/oohg/samples/blob/master/menu/s008.prg
+* How to define nested popups.<br>
+https://github.com/oohg/samples/blob/master/menu/s009.prg
+* How to create a menu of "most recently used" files.<br>
+https://github.com/oohg/samples/blob/master/menu/s010.prg
+* How to use the menu's MESSAGE clause.<br>
+https://github.com/oohg/samples/blob/master/menu/s011.prg
+* How to define a specific font for a menu instead of using an app-wide font.<br>
+https://github.com/oohg/samples/blob/master/menu/s012.prg
+* How to define an ownerdraw dropdown menu.<br>
+https://github.com/oohg/samples/blob/master/menu/s013.prg
