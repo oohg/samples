@@ -2,7 +2,7 @@
 
 * How to use BREAKMENU [SEPARATOR].<br>
 https://github.com/oohg/samples/blob/master/menu/s001.prg
-* How to create a menu using InsertPopup, InsertItem and InsertSeparator methods.<br>
+* How to create and delete menu items on the fly and how to right align text in menu captions.<br>
 https://github.com/oohg/samples/blob/master/menu/s002.prg
 * How to use SetMenuBarColor and SetItemsColor methods to change the colors of a window's menu.<br>
 https://github.com/oohg/samples/blob/master/menu/s003.prg
