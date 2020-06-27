@@ -1,11 +1,12 @@
 /*
- * Menu Sample n° 2
+ * Menu Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to create a menu using InsertPopup,
- * InsertItem and InsertSeparator methods.
+ * This sample shows how to create and delete
+ * menu items on the fly and how to right align
+ * text in menu captions.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -21,12 +22,16 @@ FUNCTION Main()
       TITLE 'ooHG Demo - Create and Delete Menu Items' ;
       MAIN
 
+      ON KEY F1 ACTION MsgInfo( 'Action 1' )
+      ON KEY F2 ACTION MsgInfo( 'Action 2' )
+      ON KEY F3 ACTION MsgInfo( 'Action 3' )
+
       DEFINE MAIN MENU OBJ mnu_Main
          POPUP 'Actions'  OBJ mnu_Actions
-            ITEM 'Action 1' ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1
+            ITEM 'Action 1' + Chr( 9 ) + "F1" ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1
             SEPARATOR
-            ITEM 'Action 2' ACTION MsgInfo( 'Action 2' ) NAME mnu_Action2
-            ITEM 'Action 3' ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3
+            ITEM 'Action 2' + Chr( 9 ) + "F2" ACTION MsgInfo( 'Action 2' ) NAME mnu_Action2
+            ITEM 'Action 3' + Chr( 9 ) + "F3" ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3
          END POPUP
 
          POPUP 'Test'
