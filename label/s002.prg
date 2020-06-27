@@ -50,6 +50,10 @@ FUNCTION Main
                "l"          ;
          WIDTH 24 ;
          HEIGHT 440
+/*
+ * The previous VALUE clause can be replaced by CharMix function from hbct lib:
+ * VALUE CharMix( "This is a vertical label", CRLF )
+ */
 
       @ 20, 100 LABEL lbl_2 OBJ oLbl2 ;
          VALUE " This is a rotated label" ;
