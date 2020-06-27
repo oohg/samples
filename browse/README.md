@@ -1,20 +1,20 @@
 # Browse samples
 
-* How to create, set and get browse value and show position of browse in statusbar
+* How to create, set and get browse value and show position of browse in statusbar.<br>
 https://github.com/oohg/samples/blob/master/browse/browse1.prg
-* How to search ans serch wrap by column
+* How to search ans serch wrap by column.<br>
 https://github.com/oohg/samples/blob/master/browse/browse2.prg
-* How to show, hide, enable and disable a browse. Use of ONDBLCLICK and ONHEADCLICK. DOne inside a TAB.
+* How to show, hide, enable and disable a browse. Use of ONDBLCLICK and ONHEADCLICK. DOne inside a TAB.<br>
 https://github.com/oohg/samples/blob/master/browse/browse3.prg
-* How to append, edit and delete. Use of VALID and VALIDMESSAGES
+* How to append, edit and delete. Use of VALID and VALIDMESSAGES.<br>
 https://github.com/oohg/samples/blob/master/browse/browse4.prg
-* How to use ALLOWEDIT, ALLOWAPPEND and READONLY
+* How to use ALLOWEDIT, ALLOWAPPEND and READONLY.<br>
 https://github.com/oohg/samples/blob/master/browse/browse5.prg
-* How to use a very large browse
+* How to use a very large browse.<br>
 https://github.com/oohg/samples/blob/master/browse/browse6.prg
-* How to use HEADERIMAGES, IMAGESALIGN, DELETEWHEN, DELETEMSG, ON DELETE and EDIT INPLACE FULLMOVE
+* How to use HEADERIMAGES, IMAGESALIGN, DELETEWHEN, DELETEMSG, ON DELETE and EDIT INPLACE FULLMOVE.<br>
 https://github.com/oohg/samples/blob/master/browse/browse8.prg
-* How to identify the browse's column just double clicked by the user (the same applies to Grid and XBrowse)
+* How to identify the browse's column just double clicked by the user (the same applies to Grid and XBrowse).<br>
 https://github.com/oohg/samples/blob/master/browse/s001.prg
 * How to use DELETEWHEN, DELETEMSG and ON DELETE clauses on Grid, XBrowse and Browse controls, to pre and post process record deletion.
 https://github.com/oohg/samples/blob/master/browse/s002.prg
