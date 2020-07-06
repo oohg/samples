@@ -33,7 +33,8 @@ FUNCTION Main()
          PASSWORD ;
          ACTION ( oClave:PasswordChar := "", ShowChar(), ;
                   oTimer:Enabled := .T. ) ;
-                TOOLTIP "Click to show the password for 2 seconds."
+                TOOLTIP "Click to show the password for 2 seconds." ;
+                IMAGE "eye.png" BUTTONWIDTH 16
 
       @ 80,10 LABEL lbl_2 OBJ oShow ;
          HEIGHT 25 ;
