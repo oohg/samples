@@ -2,7 +2,7 @@
  * $Id: printtest.prg $
  */
 
-#include 'oohg.ch'
+//#include 'oohg.ch'
 
 PROCEDURE Test()
    PUBLIC _OOHG_PRINTLIBRARY
@@ -90,7 +90,7 @@ PROCEDURE Test()
    CENTER WINDOW pr_form
    ACTIVATE WINDOW pr_form
 
-RETURN Nil
+RETURN
 
 
 FUNCTION PrintTest( ctlibrary )
