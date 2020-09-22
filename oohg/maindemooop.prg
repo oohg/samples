@@ -42,7 +42,13 @@
 
 #include "oohg.ch"
 #include "i_windefs.ch"
-#include "i_graph.ch"
+
+MEMVAR oWnd, oStat, oTBut1, oTlbar, oTBut2, oMenum, oMenup1, oMenup2, oMenup3
+MEMVAR oTxt1, oImg, oTxt2, oPic, oLbl3, oTxt3, oTxt4, oTxt5, oTxt6, oChk1, oBtn1
+MEMVAR oBtnChk1, oHLink, ocnTxtMenu, oPop, oSpin, oMcl, oProgm, oDatep, oGrid1
+MEMVAR oTab1, oCombo, oInternal, oRad, oLabel, oTree, oBtn2, oBtn3, oFrame, oIP
+MEMVAR oProg, oEdit, oRich, oList, oSldr, oTimep, oTmr, aSer, oGraphTest, Code
+MEMVAR oPrint, X, _OOHG_PRINTLIBRARY
 
 PROCEDURE Main
 
@@ -640,7 +646,7 @@ PROCEDURE Main
    oWnd:Center()
    oWnd:Activate()
 
-RETURN NIL
+RETURN
 
 
 PROCEDURE PrintForm
