@@ -133,10 +133,10 @@ PROCEDURE CreateCompatibilityKey( lEnableMsgs )
    ENDIF
 
    nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
-   IF HB_ISNIL( nVal )
+   IF nVal == NIL
       IF SetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 11001, REG_DWORD )
          nVal := GetRegistryValue( HKEY_CURRENT_USER, cKey, App.FileName, 'N' )
-         IF HB_ISNIL( nVal )
+         IF nVal == NIL
             IF lEnableMsgs
                AutoMsgBox( "Unable to read just created registry value !" )
             ENDIF
