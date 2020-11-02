@@ -39,7 +39,7 @@ PROCEDURE GetIP()
    LOCAL cResponse, oConn, nAt, cIP
 
    OPEN CONNECTION OBJ oConn SERVER 'whatismyipaddress.com' PORT 80 HTTP
-   IF HB_IsNil( oConn )
+   IF oConn == NIL
       AutoMsgBox( { "Can't connect to whatismyipaddress.com !!!", ;
                     "Check Internet connection and site status."} )
    ELSE
