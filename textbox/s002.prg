@@ -13,6 +13,7 @@
  */
 
 #include "oohg.ch"
+#include "i_windefs.ch"
 
 PROCEDURE Main
 
@@ -20,7 +21,7 @@ PROCEDURE Main
 		AT 0,0 ;
 		WIDTH 640 HEIGHT 480 ;
 		TITLE 'ooHG textbox Demo' ;
-		MAIN 
+		MAIN ON INIT ( oTxt1:oButton1:lNoFocusRect := .T., oTxt1:oButton1:lLibDraw := .T. )
 
 		@ 10,10 TEXTBOX Txt1 OBJ oTxt1 ;
          WIDTH 200 ;
@@ -44,14 +45,16 @@ PROCEDURE Main
           CAPTION "Move" ;
           ACTION iif( oTxt1:Row == 10, oTxt1:Row := 80, oTxt1:Row := 10 )
 
-		@ 120,10 TEXTBOX Text_1 ;
+		@ 120,10 TEXTBOX Text_1 OBJ oTxt ;
 			VALUE 123 ;
 			FONT 'Verdana' SIZE 12 ;
-			TOOLTIP 'Numeric TextBox' ;
+			TOOLTIP { 'This is a NUMERIC TextBox.', "Control Type:", LoadIcon( NIL, IDI_INFORMATION ) } ;
 			NUMERIC ;
 			INPUTMASK "999,999,999.99"  ;
 			RIGHTALIGN ;
 			ON LOSTFOCUS iif( This.Value < 100, This.SetFocus, NIL )
+
+      @ 120, 200 LABEL 0 VALUE "<- try the textbox's tooltip" AUTOSIZE
 
 		@ 180,10 TEXTBOX Txt2 OBJ oTxt2 ;
          WIDTH 200 ;
