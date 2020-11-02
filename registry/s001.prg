@@ -64,35 +64,35 @@ FUNCTION LoadReg
    IF IsRegistryKey( hKey, cKey )
       oData:Value := ""
       col := GetRegistryValue( hKey, cKey, 'col', 'N' )
-      IF HB_ISNIL( col )
+      IF col == NIL
          oData:Value += "Col is NIL !" + CRLF
       ELSE
          oData:Value += "Col = " + hb_ntos( col ) + CRLF
          oForm:Col := col
       ENDIF
       row := GetRegistryValue( hKey, cKey, 'row', 'N' )
-      IF HB_ISNIL( row )
+      IF row == NIL
          oData:Value += "Row is NIL !" + CRLF
       ELSE
          oData:Value += "Row = " + hb_ntos( row ) + CRLF
          oForm:Row := row
       ENDIF
       width := GetRegistryValue( hKey, cKey, 'width', 'N' )
-      IF HB_ISNIL( width )
+      IF width == NIL
          oData:Value += "Width is NIL !" + CRLF
       ELSE
          oData:Value += "Width = " + hb_ntos( width ) + CRLF
          oForm:Width := width
       ENDIF
       height := GetRegistryValue( hKey, cKey, 'height', 'N' )
-      IF HB_ISNIL( height )
+      IF height == NIL
          oData:Value += "Height is NIL !" + CRLF
       ELSE
          oData:Value += "Height = " + hb_ntos( height ) + CRLF
          oForm:Height := height
       ENDIF
       array := GetRegistryValue( hKey, cKey, 'data', 'A' )
-      IF HB_ISNIL( array )
+      IF array == NIL
          oData:Value += "Data is NIL !" + CRLF
       ELSE
          FOR i := 1 TO Len( array )
