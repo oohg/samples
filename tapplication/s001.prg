@@ -105,7 +105,7 @@ RETURN NIL
 STATIC FUNCTION ColorToStr( nColor )
   LOCAL cRet
 
-  IF HB_ISNIL( nColor )
+  IF nColor == NIL
      cRet := "NIL (COLOR_BTNFACE)"
   ELSE
      cRet := "{ " + ;
