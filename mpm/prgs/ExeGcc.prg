@@ -241,8 +241,7 @@ Procedure Build2( ProjectName )  // Executable MinGW
         Out := Out + NewLi
 
         Out := Out +'$(MINIGUI_INSTALL)/resources/_temp.o    : $(MINIGUI_INSTALL)/resources/'+'_temp.rc'+NewLi
-        Out := Out +'	$(MINGW)/bin/windres.exe -i $^ -o$@' +NewLi
-
+        Out := Out +'	$(MINGW)/bin/windres.exe -I $(INC_DIR) -i $^ -o$@' +NewLi
         Out := Out + NewLi
 
         For i := 1 To Len ( PrgFiles) - nTotFmgs
