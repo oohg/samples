@@ -58,7 +58,7 @@ FUNCTION DoEncrypt
 
    ENCODE FILE CODE.DBF PASSWORD "OOHG rocks!!!" RESULT uRet
 
-   IF HB_ISNIL( uRet )
+   IF uRet == NIL
       // File is already encrypted
    ELSEIF uRet
       MsgInfo( "CODE.DBF was encrypted!" )
@@ -73,7 +73,7 @@ FUNCTION DoDecrypt
 
    DECODE FILE CODE.DBF PASSWORD "OOHG rocks!!!" RESULT uRet
 
-   IF HB_ISNIL( uRet )
+   IF uRet == NIL
       // File is not encrypted
    ELSEIF uRet
       MsgInfo( "CODE.DBF was decoded!" + CRLF + "Compare with OLDCODE.DBF" )
