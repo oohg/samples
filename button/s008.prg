@@ -32,13 +32,18 @@ FUNCTION Main()
 
       @ 20,20 BUTTON btn_1 ;
          OBJ oBut1 ;
+         WIDTH 120 ;
+         HEIGHT 32 ;
          CAPTION "Resource" ;
          PICTURE "hbprint_print" ;
          ACTION MsgInfo( "The image was loaded from a resource." ) ;
-         TOOLTIP "The image was loaded from a resource."
+         TOOLTIP "The image was loaded from a resource." ;
+         HANDCURSOR
 
-      @ 60,20 BUTTON btn_2 ;
+      @ 70,20 BUTTON btn_2 ;
          OBJ oBut2 ;
+         WIDTH 120 ;
+         HEIGHT 32 ;
          CAPTION "Handle" ;
          ACTION MsgInfo( "The image was loaded from a bitmap using its handle." ) ;
          HBITMAP hBmp2 NODESTROY ;
