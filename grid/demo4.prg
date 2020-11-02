@@ -52,6 +52,7 @@ FUNCTION Main
          DELETE ;
          ENABLEALTA ;
          NAVIGATEBYCELL ;
+         EXTDBLCLICK ;
          ON DBLCLICK Form_1.StatusBar.Item( 1, "DblClick on " + AutoType( oGrid:Value ) ) ;
          ON HEADCLICK { { || MsgInfo( 'Click 1' ) }, ;
                         { || MsgInfo( 'Click 2' ) }, ;
