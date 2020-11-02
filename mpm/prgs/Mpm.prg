@@ -1458,9 +1458,9 @@ Procedure Crea_temp_rc( cFilerc )  // File _temp.rc
          DO CASE
             CASE WATHGUI == 1 // ooHG
                  If ( main.RadioGroup_6.value = 2 .OR. main.RadioGroup_6.value = 3 .OR. main.RadioGroup_6.value = 4)
-                    DosComm1 := '/c copy /b "'+MINIGUIFOLDER+'\resources\oohg_bcc.rc'+'"+"'+cFilerc2+'.rc'+'"+"'+MINIGUIFOLDER+'\resources\filler"'+' "'+MINIGUIFOLDER+'\resources\_temp.rc"'+' >NUL'
+                    DosComm1 := '/c copy /b "'+cFilerc2+'.rc" + "'+MINIGUIFOLDER+'\resources\filler" + "' + MINIGUIFOLDER+'\resources\oohg_bcc.rc"'+MINIGUIFOLDER+'\resources\_temp.rc" > NUL'
                  Else
-                    DosComm1 := '/c copy /b "'+MINIGUIFOLDER+'\resources\oohg.rc'+'"+"'+cFilerc2+'.rc'+'"+"'+MINIGUIFOLDER+'\resources\filler"'+' "'+MINIGUIFOLDER+'\resources\_temp.rc"'+' >NUL'
+                    DosComm1 := '/c copy /b "'+cFilerc2+'.rc" + "'+MINIGUIFOLDER+'\resources\filler" + "' + MINIGUIFOLDER+'\resources\oohg.rc"'+MINIGUIFOLDER+'\resources\_temp.rc" > NUL'
                  Endif
             CASE WATHGUI == 2  // MiniGUI
                  If main.RadioGroup_6.value = 1
