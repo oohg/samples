@@ -26,10 +26,14 @@ FUNCTION Main
       TITLE 'Print an Image from RC file' ;
       MAIN
 
+      DEFINE STATUSBAR
+         STATUSITEM ""
+      END STATUSBAR
+
       @ 20,20 IMAGE Image_1 ;
          OBJ oImage ;
          IMAGESIZE ;
-         PICTURE "OOHG"
+         PICTURE "OOHG" ON MOUSEHOVER oForm:StatusBar:Item( 1, TToS( Time() ) )
 
       @ 200, 010 BUTTON button_1 ;
          WIDTH 150 ;
