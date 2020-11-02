@@ -65,8 +65,8 @@ FUNCTION Main()
         WIDTH 400 ;
         VALUE cTitle
 
-      @ 260, 20 LABEL lbl3 WIDTH 350 ;
-         VALUE "enter its exact title in the previous textbox and click Change"
+      @ 260, 20 LABEL lbl3 WIDTH 500 ;
+         VALUE "enter its exact title in the previous textbox and click Change, then 'Open 1' or 'Show Msg'"
 
       @ 300, 20 BUTTON btn4 ;
          CAPTION "Change" ;
@@ -105,14 +105,14 @@ FUNCTION fn2( n )
    LOCAL i
 
    HIDE WINDOW Form_1
-   ShowConsole( cTitle )
-   CLEAR SCREEN
+   IF ShowConsole( cTitle )
+      CLEAR SCREEN
 
-   FOR i := 1 TO n
-      ? i
-   NEXT
-   WAIT
-
+      FOR i := 1 TO n
+         ? i
+      NEXT
+      WAIT
+   ENDIF
    RESTORE WINDOW Form_1
    HideConsole( cTitle )
 
@@ -130,7 +130,20 @@ HB_FUNC( HIDECONSOLE )
 
 HB_FUNC( SHOWCONSOLE )
 {
-    ShowWindow( FindWindow( NULL, hb_parc( 1 ) ), SW_RESTORE );
+   HWND hwnd = FindWindow( NULL, hb_parc( 1 ) );
+
+   if( hwnd )
+   {
+      ShowWindow( hwnd, SW_RESTORE );
+      hb_retl( TRUE );
+   }
+   else
+   {
+      char cBuffError[ 1000 ];
+      sprintf( cBuffError, "%s %s %s", "Error:", hb_parc( 1 ), "not found!" );
+      MessageBox( 0, cBuffError, "Error!", MB_OK | MB_SYSTEMMODAL );
+      hb_retl( FALSE );
+   }
 }
 
 #pragma ENDDUMP
