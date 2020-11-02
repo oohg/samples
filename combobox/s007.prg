@@ -44,10 +44,10 @@ FUNCTION Main
 
       @ 10,10 COMBOBOX Combo_1 OBJ oCombo ;
          ITEMS { 'Orange' , 'Black' , 'Yellow' } ;
-         VALUE 1 ;
          DISPLAYEDIT ;
          IMAGE {} ;
-         ON DISPLAYCHANGE ForceUpperCase( oCombo, oText )
+         ON DISPLAYCHANGE ForceUpperCase( oCombo, oText ) ;
+         CUEBANNER "Pick a color"
       oCombo:FontColorSelected := GREEN
       oCombo:BackColorSelected := YELLOW
 
