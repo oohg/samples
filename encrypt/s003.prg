@@ -60,7 +60,7 @@ FUNCTION DoEncrypt
    // This will delete CODE.DBF after encoding it into CODE.BIN
    ENCODE CODE.DBF TO CODE.BIN PASSWORD "OOHG rocks!!!" DELETE RESULT uRet
 
-   IF HB_ISNIL( uRet )
+   IF uRet == NIL
       // File is already encrypted
    ELSEIF uRet
       MsgInfo( "CODE.DBF was encrypted to CODE.BIN and deleted!" )
@@ -76,7 +76,7 @@ FUNCTION DoDecrypt
    // This will delete CODE.BIN after decoding it into CODE.DBF
    DECODE CODE.BIN TO CODE.DBF PASSWORD "OOHG rocks!!!" DELETE RESULT uRet
 
-   IF HB_ISNIL( uRet )
+   IF uRet == NIL
       // File is not encrypted
    ELSEIF uRet
       MsgInfo( "CODE.BIN was decoded to CODE.DBF and deleted!" + CRLF + "Compare with OLDCODE.DBF" )
