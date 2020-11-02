@@ -21,13 +21,19 @@ FUNCTION Main
 		TITLE "oohg - Label Alignment Demo" ;
 		MAIN
 
+      DEFINE STATUSBAR
+         STATUSITEM ""
+      END STATUSBAR
+
       ON KEY ESCAPE ACTION ThisWindow.Release()
 
       @ 10,10 LABEL Label_1 OBJ oLbl1 ;
          VALUE "Label_1" ;
          WIDTH oForm:ClientWidth - 20  ;
          BORDER ;
-         TOOLTIP "Label 1"                       // SS_LEFT, default
+         TOOLTIP "Label 1" ;                      // SS_LEFT, default
+         ON MOUSEMOVE oForm:Statusbar:Item( 1, Time() ) ;
+         ON MOUSELEAVE oForm:Statusbar:Item( 1, "Leave" )
 
       @ 40,10 LABEL Label_2 OBJ oLbl2 ;
          VALUE "Label_2" ;
