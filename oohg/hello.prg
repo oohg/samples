@@ -169,7 +169,7 @@ DEFINE WINDOW Win_1 OBJ oWnd ;
       end page
    end tab
 
-   @ 250,200 spinner spin range 0,100 width 150 height 20
+   @ 250,200 spinner spin range 0,100 width 150 height 20 cuebanner "Pick a value" value 5
 
    @ 280,200 combobox cmb items { "Uno", "Dos", "Tres" } width 150
 
