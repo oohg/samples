@@ -200,9 +200,9 @@ Procedure printlist()
 		TOTALS   aTot                     ;
 		NFORMATS aFmt                     ;
 		WORKAREA &cBase                   ;
-                LPP 60                            ;
-                CPL 120                           ;
-                LMARGIN  5                        ;
+      LPP 60                            ;
+      CPL 120                           ;
+      LMARGIN  5                        ;
 		PAPERSIZE DMPAPER_LETTER          ;
 		PREVIEW
 
