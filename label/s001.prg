@@ -18,31 +18,40 @@ FUNCTION Main
 
    DEFINE WINDOW Form OBJ oWin ;
       AT 0,0 ;
-      WIDTH 330 HEIGHT 200 ;
-      TITLE "Label Demo - Change cursor and Set an Action" ;
+      WIDTH 440 HEIGHT 200 ;
+      TITLE "OOHG - Label Demo: Cursor, Action, Mouse" ;
       MAIN
+
+      DEFINE STATUSBAR
+         STATUSITEM ""
+      END STATUSBAR
 
       @ 20,20 LABEL lbl OBJ oLbl ;
          VALUE "When mouse hovers me you must see a hand cursor." ;
          WIDTH 200 ;
-         HEIGHT 50 ;
+         HEIGHT 100 ;
+         CLIENTEDGE ;
          TOOLTIP "Click me to trigger an action !!!" ;
-         ACTION {|| AutoMsgBox( "Action triggered !!!" ) }
+         ACTION {|| AutoMsgBox( "Action triggered !!!" ) } ;
+         CURSOR IDC_HAND ;
+         ON MOUSEHOVER oWin:StatusBar:Item( 1, "Hover " + Time() ) ;
+         ON MOUSELEAVE oWin:StatusBar:Item( 1, "MouseLeave" )
 
       /*
        * Acceptable values are:
        * a) standard cursors, use constants defined in i_controlmisc.ch
        * b) cursors from resource file, use "name" defined in RC file
        * c) cursors from disk, use "filename"
-       */
-      oLbl:Cursor := IDC_HAND
-
-      /*
-       * The ACTION can also be specified using:
+       *
+       * The 'CURSOR IDC_HAND' clause can be replaced by
+       * oLbl:Cursor := IDC_HAND
+       *
+       * The ACTION clause can be replaced by
        * oLbl:OnClick := {|| AutoMsgBox( "Action triggered !!!" ) }
+       * or
        * Form.lbl.OnClick := {|| AutoMsgBox("Action triggered !!!")}
        *
-       * To trigger the ACTION in code, use
+       * To trigger the ACTION by code, use
        * Form.lbl.OnClick()
        * Eval( Form.lbl.OnClick )
        * Eval( oLbl:OnClick )
