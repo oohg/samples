@@ -161,7 +161,7 @@ FUNCTION MyProcess( oForm )
          oBook:StoreToURL( OO_ConvertToURL( cFile ), {} )
          oBook:Close( 1 )
 
-         IF MsgYesNo( cFile + ' was created.' + HB_OsNewLine() + "Create Dbf?" )
+         IF MsgYesNo( cFile + ' was created.' + HB_Eol() + "Create Dbf?" )
             ConvertToDbf( oForm, cFile )
          ENDIF
       RECOVER USING x

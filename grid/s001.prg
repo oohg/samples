@@ -130,7 +130,7 @@ FUNCTION ToExcel( oGrid )
    oSheet := NIL
    oExcel := NIL
 
-   MsgInfo( HB_DirBase() + 'TEST.XLS was created' + HB_OsNewLine() + ;
+   MsgInfo( HB_DirBase() + 'TEST.XLS was created' + hb_Eol() + ;
             'and EXCEL.EXE was unloaded from memory.' )
 
    Form_1.StatusBar.Item( 1 ) := cBefore

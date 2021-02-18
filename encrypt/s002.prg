@@ -84,7 +84,7 @@ FUNCTION DoDecrypt
 
    CLOSE DATABASES
 
-   MsgInfo( "Field Name of CODE.DBF was decoded!" + CRLF + "Compare with OLDCODE.DBF" )
+   MsgInfo( "Field Name of CODE.DBF was decoded!" + hb_eol() + "Compare with OLDCODE.DBF" )
 
    RETURN NIL
 

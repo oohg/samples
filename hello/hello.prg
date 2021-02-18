@@ -8,9 +8,9 @@ PROCEDURE Main
 
      @ 10, 10 BUTTON btn_1 ;
         CAPTION "About" ;
-        ACTION MsgBox( "Built with" + CRLF + ;
-                       OOHGVersion() + CRLF + ;
-                       hb_Compiler() + CRLF + ;
+        ACTION MsgBox( "Built with" + hb_eol() + ;
+                       OOHGVersion() + hb_eol() + ;
+                       hb_Compiler() + hb_eol() + ;
                        Version() )
 
      @ 50, 10 BUTTON btn_2 ;

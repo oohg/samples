@@ -66,7 +66,7 @@ PROCEDURE MAIN
 
       @ 400, 280 BUTTON Button_1 ;
          CAPTION "Credits" ;
-         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + hb_eol() + BT_InfoAuthor(), "Info" )
 
       DEFINE TIMER Timer1 ;
          INTERVAL 300 ;
@@ -91,7 +91,7 @@ PROCEDURE Proc_ON_PAINT
       BT_DrawBitmap( hDC, 20, 20, Width, Height, BT_SCALE, hBitmap )
    ELSE
       BT_DrawBitmap( hDC, 20, 20, Width, Height, BT_COPY, hBitmap )
-   ENDIF  
+   ENDIF
    BT_DeleteDC( BTstruct )
 RETURN
 

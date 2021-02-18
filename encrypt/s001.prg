@@ -63,7 +63,7 @@ FUNCTION DoEncrypt
    ELSEIF uRet
       MsgInfo( "CODE.DBF was encrypted!" )
    ELSE
-      MsgStop( "An error was detected." + CRLF + "The file may be unusable!" + CRLF + "Restore from backup." )
+      MsgStop( "An error was detected." + hb_eol() + "The file may be unusable!" + hb_eol() + "Restore from backup." )
    ENDIF
 
    RETURN NIL
@@ -76,9 +76,9 @@ FUNCTION DoDecrypt
    IF uRet == NIL
       // File is not encrypted
    ELSEIF uRet
-      MsgInfo( "CODE.DBF was decoded!" + CRLF + "Compare with OLDCODE.DBF" )
+      MsgInfo( "CODE.DBF was decoded!" + hb_eol() + "Compare with OLDCODE.DBF" )
    ELSE
-      MsgStop( "An error was detected." + CRLF + "The file may be unusable!" + CRLF + "Restore from backup." )
+      MsgStop( "An error was detected." + hb_eol() + "The file may be unusable!" + hb_eol() + "Restore from backup." )
    ENDIF
 
    RETURN NIL

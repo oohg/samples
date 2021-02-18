@@ -48,12 +48,12 @@ RETURN
 PROCEDURE Bye
    LOCAL cMsg, nNum
 
-   cMsg := "ItemCount = " + Ltrim(Str(oTree:ItemCount)) + HB_OsNewLine()
+   cMsg := "ItemCount = " + Ltrim(Str(oTree:ItemCount)) + hb_Eol()
 
    FOR nNum := 1 TO oTree:ItemCount
       cMsg += "Item " + Ltrim(Str(nNum)) + " = "
       cMsg += IF(oTree:CheckItem(nNum), ".T.", ".F.")
-      cMsg += HB_OsNewLine()
+      cMsg += hb_Eol()
    NEXT nNum
 
    MSGBOX(cMsg)

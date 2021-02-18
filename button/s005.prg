@@ -52,8 +52,8 @@ PROCEDURE MAIN
       @ 200, 20 LABEL lbl_1 ;
          WIDTH 400 ;
          HEIGHT 60 ;
-         VALUE "The value of the checkbox can be changed programmatically or" + CRLF + ;
-               "by clicking on the control. When the checkbox is highlighted" + CRLF + ;
+         VALUE "The value of the checkbox can be changed programmatically or" + hb_eol() + ;
+               "by clicking on the control. When the checkbox is highlighted" + hb_eol() + ;
                "its value is .T., otherwise is .F."
 
       ON KEY ESCAPE ACTION ThisWindow.Release

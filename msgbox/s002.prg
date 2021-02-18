@@ -21,8 +21,8 @@ RETURN NIL
 
 FUNCTION ShowMsg
 
-   MsgInfoExt( ( "MsgInfoExt Sample" + CRLF + ;
-                 "This is line 2"    + CRLF + ;
+   MsgInfoExt( ( "MsgInfoExt Sample" + hb_eol() + ;
+                 "This is line 2"    + hb_eol() + ;
                  "This message has a 10 seconds timeout" ), ;
                "This is the title", ;
                10, ;

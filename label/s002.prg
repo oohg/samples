@@ -12,7 +12,7 @@
 
 #include "oohg.ch"
 
-#define CRLF Chr(13) + Chr(10)
+#define hb_eol() Chr(13) + Chr(10)
 
 FUNCTION Main
 
@@ -24,35 +24,35 @@ FUNCTION Main
       MAIN
 
       @ 20, 20 LABEL lbl_1 ;
-         VALUE "T" + CRLF + ;
-               "h" + CRLF + ;
-               "i" + CRLF + ;
-               "s" + CRLF + ;
-               " " + CRLF + ;
-               "i" + CRLF + ;
-               "s" + CRLF + ;
-               " " + CRLF + ;
-               "a" + CRLF + ;
-               " " + CRLF + ;
-               "v" + CRLF + ;
-               "e" + CRLF + ;
-               "r" + CRLF + ;
-               "t" + CRLF + ;
-               "i" + CRLF + ;
-               "c" + CRLF + ;
-               "a" + CRLF + ;
-               "l" + CRLF + ;
-               " " + CRLF + ;
-               "l" + CRLF + ;
-               "a" + CRLF + ;
-               "b" + CRLF + ;
-               "e" + CRLF + ;
+         VALUE "T" + hb_eol() + ;
+               "h" + hb_eol() + ;
+               "i" + hb_eol() + ;
+               "s" + hb_eol() + ;
+               " " + hb_eol() + ;
+               "i" + hb_eol() + ;
+               "s" + hb_eol() + ;
+               " " + hb_eol() + ;
+               "a" + hb_eol() + ;
+               " " + hb_eol() + ;
+               "v" + hb_eol() + ;
+               "e" + hb_eol() + ;
+               "r" + hb_eol() + ;
+               "t" + hb_eol() + ;
+               "i" + hb_eol() + ;
+               "c" + hb_eol() + ;
+               "a" + hb_eol() + ;
+               "l" + hb_eol() + ;
+               " " + hb_eol() + ;
+               "l" + hb_eol() + ;
+               "a" + hb_eol() + ;
+               "b" + hb_eol() + ;
+               "e" + hb_eol() + ;
                "l"          ;
          WIDTH 24 ;
          HEIGHT 440
 /*
  * The previous VALUE clause can be replaced by CharMix function from hbct lib:
- * VALUE CharMix( "This is a vertical label", CRLF )
+ * VALUE CharMix( "This is a vertical label", hb_eol() )
  */
 
       @ 20, 100 LABEL lbl_2 OBJ oLbl2 ;

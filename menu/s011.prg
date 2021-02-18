@@ -99,7 +99,7 @@ FUNCTION NewForm
 
       @ 20, 20 LABEL lbl_1 ;
          AUTOSIZE ;
-         VALUE "The statusbar should show the app-wide default message!" + CRLF + ;
+         VALUE "The statusbar should show the app-wide default message!" + hb_eol() + ;
                "when the mouse hovers the menu's item."
 
       ON KEY ESCAPE ACTION ThisWindow.Release

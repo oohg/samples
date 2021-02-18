@@ -61,7 +61,7 @@
 
 ANNOUNCE RDDSYS
 
-#if ! ( __HARBOUR__ - 0 < 0x030200 )       
+#if ! ( __HARBOUR__ - 0 < 0x030200 )
    #require "hbzebra"
    #require "hbhpdf"
 #endif
@@ -154,13 +154,13 @@ Function DesignHaruPDF( cFileToSave )
 
    HPDF_SetCompressionMode( pdf, HPDF_COMP_ALL )
 
-   
+
    // Passwords and Permissions
    //
    if Mh.Check_1.value
       HPDF_SetPassword(pdf, 'owner','user' )
    Endif
-   
+
    if Mh.Check_2.value
       HPDF_SetPermission(pdf, HPDF_ENABLE_READ)  // cannot print
    Endif
@@ -568,7 +568,7 @@ Static Function Page_Text( pdf, grid )
    if grid
       print_grid (pdf, page)
    Endif
-   
+
    page_height := HPDF_Page_GetHeight(page)
 
    font := HPDF_GetFont(pdf, "Helvetica", NIL)
@@ -784,7 +784,7 @@ Static Function Page_TextScaling( pdf, grid )
    if grid
       print_grid(pdf, page)
    Endif
-   
+
    /* print the lines of the page.
    HPDF_Page_SetLineWidth(page, 1)
    HPDF_Page_Rectangle(page, 50, 50, HPDF_Page_GetWidth(page) - 100,
@@ -1063,7 +1063,7 @@ static function show_description( page, x, y, text )
 Static function Page_CodePages( pdf )
 *------------------------------------------------------------------------*
    Local page, outline, font2, font_name, root, i, font, dst
-   Local cResPath := "files" + hb_OSPathSeparator()
+   Local cResPath := "files" + hb_ps()
    Local cAfm := cResPath+"a010013l.afm"
    Local cPfb := cResPath+"a010013l.pfb"
    Local encodings := { ;
@@ -1382,7 +1382,7 @@ Static function Page_Images( pdf )
 *------------------------------------------------------------------------*
    Local font, page, dst, image, image1, image2, image3
    Local x, y, angle, angle1, angle2, rad, rad1, rad2, iw, ih
-   Local cImagePath := "files" + hb_OSPathSeparator()
+   Local cImagePath := "files" + hb_ps()
 
    /* create default-font */
    font := HPDF_GetFont(pdf, "Helvetica", Nil)
@@ -1390,7 +1390,7 @@ Static function Page_Images( pdf )
    /* add a new page object. */
    page := HPDF_AddPage(pdf)
    aadd( cpos, page )
-   
+
    HPDF_Page_SetWidth(page, 550)
    HPDF_Page_SetHeight(page, 500)
 
@@ -1540,9 +1540,9 @@ Static function show_description_1( page, x, y, text , addline)
 *------------------------------------------------------------------------*
 Static function Print_jpg( pdf )
 *------------------------------------------------------------------------*
-    Local cImagePath := "files" + hb_OSPathSeparator(), font, dst, page
+    Local cImagePath := "files" + hb_ps(), font, dst, page
     Local image1, image2, x, y, iw, ih
-    
+
     font = HPDF_GetFont (pdf, "Helvetica", Nil);
     /* add a new page object. */
     page = HPDF_AddPage (pdf)
@@ -1753,7 +1753,7 @@ Static Function Page_Link_Annotation( pdf )
 
     HPDF_Page_MoveToNextLine (index_page)
 
-    dst := HPDF_Page_CreateDestination (cpos[1]) 
+    dst := HPDF_Page_CreateDestination (cpos[1])
 
     annot := HPDF_Page_CreateLinkAnnot (index_page, rect, dst)
 
@@ -2056,9 +2056,9 @@ Static Function Slide_page (page, caption, font, style, prev, next)
     #define rRIGHT  3
     #define rBOTTOM 4
 */
-    r := rand() 
-    g := rand() 
-    b := rand() 
+    r := rand()
+    g := rand()
+    b := rand()
 
     HPDF_Page_SetWidth (page, 800)
     HPDF_Page_SetHeight (page, 600)
@@ -2205,7 +2205,7 @@ PROCEDURE DrawBarcode( page, nY, nLineWidth, cType, cCode, nFlags )
    CASE cType == "DATAMATRIX"
       hZebra := hb_zebra_create_datamatrix( cCode, nFlags )
       nLineHeight := nLineWidth
-#if ( __HARBOUR__ - 0 < 0x030200 )   
+#if ( __HARBOUR__ - 0 < 0x030200 )
    CASE cType == "QRCODE"
       MsgInfo( "HARBOUR 3.0 has no support for QRCODE" )
       RETURN

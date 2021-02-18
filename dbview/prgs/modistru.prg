@@ -217,10 +217,10 @@ return ( lModYes )
 function DBUmodistructure(cBase)
 *------------------------------------------------------------*
 
-    if !msgyesno( PadC("C A U T I O N",70)+ CRLF + CRLF +;
-        PadC("If you had modified either the field name or the field type,",70) + CRLF +;
-        PadC("the data for that fields can not be saved in the modified .DBF",70) + CRLF +;
-        PadC("However, a backup file (.BAK) will be created.",70) + CRLF + CRLF +;
+    if !msgyesno( PadC("C A U T I O N",70)+ hb_eol() + hb_eol() +;
+        PadC("If you had modified either the field name or the field type,",70) + hb_eol() +;
+        PadC("the data for that fields can not be saved in the modified .DBF",70) + hb_eol() +;
+        PadC("However, a backup file (.BAK) will be created.",70) + hb_eol() + hb_eol() +;
         PadC("Are you sure to modify the structure?",70), PROGRAM+VERSION )
 
         return (.F.)

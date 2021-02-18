@@ -311,14 +311,14 @@ RETURN NIL
  */
 FUNCTION Tree1_Drop( oTree, uNewItem )
 
-   MsgBox("New Item: " + AutoType(uNewItem) + hb_OsNewLine() + ;
+   MsgBox("New Item: " + AutoType(uNewItem) + hb_Eol() + ;
           "Children: " + AutoType(oTree:GetChildren(uNewItem)))
 
 RETURN NIL
 
 FUNCTION Tree2_Drop( oTree, uNewItem )
 
-   MsgBox("New Item: " + LTRIM(STR(uNewItem)) + hb_OsNewLine() + ;
+   MsgBox("New Item: " + LTRIM(STR(uNewItem)) + hb_Eol() + ;
           "Children: " + AutoType(oTree:GetChildren(uNewItem)))
 
 RETURN NIL

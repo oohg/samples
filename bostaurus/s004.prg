@@ -122,7 +122,7 @@ PROCEDURE MAIN
 
       @ 400, 650 BUTTON button_6 ;
          CAPTION "Credits" ;
-         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + hb_eol() + BT_InfoAuthor(), "Info" )
 
       DRAW LINE IN WINDOW Win1 ;
          AT 0, 400 TO 600, 400 ;
@@ -183,7 +183,7 @@ PROCEDURE Proc_ON_PAINT( nMode, Flag_Erase, hBitmap )
    LOCAL hDC, BTstruct
 
    hDC := BT_CreateDC( "Win1", BT_HDC_INVALIDCLIENTAREA, @BTstruct )
-  
+
    IF nMode == BT_COPY
       Row := - Win1.VscrollBar.value
       Col := - Win1.HscrollBar.value

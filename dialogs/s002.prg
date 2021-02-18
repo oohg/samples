@@ -54,7 +54,7 @@ PROCEDURE Test2()
    x := Getfile( { {'All Files', '*.*'} }, 'Open Files', 'c:\', .T., .T. )
 
    FOR i := 1 TO Len( x )
-      c += ( x[i] + CRLF )
+      c += ( x[i] + hb_eol() )
    NEXT x
 
    MsgInfo( c, "Files" )

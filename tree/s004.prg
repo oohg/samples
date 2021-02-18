@@ -83,7 +83,7 @@ FUNCTION ToArray( oTree )
    // show aTree
    nItems := LEN(aTree)
    FOR i := 1 to nItems
-      MsgBox("Root: " + LTRIM(STR(aTree[i,1])) + HB_OsNewLine() + ;
+      MsgBox("Root: " + LTRIM(STR(aTree[i,1])) + hb_Eol() + ;
              ListChildren(aTree[i,2], 0))
    NEXT i
 
@@ -123,10 +123,10 @@ FUNCTION ListChildren( aChildren, nCol )
    LOCAL cMsg, i
 
    IF LEN(aChildren) > 0
-      cMsg := space(nCol) + "Children: " + HB_OsNewLine()
+      cMsg := space(nCol) + "Children: " + hb_Eol()
       FOR i := 1 to LEN(aChildren)
          cMsg += space(nCol) + LTRIM(STR(aChildren[i,1])) + " - " + ;
-                 aChildren[i,3] + HB_OsNewLine() + ;
+                 aChildren[i,3] + hb_Eol() + ;
                  ListChildren(ACLONE(aChildren[i,2]), nCol + 3)
       NEXT i
    ELSE

@@ -181,7 +181,7 @@ PROCEDURE CreateCompatibilityKey( lEnableMsgs )
             ENDIF
          ELSE
             IF lEnableMsgs
-               AutoMsgBox( "Registry value was created !" + CRLF + "Value is: " + hb_ntos( nVal ) )
+               AutoMsgBox( "Registry value was created !" + hb_eol() + "Value is: " + hb_ntos( nVal ) )
             ENDIF
          ENDIF
       ELSE

@@ -60,7 +60,7 @@ FUNCTION Main
 /*
    COLUMNCONTROLS format:
      {'TEXTBOX', cType, cPicture, cFunction, nOnFocusPos, lButtons, aImages, lLikeExcel, cEditKey, lNoModal}
-     {'MEMO', cTitle, lCleanCRLF, nWidth, nHeight, lSize, lNoHScroll }
+     {'MEMO', cTitle, lCleanhb_eol(), nWidth, nHeight, lSize, lNoHScroll }
      {'DATEPICKER', lUpDown, lShowNone, lButtons, aImages, lNoModal}
      {'COMBOBOX', aItems, aValues, cRetValType, lButtons, aImages, lNoModal}
      {'COMBOBOXTEXT', aItems, lIncremental, lWinSize, lButtons, aImages, lNoModal}

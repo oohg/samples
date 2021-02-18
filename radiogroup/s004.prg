@@ -287,12 +287,12 @@ FUNCTION Main
 
 
       @ 410, 10 LABEL lbl_Notes WIDTH 600 HEIGHT 200 TRANSPARENT ;
-         VALUE "BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT." + hb_OsNewLine() + ;
-               "TRANSPARENT takes precedence over BACKCOLOR." + hb_OsNewLine() + ;
-               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not defaults to WINDRAW." + hb_OsNewLine() + ;
-               "WINDRAW paints using Windows' default routine." + hb_OsNewLine() + ;
-               "If neither OOHGDRAW nor WINDRAW are present then WINDRAW is assumed unless NOFOCUSRECT is present." + hb_OsNewLine() + ;
-               "BACKGROUND paints the control's background using a brush derived from another control's client area." + hb_OsNewLine() + ;
+         VALUE "BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT." + hb_Eol() + ;
+               "TRANSPARENT takes precedence over BACKCOLOR." + hb_Eol() + ;
+               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not defaults to WINDRAW." + hb_Eol() + ;
+               "WINDRAW paints using Windows' default routine." + hb_Eol() + ;
+               "If neither OOHGDRAW nor WINDRAW are present then WINDRAW is assumed unless NOFOCUSRECT is present." + hb_Eol() + ;
+               "BACKGROUND paints the control's background using a brush derived from another control's client area." + hb_Eol() + ;
                "FONTCOLOR is not supported under themed XP nor by WINDRAW under Win10."
 
       @ 500, 700 BUTTON btn_Change OBJ oBut CAPTION "Use BackImage" WIDTH 170 ;

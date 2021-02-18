@@ -46,10 +46,10 @@ FUNCTION Main
    _OOHG_TxtError:FileName := "MyErrorLog.htm"
    _OOHG_TxtError:cBufferScreen := ;
       "Please, report this error to the programmer." + ;
-      CRLF + ;
+      hb_eol() + ;
       "Thank you." + ;
-      CRLF + ;
-      CRLF
+      hb_eol() + ;
+      hb_eol()
 
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1

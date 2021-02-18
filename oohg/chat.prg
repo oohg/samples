@@ -12,7 +12,7 @@
 
 #include "oohg.ch"
 
-#define CRLF   CHR( 13 ) + CHR( 10 )
+#define hb_eol()   CHR( 13 ) + CHR( 10 )
 
 PROCEDURE MAIN
 LOCAL oWnd
@@ -62,7 +62,7 @@ LOCAL lHost := .F., oSocket := NIL, aClients := {}
       @ 330, 10 TEXTBOX Text WIDTH 380 HEIGHT 19 ;
                 ON ENTER oWnd:Send:Click()
       oWnd:Text:Anchor := "LEFTBOTTOMRIGHT"
-                
+
       @ 330,395 BUTTON Send  CAPTION "Send" WIDTH 35 HEIGHT 19 ;
                 ACTION SendText( oWnd, oSocket, lHost, aClients )
       oWnd:Send:Anchor := "BOTTOMRIGHT"
@@ -126,7 +126,7 @@ LOCAL cText
       IF lHost
          SendToAll( "000: " + cText, aClients, oWnd )
       ELSE
-         oSocket:WriteBuffer( cText + CRLF )
+         oSocket:WriteBuffer( cText + hb_eol() )
       ENDIF
    ENDIF
    oWnd:Text:Value := ""
@@ -135,7 +135,7 @@ RETURN
 
 PROCEDURE SendToAll( cText, aClients, oWnd )
    cText := LEFT( cText, 900 )
-   AEVAL( aClients, { |o| IF( o == NIL,, o:WriteBuffer( cText + CRLF ) ) } )
+   AEVAL( aClients, { |o| IF( o == NIL,, o:WriteBuffer( cText + hb_eol() ) ) } )
    ShowText( oWnd, cText )
 RETURN
 
@@ -150,7 +150,7 @@ RETURN
 PROCEDURE CheckForExit( oWnd, oSocket, lHost, aClients )
 LOCAL lExit
    IF lHost
-      lExit := MsgYesNo( "You are the host of this chat" + CRLF + ;
+      lExit := MsgYesNo( "You are the host of this chat" + hb_eol() + ;
                "Do you want to close chat sample?", "Chat host" )
    ELSE
       lExit := MsgYesNo( "Do you want to close chat sample?", "Chat host" )

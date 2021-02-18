@@ -44,7 +44,7 @@ Procedure BuildLib( ProjectName )  // Borland C
         Out := Out + 'USR_LIB_DIR = ' + LIBFOLDER + NewLi
         Out := Out + 'OBJ_DIR = ' + PROJECTFOLDER + cOBJ_DIR  + NewLi
         Out := Out + 'C_DIR = ' + PROJECTFOLDER + cOBJ_DIR  + NewLi
-        Out := Out + 'TLIB = '+BCCFOLDER+'\BIN\TLIB.EXE'+crlf
+        Out := Out + 'TLIB = '+BCCFOLDER+'\BIN\TLIB.EXE'+hb_eol()
         Out := Out + 'USER_FLAGS = ' + NewLi
 
         HRB_LIB_DIR := HARBOURFOLDER + If ( Right ( HARBOURFOLDER , 1 ) != '\' , '\' , '' ) + 'LIB'  + NewLi
@@ -69,7 +69,7 @@ Procedure BuildLib( ProjectName )  // Borland C
         Endif
 
         Out := Out + '$(APP_NAME) :	$(OBJ_DIR)\' + GetName(Left ( PRGFILES [1] , Len(PRGFILES [1] ) - 4 )) + '.obj'+ cBarra + NewLi
-        
+
        nTotFmgs := 0
 
         For i := 2 TO Len ( PrgFiles )
@@ -77,7 +77,7 @@ Procedure BuildLib( ProjectName )  // Borland C
             If upper(Right( PRGFILES [i] , 3 )) = 'FMG'
                 nTotFmgs := nTotFmgs + 1
             Endif
-        Next           
+        Next
 
         For i := 2 TO Len ( PrgFiles )
             DO EVENTS
@@ -154,7 +154,7 @@ Procedure BuildLib( ProjectName )  // Borland C
 
     END SEQUENCE
 
-    QuitarEspera()      
+    QuitarEspera()
 
     main.Tab_1.value := 7
 

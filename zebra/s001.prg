@@ -295,7 +295,7 @@ FUNCTION ChangeBarColor
       aBarColor := aColor
    ENDIF
 RETURN Nil
-   
+
 
 FUNCTION ChangeBackColor
    LOCAL aColor := GetColor( frm_barcode.lbl_backgroundcolor.BackColor )
@@ -395,7 +395,7 @@ FUNCTION Zebra_CreateBitmapBarcode( aBarColor, aBackColor, nLineWidth, nLineHeig
          ENDIF
          BT_DeleteDC( BTstruct )
       ELSE
-         MsgInfo( "Type " + cType + CRLF + "Code " + cCode + CRLF + "Error  " + LTRIM( HB_VALTOSTR( hb_zebra_geterror( hZebra ) ) ) )
+         MsgInfo( "Type " + cType + hb_eol() + "Code " + cCode + hb_eol() + "Error  " + LTRIM( HB_VALTOSTR( hb_zebra_geterror( hZebra ) ) ) )
       ENDIF
       hb_zebra_destroy( hZebra )
    ELSE

@@ -37,9 +37,9 @@ RETURN NIL
 FUNCTION OpenFile
 
    HB_MemoWrit( 'test.txt', ;
-                'This is test file' + hb_OsNewLine() + ;
-                'It should open with notepad or' + hb_OsNewLine() + ;
-                'the default registered application.'+ hb_OsNewLine() )
+                'This is test file' + hb_Eol() + ;
+                'It should open with notepad or' + hb_Eol() + ;
+                'the default registered application.'+ hb_Eol() )
    EXECUTE FILE 'CMD.EXE' PARAMETERS '/C test.txt' HIDE
 
 RETURN NIL

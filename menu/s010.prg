@@ -63,10 +63,10 @@ FUNCTION Main()
       END MENU
 
       @ 150, 10 LABEL lbl_1 HEIGHT 200 WIDTH 600 VALUE ;
-         "Open 'File' menu, click 'New' and select a file." + CRLF + ;
-         "The file is added to the top of the MRU menu and the associated app is opened." + CRLF + ;
-         "Repeat several times. Note that the list only holds the last 7 filenames (configurable)." + CRLF + ;
-         "Use 'Clear' to remove all entries." + CRLF + ;
+         "Open 'File' menu, click 'New' and select a file." + hb_eol() + ;
+         "The file is added to the top of the MRU menu and the associated app is opened." + hb_eol() + ;
+         "Repeat several times. Note that the list only holds the last 7 filenames (configurable)." + hb_eol() + ;
+         "Use 'Clear' to remove all entries." + hb_eol() + ;
          "All entries are save to file 'MRU.INI' on control's release and read from it at control's creation."
 
       ON KEY ESCAPE ACTION oForm:Release()

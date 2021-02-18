@@ -564,7 +564,7 @@ procedure PasteRec() // Pegar
          Msginfo('No Selected Record',PROGRAM)
       Else
         If ( Alias() )->( Select() ) = nRecCopy[ 1, 1 ]
-           If MsgYesNo("This action will replace the current record"+Hb_OsNewLine()+"with the data of the selected record"+Hb_OsNewLine()+"Are you sure?",PROGRAM)
+           If MsgYesNo("This action will replace the current record"+hb_Eol()+"with the data of the selected record"+hb_Eol()+"Are you sure?",PROGRAM)
               nPos := oWndBase.&( Browse_n() ).Value
               ( Alias() )->( DBGoTo( nRecCopy[ 1, 2 ] ) )
               For i = 1 to ( Alias() )->( FCount() )
@@ -888,7 +888,7 @@ Return
 Procedure InsertRecord()
 *--------------------------------------------------------*
    If !Empty( Alias() )
-      If MsgYesNo( "A blank record will be inserted before the current record!!!" + Hb_OSNewLine() + "Are You sure ?", "Insert Record")
+      If MsgYesNo( "A blank record will be inserted before the current record!!!" + hb_Eol() + "Are You sure ?", "Insert Record")
          aRec := oWndBase.&(Browse_n()).Value
          ( Alias() )->( DbGoTo( aRec[1] ) )
          DbInsert(.T.)
@@ -1026,7 +1026,7 @@ Procedure ExportData()
 		cSaveFile := IF( ( AT( ".", cSaveFile ) > 0 ), cSaveFile, ( cSaveFile + "." + IF( Empty(cExt), "dbf", cExt ) ) )
 
 		IF File( cSaveFile )
-			IF !MsgYesNo( cSaveFile + " already exists." + CRLF + ;
+			IF !MsgYesNo( cSaveFile + " already exists." + hb_eol() + ;
 				"Overwrite existing file?" )
 				Return
 			ENDIF
@@ -1126,7 +1126,7 @@ Return
 
 #xtranslate fWriteLn( <xHandle>, <cString> ) ;
 => ;
-            fWrite( <xHandle>, <cString> + CRLF )
+            fWrite( <xHandle>, <cString> + hb_eol() )
 *--------------------------------------------------------*
 Procedure SaveToPrg( cAlias, cFile )
 *--------------------------------------------------------*
@@ -1685,7 +1685,7 @@ Procedure DBQuery()
 
 	CENTER WINDOW Form_Query
 	ACTIVATE WINDOW Form_Query
-	
+
 	Primero()
 
    ENDIF
@@ -2585,7 +2585,7 @@ Function Convert2Sql( cAlias, cSaveFile )
    If Empty( cSaveFile )
       MsgInfo('You must choose a file to convert','Warning')
    Else
-      cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ CRLF
+      cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ hb_eol()
 
       For i := 1 to LEN(aEst)
           cSqlCreate += TABULADOR + aEst[i,DBS_NAME]+' '
@@ -2607,9 +2607,9 @@ Function Convert2Sql( cAlias, cSaveFile )
           ENDCASE
 
           If i < LEN(aEst)
-             cSqlCreate+= ','+CRLF  // , exception de last
+             cSqlCreate+= ','+hb_eol()  // , exception de last
           else
-             cSqlCreate+= CRLF
+             cSqlCreate+= hb_eol()
           endif
 
       Next
@@ -2653,14 +2653,14 @@ Function Convert2Sql( cAlias, cSaveFile )
                    cSqlDatos += ','  // , exception the last
                 Endif
             Next
-            cSqlDatos += ');'+CRLF
+            cSqlDatos += ');'+hb_eol()
             (cAlias)->(DbSkip())
       End
 
       nHandle := FCreate( cSaveFile, FC_NORMAL )
       FWrite(nHandle, cSqlCreate)
-      FWrite(nHandle, CRLF)
-      FWrite(nHandle, CRLF)
+      FWrite(nHandle, hb_eol())
+      FWrite(nHandle, hb_eol())
       FWrite(nHandle, cSqlDatos)
       FClose(nHandle)
 
@@ -2682,7 +2682,7 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
    If Empty( cSaveFile )
       MsgInfo('You must choose a file to convert','Warning')
    Else
-      cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ CRLF
+      cSqlCreate := 'CREATE TABLE '+(cAlias) + ' ('+ hb_eol()
 
       For i := 1 to LEN(aEst)
           cSqlCreate += TABULADOR + aEst[i,DBS_NAME]+' '
@@ -2704,9 +2704,9 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
           ENDCASE
 
           If i < LEN(aEst)
-             cSqlCreate+= ','+CRLF  // , exception de last
+             cSqlCreate+= ','+hb_eol()  // , exception de last
           else
-             cSqlCreate+= CRLF
+             cSqlCreate+= hb_eol()
           endif
 
       Next
@@ -2750,16 +2750,16 @@ Function Convert2SqlF( cAlias, cSaveFile )   // FireBird
                    cSqlDatos += ','  // , exception the last
                 Endif
             Next
-            cSqlDatos += ');'+CRLF
+            cSqlDatos += ');'+hb_eol()
             (cAlias)->(DbSkip())
       End
 
-      cSqlDatos += CRLF+'COMMIT WORK;'+CRLF
+      cSqlDatos += hb_eol()+'COMMIT WORK;'+hb_eol()
 
       nHandle := FCreate( cSaveFile, FC_NORMAL )
       FWrite(nHandle, cSqlCreate)
-      FWrite(nHandle, CRLF)
-      FWrite(nHandle, CRLF)
+      FWrite(nHandle, hb_eol())
+      FWrite(nHandle, hb_eol())
       FWrite(nHandle, cSqlDatos)
       FClose(nHandle)
 
@@ -2973,10 +2973,10 @@ FUNCTION GenXML( cDbf, cSaveFile )
   //------------------
   // Writes XML header
   //------------------
-  fWrite( nHandle, xmlver + crlf )
+  fWrite( nHandle, xmlver + hb_eol() )
 
   // root tag
-  fWrite( nHandle, make_start_tag (cDbf) + crlf )
+  fWrite( nHandle, make_start_tag (cDbf) + hb_eol() )
 
   nFields = FCOUNT()
   fldname := Array(nfields)
@@ -2985,29 +2985,29 @@ FUNCTION GenXML( cDbf, cSaveFile )
   flddecs := Array(nfields)
   AFIELDS (fldname, fldtype, fldsize, flddecs)
 
-  cBuffer = tab + make_comment ("DBF structure info") + crlf + ;
-	    tab + meta_start_tag  + crlf
+  cBuffer = tab + make_comment ("DBF structure info") + hb_eol() + ;
+	    tab + meta_start_tag  + hb_eol()
   fWrite( nHandle, cBuffer )
 
   FOR nField = 1 TO nFields
-    fWrite (nHandle, tab2 + col_start_tag + crlf)
-    cBuffer = tab3 + name_start_tag + fldname [nField] + name_end_tag + crlf + ;
-	      tab3 + type_start_tag + fldtype [nField] + type_end_tag + crlf + ;
-	      tab3 + width_start_tag + alltrim (str (fldsize [nField])) + width_end_tag + crlf + ;
-	      tab3 + decs_start_tag + alltrim (str (flddecs [nField])) + decs_end_tag + crlf
+    fWrite (nHandle, tab2 + col_start_tag + hb_eol())
+    cBuffer = tab3 + name_start_tag + fldname [nField] + name_end_tag + hb_eol() + ;
+	      tab3 + type_start_tag + fldtype [nField] + type_end_tag + hb_eol() + ;
+	      tab3 + width_start_tag + alltrim (str (fldsize [nField])) + width_end_tag + hb_eol() + ;
+	      tab3 + decs_start_tag + alltrim (str (flddecs [nField])) + decs_end_tag + hb_eol()
     fWrite( nHandle, cBuffer )
-    fWrite (nHandle, tab2 + col_end_tag + crlf)
+    fWrite (nHandle, tab2 + col_end_tag + hb_eol())
   NEXT nField
 
-  cBuffer = tab + meta_end_tag	+ crlf + ;
-	    tab + make_comment ("DBF table data") + crlf + ;
-	    tab + data_start_tag  + crlf
+  cBuffer = tab + meta_end_tag	+ hb_eol() + ;
+	    tab + make_comment ("DBF table data") + hb_eol() + ;
+	    tab + data_start_tag  + hb_eol()
   fWrite( nHandle, cBuffer )
 
   old_percent = -1
 
   DO WHILE !Eof()
-    cBuffer = tab2 + row_start_tag  + crlf
+    cBuffer = tab2 + row_start_tag  + hb_eol()
     fWrite( nHandle, cBuffer )
 
     FOR nField = 1 TO nFields
@@ -3040,7 +3040,7 @@ FUNCTION GenXML( cDbf, cSaveFile )
        ENDCASE
 
        cBuffer	= cBuffer + alltrim (cValue) + ;
-		  make_end_tag (thisfld) + crlf
+		  make_end_tag (thisfld) + hb_eol()
 
        fWrite( nHandle, cBuffer )
     NEXT nField
@@ -3048,13 +3048,13 @@ FUNCTION GenXML( cDbf, cSaveFile )
     //------------------
     // Ending Record Tag
     //------------------
-    fWrite (nHandle, tab2 + row_end_tag  + crlf)
+    fWrite (nHandle, tab2 + row_end_tag  + hb_eol())
     SKIP
 
   ENDDO
 
-  cBuffer = tab + data_end_tag + crlf + ;
-	    make_end_tag (cDbf) + crlf
+  cBuffer = tab + data_end_tag + hb_eol() + ;
+	    make_end_tag (cDbf) + hb_eol()
   fWrite( nHandle, cBuffer )
 
 

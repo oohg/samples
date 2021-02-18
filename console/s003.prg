@@ -31,7 +31,7 @@ MEMVAR cTitle, oForm
 
 FUNCTION Main()
 
-   PUBLIC oForm, cTitle := GetModuleFileName()
+   PUBLIC oForm, cTitle := hb_ProgName()
 
    SET STATIONNAME TO "MAIN"
 

@@ -65,48 +65,48 @@ FUNCTION LoadReg
       oData:Value := ""
       col := GetRegistryValue( hKey, cKey, 'col', 'N' )
       IF col == NIL
-         oData:Value += "Col is NIL !" + CRLF
+         oData:Value += "Col is NIL !" + hb_eol()
       ELSE
-         oData:Value += "Col = " + hb_ntos( col ) + CRLF
+         oData:Value += "Col = " + hb_ntos( col ) + hb_eol()
          oForm:Col := col
       ENDIF
       row := GetRegistryValue( hKey, cKey, 'row', 'N' )
       IF row == NIL
-         oData:Value += "Row is NIL !" + CRLF
+         oData:Value += "Row is NIL !" + hb_eol()
       ELSE
-         oData:Value += "Row = " + hb_ntos( row ) + CRLF
+         oData:Value += "Row = " + hb_ntos( row ) + hb_eol()
          oForm:Row := row
       ENDIF
       width := GetRegistryValue( hKey, cKey, 'width', 'N' )
       IF width == NIL
-         oData:Value += "Width is NIL !" + CRLF
+         oData:Value += "Width is NIL !" + hb_eol()
       ELSE
-         oData:Value += "Width = " + hb_ntos( width ) + CRLF
+         oData:Value += "Width = " + hb_ntos( width ) + hb_eol()
          oForm:Width := width
       ENDIF
       height := GetRegistryValue( hKey, cKey, 'height', 'N' )
       IF height == NIL
-         oData:Value += "Height is NIL !" + CRLF
+         oData:Value += "Height is NIL !" + hb_eol()
       ELSE
-         oData:Value += "Height = " + hb_ntos( height ) + CRLF
+         oData:Value += "Height = " + hb_ntos( height ) + hb_eol()
          oForm:Height := height
       ENDIF
       array := GetRegistryValue( hKey, cKey, 'data', 'A' )
       IF array == NIL
-         oData:Value += "Data is NIL !" + CRLF
+         oData:Value += "Data is NIL !" + hb_eol()
       ELSE
          FOR i := 1 TO Len( array )
             data[1] += ( hb_ntos( array[i] ) + " " )
             data[2] += ( Chr( array[i] ) + " " )
          NEXT I
-         oData:Value += "Binary array, len = " + hb_ntos( Len( Array ) ) + CRLF + ;
-                        "Data " + data[1] + CRLF + ;
+         oData:Value += "Binary array, len = " + hb_ntos( Len( Array ) ) + hb_eol() + ;
+                        "Data " + data[1] + hb_eol() + ;
                         "Info " + data[2]
       ENDIF
 
       lRet := .F.
    ELSE
-      oData:Value := "Nothing loaded !" + CRLF
+      oData:Value := "Nothing loaded !" + hb_eol()
       oData:Value += "Key not found !"
       lRet := .T.
    ENDIF
@@ -129,21 +129,21 @@ FUNCTION SaveReg
       oData:Value := ""
       _OOHG_SaveAsDWORD := .F.
       IF ! SetRegistryValue( hKey, cKey, 'col', oForm:Col )
-         oData:Value +=  "Error setting Col !" + CRLF
+         oData:Value +=  "Error setting Col !" + hb_eol()
       ENDIF
       IF ! SetRegistryValue( hKey, cKey, 'row', oForm:Row )
-         oData:Value += "Error setting Row !" + CRLF
+         oData:Value += "Error setting Row !" + hb_eol()
       ENDIF
       _OOHG_SaveAsDWORD := .T.
       IF ! SetRegistryValue( hKey, cKey, 'width', oForm:Width )
-         oData:Value += "Error setting Width !" + CRLF
+         oData:Value += "Error setting Width !" + hb_eol()
       ENDIF
       IF ! SetRegistryValue( hKey, cKey, 'height', oForm:Height )
-         oData:Value += "Error setting Height !" + CRLF
+         oData:Value += "Error setting Height !" + hb_eol()
       ENDIF
    	// Binary array
       IF ! SetRegistryValue( hKey, cKey, 'data', { 0x44, 0x41, 0x54, 0x41 } )
-         oData:Value += "Error setting Data !" + CRLF
+         oData:Value += "Error setting Data !" + hb_eol()
       ENDIF
       IF Empty( oData:Value )
          oData:Value := "Done !"
@@ -159,52 +159,52 @@ FUNCTION DeleteReg
 
    oData:Value := ""
    IF IsRegistryKey( hKey, cKey )
-      oData:Value := "Key found !" + CRLF
+      oData:Value := "Key found !" + hb_eol()
    ELSE
-      oData:Value := "Nothing deleted !" + CRLF
+      oData:Value := "Nothing deleted !" + hb_eol()
       oData:Value += "Key not found !"
       RETURN NIL
    ENDIF
 
    IF DeleteRegistryVar( hKey, cKey, 'col' )
-      oData:Value += "Col deleted !" + CRLF
+      oData:Value += "Col deleted !" + hb_eol()
    ELSE
-      oData:Value += "Col not deleted !" + CRLF
+      oData:Value += "Col not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryVar( hKey, cKey, 'row' )
-      oData:Value += "Row deleted !" + CRLF
+      oData:Value += "Row deleted !" + hb_eol()
    ELSE
-      oData:Value += "Row not deleted !" + CRLF
+      oData:Value += "Row not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryVar( hKey, cKey, 'width' )
-      oData:Value += "Width deleted !" + CRLF
+      oData:Value += "Width deleted !" + hb_eol()
    ELSE
-      oData:Value += "Width not deleted !" + CRLF
+      oData:Value += "Width not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryVar( hKey, cKey, 'height' )
-      oData:Value += "Height deleted !" + CRLF
+      oData:Value += "Height deleted !" + hb_eol()
    ELSE
-      oData:Value += "Height not deleted !" + CRLF
+      oData:Value += "Height not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryVar( hKey, cKey, 'data' )
-      oData:Value += "Data deleted !" + CRLF
+      oData:Value += "Data deleted !" + hb_eol()
    ELSE
-      oData:Value += "Data not deleted !" + CRLF
+      oData:Value += "Data not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryKey( hKey, 'Software\OOHG\RegistrySample', 'FormMain' )
-      oData:Value += "Key FormMain deleted !" + CRLF
+      oData:Value += "Key FormMain deleted !" + hb_eol()
    ELSE
-      oData:Value += "Key FormMain not deleted !" + CRLF
+      oData:Value += "Key FormMain not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryKey( hKey, 'Software\OOHG', 'RegistrySample' )
-      oData:Value += "Key RegistrySample deleted !" + CRLF
+      oData:Value += "Key RegistrySample deleted !" + hb_eol()
    ELSE
-      oData:Value += "Key RegistrySample not deleted !" + CRLF
+      oData:Value += "Key RegistrySample not deleted !" + hb_eol()
    ENDIF
    IF DeleteRegistryKey( hKey, 'Software', 'OOHG' )
-      oData:Value += "Key OOHG deleted !" + CRLF
+      oData:Value += "Key OOHG deleted !" + hb_eol()
    ELSE
-      oData:Value += "Key OOHG not deleted !" + CRLF
+      oData:Value += "Key OOHG not deleted !" + hb_eol()
    ENDIF
 
    IF IsRegistryKey( hKey, cKey )

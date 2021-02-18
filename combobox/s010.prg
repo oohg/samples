@@ -82,15 +82,15 @@ FUNCTION Main
       @ 260, 10 LABEL lbl_6 ;
          WIDTH 600 ;
          HEIGHT 200 ;
-         VALUE "Under Win7/10 the defaults are EDITHEIGHT = 17 and OPTIONSHEIGHT = 15." + CRLF + ;
-               "The control, by default, sizes the editbox to fit the font size." + CRLF + ;
-               "If you change the font, the control is resized and the previous values of EditHeight and OptionsHeight are lost." + CRLF + ;
-               "To keep then, use:" + CRLF + ;
-               "   nOldEditHeight := oCombo:EditHeight" + CRLF + ;
-               "   nOldOptionsHeight := oCombo:OptionsHeight" + CRLF + ;
-               "   oCombo:SetFont( ... )" + CRLF + ;
-               "   oCombo:EditHeight := nOldEditHeight" + CRLF + ;
-               "   oCombo:OptionsHeight := nOldOptionsHeight" + CRLF + ;
+         VALUE "Under Win7/10 the defaults are EDITHEIGHT = 17 and OPTIONSHEIGHT = 15." + hb_eol() + ;
+               "The control, by default, sizes the editbox to fit the font size." + hb_eol() + ;
+               "If you change the font, the control is resized and the previous values of EditHeight and OptionsHeight are lost." + hb_eol() + ;
+               "To keep then, use:" + hb_eol() + ;
+               "   nOldEditHeight := oCombo:EditHeight" + hb_eol() + ;
+               "   nOldOptionsHeight := oCombo:OptionsHeight" + hb_eol() + ;
+               "   oCombo:SetFont( ... )" + hb_eol() + ;
+               "   oCombo:EditHeight := nOldEditHeight" + hb_eol() + ;
+               "   oCombo:OptionsHeight := nOldOptionsHeight" + hb_eol() + ;
                "Note that the item displayed in the editbox is always placed at the top-left corner by Windows."
 
 

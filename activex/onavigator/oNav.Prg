@@ -107,7 +107,7 @@ PROCEDURE Main
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 PROCEDURE Acerca
 
-   MsgInfo( 'Mybrowser Nav (c)2009 CVC' + CRLF + 'ooHG Navigator (c)2007 MigSoft', 'Información' )
+   MsgInfo( 'Mybrowser Nav (c)2009 CVC' + hb_eol() + 'ooHG Navigator (c)2007 MigSoft', 'Información' )
 
    RETURN
 
@@ -306,7 +306,7 @@ PROCEDURE CreateCompatibilityKey( lEnableMsgs )
             ENDIF
          ELSE
             IF lEnableMsgs
-               AutoMsgBox( "Registry value was created !" + CRLF + "Value is: " + hb_ntos( nVal ) )
+               AutoMsgBox( "Registry value was created !" + hb_eol() + "Value is: " + hb_ntos( nVal ) )
             ENDIF
          ENDIF
       ELSE

@@ -105,9 +105,9 @@ FUNCTION AdvTest()
    LOCAL bSave     := {|aContent, lEdit| AdvTestSave( aContent, lEdit ) }
 
    // Advise.
-   MsgInfo( "This sample shows the advanced features of EDIT." + CRLF + ;
-            CRLF +;
-            "It was designed for Spanish language, so we are" + CRLF + ;
+   MsgInfo( "This sample shows the advanced features of EDIT." + hb_eol() + ;
+            hb_eol() +;
+            "It was designed for Spanish language, so we are" + hb_eol() + ;
             "changing to such language for better performance.", "EDIT demo" )
    InitMessages( "ES" )
 
@@ -223,17 +223,17 @@ FUNCTION SelecLang()
    LOCAL nItem
 
    // Language selection.
-   MsgInfo( "The interface language of EDIT command is OOHG's default" + CRLF + ;
-            "language. You can change it using InitMessages() function." + CRLF + ;
-            CRLF +;
-            "If your language isn't supported but you are willing" + CRLF + ;
-            "to help with the translation, please send a message" + CRLF + ;
+   MsgInfo( "The interface language of EDIT command is OOHG's default" + hb_eol() + ;
+            "language. You can change it using InitMessages() function." + hb_eol() + ;
+            hb_eol() +;
+            "If your language isn't supported but you are willing" + hb_eol() + ;
+            "to help with the translation, please send a message" + hb_eol() + ;
             "to https://groups.google.com/forum/#!forum/oohg", "EDIT demo" )
    nItem := SelItem( aLangName )
    IF ! nItem == 0
       InitMessages( aLangID[nItem] )
-      MsgInfo( "EDIT interface language was changed to" + CRLF + ;
-               aLangName[nItem] + CRLF + ;
+      MsgInfo( "EDIT interface language was changed to" + hb_eol() + ;
+               aLangName[nItem] + hb_eol() + ;
                'Goto "Simple Edit test" menu to see the effects.', "EDIT demo" )
    ENDIF
 
@@ -274,23 +274,23 @@ RETURN nItem
 /*------------------------------------------------------------------------------*/
 PROCEDURE About()
 
-   MsgInfo( CRLF + ;
-            "EDIT command for OOHG adapted from the" + CRLF + ;
-            "original work developed for MINIGUI by:" + CRLF + ;
-            " *  Roberto López" + CRLF + ;
-            " *  Grigory Filatov" + CRLF + ;
-            " *  Cristóbal Mollá" + CRLF + ;
-            CRLF + ;
-            "Status of the language support:" + CRLF + ;
-            " *  English    - Ready" + CRLF + ;
-            " *  Spanish    - Ready" + CRLF + ;
-            " *  Russian    - Ready (Thanks to Grigory Filatov)" + CRLF + ;
-            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + CRLF + ;
-            " *  Polish     - Ready (Thanks to Janusz Poura)" + CRLF + ;
-		      " *  French     - Ready (Thanks to C. Jouniauxdiv)" + CRLF + ;
-		      " *  Italian    - Ready (Thanks to Lupano Piero)" + CRLF + ;
-            " *  German     - Ready (Thanks to Janusz Poura)" + CRLF + ;
-            CRLF + ;
+   MsgInfo( hb_eol() + ;
+            "EDIT command for OOHG adapted from the" + hb_eol() + ;
+            "original work developed for MINIGUI by:" + hb_eol() + ;
+            " *  Roberto López" + hb_eol() + ;
+            " *  Grigory Filatov" + hb_eol() + ;
+            " *  Cristóbal Mollá" + hb_eol() + ;
+            hb_eol() + ;
+            "Status of the language support:" + hb_eol() + ;
+            " *  English    - Ready" + hb_eol() + ;
+            " *  Spanish    - Ready" + hb_eol() + ;
+            " *  Russian    - Ready (Thanks to Grigory Filatov)" + hb_eol() + ;
+            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + hb_eol() + ;
+            " *  Polish     - Ready (Thanks to Janusz Poura)" + hb_eol() + ;
+		      " *  French     - Ready (Thanks to C. Jouniauxdiv)" + hb_eol() + ;
+		      " *  Italian    - Ready (Thanks to Lupano Piero)" + hb_eol() + ;
+            " *  German     - Ready (Thanks to Janusz Poura)" + hb_eol() + ;
+            hb_eol() + ;
 		      "Please report bugs to OOHG support group at https://groups.google.com/forum/#!forum/oohg", ;
             "EDIT demo" )
 

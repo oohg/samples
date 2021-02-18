@@ -52,12 +52,12 @@ FUNCTION Main
       ELSE
          k ++
       ENDIF
-      cMemo += Str( i, 3, 0 ) + " - " + cPathNames[ i ] + ": " +  cPath + CRLF
+      cMemo += Str( i, 3, 0 ) + " - " + cPathNames[ i ] + ": " +  cPath + hb_eol()
    NEXT i
 
    hb_MemoWrit( "KnownFolders.txt", cMemo )
 
-   AutoMsgBox( LTrim( Str( k ) ) + " Known Folders found!" + CRLF + 'See file "KnownFolders.txt"' )
+   AutoMsgBox( LTrim( Str( k ) ) + " Known Folders found!" + hb_eol() + 'See file "KnownFolders.txt"' )
 
 RETURN NIL
 

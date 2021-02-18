@@ -126,35 +126,35 @@ PROCEDURE GetFont_click
    IF Empty( a[1] )
       MsgInfo( 'Dialog was canceled!' )
    ELSE
-      cFont := a[1] + " " + LTrim( Str( a[2] ) + CRLF
+      cFont := a[1] + " " + LTrim( Str( a[2] ) + hb_eol()
       IF a[3]
-         cFont += "Bold" + CRLF
+         cFont += "Bold" + hb_eol()
       ELSE
-         cFont += "Non Bold" + CRLF
+         cFont += "Non Bold" + hb_eol()
       ENDIF
 
       IF a[4]
-         cFont += "Italic" + CRLF
+         cFont += "Italic" + hb_eol()
       ELSE
-         cFont += "Non Italic" + CRLF
+         cFont += "Non Italic" + hb_eol()
       ENDIF
 
       IF a[5] <> NIL
          cFont += "RGB color {" + LTrim( Str( a[5][1] ) ) + ", " + ;
                                   LTrim( Str( a[5][2] ) ) + ", " + ;
-                                  LTrim( Str( a[5][3] ) ) + "}" + CRLF
+                                  LTrim( Str( a[5][3] ) ) + "}" + hb_eol()
       ENDIF
 
       IF a[6]
-         cFont += "Underline" + CRLF
+         cFont += "Underline" + hb_eol()
       ELSE
-         cFont += "Non Underline" + CRLF
+         cFont += "Non Underline" + hb_eol()
       ENDIF
 
       IF a[7]
-         cFont += "StrikeOut" + CRLF
+         cFont += "StrikeOut" + hb_eol()
       ELSE
-         cFont += "Non StrikeOut" + CRLF
+         cFont += "Non StrikeOut" + hb_eol()
       ENDIF
 
       cFont += "Charset " + LTrim( Str( a[8] )

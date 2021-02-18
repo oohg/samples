@@ -113,13 +113,13 @@ PROCEDURE Main()
                                "Info" )
             SEPARATOR
             MENUITEM "Image Info" NAME mnu_INFO DISABLED ;
-               ACTION AutoMsgInfo( { "Name: " + hb_OSNewLine() + ;
+               ACTION AutoMsgInfo( { "Name: " + hb_Eol() + ;
                                         cPicture, ;
-                                     "Width: " + hb_OSNewLine() + ;
+                                     "Width: " + hb_Eol() + ;
                                         LTrim( Str( aSize[HBITMAP_WIDTH] ) ), ;
-                                     "Height: " + hb_OSNewLine() + ;
+                                     "Height: " + hb_Eol() + ;
                                         LTrim( Str( aSize[HBITMAP_HEIGHT] ) ), ;
-                                     "Bits per Pixel: " + hb_OSNewLine() + ;
+                                     "Bits per Pixel: " + hb_Eol() + ;
                                         LTrim( Str( aSize[HBITMAP_BITSPIXEL] ) ) }, ;
                                    "Image Info" )
             MENUITEM '"rainbow.jpg" Info' ;
@@ -179,9 +179,9 @@ FUNCTION GetImageInfo( cFile )
    nWidth  := gPlusGetImageWidth( nImage )
    nHeight := gPlusGetImageHeight( nImage )
 
-   AutoMsgInfo( { "Name: " + hb_OSNewLine() + cFile, ;
-                  "Width: "  + hb_OSNewLine() + LTrim( Str( nWidth ) ), ;
-                  "Height: " + hb_OSNewLine() + LTrim( Str( nHeight ) ) }, ;
+   AutoMsgInfo( { "Name: " + hb_Eol() + cFile, ;
+                  "Width: "  + hb_Eol() + LTrim( Str( nWidth ) ), ;
+                  "Height: " + hb_Eol() + LTrim( Str( nHeight ) ) }, ;
                 "Image Info" )
 RETURN NIL
 

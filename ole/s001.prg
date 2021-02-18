@@ -63,7 +63,7 @@ STATIC PROCEDURE MSWord()
 
    oText := oWord:Selection()
 
-   oText:Text := "OLE from ooHG" + hb_osNewLine()
+   oText:Text := "OLE from ooHG" + hb_Eol()
    oText:Font:Name := "Arial"
    oText:Font:Size := 48
    oText:Font:Bold := .T.

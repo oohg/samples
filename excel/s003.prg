@@ -127,7 +127,7 @@ FUNCTION MyProcess( oForm )
          oExcel:WorkBooks:Close()
          oExcel:Quit()
 
-         IF MsgYesNo( cExcel + ' was created !!!' + HB_OsNewLine() + "Create Dbf?" )
+         IF MsgYesNo( cExcel + ' was created !!!' + hb_Eol() + "Create Dbf?" )
             ConvertToDbf( oForm, cExcel )
          ENDIF
       RECOVER USING x
@@ -229,7 +229,7 @@ FUNCTION ConvertToDbf( oForm, cExcel )
       COMMIT
 
       oForm:StatusBar:Item( 1, cDbf + ', ' + Ltrim( Str( RecCount() ) ) + ' records appended ...' )
-      MsgInfo( cDbf + ' was created' + HB_OsNewLine() + ' !!!' )
+      MsgInfo( cDbf + ' was created' + hb_Eol() + ' !!!' )
    RECOVER USING x
       MsgStop( x:Description, "Error" )
    END SEQUENCE

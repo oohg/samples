@@ -116,7 +116,7 @@ PROCEDURE MAIN
             @ 50, 50 EDITBOX EditBox_1 ;
                WIDTH 300 ;
                HEIGHT 120 ;
-               VALUE "Write your memories here." + CRLF + CRLF ;
+               VALUE "Write your memories here." + hb_eol() + hb_eol() ;
                BOLD ;
                BACKCOLOR ORANGE
          END PAGE
@@ -146,7 +146,7 @@ PROCEDURE MAIN
 
       @ 450, 400 BUTTON Button_2 ;
          CAPTION "Credits" ;
-         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + hb_eol() + BT_InfoAuthor(), "Info" )
 
       @ 230, 500 RADIOGROUP RadioGroup_1 OBJ oRad ;
          OPTIONS { "Image", "Grid", "EditBox", "ActiveX" } ;

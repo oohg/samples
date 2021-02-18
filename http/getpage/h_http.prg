@@ -160,16 +160,16 @@ Local cUrl, cResponse, cHeader, i, cRet
          If ! hb_IsString( cHeader )
             cHeader := "<No header returned>"
          EndIf
-         cHeader += hb_OsNewLine()
+         cHeader += hb_Eol()()
 
          For i := 1 to Len( Connection:hHeaders )
             #ifdef __XHARBOUR__
-               cHeader += hGetKeyAt( Connection:hHeaders, i ) + ": " + hGetValueAt( Connection:hHeaders, i ) + hb_OsNewLine()
+               cHeader += hGetKeyAt( Connection:hHeaders, i ) + ": " + hGetValueAt( Connection:hHeaders, i ) + hb_Eol()
             #else
-               cHeader += hb_HKeyAt( Connection:hHeaders, i ) + ": " + hb_HValueAt( Connection:hHeaders, i ) + hb_OsNewLine()
+               cHeader += hb_HKeyAt( Connection:hHeaders, i ) + ": " + hb_HValueAt( Connection:hHeaders, i ) + hb_Eol()
             #endif
          Next
-         cHeader += hb_OsNewLine()
+         cHeader += hb_Eol()
 
          If uRet                       // return DATA and HEADERS
             cRet := cHeader + cResponse

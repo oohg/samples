@@ -40,7 +40,7 @@ PROCEDURE MAIN
 
       @ 500, 280 BUTTON Button_1 ;
          CAPTION "Credits" ;
-         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + hb_eol() + BT_InfoAuthor(), "Info" )
 
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW

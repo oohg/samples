@@ -5,8 +5,6 @@
 
 #define cAppName      '(c)2008-2017 MigSoft Project Manager'
 #define cAddMail      ' - migsoft@oohg.org'
-#define NewLi         Hb_OSNewLine()
-#define cBackS        Hb_OsPathSeparator()
 
 //#xtranslate Hb_CurDrive() => Curdrive()
 

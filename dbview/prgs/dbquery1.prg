@@ -208,7 +208,7 @@ Function SaveQuery(cExpr, aQuery_,cBase)
     do while !QFile->( eof() )
       if QFile->FILENAME == aQuery_[Q_FILE]
         if QFile->DESC == aQuery_[Q_DESC]
-		  x := MsgYesNo( 'A query with the same description was found for this database' + "." + CRLF + ;
+		  x := MsgYesNo( 'A query with the same description was found for this database' + "." + hb_eol() + ;
                          'Do you wish to overwrite the existing query or append a new one?', 'Duplicate Query', , .f. )
 
           if x == 6
@@ -368,7 +368,7 @@ Function LoadIt(aQuery_)
   local lLoaded := .F.
 
   if QFile->FILENAME <> padr(cDBFile, 12)
-    if MsgYesNo("The query's filename does not match that of the currently loaded file" + "." + CRLF + ;
+    if MsgYesNo("The query's filename does not match that of the currently loaded file" + "." + hb_eol() + ;
 		'Load it anyway?', 'Different Filename')
       lLoaded := .T.
     endif
@@ -453,7 +453,7 @@ FUNCTION OpenDataBaseFile( cDataBaseFileName, cAlias, lExclusive, lReadOnly, cDr
    RECOVER //USING oError
 
 	_lGood := .F.
-	MsgInfo( "Unable to open file:" + CRLF + cDataBaseFileName )
+	MsgInfo( "Unable to open file:" + hb_eol() + cDataBaseFileName )
 
    END
 

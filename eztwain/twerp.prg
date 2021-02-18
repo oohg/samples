@@ -72,11 +72,11 @@ PROCEDURE Main
          END POPUP
          DEFINE POPUP '&Help'
             MENUITEM '&About Twerp...' action ;
-               MsgInfo ( "OOHG Sample Application for EZTwain" + CRLF + ;
-               "Based upon a contribution by Walter Formigoni" + CRLF + ;
-               "Written by Grigory Filatov (April, 2005)" + CRLF + CRLF + ;
-               "Modified for OOHG - Bruno Luciani (October, 2007)" + CRLF + CRLF + ;
-               "EZTwain Dll reports version " + Ltrim(Str(TWAIN_EasyVersion() / 100)) + CRLF + ;
+               MsgInfo ( "OOHG Sample Application for EZTwain" + hb_eol() + ;
+               "Based upon a contribution by Walter Formigoni" + hb_eol() + ;
+               "Written by Grigory Filatov (April, 2005)" + hb_eol() + hb_eol() + ;
+               "Modified for OOHG - Bruno Luciani (October, 2007)" + hb_eol() + hb_eol() + ;
+               "EZTwain Dll reports version " + Ltrim(Str(TWAIN_EasyVersion() / 100)) + hb_eol() + ;
                "TWAIN Services: " + IIf(EMPTY(TWAIN_IsAvailable()), "Not Available", "Available"), "About Twerp" )
          END POPUP
       END MENU

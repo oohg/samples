@@ -21,8 +21,8 @@ FUNCTION Main
       MAIN
 
       @ 20,20 LABEL lbl OBJ oLbl ;
-         VALUE "This is a multiline " + HB_OSNewLine() + ;
-               "label." + HB_OSNewLine() + ;
+         VALUE "This is a multiline " + hb_Eol() + ;
+               "label." + hb_Eol() + ;
                "I am the third line !!!" ;
          WIDTH 200 ;
          HEIGHT 50 ;

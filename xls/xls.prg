@@ -1,5 +1,4 @@
 #include "common.ch"
-#define CRLF Hb_OSNewLine()
 
 /* ayuda de SudipB sudipb001@gmail.com
 */
@@ -10,7 +9,7 @@
 #define      XL_EOF        10
 #define      XL_DOCUMENT   16
 #define      XL_FORMAT     30
-#define      XL_BUILTINFMTCOUNT  31     
+#define      XL_BUILTINFMTCOUNT  31
 #define      XL_COLWIDTH   36
 #define      XL_FONT       49
 
@@ -26,8 +25,8 @@
 #define      XL_DTEFORMAT  132
 #define      XL_TMEFORMAT  133
 #define      XL_HEADBOLD   64
-#define      XL_HEADSHADE  248 
-      
+#define      XL_HEADSHADE  248
+
 
 //----------------------------------------------------------------------------
 FUNCTION GrabarXLS (nXls, nFila, aDatos)
@@ -41,7 +40,7 @@ LOCAL i
 Set(_SET_DATEFORMAT,'mm/dd/yy')
 
 for i:= 1 to LEN(aDatos)
-   xlsEscribir( nXls, nFila, i, aDatos[i] )      
+   xlsEscribir( nXls, nFila, i, aDatos[i] )
 next
 Set(_SET_DATEFORMAT,'dd/mm/yy')
 RETURN nil
@@ -63,14 +62,14 @@ If ( nHandle := FCreate( cFile, 0 ) ) < 0
    MsgStop( "ERROR: No se puede crear el archivo XLS: "+cfile, 23 )
 else
    FWrite( nHandle, BiffRec( XL_BOF ) )
-   
+
    // set CodePage
    FWrite( nHandle, BiffRec( 66, GetACP() ) )
    FWrite( nHandle, BiffRec( 12 ) )
    FWrite( nHandle, BiffRec( 13 ) )
-   
+
    If ! Empty( cTitle )
-      cTitle := StrTran( cTitle, CRLF, Chr( 10 ) )
+      cTitle := StrTran( cTitle, hb_Eol(), Chr( 10 ) )
       nAlign := If( Chr( 10 ) $ cTitle, 5, 1 )
       FWrite( nHandle, BiffRec( XL_STRING, cTitle, nLine, 0,, nAlign,, ) )
    EndIf
@@ -111,11 +110,11 @@ DO CASE
          //FWrite( nHandle, BiffRec( XL_FORMAT, "dd-mm-yyyy"  ) )
 
          FWrite( nHandle, BiffRec( XL_INTEGER, uData, nLine - 1, nCol - 1, , nAlign, 10 ,  ) )
-  
+
    OTHERWISE
-         uData := Trim( StrTran( HB_VALTOSTR( uData ), CRLF, Chr( 10 ) ) )
-         //uData := Trim( StrTran( cValToChar( uData ), CRLF, Chr( 10 ) ) )
-            
+         uData := Trim( StrTran( HB_VALTOSTR( uData ), hb_Eol(), Chr( 10 ) ) )
+         //uData := Trim( StrTran( cValToChar( uData ), hb_Eol(), Chr( 10 ) ) )
+
          nAlign:= If( Chr( 10 ) $ uData, 4, 1 )
          FWrite( nHandle, BiffRec( XL_STRING, uData, nLine - 1, nCol - 1, , nAlign, , ) )
 ENDCASE
@@ -135,8 +134,8 @@ RETURN dDate - ctod('12/31/1899') + 1
 * FUNCTION BiffRec() Version 9.0 Nov/01/2009
 * Excel BIFF record wrappers (Biff2)
 * ============================================================================
-/* 
-nAlign: 
+/*
+nAlign:
 0 General
 1 Left
 2 Centred
@@ -148,16 +147,16 @@ nAlign:
 */
 Function BiffRec( nOpCode, uData, nRow, nCol, lBorder, nAlign, nPic, nFont )
    Local cHead, cBody, aAttr[ 3 ]
-   
+
    DEFAULT lBorder TO .f.
    DEFAULT nAlign TO 1
    DEFAULT nPic to 0
    DEFAULT nFont TO 0
-           
+
    aAttr[ 1 ] := Chr( 64 )
    aAttr[ 2 ] := Chr( ( ( 2 ** 6 ) * nFont ) + nPic )
    aAttr[ 3 ] := Chr( If( lBorder, 120, 0 ) + nAlign )
-   
+
    Do Case  // in order of apearence
       Case nOpCode == 9 // BOF record
          cHead := I2Bin( 9 ) + ; // opCode

@@ -29,7 +29,7 @@ PROCEDURE ShowAssociation(cExt)
     IF EMPTY(cVal)
       BREAK
     ENDIF
-    IF UPPER(cVal) == UPPER(GETPROGRAMFILENAME())
+    IF UPPER(cVal) == UPPER( hb_ProgName() )
       MsgInfo(UPPER(cExt) + ' files are currently associated with MPM.')
     ELSE
       MsgInfo(UPPER(cExt) + ' files are currently associated with ' + ;
@@ -68,7 +68,7 @@ FUNCTION IsAssociated(cExt, lInit)
       BREAK
     ENDIF
     cVal   := ALLTRIM(STRTRAN(STRTRAN(cVal, '"'), '%1'))
-    lAssoc := (UPPER(cVal) == UPPER(GETPROGRAMFILENAME()))
+    lAssoc := (UPPER(cVal) == UPPER( hb_ProgName() ))
   RECOVER
     lAssoc := !EMPTY(lInit)
   END SEQUENCE
@@ -97,7 +97,7 @@ PROCEDURE ChangeAssociation(cExt, lSet)
         BREAK
       ENDIF
       IF !SetRegistryValue(HKEY_LOCAL_MACHINE, cKey,, ;
-        AddQuote(GETPROGRAMFILENAME()) + ' "%1"')
+        AddQuote( hb_ProgName() ) + ' "%1"')
         BREAK
       ENDIF
     RECOVER

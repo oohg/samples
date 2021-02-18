@@ -73,9 +73,6 @@
    #xtranslate MaxCol( .T. )                   => gtInfo( HB_GTI_SCREENWIDTH )
    #xtranslate hb_keyNext( [<x>] )             => NextKey( <x> )
 
-   #xtranslate hb_osNewLine()                  => hb_eol()
-   #xtranslate hb_osPathSeparator()            => hb_ps()
-
    #xtranslate hb_dbPack()                     => __dbPack()
    #xtranslate hb_dbZap()                      => __dbZap()
    #xtranslate hb_dbDrop( [<x,...>] )          => dbDrop( <x> )
@@ -268,9 +265,6 @@
    #define GTI_SCREEN         1  /* Maximum screen size ('Screen' in CT terms) */
    #define GTI_CLIENT         2  /* Maximum possible client size of a window */
    #define GTI_MAX            3  /* Maximum possible window size (in Windows) */
-
-   #xtranslate hb_eol()                        => hb_osNewLine()
-   #xtranslate hb_ps()                         => hb_osPathSeparator()
 
    #xtranslate MaxRow( .T. )                   => hb_gtInfo( HB_GTI_VIEWPORTHEIGHT )
    #xtranslate MaxCol( .T. )                   => hb_gtInfo( HB_GTI_VIEWPORTWIDTH )

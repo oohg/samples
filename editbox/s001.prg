@@ -57,7 +57,7 @@ FUNCTION FillCtrl
 
    cLines := "This is line 001"
    FOR i = 2 TO 100
-      cLines += ( CRLF + "This is line " + StrZero( i, 3, 0 ) )
+      cLines += ( hb_eol() + "This is line " + StrZero( i, 3, 0 ) )
    NEXT
    oCtrl:Value := cLines
 

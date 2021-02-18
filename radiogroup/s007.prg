@@ -131,15 +131,15 @@ FUNCTION Show
                   " Height = " + LTrim( Str( Round( oRdg2:GroupHeight, 1 ) ) )
 
    oLbl3:Value := "Width = " + LTrim( Str( Round( oRdg3:GroupWidth, 1 ) ) ) + ;
-                  " Height = " + LTrim( Str( Round( oRdg3:GroupHeight, 1 ) ) ) + CRLF + ;
-                  "HORIZONTAL" + CRLF + ;
-                  iif( nLimitH == 0, "NO LIMIT", "LIMIT " + LTrim( Str( nLimitH ) ) ) + CRLF + ;
+                  " Height = " + LTrim( Str( Round( oRdg3:GroupHeight, 1 ) ) ) + hb_eol() + ;
+                  "HORIZONTAL" + hb_eol() + ;
+                  iif( nLimitH == 0, "NO LIMIT", "LIMIT " + LTrim( Str( nLimitH ) ) ) + hb_eol() + ;
                   iif( lManualH, "MANUALLY", "AUTOMATICALLY" ) + " PLACED"
 
    oLbl4:Value := "Width = " + LTrim( Str( Round( oRdg4:GroupWidth, 1 ) ) ) + ;
-                  " Height = " + LTrim( Str( Round( oRdg4:GroupHeight, 1 ) ) ) + CRLF + ;
-                  "VERTICAL" + CRLF + ;
-                  "LIMIT " + iif( lLimitV, "3", "2" ) + CRLF + ;
+                  " Height = " + LTrim( Str( Round( oRdg4:GroupHeight, 1 ) ) ) + hb_eol() + ;
+                  "VERTICAL" + hb_eol() + ;
+                  "LIMIT " + iif( lLimitV, "3", "2" ) + hb_eol() + ;
                   "AUTOMATICALLY PLACED"
 
    RETURN NIL

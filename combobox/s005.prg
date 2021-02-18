@@ -79,7 +79,7 @@ FUNCTION Main
 FUNCTION ChangeLabel
 
    nOldH := oWnd:Label:Height
-   oWnd:Label:Value := "The combo's value is: " + CRLF + ;
+   oWnd:Label:Value := "The combo's value is: " + hb_eol() + ;
                        iif( ValType( oWnd:Combo:Value ) == "N", ;
                             LTrim( Str( oWnd:Combo:Value ) ), ;
                             oWnd:Combo:Value )

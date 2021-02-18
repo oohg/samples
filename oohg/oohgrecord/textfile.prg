@@ -305,7 +305,7 @@ RETURN lData
 
 STATIC FUNCTION SearchEol( cBuffer, nCant, nEolLen )
 LOCAL nPos
-   nPos := AT( HB_OSNEWLINE(), cBuffer )
+   nPos := AT( hb_Eol(), cBuffer )
    IF nPos > nCant
       nPos := 0
    ENDIF
@@ -313,7 +313,7 @@ LOCAL nPos
    IF nPos2 > nCant
       nPos := 0
    ENDIF
-   nEolLen := LEN( HB_OSNEWLINE() )
+   nEolLen := LEN( hb_Eol() )
    IF nPos == 0 .OR. ( nPos2 > 0 .AND. nPos2 < nPos )
       nPos := nPos2
       nEolLen := 1

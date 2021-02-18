@@ -39,16 +39,16 @@ PROCEDURE MAIN
          AT 50, 50 ;
          WIDTH 400 ;
          HEIGHT 200
-           
+
          DEFINE PAGE "EditBox"
             @ 50, 50 EDITBOX EditBox_1 ;
                WIDTH 300 ;
                HEIGHT 120 ;
-               VALUE "Write your memories here." + CRLF + CRLF ;
+               VALUE "Write your memories here." + hb_eol() + hb_eol() ;
                BOLD ;
                BACKCOLOR ORANGE
          END PAGE
-           
+
          DEFINE PAGE "Image"
             @ 40, 120 IMAGE Image_1 ;
                PICTURE "cowbook.bmp" ;
@@ -56,7 +56,7 @@ PROCEDURE MAIN
                HEIGHT 128
          END PAGE
       END TAB
-       
+
       @ 300, 180 BUTTON Button_1 CAPTION "Click" ACTION MsgInfo( "Hello" )
 
       DEFINE TIMER Timer1 INTERVAL 200 ACTION Proc_Mirror()
@@ -79,7 +79,7 @@ PROCEDURE MAIN
    RETURN
 
 
-PROCEDURE Proc_ON_PAINT    
+PROCEDURE Proc_ON_PAINT
    LOCAL Width := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" )
    LOCAL hDC, BTstruct
@@ -101,7 +101,7 @@ PROCEDURE Proc_Mirror
    IF flag
       RETURN
    ENDIF
-   
+
    flag := .T.
 
    Width1  := BT_ClientAreaWidth( "Win1" )
@@ -114,7 +114,7 @@ PROCEDURE Proc_Mirror
 
    BT_DrawDCtoDC( hDC2, 0, 0, Width2, Height2, BT_SCALE, hDC1, 0, 0, Width1, Height1 )
 // BT_DrawDCtoDCAlphaBlend( hDC2, 0, 0, Width2, Height2, 50, BT_SCALE, hDC1, 0, 0, Width1, Height1 )
-                    
+
    nTypeText    := BT_TEXT_TRANSPARENT
    nAlignText   := BT_TEXT_LEFT + BT_TEXT_TOP
    nOrientation := BT_TEXT_DIAGONAL_ASCENDANT

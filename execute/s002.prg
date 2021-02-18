@@ -51,10 +51,10 @@ FUNCTION ExecBAT( lShow )
 
    IF lShow
       HB_MemoWrit( 'test.bat', ;
-                   "@echo off" + CRLF + ;
-                   "echo Executing .bat file ...." + CRLF + ;
-                   "pause" + CRLF + ;
-                   "exit" + CRLF )
+                   "@echo off" + hb_eol() + ;
+                   "echo Executing .bat file ...." + hb_eol() + ;
+                   "pause" + hb_eol() + ;
+                   "exit" + hb_eol() )
       EXECUTE FILE 'CMD.EXE /K test.bat' WAIT
 
    ELSE
@@ -63,9 +63,9 @@ FUNCTION ExecBAT( lShow )
       ENDIF
 
       HB_MemoWrit( 'test.bat', ;
-                   "@echo off" + CRLF + ;
-                   "echo Executing .bat file ...." + CRLF + ;
-                   "copy test.bat done.txt" + CRLF )
+                   "@echo off" + hb_eol() + ;
+                   "echo Executing .bat file ...." + hb_eol() + ;
+                   "copy test.bat done.txt" + hb_eol() )
 
       EXECUTE FILE 'CMD.EXE' PARAMETERS '/C test.bat' HIDE
 

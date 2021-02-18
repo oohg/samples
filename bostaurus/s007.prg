@@ -61,7 +61,7 @@ PROCEDURE MAIN
 
       @ 435, 280 BUTTON Button_2 ;
          CAPTION "Credits" ;
-         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + CRLF + BT_InfoAuthor(), "Info" )
+         ACTION MsgInfo( BT_InfoName() + Space(3) + BT_InfoVersion() + hb_eol() + BT_InfoAuthor(), "Info" )
 
       ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
@@ -82,7 +82,7 @@ PROCEDURE Proc_ON_SIZE
 RETURN
 
 
-PROCEDURE Proc_ON_PAINT    
+PROCEDURE Proc_ON_PAINT
    LOCAL Width  := BT_ClientAreaWidth( "Win1" )
    LOCAL Height := BT_ClientAreaHeight( "Win1" ) - BT_StatusBarHeight( "Win1" )
    LOCAL hDC, BTstruct, cText, nTypeText, nAlignText

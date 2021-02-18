@@ -67,7 +67,7 @@ FUNCTION Main
          LEFTJUSTIFY
       oR12:aOptions[ 1 ]:FontColor := GREEN
       oR12:aOptions[ 2 ]:BackColor := BLUE
-      // BACKGROUND takes precedence over BACKCOLOR 
+      // BACKGROUND takes precedence over BACKCOLOR
 
       @ 10, 230 LABEL lbl_131 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 25, 230 LABEL lbl_132 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -133,7 +133,7 @@ FUNCTION Main
          BACKGROUND oForm1
       oR16:aOptions[ 1 ]:FontColor := GREEN
       oR16:aOptions[ 2 ]:BackColor := BLUE
-      // BACKGROUND takes precedence over BACKCOLOR 
+      // BACKGROUND takes precedence over BACKCOLOR
 
       @ 10, 670 LABEL lbl_171 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "OOHGDRAW"
       @ 40, 670 LABEL lbl_173 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -202,7 +202,7 @@ FUNCTION Main
          LEFTJUSTIFY
       oR22:aOptions[ 1 ]:FontColor := GREEN
       oR22:aOptions[ 2 ]:BackColor := BLUE
-      // BACKGROUND takes precedence over BACKCOLOR 
+      // BACKGROUND takes precedence over BACKCOLOR
 
       @ 210, 230 LABEL lbl_231 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 225, 230 LABEL lbl_232 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKGROUND"
@@ -269,7 +269,7 @@ FUNCTION Main
          WINDRAW
       oR26:aOptions[ 1 ]:FontColor := GREEN
       oR26:aOptions[ 2 ]:BackColor := BLUE
-      // BACKGROUND takes precedence over BACKCOLOR 
+      // BACKGROUND takes precedence over BACKCOLOR
 
       @ 210, 670 LABEL lbl_271 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "WINDRAW"
       @ 240, 670 LABEL lbl_273 WIDTH 100 HEIGHT 15 TRANSPARENT VALUE "BACKCOLOR"
@@ -299,12 +299,12 @@ FUNCTION Main
       oR28:aOptions[ 2 ]:BackColor := BLUE
 
       @ 410, 10 LABEL lbl_Notes WIDTH 500 HEIGHT 200 TRANSPARENT ;
-         VALUE "BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT." + hb_OsNewLine() + ;
-               "TRANSPARENT takes precedence over BACKCOLOR." + hb_OsNewLine() + ;
-               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not defaults to WINDRAW." + hb_OsNewLine() + ;
-               "WINDRAW paints using Windows' default routine." + hb_OsNewLine() + ;
-               "If neither OOHGDRAW nor WINDRAW are present then WINDRAW is assumed unless NOFOCUSRECT is present." + hb_OsNewLine() + ;
-               "BACKGROUND paints the control's background using a brush derived from another control's client area." + hb_OsNewLine() + ;
+         VALUE "BACKGROUND takes precedence over BACKCOLOR and TRANSPARENT." + hb_Eol() + ;
+               "TRANSPARENT takes precedence over BACKCOLOR." + hb_Eol() + ;
+               "OOHGDRAW paints using Visual Style functions if a Windows Theme is enabled, if not defaults to WINDRAW." + hb_Eol() + ;
+               "WINDRAW paints using Windows' default routine." + hb_Eol() + ;
+               "If neither OOHGDRAW nor WINDRAW are present then WINDRAW is assumed unless NOFOCUSRECT is present." + hb_Eol() + ;
+               "BACKGROUND paints the control's background using a brush derived from another control's client area." + hb_Eol() + ;
                "FONTCOLOR is not supported under themed XP nor by WINDRAW under Win10."
 
       @ 500, 700 BUTTON btn_Change OBJ oBut CAPTION "Use BackImage" WIDTH 170 ;

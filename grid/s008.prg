@@ -70,11 +70,11 @@
  */
        DEFINE MAIN MENU
           ITEM "Item Values" ;
-             ACTION AUTOMSGBOX( ShowItem(1) + HB_OsNewLine() + ;
-                                ShowItem(2) + HB_OsNewLine() + ;
-                                ShowItem(3) + HB_OsNewLine() + ;
-                                ShowItem(4) + HB_OsNewLine() + ;
-                                ShowItem(5) + HB_OsNewLine() + ;
+             ACTION AUTOMSGBOX( ShowItem(1) + hb_Eol() + ;
+                                ShowItem(2) + hb_Eol() + ;
+                                ShowItem(3) + hb_Eol() + ;
+                                ShowItem(4) + hb_Eol() + ;
+                                ShowItem(5) + hb_Eol() + ;
                                 ShowItem(6) )
        END MENU
 

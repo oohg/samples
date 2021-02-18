@@ -35,8 +35,8 @@ PROCEDURE LimitRowLength
 
    IF nLineLength > nLimit
       where := oEdit:CaretPos
-      oEdit:Value := Stuff( oEdit:Value, nLineStartIndex + nLimit + 1, 0, hb_osNewLine() )
-      oEdit:CaretPos := where + Len( hb_osNewLine() )
+      oEdit:Value := Stuff( oEdit:Value, nLineStartIndex + nLimit + 1, 0, hb_Eol()() )
+      oEdit:CaretPos := where + Len( hb_Eol() )
    ENDIF
 
 RETURN NIL

@@ -416,11 +416,11 @@ PROCEDURE SelectLang()
    LOCAL nItem
 
    // Language selection.
-   MsgInfo( "The interface language of EDIT EXTENDED command" + CRLF + ;
-            "is OOHG's default language and can changed using" + CRLF + ;
-            "function InitMessages()." + CRLF + CRLF + ;
-            "If your language isn't supported but you are willing" + CRLF + ;
-            "to help with the translation, please send a message" + CRLF + ;
+   MsgInfo( "The interface language of EDIT EXTENDED command" + hb_eol() + ;
+            "is OOHG's default language and can changed using" + hb_eol() + ;
+            "function InitMessages()." + hb_eol() + hb_eol() + ;
+            "If your language isn't supported but you are willing" + hb_eol() + ;
+            "to help with the translation, please send a message" + hb_eol() + ;
             "to https://groups.google.com/forum/#!forum/oohg", "EDIT EXTENDED demo" )
    nItem := SelectItem( aLangName )
    IF ! nItem == 0
@@ -481,24 +481,24 @@ RETURN nItem
 PROCEDURE About()
 
         // Shows the about window.---------------------------------------------
-   MsgInfo( CRLF + ;
-            "EDIT EXTENDED command for OOHG adapted from" + CRLF + ;
-            "the original work developed for HMG by:" + CRLF + ;
-            " *  Roberto López" + CRLF + ;
-            " *  Grigory Filatov" + CRLF + ;
-            " *  Cristóbal Mollá" + CRLF + ;
-            CRLF + ;
-            "Status of the language support:" + CRLF + ;
-            " *  English    - Ready" + CRLF + ;
-            " *  Spanish    - Ready" + CRLF + ;
-            " *  Basque     - Ready (Thanks to Gerardo Fernández)" + CRLF + ;
-            " *  Russian    - Ready (Thanks to Grigory Filatov)" + CRLF + ;
-            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + CRLF + ;
-            " *  Polish     - Ready (Thanks to Janusz Poura)" + CRLF + ;
-		      " *  French     - Ready (Thanks to Chris Jouniauxdiv)" + CRLF + ;
-		      " *  Italian    - Ready (Thanks to Lupano Piero)" + CRLF + ;
-            " *  German     - Ready (Thanks to Janusz Poura)" + CRLF + ;
-            CRLF + ;
+   MsgInfo( hb_eol() + ;
+            "EDIT EXTENDED command for OOHG adapted from" + hb_eol() + ;
+            "the original work developed for HMG by:" + hb_eol() + ;
+            " *  Roberto López" + hb_eol() + ;
+            " *  Grigory Filatov" + hb_eol() + ;
+            " *  Cristóbal Mollá" + hb_eol() + ;
+            hb_eol() + ;
+            "Status of the language support:" + hb_eol() + ;
+            " *  English    - Ready" + hb_eol() + ;
+            " *  Spanish    - Ready" + hb_eol() + ;
+            " *  Basque     - Ready (Thanks to Gerardo Fernández)" + hb_eol() + ;
+            " *  Russian    - Ready (Thanks to Grigory Filatov)" + hb_eol() + ;
+            " *  Portuguese - Ready (Thanks to Clovis Nogueira Jr.)" + hb_eol() + ;
+            " *  Polish     - Ready (Thanks to Janusz Poura)" + hb_eol() + ;
+		      " *  French     - Ready (Thanks to Chris Jouniauxdiv)" + hb_eol() + ;
+		      " *  Italian    - Ready (Thanks to Lupano Piero)" + hb_eol() + ;
+            " *  German     - Ready (Thanks to Janusz Poura)" + hb_eol() + ;
+            hb_eol() + ;
 		      "Please report bugs to OOHG support group at https://groups.google.com/forum/#!forum/oohg", ;
             "EDIT EXTENDED demo" )
 
