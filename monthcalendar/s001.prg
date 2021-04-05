@@ -13,8 +13,10 @@
  * for MCMV_DECADE the last days of the year are set and for
  * MCMV_CENTURY the last days of the decade are set.
  *
- * Visit us at https://github.com/oohg/samples
+ * Note that you can't change the default font if the control
+ * uses visual styles.
  *
+ * Visit us at https://github.com/oohg/samples
  */
 
 #include "oohg.ch"
@@ -22,7 +24,7 @@
 
 PROCEDURE Main
 
-   LOCAL i := 0, v
+   LOCAL v
 
    SET DATE BRITISH
 
@@ -50,15 +52,15 @@ PROCEDURE Main
             ITEM "Size #1" ACTION AutoMsgBox( { oMC1:Width, oMC1:Height } )
             ITEM "Size #2" ACTION AutoMsgBox( { oMC2:Width, oMC2:Height } )
             SEPARATOR
-            ITEM "Set Font #1 Arial 8" ACTION oMC1:SetFont( "Arial", 8 )
-            ITEM "Set Font #2 Times New 14" ACTION oMC2:SetFont( "Times New", 14 )
+            ITEM "Set Font #1 Arial 8" ACTION ( oMC1:DisableVisualStyle(), oMC1:SetFont( "Arial", 8 ) )
+            ITEM "Set Font #2 Times New 14" ACTION ( oMC1:DisableVisualStyle(), oMC2:SetFont( "Times New", 14 ) )
             SEPARATOR
             ITEM "Month range #1" ACTION AutoMsgBox( oMC1:MonthRange() )
             ITEM "Month range #2" ACTION AutoMsgBox( oMC2:MonthRange() )
             SEPARATOR
             ITEM "Bold previous day" ACTION oMC1:AddBoldDay( oMC1:Value - 1 )
             ITEM "Bold next day" ACTION oMC1:AddBoldDay( oMC1:Value + 1 )
-            ITEM "Remove bold says" ACTION ( oMC1:DelBoldDay( oMC1:Value - 1 ), oMC1:DelBoldDay( oMC1:Value + 1 ) )
+            ITEM "Remove bold days" ACTION ( oMC1:DelBoldDay( oMC1:Value - 1 ), oMC1:DelBoldDay( oMC1:Value + 1 ) )
          END POPUP
       END MENU
 
