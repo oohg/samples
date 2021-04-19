@@ -48,9 +48,9 @@ FUNCTION Main()
                TEXTALIGNV VCENTER ;
                WIDTH 140 ;
                HEIGHT 60 ;
-               FONTCOLOR RED ;                                  // Ignored by Win 10.
+               FONTCOLOR RED ;                                  // Ignored by Windows.
                TOOLTIP "Click to change image's margins." ;
-               IMAGEMARGIN {5, 0, 10, 0} ;
+               IMAGEMARGIN {0, 0, 0, 0} ;                       // Win 10 adds a 3px left margin.
                WINDRAW
 
             @ 30,400 BUTTON btn_1_21 ;
@@ -195,9 +195,9 @@ FUNCTION Main()
                HEIGHT 60 ;
                TOOLTIP "The caption is truncated to fit the button큦 width. The text's margins are ignored." ;
                ACTION ChangeTextAlignment( oBtn_1_18 ) ;
-               TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by Windows
-               BACKCOLOR RED ;                      // Applies to the border only
-               SOLID ;                              // Ignored by Windows
+               TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by Windows.
+               BACKCOLOR RED ;                      // Applies to the border only.
+               SOLID ;                              // Ignored by Windows.
                WINDRAW
 
             @ 520,400 BUTTON btn_1_28 ;
@@ -208,8 +208,8 @@ FUNCTION Main()
                TOOLTIP "The caption is truncated to fit the button큦 width. The text's margins are ignored." ;
                ACTION ChangeTextAlignment( oBtn_1_28 ) ;
                TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by OOHG because FITTXT is not present. See oBtn_1_29.
-               BACKCOLOR RED ;                      // Applies to the whole button resulting into a colored flat rectangle
-               SOLID ;                              // Omit this clause to mimic bnt_18
+               BACKCOLOR RED ;                      // Applies to the whole button resulting into a colored flat rectangle.
+               SOLID ;                              // Omit this clause to mimic bnt_1_18.
                OOHGDRAW
 
             @ 590,80 BUTTON btn_1_19 ;
@@ -246,7 +246,7 @@ FUNCTION Main()
                PICTURE 'globe.ico' ;
                ACTION AutoMsgBox( 'globe.ico IMAGESIZE OOHGDRAW' ) ;
                TOOLTIP "Click me!" ;
-               IMAGESIZE ;            // Defaults image alignment to CENTER
+               IMAGESIZE ;            // Image alignment defaults to CENTER.
                NOFOCUSRECT ;
                OOHGDRAW
 
@@ -273,8 +273,8 @@ FUNCTION Main()
                TOOLTIP "Click me!" ;
                WIDTH 48 ;
                HEIGHT 48 ;
-               CENTER ;                           // This is needed because the default is LEFT
-               IMAGEMARGIN {0, 0, 0, 0} ;         // This is needed because the default is {6,10,6,10}
+               CENTER ;                           // This is needed because the default is LEFT.
+               IMAGEMARGIN {0, 0, 0, 0} ;         // This is needed because the default is {6,10,6,10}.
                NOFOCUSRECT ;
                OOHGDRAW
 
@@ -292,9 +292,9 @@ FUNCTION Main()
                TEXTALIGNV VCENTER ;
                WIDTH 140 ;
                HEIGHT 60 ;
-               FONTCOLOR RED ;                                  // Ignored by Win 10.
+               FONTCOLOR RED ;                                  // Ignored by Windows.
                TOOLTIP "Click to change image's margins." ;
-               IMAGEMARGIN {5, 0, 10, 0} ;
+               IMAGEMARGIN {0, 0, 0, 0} ;                       // Win 10 adds a 3px left margin.
                TRANSPARENT ;
                WINDRAW
 
@@ -453,9 +453,9 @@ FUNCTION Main()
                HEIGHT 60 ;
                TOOLTIP "The caption is truncated to fit the button큦 width. The text's margins are ignored." ;
                ACTION ChangeTextAlignment( oBtn_2_18 ) ;
-               TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by Windows
-               BACKCOLOR RED ;                      // Applies to the border only
-               SOLID ;                              // Ignored by Windows
+               TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by Windows.
+               BACKCOLOR RED ;                      // Applies to the border only.
+               SOLID ;                              // Ignored by Windows.
                TRANSPARENT ;
                WINDRAW
 
@@ -467,8 +467,8 @@ FUNCTION Main()
                TOOLTIP "The caption is truncated to fit the button큦 width. The text's margins are ignored." ;
                ACTION ChangeTextAlignment( oBtn_2_28 ) ;
                TEXTMARGIN {10, 10, 10, 10} ;        // Ignored by OOHG because FITTXT is not present. See oBtn_2_29.
-               BACKCOLOR RED ;                      // Applies to the whole button resulting into a colored flat rectangle
-               SOLID ;                              // Omit this clause to mimic bnt_18
+               BACKCOLOR RED ;                      // Applies to the whole button resulting into a colored flat rectangle.
+               SOLID ;                              // Omit this clause to mimic bnt_2_18.
                TRANSPARENT ;
                OOHGDRAW
 
@@ -510,7 +510,7 @@ FUNCTION Main()
                PICTURE 'globe.ico' ;
                ACTION AutoMsgBox( 'globe.ico IMAGESIZE OOHGDRAW' ) ;
                TOOLTIP "Click me!" ;
-               IMAGESIZE ;            // Defaults image alignment to CENTER
+               IMAGESIZE ;            // Defaults image alignment to CENTER.
                NOFOCUSRECT ;
                TRANSPARENT ;
                OOHGDRAW
@@ -540,13 +540,15 @@ FUNCTION Main()
                TOOLTIP "Click me!" ;
                WIDTH 48 ;
                HEIGHT 48 ;
-               CENTER ;                           // This is needed because the default is LEFT
-               IMAGEMARGIN {0, 0, 0, 0} ;         // This is needed because the default is {6,10,6,10}
+               CENTER ;                           // This is needed because the default is LEFT.
+               IMAGEMARGIN {0, 0, 0, 0} ;         // This is needed because the default is {6,10,6,10}.
                NOFOCUSRECT ;
                TRANSPARENT ;
                OOHGDRAW
 
          END PAGE
+
+      END TAB
 
       ON KEY ESCAPE ACTION Form_1.Release
 
