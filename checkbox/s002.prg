@@ -39,7 +39,8 @@ FUNCTION Main
 
       @ 52,29 FRAME frm_1 ;                  // If row is set to 23, the top line of
          WIDTH 122 ;                         // the frame disappears. If height is set
-         HEIGHT 38                           // to 37 the bottom line disappears.
+         HEIGHT 38 ;                          // to 37 the bottom line disappears.
+         BACKCOLOR RED
 
       @ 60,30 CHECKBOX Chk1 ;                // The background of the control
          CAPTION 'Chk1 LeftAlign' ;          // is 38 pixels high: 8 extra pixels
@@ -54,7 +55,7 @@ FUNCTION Main
 
       @ 52,199 FRAME frm_2 ;
          WIDTH 122 ;
-         HEIGHT 38
+         HEIGHT 38 FONTCOLOR GREEN
 
       @ 60,200 CHECKBOX Chk2 ;
          OBJ Chk2 ;
@@ -69,6 +70,10 @@ FUNCTION Main
       @ 60, 350 BUTTON But_1 ;
          CAPTION "Chg Ctrl BkClr" ;
          ACTION ChangeCtrlBkClr()
+
+      @ 60, 500 BUTTON But_2 ;
+         CAPTION "Chg Ctrl FntClr" ;
+         ACTION ChangeCtrlFntClr()
 
       @ 84,29 FRAME frm_3 ;
          WIDTH 122 ;
@@ -135,7 +140,7 @@ FUNCTION Main
          WINDRAW
       // Same as Chk1, except FONTCOLOR is not honored.
 
-      @ 160, 350 BUTTON But_2 ;
+      @ 160, 350 BUTTON But_3 ;
          CAPTION "Chg Form BkClr" ;
          ACTION ChangeFormBkClr()
 
@@ -174,11 +179,11 @@ FUNCTION Main
       END CHECKBOX
       // Same as Chk4, except FONTCOLOR is not honored.
 
-      @ 240, 30 BUTTON But_3 ;
+      @ 240, 30 BUTTON But_4 ;
          CAPTION "Toggle Frames" ;
          ACTION TglFrames()
 
-      @ 280, 30 BUTTON But_4 ;
+      @ 280, 30 BUTTON But_5 ;
          CAPTION "Tgl Transparent" ;
          ACTION TglTransparent()
 
@@ -192,8 +197,7 @@ FUNCTION Main
          HEIGHT 100 ;
          FONTCOLOR RED ;
          UNDERLINE
-      // Win 10 ignores FONTCOLOR
-      // Win XP honors FONTCOLOR
+      // Windows ignores FONTCOLOR
 
       @ 240, 400 FRAME frm_10 ;
          CAPTION "Font + BkColor " ;
@@ -201,7 +205,7 @@ FUNCTION Main
          HEIGHT 100 ;
          BACKCOLOR RED ;
          ITALIC
-      // Win XP and 10 ignore BACKCOLOR
+      // Windows ignores BACKCOLOR
 
       ON KEY ESCAPE ACTION Form1.Release()
    END WINDOW
@@ -252,6 +256,21 @@ FUNCTION ChangeCtrlBkClr
       Form1.Chk1.BackColor := Form1.BackColor
       Form1.Chk5.BackColor := Form1.BackColor
       // Both OOHGDRAW and WINDRAW honor the backcolor when TRANSPARENT is .F.
+   ENDIF
+   lSwitch := ! lSwitch
+
+   RETURN NIL
+
+FUNCTION ChangeCtrlFntClr
+
+   STATIC lSwitch := .T.
+
+   IF lSwitch
+      Form1.Chk1.FontColor := BLUE
+      Form1.Chk5.FontColor := BLUE
+   ELSE
+      Form1.Chk1.FontColor := Form1.FontColor
+      Form1.Chk5.FontColor := Form1.FontColor
    ENDIF
    lSwitch := ! lSwitch
 
