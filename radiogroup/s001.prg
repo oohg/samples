@@ -27,6 +27,7 @@ FUNCTION Main
       @ 20,20 RADIOGROUP rdg_1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          TOOLTIP { 'Item 1', 'Item 2', 'Item 3', 'Item 4' } ;
+         FONTCOLOR RED ;
          WIDTH 80 ;
          SPACING 24
 
