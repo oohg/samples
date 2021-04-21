@@ -40,16 +40,16 @@ FUNCTION Main()
          TEXTALIGNV VCENTER ;
          WIDTH 140 ;
          HEIGHT 60 ;
-         FONTCOLOR RED ;                                  // Ignored by Win 10.
+         FONTCOLOR RED ;                                  // Ignored by Windows.
          TOOLTIP "Click to change image's margins." ;
-         IMAGEMARGIN {5, 0, 10, 0} ;
+         IMAGEMARGIN {0, 0, 0, 0} ;
          WINDRAW
 
       @ 10,400 BUTTON btn_21 ;
          OBJ But21 ;
          CAPTION "&Click Me" ;
          PICTURE "hbprint_print" ;
-         ACTION if( But21:ImageMargin()[2] == 0, But21:ImageMargin( {0, 10, 0, 0} ), But21:ImageMargin( {0, 0, 0, 0} ) ) ;
+         ACTION if( But21:ImageMargin()[2] == 3, But21:ImageMargin( {0, 13, 0, 0} ), But21:ImageMargin( {0, 3, 0, 0} ) ) ;
          IMAGEALIGN LEFT ;
          TEXTALIGNH CENTER ;
          TEXTALIGNV VCENTER ;
@@ -57,7 +57,7 @@ FUNCTION Main()
          HEIGHT 60 ;
          FONTCOLOR RED ;
          TOOLTIP "Click to change image's margins." ;
-         IMAGEMARGIN {0, 0, 0, 0} ;
+         IMAGEMARGIN {0, 3, 0, 0} ;                       // Windows adds a 3px left margin to the image
          OOHGDRAW
 
       @ 80,80 BUTTON btn_12 ;
@@ -140,6 +140,7 @@ FUNCTION Main()
          WIDTH 140 ;
          HEIGHT 60 ;
          TOOLTIP "Multiline text only button." ;
+         TEXTMARGIN {0, 10, 0, 10} ;               // This mimics WINDRAW, default is {0,0,0,0}
          OOHGDRAW
 
       @ 360,80 BUTTON btn_16 ;

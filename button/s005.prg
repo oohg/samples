@@ -12,7 +12,7 @@
 
 #include "oohg.ch"
 
-PROCEDURE MAIN
+FUNCTION MAIN
 
    DEFINE WINDOW Form1 ;
       MAIN ;
@@ -29,7 +29,10 @@ PROCEDURE MAIN
       @ 50, 20 CHECKBUTTON cbt_2 ;
          OBJ oCbt2 ;
          CAPTION "TWO" ;
-         OOHGDRAW  ;
+         FONTCOLOR BLUE ;
+         BACKCOLOR WHITE ;
+         ON CHANGE ChangeColors() ;
+         SOLID ;
          VALUE .T. ;
          TOOLTIP "I'm a OOHGDRAW checkbox, click me!"
 
@@ -64,7 +67,19 @@ PROCEDURE MAIN
    CENTER WINDOW Form1
    ACTIVATE WINDOW Form1
 
-RETURN
+RETURN NIL
+
+FUNCTION ChangeColors
+
+   IF oCbt2:Value
+      oCbt2:FontColor := BLUE
+      oCbt2:BackColor := WHITE
+   ELSE
+      oCbt2:FontColor := WHITE
+      oCbt2:BackColor := SILVER
+   ENDIF
+
+RETURN NIL
 
 /*
  * EOF
