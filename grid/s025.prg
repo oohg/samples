@@ -49,6 +49,7 @@ FUNCTION Main
          COLUMNCONTROLS { NIL, NIL, NIL, NIL, NIL, { 'COMBOBOX', { 'One', 'Two', 'Three' } } } ;
          ITEMS aRows ;
          VALUE 3 ;
+         TOOLTIP 'Editable Grid Control - USE ALT+A TO APPEND' ;
          APPEND ;
          EDIT INPLACE;
          FULLMOVE ;
