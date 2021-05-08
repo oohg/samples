@@ -74,5 +74,5 @@ https://github.com/oohg/samples/blob/master/grid/s035.prg
 https://github.com/oohg/samples/blob/master/grid/s036.prg
 * How to update one column with a value computed from the others.<br>
 https://github.com/oohg/samples/blob/master/grid/s037.prg
-* How to use a fullmove grid.
+* How to use a fullmove grid.<br>
 https://github.com/oohg/samples/blob/master/grid/s038.prg
