@@ -4,8 +4,8 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to update one columun
- * with the sum of others.
+ * This sample shows how to update one column with a
+ * value computed from the others.
  *
  * Visit us at https://github.com/oohg/samples
  */
