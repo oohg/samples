@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 05
+ * Grid Sample # 5
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -14,7 +14,6 @@
  * and Item. This also applies to Browse and XBrowse controls.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
