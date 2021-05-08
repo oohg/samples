@@ -132,7 +132,7 @@ FUNCTION Main
          WIDTHS {140, 140, 140, 140, 140}
          ITEMS aRows
          ALLOWEDIT .T.
-         COLUMNCONTROLS { {'TEXTBOX', 'NUMERIC', '$ 999, 999.99'}, ;
+         COLUMNCONTROLS { {'TEXTBOX', 'NUMERIC', '$ 999,999.99'}, ;
                           {'DATEPICKER', 'DROPDOWN'}, ;
                           {'COMBOBOX', {'One', 'Two', 'Three'}}, ;
                           { 'SPINNER', 1, 20 }, ;
