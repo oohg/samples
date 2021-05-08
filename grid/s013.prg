@@ -1,14 +1,15 @@
 /*
- * Grid Sample n° 13
+ * Grid Sample # 13
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample demonstrates clauses and methods related to
- * Grid, XBrowse and Browse headers.
+ * This sample demonstrates BEFORECOLMOVE, AFTERCOLMOVE,
+ * BEFORECOLSIZE, AFTERCOLSIZE and BEFOREAUTOFIT clauses
+ * and ColumnOrder method related to Grid, XBrowse and
+ * Browse headers.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
@@ -58,7 +59,7 @@ FUNCTION Main
          CAPTION "Change columns order" ;
          ACTION ( oBrw:ColumnOrder := {3, 1, 2}, ;
                   oLbl:Value := "Columns order: " + ;
-                                AUTOTYPE( oBrw:ColumnOrder ) )
+                                AutoType( oBrw:ColumnOrder ) )
 
       @ 260, 10 LABEL lbl_Order OBJ oLbl ;
          WIDTH 400 ;
@@ -76,7 +77,7 @@ FUNCTION Main
       @ 360, 220 BUTTON btn_Widths OBJ oBtn3 ;
          WIDTH 190 ;
          CAPTION "Show columns widths" ;
-         ACTION ( AUTOMSGBOX( oBrw:aWidths ) )
+         ACTION ( AutoMsgBox( oBrw:aWidths ) )
 
       ON KEY ESCAPE ACTION oForm:Release()
    END WINDOW
@@ -106,7 +107,7 @@ FUNCTION OpenTable()
    aDbf1[ 3 ][ DBS_LEN ]  := 8
    aDbf1[ 3 ][ DBS_DEC ]  := 0
 
-   DBCREATE( "Data", aDbf1, "DBFCDX" )
+   dbCreate( "Data", aDbf1, "DBFCDX" )
 
    SELECT 0
    USE Data VIA "DBFCDX"
@@ -160,7 +161,7 @@ RETURN NIL
 //--------------------------------------------------------------------------//
 FUNCTION CleanUp()
 
-  DBCLOSEALL()
+  dbCloseAll()
 
   ERASE Data.dbf
 
@@ -170,7 +171,7 @@ RETURN NIL
 FUNCTION BeforeColMove( nCol )
 
    IF nCol == 1
-      MSGBOX("Column 1 can't be moved !!!")
+      MsgBox("Column 1 can't be moved !!!")
       RETURN .F.
    ENDIF
 
@@ -179,7 +180,7 @@ RETURN .T.
 //--------------------------------------------------------------------------//
 FUNCTION AfterColMove( nCol, nPosicion )
 
-   AUTOMSGBOX( "Column " + LTRIM(STR(nCol)) + ;
+   AutoMsgBox( "Column " + LTRIM(STR(nCol)) + ;
                " will be moved to position " + LTRIM(STR(nPosicion)) )
 
    oLbl:Value := "Clic on the button to see the columns order."
