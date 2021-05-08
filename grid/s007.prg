@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 07
+ * Grid Sample # 7
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -8,7 +8,6 @@
  * columun using IMAGEDATA ColumnControl.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'

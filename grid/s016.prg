@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 16
+ * Grid Sample # 16
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -7,7 +7,6 @@
  * This sample shows how to auto-number Grid lines on append.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'

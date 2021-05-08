@@ -1,13 +1,12 @@
 /*
- * Grid Sample n° 18
+ * Grid Sample # 18
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to change the font of the headers.
+ * This sample shows how to change the font of the grid's headers.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'

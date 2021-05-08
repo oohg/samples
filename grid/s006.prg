@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 06
+ * Grid Sample # 6
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -12,7 +12,6 @@
  * by anyone of the imagelist asociated with the grid.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
