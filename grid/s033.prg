@@ -74,7 +74,8 @@ FUNCTION ShowPos( nRow, nCol )
                "_OOHG_ThisItemCellCol " + LTrim( Str( _OOHG_ThisItemCellCol ) ) + CRLF + ;
                "_OOHG_ThisItemCellWidth " + LTrim( Str( _OOHG_ThisItemCellWidth ) ) + CRLF + ;
                "_OOHG_ThisItemCellHeight " + LTrim( Str( _OOHG_ThisItemCellHeight ) ) + CRLF + ;
-               "_OOHG_ThisItemCellValue " + _OOHG_ThisItemCellValue )
+               "_OOHG_ThisItemCellValue " + _OOHG_ThisItemCellValue + CRLF + ;
+               "Grid's value " + AutoType( oGrid:Value ) )
 
 RETURN NIL
 
