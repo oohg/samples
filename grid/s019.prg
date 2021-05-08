@@ -4,8 +4,9 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to show a menu when user
- * right-clicks on the grid's header.
+ * This sample shows how to displahy a menu when the user
+ * right-clicks on the grid's header and how to perform
+ * and action when ther user clicks the grid's header.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -29,7 +30,10 @@ PROCEDURE MAIN
                  { "3", "3333333333", "3" }, ;
                  { "4444", "4444", "4444" } } ;
          VALUE 1 ;
-         ONHEADRCLICK {|nColumn| ShowMenu( nColumn ) }
+         ONHEADRCLICK {|nColumn| ShowHeaderRightClickMenu( nColumn ) } ;
+         ON HEADCLICK { { || MsgInfo( 'Click 1' ) }, ;
+                        { || MsgInfo( 'Click 2' ) }, ;
+                        { || MsgInfo( 'Click 3' ) } } ;
 
       @ 370, 10 LABEL label ;
          WIDTH 400 HEIGHT 30 ;
@@ -43,7 +47,7 @@ PROCEDURE MAIN
    ACTIVATE WINDOW MAIN
 RETURN
 
-FUNCTION ShowMenu( nColumn )
+FUNCTION ShowHeaderRightClickMenu( nColumn )
 
    LOCAL oMenu
 
