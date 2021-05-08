@@ -1,11 +1,11 @@
 /*
- * Grid Sample n° 29
+ * Grid Sample # 29
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to show totals of a Grid's
- * column using another Grid.
+ * This sample shows how to display the totals for a column
+ * in a grid using another grid.
  *
  * Visit us at https://github.com/oohg/samples
  */

@@ -1,5 +1,5 @@
 /*
- * Grid Sample #32
+ * Grid Sample # 32
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -8,7 +8,6 @@
  * readonly column.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include 'oohg.ch'
