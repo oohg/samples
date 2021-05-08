@@ -48,7 +48,7 @@ FUNCTION Main()
          WIDTH 520 ;
          HEIGHT 330 ;
          HEADERS { 'CODE', 'NUMBER', 'DATE', 'REFERENCE', 'AMOUNT' } ;
-         WIDTHS {60, 80, 100, 120, 140} ;
+         WIDTHS { 60, 80, 100, 120, 140 } ;
          ITEMS aRows ;
          COLUMNCONTROLS { { 'TEXTBOX', 'CHARACTER', '99' } , ;
                           { 'TEXTBOX', 'NUMERIC', '999999' } , ;
