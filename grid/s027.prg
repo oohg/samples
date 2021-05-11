@@ -56,3 +56,7 @@ FUNCTION Main
    ACTIVATE WINDOW Win_1
    
 RETURN
+
+/*
+ * EOF
+ */

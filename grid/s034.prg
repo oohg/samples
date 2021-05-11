@@ -24,13 +24,13 @@ FUNCTION Main
    PUBLIC oGrid
    
    DEFINE WINDOW Win_1 ;
-      AT 0,0 ;
+      AT 0, 0 ;
       WIDTH 450 ;
       HEIGHT 500 ;
       TITLE "GRID Multiselect - Toggle checkboxes using the spacebar" ;
       MAIN
       
-      @ 10,10 GRID Grid_2 OBJ oGrid ;
+      @ 10, 10 GRID Grid_2 OBJ oGrid ;
       WIDTH 350 ;
       HEIGHT 330 ;
       HEADERS { "Last Name", "First Name", "Phone", "Id" } ;

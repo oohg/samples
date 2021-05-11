@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 23
+ * Grid Sample # 23
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -7,11 +7,10 @@
  * Based on a sample from OOHG distribution build by
  * Ciro Vargas C. <cvc@oohg.org>
  *
- * This sample shows how to build a subclass of Grid to
+ * This sample shows how to create a subclass of Grid to
  * intercept and process a group of keys.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"

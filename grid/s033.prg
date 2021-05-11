@@ -1,10 +1,10 @@
 /*
- * Grid Sample #33
+ * Grid Sample # 33
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to handle the gri's dblclick event.
+ * This sample shows how to handle the grid's dblclick event.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -67,14 +67,15 @@ RETURN
 
 FUNCTION ShowPos( nRow, nCol )
 
-   AutoMsgBox( "Row " + LTrim( Str( nRow ) ) + "  Col " + LTrim( Str( nCol ) ) + " (coordinates)" + hb_eol() + ;
-               "_OOHG_ThisItemRowIndex " + LTrim( Str( _OOHG_ThisItemRowIndex ) ) + hb_eol() + ;
-               "_OOHG_ThisItemColIndex " + LTrim( Str( _OOHG_ThisItemColIndex ) ) + hb_eol() + ;
-               "_OOHG_ThisItemCellRow " + LTrim( Str( _OOHG_ThisItemCellRow ) ) + hb_eol() + ;
-               "_OOHG_ThisItemCellCol " + LTrim( Str( _OOHG_ThisItemCellCol ) ) + hb_eol() + ;
-               "_OOHG_ThisItemCellWidth " + LTrim( Str( _OOHG_ThisItemCellWidth ) ) + hb_eol() + ;
-               "_OOHG_ThisItemCellHeight " + LTrim( Str( _OOHG_ThisItemCellHeight ) ) + hb_eol() + ;
-               "_OOHG_ThisItemCellValue " + _OOHG_ThisItemCellValue )
+   AutoMsgBox( "Row " + LTrim( Str( nRow ) ) + "  Col " + LTrim( Str( nCol ) ) + " (coordinates)" + CRLF + ;
+               "_OOHG_ThisItemRowIndex " + LTrim( Str( _OOHG_ThisItemRowIndex ) ) + CRLF + ;
+               "_OOHG_ThisItemColIndex " + LTrim( Str( _OOHG_ThisItemColIndex ) ) + CRLF + ;
+               "_OOHG_ThisItemCellRow " + LTrim( Str( _OOHG_ThisItemCellRow ) ) + CRLF + ;
+               "_OOHG_ThisItemCellCol " + LTrim( Str( _OOHG_ThisItemCellCol ) ) + CRLF + ;
+               "_OOHG_ThisItemCellWidth " + LTrim( Str( _OOHG_ThisItemCellWidth ) ) + CRLF + ;
+               "_OOHG_ThisItemCellHeight " + LTrim( Str( _OOHG_ThisItemCellHeight ) ) + CRLF + ;
+               "_OOHG_ThisItemCellValue " + _OOHG_ThisItemCellValue + CRLF + ;
+               "Grid's value " + AutoType( oGrid:Value ) )
 
 RETURN NIL
 

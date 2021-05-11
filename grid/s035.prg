@@ -31,7 +31,7 @@ FUNCTION Main()
       END STATUSBAR
 
       FOR k := 1 TO 30
-          aRows[ k ] := { Str(hb_RandomInt( 99 ), 2, 0), ;
+          aRows[ k ] := { Str( hb_RandomInt( 99 ), 2, 0 ), ;
                           'Refer ' + Str( hb_RandomInt( 10 ), 2 ) }
       NEXT k
 
@@ -62,7 +62,7 @@ FUNCTION Main()
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SetData( oGrid, aRows )
 
@@ -70,24 +70,24 @@ FUNCTION SetData( oGrid, aRows )
       _OOHG_ThisQueryData := aRows[ _OOHG_ThisQueryRowIndex, _OOHG_ThisQueryColIndex ]
    ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION AddData( oGrid, aRows )
 
-  AAdd( aRows, { Str(hb_RandomInt( 99 ), 2, 0), 'Refer ' + Str( hb_RandomInt( 10 ), 2 ) } )
+  AAdd( aRows, { Str( hb_RandomInt( 99 ), 2, 0 ), 'Refer ' + Str( hb_RandomInt( 10 ), 2 ) } )
   oGrid:ItemCount := Len( aRows )
   oGrid:Value := Len( aRows )
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION ModifyData( oGrid, aRows )
 
   IF oGrid:Value <= Len( aRows )
-     aRows[ oGrid:Value ] := { Str(hb_RandomInt( 99 ), 2, 0), 'Refer ' + Str( hb_RandomInt( 10 ), 2 ) }
+     aRows[ oGrid:Value ] := { Str( hb_RandomInt( 99 ), 2, 0 ), 'Refer ' + Str( hb_RandomInt( 10 ), 2 ) }
      oGrid:Refresh()
   ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION RemoveData( oGrid, aRows )
 
@@ -104,7 +104,7 @@ FUNCTION RemoveData( oGrid, aRows )
       ENDIF
    ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF

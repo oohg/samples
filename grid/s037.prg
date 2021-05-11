@@ -1,11 +1,11 @@
 /*
- * Grid Sample n° 37
+ * Grid Sample # 37
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how update one columun
- * with the sum of others.
+ * This sample shows how to update one column with a
+ * value computed from the others.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -15,7 +15,6 @@
 FUNCTION Main
    LOCAL aRows[5, 4], k
 
-   SET DATE ANSI
    SET CENTURY ON
    SET NAVIGATION EXTENDED
 
@@ -28,13 +27,10 @@ FUNCTION Main
       MAIN
 
       FOR k := 1 TO 5
-          aRows[k] := { Str( HB_RandomInt(99), 2 ), ;
-                        0, ;
-                        HB_RandomInt(100), ;
-                        0 }
+          aRows[k] := { Str( HB_RandomInt(99), 2 ), 0, hb_RandomInt( 100 ), 0 }
       NEXT k
 
-      @ 40,10 GRID Grid_1 obj oGrid ;
+      @ 40,10 GRID Grid_1 OBJ oGrid ;
          WIDTH 520 ;
          HEIGHT 330 ;
          HEADERS { 'CODE', 'QUANTITY', 'PRICE', 'AMOUNT' } ;

@@ -1,5 +1,5 @@
 /*
- * Grid Sample # 0
+ * Grid Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -138,6 +138,8 @@ FUNCTION Main()
             ACTION {|| oGrid:ColumnShow( 2 ), ;
                        Form_1.mnu_Hide.Enabled := .T., ;
                        Form_1.mnu_Show.Enabled := .F. }
+         MENUITEM 'Columns Better AutoFit' ;
+            ACTION {|| oGrid:ColumnsBetterAutoFit() }
       END MENU
 
       @ 370, 20 CHECKBOX chk_Append ;

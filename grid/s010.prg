@@ -1,5 +1,5 @@
 /*
- * Grid Sample n° 10
+ * Grid Sample # 10
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -7,7 +7,7 @@
  * Based on a sample from OOHG distribution build by
  * Ciro Vargas C. <cvc@oohg.org>
  *
- * This sample shows how to show only whole rows in a
+ * This sample shows how to display only full rows in a
  * Grid (it also applies to Browse and xBrowse).
  *
  * Visit us at https://github.com/oohg/samples

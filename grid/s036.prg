@@ -41,11 +41,11 @@ FUNCTION Main
                         hb_RandomInt( 10000 ) }
       NEXT k
 
-      @ 10,10 GRID Grid_1 obj oGrid ;
+      @ 10,10 GRID Grid_1 OBJ oGrid ;
          WIDTH 570 ;
          HEIGHT 330 ;
          HEADERS { "", 'CODE', 'NUMBER', 'DATE', 'REFERENCE', 'AMOUNT' } ;
-         WIDTHS {1, 60, 80, 100, 120, 100} ;
+         WIDTHS { 1, 60, 80, 100, 120, 100 } ;
          ITEMS aRows ;
          ITEMCOUNT 15 ;
          IMAGE { 'MINIGUI_EDIT_CANCEL', ;
@@ -75,24 +75,24 @@ FUNCTION Main
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SetData( oGrid, aRows )
 
    LOCAL aItem
 
-//   oForm:StatusBar:Item( 1, "Row = " + LTrim( Str( _OOHG_ThisQueryRowIndex ) ) + "  Col = " + LTrim( Str( _OOHG_ThisQueryColIndex ) ) )
+   oForm:StatusBar:Item( 1, "Row = " + LTrim( Str( _OOHG_ThisQueryRowIndex ) ) + "  Col = " + LTrim( Str( _OOHG_ThisQueryColIndex ) ) )
 
    aItem := TGrid_SetArray( oGrid, aRows[ _OOHG_ThisQueryRowIndex ] )
    _OOHG_ThisQueryData := aItem[ _OOHG_ThisQueryColIndex ]
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION SaveData( oGrid, aRows )
 
    aRows[ _OOHG_ThisItemRowIndex, _OOHG_ThisItemColIndex ] := _OOHG_ThisItemCellValue
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION DeleteData( oGrid, aRows )
 
@@ -107,13 +107,13 @@ FUNCTION DeleteData( oGrid, aRows )
       ASize( aRows, Len( aRows ) - 1 )
    ENDIF
 
-RETURN NIL
+   RETURN NIL
 
 FUNCTION AddData( oGrid, aRows )
 
    AAdd( aRows, { 0, "", 0, CToD(""), "", 0 } )
 
-RETURN NIL
+   RETURN NIL
 
 /*
  * EOF
