@@ -288,7 +288,7 @@ STATIC PROCEDURE Exm_OOCalc()
 
 STATIC PROCEDURE Exm_OOWriter()
 
-   LOCAL oServiceManager, oDesktop, oDoc, oText, oCursor, oTable, oRow, oCell, oCellCursor, oRows
+   LOCAL oServiceManager, oDesktop, oDoc, oText, oCursor, oTable, oRow, oCell, oRows
 
    // open service manager
 #ifndef __XHARBOUR__
