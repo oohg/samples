@@ -4,7 +4,8 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows various options of the tab control.
+ * This example shows how to define tab controls with
+ * tab pages in non-traditional positions.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -54,8 +55,7 @@ PROCEDURE DefineTab( cStyle )
          HEIGHT 400 ;
          VALUE 1 ;
          TOOLTIP 'Tab Control' ;
-         SCROLLOP ;
-         // ON CLICK AutoMsgBox( "CLICK" )
+         SCROLLOP
 
    ELSEIF cStyle == "BOTTOM"
       DEFINE TAB tab_1 ;
@@ -90,8 +90,7 @@ PROCEDURE DefineTab( cStyle )
          TOOLTIP 'Tab Control' ;
          RIGHT ;
          ONRCLICK {|nRow, nCol| AutoMsgBox( {nRow, nCol, ( frm_1.tab_1.Object ):ItemAtPos( nRow, nCol ) } ) } ;
-         ITEMSIZE 150, 30 ;
-  //       FIXEDWIDTH
+         ITEMSIZE 150, 30
 
    ENDIF
 
