@@ -1,14 +1,17 @@
 # Tab
 
-* This sample shows how to place a CheckBox or RadioGroup with transparent background inside a Tab control.
+* How to place a CheckBox or RadioGroup with transparent background inside a Tab control.<br>
 https://github.com/oohg/samples/blob/master/tab/s001.prg
-* This sample shows various options of the tab control.
+* How to define tab controls with tab pages in non-traditional positions..<br>
 https://github.com/oohg/samples/blob/master/tab/s002.prg
-* This sample shows how to dynamically add controls to a Tab control.
+* How to dynamically add controls to a Tab control..<br>
 https://github.com/oohg/samples/blob/master/tab/s003.prg
-* This sample shows how set and change the position of the tabs.
+* How set and change the position of the tabs..<br>
 https://github.com/oohg/samples/blob/master/tab/s004.prg
-* This sample shows how to dynamically add pages, delete pages and change their captions.
+* How to dynamically add pages, delete pages and change their captions..<br>
 https://github.com/oohg/samples/blob/master/tab/s005.prg
-* This sample shows how to dynamically add/delete tabpages, change captions/images, change position/size.
+* How to dynamically add/delete tabpages, change captions/images, change position/size..<br>
 https://github.com/oohg/samples/blob/master/tab/s006.prg
+* How to enable and disable tabpages..<br>
+https://github.com/oohg/samples/blob/master/tab/s007.prg
+
