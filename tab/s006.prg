@@ -18,7 +18,7 @@
 
 FUNCTION Main
 
-   DEFINE WINDOW Form_1 ;
+   DEFINE WINDOW Form_1 OBJ Form_1 ;
       AT 0, 0 ;
       WIDTH 640 HEIGHT 480 ;
       TITLE 'ooHG Demo' ;
@@ -34,7 +34,7 @@ FUNCTION Main
 
          DEFINE POPUP 'Tests'
             MENUITEM 'Add Page 2'               ACTION Form_1.Tab_1.AddPage( 2, 'New Page', 'Info.Bmp' )
-            MENUITEM 'Delete Page 2'            ACTION Form_1.Tab_1.DeletePage( 2 )
+            MENUITEM 'Delete Page 2'            ACTION iif( Form_1.Tab_1.ItemCount > 1, Form_1.Tab_1.DeletePage( 2 ), NIL )
             SEPARATOR
             MENUITEM 'Set Image to "Info"'      ACTION Form_1.Tab_1.Image( Form_1.Tab_1.Value ) := 'Info.Bmp'
             MENUITEM 'Set Image to "Exit"'      ACTION Form_1.Tab_1.Image( Form_1.Tab_1.Value ) := 'Exit.Bmp'
@@ -53,6 +53,9 @@ FUNCTION Main
             MENUITEM "Set Tab's Width"          ACTION Form_1.Tab_1.Width  := Val( InputBox( '', '' ) )
             MENUITEM "Set Tab's Height"         ACTION Form_1.Tab_1.Height := Val( InputBox( '', '' ) )
             MENUITEM "Fit to client area"       ACTION SizeTest()
+            SEPARATOR
+            MENUITEM "Hide Page 2"              ACTION iif( Form_1.Tab_1.ItemCount > 1, Form_1:Tab_1:HidePage( 2 ), NIL )
+            MENUITEM "Show Page 2"              ACTION iif( Form_1.Tab_1.ItemCount > 1, Form_1:Tab_1:ShowPage( 2 ), NIL )
          END POPUP
       END MENU
 
