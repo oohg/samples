@@ -21,7 +21,7 @@ FUNCTION Main
 
       @ 10, 10 BUTTON But1 ;
          CAPTION "Open" ;
-         ACTION ( ShellExecute( 0, "open", GetStartUpFolder(), 0, 0, 1 ), ;
+         ACTION ( ShellExecute( NIL, "open", GetStartUpFolder(), NIL, NIL, SW_SHOWNORMAL ), ;
                   MsgBox( "Execution continued without pause !!!" ) )
 
       @ 100, 10 LABEL Lbl1 ;
