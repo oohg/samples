@@ -40,7 +40,7 @@ FUNCTION OpenFile
                 'It should open with notepad or' + hb_OsNewLine() + ;
                 'the default registered application.'+ hb_OsNewLine() )
 
-   ShellExecute( 0, "open", 'test.txt', 0, 0, 1 )
+   ShellExecute( NIL, "open", 'test.txt', NIL, NIL, SW_SHOWNORMAL )
 
    MsgBox( "Execution continued without pause !!!" )
 
