@@ -83,10 +83,10 @@ FUNCTION OpenDoc( cFile )
       cFile := Getfile ( { {'Sources', '*.prg'} }, 'Open source' )
       IF ! Empty( cFile )
          oMRU:AddItem( cFile )
-         ShellExecute( , "open", cFile, , , 1 )
+         ShellExecute( , "open", cFile, , , SW_SHOWNORMAL )
       ENDIF
    ELSE
-      ShellExecute( , "open", cFile, , , 1 )
+      ShellExecute( , "open", cFile, , , SW_SHOWNORMAL )
    ENDIF
    oForm:StatusBar:Item( 1, "" )
 
