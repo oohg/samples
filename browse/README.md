@@ -64,3 +64,5 @@ https://github.com/oohg/samples/blob/master/browse/s023.prg
 https://github.com/oohg/samples/blob/master/browse/s024.prg
 * How to set the default row where newly added records are shown.<br>
 https://github.com/oohg/samples/blob/master/browse/s025.prg
+* How to change the default behavior of the edit keys used by the BROWSE control.<br>
+https://github.com/oohg/samples/blob/master/browse/s026.prg
