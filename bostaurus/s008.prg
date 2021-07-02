@@ -128,9 +128,9 @@ PROCEDURE MAIN
                COL 40
                WIDTH 320
                HEIGHT 200
-               PROGID "ShockwaveFlash.ShockwaveFlash.9"
+               PROGID "WMPlayer.OCX"
             END ACTIVEX
-            Win1.ActiveX_1.Object:Movie := "http://www.youtube.com/v/58CZcCvwND4&hl=en&fs=1"
+            Win1.ActiveX_1.Object:URL := "sample.wav"
          END PAGE
       END TAB
 
