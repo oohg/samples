@@ -1,11 +1,11 @@
 /*
- * GroupBox Sample # 1
+ * Frame Sample # 1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how mouse events and tooltips are
- * handled by groupbox and frame controls.
+ * handled by frame controls.
  *
  * Visit us at https://github.com/oohg/samples
  */
@@ -16,190 +16,240 @@ FUNCTION Main()
 
    DEFINE WINDOW form1 MAIN OBJ form1 ;
       AT 0, 0 ;
-      WIDTH 800 HEIGHT 620 ;
-      TITLE "Mouse events and tooltips for Frame and GroupBox controls" ;
+      WIDTH 980 HEIGHT 500 ;
+      TITLE "Mouse events and tooltips for Frame controls" ;
       ON MOUSEMOVE form_MouseMove()
 
       @ 10, 20 LABEL label1 OBJ label1 ;
          WIDTH 300 HEIGHT 30 BORDER VALUE ""   // form
       @ 50, 20 LABEL label2 OBJ label2 ;
-         WIDTH 300 HEIGHT 30 BORDER VALUE ""   // frame and groupbox
-      @ 10, 400 LABEL label3 OBJ label3 ;
+         WIDTH 300 HEIGHT 30 BORDER VALUE ""   // frame
+      @ 10, 450 LABEL label3 OBJ label3 ;
          WIDTH 300 HEIGHT 30 BORDER VALUE "" ;
          ON MOUSEMOVE label_MouseMove() ;
          ON MOUSELEAVE label_MouseLeave()      // itself
-      @ 50, 400 LABEL label4 OBJ label4 ;
+      @ 50, 450 LABEL label4 OBJ label4 ;
          WIDTH 300 HEIGHT 30 BORDER VALUE ""   // checkbox
 
-      @ 110, 20 LABEL 0 WIDTH 350 VALUE "GROUPBOXES" ;
-         CENTERALIGN BACKCOLOR YELLOW
+      @ 10, 330 LABEL 0 WIDTH 110 HEIGHT 100 VALUE "Move the mouse around and see what happens!"
 
-      @ 110, 400 LABEL 0 WIDTH 350 VALUE "FRAMES" ;
-         CENTERALIGN BACKCOLOR YELLOW
+// Line 1, column 1
+      row := 150
+      col := 20
 
-      DEFINE GROUPBOX groupbox1 OBJ groupbox1 ;
-         AT 150, 20 ;
-         WIDTH 160 HEIGHT 200 ;
+      @ row, col FRAME c1_frame1 OBJ c1_frame1 ;
+         WIDTH 160 HEIGHT 280 ;
+         CAPTION "Without Tooltip"
+      c1_frame1:OnMouseMove := { || frame_MouseMove() }
+      c1_frame1:OnMouseLeave := { || frame_MouseLeave() }
+
+      @ row + 40, col + 20 FRAME c1_frame2 OBJ c1_frame2 ;
+         WIDTH 130 HEIGHT 90 ;
+         CAPTION "Inner No TT"
+      c1_frame2:OnMouseMove := { || frame_MouseMove() }
+      c1_frame2:OnMouseLeave := { || frame_MouseLeave() }
+      c1_frame1:AddExcludeArea( c1_frame2:Name, {col + 20, row + 40, col + 20 + 130, row + 40 + 90} )
+
+      @ row + 70, col + 40 CHECKBOX c1_checkbox1 OBJ c1_checkbox1 ;
+         CAPTION "c1_checkbox1" ;
+         WIDTH 95 HEIGHT 28 ;
+         TOOLTIP "c1_checkbox1"
+      c1_checkbox1:OnMouseMove := { || checkbox_MouseMove() }
+      c1_checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      c1_frame2:AddExcludeArea( c1_checkbox1:Name, {col + 40, row + 70, col + 40 + 60, row + 70 + 28} )
+
+      @ row + 150, col + 20 CHECKBOX c1_checkbox2 OBJ c1_checkbox2 ;
+         CAPTION "c1_checkbox2" ;
+         WIDTH 110 HEIGHT 28 ;
+         TOOLTIP "c1_checkbox2"
+      c1_checkbox2:OnMouseMove := { || checkbox_MouseMove() }
+      c1_checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      c1_frame1:AddExcludeArea( c1_checkbox2:Name, {col + 20, row + 150, col + 20 + 110, row + 150 + 28} )
+
+      @ row + 200, col + 20 LABEL c1_label1 OBJ c1_label1 ;
+         BORDER ;
+         VALUE "c1_label1" ;
+         WIDTH 120 HEIGHT 60 ;
+         TOOLTIP "c1_label1"
+      c1_label1:OnMouseMove := { || label_MouseMove() }
+      c1_label1:OnMouseLeave := { || label_MouseLeave() }
+      c1_frame1:AddExcludeArea( c1_label1:Name, {col + 20, row + 200, col + 20 + 120, row + 200 + 60} )
+
+// Line 1, column 2
+      row += 0
+      col += 190
+
+      @ row, col FRAME c2_frame1 OBJ c2_frame1 ;
+         WIDTH 160 HEIGHT 280 ;
          CAPTION "With Tooltip" ;
          TOOLTIP "With Tooltip"
-         groupbox1:OnMouseMove := { || frame_MouseMove() }
-         groupbox1:OnMouseLeave := { || frame_MouseLeave() }
+      c2_frame1:OnMouseMove := { || frame_MouseMove() }
+      c2_frame1:OnMouseLeave := { || frame_MouseLeave() }
 
-         @ 190, 40 CHECKBOX checkbox1 OBJ checkbox1 ;
-            CAPTION "checkbox1" ;
-            WIDTH 100 HEIGHT 28 ;
-            TOOLTIP "checkbox1"
-         checkbox1:OnMouseMove := { || checkbox_MouseMove() }
-         checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      @ row + 40, col + 20 FRAME c2_frame2 OBJ c2_frame2 ;
+         WIDTH 130 HEIGHT 90 ;
+         CAPTION "Inner No TT"
+      c2_frame2:OnMouseMove := { || frame_MouseMove() }
+      c2_frame2:OnMouseLeave := { || frame_MouseLeave() }
+      c2_frame1:AddExcludeArea( c2_frame2:Name, {col + 20, row + 40, col + 20 + 130, row + 40 + 90} )
 
-         @ 250, 40 LABEL label5 OBJ label5 BORDER ;
-            VALUE "label5" ;
-            WIDTH 120 HEIGHT 60 ;
-            TOOLTIP "label5"
-         label5:OnMouseMove := { || label_MouseMove() }
-         label5:OnMouseLeave := { || label_MouseLeave() }
+      @ row + 70, col + 40 CHECKBOX c2_checkbox1 OBJ c2_checkbox1 ;
+         CAPTION "c2_checkbox1" ;
+         WIDTH 95 HEIGHT 28 ;
+         TOOLTIP "c2_checkbox1"
+      c2_checkbox1:OnMouseMove := { || checkbox_MouseMove() }
+      c2_checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      c2_frame2:AddExcludeArea( c2_checkbox1:Name, {col + 40, row + 70, col + 40 + 60, row + 70 + 28} )
 
-      END GROUPBOX
+      @ row + 150, col + 20 CHECKBOX c2_checkbox2 OBJ c2_checkbox2 ;
+         CAPTION "c2_checkbox2" ;
+         WIDTH 110 HEIGHT 28 ;
+         TOOLTIP "c2_checkbox2"
+      c2_checkbox2:OnMouseMove := { || checkbox_MouseMove() }
+      c2_checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      c2_frame1:AddExcludeArea( c2_checkbox2:Name, {col + 20, row + 150, col + 20 + 110, row + 150 + 28} )
 
-      DEFINE GROUPBOX groupbox2 OBJ groupbox2 ;
-         AT 150, 210 ;
-         WIDTH 160 HEIGHT 200 ;
-         CAPTION "Without Tooltip"
-         groupbox2:OnMouseMove := { || frame_MouseMove() }
-         groupbox2:OnMouseLeave := { || frame_MouseLeave() }
+      @ row + 200, col + 20 LABEL c2_label1 OBJ c2_label1 ;
+         BORDER ;
+         VALUE "c2_label1" ;
+         WIDTH 120 HEIGHT 60 ;
+         TOOLTIP "c2_label1"
+      c2_label1:OnMouseMove := { || label_MouseMove() }
+      c2_label1:OnMouseLeave := { || label_MouseLeave() }
+      c2_frame1:AddExcludeArea( c2_label1:Name, {col + 20, row + 200, col + 20 + 120, row + 200 + 60} )
 
-         DEFINE GROUPBOX groupbox3 OBJ groupbox3 ;
-            AT 190, 230 ;
-            WIDTH 120 HEIGHT 90 ;
-            CAPTION "Inner"
-            groupbox3:OnMouseMove := { || frame_MouseMove() }
-            groupbox3:OnMouseLeave := { || frame_MouseLeave() }
+// Line 1, column 3
+      row += 0
+      col += 190
 
-            @ 220, 250 CHECKBOX checkbox2 ;
-               OBJ checkbox2 ;
-               CAPTION "checkbox2" ;
-               WIDTH 80 HEIGHT 28 ;
-               TOOLTIP "checkbox2"
-            checkbox2:OnMouseMove := { || checkbox_MouseMove() }
-            checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      @ row, col FRAME c3_frame1 OBJ c3_frame1 ;
+         WIDTH 160 HEIGHT 280 ;
+         CAPTION "With Tooltip PostParent" ;
+         TOOLTIP "With Tooltip PostParent" POSTPARENT
+      c3_frame1:OnMouseMove := { || frame_MouseMove() }
+      c3_frame1:OnMouseLeave := { || frame_MouseLeave() }
 
-         END GROUPBOX
+      @ row + 40, col + 20 FRAME c3_frame2 OBJ c3_frame2 ;
+         WIDTH 130 HEIGHT 90 ;
+         CAPTION "Inner No TT"
+      c3_frame2:OnMouseMove := { || frame_MouseMove() }
+      c3_frame2:OnMouseLeave := { || frame_MouseLeave() }
+      c3_frame1:AddExcludeArea( c3_frame2:Name, {col + 20, row + 40, col + 20 + 130, row + 40 + 90} )
 
-         @ 300, 230 CHECKBOX checkbox3 ;
-            OBJ checkbox3 ;
-            CAPTION "checkbox3" ;
-            WIDTH 80 HEIGHT 28 ;
-            TOOLTIP "checkbox3"
-         checkbox3:OnMouseMove := { || checkbox_MouseMove() }
-         checkbox3:OnMouseLeave := { || checkbox_MouseLeave() }
+      @ row + 70, col + 40 CHECKBOX c3_checkbox1 OBJ c3_checkbox1 ;
+         CAPTION "c3_checkbox1" ;
+         WIDTH 95 HEIGHT 28 ;
+         TOOLTIP "c3_checkbox1"
+      c3_checkbox1:OnMouseMove := { || checkbox_MouseMove() }
+      c3_checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      c3_frame2:AddExcludeArea( c3_checkbox1:Name, {col + 40, row + 70, col + 40 + 60, row + 70 + 28} )
 
-      END GROUPBOX
+      @ row + 150, col + 20 CHECKBOX c3_checkbox2 OBJ c3_checkbox2 ;
+         CAPTION "c3_checkbox2" ;
+         WIDTH 110 HEIGHT 28 ;
+         TOOLTIP "c3_checkbox2"
+      c3_checkbox2:OnMouseMove := { || checkbox_MouseMove() }
+      c3_checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      c3_frame1:AddExcludeArea( c3_checkbox2:Name, {col + 20, row + 150, col + 20 + 110, row + 150 + 28} )
 
-      @ 400, 20 LABEL 0 WIDTH 150 HEIGHT 150 VALUE "Move the mouse around and see what happens!"
+      @ row + 200, col + 20 LABEL c3_label1 OBJ c3_label1 ;
+         BORDER ;
+         VALUE "c3_label1" ;
+         WIDTH 120 HEIGHT 60 ;
+         TOOLTIP "c3_label1"
+      c3_label1:OnMouseMove := { || label_MouseMove() }
+      c3_label1:OnMouseLeave := { || label_MouseLeave() }
+      c3_frame1:AddExcludeArea( c3_label1:Name, {col + 20, row + 200, col + 20 + 120, row + 200 + 60} )
 
-      @ 150, 400 FRAME frame11 OBJ frame11 ;
-         WIDTH 160 HEIGHT 200 ;
-         CAPTION "With Tooltip" ;
-         TOOLTIP "With Tooltip"
-      frame11:OnMouseMove := { || frame_MouseMove() }
-      frame11:OnMouseLeave := { || frame_MouseLeave() }
+// Line 1, column 4
+      row += 0
+      col += 190
 
-      @ 190, 420 CHECKBOX checkbox14 OBJ checkbox14 ;
-         CAPTION "checkbox14" ;
-         WIDTH 120 HEIGHT 28 ;
-         TOOLTIP "checkbox14"
-      checkbox14:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox14:OnMouseLeave := { || checkbox_MouseLeave() }
-      frame11:AddExcludeArea( checkbox14:Name, {420, 190, 540, 218} )
+      @ row, col FRAME c4_frame1 OBJ c4_frame1 ;
+         WIDTH 160 HEIGHT 280 ;
+         CAPTION "With Tooltip PostParent" ;
+         TOOLTIP "With Tooltip PostParent" POSTPARENT
+      c4_frame1:OnMouseMove := { || frame_MouseMove() }
+      c4_frame1:OnMouseLeave := { || frame_MouseLeave() }
 
-      @ 250, 420 LABEL label16 OBJ label16 BORDER ;
-         VALUE "label16" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "label16"
-      label16:OnMouseMove := { || label_MouseMove() }
-      label16:OnMouseLeave := { || label_MouseLeave() }
-      frame11:AddExcludeArea( label16:Name, {420, 250, 540, 278} )
+      @ row + 40, col + 20 FRAME c4_frame2 OBJ c4_frame2 ;
+         WIDTH 130 HEIGHT 90 ;
+         CAPTION "Inner with TT" ;
+         TOOLTIP "Inner No PostParent"
+      c4_frame2:OnMouseMove := { || frame_MouseMove() }
+      c4_frame2:OnMouseLeave := { || frame_MouseLeave() }
+      c4_frame1:AddExcludeArea( c4_frame2:Name, {col + 20, row + 40, col + 20 + 130, row + 40 + 90} )
 
-      @ 150, 590 FRAME frame12 OBJ frame12 ;
-         WIDTH 160 HEIGHT 200 ;
-         CAPTION "Without Tooltip"
-      frame12:OnMouseMove := { || frame_MouseMove() }
-      frame12:OnMouseLeave := { || frame_MouseLeave() }
+      @ row + 70, col + 40 CHECKBOX c4_checkbox1 OBJ c4_checkbox1 ;
+         CAPTION "c4_checkbox1" ;
+         WIDTH 95 HEIGHT 28 ;
+         TOOLTIP "c4_checkbox1"
+      c4_checkbox1:OnMouseMove := { || checkbox_MouseMove() }
+      c4_checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      c4_frame2:AddExcludeArea( c4_checkbox1:Name, {col + 40, row + 70, col + 40 + 60, row + 70 + 28} )
 
-      @ 190, 610 FRAME frame13 OBJ frame13 ;
-         WIDTH 120 HEIGHT 90 ;
-         CAPTION "Inner"
-      frame13:OnMouseMove := { || frame_MouseMove() }
-      frame13:OnMouseLeave := { || frame_MouseLeave() }
+      @ row + 150, col + 20 CHECKBOX c4_checkbox2 OBJ c4_checkbox2 ;
+         CAPTION "c4_checkbox2" ;
+         WIDTH 110 HEIGHT 28 ;
+         TOOLTIP "c4_checkbox2"
+      c4_checkbox2:OnMouseMove := { || checkbox_MouseMove() }
+      c4_checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      c4_frame1:AddExcludeArea( c4_checkbox2:Name, {col + 20, row + 150, col + 20 + 110, row + 150 + 28} )
 
-      @ 220, 630 CHECKBOX checkbox15 ;
-         OBJ checkbox15 ;
-         CAPTION "checkbox15" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "checkbox15"
-      checkbox15:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox15:OnMouseLeave := { || checkbox_MouseLeave() }
+      @ row + 200, col + 20 LABEL c4_label1 OBJ c4_label1 ;
+         BORDER ;
+         VALUE "c4_label1" ;
+         WIDTH 120 HEIGHT 60 ;
+         TOOLTIP "c4_label1"
+      c4_label1:OnMouseMove := { || label_MouseMove() }
+      c4_label1:OnMouseLeave := { || label_MouseLeave() }
+      c4_frame1:AddExcludeArea( c4_label1:Name, {col + 20, row + 200, col + 20 + 120, row + 200 + 60} )
 
-      @ 300, 610 CHECKBOX checkbox16 ;
-         OBJ checkbox16 ;
-         CAPTION "checkbox16" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "checkbox16"
-      checkbox16:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox16:OnMouseLeave := { || checkbox_MouseLeave() }
+// Line 1, column 5
+      row += 0
+      col += 190
 
-// Second row, no exclusions: control tooltips are ignored!
+      @ row, col FRAME c5_frame1 OBJ c5_frame1 ;
+         WIDTH 160 HEIGHT 280 ;
+         CAPTION "With Tooltip PostParent" ;
+         TOOLTIP "With Tooltip PostParent" POSTPARENT
+      c5_frame1:OnMouseMove := { || frame_MouseMove() }
+      c5_frame1:OnMouseLeave := { || frame_MouseLeave() }
 
-      @ 370, 400 FRAME frame21 OBJ frame21 ;
-         WIDTH 160 HEIGHT 200 ;
-         CAPTION "With Tooltip No Excl." ;
-         TOOLTIP "With Tooltip No Excl."
-      frame21:OnMouseMove := { || frame_MouseMove() }
-      frame21:OnMouseLeave := { || frame_MouseLeave() }
+      @ row + 40, col + 20 FRAME c5_frame2 OBJ c5_frame2 ;
+         WIDTH 130 HEIGHT 90 ;
+         CAPTION "Inner with TT" ;
+         TOOLTIP "Inner PostParent" POSTPARENT
+      c5_frame2:OnMouseMove := { || frame_MouseMove() }
+      c5_frame2:OnMouseLeave := { || frame_MouseLeave() }
+      c5_frame1:AddExcludeArea( c5_frame2:Name, {col + 20, row + 40, col + 20 + 130, row + 40 + 90} )
 
-      @ 410, 420 CHECKBOX checkbox24 OBJ checkbox24 ;
-         CAPTION "checkbox24" ;
-         WIDTH 120 HEIGHT 28 ;
-         TOOLTIP "checkbox24"
-      checkbox24:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox24:OnMouseLeave := { || checkbox_MouseLeave() }
+      @ row + 70, col + 40 CHECKBOX c5_checkbox1 OBJ c5_checkbox1 ;
+         CAPTION "c5_checkbox1" ;
+         WIDTH 95 HEIGHT 28 ;
+         TOOLTIP "c5_checkbox1"
+      c5_checkbox1:OnMouseMove := { || checkbox_MouseMove() }
+      c5_checkbox1:OnMouseLeave := { || checkbox_MouseLeave() }
+      c5_frame2:AddExcludeArea( c5_checkbox1:Name, {col + 40, row + 70, col + 40 + 60, row + 70 + 28} )
 
-      @ 470, 420 LABEL label26 OBJ label26 BORDER ;
-         VALUE "label26" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "label26"
-      label26:OnMouseMove := { || label_MouseMove() }
-      label26:OnMouseLeave := { || label_MouseLeave() }
+      @ row + 150, col + 20 CHECKBOX c5_checkbox2 OBJ c5_checkbox2 ;
+         CAPTION "c5_checkbox2" ;
+         WIDTH 110 HEIGHT 28 ;
+         TOOLTIP "c5_checkbox2"
+      c5_checkbox2:OnMouseMove := { || checkbox_MouseMove() }
+      c5_checkbox2:OnMouseLeave := { || checkbox_MouseLeave() }
+      c5_frame1:AddExcludeArea( c5_checkbox2:Name, {col + 20, row + 150, col + 20 + 110, row + 150 + 28} )
 
-      @ 370, 590 FRAME frame22 OBJ frame22 ;
-         WIDTH 160 HEIGHT 200 ;
-         CAPTION "Without Tooltip No Excl."
-      frame22:OnMouseMove := { || frame_MouseMove() }
-      frame22:OnMouseLeave := { || frame_MouseLeave() }
+      @ row + 200, col + 20 LABEL c5_label1 OBJ c5_label1 ;
+         BORDER ;
+         VALUE "c5_label1" ;
+         WIDTH 120 HEIGHT 60 ;
+         TOOLTIP "c5_label1"
+      c5_label1:OnMouseMove := { || label_MouseMove() }
+      c5_label1:OnMouseLeave := { || label_MouseLeave() }
+      c5_frame1:AddExcludeArea( c5_label1:Name, {col + 20, row + 200, col + 20 + 120, row + 200 + 60} )
 
-      @ 410, 610 FRAME frame23 OBJ frame23 ;
-         WIDTH 120 HEIGHT 90 ;
-         CAPTION "Inner"
-      frame23:OnMouseMove := { || frame_MouseMove() }
-      frame23:OnMouseLeave := { || frame_MouseLeave() }
-
-      @ 440, 630 CHECKBOX checkbox25 ;
-         OBJ checkbox25 ;
-         CAPTION "checkbox25" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "checkbox25"
-      checkbox25:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox25:OnMouseLeave := { || checkbox_MouseLeave() }
-
-      @ 520, 610 CHECKBOX checkbox26 ;
-         OBJ checkbox26 ;
-         CAPTION "checkbox26" ;
-         WIDTH 80 HEIGHT 28 ;
-         TOOLTIP "checkbox26"
-      checkbox26:OnMouseMove := { || checkbox_MouseMove() }
-      checkbox26:OnMouseLeave := { || checkbox_MouseLeave() }
-
-      ON KEY ESCAPE ACTION ThisWindow.Release
+     ON KEY ESCAPE ACTION ThisWindow.Release
    END WINDOW
 
    CENTER WINDOW ( LastForm.Name )
