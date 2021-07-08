@@ -37,12 +37,24 @@ FUNCTION MAIN
       HEIGHT 100 ;
       CLIENTAREA ;
       CHILD ;
-      NOSYSMENU ;
-      NOCAPTION ;
+      NOCAPTION BORDER ;
+      NOSIZE ;
       NOSHOW ;
+      BACKCOLOR WHITE ;
       ON INIT oWait:Center()
 
-      @ 40, 15 LABEL lbl_Msg ;
+      DRAW RECTANGLE IN WINDOW Form_Wait ;
+         AT 0,0 ;
+         TO 30, 150 ;
+         PENCOLOR YELLOW ;
+         FILLCOLOR YELLOW
+
+      @ 04, 25 LABEL lbl_Title ;
+         WIDTH 50 ;
+         VALUE "Title" ;
+         BACKCOLOR YELLOW
+
+      @ 70, 15 LABEL lbl_Msg ;
          WIDTH 120 ;
          CENTERALIGN
    END WINDOW
