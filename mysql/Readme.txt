@@ -1,7 +1,7 @@
 
-To compile this sample you need:
+To compile this sample you need to:
 
-1. Download 32 bits version of MySQL's Connector for C under Windows from:
+1. Download the 32 bits version of MySQL's Connector for C under Windows from:
    https://dev.mysql.com/downloads/connector/c/
 
 2. Extract libmysql.dll and libmysql.lib from the downloaded package and
