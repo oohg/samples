@@ -295,7 +295,7 @@ function DBUmodistructure(cBase)
                     frename(cPathDBFm+'DBTemp.dbf',alltrim(cPathDBFm+_DBUfname))
                 endif
             endif
-            If IsControlDefine( &(cBrowse_n), oWndBase )
+            If IsControlDefined( &(cBrowse_n), oWndBase )
                oTab := GetControlObject("Tab_1","oWndBase")
                oTab:DeletePage ( oTab:value, oTab:caption( oTab:value ) )
                If DB_Open(cPathDBFm+_DBUfname)
