@@ -39,8 +39,7 @@ FUNCTION Main
 
       @ 52,29 FRAME frm_1 ;                  // If row is set to 23, the top line of
          WIDTH 122 ;                         // the frame disappears. If height is set
-         HEIGHT 38 ;                          // to 37 the bottom line disappears.
-         BACKCOLOR RED
+         HEIGHT 38                           // to 37 the bottom line disappears.
 
       @ 60,30 CHECKBOX Chk1 ;                // The background of the control
          CAPTION 'Chk1 LeftAlign' ;          // is 38 pixels high: 8 extra pixels
@@ -55,7 +54,7 @@ FUNCTION Main
 
       @ 52,199 FRAME frm_2 ;
          WIDTH 122 ;
-         HEIGHT 38 FONTCOLOR GREEN
+         HEIGHT 38
 
       @ 60,200 CHECKBOX Chk2 ;
          OBJ Chk2 ;
