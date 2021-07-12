@@ -1,7 +1,10 @@
 
 #include 'oohg.ch'
+#include "i_init.ch"
 
 FUNCTION Main()
+
+   SET LANGUAGE TO SPANISH
 
    DEFINE WINDOW form_1 ;
       AT 0,0 ;
@@ -11,15 +14,21 @@ FUNCTION Main()
       TITLE 'OOHG - Print from a Report File' ;
       MAIN
 
-      @ 50,75 BUTTON btn_Printer ;
+      @ 30,75 BUTTON btn_Printer ;
          CAPTION 'Print External Report (.rpt) to Printer' ;
-         ACTION TestReport( .F. ) ;
+         ACTION TestReport( 1 ) ;
          HEIGHT 40 ;
          WIDTH 250
 
-      @ 120,75 BUTTON b_PDF ;
+      @ 90,75 BUTTON btn_HBPrinter ;
+         CAPTION 'Print External Report (.rpt) to HBPrinter' ;
+         ACTION TestReport( 2 ) ;
+         HEIGHT 40 ;
+         WIDTH 250
+
+      @ 150,75 BUTTON btn_PDF ;
          CAPTION 'Print External Report (.rpt) to PDF' ;
-         ACTION TestReport( .T. ) ;
+         ACTION TestReport( 3 ) ;
          HEIGHT 40 ;
          WIDTH 250
 
@@ -31,21 +40,29 @@ FUNCTION Main()
 
 RETURN NIL
 
-FUNCTION TestReport( lToPDF )
+FUNCTION TestReport( nTo )
 
-   USE mtiempo
-   INDEX ON usuario TO lista
+   USE mtiempo SHARED
+   IF ! File( "lista.ntx" )
+      INDEX ON usuario TO lista
+   ELSE
+      SET INDEX TO lista
+   ENDIF
    GO TOP
 
-   IF lToPDF
+   DO CASE
+   CASE nTo == 1
+      _OOHG_PrintLibrary := "MINIPRINT"
+   CASE nTo == 2
+      _OOHG_PrintLibrary := "HBPRINTER"
+   OTHERWISE
       _OOHG_PrintLibrary := "PDFPRINT"
-   ENDIF
+   ENDCASE
 
-   wempresa := 'Sistemas C.V.C'
+   wempresa := 'Sistemas C.V.C.'
    DO REPORT FORM repdemo NAME ( GetCurrentFolder() + "\report" )
 
    CLOSE DATABASES
-   ERASE lista.ntx
 
 RETURN NIL
 
