@@ -1,5 +1,5 @@
 /*
- * Checkbox Sample n° 3
+ * Checkbox Sample # 3
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -25,7 +25,7 @@ FUNCTION Main
       HEIGHT 400 ;
       CLIENTAREA ;
       MAIN ;
-      TITLE "oohg - Transparent checkbox over an image control"
+      TITLE "OOHG - Transparent CheckBox over an image control"
 
       @ 00, 00 IMAGE img_1 ;
          OBJ oImg ;

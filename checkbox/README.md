@@ -10,3 +10,5 @@ https://github.com/oohg/samples/blob/master/checkbox/s003.prg
 https://github.com/oohg/samples/blob/master/checkbox/s004.prg
 * This sample shows how to create a "transparent" checkbox over a form with a backimage.
 https://github.com/oohg/samples/blob/master/checkbox/s005.prg
+* This sample shows how to change the text alignment and color.
+https://github.com/oohg/samples/blob/master/checkbox/s006.prg

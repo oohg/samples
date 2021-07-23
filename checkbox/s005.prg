@@ -1,5 +1,5 @@
 /*
- * Checkbox Sample n° 5
+ * Checkbox Sample # 5
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -23,7 +23,7 @@ FUNCTION Main
       HEIGHT 310 ;
       CLIENTAREA ;
       MAIN ;
-      TITLE "oohg - Transparent checkbox over a form with backimage" ;
+      TITLE "OOHG - Transparent CheckBox over a form with backimage" ;
       BACKIMAGE "logo.jpg" STRETCH
 
       @ 60,120 CHECKBOX chk_1 ;
@@ -32,10 +32,9 @@ FUNCTION Main
          AUTOSIZE ;
          FONTCOLOR RED ;
          SIZE 20 BOLD ;
-         HEIGHT 50 ;
+         HEIGHT 70 ;
          OOHGDRAW ;
          BACKGROUND oForm
-      // XP ignores FONTCOLOR except for "Windows Classic" theme
 
       @ 160,120 CHECKBOX chk_2 ;
          OBJ oCheck2 ;
@@ -46,7 +45,6 @@ FUNCTION Main
          HEIGHT 50 ;
          WINDRAW ;
          BACKGROUND oForm
-      // XP ignores FONTCOLOR except for "Windows Classic" theme
 
       @ 110,500 BUTTON btn_1 OBJ oButton ;
          CAPTION 'Hide/Show' ACTION ( oCheck1:Visible := ! oCheck1:Visible, oCheck2:Visible := ! oCheck2:Visible )

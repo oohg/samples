@@ -1,5 +1,5 @@
 /*
- * Checkbox Sample n° 2
+ * Checkbox Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -19,7 +19,7 @@ FUNCTION Main
       AT 0, 0 ;
       WIDTH 640 ;
       HEIGHT 480 ;
-      TITLE 'oohg - CheckBox demo - OOHGDRAW & WINDRAW' ;
+      TITLE 'OOHG - CheckBox clauses OOHGDRAW and WINDRAW' ;
       MAIN ;
       NOSIZE 
 
