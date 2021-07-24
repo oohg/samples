@@ -129,7 +129,7 @@ PROCEDURE GraphSave( cImageFileName, nWidth, nHeight, aData, cTitle, aYVals, nBa
    PRIVATE nPenWidth := 1
 
    IF ( Len( aSeries ) != Len( aData ) ) .OR. ( Len( aSeries ) != Len( aColors ) )
-      MsgOOHGError( "DRAW GRAPH: 'Series' / 'SerieNames' / 'Colors' arrays size mismatch." )
+      OOHG_MsgError( "DRAW GRAPH: 'Series' / 'SerieNames' / 'Colors' arrays size mismatch." )
    ENDIF
 
    hBitMap := BT_BitmapCreateNew( nWidth, nHeight, { 255, 255, 255 } )
