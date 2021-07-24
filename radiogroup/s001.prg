@@ -29,13 +29,13 @@ FUNCTION Main
          TOOLTIP { 'Item 1', 'Item 2', 'Item 3', 'Item 4' } ;
          FONTCOLOR RED ;
          WIDTH 80 ;
-         SPACING 24
+         SPACING 25
 
       @ 20,120 RADIOGROUP rdg_2 ;
          OPTIONS { 'Uno', 'Dos', 'Tres', 'Cuatro' } ;
          TOOLTIP 'ToolTip' ;
          WIDTH 80 ;
-         SPACING 24
+         SPACING 25
 
       @ 200,20 LABEL lbl_1 ;
          VALUE "See what happens when you move the mouse over the items." ;
