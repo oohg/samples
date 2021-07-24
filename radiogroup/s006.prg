@@ -34,7 +34,7 @@ FUNCTION Main
 
       @ 20, 20 RADIOGROUP rdg_1 ;
          OPTIONS { 'OOHGDRAW', 'Two', 'Three', 'Four' } ;
-         SPACING 24 ;
+         SPACING 25 ;
          FONTCOLOR RED BOLD ;
          OOHGDRAW ;
          TRANSPARENT ;
@@ -42,7 +42,7 @@ FUNCTION Main
 
       @ 20, 220 RADIOGROUP rdg_2 ;
          OPTIONS { 'WINDRAW', 'Two', 'Three', 'Four' } ;
-         SPACING 24 ;
+         SPACING 25 ;
          FONTCOLOR RED BOLD ;
          WINDRAW ;
          TRANSPARENT ;
