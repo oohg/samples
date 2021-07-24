@@ -37,7 +37,7 @@ FUNCTION Main
       @ 20,20 RADIOGROUP rdg_1 OBJ oRdg1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          WIDTH 80 ;
-         SPACING 24
+         SPACING 25
 
       @ 150,20 LABEL 0 OBJ oLbl1 AUTOSIZE VALUE ""
 
