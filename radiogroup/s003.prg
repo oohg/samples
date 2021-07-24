@@ -30,7 +30,7 @@ FUNCTION Main
       @ 40,20 RADIOGROUP rdg_1 OBJ oRdg1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
-         SPACING 24 ;
+         SPACING 25 ;
          TRANSPARENT ;
          OOHGDRAW ;
          BACKGROUND oForm
@@ -45,7 +45,7 @@ FUNCTION Main
       @ 40,300 RADIOGROUP rdg_2 OBJ oRdg2 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
-         SPACING 24 ;
+         SPACING 25 ;
          WINDRAW ;
          BACKGROUND oForm
 
@@ -65,7 +65,7 @@ FUNCTION Main
       @ 240,20 RADIOGROUP rdg_3 OBJ oRdg3 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
-         SPACING 24 ;
+         SPACING 25 ;
          LEFTALIGN ;
          OOHGDRAW ;
          BACKGROUND oForm
@@ -81,7 +81,7 @@ FUNCTION Main
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          AUTOSIZE ;
          WIDTH 80 ;
-         SPACING 24 ;
+         SPACING 25 ;
          WINDRAW ;
          LEFTALIGN ;
          BACKGROUND oForm
