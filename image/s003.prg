@@ -31,7 +31,7 @@ FUNCTION Main()
       @ 220,300 RADIOGROUP rdg_1 ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          WIDTH 80 ;
-         SPACING 24 ;
+         SPACING 25 ;
          FONTCOLOR RED BOLD ;
          BACKGROUND oImg
 
