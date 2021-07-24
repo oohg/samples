@@ -35,7 +35,7 @@ FUNCTION Main()
       @ 60,10 RADIOGROUP rdg_1 ;
          OPTIONS { 'O n e', 'T w o', 'T h r e e', 'F o u r' } ;
          WIDTH 80 ;
-         SPACING 24 ;
+         SPACING 25 ;
          SIZE 11 BOLD
 
       @ 120, 160 LABEL lbl_1 ;
