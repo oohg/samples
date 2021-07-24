@@ -49,7 +49,7 @@ FUNCTION Main
                OBJ oR11 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                BACKGROUND oForm1 ;
                NOFOCUSRECT
@@ -64,7 +64,7 @@ FUNCTION Main
                OBJ oR12 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                BACKGROUND oForm1 ;
                LEFTJUSTIFY
@@ -79,7 +79,7 @@ FUNCTION Main
                OBJ oR17 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                BACKCOLOR RED
             oR17:aOptions[ 1 ]:FontColor := GREEN
@@ -93,7 +93,7 @@ FUNCTION Main
                OBJ oR18 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW              // BACKCOLOR is set to form's BACKCOLOR
             oR18:aOptions[ 1 ]:FontColor := GREEN
             oR18:aOptions[ 2 ]:BackColor := BLUE
@@ -107,7 +107,7 @@ FUNCTION Main
                OBJ oR15 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKGROUND oForm1 ;
                WINDRAW ;
                NOFOCUSRECT
@@ -122,7 +122,7 @@ FUNCTION Main
                OBJ oR16 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKGROUND oForm1 ;
                WINDRAW ;
                LEFTJUSTIFY
@@ -137,7 +137,7 @@ FUNCTION Main
                OBJ oR17 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKCOLOR RED ;
                WINDRAW
             oR17:aOptions[ 1 ]:FontColor := GREEN
@@ -150,7 +150,7 @@ FUNCTION Main
                OBJ oR18 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                WINDRAW              // BACKCOLOR is set to form's BACKCOLOR
             oR18:aOptions[ 1 ]:FontColor := GREEN
             oR18:aOptions[ 2 ]:BackColor := BLUE
@@ -168,7 +168,7 @@ FUNCTION Main
                OBJ oR21 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                BACKGROUND oForm1 ;
                TRANSPARENT ;
@@ -184,7 +184,7 @@ FUNCTION Main
                OBJ oR22 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                BACKGROUND oForm1 ;
                TRANSPARENT ;
@@ -200,7 +200,7 @@ FUNCTION Main
                OBJ oR23 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                OOHGDRAW ;
                TRANSPARENT ;
                BACKCOLOR RED
@@ -215,7 +215,7 @@ FUNCTION Main
                OBJ oR24 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                TRANSPARENT ;
                OOHGDRAW              // BACKCOLOR is set to form's BACKCOLOR
             oR24:aOptions[ 1 ]:FontColor := GREEN
@@ -230,7 +230,7 @@ FUNCTION Main
                OBJ oR25 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKGROUND oForm1 ;
                WINDRAW ;
                TRANSPARENT ;
@@ -246,7 +246,7 @@ FUNCTION Main
                OBJ oR26 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKGROUND oForm1 ;
                TRANSPARENT ;
                WINDRAW
@@ -261,7 +261,7 @@ FUNCTION Main
                OBJ oR27 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                BACKCOLOR RED ;
                TRANSPARENT ;
                WINDRAW
@@ -275,7 +275,7 @@ FUNCTION Main
                OBJ oR28 ;
                OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
                WIDTH 80 ;
-               SPACING 24 ;
+               SPACING 25 ;
                TRANSPARENT ;
                WINDRAW              // BACKCOLOR is set to form's BACKCOLOR
             oR28:aOptions[ 1 ]:FontColor := GREEN
