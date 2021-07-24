@@ -53,7 +53,7 @@ FUNCTION Main()
       @ 220,300 RADIOGROUP rdg_1 OBJ oRadio ;
          OPTIONS { 'One', 'Two', 'Three', 'Four' } ;
          WIDTH 80 ;
-         SPACING 24 ;
+         SPACING 25 ;
          FONTCOLOR RED BOLD SIZE 14 ;
          BACKGROUND oImg1
 
