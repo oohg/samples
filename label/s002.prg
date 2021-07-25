@@ -1,13 +1,13 @@
 /*
- * Label Sample n° 2
+ * Label Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * This sample shows how to display a vertical or rotated label
+ * This sample shows how to display a vertical or rotated
+ * label.
  *
  * Visit us at https://github.com/oohg/samples
- *
  */
 
 #include "oohg.ch"
