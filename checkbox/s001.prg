@@ -43,7 +43,7 @@ FUNCTION Main
                CAPTION 'WINDRAW fontcolor'
                FONTCOLOR BLUE
                THREESTATE .T.
-               TOOLTIP "WINDRAW does not support FONTCOLOR clause"
+               TOOLTIP "WINDRAW does not " + CRLF + "support FONTCOLOR clause"
                WINDRAW .T.
             END CHECKBOX
 
