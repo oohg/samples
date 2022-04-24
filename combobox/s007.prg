@@ -4,13 +4,13 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
+ * This sample shows how to set the caret's position in a
+ * ComboBox with DISPLAYEDIT clause and how to force
+ * uppercase on DisplayEdit value.
+ *
  * Based on a sample from OOHG distribution
  * (c) 2002 Roberto Lopez
  * Modified by Ciro Vargas Clemow <cvc@oohg.org>
- *
- * This sample show how to set the caret's position in a
- * ComboBox with DISPLAYEDIT clause and how to force
- * uppercase on DisplayEdit value.
  *
  * Visit us at https://github.com/oohg/samples
  */
