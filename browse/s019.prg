@@ -1,5 +1,5 @@
 /*
- * Browse Sample n° 19
+ * Browse Sample # 19
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>

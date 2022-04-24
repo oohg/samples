@@ -70,7 +70,7 @@ FUNCTION Main()
          WHEN { .T., { |nCol, aItem| aItem[ nCol ] > 50 }, .T., .T., .T. } ;
          READONLY { .F., .F., .F., .F., .T. } ;
          VALID { { |uValue| ! empty( uValue ) }, ;
-                 { |uValue| uValue >= 0}, ;
+                 { |uValue| iif( uValue < 0, _OOHG_ThisItemCellValue := 0, uValue ) >= 0 }, ;
                  { |uValue| uValue > date() }, ;
                  { |uValue| ! empty( uValue ) }, ;
                  NIL } ;

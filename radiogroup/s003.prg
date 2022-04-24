@@ -1,5 +1,5 @@
 /*
- * RadioGroup Sample n° 3
+ * RadioGroup Sample # 3
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>

@@ -1,13 +1,15 @@
 /*
- * Dialog Sample # 1
- * Author: Unknown, freshen up by
- * Fernando Yurisich <fyurisich@oohg.org>
+ * Dialog Sample # 2
+ * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to reverse the default order in
  * which forms are released (first the parent later the
  * its children).
+ *
+ * Based on a sample from OOHG distribution
+ * by unknown author.
  *
  * Visit us at https://github.com/oohg/samples
  */

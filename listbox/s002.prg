@@ -1,5 +1,5 @@
 /*
- * Listbox Sample n° 2
+ * Listbox Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>

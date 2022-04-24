@@ -1,5 +1,5 @@
 /*
- * HTTP Sample n° 2
+ * HTTP Sample # 2
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licenced under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>

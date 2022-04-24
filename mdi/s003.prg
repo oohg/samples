@@ -1,5 +1,5 @@
 /*
- * MDI Sample n° 3
+ * MDI Sample # 3
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -154,7 +154,7 @@ PROCEDURE InitChild( oMain, oChild )
 
    nPos := Len( oMain:oWndClient:SplitChildList )
 
-   oChild:Title := "Documento n° " + Ltrim( Str( nPos ) )
+   oChild:Title := "Documento # " + Ltrim( Str( nPos ) )
    oChild:Row := ( nPos - 1 ) * 20
    oChild:Col := ( nPos - 1 ) * 20
 

@@ -1,5 +1,5 @@
 /*
- * Image Sample n° 9
+ * Image Sample # 9
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -70,7 +70,7 @@ FUNCTION Main
             If you call method SaveAs when the control is hidden
             you'll get an image of the form's empty background.
             To save images with a hidden control use method Save.
-            See Image Sample n° 11
+            See Image Sample # 11
             */
             ITEM "Show control" ACTION oImage:Show()
          END POPUP

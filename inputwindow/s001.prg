@@ -1,5 +1,5 @@
 /*
- * InputWindow Sample n° 1
+ * InputWindow Sample # 1
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed byThe Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -35,7 +35,7 @@ FUNCTION Main()
          VALUE "ADVANCE ON" ;
          AUTOSIZE
       @  50, 120 LABEL lbl_Motive ;
-         VALUE "BILL PAYMENT N° 1122" ;
+         VALUE "BILL PAYMENT # 1122" ;
          AUTOSIZE
       @  80, 120 DATEPICKER dtp_Date ;
          WIDTH 110 ;

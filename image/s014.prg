@@ -24,6 +24,7 @@ FUNCTION Main
 
       DEFINE MAIN MENU
          ITEM 'Select Image' ACTION oImage:HBitmap := GetImage()
+         ITEM 'Save as PDF'  ACTION oImage:Print( 0, 0, 0, 0, .T., "JPG", 80, NIL, .T. )
          ITEM 'Exit'         ACTION Form_1.Release()
       END MENU
 
