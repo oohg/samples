@@ -46,26 +46,26 @@ FUNCTION Main()
       VALUE "" ;
       WIDTH 300 ;
       HEIGHT 24 ;
-      ON CHANGE oForm:btn_SetGet:Enabled := ! EMPTY(oForm:txt_NewText:Value)
+      ON CHANGE oForm:btn_SetGet:Enabled := ! Empty( oForm:txt_NewText:Value )
 
     @ 100, 10 BUTTON btn_SetGet ;
        CAPTION "Set+Get" ;
-       ACTION (SetClipboardText(oForm:txt_NewText:Value), ;
-               oForm:txt_Content:Value := GetClipboardText()) ;
+       ACTION ( SetClipboardText( oForm:txt_NewText:Value ), ;
+                oForm:txt_Content:Value := GetClipboardText() ) ;
        DISABLED
 
     @ 100, 130 BUTTON btn_Get ;
        CAPTION "Get" ;
-       ACTION oForm:txt_Content:value := GetClipboardText()
+       ACTION oForm:txt_Content:Value := GetClipboardText()
   END WINDOW
 
   oForm:Center()
-  ON KEY ESCAPE OF (oForm) ACTION oForm:Release()
+  ON KEY ESCAPE OF oForm ACTION oForm:Release()
 
   oForm:txt_NewText:SetFocus()
   oForm:Activate()
 
-RETURN Nil
+RETURN NIL
 
 /*
  * EOF
