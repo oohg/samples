@@ -367,9 +367,9 @@ local _i,_l,_ctr
    ::SearchTextBox:nMaxLength := ::aSearch[::SearchClmn,2]
    ::SearchTextBox:Picture := ::aSearch[::SearchClmn,3]
    ::SearchTextBox:OnLostFocus := {||tx_release(::SearchTextBox,_ctr)}
-   ::SearchTextBox:SetKey(VK_RETURN,0,{|| RunSearch(::SearchTextBox,_ctr),This:release(),_ctr:SearchTextBox := nil } )
-   ::SearchTextBox:SetKey(VK_ESCAPE,0,{||::setfocus(),This:release(),_ctr:SearchTextBox := nil} )
-   ::SearchTextBox:SetKey(VK_TAB,0,{|| ::setfocus(),This:release(),_ctr:SearchTextBox := nil,_ctr:DbSearch(1)} )
+   ::SearchTextBox:SetKey(VK_RETURN,0,{|| RunSearch(::SearchTextBox,_ctr),ThisControl:release(),_ctr:SearchTextBox := nil } )
+   ::SearchTextBox:SetKey(VK_ESCAPE,0,{||::setfocus(),ThisControl:release(),_ctr:SearchTextBox := nil} )
+   ::SearchTextBox:SetKey(VK_TAB,0,{|| ::setfocus(),ThisControl:release(),_ctr:SearchTextBox := nil,_ctr:DbSearch(1)} )
    ::SearchTextBox:setfocus()
    ::SearchStatus -= 1
 return nil
