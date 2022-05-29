@@ -2,12 +2,23 @@
  * $Id: i_pbrowse.ch
  */
 /*
- * PBrowse definitions
+ * PBrowse class definitions
  *
  * Copyright 2018 Jacek Pospischil <praskiso/[at/]o2/[dot/]pl>
  *
- * Portions of this project are based upon Object Oriented (x)Harbour GUI.
- * Copyright 2005-2018, https://oohg.github.io/
+ * Portions of this project are based upon:
+ *    "Object Oriented (x)Harbour GUI"
+ *       Copyright 2005-2022 Vicente Guerra <vicente@guerra.com.mx> and contributors of
+ *       the Object Oriented (x)Harbour GUI (aka OOHG) Project, https://oohg.github.io/
+ *    "Harbour MiniGUI Extended Edition Library"
+ *       Copyright 2005-2022 MiniGUI Team, http://hmgextended.com
+ *    "Harbour GUI framework for Win32"
+ *       Copyright 2001 Alexander S.Kresin <alex@kresin.ru>
+ *       Copyright 2001 Antonio Linares <alinares@fivetech.com>
+ *    "Harbour MiniGUI"
+ *       Copyright 2002-2016 Roberto Lopez <mail.box.hmg@gmail.com>
+ *    "Harbour Project"
+ *       Copyright 1999-2022 Contributors, https://harbour.github.io/
  */
 /*
  * This program is free software; you can redistribute it and/or modify
