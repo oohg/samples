@@ -19,7 +19,7 @@
  *
  *
  * You can download demo.ico and build.bat from:
- * https://github.com/oohg/samples/tree/master/Zebra
+ * https://github.com/oohg/samples/tree/main/Zebra
  */
 
 #include "oohg.ch"

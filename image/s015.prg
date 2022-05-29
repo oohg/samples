@@ -9,7 +9,7 @@
  * to change the background at run time.
  *
  * You can download logo.jpg and back.bmp from:
- * https://github.com/oohg/samples/tree/master/image
+ * https://github.com/oohg/samples/tree/main/image
  *
  * Visit us at https://github.com/oohg/samples
  */

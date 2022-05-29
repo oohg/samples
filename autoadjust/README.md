@@ -1,15 +1,15 @@
 # AutoAdjust
 
 * Se ajusta posicion, ancho y font 
-https://github.com/oohg/samples/blob/master/autoadjust/Auto1.prg
+https://github.com/oohg/samples/blob/main/autoadjust/Auto1.prg
 * Se ajusta las posiciones , pero no el ancho ni el font 
-https://github.com/oohg/samples/blob/master/autoadjust/AUTO2.PRG
+https://github.com/oohg/samples/blob/main/autoadjust/AUTO2.PRG
 * se ajusta posicion, ancho pero no font
-https://github.com/oohg/samples/blob/master/autoadjust/AUTO3.PRG
+https://github.com/oohg/samples/blob/main/autoadjust/AUTO3.PRG
 * se ajusta posición, ancho y font, pero al boton 'Salir' solo se le ajusta posición.
-https://github.com/oohg/samples/blob/master/autoadjust/auto4.prg
+https://github.com/oohg/samples/blob/main/autoadjust/auto4.prg
 * se ajusta posicion, ancho y font, pero en el progessbar se desactiva autoajuste
-https://github.com/oohg/samples/blob/master/autoadjust/auto5.prg
+https://github.com/oohg/samples/blob/main/autoadjust/auto5.prg
 
 -----------------------------------------------------------------
 

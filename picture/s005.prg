@@ -14,7 +14,7 @@
  *
  *
  * You can download oohg.gif from
- * https://github.com/oohg/samples/tree/master/Picture
+ * https://github.com/oohg/samples/tree/main/Picture
  */
 
 #include "oohg.ch"

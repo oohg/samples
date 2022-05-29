@@ -46,7 +46,7 @@ FUNCTION ExecBAT()
 
    IF ! FILE( "send.txt" )
       hb_MemoWrit( "send.txt", ;
-                   "' Based on original script from https://github.com/Gotham13121997/whatsapp-ddos/blob/master/vv.vbs" + CRLF + ;
+                   "' Based on original script from https://github.com/Gotham13121997/whatsapp-ddos/blob/main/vv.vbs" + CRLF + ;
                    CRLF + ;
                    "' InputBoxes" + CRLF + ;
                    'Contact = InputBox("Contact?","Send WhatsApp")' + CRLF + ;

@@ -11,7 +11,7 @@
  *
  *
  * You can download fondo.jpg from:
- * https://github.com/oohg/samples/tree/master/Mdi
+ * https://github.com/oohg/samples/tree/main/Mdi
  */
 
 #include "oohg.ch"

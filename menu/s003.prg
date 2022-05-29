@@ -14,7 +14,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download the images from
- * https://github.com/oohg/samples/tree/master/menu
+ * https://github.com/oohg/samples/tree/main/menu
  */
 
 #include "oohg.ch"

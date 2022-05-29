@@ -9,7 +9,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download the images and the .rc file from
- * https://github.com/oohg/samples/tree/master/menu
+ * https://github.com/oohg/samples/tree/main/menu
  */
 
 #include "oohg.ch"

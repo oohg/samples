@@ -5,4 +5,4 @@ How to set a range to limit the date selection.
 How to change the range using method SETRANGE. 
 How to check the control's style. 
 How to query the selected date and how to check if the selected date is empty.
-https://github.com/oohg/samples/blob/master/datepicker/s003.prg
+https://github.com/oohg/samples/blob/main/datepicker/s003.prg

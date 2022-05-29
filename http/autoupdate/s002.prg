@@ -15,7 +15,7 @@
  *
  *
  * You can download MyApp.prg from
- * https://github.com/oohg/samples/tree/master/Http
+ * https://github.com/oohg/samples/tree/main/Http
  */
 
 #include "oohg.ch"

@@ -10,7 +10,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download oohg.jpg and s010.rc from:
- * https://github.com/oohg/samples/tree/master/image
+ * https://github.com/oohg/samples/tree/main/image
  */
 
 #include "oohg.ch"

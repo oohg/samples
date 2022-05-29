@@ -10,7 +10,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download all the images from
- * https://github.com/oohg/samples/tree/master/combobox
+ * https://github.com/oohg/samples/tree/main/combobox
  */
 
 #include "oohg.ch"

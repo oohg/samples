@@ -10,7 +10,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download fondo.jpg from:
- * https://github.com/oohg/samples/tree/master/CheckBox
+ * https://github.com/oohg/samples/tree/main/CheckBox
  */
 
 #include "oohg.ch"

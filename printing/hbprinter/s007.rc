@@ -11,7 +11,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download the related files from
- * https://github.com/oohg/samples/tree/master/printing/hbprinter
+ * https://github.com/oohg/samples/tree/main/printing/hbprinter
  */
 
 printicon      ICON       gfx/print.ico

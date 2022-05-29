@@ -22,7 +22,7 @@
  *
  *
  * You can download the resource file and the images from:
- * https://github.com/oohg/samples/tree/master/Tree
+ * https://github.com/oohg/samples/tree/main/Tree
  */
 
 #include "oohg.ch"

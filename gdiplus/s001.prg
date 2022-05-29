@@ -11,7 +11,7 @@
  *
  *
  * You can download the images used in this sample from:
- * https://github.com/oohg/samples/tree/master/GDIPlus
+ * https://github.com/oohg/samples/tree/main/GDIPlus
  */
 
 #include "oohg.ch"

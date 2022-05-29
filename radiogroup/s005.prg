@@ -12,7 +12,7 @@
  *
  *
  * You can download fondo.bmp from:
- * https://github.com/oohg/samples/tree/master/RadioGroup
+ * https://github.com/oohg/samples/tree/main/RadioGroup
  */
 
 #include "oohg.ch"

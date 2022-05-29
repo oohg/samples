@@ -10,7 +10,7 @@
  *
  *
  * You can download the images used in this sample from:
- * https://github.com/oohg/samples/tree/master/ListBox
+ * https://github.com/oohg/samples/tree/main/ListBox
  */
 
 #include "oohg.ch"

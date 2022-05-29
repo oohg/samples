@@ -12,7 +12,7 @@
  * Visit us at https://github.com/oohg/samples
  *
  * You can download img1.bmp from:
- * https://github.com/oohg/samples/tree/master/image
+ * https://github.com/oohg/samples/tree/main/image
  */
 
 #include 'oohg.ch'
