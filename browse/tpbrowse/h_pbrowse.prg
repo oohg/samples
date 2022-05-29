@@ -2,7 +2,7 @@
  * $Id: tp_browse.prg,v 1.1
  */
 /*
- * PBrowse definitions
+ * PBrowse class code
  *
  * Copyright 2018 Jacek Pospischil <praskiso/[at/]o2/[dot/]pl>
  *
