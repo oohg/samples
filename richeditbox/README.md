@@ -5,3 +5,5 @@
 * s003.prg This sample shows how highlight the control's selected text.
 * s004.prg This sample shows how use methods CUT, COPY, PASTE, CLEAR, SetSelection and how to change the font.
 * s005.prg This sample shows how to test if the last line of a RICHEDITBOX control is visible.
+* s006.prg This sample shows how replace the dot from the numeric pad with a comma.
+* s007.prg This sample shows how to print the content of a RICHEDITBOX control.
