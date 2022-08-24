@@ -12,7 +12,7 @@ https://github.com/oohg/samples/blob/main/grid/s004.prg
 https://github.com/oohg/samples/blob/main/grid/s005.prg
 * How to set a Grid with 'editable' images in the first column.<br>
 https://github.com/oohg/samples/blob/main/grid/s006.prg
-* How to set a Grid with images in a columun using IMAGEDATA columncontrol.<br>
+* How to set a Grid with images in a column using IMAGEDATA columncontrol.<br>
 https://github.com/oohg/samples/blob/main/grid/s007.prg
 * How to use COMBOBOX columncontrol for Grid/Browse with INPLACE clause.<br>
 https://github.com/oohg/samples/blob/main/grid/s008.prg
