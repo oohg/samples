@@ -44,14 +44,7 @@ FUNCTION Main()
 */
       oGrid:HeaderSetFont( "VERDANA", 14, .T., .T. )
 
-      @ oForm:ClientHeight - 44, oForm:ClientWidth - 120 BUTTON Button_1 ;
-         CAPTION "Edit One Cell" ;
-         WIDTH 100 ;
-         HEIGHT 24 ;
-         ACTION ( oGrid:SetFocus(), oGrid:EditCell() )
-
       ON KEY ESCAPE ACTION oForm:Release()
-      ON KEY F2 ACTION oGrid:EditCell()
    END WINDOW
 
    oForm:Center()
