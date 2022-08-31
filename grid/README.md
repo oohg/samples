@@ -42,7 +42,7 @@ https://github.com/oohg/samples/blob/main/grid/s019.prg
 https://github.com/oohg/samples/blob/main/grid/s020.prg
 * How to use SET AUTOADJUST ON to automatically resize the controls of a form whenever the form is resized.<br>
 https://github.com/oohg/samples/blob/main/grid/s021.prg
-* How to use the automatic search by column content feature in Grid with NAVIGATEBYCELL clause.<br>
+* How to use the automatic search by column content feature in a Grid with NAVIGATEBYCELL clause.<br>
 https://github.com/oohg/samples/blob/main/grid/s022.prg
 * How to create a subclass of Grid to intercept and process a group of keys.<br>
 https://github.com/oohg/samples/blob/main/grid/s023.prg
