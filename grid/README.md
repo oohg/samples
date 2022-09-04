@@ -76,3 +76,5 @@ https://github.com/oohg/samples/blob/main/grid/s036.prg
 https://github.com/oohg/samples/blob/main/grid/s037.prg
 * How to use a fullmove grid.<br>
 https://github.com/oohg/samples/blob/main/grid/s038.prg
+* How to stay in a cell after its edition has ended.<br>
+https://github.com/oohg/samples/blob/main/grid/s039.prg
