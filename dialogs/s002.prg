@@ -8,8 +8,7 @@
  * which forms are released (first the parent later the
  * its children).
  *
- * Based on a sample from OOHG distribution
- * by unknown author.
+ * Based on a sample build by unknown author.
  *
  * Visit us at https://github.com/oohg/samples
  */

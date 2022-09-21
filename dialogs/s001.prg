@@ -8,8 +8,7 @@
  * functions to get a file, create a file, get a font,
  * get a color and get a folder.
  *
- * Based on a sample from OOHG distribution
- * by unknown author.
+ * Based on a sample build by unknown author.
  *
  * Visit us at https://github.com/oohg/samples
  */

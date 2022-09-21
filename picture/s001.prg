@@ -5,7 +5,7 @@
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
- * Based on a sample from OOHG distribution build by
+ * Based on a sample build by
  * Ciro Vargas C. <cvc@oohg.org>
  *
  * This sample shows how to get the width and height of

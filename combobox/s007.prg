@@ -8,8 +8,7 @@
  * ComboBox with DISPLAYEDIT clause and how to force
  * uppercase on DisplayEdit value.
  *
- * Based on a sample from OOHG distribution
- * (c) 2002 Roberto Lopez
+ * Based on a sample build by Roberto Lopez
  * Modified by Ciro Vargas Clemow <cvc@oohg.org>
  *
  * Visit us at https://github.com/oohg/samples
