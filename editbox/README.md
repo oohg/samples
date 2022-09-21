@@ -8,3 +8,4 @@ https://github.com/oohg/samples/blob/main/editbox/s002.prg
 https://github.com/oohg/samples/blob/main/editbox/s003.prg
 * This sample shows how to limit the row length of an EditBox.
 https://github.com/oohg/samples/blob/main/editbox/s004.prg
+
