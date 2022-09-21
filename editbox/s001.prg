@@ -5,8 +5,7 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to detect when the last line of
- * the text is shown in the display area, using methods
- * GetLastVisibleLine and GetLineCount.
+ * the text is shown in the display area.
  *
  * Visit us at https://github.com/oohg/samples
  */
