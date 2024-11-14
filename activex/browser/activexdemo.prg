@@ -16,6 +16,8 @@
 #include "oohg.ch"
 #include "i_windefs.ch"
 
+MEMVAR WinDemo, oActivex, LGreenLight
+
 FUNCTION Main()
 
    PRIVATE WinDemo, oActiveX, lGreenLight := .F.

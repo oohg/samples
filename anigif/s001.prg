@@ -11,6 +11,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oAniGif
+
 PROCEDURE Main()
 
    SetOneArrayItemPerLine( .T. )
