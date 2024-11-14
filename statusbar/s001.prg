@@ -16,6 +16,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oWnd, oSb, oTool, oInt
+
 FUNCTION Main()
 
    DEFINE WINDOW ppal OBJ oWnd WIDTH 400 HEIGHT 300 ;

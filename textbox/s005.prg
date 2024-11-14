@@ -32,6 +32,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oTxt1, oTxt2
+
 FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;

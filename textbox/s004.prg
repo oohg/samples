@@ -11,6 +11,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oClave, oTimer, oShow, cAux
+
 FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;

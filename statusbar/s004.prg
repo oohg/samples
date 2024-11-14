@@ -14,6 +14,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oStat
+
 PROCEDURE MAIN
 
   PUBLIC oStat

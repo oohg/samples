@@ -17,6 +17,8 @@
 #include "hbclass.ch"
 #include "i_windefs.ch"
 
+MEMVAR oForm, aRows, oGrid, oTo
+
 FUNCTION Main
 
    PUBLIC aRows[ 20, 3 ]

@@ -13,6 +13,8 @@
 #include "oohg.ch"
 #include "dbstruct.ch"
 
+MEMVAR oBtn2, oLbl, oForm, oXbr, oBtn1
+
 FUNCTION Main()
 
    PUBLIC oForm, oXBr
@@ -197,6 +199,8 @@ FUNCTION AfterColSize( nCol, nSize )
       // Minimun column width is 50.
       RETURN 50
    ENDIF
+
+   (nCol) // not used
 
 RETURN nSize
 

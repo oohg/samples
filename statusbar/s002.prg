@@ -13,6 +13,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oWin, oInt
+
 FUNCTION MAIN
 
    DEFINE WINDOW Win_1 OBJ oWin ;

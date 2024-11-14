@@ -13,6 +13,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oStat
+
 PROCEDURE MAIN
 
    DEFINE WINDOW Main ;
