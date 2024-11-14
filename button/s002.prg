@@ -20,6 +20,9 @@
 #include "oohg.ch"
 #include "i_windefs.ch"
 
+MEMVAR oBut18, oBut28, oBut19, oBut29, oBtn24, oBut15, oBut25, But11, But21
+MEMVAR oBtn14, oBut21, oBut24, oBut26
+
 FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;
@@ -177,7 +180,7 @@ FUNCTION Main()
          WIDTH 140 ;
          HEIGHT 60 ;
          TOOLTIP "Text and image (centered) button." ;
-         OOHGDRAW 
+         OOHGDRAW
 
       @ 500,80 BUTTON btn_18 OBJ oBut18 ;
          CAPTION "This long caption does not fit" ;

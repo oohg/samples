@@ -12,6 +12,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oEdt, oTmr
+
 FUNCTION Main
 
 	DEFINE WINDOW Form_1 ;
