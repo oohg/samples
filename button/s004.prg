@@ -13,6 +13,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oBut21, oBut24, oBut25, oBut26, oBut11, oBut14, oBut15, oBut16
+
 PROCEDURE Main
 
    DEFINE WINDOW Form_1 ;

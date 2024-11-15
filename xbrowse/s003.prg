@@ -13,6 +13,8 @@
 #include "oohg.ch"
 #include "dbstruct.ch"
 
+MEMVAR oXbr, oForm
+
 FUNCTION Main()
 
    PUBLIC oForm, oXBr

@@ -15,6 +15,8 @@
 #include "oohg.ch"
 #include "i_windefs.ch"
 
+MEMVAR oTxt2, oLbl2, oLbl1, oTxt1, oBtn1, oTxt
+
 PROCEDURE Main
 
 	DEFINE WINDOW Form_1 ;
@@ -88,7 +90,7 @@ PROCEDURE Main
 	Form_1.Center
 	Form_1.Activate
 
-RETURN 
+RETURN
 
 /*
  *

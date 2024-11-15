@@ -22,6 +22,9 @@
 #xcommand FINALLY => ALWAYS
 #endif
 
+MEMVAR oTab, aTitle, ST1, oStat, xoActivex, nTabsCount, oCombo, E, oProg
+MEMVAR aObj, oActivex_0001
+
 STATIC s_bBreak := { |oErr| break( oErr ) }
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
@@ -250,7 +253,7 @@ PROCEDURE Adjust
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 PROCEDURE CambiaTitulo( cTitle )
 
-   LOCAL i := oTab:Value, cCaption
+   LOCAL i := oTab:Value
 
    IF HB_ISNUMERIC( i ) .AND. ValType( cTitle ) == "C"
       IF i > 0

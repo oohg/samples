@@ -16,6 +16,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oTo
+
 FUNCTION Main
 
    DEFINE WINDOW Sample ;

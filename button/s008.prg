@@ -16,6 +16,8 @@
 #include "oohg.ch"
 #include "i_windefs.ch"
 
+MEMVAR hBmp1, hBmp2, oBut1, oBut2
+
 FUNCTION Main()
 
    hBmp1 := _OOHG_BitmapFromFile( NIL, "OOHG.ICO", LR_CREATEDIBSECTION, .F., .F. )

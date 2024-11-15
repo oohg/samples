@@ -19,6 +19,11 @@
 #include "oohg.ch"
 #include "i_windefs.ch"
 
+MEMVAR oBtn_2_18, oBtn_2_19, oBtn_2_29, oBtn_2_24, oBtn_2_15, oBtn_2_25
+MEMVAR oBtn_2_28, oBtn_2_11, oBtn_2_21, oBtn_2_14, oBtn_1_18, oBtn_1_28
+MEMVAR oBtn_1_29, oBtn_1_24, oBtn_1_15, oBtn_1_25, oBtn_1_19
+MEMVAR oBtn_1_11, oBtn_1_21, oBtn_1_14
+
 FUNCTION Main()
 
    DEFINE WINDOW Form_1 ;

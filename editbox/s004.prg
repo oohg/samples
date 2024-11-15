@@ -12,6 +12,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oEdit
+
 FUNCTION Main
 
 	DEFINE WINDOW Form_1 ;
@@ -50,7 +52,7 @@ PROCEDURE LimitRowLength
       oEdit:CaretPos := where + Len( hb_osNewLine() )
    ENDIF
 
-   RETURN NIL
+   RETURN
 
 /*
  * EOF

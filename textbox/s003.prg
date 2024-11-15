@@ -13,6 +13,8 @@
 #include "oohg.ch"
 #include "dbstruct.ch"
 
+MEMVAR oForm
+
 PROCEDURE Main
 
    OpenTables()

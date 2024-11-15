@@ -12,6 +12,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oButton_3, oLbl_1
+
 FUNCTION Main()
 
    LOCAL oMainForm

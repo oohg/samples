@@ -5,7 +5,7 @@
 
 #include "oohg.ch"
 
-Function Main
+PROCEDURE Main
 
 	DEFINE WINDOW Form_1 ;
 		AT 0,0 ;

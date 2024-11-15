@@ -28,7 +28,7 @@ FUNCTION Main()
    oChart:RMCHeight      := 450
    oChart:RMCBgImage     := ""
    oChart:Font           := "Tahoma"
-   
+
    // Add Region 1
    oChart:AddRegion()
 
@@ -183,7 +183,9 @@ FUNCTION Main()
 
 RETURN Nil
 
-Procedure Ajust()
+FUNCTION Ajust()
+
    oChart:Width  := iif( oWnd:Width  -  7 < 50, 50, oWnd:Width  -  7 )
    oChart:Height := iif( oWnd:Height - 35 < 50, 50, oWnd:Height - 35 )
-Return(Nil)
+
+RETURN Nil

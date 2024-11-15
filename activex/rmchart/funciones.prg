@@ -3,12 +3,16 @@
 
 #define clrBack     {255,255,200}
 #define clrNormal   {255,255,255}
+
 *----------------------------------------------------------------------------*
 Function PrimerDia(Arg1)
+
    Arg1:= IIf(Arg1 == Nil, Date(), Arg1)
+
    Return Arg1 - (Day(Arg1) - 1)
 *----------------------------------------------------------------------------*
 Function UltimoDia(Arg1)
+
 Arg1:= IIf(Arg1 == Nil, Date(), Arg1)
 Return (Arg1:= Arg1 + (45 - Day(Arg1))) - Day(Arg1)
 
@@ -19,16 +23,17 @@ Return (Arg1:= Arg1 + (45 - Day(Arg1))) - Day(Arg1)
 	Arg3 Tiempo de apertura ej 5 son 5 segundos
 	Arg4 Muestra Mensaje .t.=Si / .f.=No  (por defecto es .t.)
 	Arg5 Nombre del Alias (Por defecto es el mismo que la DBF)
-	
+
 	Si se puede abrir la base de datos la funcion devuelve .t.
 */
 *-------------------------------------------------------- Versión:30-10-2008 --*
 Function AbrirBase(Arg1, Arg2, Arg3, Arg4, Arg5)
+
 DEFAULT Arg4 TO .t.
 DEFAULT Arg5 TO Arg1
-sigue:= Arg3 
+sigue:= Arg3
 Do While (sigue=0 .OR. Arg3 > 0)
-   dbusearea(.T., "DBFCDX", Arg1, Arg5 ,Arg2,)  
+   dbusearea(.T., "DBFCDX", Arg1, Arg5 ,Arg2,)
    scroll(5, 1, 5, 78)
    SetPos(5, 1)
    If (!neterr())
@@ -39,7 +44,7 @@ Do While (sigue=0 .OR. Arg3 > 0)
       If (Arg3 == 0)
          If Arg4=.t.
             MSGSTOP('No se puede abrir '+ALLTRIM(Arg1),'Apertura de Tablas...')
-         ENDIF   
+         ENDIF
          Return .F.
       EndIf
    ENDIF
@@ -47,6 +52,7 @@ EndDo
 
 *----------------------------------------------------------------------------*
 FUNCTION vercod
+
 If univel>=nivope
   retu .t.
 else
@@ -54,6 +60,7 @@ else
 endif
 *----------------------------------------------------------------------------*
 Function BloquearRegistro(area)
+
 Local RetVal
 
   If &area->(RLock())
@@ -66,7 +73,9 @@ Local RetVal
 Return RetVal
 *----------------------------------------------------------------------------*
 Function ValiCUIT
+
 PARA PAR
+
 If len(par)=11
   *XPAR=LEFT(PAR,2)+SUBS(PAR,4,8)+RIGHT(PAR,1)
   *V_NUMERO=VAL(XPAR)
@@ -81,7 +90,7 @@ If len(par)=11
   SUMA=SUMA+4*VAL(SUBS(STR(V_NUMERO,11),8,1))
   SUMA=SUMA+3*VAL(SUBS(STR(V_NUMERO,11),9,1))
   SUMA=SUMA+2*VAL(SUBS(STR(V_NUMERO,11),10,1))
-  RESTO=MOD(SUMA,11)  
+  RESTO=MOD(SUMA,11)
   DIGITO=11-RESTO
   IF DIGITO<>VAL(SUBS(STR(V_NUMERO,11),11,1)) .AND.;
     VAL(SUBS(STR(V_NUMERO,11),11,1))<>0
@@ -89,17 +98,21 @@ If len(par)=11
     RETU .F.
   ENDI
 Endif
+
 RETU .T.
 *----------------------------------------------------------------------------*
 Function BloqueoRegistro(cArea)
+
 	 Do While ! (cArea)->(RLock())
       If ! MSGRetryCancel("Registro en Uso en la Red ","Caja")
 	       Return .F.
 	    EndIf
 	 EndDo
+
 	 Return .T.
 *----------------------------------------------------------------------------*
 FUNCTION ControlCaja
+
 SELECT "CAJA"
 CAJA->(DBGOBOTTOM())
 REY=RECNO()
@@ -108,10 +121,13 @@ IF REY=1
 ENDIF
 *----------------------------------------------------------------------------*
 FUNCTION CerraTabla
+
 CLOSE DATA
+
 RETURN
 *----------------------------------------------------------------------------*
 FUNCTION PasoSector(cSECTOR)
+
 SELE AREAS
 GO TOP
 DO WHIL .NOT. EOF()
@@ -127,13 +143,15 @@ DO WHIL .NOT. EOF()
   ENDIF
   SKIP
 ENDD
+
 RETU(.F.)
 
 *---------------------------------------------------------------------------------*
 * HabilitoUsu() LLamada por ControlPas() para Habilitar/Deshabilitar las opciones *
-*               de Menu disponibles para el Usuario que Ingresa                   *   
+*               de Menu disponibles para el Usuario que Ingresa                   *
 *---------------------------------------------------------------------------------*
 Function HabilitoUsu()
+
 declare window sistema
 TEXTO=''
 BEGIN INI FILE "Sistema.Ini"
@@ -195,7 +213,7 @@ do whil .not. eof()
       ELSEIF alltrim(el_item)== 'dato6'
          IF PERMISO
             SISTEMA.dato6.ENABLED:=.T.
-         ENDIF	
+         ENDIF
       ELSEIF alltrim(el_item)== 'Stock1'
          IF PERMISO
             SISTEMA.Stock1.ENABLED:=.T.
@@ -207,7 +225,7 @@ do whil .not. eof()
       ELSEIF alltrim(el_item)== 'Stock3'
          IF PERMISO
             SISTEMA.Stock3.ENABLED:=.T.
-         ENDIF	
+         ENDIF
       ELSEIF alltrim(el_item)== 'admi1'
          IF PERMISO
             SISTEMA.admi1.ENABLED:=.T.
@@ -252,7 +270,7 @@ do whil .not. eof()
          IF PERMISO
             SISTEMA.siste6.ENABLED:=.T.
          ENDIF
-      ENDIF	
+      ENDIF
    ENDIF
    skip
 enddo
@@ -312,7 +330,7 @@ do whil .not. eof()
       ELSEIF alltrim(el_item)== 'dato6'
          IF !PERMISO
             SISTEMA.dato6.ENABLED:=.T.
-         ENDIF	
+         ENDIF
       ELSEIF alltrim(el_item)== 'Stock1'
          IF !PERMISO
             SISTEMA.Stock1.ENABLED:=.T.
@@ -324,7 +342,7 @@ do whil .not. eof()
       ELSEIF alltrim(el_item)== 'Stock3'
          IF !PERMISO
             SISTEMA.Stock3.ENABLED:=.T.
-         ENDIF	
+         ENDIF
       ELSEIF alltrim(el_item)== 'admi1'
          IF !PERMISO
             SISTEMA.admi1.ENABLED:=.T.
@@ -369,14 +387,16 @@ do whil .not. eof()
          IF !PERMISO
             SISTEMA.siste6.ENABLED:=.T.
          ENDIF
-      ENDIF	
+      ENDIF
    ENDIF
    skip
 enddo
+
 Return
 
 ******************************************
 Function Encrip
+
 para pepe
 pepe1=pepe
 pala=''
@@ -399,9 +419,11 @@ for a=1 to enc
   pala=pala+chr(conv)
 next
 pepe=pala
+
 retu(pepe)
 *****************************************
 Function ConvExcel(traigo)
+
 pala=''
 for a=1 to len(traigo)
 	letra=substr(traigo,a,1)
@@ -410,10 +432,13 @@ for a=1 to len(traigo)
 	endif
 	pala=pala+letra
 next
+
 return(pala)
 *----------------------------------------------------------------------------*
 Function LimpioDoc
+
 PARA PAR
+
 CAD=''
 FOR X=1 TO LEN(PAR)
 	CAR=SUBSTR(PAR,X,1)
@@ -422,6 +447,7 @@ FOR X=1 TO LEN(PAR)
 	ENDI
 	CAD=CAD+CAR
 NEXT
+
 RETU CAD
 
 *----------------------------*
@@ -437,6 +463,7 @@ RETU CAD
 */
 
 FUNCTION FETOP
+
 PARAMETERS val_fec, desde, hasta
 PRIVATE ret_val
 
@@ -450,9 +477,10 @@ ENDIF
 
 ret_val = .F.
 
-IF val_fec >= desde .AND. val_fec <=  hasta 
+IF val_fec >= desde .AND. val_fec <=  hasta
    ret_val = .T.
 ENDIF
+
 RETURN(ret_val)
 
 
@@ -468,7 +496,9 @@ RETURN(ret_val)
 ********************************************************* Versión:19-03-2007 ***
 *** Coloque Limites al cálculo de nCar ****************** Versión:19-12-2008 ***
 FUNCTION Encriptar (nTipo,cTexto,cPass)
+
 Local cLetra,nI,cNuevo,nPass,nPos,nAsc, nCar
+
 cPass :=IIF(Empty(cPass),'yotequieroverlejos!',AllTrim(cPass))
 nPass :=LEN(cPass)
 cNuevo:=''
@@ -492,15 +522,16 @@ FOR nI=1 TO LEN(cTexto)
          nCar:=nCar+255
       Endif
       cNuevo:=cNuevo+CHR(nCar)
-   ENDIF   
+   ENDIF
 NEXT
+
 RETURN (cNuevo)
 
 
 *------------------------------------------------------------------------------*
 * Basurita()  Sirve para agregar TEXTO basura a un dato que será encriptado.   *
 *       Recibe: nCar = Cantidad de caracteres basura.                          *
-*       Retorna: Texto basura con 'nCar' carateres!                            * 
+*       Retorna: Texto basura con 'nCar' carateres!                            *
 *------------------------------------------------------------------------------*
 Function Basurita (nCar)
 Local cBasura:=''
@@ -520,9 +551,10 @@ Return (cBasura)
 *---------------------------------------------------------------- 10-03-2007 --*
 *---------------------------------------------------------------- 21-11-2008 --*
 Function MsgTemp (cMensaje,nTiempo,cColor,nTamanio,nWidth,nHeight)
+
 DEFAULT nTiempo  TO 3
 DEFAULT cColor   TO BLACK
-DEFAULT nTamanio TO 9    
+DEFAULT nTamanio TO 9
 DEFAULT nWidth   TO 650
 DEFAULT nHeight  TO 100
 
@@ -537,16 +569,17 @@ DEFINE WINDOW frmMensajes AT 0,0 WIDTH nWidth HEIGHT nHeight TITLE 'Mensajes del
       FONTCOLOR cColor
       FONTBOLD .t.
       CENTERALIGN .t.
-   END LABEL   
+   END LABEL
 END WINDOW
 CENTER   WINDOW frmMensajes
 ACTIVATE WINDOW frmMensajes NOWAIT
 DO WHILE nTiempo>=0
-   DO EVENTS     
+   DO EVENTS
    Inkey(.5)
    nTiempo:=nTiempo-.5
-ENDDO   
+ENDDO
 frmMensajes.RELEASE
+
 Return .t.
 
 
@@ -555,10 +588,12 @@ Return .t.
 *       Recibe: cMes = Numero de mes en formato 'nn' caracterer, pe: 01 = Ene  *
 *               nTipo= 1 = Devuelve el nombre en 3 letras (por defecto)        *
 *                      2 = Devuelve el nombre completo                         *
-*       Retorna: Texto con el nombre del mes en 3 letras o completo            * 
+*       Retorna: Texto con el nombre del mes en 3 letras o completo            *
 *---------------------------------------------------------------- 28-12-2008 --*
 Function MesToNombre (cMes,nTipo)
+
 DEFAULT nTipo TO 1
+
 If cMes='01'
    Return IIF(nTipo=1,'Ene','Enero')
 ElseIf cMes='02'
@@ -587,4 +622,4 @@ Else
    MsgBox('Error! en MesToNombre(). Mes no identificado!','Funciones del Sistema.')
    Return ''
 EndIf
-   
+

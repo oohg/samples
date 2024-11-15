@@ -14,6 +14,8 @@
 #include "dbstruct.ch"
 REQUEST DBFCDX
 
+MEMVAR aRecords, nPos, oXbrowse, Number, I, Code, oForm, oButton
+
 FUNCTION Main()
 
    PUBLIC oForm, oXbrowse, nPos, aRecords := {}

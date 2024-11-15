@@ -318,7 +318,7 @@ RETURN
 FUNCTION AdvancedSave( aValues, lNew, cArea )
 
         // Variable declaration.-----------------------------------------------
-        LOCAL i := 1
+        LOCAL i
 
         // Check for empty values.
         IF Empty( aValues[1] )   // First name.
@@ -428,7 +428,7 @@ PROCEDURE SelectLang()
       MsgInfo( "Interface language was changed to " + aLangName[nItem], "EDIT EXTENDED demo" )
    ENDIF
 
-RETURN NIL
+RETURN
 
 
 /****************************************************************************************

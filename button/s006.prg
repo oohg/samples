@@ -12,6 +12,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oTarget1, oChange1, oTarget2, oChange2, oMain
+
 FUNCTION Main()
 
    DEFINE WINDOW MainForm ;

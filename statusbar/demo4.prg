@@ -1,6 +1,8 @@
 
 #include "oohg.ch"
 
+MEMVAR oStat
+
 Function Main
 
 	SET DATE GERMAN
@@ -10,12 +12,12 @@ Function Main
 		WIDTH 640 ;
 		HEIGHT 400 ;
 		TITLE 'Statusbar Keyboard Demo' ;
-		MAIN 
+		MAIN
 
 
 		DEFINE STATUSBAR FONT 'Arial' SIZE 9 OBJ oStat
 
-			STATUSITEM "Statusbar Demo" 
+			STATUSITEM "Statusbar Demo"
          STATUSITEM "DOS" width 200
 
 		END STATUSBAR
@@ -29,6 +31,6 @@ Function Main
 
 	ACTIVATE WINDOW Form_1
 
-Return
+Return Nil
 
 

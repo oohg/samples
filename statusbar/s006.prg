@@ -11,6 +11,8 @@
 
 #include 'oohg.ch'
 
+MEMVAR oMain, oStat
+
 PROCEDURE MAIN
 
    DEFINE WINDOW Frm_1 OBJ oMain ;

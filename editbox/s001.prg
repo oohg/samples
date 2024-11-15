@@ -12,7 +12,10 @@
 
 #include "oohg.ch"
 
+MEMVAR oForm, oCtrl, oLbl, oTmr
+
 FUNCTION Main
+
    PRIVATE oForm, oCtrl, oLbl, oTmr
 
    DEFINE WINDOW Frm_1 ;
@@ -51,6 +54,7 @@ FUNCTION Main
 RETURN NIL
 
 FUNCTION FillCtrl
+
    LOCAL cLines, i
 
    cLines := "This is line 001"
@@ -62,6 +66,7 @@ FUNCTION FillCtrl
 RETURN NIL
 
 FUNCTION CheckEnd
+
    IF oCtrl:GetLastVisibleLine() + 1 == oCtrl:GetLineCount()
        oLbl:Value := "End Reached"
        oLbl:FontColor := RED
@@ -69,6 +74,7 @@ FUNCTION CheckEnd
        oLbl:Value := "Last visible row " + LTrim( Str( oCtrl:GetLastVisibleLine() + 1 ) ) + " of " + LTrim( Str( oCtrl:GetLineCount() ) )
        oLbl:FontColor := BLUE
    ENDIF
+
 RETURN NIL
 
 /*
