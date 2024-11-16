@@ -12,9 +12,9 @@
 
 #include 'oohg.ch'
 
-MEMVAR oTarget1, oChange1, oTarget2, oChange2, oMain
-
 FUNCTION Main()
+
+   LOCAL oTarget1, oChange1, oTarget2, oChange2, oMain, oBtnText
 
    DEFINE WINDOW MainForm ;
       OBJ oMain ;
@@ -35,7 +35,7 @@ FUNCTION Main()
          OBJ oChange1 ;
          WIDTH 150 ;
          CAPTION "Change TARGET 1" ;
-         ACTION ChangeColor( "oTarget1" )
+         ACTION ChangeColor( oTarget1 )
 
       @ 60, 10 BUTTON btn_Target2 ;
          OBJ oTarget2 ;
@@ -49,7 +49,12 @@ FUNCTION Main()
          OBJ oChange2 ;
          WIDTH 150 ;
          CAPTION "Change TARGET 2" ;
-         ACTION ChangeColor( "oTarget2" )
+         ACTION ChangeColor( oTarget2 )
+
+      @ 110, 10 BUTTON btn_text ;
+         OBJ oBtnText ;
+         WIDTH 300 ;
+         CAPTION "Works with manifest only"
 
       ON KEY ESCAPE ACTION oMain:Release()
    END WINDOW
@@ -58,16 +63,18 @@ FUNCTION Main()
    CENTER WINDOW MainForm
    ACTIVATE WINDOW MainForm
 
+   (oChange2); (oBtnText) // -w3 -es2
+
 RETURN Nil
 
-FUNCTION ChangeColor( cButton )
+FUNCTION ChangeColor( xControl )
 
-   IF aEqual( &cButton:FontColor, BLUE )
-      &cButton:FontColor := RED
-      &cButton:BackColor := BLUE
+   IF aEqual( xControl:FontColor, BLUE )
+      xControl:FontColor := RED
+      xControl:BackColor := BLUE
    ELSE
-      &cButton:FontColor := BLUE
-      &cButton:BackColor := RED
+      xControl:FontColor := BLUE
+      xControl:BackColor := RED
    ENDIF
 
 RETURN NIL
