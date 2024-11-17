@@ -82,8 +82,6 @@ FUNCTION Main()
       ERASE dbsample.cdx
    ENDIF
 
-   QUIT
-
    RETURN NIL
 
 FUNCTION MyKeyHandler( oEditWindow )
