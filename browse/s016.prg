@@ -1,5 +1,5 @@
 /*
- * Browse Sample n° 16
+ * Browse Sample # 16
  * Author: Fernando Yurisich <fyurisich@oohg.org>
  * Licensed under The Code Project Open License (CPOL) 1.02
  * See <http://www.codeproject.com/info/cpol10.aspx>
@@ -87,6 +87,12 @@ FUNCTION Main
          ON EDITCELLEND ProcessEdit() ;
          ON APPEND ProcessAppend() ;
          ON EDITCELL Total() ;
+         VALID { { |uValue| AutoMsgBox( "Valid" ), iif( uValue < 0, _OOHG_ThisItemCellValue := 100, uValue ) >= 0 }, ;
+                 { |uValue| Len( uValue ) > 3 }, ;
+                 { |uValue| Len( uValue ) > 3 }, ;
+                 { |uValue| uValue < Date() - 18*365 }, ;
+                 NIL, ;
+                 NIL } ;
          DEFAULTVALUES { 10, "Empty First", "Empty Last", date(), 1, Nil }
 
          /*
@@ -103,6 +109,18 @@ FUNCTION Main
 
 RETURN Nil
 
+/*
+ * Note that VALID codeblocks are evaluated before the end of the cell edition.
+ * You can access the cell info using this vars:
+ * _OOHG_ThisItemRowIndex (readonly)
+ * _OOHG_ThisItemColIndex (readonly)
+ * _OOHG_ThisItemCellRow (readonly)
+ * _OOHG_ThisItemCellCol (readonly)
+ * _OOHG_ThisItemCellWidth (readonly)
+ * _OOHG_ThisItemCellHeight (readonly)
+ * _OOHG_ThisItemCellValue (read/write)
+ */
+
 //--------------------------------------------------------------------------//
 FUNCTION ProcessEdit
 
@@ -117,7 +135,7 @@ FUNCTION ProcessEdit
     * _OOHG_ThisItemCellWidth
     * _OOHG_ThisItemCellHeight
     * _OOHG_ThisItemCellValue
-    * Any change to this vars is ignored.
+    * Any changes to these variables are ignored.
     */
     AutoMsgBox( "ProcessEdit" )
 
