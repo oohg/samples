@@ -520,7 +520,7 @@ Procedure OpenMPM( ProjectFile ) // Versión nueva de .mpm
          GET main.RadioGroup_6.value SECTION 'COMPILER'   ENTRY "CCOMPILER"       DEFAULT 1
          GET main.RadioGroup_7.value SECTION 'FILETYPE'   ENTRY "OUTPUTFILE"      DEFAULT 1
 
-         GET main.RadioGroup_3.value SECTION 'INTERFASE'  ENTRY "WITHGTMODE"      DEFAULT 1
+         GET main.RadioGroup_3.value SECTION 'INTERFACE'  ENTRY "WITHGTMODE"      DEFAULT 1
          GET main.RadioGroup_2.value SECTION 'ENABDEBUG'  ENTRY "WITHDEBUG"       DEFAULT 1
          GET main.RadioGroup_4.value SECTION 'COMPTYPE'   ENTRY "INCREMENTAL"     DEFAULT 1
 
@@ -881,7 +881,7 @@ Procedure SaveProject()  // Guarda variables en carpeta de mpm
          SET SECTION 'COMPILER'   ENTRY "CCOMPILER"       TO main.RadioGroup_6.value
 
          SET SECTION 'FILETYPE'   ENTRY "OUTPUTFILE"      TO main.RadioGroup_7.value
-         SET SECTION 'INTERFASE'  ENTRY "WITHGTMODE"      TO main.RadioGroup_3.value
+         SET SECTION 'INTERFACE'  ENTRY "WITHGTMODE"      TO main.RadioGroup_3.value
          SET SECTION 'ENABDEBUG'  ENTRY "WITHDEBUG"       TO main.RadioGroup_2.value
          SET SECTION 'COMPTYPE'   ENTRY "INCREMENTAL"     TO main.RadioGroup_4.value
 
