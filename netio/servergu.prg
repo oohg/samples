@@ -33,6 +33,6 @@ proc main()
 ///   wait "aguanta"
    do while .t.
       inkey(0.9)
-      processmessages()
+      ProcessMessages()
    enddo
 return
