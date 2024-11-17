@@ -13,7 +13,7 @@ Function Main
 	DEFINE WINDOW Form_Main ;
 		AT 0,0 ;
 		WIDTH 640 HEIGHT 480 ;
-		TITLE 'Demo playwave from resource' ;
+		TITLE 'Demo PlayWave from resource' ;
 		ICON 'WORLD' ;
 		MAIN 
 
