@@ -31,70 +31,70 @@ FUNCTION Main()
 
       DEFINE MAIN MENU OWNERDRAW FONT { "Comic Sans MS", 8, .F., .T. }
 
-         POPUP 'PopUp1'
-            ITEM 'Item 1 of PopUp1' ;
-               ACTION MsgInfo( 'Item 1 of PopUp1' )
-            ITEM 'Item 2 of PopUp1' ;
-               ACTION MsgInfo( 'Item 2 of PopUp1' )
+         POPUP 'Popup1'
+            ITEM 'Item 1 of Popup1' ;
+               ACTION MsgInfo( 'Item 1 of Popup1' )
+            ITEM 'Item 2 of Popup1' ;
+               ACTION MsgInfo( 'Item 2 of Popup1' )
             SEPARATOR
-            ITEM 'Item 3 of PopUp1' ;
-               ACTION MsgInfo( 'Item 3 of PopUp1' )
-            ITEM 'Item 4 of PopUp1' ;
-               ACTION MsgInfo( 'Item 4 of PopUp1' ) ;
+            ITEM 'Item 3 of Popup1' ;
+               ACTION MsgInfo( 'Item 3 of Popup1' )
+            ITEM 'Item 4 of Popup1' ;
+               ACTION MsgInfo( 'Item 4 of Popup1' ) ;
                BREAKMENU
-            ITEM 'Item 5 of PopUp1' ;
-               ACTION MsgInfo( 'Item 5 of PopUp1' )
+            ITEM 'Item 5 of Popup1' ;
+               ACTION MsgInfo( 'Item 5 of Popup1' )
             SEPARATOR
             ITEM 'Exit' ;
                ACTION oForm_1:Release()
          END POPUP
 
-         POPUP 'PopUp2'
-            ITEM 'Item 1 of PopUp2' ;
-               ACTION MsgInfo( 'Item 1 of PopUp2' )
-            ITEM 'Item 2 of PopUp2' ;
-               ACTION MsgInfo( 'Item 2 of PopUp2' )
+         POPUP 'Popup2'
+            ITEM 'Item 1 of Popup2' ;
+               ACTION MsgInfo( 'Item 1 of Popup2' )
+            ITEM 'Item 2 of Popup2' ;
+               ACTION MsgInfo( 'Item 2 of Popup2' )
 
-            POPUP 'Item 3 of PopUp2'
-               ITEM 'Item 3.1 of PopUp2' ;
-                  ACTION MsgInfo( 'Item 3.1 of PopUp2' )
-               ITEM 'Item 3.2 of PopUp2' ;
-                  ACTION MsgInfo( 'Item 3.2 of PopUp2' )
+            POPUP 'Item 3 of Popup2'
+               ITEM 'Item 3.1 of Popup2' ;
+                  ACTION MsgInfo( 'Item 3.1 of Popup2' )
+               ITEM 'Item 3.2 of Popup2' ;
+                  ACTION MsgInfo( 'Item 3.2 of Popup2' )
 
-               POPUP 'Item 3.3 of PopUp2'
-                  ITEM 'Item 3.3.1 of PopUp2' ;
-                     ACTION MsgInfo( 'Item 3.3.1 of PopUp2' )
-                  ITEM 'Item 3.3.2 of PopUp2' ;
-                     ACTION MsgInfo( 'Item 3.3.2 of PopUp2' )
+               POPUP 'Item 3.3 of Popup2'
+                  ITEM 'Item 3.3.1 of Popup2' ;
+                     ACTION MsgInfo( 'Item 3.3.1 of Popup2' )
+                  ITEM 'Item 3.3.2 of Popup2' ;
+                     ACTION MsgInfo( 'Item 3.3.2 of Popup2' )
 
-                  POPUP 'Item 3.3.3 of PopUp2'
-                     ITEM 'Item 3.3.3.1 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.1 of PopUp2' )
-                     ITEM 'Item 3.3.3.2 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.2 of PopUp2' )
-                     ITEM 'Item 3.3.3.3 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.3 of PopUp2' )
-                     ITEM 'Item 3.3.3.4 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.4 of PopUp2' ) ;
+                  POPUP 'Item 3.3.3 of Popup2'
+                     ITEM 'Item 3.3.3.1 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.1 of Popup2' )
+                     ITEM 'Item 3.3.3.2 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.2 of Popup2' )
+                     ITEM 'Item 3.3.3.3 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.3 of Popup2' )
+                     ITEM 'Item 3.3.3.4 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.4 of Popup2' ) ;
                         BREAKMENU SEPARATOR
-                     ITEM 'Item 3.3.3.5 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.5 of PopUp2' )
-                     ITEM 'Item 3.3.3.6 of PopUp2' ;
-                        ACTION MsgInfo( 'Item 3.3.3.6 of PopUp2' )
+                     ITEM 'Item 3.3.3.5 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.5 of Popup2' )
+                     ITEM 'Item 3.3.3.6 of Popup2' ;
+                        ACTION MsgInfo( 'Item 3.3.3.6 of Popup2' )
                   END POPUP
 
-                  ITEM 'Item 3.3.4 of PopUp2' ;
-                     ACTION MsgInfo( 'Item 3.3.4 of PopUp2' )
+                  ITEM 'Item 3.3.4 of Popup2' ;
+                     ACTION MsgInfo( 'Item 3.3.4 of Popup2' )
                END POPUP
             END POPUP
 
-            ITEM 'Item 4 of PopUp2' ;
-               ACTION MsgInfo( 'Item 4 of PopUp2' )
+            ITEM 'Item 4 of Popup2' ;
+               ACTION MsgInfo( 'Item 4 of Popup2' )
          END POPUP
 
-         POPUP 'PopUp3' BREAKMENU
-            ITEM 'Item 1 of PopUp3' ;
-               ACTION MsgInfo( 'Item 1 of PopUp3' )
+         POPUP 'Popup3' BREAKMENU
+            ITEM 'Item 1 of Popup3' ;
+               ACTION MsgInfo( 'Item 1 of Popup3' )
          END POPUP
 
       END MENU
