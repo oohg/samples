@@ -63,6 +63,8 @@ FUNCTION DoReports( cPrintLib )
 
    oPrint1:SetPreviewSize( 2 )
    oPrint1:BeginDoc()
+
+   FOR i := 1 TO 10
       oPrint1:BeginPage()
          nLin := 55
          oPrint1:PrintRoundrectangle( nLin + 5, 06, nLin + 17, 60 )
@@ -95,9 +97,10 @@ FUNCTION DoReports( cPrintLib )
          oPrint1:PrintResource( nLin + 30, 160, 0, 0, "uruguay.ico", NIL, .T., NIL, .F. )
 
       oPrint1:EndPage()
+   NEXT i
    oPrint1:EndDoc( .F., .T., .T. )   // Save, Wait, Size
 
-   oPrint1:Release() 
+   oPrint1:Release()
 
    RETURN NIL
 
