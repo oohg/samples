@@ -5,7 +5,7 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to open forms from a
- * console interfase.
+ * console interface.
  *
  * Visit us at https://github.com/oohg/samples
  */
