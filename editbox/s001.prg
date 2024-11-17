@@ -34,7 +34,8 @@ FUNCTION Main
          WIDTH oForm:ClientWidth - 20 ;
          HEIGHT oForm:ClientHeight - 60 ;
          READONLY ;
-         NOHSCROLL
+         NOHSCROLL ;
+         TOOLTIP "This editbox is readonly!"
 
       @ oForm:ClientHeight - 40, 10 LABEL lbl_1 ;
          OBJ oLbl ;
