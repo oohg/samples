@@ -46,7 +46,8 @@ FUNCTION Main
       @ 120,200 TEXTBOX txt_Value ;
          WIDTH 100 ;
          HEIGHT 24 ;
-         DATE
+         DATE ;
+         TOOLTIP "Enter a date!"
 
       @ 200, 20 LABEL lbl_Note ;
          VALUE "Enter a partial date and tab outside the field to see what happens." ;
