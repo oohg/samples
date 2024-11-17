@@ -52,7 +52,7 @@ FUNCTION Main
          CAPTION "Change Style" ;
          WIDTH 100 ;
          HEIGHT 28 ;
-         ACTION nPrevious := ChangeStyle( oProg2, nPrevious, oBut1 ) ;
+         ACTION nPrevious := ChangeBtnStyle( oProg2, nPrevious, oBut1 ) ;
          TOOLTIP 'Click to turn second ProgressBar into Marquee style and start the animation.'
 
       @ 140,340 BUTTON Button_2 ;
@@ -72,7 +72,7 @@ FUNCTION Main
 
 RETURN NIL
 
-FUNCTION ChangeStyle( oProg, nValue, oBut )
+FUNCTION ChangeBtnStyle( oProg, nValue, oBut )
 
    IF oProg:IsStyleNormal()
       nValue := oProg:Value
