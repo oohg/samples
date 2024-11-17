@@ -12,8 +12,14 @@
  */
 
 #include "oohg.ch"
+#include "i_windefs.ch"
 
 FUNCTION Main()
+
+   ERASE DumpLog.txt
+
+   SET TOOLTIP ACTIVATE ON
+   SET TOOLTIPBALLOON ON
 
    DEFINE WINDOW Form OBJ oForm ;
       AT 0,0 ;
@@ -26,12 +32,14 @@ FUNCTION Main()
       ON KEY F2 ACTION MsgInfo( 'Action 2' )
       ON KEY F3 ACTION MsgInfo( 'Action 3' )
 
+      ADD TOOLTIP ICON INFO_LARGE WITH TITLE "This is the way!" TO Form
+
       DEFINE MAIN MENU OBJ mnu_Main
          POPUP 'Actions'  OBJ mnu_Actions
-            ITEM 'Action 1' + Chr( 9 ) + "F1" ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1
+            ITEM 'Action 1' + Chr( 9 ) + "F1" ACTION MsgInfo( 'Action 1' ) NAME mnu_Action1 TOOLTIP "F1"
             SEPARATOR
-            ITEM 'Action 2' + Chr( 9 ) + "F2" ACTION MsgInfo( 'Action 2' ) NAME mnu_Action2
-            ITEM 'Action 3' + Chr( 9 ) + "F3" ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3
+            ITEM 'Action 2' + Chr( 9 ) + "F2" ACTION MsgInfo( 'Action 2' ) NAME mnu_Action2 TOOLTIP "F2"
+            ITEM 'Action 3' + Chr( 9 ) + "F3" ACTION MsgInfo( 'Action 3' ) NAME mnu_Action3 TOOLTIP "F3"
          END POPUP
 
          POPUP 'Test'
@@ -40,7 +48,7 @@ FUNCTION Main()
                         MsgInfo( 'Menu "Action 2" has been deleted !!!' ), ;
                         oForm:mnu_Create:Enabled( .T. ), ;
                         oForm:mnu_Delete:Enabled( .F. ) ) ;
-               NAME mnu_Delete
+               NAME mnu_Delete TOOLTIP "DEL F2"
             ITEM 'Create Action 2' ;
                ACTION ( TMenuItem():InsertItem( "Action 2" , ;
                                                 { || MsgInfo("Action 2") }, ;
@@ -58,12 +66,13 @@ FUNCTION Main()
                         oForm:mnu_Create:Enabled( .F. ) , ;
                         oForm:mnu_Delete:Enabled( .T. ) ) ;
                NAME mnu_Create ;
-               DISABLED
+               DISABLED TOOLTIP "ADD F2"
          END POPUP
       END MENU
 
-      INSERT ITEM 'Action 4' ;
-         AT -1 ACTION MsgInfo( 'Action 4' ) FROM mnu_Actions
+//      INSERT ITEM 'Action 4' ;
+      INSERT ITEM nil ;
+         AT -1 ACTION MsgInfo( 'Action 4' ) FROM mnu_Actions TOOLTIP "Action 4"
 
       INSERT SEPARATOR AT 3 FROM mnu_Actions
 
@@ -71,7 +80,10 @@ FUNCTION Main()
       END POPUP
 
       INSERT ITEM 'OOHG Power !!!' ;
-         AT -1 ACTION MsgInfo( 'Enjoy !!!' ) FROM mnu_About
+         AT -1 ACTION MsgInfo( 'Enjoy !!!' ) FROM mnu_Main TOOLTIP "ENJOY OOHG!!!"
+
+
+      @ 100, 20 TEXTBOX txt WIDTH 200 TOOLTIP "This is a textbox!"
 
       ON KEY ESCAPE ACTION Form.Release
    END WINDOW
