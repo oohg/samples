@@ -94,7 +94,7 @@ PROCEDURE Sync( aData )
 
    /*
     * aData[ 1 ] -> horizontal scroll, positive indicates scroll to right, negative to left.
-    * aData[ 2 ] -> horizontal scroll, positive indicates scroll to bottom, negative to top.
+    * aData[ 2 ] -> vertical scroll, positive indicates scroll to bottom, negative to top.
     * aData[ 3 ] -> Actual horizontal scrollbar position.
     * aData[ 4 ] -> Actual vertical scrollbar position.
     */
@@ -112,6 +112,8 @@ FUNCTION Size( nCol, nSize )
       oGrid2:ColumnWidth( i, oGrid1:ColumnWidth( i ) )
    NEXT
    oGrid2:ColumnWidth( i, GetVScrollBarWidth() )
+
+   LISTVIEW_SCROLL( oGrid2:hWnd, GetScrollPos( oGrid1:hWnd, SB_HORZ ) - GetScrollPos( oGrid2:hWnd, SB_HORZ ), 0 )
 
 RETURN .T.
 
