@@ -23,7 +23,7 @@ FUNCTION Main()
       ON INIT oEnable:Enabled := .F.
 
       DEFINE MAIN MENU
-         POPUP 'PopUpMenu' OBJ oPopUpMenu
+         POPUP 'PopupMenu' OBJ oPopupMenu
             ITEM 'Exit' ;
                ACTION oForm_1:Release()
          END POPUP
@@ -32,14 +32,14 @@ FUNCTION Main()
       @ 20, 20 BUTTON btn_Enable ;
          OBJ oEnable ;
          CAPTION "Enable" ;
-         ACTION ( oPopUpMenu:Enabled := .T., ;
+         ACTION ( oPopupMenu:Enabled := .T., ;
                   oEnable:Enabled := .F., ;
                   oDisable:Enabled := .T. )
 
       @ 60, 20 BUTTON btn_Disable ;
          OBJ oDisable ;
          CAPTION "Disable" ;
-         ACTION ( oPopUpMenu:Enabled := .F., ;
+         ACTION ( oPopupMenu:Enabled := .F., ;
                   oEnable:Enabled := .T., ;
                   oDisable:Enabled := .F. )
 
