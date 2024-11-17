@@ -29,7 +29,7 @@ FUNCTION Main
       MAIN
 
       DEFINE MAIN MENU OBJ oMain
-         ITEM 'Exit' ACTION MsgInfo( 'Exit' )
+         ITEM 'Exit' ACTION MsgInfo( 'Use ESC to exit!' )
          POPUP 'File' OBJ oFile
             POPUP 'One'
               ITEM 'Open' IMAGE 'Check.Bmp'
@@ -106,12 +106,18 @@ FUNCTION Main
       @ 20,10 LABEL lbl_1 VALUE "Use Toggle in Context Menu" AUTOSIZE
 
       ON KEY ESCAPE ACTION Form_1.Release()
+      ON KEY F12 ACTION Release()
    END WINDOW
 
    CENTER WINDOW Form_1
    ACTIVATE WINDOW Form_1
 
-RETURN NIL
+RETURN
+
+function release
+x := "FORM_1"
+RELEASE CONTEXT MENU OF (x)
+return NIL
 
 STATIC FUNCTION ToggleItem3Colors
 
