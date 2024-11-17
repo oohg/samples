@@ -15,8 +15,11 @@
  */
 
 #include "oohg.ch"
+#include "i_windefs.ch"
 
 FUNCTION Main
+
+   SET TOOLTIPSTYLE TO BALLOON
 
 	DEFINE WINDOW Form_1 ;
 		AT 0,0 ;
@@ -26,16 +29,21 @@ FUNCTION Main
 		MAIN ;
 		FONT 'Arial' SIZE 10
 
+      WITH OBJECT GetExistingFormObject( "Form_1" )
+         :ToolTipIcon( 'DEMO' )
+         :ToolTipTitle( "Editbox Demo" )
+      END OBJECT
+
 		DEFINE STATUSBAR
 			STATUSITEM 'oohg Power Ready!'
 		END STATUSBAR
 
-		@ 30,10 EDITBOX Edit_1 ;
+		@ 30,10 EDITBOX Edit_1 OBJ oCtrl ;
 			WIDTH 410 ;
 			HEIGHT 140 ;
 			VALUE 'EditBox!!' ;
-			TOOLTIP 'EditBox' ;
 			MAXLENGTH 255 ;
+         TOOLTIP "This is a balloon tooltip!!!" ;
 			ON CHANGE ShowRowCol() // NOVSCROLL NOHSCROLL
 
 		DEFINE BUTTON B
