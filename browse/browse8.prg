@@ -48,14 +48,14 @@ Function Main
 
       DEFINE MAIN MENU
          POPUP 'File'
-            ITEM 'Set Browse Value'   ACTION Form_1.Browse_1.Value := Val ( InputBox ('Set Browse Value','') )
-            ITEM 'Get Browse Value'   ACTION MsgInfo ( Str ( Form_1.Browse_1.Value ) )
+            ITEM 'Set Browse Value' ACTION Form_1.Browse_1.Value := Val ( InputBox ('Set Browse Value','') )
+            ITEM 'Get Browse Value' ACTION MsgInfo ( Str ( Form_1.Browse_1.Value ) )
             ITEM 'Refresh Browse'   ACTION Form_1.Browse_1.Refresh
             SEPARATOR
-            ITEM 'Exit'      ACTION Form_1.Release
+            ITEM 'Exit'             ACTION Form_1.Release
          END POPUP
          POPUP 'Help'
-                                ITEM 'About'            ACTION MsgInfo (oohgversion()+" "+hb_compiler())
+            ITEM 'About'            ACTION MsgInfo (oohgversion()+" "+hb_compiler())
          END POPUP
       END MENU
 
