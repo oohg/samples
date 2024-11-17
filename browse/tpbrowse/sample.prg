@@ -94,11 +94,10 @@ DEFINE WINDOW Form_1;
    @529,25 label lab1 obj _lbrw width 733 heigh 25 value 'F1 search       F2 last scanned barcode       Esc exit' fontcolor {0,0,0} backcolor {255,255,255} font "ARIAL" size 10 centeralign vcenteralign
 // @555,320 button but width 120 height 25 caption 'Search' action (_brw:setfocus(),_brw:DbSearch())
 	  on key escape action {||exitprog(),FORM_1.release}
-END WINDOW   
+END WINDOW
 CENTER WINDOW Form_1
 ACTIVATE WINDOW Form_1
 
-quit
 ************************************************************************************************************
 func iniprog
 sele DBSAMPLE
