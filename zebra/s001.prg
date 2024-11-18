@@ -235,9 +235,7 @@ FUNCTION ShowBarcode
       RETURN Nil
    ENDIF
 
-   IF OSisWinXPorLater()
-      SET WINDOW frm_barcode TRANSPARENT TO 150
-   ENDIF
+   SET WINDOW frm_barcode TRANSPARENT TO 150
 
    DEFINE WINDOW frm_showbarcode ;
       AT BT_DesktopHeight() / 2, BT_DesktopWidth() / 2 ;
@@ -245,7 +243,7 @@ FUNCTION ShowBarcode
       HEIGHT BT_BitmapHeight( hBitmap ) + 150 ;
       TITLE 'Display Bar Code' ;
       MODAL NOMAXIMIZE ;
-      ON RELEASE {|| BT_BitmapRelease( hBitmap ), IIF( OSisWinXPorLater(), SET WINDOW frm_barcode TRANSPARENT TO OPAQUE, Nil ) }
+      ON RELEASE {|| BT_BitmapRelease( hBitmap ), SET WINDOW frm_barcode TRANSPARENT TO OPAQUE }
 
       @ 10, 10 IMAGE img_barcode HBITMAP hBitmap
    END WINDOW
