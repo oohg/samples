@@ -28,7 +28,8 @@ PROCEDURE Main
          AT 10, 10 ;
          WIDTH 200 ;
          HEIGHT 400 ;
-         CHECKBOXES
+         CHECKBOXES ;
+         ON CHECKCHANGE {|x| oTree:value := x }
 
          NODE 'Item 1'
             TREEITEM 'Item 1.1' CHECKED
@@ -36,6 +37,9 @@ PROCEDURE Main
             TREEITEM 'Item 1.3'
          END NODE
       END TREE
+
+      @ 10, 300 TEXTBOX txt WIDTH 100
+
    END WINDOW
 
    oTree:CheckItem( 3, .T.)
