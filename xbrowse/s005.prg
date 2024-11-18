@@ -15,11 +15,11 @@
 #include "dbstruct.ch"
 REQUEST DBFCDX
 
-MEMVAR nPos, oXbrowse, Number, I, Code, aRecords, oForm
+MEMVAR oForm, oXbrowse, aRecords
 
 FUNCTION Main()
 
-   PUBLIC oForm, oXbrowse, nPos, aRecords := {}
+   PUBLIC oForm, oXbrowse, aRecords := {}
 
    SET DATE BRITISH
    SET LANGUAGE TO SPANISH
@@ -81,6 +81,7 @@ FUNCTION OnDblClick( ... )
 
    LOCAL nNumber := oXbrowse:Item( _OOHG_ThisItemRowIndex )[ 2 ]
    LOCAL aParams := hb_AParams()
+   LOCAL nPos
 
    IF NumAnd( aParams[ 9 ], MK_CONTROL ) == MK_CONTROL
       IF NumAnd( aParams[ 9 ], MK_SHIFT ) == MK_SHIFT
@@ -105,7 +106,7 @@ FUNCTION OnDblClick( ... )
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION OpenTable()
 
-   LOCAL aStruc[ 3, 4 ]
+   LOCAL aStruc[ 3, 4 ], i
 
    aStruc[ 1, DBS_NAME ] := "code"
    aStruc[ 1, DBS_TYPE ] := "Numeric"
