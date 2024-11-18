@@ -200,8 +200,6 @@ FUNCTION AfterColSize( nCol, nSize )
       RETURN 50
    ENDIF
 
-   (nCol) // not used
-
 RETURN nSize
 
 //--------------------------------------------------------------------------//
