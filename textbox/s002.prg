@@ -5,7 +5,7 @@
  * See <http://www.codeproject.com/info/cpol10.aspx>
  *
  * This sample shows how to place controls inside a
- * TextBox controls.
+ * TextBox control.
  *
  * Adapted from an original sample by Roberto Lopez.
  *
