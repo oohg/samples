@@ -14,7 +14,7 @@
 #include "dbstruct.ch"
 REQUEST DBFCDX
 
-MEMVAR aRecords, nPos, oXbrowse, Number, I, Code, oForm, oButton
+MEMVAR oForm, oXbrowse, nPos, aRecords, oButton
 
 FUNCTION Main()
 
@@ -85,7 +85,7 @@ FUNCTION OnDblClick
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 FUNCTION OpenTable()
 
-   LOCAL aStruc[ 3, 4 ]
+   LOCAL i, aStruc[ 3, 4 ]
 
    aStruc[ 1, DBS_NAME ] := "code"
    aStruc[ 1, DBS_TYPE ] := "Numeric"
