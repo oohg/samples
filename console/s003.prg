@@ -123,9 +123,14 @@ RETURN NIL
 #include <windows.h>
 #include "hbapi.h"
 
-HB_FUNC( HIDECONSOLE )
+HB_FUNC( MINIMIZECONSOLE )
 {
     ShowWindow( FindWindow( NULL, hb_parc( 1 ) ), SW_MINIMIZE );
+}
+
+HB_FUNC( HIDECONSOLE )
+{
+    ShowWindow( FindWindow( NULL, hb_parc( 1 ) ), SW_HIDE );
 }
 
 HB_FUNC( SHOWCONSOLE )
