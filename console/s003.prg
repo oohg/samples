@@ -15,9 +15,9 @@
 
 /*
  * Build with
- *   COMPILE mixedmode /c /nr
+ *   COMPILE s003 /c /nr
  * or
- *   BUILDAPPD mixedmode -gtwin /nr
+ *   BUILDAPPD s003 -gtwin /nr
  *
  * Execute with double click.
  * Do not autorun because if the
