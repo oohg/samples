@@ -64,7 +64,7 @@ https://github.com/oohg/samples/blob/main/grid/s030.prg
 https://github.com/oohg/samples/blob/main/grid/s031.prg
 * How to set a conditional readonly column.<br>
 https://github.com/oohg/samples/blob/main/grid/s032.prg
-* How to handle the gri's dblclick event.<br>
+* How to handle the grid's dblclick event.<br>
 https://github.com/oohg/samples/blob/main/grid/s033.prg
 * How to toggle the checkboxes of a Grid control using the spacebar.<br>
 https://github.com/oohg/samples/blob/main/grid/s034.prg
