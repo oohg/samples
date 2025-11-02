@@ -47,11 +47,10 @@ prgs\Import.prg
 hbct.hbc
 hbwin.hbc
 hbtip.hbc
-xhb.hbc
 hbmisc.hbc
 
 # harbour libs
-#libs=hbct hbmisc hbtip hbziparc hbmzip minizip hbzebra hbhpdf hbmemio rddsql hbodbc sddodbc hbwin png xhb
+#libs=hbct hbmisc hbtip hbziparc hbmzip minizip hbzebra hbhpdf hbmemio rddsql hbodbc sddodbc hbwin png
 #{HB30}libs=libhpdf
 #{HB32}libs=libhpdf
 #{HB34}libs=hpdf
