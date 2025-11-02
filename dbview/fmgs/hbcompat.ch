@@ -339,8 +339,6 @@
 
    #define HB_GTI_CLIPBOARDPAST HB_GTI_CLIPBOARDPASTE
 
-   /* These also have wrapper function in xhb lib */
-
    #xtranslate gtSetClipboard( <x> )           => hb_gtInfo( HB_GTI_CLIPBOARDDATA, <x> )
    #xtranslate gtGetClipboard()                => hb_gtInfo( HB_GTI_CLIPBOARDDATA )
    #xtranslate gtGetClipboardSize()            => Len( hb_gtInfo( HB_GTI_CLIPBOARDDATA ) )
