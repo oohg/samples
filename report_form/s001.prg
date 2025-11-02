@@ -27,7 +27,8 @@ FUNCTION Main
       WIDTH 300 ;
       HEIGHT 430 ;
       TITLE 'DO REPORT FORM and DO REPORT sample' ;
-      MAIN
+      MAIN ;
+      ON RELEASE CleanUp()
 
       DEFINE MAIN MENU
          POPUP 'Test '
@@ -56,6 +57,13 @@ FUNCTION Main
 
    RETURN NIL
 
+
+FUNCTION CleanUp
+
+   CLOSE DATABASES
+   ERASE ( "TEST" + IndexExt() )
+
+   RETURN NIL
 
 FUNCTION CambiaLib()
 
@@ -98,7 +106,7 @@ FUNCTION CambiaLib()
 
 FUNCTION PrintNormal()
 
-   REPORTFORMWIN TEST1 HEADING "PRUEBA 1"
+   REPORTFORMWIN TEST1 HEADING "PRUEBA 1" INFO
 
    RETURN NIL
 
