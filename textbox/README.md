@@ -8,5 +8,7 @@ https://github.com/oohg/samples/blob/main/textbox/s002.prg
 https://github.com/oohg/samples/blob/main/textbox/s003.prg
 * This sample shows how to handle password using a textbox.<br>
 https://github.com/oohg/samples/blob/main/textbox/s004.prg
-* This sample shows how to use the TextBox's FOCUSEDPOS property.<br>
+* This sample shows how to handle a password using a textbox.<br>
 https://github.com/oohg/samples/blob/main/textbox/s005.prg
+* This sample shows how to set a textbox with two buttons that allows to pick values.<br>
+https://github.com/oohg/samples/blob/main/textbox/s006.prg
