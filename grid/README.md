@@ -78,3 +78,9 @@ https://github.com/oohg/samples/blob/main/grid/s037.prg
 https://github.com/oohg/samples/blob/main/grid/s038.prg
 * How to stay in a cell after its edition has ended.<br>
 https://github.com/oohg/samples/blob/main/grid/s039.prg
+* How to use headers with two or more lines (MULTILINEHEADERS clause) in Grid, Browse and XBrowse controls.<br>
+https://github.com/oohg/samples/blob/main/grid/s040.prg
+* How the selected row is painted in Grid and Browse controls, with and without focus (useful to test under Wine).<br>
+https://github.com/oohg/samples/blob/main/grid/s041.prg
+* How to mark the current cell and the rest of the selected row with the MARKROW clause.<br>
+https://github.com/oohg/samples/blob/main/grid/s042.prg
