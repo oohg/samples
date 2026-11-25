@@ -26,3 +26,5 @@ https://github.com/oohg/samples/blob/main/menu/s011.prg
 https://github.com/oohg/samples/blob/main/menu/s012.prg
 * How to define an ownerdraw dropdown menu.<br>
 https://github.com/oohg/samples/blob/main/menu/s013.prg
+* How to set the font of the menus with SET MENU FONT TO, with a main menu and context menus (useful to test under Wine).<br>
+https://github.com/oohg/samples/blob/main/menu/s014.prg
